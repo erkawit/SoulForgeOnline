@@ -3,6 +3,8 @@
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import GameHUD from './GameHUD';
+import OnlinePanel from './OnlinePanel';
+import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { createSnapshot, useGameStore } from '@/store/useGameStore';
 
 const GameWorld = dynamic(() => import('./GameWorld'), { ssr: false,
@@ -22,8 +24,8 @@ export default function GameClient() {
         catch { /* storage quota exceeded */ }
       }, 900);
     });
-    const worldTick = setInterval(() => useGameStore.getState().tick(), 250);
+    const worldTick = setInterval(() => (!useMultiplayerStore.getState().connected && useGameStore.getState().tick()), 250);
     return () => { clearTimeout(timer); unsubscribe(); clearInterval(worldTick); };
   }, []);
-  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /></main>;
+  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /><OnlinePanel /></main>;
 }

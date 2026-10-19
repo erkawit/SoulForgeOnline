@@ -6,6 +6,8 @@ import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, OrthographicCamera, Html, Sparkles } from '@react-three/drei';
 import { Vector3, Group, MathUtils } from 'three';
 import { useGameStore } from '@/store/useGameStore';
+import { useMultiplayerStore } from '@/store/useMultiplayerStore';
+import { gameConnection } from '@/lib/multiplayer/socket';
 import { RARITY_COLOR } from '@/lib/types';
 import type { Loot, Monster } from '@/lib/types';
 
@@ -25,7 +27,7 @@ function InputAndChase() {
       const key = e.key.toLowerCase();
       if (['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(key)) e.preventDefault();
       if (key === ' ' && !e.repeat && Date.now() - lastAttack.current > 700) {
-        useGameStore.getState().castNearest();
+        if (useMultiplayerStore.getState().connected) gameConnection.attack('abyssal-forge-titan','soul_burst'); else useGameStore.getState().castNearest();
         lastAttack.current = Date.now();
       }
       pressed.current.add(key);
@@ -55,8 +57,8 @@ function InputAndChase() {
       tempRight.crossVectors(tempForward, UP).normalize();
       tempMove.copy(tempForward).multiplyScalar(forwards).addScaledVector(tempRight, strafe).normalize();
       state.selectMonster(null);
-      state.move(tempMove.x, tempMove.z, step);
-    } else if (state.selectedMonster) {
+      if (useMultiplayerStore.getState().connected) gameConnection.move(tempMove.x, tempMove.z); else state.move(tempMove.x, tempMove.z, step);
+    } else if (useMultiplayerStore.getState().connected) { gameConnection.move(0, 0); } else if (state.selectedMonster) {
       const mob = state.monsters.find(m => m.id === state.selectedMonster && m.hp > 0);
       if (!mob) { state.selectMonster(null); return; }
       const [px, pz] = state.player.position;
@@ -317,7 +319,27 @@ function AttackEffect() {
   </group>;
 }
 
+function MultiplayerActors() {
+ const {players,playerId,boss,loot,connected} = useMultiplayerStore();
+ if(!connected)return null;
+ return <group>
+ {players.filter(p=>p.id!==playerId).map(p=><group key={p.id} position={[p.x,0,p.z]}>
+   <mesh position={[0,1,0]} castShadow><capsuleGeometry args={[.35,1,6,10]}/><meshStandardMaterial color="#49d1ff" emissive="#075c7e"/></mesh>
+   <Html position={[0,2.3,0]} center><span style={{color:'#9fe9ff',fontSize:12}}>Player {p.id.slice(0,6)}</span></Html>
+ </group>)}
+ {boss&&<group position={[boss.x,0,boss.z]} onClick={e=>{e.stopPropagation();gameConnection.attack()}}>
+   <mesh position={[0,2.1,0]} castShadow><dodecahedronGeometry args={[2,1]}/><meshStandardMaterial color="#7a314b" emissive="#9c1f61" emissiveIntensity={.8}/></mesh>
+   <Html position={[0,4.8,0]} center><div style={{color:'#ffd0dc',whiteSpace:'nowrap',fontWeight:900}}>ABYSSAL FORGE TITAN {Math.ceil(boss.hp/boss.maxHp*100)}%</div></Html>
+ </group>}
+ {loot.map(l=><group key={l.id} position={[l.x,.6,l.z]} onClick={e=>{e.stopPropagation();gameConnection.pickup(l.id)}}>
+   <mesh><octahedronGeometry args={[.45]}/><meshStandardMaterial color={l.rarity==='Legendary'?'#ffd36e':l.rarity==='Epic'?'#b477ff':'#4db7ff'} emissive="#a15ee3" emissiveIntensity={1}/></mesh>
+   <Html position={[0,1.1,0]} center><span style={{whiteSpace:'nowrap',color:'#fff3ad',fontSize:11}}>{l.itemDefinitionId}</span></Html>
+ </group>)}
+ </group>;
+}
+
 function WorldContent() {
+  const connected = useMultiplayerStore(s => s.connected);
   const monsters = useGameStore(s => s.monsters);
   const drops = useGameStore(s => s.drops);
   return <>
@@ -331,9 +353,10 @@ function WorldContent() {
     <pointLight position={[-7, 8, -2]} intensity={35} distance={35} color="#632f9c" />
     <RuneFloor />
     <Hero />
-    {monsters.map(m => <Creature key={m.id} mob={m} />)}
-    {drops.map(d => <LootObject key={d.id} loot={d} />)}
+    {!connected && monsters.map(m => <Creature key={m.id} mob={m} />)}
+    {!connected && drops.map(d => <LootObject key={d.id} loot={d} />)}
     <AttackEffect />
+    <MultiplayerActors />
     <InputAndChase />
     <FollowCamera />
   </>;
