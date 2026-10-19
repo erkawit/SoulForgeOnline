@@ -20,9 +20,10 @@ wss.on('connection',(socket,request)=>{
  let player:Actor|null=null;let id:string|null=null;let strikes=0;let received=0;let lastSecond=Date.now();
  const authTimeout=setTimeout(()=>{if(!player)socket.close(1008,'Auth timeout');},5000);
  socket.on('message',async(raw)=>{
-  if(raw.length>2048){socket.close(1009);return;}
+  const bytes = Array.isArray(raw) ? Buffer.concat(raw) : raw instanceof ArrayBuffer ? Buffer.from(raw) : raw;
+  if(bytes.length>2048){socket.close(1009);return;}
   const now=Date.now();if(now-lastSecond>=1000){lastSecond=now;received=0;}if(++received>45){socket.close(1008,'Rate limit');return;}
-  let msg:unknown;try{msg=JSON.parse(raw.toString());}catch{return;}
+  let msg:unknown;try{msg=JSON.parse(bytes.toString());}catch{return;}
   if(!player){
    if(!msg||typeof msg!=='object'||!('type'in msg)||msg.type!=='AUTH'||!('token'in msg)||typeof msg.token!=='string')return;
    const result=await auth.auth.getUser(msg.token);if(result.error||!result.data.user){socket.close(1008,'Invalid JWT');return;}

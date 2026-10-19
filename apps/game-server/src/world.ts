@@ -24,5 +24,5 @@ export class Room {
   this.boss=null;this.nextBossSpawn=now+3*60*60_000;
   return {dealt,killed:true,drops};
  }
- snapshot(){return {type:'WORLD_SNAPSHOT',roomId:this.id,serverTime:Date.now(),players:[...this.players.values()].map(({id,x,z,hp,maxHp,level})=>({id,x,z,hp,maxHp,level})),boss:this.boss?{id:this.boss.id,x:this.boss.x,z:this.boss.z,hp:this.boss.hp,maxHp:this.boss.maxHp,phase:this.boss.phase}:null,loot:[...this.loot.values()]};}
+ snapshot(){return {type:'WORLD_SNAPSHOT',roomId:this.id,serverTime:Date.now(),players:[...this.players.values()].map(({id,x,z,hp,maxHp,mp,level})=>({id,x,z,hp,maxHp,mp,maxMp:100,level})),boss:this.boss?{id:this.boss.id,x:this.boss.x,z:this.boss.z,hp:this.boss.hp,maxHp:this.boss.maxHp,phase:this.boss.phase}:null,loot:[...this.loot.values()]};}
 }

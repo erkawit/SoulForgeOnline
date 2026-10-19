@@ -1,14 +1,17 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Backpack, Swords, Shield, Sparkles, Gem, Skull, Crown, Flame, UserRound, Settings2, Cloud, MousePointer2, Coins, Zap, Heart, WandSparkles, Crosshair, X, ScrollText, Info, Map, Volume2 } from 'lucide-react';
 import { deriveStats } from '@/lib/combat';
 import { RARITY_COLOR } from '@/lib/types';
 import type { GearSlot, Item } from '@/lib/types';
 import { expRequired, useGameStore } from '@/store/useGameStore';
 import CloudSave from './CloudSave';
+import OnlinePanel from './OnlinePanel';
+import { useMultiplayerStore } from '@/store/useMultiplayerStore';
+import { gameConnection } from '@/lib/multiplayer/socket';
 
-type Panel = 'inventory' | 'character' | 'forge' | 'cloud' | null;
+type Panel = 'inventory' | 'character' | 'forge' | 'cloud' | 'online' | null;
 const slotNames: GearSlot[] = ['weapon', 'armor', 'ring'];
 const slotIcons = { weapon: '⚔', armor: '⬡', ring: '◇' };
 
@@ -91,7 +94,8 @@ function ForgePanel() {
 }
 
 export default function GameHUD() {
-  const [panel, setPanel] = useState<Panel>('inventory');
+  const network = useMultiplayerStore();
+  const [panel, setPanel] = useState<Panel>(null);
   const player = useGameStore(s => s.player);
   const monsters = useGameStore(s => s.monsters);
   const drops = useGameStore(s => s.drops);
@@ -100,52 +104,81 @@ export default function GameHUD() {
   const selectedMonster = useGameStore(s => s.selectedMonster);
   const selected = monsters.find(m => m.id === selectedMonster);
   const derived = useMemo(() => deriveStats(player.stats, equipment), [player.stats, equipment]);
+  const self = network.connected ? network.players.find(p=>p.id===network.playerId) : undefined;
+  const health = self?.hp ?? player.hp;
+  const maxHealth = self?.maxHp ?? derived.maxHp;
+  const mana = self?.mp ?? player.mp;
+  const maxMana = self?.maxMp ?? derived.maxMp;
   const nearbyDrops = drops.filter(d => Math.hypot(player.position[0] - d.x, player.position[1] - d.z) <= 4);
   const toggle = (p: Panel) => setPanel(v => v === p ? null : p);
+  useEffect(() => {
+    const key = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLElement && (e.target.closest('input,textarea,select') || e.target.isContentEditable)) return;
+      if (e.repeat) return;
+      if (e.key.toLowerCase() === 'i') setPanel(p => p === 'inventory' ? null : 'inventory');
+      if (e.key.toLowerCase() === 'f') setPanel(p => p === 'forge' ? null : 'forge');
+      if (e.key === 'Escape') setPanel(null);
+    };
+    window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key);
+  }, []);
   return <div className="hud-root pointer-events-none">
     <header className="topbar pointer-events-auto">
       <div className="brand"><div className="brand-mark"><Sparkles size={23} /></div><div><b>SOUL<span>FORGE</span></b><small>ECLIPSE FRONTIER</small></div></div>
       <div className="top-center"><span className="world-indicator"><span /> HOLLOW REACH</span><span className="beta-pill">ALPHA PROTOTYPE</span></div>
-      <div className="top-controls"><span className="top-online"><span /> LOCAL WORLD</span><button title="Cloud save" onClick={() => toggle('cloud')}><Cloud size={17} /></button><button title="Character" onClick={() => toggle('character')}><UserRound size={17} /></button></div>
+      <div className="top-controls"><span className="top-online"><span /> {network.connected ? 'ONLINE WORLD' : 'LOCAL WORLD'}</span><button title="Cloud save" onClick={() => toggle('cloud')}><Cloud size={17} /></button><button title="Character" onClick={() => toggle('character')}><UserRound size={17} /></button></div>
     </header>
     <section className="character-hud pointer-events-auto">
       <div className="hud-avatar">✦ <span>{player.level}</span></div>
       <div className="character-status"><div className="character-name">{player.name}<small> LEVEL {player.level} · SOULBINDER</small></div>
-        <Meter value={player.hp} max={derived.maxHp} kind="hp" label="HEALTH" />
-        <Meter value={player.mp} max={derived.maxMp} kind="mp" label="MANA" />
+        <Meter value={health} max={maxHealth} kind="hp" label="HEALTH" />
+        <Meter value={mana} max={maxMana} kind="mp" label="MANA" />
         <Meter value={player.exp} max={expRequired(player.level)} kind="xp" label="EXP" />
       </div>
     </section>
-    <section className="world-top-right"><div className="mini-map pointer-events-auto"><div className="mini-map-grid" /><div className="mini-rune">✧</div><span className="mini-dot" /></div>
+    <section className="world-top-right"><div className="mini-map pointer-events-auto"><div className="mini-map-grid" /><svg viewBox="-30 -30 60 60" className="live-map" aria-label="World minimap: gold player, red enemies, purple loot">
+      <path d="M-18 10V-18H18V10 M-7 -24V24 M7 -24V24" fill="none" stroke="#857355" strokeWidth="1"/>
+      <circle r="2" fill="none" stroke="#61a89a"/>
+      {(network.connected ? network.players.filter(p=>p.id!==network.playerId).map(p=>({id:p.id,x:p.x,z:p.z,hp:1})) : monsters).filter(m=>m.hp>0).map(m=><circle key={m.id} cx={m.x} cy={m.z} r=".8" fill={network.connected?'#6dc8db':'#e37c6c'}/>)}
+      {(network.connected?network.loot:drops).map(d=><circle key={d.id} cx={d.x} cy={d.z} r=".65" fill="#cb8ff2"/>)}
+      {network.connected&&network.boss&&<circle cx={network.boss.x} cy={network.boss.z} r="1.6" fill="#ef6357"/>}
+      <circle cx={player.position[0]} cy={player.position[1]} r="1.2" fill="#ffe4a1" stroke="#fff" strokeWidth=".3"/>
+    </svg></div>
       <div className="mini-map-label">THE HOLLOW REACH <span>ZONE 01 · Lv. 1–5</span></div>
     </section>
     <div className="left-quest"><span className="eyebrow">◈ WORLD QUEST</span><b>Whispers of the Fallen</b><p>Defeat shadow creatures and gather soul fragments for your forge.</p>
       <div className="quest-count"><Skull size={14} /> {monsters.filter(m => m.hp === 0).length} / {monsters.length} defeated now</div>
-      <div className="quest-rule" /><span className="eyebrow muted">NEXT WORLD EVENT</span><div className="quest-event"><Crown size={17} /> World Boss <em>Planned</em></div>
+      <div className="quest-rule" /><span className="eyebrow muted">NEXT WORLD EVENT</span><div className="quest-event"><Crown size={17} /> World Boss <em>{network.connected ? (network.boss ? 'Active' : 'Awaiting spawn') : 'Online realm'}</em></div>
     </div>
-    {selected && selected.hp > 0 && <div className="target-card"><Skull size={18} color="#e8a4c2" /><div><b>{selected.name} · LV {selected.level}</b><div className="target-health"><span style={{ width: `${(selected.hp / selected.maxHp) * 100}%` }} /></div></div></div>}
+    {network.connected && network.boss && <div className="boss-banner"><span>♛ WORLD BOSS · {network.boss.phase}</span><b>ABYSSAL FORGE TITAN</b><div className="target-health"><span style={{width:`${Math.max(0,network.boss.hp/network.boss.maxHp*100)}%`}}/></div><small>{Math.ceil(network.boss.hp).toLocaleString()} / {network.boss.maxHp.toLocaleString()}</small></div>}
+    {!network.connected && selected && selected.hp > 0 && <div className="target-card"><Skull size={18} color="#e8a4c2" /><div><b>{selected.name} · LV {selected.level}</b><div className="target-health"><span style={{ width: `${(selected.hp / selected.maxHp) * 100}%` }} /></div></div></div>}
     <div className="event-feed">{log.slice(0, 4).map((line, i) => <div key={`${line}-${i}`} style={{ opacity: 1 - i * 0.18 }}><span>›</span> {line}</div>)}</div>
     <div className="right-panel-container pointer-events-auto">
       <div className="panel-nav">
-        {([['inventory', Backpack, 'Inventory'], ['character', UserRound, 'Character'], ['forge', Flame, 'Soul Forge'], ['cloud', Cloud, 'Cloud Save']] as const).map(([id, Icon, label]) => <button title={label} key={id} onClick={() => toggle(id)} className={panel === id ? 'active' : ''}><Icon size={18} /></button>)}
+        {([['inventory', Backpack, 'Inventory'], ['character', UserRound, 'Character'], ['forge', Flame, 'Soul Forge'], ['cloud', Cloud, 'Cloud Save'], ['online', Swords, 'Online Realm']] as const).map(([id, Icon, label]) => <button title={label} key={id} onClick={() => toggle(id)} className={panel === id ? 'active' : ''}><Icon size={18} /></button>)}
       </div>
-      {panel && <div className="game-panel"><div className="panel-header"><div><span className="eyebrow">THE WANDERER</span><h2>{panel === 'inventory' ? 'Inventory' : panel === 'character' ? 'Character' : panel === 'forge' ? 'Soul-Forge' : 'Cloud Save'}</h2></div><button onClick={() => setPanel(null)} aria-label="Close panel"><X size={18} /></button></div>
-        {panel === 'inventory' && <InventoryPanel />}{panel === 'character' && <CharacterPanel />}{panel === 'forge' && <ForgePanel />}{panel === 'cloud' && <CloudSave />}
+      {panel && <div className="game-panel"><div className="panel-header"><div><span className="eyebrow">THE WANDERER</span><h2>{panel === 'inventory' ? 'Inventory' : panel === 'character' ? 'Character' : panel === 'forge' ? 'Soul-Forge' : panel === 'online' ? 'Online Realm' : 'Cloud Save'}</h2></div><button onClick={() => setPanel(null)} aria-label="Close panel"><X size={18} /></button></div>
+        {panel === 'inventory' && <InventoryPanel />}{panel === 'character' && <CharacterPanel />}{panel === 'forge' && <ForgePanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}
       </div>}
     </div>
-    <div className="bottom-center pointer-events-auto"><div className="action-tray">
+    <div className="bottom-center pointer-events-auto"><div className="action-tray"><ResourceOrb value={health} max={maxHealth} kind="health" />
       <button title="Basic attack: click a monster" onClick={() => {
+        if (network.connected) { gameConnection.attack(); return; }
         const state = useGameStore.getState();
         const target = state.monsters.filter(m => m.hp > 0).sort((a, b) => Math.hypot(a.x - state.player.position[0], a.z - state.player.position[1]) - Math.hypot(b.x - state.player.position[0], b.z - state.player.position[1]))[0];
         if (target) state.selectMonster(target.id);
       }}><div className="skill-icon slash"><Swords size={26} /></div><small>LMB</small></button>
-      <button title="Soul burst (Space, 20 MP)" onClick={() => useGameStore.getState().castNearest()}><div className="skill-icon burst"><Flame size={26} /></div><small>SPACE</small></button>
-      <button title="Pick up nearby loot" onClick={() => { nearbyDrops.forEach(d => useGameStore.getState().pickup(d.id)); }}><div className="skill-icon loot"><Gem size={24} /></div><small>LOOT</small></button>
+      <button title="Soul burst (Space, 20 MP)" onClick={() => network.connected ? gameConnection.attack('abyssal-forge-titan','soul_burst') : useGameStore.getState().castNearest()}><div className="skill-icon burst"><Flame size={26} /></div><small>SPACE</small></button>
+      <button title="Pick up nearby loot" onClick={() => { if(network.connected) network.loot.filter(d=>Math.hypot(player.position[0]-d.x,player.position[1]-d.z)<=4).forEach(d=>gameConnection.pickup(d.id)); else nearbyDrops.forEach(d => useGameStore.getState().pickup(d.id)); }}><div className="skill-icon loot"><Gem size={24} /></div><small>LOOT</small></button>
       <div className="tray-separator" />
       <button title="Inventory" onClick={() => toggle('inventory')}><div className="skill-icon secondary"><Backpack size={23} /></div><small>I</small></button>
       <button title="Soul Forge" onClick={() => toggle('forge')}><div className="skill-icon secondary"><WandSparkles size={23} /></div><small>F</small></button>
-    </div><div className="hotbar-hint"><MousePointer2 size={13} /> CLICK MONSTER TO CHASE & ATTACK <span>·</span> WASD MOVE <span>·</span> DRAG ROTATE <span>·</span> SCROLL ZOOM</div></div>
+    <ResourceOrb value={mana} max={maxMana} kind="mana" /></div><div className="hotbar-hint"><MousePointer2 size={13} /> CLICK MONSTER TO CHASE & ATTACK <span>·</span> WASD MOVE <span>·</span> DRAG ROTATE <span>·</span> SCROLL ZOOM</div></div>
     <div className="bottom-left"><span className="demo-dot" /> DEMO WORLD <span className="divider-dot">·</span> GUEST AUTOSAVE</div>
     <div className="bottom-right"><Settings2 size={14} /> R3F ENGINE <span>·</span> 60 FPS TARGET</div>
   </div>;
+}
+
+function ResourceOrb({value,max,kind}:{value:number;max:number;kind:'health'|'mana'}) {
+ const percent=Math.max(0,Math.min(100,value/Math.max(1,max)*100));
+ return <div className={`resource-orb ${kind}`} role="meter" aria-label={kind} aria-valuenow={value} aria-valuemin={0} aria-valuemax={max}><div className="orb-liquid" style={{height:`${percent}%`}}/><div className="orb-glass"/><strong>{Math.floor(value)}</strong><small>{kind==='health'?'LIFE':'MANA'}</small></div>;
 }

@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import GameHUD from './GameHUD';
-import OnlinePanel from './OnlinePanel';
+
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { createSnapshot, useGameStore } from '@/store/useGameStore';
 
@@ -16,16 +16,17 @@ export default function GameClient() {
       const cache = window.localStorage.getItem('soulforge_guest_v1');
       if (cache) useGameStore.getState().hydrate(JSON.parse(cache));
     } catch { /* local storage unavailable */ }
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const unsubscribe = useGameStore.subscribe(() => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        try { window.localStorage.setItem('soulforge_guest_v1', JSON.stringify(createSnapshot())); }
-        catch { /* storage quota exceeded */ }
-      }, 900);
-    });
+    let dirty = false;
+    const save = () => {
+      if (!dirty) return;
+      try { window.localStorage.setItem('soulforge_guest_v1', JSON.stringify(createSnapshot())); dirty = false; }
+      catch { /* storage unavailable or quota exceeded */ }
+    };
+    const unsubscribe = useGameStore.subscribe(() => { dirty = true; });
+    const timer = setInterval(save, 900);
+    window.addEventListener('pagehide', save);
     const worldTick = setInterval(() => (!useMultiplayerStore.getState().connected && useGameStore.getState().tick()), 250);
-    return () => { clearTimeout(timer); unsubscribe(); clearInterval(worldTick); };
+    return () => { save(); clearInterval(timer); unsubscribe(); clearInterval(worldTick); window.removeEventListener('pagehide', save); };
   }, []);
-  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /><OnlinePanel /></main>;
+  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /></main>;
 }

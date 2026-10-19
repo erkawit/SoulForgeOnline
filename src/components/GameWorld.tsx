@@ -11,6 +11,8 @@ import { gameConnection } from '@/lib/multiplayer/socket';
 import { RARITY_COLOR } from '@/lib/types';
 import type { Loot, Monster } from '@/lib/types';
 
+import Citadel, { Armor } from './Citadel';
+
 const UP = new Vector3(0, 1, 0);
 const tempForward = new Vector3();
 const tempRight = new Vector3();
@@ -75,17 +77,22 @@ function InputAndChase() {
 
 function FollowCamera() {
   const controls = useRef<ComponentRef<typeof OrbitControls> | null>(null);
-  useFrame(() => {
+  const target = useMemo(() => new Vector3(), []);
+  const shift = useMemo(() => new Vector3(), []);
+  useFrame((_, delta) => {
     const [x, z] = useGameStore.getState().player.position;
     const control = controls.current;
     if (control) {
-      control.target.lerp(new Vector3(x, 0.5, z), 0.095);
+      target.set(x, 0.5, z);
+      shift.copy(target).sub(control.target).multiplyScalar(1 - Math.exp(-6 * delta));
+      control.object.position.add(shift);
+      control.target.add(shift);
       control.update();
     }
   });
   return (
     <>
-      <OrthographicCamera makeDefault position={[15, 19, 15]} zoom={39} near={0.1} far={250} />
+      <OrthographicCamera makeDefault position={[15, 19, 15]} zoom={27} near={0.1} far={250} />
       <OrbitControls ref={controls} enablePan={false} enableDamping dampingFactor={0.09}
         minZoom={23} maxZoom={72} minPolarAngle={0.32} maxPolarAngle={1.42}
         mouseButtons={{ LEFT: 0, MIDDLE: 1, RIGHT: 2 }} />
@@ -104,7 +111,7 @@ function RuneFloor() {
         <planeGeometry args={[70, 70]} />
         <meshStandardMaterial color="#0e171b" roughness={0.95} metalness={0.15} />
       </mesh>
-      <gridHelper args={[68, 68, '#25383e', '#1b292e']} position={[0, 0.018, 0]} />
+      <Citadel />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.027, 0]}>
         <ringGeometry args={[10.9, 11.03, 80]} />
         <meshBasicMaterial color="#50646e" transparent opacity={0.47} />
@@ -180,18 +187,7 @@ function Hero() {
   const auraColor = weaponSoul === 'Frost' ? '#4bbdff' : weaponSoul === 'Void' ? '#a665ff' : weaponSoul === 'Ember' ? '#ff8d4f' : '#54e6ce';
   return <group ref={group} position={[player.position[0], 0.4, player.position[1]]}>
     <group>
-      <mesh castShadow position={[0, 1.28, 0]}>
-        <capsuleGeometry args={[0.39, 0.84, 6, 10]} />
-        <meshStandardMaterial color="#d2d9de" metalness={0.83} roughness={0.24} />
-      </mesh>
-      <mesh castShadow position={[0, 2.13, 0]}>
-        <sphereGeometry args={[0.31, 16, 12]} />
-        <meshStandardMaterial color="#e0c7b4" roughness={0.7} />
-      </mesh>
-      <mesh position={[0, 2.3, -0.13]}>
-        <sphereGeometry args={[0.32, 16, 12]} />
-        <meshStandardMaterial color="#eef2f7" metalness={0.38} />
-      </mesh>
+      <Armor glow={auraColor} />
       <mesh position={[0, 1.15, -0.4]} rotation={[0.12, 0, 0]}>
         <coneGeometry args={[0.75, 1.75, 5]} />
         <meshStandardMaterial color="#283549" side={2} metalness={0.18} />
@@ -218,7 +214,7 @@ function Hero() {
       <meshBasicMaterial color={auraColor} transparent opacity={0.95} />
     </mesh>
     <pointLight position={[0, 1.4, 0]} color={auraColor} intensity={2.4} distance={4} />
-    <Html position={[0, 2.77, 0]} center distanceFactor={18} style={{ pointerEvents: 'none' }}><span className="actor-label">THE WANDERER</span></Html>
+    <Html zIndexRange={[30, 0]} position={[0, 2.77, 0]} center style={{ pointerEvents: 'none' }}><span className="actor-label">THE WANDERER</span></Html>
   </group>;
 }
 
@@ -235,13 +231,18 @@ function Creature({ mob }: { mob: Monster }) {
   };
   return <group ref={root} position={[mob.x, 0.17, mob.z]} onClick={handleClick}>
     <group>
+      {[-1,1].map(side=><group key={side}>
+        <mesh position={[side*.32,2.4,0]} rotation={[0,0,-side*.4]} castShadow><coneGeometry args={[.16,.9,5]}/><meshStandardMaterial color="#ac9c80" roughness={.7}/></mesh>
+        <mesh position={[side*.28,.55,0]} castShadow><capsuleGeometry args={[.17,.65,4,6]}/><meshStandardMaterial color="#302c36"/></mesh>
+        <mesh position={[side*.65,1.1,.1]} rotation={[.4,0,side*.3]}><coneGeometry args={[.16,.7,5]}/><meshStandardMaterial color="#bca58a"/></mesh>
+      </group>)}
       <mesh position={[0, 1.35, 0]} castShadow>
         <dodecahedronGeometry args={[0.64, 0]} />
-        <meshStandardMaterial color="#303045" emissive="#521a81" emissiveIntensity={0.8} metalness={0.35} roughness={0.45} />
+        <meshStandardMaterial color="#303045" emissive="#35223b" emissiveIntensity={0.2} metalness={0.35} roughness={0.45} />
       </mesh>
       <mesh position={[0, 2.03, 0]} castShadow>
         <icosahedronGeometry args={[0.43, 0]} />
-        <meshStandardMaterial color="#53385f" emissive="#681b9a" emissiveIntensity={0.4} />
+        <meshStandardMaterial color="#53385f" emissive="#5d253d" emissiveIntensity={0.2} />
       </mesh>
       {[-0.16, 0.16].map(x => <mesh key={x} position={[x, 2.09, 0.39]}>
         <sphereGeometry args={[0.065, 8, 6]} />
@@ -260,7 +261,7 @@ function Creature({ mob }: { mob: Monster }) {
       <ringGeometry args={[0.82, 0.92, 40]} />
       <meshBasicMaterial color={selected ? '#ff8b77' : '#9c59d8'} side={2} transparent opacity={selected ? 1 : 0.42} />
     </mesh>
-    <Html position={[0, 3.06, 0]} center distanceFactor={18} style={{ pointerEvents: 'none' }}><span className="actor-label monster-label">{mob.name}</span></Html>
+    <Html zIndexRange={[30, 0]} position={[0, 3.06, 0]} center style={{ pointerEvents: 'none' }}><span className="actor-label monster-label">{mob.name}</span></Html>
     <mesh position={[0, 2.69, 0]}>
       <planeGeometry args={[1.65, 0.13]} />
       <meshBasicMaterial color="#351d27" depthTest={false} />
@@ -290,12 +291,12 @@ function LootObject({ loot }: { loot: Loot }) {
       <octahedronGeometry args={[0.28]} />
       <meshStandardMaterial color={c} emissive={c} emissiveIntensity={1.2} metalness={0.5} />
     </mesh>
-    <mesh position={[0, 0.95, 0]}>
-      <cylinderGeometry args={[0.06, 0.3, 1.7, 8, 1, true]} />
+    <mesh position={[0, 2, 0]}>
+      <cylinderGeometry args={[0.045, 0.22, 4.5, 8, 1, true]} />
       <meshBasicMaterial color={c} transparent opacity={0.2} depthWrite={false} side={2} />
     </mesh>
     <pointLight color={c} intensity={1.2} distance={3} />
-    <Html position={[0, 1.6, 0]} center distanceFactor={18} style={{ pointerEvents: 'none' }}><span className="actor-label loot-label" style={{ color: c }}>{loot.item.name}</span></Html>
+    <Html zIndexRange={[30, 0]} position={[0, 1.6, 0]} center style={{ pointerEvents: 'none' }}><span className="actor-label loot-label" style={{ color: c }}>{loot.item.name}</span></Html>
   </group>;
 }
 
@@ -325,15 +326,15 @@ function MultiplayerActors() {
  return <group>
  {players.filter(p=>p.id!==playerId).map(p=><group key={p.id} position={[p.x,0,p.z]}>
    <mesh position={[0,1,0]} castShadow><capsuleGeometry args={[.35,1,6,10]}/><meshStandardMaterial color="#49d1ff" emissive="#075c7e"/></mesh>
-   <Html position={[0,2.3,0]} center><span style={{color:'#9fe9ff',fontSize:12}}>Player {p.id.slice(0,6)}</span></Html>
+   <Html zIndexRange={[30, 0]} position={[0,2.3,0]} center><span style={{color:'#9fe9ff',fontSize:12}}>Player {p.id.slice(0,6)}</span></Html>
  </group>)}
  {boss&&<group position={[boss.x,0,boss.z]} onClick={e=>{e.stopPropagation();gameConnection.attack()}}>
-   <mesh position={[0,2.1,0]} castShadow><dodecahedronGeometry args={[2,1]}/><meshStandardMaterial color="#7a314b" emissive="#9c1f61" emissiveIntensity={.8}/></mesh>
-   <Html position={[0,4.8,0]} center><div style={{color:'#ffd0dc',whiteSpace:'nowrap',fontWeight:900}}>ABYSSAL FORGE TITAN {Math.ceil(boss.hp/boss.maxHp*100)}%</div></Html>
+   <group scale={2.3}><Armor color="#593b40" glow="#ff7545" /></group><mesh position={[0,2.1,0]} castShadow><dodecahedronGeometry args={[2,1]}/><meshStandardMaterial color="#7a314b" emissive="#9c1f61" emissiveIntensity={.8}/></mesh>
+   <Html zIndexRange={[30, 0]} position={[0,4.8,0]} center><div style={{color:'#ffd0dc',whiteSpace:'nowrap',fontWeight:900}}>ABYSSAL FORGE TITAN {Math.ceil(boss.hp/boss.maxHp*100)}%</div></Html>
  </group>}
  {loot.map(l=><group key={l.id} position={[l.x,.6,l.z]} onClick={e=>{e.stopPropagation();gameConnection.pickup(l.id)}}>
-   <mesh><octahedronGeometry args={[.45]}/><meshStandardMaterial color={l.rarity==='Legendary'?'#ffd36e':l.rarity==='Epic'?'#b477ff':'#4db7ff'} emissive="#a15ee3" emissiveIntensity={1}/></mesh>
-   <Html position={[0,1.1,0]} center><span style={{whiteSpace:'nowrap',color:'#fff3ad',fontSize:11}}>{l.itemDefinitionId}</span></Html>
+   <mesh position={[0,2,0]}><cylinderGeometry args={[.035,.2,4,8,1,true]}/><meshBasicMaterial color={l.rarity==='Legendary'?'#ffd36e':'#b477ff'} transparent opacity={.3} depthWrite={false} side={2}/></mesh><mesh><octahedronGeometry args={[.45]}/><meshStandardMaterial color={l.rarity==='Legendary'?'#ffd36e':l.rarity==='Epic'?'#b477ff':'#4db7ff'} emissive="#a15ee3" emissiveIntensity={1}/></mesh>
+   <Html zIndexRange={[30, 0]} position={[0,1.1,0]} center><span style={{whiteSpace:'nowrap',color:'#fff3ad',fontSize:11}}>{l.itemDefinitionId}</span></Html>
  </group>)}
  </group>;
 }
@@ -344,9 +345,9 @@ function WorldContent() {
   const drops = useGameStore(s => s.drops);
   return <>
     <color attach="background" args={['#080e17']} />
-    <fog attach="fog" args={['#080e17', 23, 76]} />
-    <ambientLight intensity={0.75} color="#869bca" />
-    <hemisphereLight args={['#a9c2ed', '#151923', 1.2]} />
+    <fog attach="fog" args={['#080e17', 40, 95]} />
+    <ambientLight intensity={1.25} color="#869bca" />
+    <hemisphereLight args={['#a9c2ed', '#403c38', 1.7]} />
     <directionalLight castShadow position={[9, 17, 6]} intensity={2.2} color="#cfe2ff"
       shadow-mapSize-width={1024} shadow-mapSize-height={1024} shadow-camera-left={-28}
       shadow-camera-right={28} shadow-camera-top={28} shadow-camera-bottom={-28} />

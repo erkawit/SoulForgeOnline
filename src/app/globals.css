@@ -109,3 +109,39 @@ button { cursor:pointer; } button:disabled { opacity:.46; cursor:not-allowed; }
 
 .actor-label { display:inline-block; color:#e4f8f6; font-size:11px; font-weight:800; letter-spacing:1px; text-shadow:0 1px 3px #000,0 0 6px #10131d; white-space:nowrap; user-select:none; }
 .actor-label.monster-label { color:#e4bde8; font-size:11px; }.actor-label.loot-label { font-size:10px; max-width:150px; white-space:normal; text-align:center; }
+
+/* Eclipse Citadel — original obsidian, aged brass and soul-light visual language. */
+:root { --panel:rgba(19,18,22,.96); --border:#67563d; --teal:#c9a66c; }
+.hud-root { color:#e0d7c7; }
+.topbar { background:linear-gradient(#101014f5,#18161bd9,transparent); border-color:#8b704b55; }
+.brand-mark { border-color:#a58650; color:#e2bc77; box-shadow:inset 0 0 20px #aa75352f; }
+.brand b { color:#e8dac0; }.brand b span,.eyebrow { color:#cbaa72; }.brand small { color:#af9670; }
+.character-hud { width:270px; }.character-status .meter-group:not(:last-child) { display:none; }
+.hud-avatar { color:#d5b778; background:radial-gradient(circle,#69503b,#17161c 70%); border-color:#a28a5c; }
+.left-quest { top:228px; border-left-color:#a48149; background:linear-gradient(90deg,#151318ec,#15131899); }
+.game-panel { border:1px solid #8b704d; border-top:3px double #c5a46c; background:linear-gradient(130deg,#282229f5,#111116f5); box-shadow:0 15px 50px #000c,inset 0 0 45px #94704112; }
+.panel-header { border-color:#6e583e; }.panel-header h2 { color:#e7d5b2; letter-spacing:1px; }
+.panel-nav button { background:#1e1b20; border-color:#6b593f; color:#b6a58b; }
+.panel-nav button.active,.panel-nav button:hover { color:#f3cf8c; background:#3d3027; border-color:#c19a60; }
+.equipment-slot,.item-slot { background:radial-gradient(ellipse at bottom,#39303a,#17151b); border-color:#65533e; }
+.item-slot.filled { border-color:#9b7d52; }.equipment-name { color:#c2ac8a; }.panel-subheading { color:#b7a78d; }
+.right-panel-container { top:282px; }.game-panel { min-height:0; }
+.live-map { position:absolute; inset:0; width:100%; height:100%; }.mini-map { border-color:#af8c57; background:radial-gradient(circle,#373633ee,#14151aee); }
+.mini-map-grid { opacity:.35; }.mini-map-label { color:#d5bd92; }
+.action-tray { gap:8px; padding:12px 18px; border:3px double #9c7b4a; background:linear-gradient(#342c2c,#141217); box-shadow:0 6px 30px #000,inset 0 0 20px #94704122; position:relative; }
+.action-tray:before,.action-tray:after { content:'◆'; position:absolute; top:40%; color:#bb9658; font-size:19px; }.action-tray:before { left:-13px; }.action-tray:after { right:-13px; }
+.skill-icon { border-color:#a08050; }.skill-icon.secondary { background:radial-gradient(circle,#554639,#211c22); color:#d3ba8e; }
+.resource-orb { position:relative; flex:none; width:94px; height:94px; border-radius:50%; overflow:hidden; border:5px ridge #a58b58; background:#150b12; box-shadow:0 0 0 3px #19171c,0 0 0 4px #6f5837,inset 0 0 18px #000; margin:0 10px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.orb-liquid { position:absolute; bottom:0; width:100%; background:radial-gradient(ellipse at 40% 25%,#f05b56,#961e2e 55%,#380c1c); transition:height .25s; }
+.mana .orb-liquid { background:radial-gradient(ellipse at 40% 25%,#55c8e5,#24579a 55%,#0a193f); }
+.orb-glass { position:absolute; inset:0; border-radius:50%; background:radial-gradient(ellipse at 30% 20%,#ffffff70,transparent 23%,transparent 50%,#0009); }
+.resource-orb strong,.resource-orb small { position:relative; color:#fff3e0; text-shadow:0 2px 4px #000; }.resource-orb strong { font-family:Georgia,serif; font-size:20px; }.resource-orb small { font-size:8px; letter-spacing:2px; }
+.boss-banner { position:absolute; top:96px; left:50%; transform:translateX(-50%); width:340px; text-align:center; padding:12px 22px; background:linear-gradient(90deg,transparent,#211419ef 20%,#211419ef 80%,transparent); border-top:1px solid #a18152; }
+.boss-banner>span { display:block; font-size:8px; letter-spacing:2px; color:#c59e70; }.boss-banner b { display:block; font:16px Georgia,serif; margin:7px 0; color:#ecd0b1; }.boss-banner small { font-size:9px; color:#c5aca0; }.boss-banner .target-health { border:1px solid #956b4d; height:10px; }.boss-banner .target-health span { background:linear-gradient(90deg,#6a1b29,#dc6655); }
+.online-panel { font-size:12px; line-height:1.8; }.online-panel button { padding:6px 9px; margin:4px 2px; border:1px solid #8c724d; background:#342a26; }.online-panel input { border:1px solid #8c724d; }
+button:focus-visible { outline:2px solid #ffdd98; outline-offset:3px; }.event-feed { bottom:175px; }
+@media(max-width:1000px) { .resource-orb { width:72px; height:72px; margin:0 4px; }.boss-banner { width:280px; top:175px; }.left-quest { width:205px; } }
+@media(max-width:800px) { .character-hud { width:220px; }.resource-orb { width:54px; height:54px; border-width:3px; margin:0 2px; }.resource-orb strong { font-size:14px; }.resource-orb small { font-size:6px; }.action-tray { padding:8px; gap:4px; }.skill-icon { width:34px; height:38px; }.skill-icon svg { width:20px; }.right-panel-container { top:210px; }.boss-banner { top:145px; width:230px; left:35%; }.event-feed { bottom:145px; max-width:160px; }.game-panel { max-height:calc(100dvh - 380px); }.hotbar-hint { width:340px; }.tray-separator { margin:0; } }
+@media(prefers-reduced-motion:reduce) { * { transition:none!important; } }
+
+.world-surface { isolation:isolate; z-index:0; }.hud-root { z-index:1; }
