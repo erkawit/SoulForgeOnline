@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import GameHUD from './GameHUD';
+import FieldJournal from './FieldJournal';
 
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { createSnapshot, useGameStore } from '@/store/useGameStore';
@@ -18,7 +19,7 @@ export default function GameClient() {
     } catch { /* local storage unavailable */ }
     let dirty = false;
     const save = () => {
-      if (!dirty) return;
+      if (!dirty || useMultiplayerStore.getState().online) return;
       try { window.localStorage.setItem('soulforge_guest_v1', JSON.stringify(createSnapshot())); dirty = false; }
       catch { /* storage unavailable or quota exceeded */ }
     };
@@ -28,5 +29,5 @@ export default function GameClient() {
     const worldTick = setInterval(() => (!useMultiplayerStore.getState().connected && useGameStore.getState().tick()), 250);
     return () => { save(); clearInterval(timer); unsubscribe(); clearInterval(worldTick); window.removeEventListener('pagehide', save); };
   }, []);
-  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /></main>;
+  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /><FieldJournal /></main>;
 }

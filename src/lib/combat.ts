@@ -30,10 +30,8 @@ export function calculateDamage(attack: number, defense: number, criticalChance:
 }
 
 const table: { rarity: Rarity; probability: number }[] = [
-  { rarity: 'Common', probability: 0.56 },
-  { rarity: 'Rare', probability: 0.28 },
-  { rarity: 'Epic', probability: 0.13 },
-  { rarity: 'Legendary', probability: 0.03 }
+ {rarity:'Common',probability:.40},{rarity:'Uncommon',probability:.28},{rarity:'Rare',probability:.16},{rarity:'Epic',probability:.09},
+ {rarity:'Crimson',probability:.04},{rarity:'Legendary',probability:.02},{rarity:'Ascendant',probability:.008},{rarity:'Eclipse',probability:.002}
 ];
 
 export function rollRarity(): Rarity {
@@ -48,7 +46,7 @@ export function rollRarity(): Rarity {
 
 export function rollItem(monster: Monster): Item {
   const rarity = rollRarity();
-  const boost: Record<Rarity, number> = { Common: 1, Rare: 2, Epic: 4, Legendary: 7 };
+  const boost: Record<Rarity, number> = { Common: 1, Uncommon: 2, Rare: 3, Epic: 4, Crimson: 5, Legendary: 7, Ascendant: 9, Eclipse: 11 };
   const power = boost[rarity] + Math.ceil(monster.level * 0.7);
   const pool = [
     { name: 'Eclipse Blade', slot: 'weapon' as const, bonuses: { atk: power * 3, str: power } },
@@ -60,6 +58,7 @@ export function rollItem(monster: Monster): Item {
     id: crypto.randomUUID(),
     name: `${rarity} ${item.name}`,
     rarity,
+    tier: ['Common','Uncommon','Rare','Epic','Crimson','Legendary','Ascendant','Eclipse'].indexOf(rarity),
     slot: item.slot,
     bonuses: item.bonuses,
     description: `Recovered from ${monster.name}. Forged under the black eclipse.`

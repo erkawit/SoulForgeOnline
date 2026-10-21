@@ -1,3 +1,6 @@
+import {advanceMonster} from '@/game/monsterAI';
+import { CITIES, CLASSES, isClass, isCity, walkable, safePosition, type ClassId, type CityId, type ActionId } from '@/game/content';
+import { useMultiplayerStore } from './useMultiplayerStore';
 import { create } from 'zustand';
 import { calculateDamage, deriveStats, rollItem } from '@/lib/combat';
 import { monsterSpawns, starterGear, starterPlayer } from '@/lib/seed';
@@ -6,6 +9,19 @@ import type { GearSlot, Item, Loot, Monster, Player, Snapshot } from '@/lib/type
 type AttackResult = { hit: boolean; reason?: string; damage?: number; crit?: boolean };
 type GameState = {
   player: Player;
+  journal: boolean;
+  action: { kind: ActionId; stamp: number; duration: number };
+  buffUntil: number;
+  guardUntil: number;
+  deadUntil: number;
+  cooldowns: Record<string,number>;
+  pending: {at:number; target:string|null} | null;
+  setJournal: (open:boolean)=>void;
+  chooseClass: (id:ClassId)=>void;
+  travel: (id:CityId)=>void;
+  cast: (kind:'skill'|'buff'|'special')=>void;
+  preview: (kind:ActionId)=>void;
+  respawn: ()=>void;
   monsters: Monster[];
   drops: Loot[];
   inventory: (Item | null)[];
@@ -29,31 +45,64 @@ type GameState = {
 
 function addLog(log: string[], line: string) { return [line, ...log].slice(0, 6); }
 export const expRequired = (level: number) => level * 95;
+export function cityMonsters(city:CityId):Monster[]{
+ const c=CITIES[city],low=c.levels?.[0]??1;
+ return c.hunt.map(([x,z],i)=>{const level=c.levels?low+i:1+Math.floor(i/2),name=c.species?.[i===9?2:i%3]??monsterSpawns[i%monsterSpawns.length].name;
+ const elite=!!c.levels&&i===9,maxHp=Math.round((65+level*18)*(elite?1.7:1));
+ const form=/Spider|Crawler|Beetle|Crab|Weaver/.test(name)?'spider':/Hound|Wolf|Beast/.test(name)?'wolf':/Drake|Hydra|Serpent/.test(name)?'drake':/Golem|Guardian|Treant|Colossus|Sentinel/.test(name)?'golem':/Moth|Seraph/.test(name)?'winged':'wraith';
+ return {id:`${city}-${i}`,name,x,z,home:[x,z],hp:maxHp,maxHp,level,form,tint:c.accent,elite,respawnAt:null,lastAttack:0};});
+}
+const activeClass=()=>CLASSES[getClass()];
+function getClass():ClassId{return useGameStore.getState().player.classId??'Warrior';}
 const clamp = (n: number, low: number, high: number) => Math.max(low, Math.min(high, n));
 
 export const useGameStore = create<GameState>((set, get) => ({
-  player: { ...starterPlayer }, monsters: monsterSpawns.map(m => ({ ...m })), drops: [],
+  player: { ...starterPlayer, classId:'Warrior', cityId:'hollow' }, monsters: cityMonsters('hollow'), drops: [],
+  journal:true, action:{kind:'idle',stamp:0,duration:0}, buffUntil:0, guardUntil:0, deadUntil:0, cooldowns:{}, pending:null,
+  setJournal:journal=>set({journal}),
+  chooseClass:id=>{if(!isClass(id)||get().deadUntil||get().pending||useMultiplayerStore.getState().online)return;set({player:{...get().player,classId:id},action:{kind:'idle',stamp:0,duration:0},pending:null,selectedMonster:null});},
+  travel:id=>{const s=get();if(!isCity(id)||s.deadUntil||useMultiplayerStore.getState().online)return;
+    if(id===s.player.cityId){set({journal:false});return;}
+    set({player:{...s.player,cityId:id,position:[0,0]},monsters:cityMonsters(id),drops:[],selectedMonster:null,pending:null,action:{kind:'idle',stamp:0,duration:0},log:addLog(s.log,`Arrived at ${CITIES[id].name}. Ground loot in the previous zone was left behind.`),journal:false});},
+  preview:kind=>{if(useMultiplayerStore.getState().online||get().deadUntil)return;set({selectedMonster:null,action:{kind,stamp:Date.now(),duration:kind==='death'?2400:kind==='walk'?3200:1800}});},
+  respawn:()=>{const s=get();if(!s.deadUntil||Date.now()<s.deadUntil)return;const d=deriveStats(s.player.stats,s.equipment);set({deadUntil:0,player:{...s.player,hp:d.maxHp,mp:d.maxMp,position:[0,0]},action:{kind:'idle',stamp:Date.now(),duration:0},log:addLog(s.log,'Revived at the sanctuary.')});},
+  cast:kind=>{const s=get(),now=Date.now();if(s.deadUntil||s.pending||useMultiplayerStore.getState().online)return;
+    if((s.cooldowns[kind]??0)>now){set({log:addLog(s.log,'Skill is cooling down.')});return;}
+    const cost=kind==='skill'?20:kind==='buff'?15:30;
+    if(s.player.mp<cost){set({log:addLog(s.log,'Not enough mana.')});return;}
+    const cls=s.player.classId??'Warrior',def=CLASSES[cls];
+    if(kind==='skill'){const target=s.monsters.filter(m=>m.hp>0&&Math.hypot(m.x-s.player.position[0],m.z-s.player.position[1])<=def.range+2).sort((a,b)=>Math.hypot(a.x-s.player.position[0],a.z-s.player.position[1])-Math.hypot(b.x-s.player.position[0],b.z-s.player.position[1]))[0];if(!target){set({log:addLog(s.log,'No target in skill range.')});return;}get().attack(target.id,true);return;}
+    const target=s.monsters.filter(m=>m.hp>0&&Math.hypot(m.x-s.player.position[0],m.z-s.player.position[1])<=def.range+2)[0];
+    if(kind==='special'&&cls==='Archer'&&!target){set({log:addLog(s.log,'No target in charged-shot range.')});return;}
+    set({player:{...s.player,mp:s.player.mp-cost},selectedMonster:null,cooldowns:{...s.cooldowns,[kind]:now+(kind==='buff'?12000:10000)},action:{kind,stamp:now,duration:kind==='buff'?1100:2000},log:addLog(s.log,def.skills[kind==='buff'?1:2]),
+      ...(kind==='buff'?{buffUntil:now+8000}:cls==='Warrior'?{guardUntil:now+4000}:{pending:{at:now+(cls==='Mage'?1600:cls==='Archer'?1500:cls==='Priest'?1300:1400),target:target?.id??null}})});
+  },
   inventory: Array.from({ length: 24 }, (_, i) => i === 0 ? starterGear : null),
   equipment: { weapon: null, armor: null, ring: null }, soulShards: 0,
   selectedMonster: null, attackFx: null,
   log: ['Enter the Hollow Reach. The hunt begins.'],
   move: (x, z, dt) => set(s => {
+    if(s.deadUntil||s.pending||s.journal||useMultiplayerStore.getState().online)return {};
     const speed = deriveStats(s.player.stats, s.equipment).speed;
-    return { player: { ...s.player, position: [
-      clamp(s.player.position[0] + x * speed * dt, -23, 23),
-      clamp(s.player.position[1] + z * speed * dt, -23, 23)
-    ] } };
+    const city=s.player.cityId??'hollow';
+    const nx=clamp(s.player.position[0]+x*speed*dt,-23,23),nz=clamp(s.player.position[1]+z*speed*dt,-23,23);
+    const px=walkable(city,nx,s.player.position[1])?nx:s.player.position[0];
+    const pz=walkable(city,px,nz)?nz:s.player.position[1];
+    return {player:{...s.player,position:[px,pz]}};
   }),
   selectMonster: id => set({ selectedMonster: id }),
   attack: (id, skill = false) => {
     const s = get();
+    const now=Date.now();
+    if(s.deadUntil||s.pending||useMultiplayerStore.getState().online)return {hit:false,reason:'Unavailable'};
+    if((s.cooldowns[skill?'skill':'attack']??0)>now)return {hit:false,reason:'Cooldown'};
     const target = s.monsters.find(m => m.id === id && m.hp > 0);
     if (!target) return { hit: false, reason: 'No target' };
     const distance = Math.hypot(target.x - s.player.position[0], target.z - s.player.position[1]);
-    if (distance > (skill ? 4.0 : 3.0)) return { hit: false, reason: 'Out of range' };
+    if (distance > (activeClass().range+(skill?2:0))) return { hit: false, reason: 'Out of range' };
     if (skill && s.player.mp < 20) return { hit: false, reason: 'Not enough mana' };
     const derived = deriveStats(s.player.stats, s.equipment);
-    const roll = calculateDamage(derived.attack, target.level * 3, derived.crit, skill);
+    const roll = calculateDamage(derived.attack*(Date.now()<s.buffUntil?1.2:1), target.level * 3, derived.crit, skill);
     const killed = target.hp <= roll.damage;
     const result = { hit: true, damage: roll.damage, crit: roll.crit };
     set(current => {
@@ -76,7 +125,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           log = addLog(log, `${item.rarity.toUpperCase()} DROP · ${item.name}`);
         }
         if (Math.random() < 0.42) { shards += 1; log = addLog(log, '+1 Soul Shard'); }
-        if (player.exp >= expRequired(player.level)) {
+        while (player.level<100 && player.exp >= expRequired(player.level)) {
           player.exp -= expRequired(player.level);
           player.level += 1;
           player.stats = { ...player.stats, str: player.stats.str + 2, agi: player.stats.agi + 1, vit: player.stats.vit + 1 };
@@ -86,47 +135,49 @@ export const useGameStore = create<GameState>((set, get) => ({
       }
       return { monsters: nextMonsters, player, drops, soulShards: shards,
         log, selectedMonster: dead ? null : id,
-        attackFx: { stamp: Date.now(), skill } };
+        cooldowns:{...current.cooldowns,[skill?'skill':'attack']:now+(skill?4000:700)},
+        action:{kind:skill?'skill':'attack',stamp:now,duration:skill?1000:650},
+        attackFx: { stamp: now, skill } };
     });
     return result;
   },
-  castNearest: () => {
-    const s = get();
-    const nearby = s.monsters.filter(m => m.hp > 0)
-      .map(m => ({ m, d: Math.hypot(m.x - s.player.position[0], m.z - s.player.position[1]) }))
-      .sort((a, b) => a.d - b.d)[0];
-    if (nearby && nearby.d <= 4) get().attack(nearby.m.id, true);
-  },
+  castNearest: () => get().cast('skill'),
   tick: () => set(s => {
     const now = Date.now();
+    if(s.journal||useMultiplayerStore.getState().online)return {};
+    if(s.deadUntil)return {};
+    if(s.pending&&now>=s.pending.at){
+      const cls=s.player.classId??'Warrior',d=deriveStats(s.player.stats,s.equipment);
+      if(cls==='Priest')return {pending:null,player:{...s.player,hp:Math.min(d.maxHp,s.player.hp+d.maxHp*.4)}};
+      if(cls==='Enchanter')return {pending:null,guardUntil:now+5000,log:addLog(s.log,'Concord Field: protection active (solo self).')};
+      let player={...s.player},drops=[...s.drops],shards=s.soulShards,log=s.log;
+      const monsters=s.monsters.map(m=>{
+        const inRange=Math.hypot(m.x-player.position[0],m.z-player.position[1])<=(cls==='Mage'?7:13);
+        if(m.hp<=0||!inRange||(cls==='Archer'&&m.id!==s.pending!.target))return m;
+        const hp=Math.max(0,m.hp-Math.round(d.attack*(cls==='Mage'?2:2.6)));
+        if(hp===0){player.gold+=12+m.level*3;player.exp+=30+m.level*13;shards+=1;
+          const item=rollItem(m);drops.push({id:crypto.randomUUID(),x:m.x,z:m.z,item});
+          log=addLog(log,`${m.name} defeated by ${CLASSES[cls].skills[2]}.`);
+        }
+        return {...m,hp,respawnAt:hp===0?now+8000:null};
+      });
+      while(player.level<100&&player.exp>=expRequired(player.level)){player.exp-=expRequired(player.level);player.level++;player.stats={...player.stats,str:player.stats.str+2,agi:player.stats.agi+1,vit:player.stats.vit+1};player.hp=deriveStats(player.stats,s.equipment).maxHp;}
+      return {pending:null,monsters,player,drops,soulShards:shards,log:addLog(log,'Spell impact!')};
+    }
     const [px, pz] = s.player.position;
     let dmg = 0;
-    const monsters = s.monsters.map(m => {
-      if (m.hp <= 0) {
-        return m.respawnAt && now >= m.respawnAt
-          ? { ...m, hp: m.maxHp, respawnAt: null, lastAttack: 0 } : m;
-      }
-      const distance = Math.hypot(px - m.x, pz - m.z);
-      if (distance <= 1.8 && now - m.lastAttack > 1400) {
-        dmg += Math.max(1, Math.round(5 + m.level * 3 - deriveStats(s.player.stats, s.equipment).defense * 0.18));
-        return { ...m, lastAttack: now };
-      }
-      if (distance < 6 && distance > 1.7) {
-        return { ...m, x: m.x + ((px - m.x) / distance) * 0.08,
-          z: m.z + ((pz - m.z) / distance) * 0.08 };
-      }
-      return m;
-    });
+    const defense=deriveStats(s.player.stats,s.equipment).defense;
+    const monsters=s.monsters.map(m=>{const next=advanceMonster(m,[px,pz],s.player.cityId??'hollow',now,defense);dmg+=next.damage;return next.monster;});
     const d = deriveStats(s.player.stats, s.equipment);
-    const hp = s.player.hp - dmg;
+    const hp = s.player.hp - dmg*(now < s.guardUntil ? .3 : 1);
     const fainted = hp <= 0;
     const player = { ...s.player,
-      hp: fainted ? d.maxHp : Math.min(d.maxHp, hp + (dmg === 0 ? 0.3 : 0)),
+      hp: fainted ? 0 : Math.min(d.maxHp, hp + (dmg === 0 ? 0.3 : 0)),
       mp: Math.min(d.maxMp, s.player.mp + 0.5),
-      position: fainted ? [0, 0] as [number, number] : s.player.position
+      position: s.player.position
     };
     return { monsters, player, ...(fainted ? {
-      log: addLog(s.log, 'You were defeated and revived at the sanctuary.'), selectedMonster: null
+      deadUntil:now+2400,pending:null,action:{kind:'death',stamp:now,duration:2400},log:addLog(s.log,'Defeated. Return to the sanctuary when ready.'), selectedMonster:null
     } : {}) };
   }),
   pickup: id => set(s => {
@@ -176,7 +227,9 @@ export const useGameStore = create<GameState>((set, get) => ({
   }),
   hydrate: data => {
     if (data?.version !== 1 || !data.player || !Array.isArray(data.inventory) || data.inventory.length !== 24) return;
-    set({ player: data.player, inventory: data.inventory, equipment: data.equipment,
+    const city=isCity(data.player.cityId)?data.player.cityId:'hollow';
+    const cls=isClass(data.player.classId)?data.player.classId:'Warrior';
+    set({deadUntil:0,pending:null,selectedMonster:null,buffUntil:0,guardUntil:0,cooldowns:{},action:{kind:'idle',stamp:0,duration:0},monsters:cityMonsters(city),drops:[], player: {...data.player,classId:cls,cityId:city,position:safePosition(city,data.player.position),hp:Math.max(1,data.player.hp)}, inventory: data.inventory, equipment: data.equipment,
       soulShards: data.soulShards, log: ['Save loaded successfully.'] });
   }
 }));
