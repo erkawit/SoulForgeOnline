@@ -1,0 +1,48 @@
+// Round 12: the class-advancement looks (sprit-model/all-classes atlases, the LOOK pair of every promotion) cut by
+// blender/sprites/cut_looks.py — one painted pose per promotion and gender, animated by the sprite rig like costumes.
+import { SPRITE_FRAMES, type SpriteFrame } from './frames';
+export const LOOK_FRAMES: Record<string, SpriteFrame> = {
+ 'f-look-Archmage':{w:1.6462,h:1.7,fx:0.4594,fy:0.0,px:[214,221]},
+ 'f-look-Assassin':{w:1.5468,h:1.7,fx:0.5116,fy:0.0086,px:[212,233]},
+ 'f-look-Berserker':{w:1.522,h:1.62,fx:0.5434,fy:0.0,px:[202,215]},
+ 'f-look-Cleric':{w:1.1757,h:1.62,fx:0.4236,fy:0.0,px:[172,237]},
+ 'f-look-Elementalist':{w:1.2592,h:1.62,fx:0.5804,fy:0.0,px:[178,229]},
+ 'f-look-Hawkeye':{w:1.6308,h:1.7,fx:0.4638,fy:0.0,px:[212,221]},
+ 'f-look-Hexbinder':{w:1.409,h:1.62,fx:0.4588,fy:0.0,px:[187,215]},
+ 'f-look-HighPriest':{w:1.454,h:1.7,fx:0.4298,fy:0.0,px:[201,235]},
+ 'f-look-Inquisitor':{w:1.4166,h:1.62,fx:0.5424,fy:0.0,px:[202,231]},
+ 'f-look-Judicator':{w:1.4551,h:1.7,fx:0.4482,fy:0.0085,px:[202,236]},
+ 'f-look-Paladin':{w:1.3594,h:1.62,fx:0.5394,fy:0.0,px:[193,230]},
+ 'f-look-Ranger':{w:1.5608,h:1.62,fx:0.4293,fy:0.0,px:[211,219]},
+ 'f-look-Reaver':{w:1.6431,h:1.7,fx:0.5115,fy:0.0096,px:[202,209]},
+ 'f-look-Runeblade':{w:1.7079,h:1.7,fx:0.5334,fy:0.0139,px:[217,216]},
+ 'f-look-Runemaster':{w:1.6608,h:1.7,fx:0.3852,fy:0.0,px:[212,217]},
+ 'f-look-Runescribe':{w:1.4942,h:1.62,fx:0.3592,fy:0.0,px:[202,219]},
+ 'f-look-Soulbinder':{w:1.557,h:1.7,fx:0.488,fy:0.0093,px:[196,214]},
+ 'f-look-Spellblade':{w:1.6427,h:1.62,fx:0.4623,fy:0.0,px:[217,214]},
+ 'f-look-Stalker':{w:1.6277,h:1.62,fx:0.4286,fy:0.0,px:[212,211]},
+ 'f-look-Templar':{w:1.5392,h:1.7,fx:0.4995,fy:0.0,px:[201,222]},
+ 'm-look-Archmage':{w:1.8159,h:1.7,fx:0.4666,fy:0.0,px:[235,220]},
+ 'm-look-Assassin':{w:1.6637,h:1.7,fx:0.5833,fy:0.0085,px:[229,234]},
+ 'm-look-Berserker':{w:2.1752,h:1.62,fx:0.542,fy:0.0,px:[286,213]},
+ 'm-look-Cleric':{w:1.497,h:1.62,fx:0.4974,fy:0.0,px:[219,237]},
+ 'm-look-Elementalist':{w:1.5011,h:1.62,fx:0.561,fy:0.0,px:[202,218]},
+ 'm-look-Hawkeye':{w:1.7,h:1.7,fx:0.5594,fy:0.0,px:[222,222]},
+ 'm-look-Hexbinder':{w:1.5811,h:1.62,fx:0.5947,fy:0.0,px:[203,208]},
+ 'm-look-HighPriest':{w:1.8235,h:1.7,fx:0.5855,fy:0.0,px:[251,234]},
+ 'm-look-Inquisitor':{w:1.937,h:1.62,fx:0.5327,fy:0.0,px:[275,230]},
+ 'm-look-Judicator':{w:1.961,h:1.7,fx:0.5561,fy:0.0088,px:[263,228]},
+ 'm-look-Paladin':{w:2.0163,h:1.62,fx:0.5634,fy:0.0,px:[290,233]},
+ 'm-look-Ranger':{w:1.4844,h:1.62,fx:0.5457,fy:0.0,px:[208,227]},
+ 'm-look-Reaver':{w:2.2824,h:1.7,fx:0.5642,fy:0.0093,px:[290,216]},
+ 'm-look-Runeblade':{w:1.8907,h:1.7,fx:0.5276,fy:0.0093,px:[238,214]},
+ 'm-look-Runemaster':{w:1.8376,h:1.7,fx:0.6196,fy:0.0,px:[227,210]},
+ 'm-look-Runescribe':{w:1.6047,h:1.62,fx:0.6516,fy:0.0,px:[210,212]},
+ 'm-look-Soulbinder':{w:1.8553,h:1.7,fx:0.611,fy:0.0096,px:[227,208]},
+ 'm-look-Spellblade':{w:1.8873,h:1.62,fx:0.4948,fy:0.0,px:[233,200]},
+ 'm-look-Stalker':{w:1.725,h:1.62,fx:0.5773,fy:0.0,px:[230,216]},
+ 'm-look-Templar':{w:2.1344,h:1.7,fx:0.5793,fy:0.0,px:[285,227]},
+};
+Object.assign(SPRITE_FRAMES, LOOK_FRAMES);
+/** sprite frame id of a promotion look ('High Priest' → 'm-look-HighPriest'), or null when that look has no art */
+export const lookFrame = (g: string, promotion?: string | null) => { if (!promotion) return null; const k = `${g}-look-${promotion.replace(/\s+/g, '')}`; return LOOK_FRAMES[k] ? k : null; };

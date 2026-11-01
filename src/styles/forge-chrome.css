@@ -1,0 +1,197 @@
+/* SoulForge window chrome (round 16) — from the ChatGPT reference boards in reference/.../all-elements:
+   one gold-framed close button for every window, a painted emblem beside each window title, painted menu icons,
+   thin gold scrollbars that sit in their own gutter (never on top of the frame or the content), and a compact
+   Shop / Craft / Enchant window. */
+
+/* ---------- close button: charcoal disc, antique-gold ring, painted gold X with a red gem ---------- */
+.sf-close,
+.h2 .h2-win header .sf-close,
+.npc-dialog .npc-head .sf-close,
+.h3-drawer header .sf-close {
+  appearance: none; flex: none; position: relative; margin: 0 0 0 auto; padding: 0;
+  width: 30px; height: 30px; border-radius: 50%; cursor: pointer; opacity: 1 !important;
+  border: 1px solid #a9844a !important;
+  background: url(/art/icons/menu/close.webp) center / 76% no-repeat, radial-gradient(circle at 50% 38%, #2c2420, #0b0808 72%) !important;
+  box-shadow: inset 0 0 0 1px #000, inset 0 0 8px #000d, 0 0 0 2px #1d160c, 0 0 0 3px #6b5430, 0 2px 6px #000b;
+  color: transparent !important; font-size: 0 !important; line-height: 0;
+  transition: border-color .15s, box-shadow .15s, transform .1s, filter .15s;
+}
+.sf-close:hover { border-color: #f0cd84 !important; filter: brightness(1.2); box-shadow: inset 0 0 0 1px #000, inset 0 0 8px #000d, 0 0 0 2px #1d160c, 0 0 0 3px #b08a4a, 0 0 14px #d0382c88; }
+.sf-close:active { transform: scale(.94); }
+.sf-close:focus-visible { outline: 2px solid #f5d38d; outline-offset: 3px; }
+.sf-close > * { display: none; }
+
+/* HUD windows (painted win.webp frame): the close button sits exactly on the frame's top-right corner ornament,
+   the emblem + title sit in the red title bar */
+.h2 .h2-win { overflow: visible; }
+.h2 .h2-win header { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.h2 .h2-win header .sf-close { position: absolute !important; right: -5px; top: -5px; margin: 0; z-index: 3; }
+.h2 .h2-win header h2 { flex: 0 1 auto; }
+.sf-win-ico { width: 24px; height: 24px; object-fit: contain; flex: none; filter: drop-shadow(0 1px 2px #000); }
+/* forge dialogs (Shop / Craft / Enchant) use the same frame as a 20px border: same corner */
+.forge-dialog.npc-dialog { overflow: visible; }
+.forge-dialog .npc-head .sf-close { position: absolute !important; right: -25px; top: -25px; margin: 0; z-index: 3; }
+.forge-dialog .npc-head { padding-right: 16px; }
+.npc-dialog .npc-head { gap: 12px; }
+.npc-dialog .npc-head > div { min-width: 0; }
+.field-journal header .sf-close { align-self: flex-start; }
+.item-tooltip .detail-close { width: 24px; height: 24px; border: 1px solid #a9844a; border-radius: 50%; background: url(/art/icons/menu/close.webp) center / 74% no-repeat, #0e0b0a; color: transparent; font-size: 0; cursor: pointer; }
+.item-tooltip .detail-close:hover { border-color: #f0cd84; }
+
+/* ---------- painted menu icons (Antique gold icon sheet → public/art/icons/menu) ---------- */
+.h2-menu button { overflow: hidden; }
+.h2 .h2-menu button .sf-menu-ico { position: absolute !important; inset: -9px !important; width: calc(100% + 18px) !important; height: calc(100% + 18px) !important; max-width: none !important; max-height: none !important; margin: 0 !important; object-fit: contain; padding: 3px; box-sizing: border-box; pointer-events: none; filter: drop-shadow(0 1px 2px #000); transition: transform .15s; }
+.h2-menu button:hover .sf-menu-ico, .h2-menu button.on .sf-menu-ico { transform: scale(1.08); }
+.h2-menu button small { text-shadow: 0 0 3px #000, 0 0 2px #000; z-index: 1; }
+
+/* ---------- scrollbars: thin gold, in their own gutter ---------- */
+.h2-win .body, .npc-dialog .npc-body, .h3-drawer .body, .field-journal, .forge-dialog .npc-list, .forge-sidebar,
+.ui-review-panel, .h2-win .body *, .npc-dialog .npc-body *, .item-tooltip {
+  scrollbar-width: thin; scrollbar-color: #7d6236 transparent;
+}
+.h2-win .body, .npc-dialog .npc-body, .h3-drawer .body { scrollbar-gutter: stable; }
+.h2-win .body::-webkit-scrollbar, .npc-dialog .npc-body::-webkit-scrollbar, .h3-drawer .body::-webkit-scrollbar,
+.h2-win .body *::-webkit-scrollbar, .npc-dialog .npc-body *::-webkit-scrollbar, .field-journal::-webkit-scrollbar, .ui-review-panel *::-webkit-scrollbar { width: 8px; height: 8px; }
+.h2-win .body::-webkit-scrollbar-track, .npc-dialog .npc-body::-webkit-scrollbar-track, .h3-drawer .body::-webkit-scrollbar-track,
+.h2-win .body *::-webkit-scrollbar-track, .npc-dialog .npc-body *::-webkit-scrollbar-track, .field-journal::-webkit-scrollbar-track, .ui-review-panel *::-webkit-scrollbar-track { background: transparent; }
+.h2-win .body::-webkit-scrollbar-thumb, .npc-dialog .npc-body::-webkit-scrollbar-thumb, .h3-drawer .body::-webkit-scrollbar-thumb,
+.h2-win .body *::-webkit-scrollbar-thumb, .npc-dialog .npc-body *::-webkit-scrollbar-thumb, .field-journal::-webkit-scrollbar-thumb, .ui-review-panel *::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #5a4524, #a58448, #5a4524); border: 2px solid transparent; background-clip: padding-box; border-radius: 6px;
+}
+.h2-win .body *::-webkit-scrollbar-corner, .npc-dialog .npc-body *::-webkit-scrollbar-corner { background: transparent; }
+/* the window itself never scrolls — only its body does, so the bar stays inside the frame */
+.h2 .h2-win .body { flex: 1 1 auto; min-height: 0; padding-right: 6px; }
+.npc-dialog .npc-body { min-height: 0; }
+
+/* ---------- compact Shop / Craft / Enchant (reference: "shop and crafting board-28") ---------- */
+@media (min-width: 761px) {
+  .forge-dialog.npc-dialog { width: min(860px, calc(100vw - 32px)); max-height: min(640px, 78dvh); bottom: 11dvh; }
+  .forge-dialog .npc-head { padding: 6px 10px 6px 12px; }
+  .forge-dialog .npc-head .npc-badge { width: 34px; height: 34px; font-size: 16px; }
+  .forge-dialog .npc-head b { font-size: 14px; }
+  .forge-dialog .npc-body { padding: 10px 8px 10px 12px; }
+  .forge-dialog .npc-line { margin: 0 0 4px; }
+
+  .forge-title { gap: 10px; margin-bottom: 8px; }
+  .forge-title > .forge-menu-icon { width: 40px; height: 40px; }
+  .forge-workshop h2, .forge-enhance h2 { font-size: 21px; letter-spacing: 1.5px; }
+  .forge-workshop h2 small, .forge-enhance h2 small { font-size: 12px; }
+  .forge-title p { font-size: 11px; margin: 0; }
+
+  .forge-tabs { gap: 4px; margin: 6px 0 8px; }
+  .forge-tabs button { min-height: 34px; padding: 2px 8px; font-size: 12px; }
+
+  .forge-products { gap: 6px; }
+  .forge-card { padding: 6px 6px 8px; gap: 2px; }
+  .forge-card h3 { font-size: 12px; margin: 1px 0; line-height: 1.35; }
+  .forge-card p, .forge-card small { font-size: 11px; line-height: 1.35; }
+  .forge-card strong { font-size: 12px; }
+  .forge-art { width: 50px; height: 64px; }
+  .forge-art.soul-stone { width: 52px; height: 64px; }
+  .forge-quantity { margin: 3px 0; }
+  .forge-quantity button { width: 26px; height: 26px; line-height: 1; }
+  .forge-quantity input { width: 34px; height: 26px; font-size: 12px; }
+  .forge-primary { min-height: 30px; font-size: 12px; }
+  .forge-card .forge-primary { min-height: 28px; }
+  .forge-feedback { min-height: 0; padding: 6px 0 0; font-size: 12px; }
+
+  .forge-layout { grid-template-columns: 124px minmax(0, 1fr); gap: 10px; }
+  .forge-sidebar { gap: 4px; padding-right: 8px; }
+  .forge-sidebar button { min-height: 36px; padding: 6px; font-size: 12px; gap: 6px; }
+  .forge-sidebar .forge-menu-icon { width: 24px; height: 24px; }
+  .alchemy-products { margin-bottom: 10px; }
+  .forge-recipe { gap: 10px; padding: 10px; }
+  .forge-recipe > div { gap: 4px; }
+  .forge-materials .forge-card { min-width: 92px; }
+  .forge-coming { min-height: 220px; }
+
+  .forge-enhance-grid { grid-template-columns: 200px minmax(0, 1fr); gap: 12px; margin-top: 8px; }
+  .forge-enhance-grid > .npc-list .npc-row { min-height: 48px; }
+  .forge-item-preview { padding: 8px; gap: 14px; }
+  .forge-item-preview > .atlas-icon { width: 84px; height: 100px; }
+  .forge-enhance .forge-materials > .forge-card { min-width: 110px; }
+  .forge-enhance .action-button { min-height: 34px; }
+
+  /* the review page shows the same compact size as the game */
+  .ui-review-panel { max-width: 860px; }
+}
+
+/* top-right tool row (party / world map / settings / wiki): painted icons */
+.sf-btn .sf-tool-ico { width: 18px; height: 18px; object-fit: contain; vertical-align: -4px; margin-right: 2px; filter: drop-shadow(0 1px 2px #000); }
+.sf-btn.sf-tool { display: inline-grid; place-items: center; padding: 0 !important; min-width: 0; }
+.sf-btn.sf-tool .sf-tool-ico { width: 20px; height: 20px; margin: 0; }
+
+/* 761–1100 px wide: keep HUD windows left of the minimap column so the tool row never sits on top of them */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .h2 .h2-win:not(.wide) { right: 214px; left: auto; top: 14px; bottom: auto; width: min(560px, calc(100vw - 240px)); max-height: calc(100vh - 200px); }
+}
+
+/* ---------- round 16: map channels (components/ChannelSwitch.tsx) ---------- */
+/* the button under the minimap pushes the tool row and the menu down a little */
+.h2-zone { pointer-events: none; }
+.h2 .h2-menu:not(.mobile) { translate: 0 34px; }
+.sf-toolrow { top: 262px !important; align-items: center; }
+.sf-toolrow .sf-btn { height: 38px; min-height: 0 !important; border-width: 8px !important; border-image-width: 8px !important; padding: 0 6px !important; font-size: 12px; display: inline-flex; align-items: center; gap: 4px; }
+.sf-toolrow .sf-btn.sf-tool { width: 38px; padding: 0 !important; justify-content: center; }
+.sf-ch-btn { pointer-events: auto; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; height: 30px; margin: 4px 0 0; padding: 0 6px !important;
+  border: 9px solid transparent; border-image: url(/art/ui/btn-dark.webp) 12 fill / 9px stretch; background: none; color: #f2d58a; cursor: pointer; font: 700 11px Cinzel, serif; box-sizing: border-box; }
+.sf-ch-btn img { width: 20px; height: 20px; margin: -6px 0; object-fit: contain; filter: drop-shadow(0 1px 2px #000); }
+.sf-ch-btn b { letter-spacing: .06em; white-space: nowrap; }
+.sf-ch-btn small { display: inline !important; font: 600 10px "Noto Sans Thai", sans-serif !important; color: #c9bb98 !important; white-space: nowrap; }
+.sf-ch-btn:hover { filter: brightness(1.25); }
+.sf-ch-btn:focus-visible { outline: 2px solid #f5d38d; outline-offset: 2px; }
+
+/* density gauge: 10 vertical ticks, green → red left to right; unlit ticks stay dark */
+.sf-ticks { display: inline-flex; align-items: flex-end; gap: 3px; height: 22px; }
+.sf-ticks i { display: block; width: 5px; height: 100%; border-radius: 1px; background: #1b1715; box-shadow: inset 0 0 0 1px #3a3024; }
+.sf-ticks i.on { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 70%, #fff), var(--c) 45%, color-mix(in srgb, var(--c) 70%, #000)); box-shadow: 0 0 5px color-mix(in srgb, var(--c) 60%, transparent), inset 0 0 0 1px #0006; }
+.sf-ticks.sm { gap: 1.5px; height: 11px; }
+.sf-ticks.sm i { width: 2.5px; }
+
+/* the window */
+.sf-ch-backdrop { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: radial-gradient(ellipse at center, #0008, #000c); backdrop-filter: blur(2px); padding: 16px; }
+.sf-ch-dialog { position: relative; width: min(500px, 100%); max-height: calc(100dvh - 32px); display: flex; flex-direction: column; color: #e7dfcf; font: 14px/1.5 var(--sf-body, sans-serif);
+  border: 20px solid transparent; border-image: url(/art/ui/win.webp) 40 54 28 46 fill / 24px 30px 20px 28px stretch; box-shadow: 0 30px 90px #000d; }
+.sf-ch-dialog header { display: flex; align-items: center; gap: 10px; padding: 0 4px 10px; border-bottom: 1px solid #4a3c27; }
+.sf-ch-dialog header h2 { margin: 0; font: 700 18px Cinzel, Georgia, serif; letter-spacing: .08em; color: #f2d9a6; }
+.sf-ch-dialog header p { margin: 0; font-size: 12px; color: #a89d87; }
+.sf-ch-dialog header .sf-close { position: absolute !important; right: -25px; top: -25px; margin: 0; }
+.sf-ch-dialog header .sf-win-ico { width: 34px; height: 34px; }
+.sf-ch-list { display: flex; flex-direction: column; gap: 6px; padding: 12px 2px; overflow: auto; }
+.sf-ch-row { display: grid; grid-template-columns: 112px 1fr 92px; align-items: center; gap: 12px; min-height: 52px; padding: 4px 12px; text-align: left; cursor: pointer; color: #eadfc6;
+  border: 10px solid transparent; border-image: url(/art/ui/btn-dark.webp) 12 fill / 10px stretch; background: none; font: inherit; transition: filter .15s, transform .1s; }
+.sf-ch-row .name { font: 700 15px Cinzel, Georgia, serif; letter-spacing: .06em; display: flex; flex-direction: column; line-height: 1.2; }
+.sf-ch-row .name em { font: 600 10px "Noto Sans Thai", sans-serif; font-style: normal; color: #7fd69a; letter-spacing: 0; }
+.sf-ch-row .sf-ticks { justify-self: center; }
+.sf-ch-row .count { text-align: right; font-size: 12px; color: #a89d87; line-height: 1.25; }
+.sf-ch-row .count b { font-size: 17px; color: #f2d58a; }
+.sf-ch-row .count small { display: block; font-size: 11px; }
+.sf-ch-row:hover:not(:disabled) { filter: brightness(1.22); }
+.sf-ch-row:active:not(:disabled) { transform: scale(.99); }
+.sf-ch-row.picked { border-image-source: url(/art/ui/btn-red.webp); color: #fff2da; box-shadow: 0 0 14px #c8302a55; }
+.sf-ch-row.picked .count, .sf-ch-row.picked .count small { color: #f3dcc0; }
+.sf-ch-row:disabled { cursor: not-allowed; }
+.sf-ch-row.full:disabled { filter: grayscale(.6) brightness(.7); }
+.sf-ch-row.full .count small { color: #ff8a7a; }
+.sf-ch-row.here:disabled { filter: none; opacity: .85; border-image-source: url(/art/ui/btn-gray.webp); }
+.sf-ch-row:focus-visible { outline: 2px solid #f5d38d; outline-offset: 2px; }
+.sf-ch-note, .sf-ch-err { margin: 10px 2px 0; padding: 8px 10px; font-size: 12px; border: 1px solid #5a4a2e; background: #0d0b0a; color: #d9c49a; }
+.sf-ch-err { border-color: #8a3a2e; color: #ffb3a6; }
+.sf-ch-dialog footer { display: flex; justify-content: flex-end; gap: 8px; padding-top: 10px; border-top: 1px solid #4a3c27; }
+.sf-ch-dialog footer .sf-btn { min-height: 40px; min-width: 120px; }
+.sf-ch-dialog footer .sf-btn:disabled { filter: grayscale(.9) brightness(.6); cursor: not-allowed; }
+.sf-ch-loading { position: fixed; inset: 0; z-index: 95; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #000c; color: #f2d58a; font: 700 16px Cinzel, serif; letter-spacing: .06em; }
+.sf-ch-loading img { width: 72px; height: 72px; animation: sfchspin 2.4s linear infinite; filter: drop-shadow(0 0 12px #62e6d2aa); }
+.sf-ch-loading small { font: 12px "Noto Sans Thai", sans-serif; color: #a89d87; }
+@keyframes sfchspin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .sf-ch-loading img { animation: none; } }
+@media (max-width: 560px) { .sf-ch-row { grid-template-columns: 74px 1fr 70px; gap: 6px; padding: 4px 6px; } .sf-ticks { gap: 2px; } .sf-ticks i { width: 4px; } }
+
+/* ---------- round 16: guest login page (components/auth/AuthGate.tsx GuestEntry) ---------- */
+.sf-guest { display: flex; flex-direction: column; align-items: stretch; gap: 14px; text-align: center; }
+.sf-guest .sf-h2 { margin: 0; font: 700 24px Cinzel, Georgia, serif; letter-spacing: .06em; color: #f2d9a6; }
+.sf-guest .sf-muted { margin: 0; font-size: 13px; }
+.sf-guest .sf-guest-go { min-height: 54px; font: 700 18px Cinzel, Georgia, serif; letter-spacing: .1em; }
+.sf-guest .sf-guest-go:focus-visible { outline: 2px solid #f5d38d; outline-offset: 3px; }
+.sf-guest-back { color: #c9b07a; font-size: 13px; text-decoration: none; }
+.sf-guest-back:hover { color: #f2d58a; text-decoration: underline; }

@@ -1,0 +1,263 @@
+[
+  {
+    "id": "hollow",
+    "name": "Hollow Reach",
+    "file": "hollow.glb",
+    "meshes": 69,
+    "triangles": 19420,
+    "spawns": [
+      {
+        "id": "hollow-0",
+        "index": 0,
+        "position": [
+          -7,
+          -22
+        ],
+        "name": "Grave Crawler",
+        "level": 1,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "hollow-1",
+        "index": 1,
+        "position": [
+          0,
+          -22
+        ],
+        "name": "Ash Hound",
+        "level": 5,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "hollow-2",
+        "index": 2,
+        "position": [
+          7,
+          -22
+        ],
+        "name": "Bone Sentinel",
+        "level": 10,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "hollow-3",
+        "index": 3,
+        "position": [
+          -21,
+          8
+        ],
+        "name": "Grave Crawler",
+        "level": 1,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "hollow-4",
+        "index": 4,
+        "position": [
+          21,
+          8
+        ],
+        "name": "Ash Hound",
+        "level": 5,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "hollow-5",
+        "index": 5,
+        "position": [
+          0,
+          22
+        ],
+        "name": "Bone Sentinel",
+        "level": 10,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      }
+    ]
+  },
+  {
+    "id": "dawnveil",
+    "name": "Dawnveil",
+    "file": "dawnveil.glb",
+    "meshes": 65,
+    "triangles": 19112,
+    "spawns": [
+      {
+        "id": "dawnveil-0",
+        "index": 0,
+        "position": [
+          -18,
+          20
+        ],
+        "name": "Reed Stalker",
+        "level": 1,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "dawnveil-1",
+        "index": 1,
+        "position": [
+          -10,
+          21
+        ],
+        "name": "Tide Crab",
+        "level": 5,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "dawnveil-2",
+        "index": 2,
+        "position": [
+          0,
+          22
+        ],
+        "name": "Fen Maw Otter",
+        "level": 10,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "dawnveil-3",
+        "index": 3,
+        "position": [
+          16,
+          21
+        ],
+        "name": "Reed Stalker",
+        "level": 1,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "dawnveil-4",
+        "index": 4,
+        "position": [
+          21,
+          3
+        ],
+        "name": "Tide Crab",
+        "level": 5,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "dawnveil-5",
+        "index": 5,
+        "position": [
+          -22,
+          -3
+        ],
+        "name": "Fen Maw Otter",
+        "level": 10,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      }
+    ]
+  },
+  {
+    "id": "thornwatch",
+    "name": "Thornwatch",
+    "file": "thornwatch.glb",
+    "meshes": 67,
+    "triangles": 23872,
+    "spawns": [
+      {
+        "id": "thornwatch-0",
+        "index": 0,
+        "position": [
+          21,
+          -12
+        ],
+        "name": "Briar Wolf",
+        "level": 1,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "thornwatch-1",
+        "index": 1,
+        "position": [
+          22,
+          0
+        ],
+        "name": "Thorn Spider",
+        "level": 5,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "thornwatch-2",
+        "index": 2,
+        "position": [
+          21,
+          15
+        ],
+        "name": "Bark Guardian",
+        "level": 10,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "thornwatch-3",
+        "index": 3,
+        "position": [
+          0,
+          22
+        ],
+        "name": "Briar Wolf",
+        "level": 1,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "thornwatch-4",
+        "index": 4,
+        "position": [
+          -21,
+          10
+        ],
+        "name": "Thorn Spider",
+        "level": 5,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      },
+      {
+        "id": "thornwatch-5",
+        "index": 5,
+        "position": [
+          -21,
+          -10
+        ],
+        "name": "Bark Guardian",
+        "level": 10,
+        "elite": false,
+        "boss": false,
+        "respawnSeconds": 8
+      }
+    ]
+  }
+]

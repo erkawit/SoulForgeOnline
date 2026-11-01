@@ -1,0 +1,23 @@
+{
+  "name": "SoulForge Online",
+  "short_name": "SoulForge",
+  "description": "Dark-fantasy chibi MMORPG \u2014 closed beta",
+  "start_url": "/play",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#07060a",
+  "theme_color": "#07060a",
+  "icons": [
+    {
+      "src": "/icons/soulforge-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/soulforge-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

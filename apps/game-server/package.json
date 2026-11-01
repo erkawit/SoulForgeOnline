@@ -1,0 +1,31 @@
+{
+  "name": "soulforge-realm",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SoulForge Online realm server (WebSocket): owns characters, validates kills/movement, runs the shared economy core \u2014 deploy as its own Railway service (build context = repo root)",
+  "scripts": {
+    "dev": "tsx watch --tsconfig tsconfig.json src/index.ts",
+    "build": "node build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node dist/index.js",
+    "test": "node build.mjs && node --import tsx --test test/*.test.ts"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.1",
+    "dotenv": "^16.4.5",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.12",
+    "tsx": "^4.23.15",
+    "typescript": "^5.8.0",
+    "esbuild": "^0.25.0"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "checkpoint": 2,
+  "city": "hollow",
+  "entries": [
+    {
+      "name": "flame-torch-orange",
+      "kind": "flame-torch",
+      "variant": "orange",
+      "file": "flame-torch-orange.webp",
+      "frameW": 64,
+      "frameH": 96,
+      "frames": 12,
+      "cols": 4,
+      "fps": 12,
+      "loop": true,
+      "pivot": [
+        32,
+        84
+      ]
+    },
+    {
+      "name": "flame-torch-teal",
+      "kind": "flame-torch",
+      "variant": "teal",
+      "file": "flame-torch-teal.webp",
+      "frameW": 64,
+      "frameH": 96,
+      "frames": 12,
+      "cols": 4,
+      "fps": 12,
+      "loop": true,
+      "pivot": [
+        32,
+        84
+      ]
+    },
+    {
+      "name": "flame-torch-green",
+      "kind": "flame-torch",
+      "variant": "green",
+      "file": "flame-torch-green.webp",
+      "frameW": 64,
+      "frameH": 96,
+      "frames": 12,
+      "cols": 4,
+      "fps": 12,
+      "loop": true,
+      "pivot": [
+        32,
+        84
+      ]
+    },
+    {
+      "name": "flame-torch-blue",
+      "kind": "flame-torch",
+      "variant": "blue",
+      "file": "flame-torch-blue.webp",
+      "frameW": 64,
+      "frameH": 96,
+      "frames": 12,
+      "cols": 4,
+      "fps": 12,
+      "loop": true,
+      "pivot": [
+        32,
+        84
+      ]
+    },
+    {
+      "name": "banner-wave-hollow-front",
+      "kind": "banner-wave",
+      "variant": "hollow",
+      "file": "banner-wave-hollow-front.webp",
+      "frameW": 128,
+      "frameH": 256,
+      "frames": 12,
+      "cols": 4,
+      "fps": 10,
+      "loop": true,
+      "pivot": [
+        64,
+        20
+      ]
+    },
+    {
+      "name": "banner-wave-hollow-side",
+      "kind": "banner-wave",
+      "variant": "hollow",
+      "file": "banner-wave-hollow-side.webp",
+      "frameW": 128,
+      "frameH": 256,
+      "frames": 12,
+      "cols": 4,
+      "fps": 10,
+      "loop": true,
+      "pivot": [
+        64,
+        20
+      ]
+    },
+    {
+      "name": "portal-waygate-hollow",
+      "kind": "portal-waygate",
+      "variant": "hollow",
+      "file": "portal-waygate-hollow.webp",
+      "frameW": 256,
+      "frameH": 320,
+      "frames": 16,
+      "cols": 4,
+      "fps": 12,
+      "loop": true,
+      "pivot": [
+        128,
+        160
+      ]
+    }
+  ]
+}

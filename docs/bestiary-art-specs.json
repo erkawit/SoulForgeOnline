@@ -1,0 +1,206 @@
+[
+  [
+    "grave-crawler",
+    "Grave Crawler",
+    "1–10",
+    "a savage oversized European badger, low thick body, coarse grey fur, dirty ivory digging claws, scars and aggressive jaws, entirely natural wild animal anatomy"
+  ],
+  [
+    "ash-hound",
+    "Ash Hound",
+    "1–10",
+    "a feral ash-grey wild dog, lean muscular body, ragged mane, torn ears, dusty fur, bared teeth, natural beast without magic"
+  ],
+  [
+    "bone-sentinel",
+    "Bone Sentinel",
+    "1–10",
+    "a thick wild boar with massive worn ivory tusks, bristled black back, dried mud armor-like crust, furious small amber eyes, not a skeleton, no armor clothing"
+  ],
+  [
+    "briar-wolf",
+    "Briar Wolf",
+    "20–25",
+    "an enormous forest wolf, moss-brown bristled fur, scarred muzzle, thorn twigs caught in coat, predatory stalking pose, natural anatomy no magic"
+  ],
+  [
+    "thorn-spider",
+    "Thorn Spider",
+    "20–25",
+    "a ferocious giant tarantula, exactly eight articulated bristled legs, brown-black hairy carapace, ivory fangs, natural eyes and silhouette no magical glow"
+  ],
+  [
+    "bark-guardian",
+    "Bark Guardian",
+    "20–25",
+    "a colossal wild brown bear, thick coarse brown coat and scarred shoulders, long claws, tree bark tangled in fur, roaring grounded on four paws, a real animal not a treant"
+  ],
+  [
+    "reed-stalker",
+    "Reed Stalker",
+    "30–35",
+    "a huge marsh crocodile, four splayed legs and long heavy tail, mossy olive scutes, brutal wide jaws and chipped teeth, natural reptile not undead"
+  ],
+  [
+    "tide-crab",
+    "Tide Crab",
+    "30–35",
+    "a gigantic rough coastal crab, two heavy unequal pincers and eight walking legs, barnacle-crusted rust brown shell, threatening low stance, believable crustacean anatomy"
+  ],
+  [
+    "fen-maw-otter",
+    "Fen Maw Otter",
+    "30–35",
+    "a hulking savage river otter, wet charcoal-brown fur, thick muscular neck, long powerful tail, webbed paws, ferocious bared tusklike canine teeth, no clothing no magic"
+  ],
+  [
+    "cinder-beetle",
+    "Cinder Beetle",
+    "40",
+    "a massive black rhinoceros beetle, six spined legs and powerful curved head horn, pitted dusty chitin, savage physical strength, natural insect with no lava or fire magic"
+  ],
+  [
+    "ironhide-rhino",
+    "Ironhide Rhino",
+    "40",
+    "a massive wild rhinoceros with scarred iron-grey folded hide, two battered horns, thick neck and four sturdy legs, earthy dust on body, natural animal no actual metal plates"
+  ],
+  [
+    "slag-hound",
+    "Slag Hound",
+    "40",
+    "a huge savage spotted hyena, sloped back, matted coarse tan-black fur, massive crushing jaw, scarred muzzle, upright ragged mane, natural beast no spells"
+  ],
+  [
+    "crypt-crawler",
+    "Crypt Crawler",
+    "25–40 ELITE",
+    "a ferocious oversized wolverine, broad low stance, long sharp claws, coarse dark russet fur with pale shoulder stripes, battle scars, elite wildlife predator no supernatural effects"
+  ],
+  [
+    "oathscar-aurochs",
+    "Oathscar Aurochs",
+    "25–40 ELITE",
+    "a huge wild aurochs bull on FOUR LEGS, thick dark brown shaggy shoulders, long swept forward ivory horns, deep scars, mud-stained hooves, charging lowered head, natural beast not humanoid and no weapon"
+  ],
+  [
+    "moon-moth",
+    "Moon Moth",
+    "45–60",
+    "a sinister giant lunar moth, four velvet purple wings with unsettling crescent eye patterns, furred thorax, six delicate hooked legs, subtle blue lunar dust and emerging corruption"
+  ],
+  [
+    "root-weaver",
+    "Root Weaver",
+    "45–60",
+    "an uncanny eight-legged arachnid fused with gnarled living roots, amber sap veins, bark carapace, silk carrying small violet soul lights, dark emerging forest corruption"
+  ],
+  [
+    "ancient-treant",
+    "Ancient Treant",
+    "45–60",
+    "a hulking ancient warped tree guardian with two massive branch arms and root legs, hollow mournful glowing amber face, broken branches forming crown, restrained dark green soul mist"
+  ],
+  [
+    "frost-wraith",
+    "Frost Wraith",
+    "75",
+    "an inhuman spectral ice phantom with elongated claw arms, shattered frozen mask, tattered translucent robes made of rime, cold cyan heart suspended in hollow torso, trailing mist"
+  ],
+  [
+    "crystal-golem",
+    "Crystal Golem",
+    "75",
+    "a towering asymmetrical obsidian and frost crystal construct, two enormous angular arms, thick crystalline legs, jagged sapphire core in chest, sharp black mirrored facets, original intimidating silhouette"
+  ],
+  [
+    "rime-serpent",
+    "Rime Serpent",
+    "75",
+    "an enormous coiled spectral serpent with jagged frozen antler-like head crest, long articulated body, black scales edged in cyan rime, no legs, frost vapor and split icy tongue"
+  ],
+  [
+    "anvil-guard",
+    "Anvil Guard",
+    "79",
+    "an empty suit of brutal gothic black iron armor inhabited by a burning soul, immense hammer arm and broken shield arm, furnace slit face, orange fire between plate joints, heavy armored boots"
+  ],
+  [
+    "furnace-golem",
+    "Furnace Golem",
+    "79",
+    "a monstrous walking iron kiln, thick squat humanoid industrial forge body, molten orange chest chamber, chained stone fists, volcanic slag shoulders, charcoal smoke, not the same silhouette as anvil guard"
+  ],
+  [
+    "ember-drake",
+    "Ember Drake",
+    "79",
+    "a squat volcanic lesser dragon with four legs and small vestigial wings, black basalt scales, ember-orange neck vents, long club tail, jagged stone horns, menacing grounded posture"
+  ],
+  [
+    "venom-spider",
+    "Venom Spider",
+    "82",
+    "an eight-legged nightmare spider with translucent emerald venom abdomen, polished black chitin, needle joints, dripping luminous acid fangs, angular lethal silhouette, high-level corruption"
+  ],
+  [
+    "spore-beast",
+    "Spore Beast",
+    "82",
+    "a hulking blind quadrupedal fungal beast, massive forelimbs, black moss flesh, pale mushroom plates on spine, luminous sickly green spore sacs, wide rootlike maw, unsettling original creature"
+  ],
+  [
+    "thorn-hydra",
+    "Thorn Hydra",
+    "82",
+    "a dark swamp hydra with exactly THREE serpent heads on distinct long necks, four reptilian legs, heavy tail, black mossy scales and violet thorn crown on each head, poisonous green breath wisps"
+  ],
+  [
+    "astral-wraith",
+    "Astral Wraith",
+    "85",
+    "a tall void spirit with a hollow starless face, black tattered celestial mantle, long silver claw hands, sparse violet constellations drifting inside chest, broken halo shards, no wings"
+  ],
+  [
+    "prism-sentinel",
+    "Prism Sentinel",
+    "60–85",
+    "a faceless floating armored prism sentinel, angular black crystal torso and two articulated crystal arms, floating separated lower geometric limbs, bright emerald soul core, fractured floating crown, sinister celestial construct"
+  ],
+  [
+    "halo-seraph",
+    "Halo Seraph",
+    "85",
+    "a corrupted faceless seraph with exactly SIX tattered dark feather wings, slim black armored body, tarnished floating ring halo, violet eye in chest, spear of fractured starlight, original dark celestial creature"
+  ],
+  [
+    "void-reaper",
+    "Void Reaper",
+    "90",
+    "a tall inhuman void reaper with obsidian scythe fused to right forearm, ragged black shroud, three faint violet lights in narrow mask, long angular legs, drifting shadow smoke, no skull cliché"
+  ],
+  [
+    "eclipse-drake",
+    "Eclipse Drake",
+    "90–100",
+    "a powerful lesser shadow dragon, FOUR legs and TWO compact wings, glossy charcoal scales, pale crescent horns, violet throat glow, long whip tail, black smoky breath, clearly smaller subordinate to dragon king"
+  ],
+  [
+    "crown-colossus",
+    "Crown Colossus",
+    "90",
+    "a gigantic ruin-stone humanoid titan with broken gothic towers growing from shoulders as a crown, black stone limbs, dim purple fissures and soul core, crushing slab hands, immense mournful presence"
+  ],
+  [
+    "tide-wraith",
+    "Tide Wraith",
+    "60–85 ELITE",
+    "a drowned specter with flowing black kelp robes, skeletal coral antlers, two long claw arms, emerald ghost flames within translucent rib torso, floating trailing water and soul vapor, distinct ocean horror"
+  ],
+  [
+    "root-reaper",
+    "Root Reaper",
+    "90–100 ELITE",
+    "an abyssal root predator with six hooked branch legs, long black ribbed body, thorn scythe forelimbs, spectral violet mouth under wood mask, dark mist and broken ancient bark, extremely sinister original silhouette"
+  ]
+]

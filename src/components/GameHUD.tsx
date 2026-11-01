@@ -1,0 +1,230 @@
+'use client';
+// In-game HUD — UX spec v1. A screen-scale checker picks one of two component sets:
+//   PC (≥ 768 px)   ./hud/PCHUDLayout: frame top-left, HP orb · centre hotbar (attack + skills 1–6 + potions) · MP orb, EXP strip
+//   Mobile          ./hud/MobileHUDLayout: mini bars + level tag, joystick, attack wheel (4 skills + page), potion / AUTO / menu
+// Shared here: buffs, quest tracker, target / boss bars, minimap, menus, windows, tips and the boss dashboard.
+// plus target / world-boss bars, one-time tips, the boss damage dashboard and the windows behind the menus.
+import '@/styles/hud2.css';
+import { spawnPoints } from '@/game/spawns';
+import { useEffect, useMemo, useState } from 'react';
+import { useConfigStore } from '@/store/useConfigStore';
+import SkillTreePanel from './SkillTreePanel';
+import NpcDialog from './NpcDialog';
+import BuffStrip from './BuffStrip';
+import { countOf, derivedOf, expRequired, useGameStore } from '@/store/useGameStore';
+import CloudSave from './CloudSave';
+import { CITIES, WORLD_LIMIT, portalsOf, type MainCityId } from '@/game/content';
+import OnlinePanel from './OnlinePanel';
+import CodexPanel from './CodexPanel';
+import WardrobePanel from './WardrobePanel';
+import MonsterListPanel from './MonsterListPanel';
+import { useMultiplayerStore } from '@/store/useMultiplayerStore';
+import { gameConnection, titanInReach } from '@/lib/multiplayer/socket';
+import { useSettingsStore } from '@/store/useSettingsStore';
+import { ZONES, zoneAt } from '@/game/world/zones';
+import { NPCS, npcsIn, npcPosition } from '@/game/npcs';
+import { CAPITAL_HALF, CAPITAL_PIECES, CANAL_IN, CITY_SCALE, GATE_D, GATE_TRIGGER, PLAZA_R } from '@/game/world/capitalPlan';
+import { QUESTS, activeQuests, npcMarker, questProgressText } from '@/game/quests';
+import { FOCUS_TH, isSupportClass, skillRoles, type AutoFocus } from '@/game/auto';
+import { FOOD_ITEMS } from '@/game/items';
+import { audio, type AudioSettings } from '@/game/audio/engine';
+import { useScreenScale } from './hud/common';
+import { ChannelButton } from './ChannelSwitch';
+import PCHUDLayout from './hud/PCHUDLayout';
+import MobileHUDLayout from './hud/MobileHUDLayout';
+import { PCInventoryPanel, MobileInventoryDrawer } from './hud/InventoryPanels';
+import { PCStatusPanel, MobileStatusPanel } from './hud/StatusPanels';
+import '@/styles/hud3.css';
+import '@/styles/uikit.css';
+
+type Panel = 'inventory' | 'character' | 'skills' | 'quests' | 'codex' | 'wardrobe' | 'monsters' | 'auto' | 'settings' | 'cloud' | 'online' | null;
+const KEYS = ['1', 'Space', 'Q', 'E', 'R', 'T', 'X'];
+const CLASS_COLOR: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff' };
+const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เซิร์กเกอร์', Reaver: 'รีเวอร์' };
+const fmt = (n: number) => Math.round(n).toLocaleString();
+function Bar({ value, max, kind }: { value: number; max: number; kind: 'hp' | 'mp' | 'xp' }) {
+  return <div className={`h2-bar ${kind}`}><i style={{ transform: `scaleX(${Math.max(0, Math.min(1, value / Math.max(1, max)))})` }} />{kind !== 'xp' && <span>{fmt(value)} / {fmt(max)}</span>}</div>;
+}
+
+// inventory / status now live in ./hud (PCInventoryPanel · MobileInventoryDrawer · PCStatusPanel · MobileStatusPanel)
+function SkillsPanel() {
+  const extra = useGameStore(s => s.extraHotbar), lv = useGameStore(s => s.skillLevels), cls = useGameStore(s => s.player.classId ?? 'Berserker'); const defs = useConfigStore(s => s.skills.defs);
+  const actives = defs.filter(d => d.cls === cls && d.kind === 'active');
+  return <div><SkillTreePanel /><div className="h2-sub">ช่องสกิล 4–6 (R · T · X)</div>
+    {[0, 1, 2].map(i => <div key={i} className="h2-row"><b>{KEYS[i + 4]}</b><select value={extra[i] ?? ''} onChange={e => useGameStore.getState().setExtraSlot(i, e.target.value)}>
+      {actives.map(d => <option key={d.id} value={d.id}>{d.name} · {d.th}{(lv[d.id] ?? 0) > 0 ? '' : ' (ยังไม่เรียน)'}</option>)}</select></div>)}</div>;
+}
+function QuestsPanel() {
+  const quests = useGameStore(s => s.quests); const [all, setAll] = useState(false);
+  const list = QUESTS.filter(q => all || (quests[q.id] && quests[q.id].status !== 'done'));
+  const who = (id: string) => NPCS.find(n => n.id === id)?.th ?? id;
+  return <div><div className="h2-tabs"><button className={!all ? 'on' : ''} onClick={() => setAll(false)}>กำลังทำ</button><button className={all ? 'on' : ''} onClick={() => setAll(true)}>ทั้งหมด ({QUESTS.length})</button></div>
+    {list.length ? list.map(q => { const st = quests[q.id]; return <article key={q.id} className={`h2-quest ${st?.status ?? 'none'}`}><h4>{st?.status === 'ready' ? '? ' : st?.status === 'done' ? '✔ ' : !st ? '🔒 ' : ''}{q.title} <small>Lv.{q.minLevel}+</small></h4><p>{q.story}</p>
+      <ul>{(st && st.status !== 'done' ? questProgressText(q, st) : q.objectives.map(o => o.text)).map((t, i) => <li key={i}>{t}</li>)}</ul><p className="h2-note">💡 {q.hint}</p>
+      <p className="rw">รับจาก {who(q.giver)} · ส่งที่ {who(q.turnIn)} · EXP {fmt(q.rewards.xp)} · SoulGod {fmt(q.rewards.soulGod)}</p></article>; })
+      : <p className="h2-note">ยังไม่มีเควส — มองหา NPC ที่มี <b>!</b> สีทองเหนือหัว (เริ่มที่ผู้เฒ่าคอร์วินกลางลานเมือง)</p>}</div>;
+}
+function AutoPanel() {
+  const a = useGameStore(s => s.auto), cls = useGameStore(s => s.player.classId ?? 'Berserker'), hot = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar), inv = useGameStore(s => s.inventory);
+  const defs = useConfigStore(s => s.skills.defs); const set = useGameStore.getState().patchAuto;
+  useEffect(() => { useGameStore.getState().tip('auto-open'); }, []);
+  const ids = [hot.skill, hot.buff, hot.special, ...extra];
+  const Sw = ({ on, onClick }: { on: boolean; onClick: () => void }) => <button className={`h2-switch ${on ? 'on' : ''}`} onClick={onClick} aria-pressed={on} />;
+  const Range = ({ k, min, max, unit = '%' }: { k: 'hpPotionPct' | 'mpPotionPct' | 'healAllyPct' | 'radius'; min: number; max: number; unit?: string }) =>
+    <span className="h2-range"><input type="range" min={min} max={max} value={a[k]} onChange={e => set({ [k]: +e.target.value })} /><b>{a[k]}{unit}</b></span>;
+  return <div className="h2-auto">
+    <button className={`sf-btn ${a.enabled ? '' : 'ghost'}`} onClick={() => useGameStore.getState().setAuto(!a.enabled)}>{a.enabled ? '■ หยุด AUTO' : '▶ เริ่ม AUTO'}</button> <small className="h2-note">Z เปิด/ปิด · ขยับเองแล้วพัก 3 วินาที</small>
+    <div className="h2-sub">ยาและอาหาร</div>
+    <div className="h2-row"><span>ดื่มยา HP <small>มี {['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((x, id) => x + countOf(inv, id), 0)} ขวด</small></span><Sw on={a.hpPotion} onClick={() => set({ hpPotion: !a.hpPotion })} /></div>
+    <div className="h2-row"><span>เมื่อ HP ต่ำกว่า</span><Range k="hpPotionPct" min={10} max={90} /></div>
+    <div className="h2-row"><span>ดื่มยา MP <small>มี {['potion-mp-m', 'potion-mp-s'].reduce((x, id) => x + countOf(inv, id), 0)} ขวด</small></span><Sw on={a.mpPotion} onClick={() => set({ mpPotion: !a.mpPotion })} /></div>
+    <div className="h2-row"><span>เมื่อ MP ต่ำกว่า</span><Range k="mpPotionPct" min={5} max={80} /></div>
+    <div className="h2-row"><span>กินอาหารบัฟ <small>{FOOD_ITEMS.map(f => f.th).join(' / ')}</small></span><Sw on={a.food} onClick={() => set({ food: !a.food })} /></div>
+    <div className="h2-row"><span>เก็บของ</span><Sw on={a.loot} onClick={() => set({ loot: !a.loot })} /></div>
+    <div className="h2-row"><span>รัศมีล่า</span><Range k="radius" min={6} max={30} unit=" ม." /></div>
+    {isSupportClass(cls) && <><div className="h2-sub">รูปแบบการเล่น ({CLASS_TH[cls]})</div><div className="h2-focus">{(['attack', 'support', 'hybrid'] as AutoFocus[]).map(f => <button key={f} className={a.focus === f ? 'on' : ''} onClick={() => set({ focus: f })}><b>{FOCUS_TH[f].name}</b>{FOCUS_TH[f].desc}</button>)}</div>
+      <div className="h2-row"><span>ช่วยเพื่อนเมื่อเลือดต่ำกว่า</span><Range k="healAllyPct" min={20} max={90} /></div>
+      <div className="h2-row"><span>รักษาบัฟยาวให้ทุกคน</span><Sw on={a.keepBuffs} onClick={() => set({ keepBuffs: !a.keepBuffs })} /></div></>}
+    <div className="h2-sub">สกิลที่ให้ AUTO ใช้</div>
+    {ids.map((id, i) => { const d = defs.find(x => x.id === id); if (!d) return null; const on = a.skills[i + 1] !== false;
+      return <div key={i} className="h2-row"><span><b>{KEYS[i + 1]}</b> {d.name} <small>{skillRoles(d).map(r => ({ damage: 'โจมตี', heal: 'ฮีล', buff: 'บัฟ', shield: 'โล่', debuff: 'ดีบัฟ' } as Record<string, string>)[r]).join(' · ')}</small></span>
+        <Sw on={on} onClick={() => { const sk = [...a.skills]; sk[i + 1] = !on; set({ skills: sk }); }} /></div>; })}
+  </div>;
+}
+function SettingsPanel() {
+  const st = useSettingsStore(); const [au, setAu] = useState<AudioSettings>(audio.settings);
+  const put = (p: Partial<AudioSettings>) => { audio.configure(p); setAu({ ...audio.settings }); try { localStorage.setItem('sf-audio', JSON.stringify(audio.settings)); } catch { /* */ } };
+  const R = ({ k, t }: { k: keyof Omit<AudioSettings, 'muted'>; t: string }) => <div className="h2-row"><span>{t}</span><span className="h2-range"><input type="range" min={0} max={1} step={.05} value={au[k]} onChange={e => put({ [k]: +e.target.value })} /><b>{Math.round(au[k] * 100)}</b></span></div>;
+  return <div><div className="h2-sub">เสียง</div><R k="master" t="เสียงรวม" /><R k="music" t="ดนตรี" /><R k="sfx" t="เอฟเฟกต์ (โจมตี สกิล มอนสเตอร์)" /><R k="voice" t="เสียงพูดตัวละคร" />
+    <div className="h2-row"><span>ปิดเสียงทั้งหมด</span><button className={`h2-switch ${au.muted ? 'on' : ''}`} onClick={() => put({ muted: !au.muted })} /></div>
+    <div className="h2-sub">กราฟิก</div>
+    <div className="h2-row"><span>คุณภาพ</span><span className="h2-seg">{(['low', 'medium', 'high'] as const).map(q => <button key={q} className={st.quality === q ? 'on' : ''} onClick={() => st.set({ quality: q })}>{({ low: 'ต่ำ', medium: 'กลาง', high: 'สูง' })[q]}</button>)}</span></div>
+    <div className="h2-row"><span>เงา</span><button className={`h2-switch ${st.shadows ? 'on' : ''}`} onClick={() => st.set({ shadows: !st.shadows })} /></div>
+    <div className="h2-row"><span>ตัวเลขดาเมจ</span><button className={`h2-switch ${st.damageNumbers ? 'on' : ''}`} onClick={() => st.set({ damageNumbers: !st.damageNumbers })} /></div>
+    <div className="h2-sub">ปุ่ม</div><p className="h2-note">WASD วิ่ง · 1 โจมตี · Space Q E R T X สกิล · 7 8 ยา · 9 อาหาร · Z AUTO · I กระเป๋า · C ตัวละคร · K สกิล · J เควส · O ตั้งค่า · ⌖ สมุดเดินทาง</p></div>;
+}
+function TipCard() {
+  const tip = useGameStore(s => s.tips[0]), more = useGameStore(s => s.tips.length - 1);
+  useEffect(() => { if (!tip) return; audio.play('ui_open', { vol: .35 }); const t = setTimeout(() => useGameStore.getState().dismissTip(), 16000); return () => clearTimeout(t); }, [tip]);
+  if (!tip) return null;
+  return <aside className="h2-tip pointer-events-auto" role="status"><div className="h"><span>❖ คำแนะนำ</span>{more > 0 && <small>+{more}</small>}</div><h3>{tip.title}</h3><p>{tip.body}</p>
+    {tip.keys && <div className="k">{tip.keys.split(' ').map(k => <kbd key={k}>{k}</kbd>)}</div>}<button className="sf-btn" onClick={() => useGameStore.getState().dismissTip()}>เข้าใจแล้ว</button></aside>;
+}
+function QuestTracker({ onOpen }: { onOpen: () => void }) {
+  const quests = useGameStore(s => s.quests); const list = activeQuests(quests).slice(0, 4);
+  return <section className="h2-tracker pointer-events-auto" onClick={onOpen}><div className="h">เควส <small>J</small></div>
+    {list.length ? list.map(q => { const st = quests[q.id]; return <div key={q.id} className={`q ${st.status}`}><b>{st.status === 'ready' ? '✔ ' : ''}{q.title}</b>{st.status === 'ready' ? <small>ส่งเควสได้แล้ว</small> : questProgressText(q, st).map((t, i) => <small key={i}>{t}</small>)}</div>; })
+      : <div className="q"><small>หา NPC ที่มี <b className="mk">!</b> สีทองเหนือหัวเพื่อรับเควส</small></div>}</section>;
+}
+function BossDashboard() {
+  const r = useMultiplayerStore(s => s.bossResult), me = useMultiplayerStore(s => s.playerId);
+  if (!r) return null; const top = r.ranked[0]?.damage || 1;
+  return <div className="h2-modal pointer-events-auto" role="dialog" aria-label="ผลการล่าบอส"><section>
+    <header><h2>ผลการล่าบอส · {r.boss}</h2><button className="sf-close" aria-label="ปิด" title="ปิด" onClick={() => useMultiplayerStore.getState().setState({ bossResult: null })} /></header>
+    <p className="h2-note">ใช้เวลา <b>{r.minutes} นาที</b> · ผู้ร่วมรบ {r.players} คน · อันดับ 1 มีโอกาส 50% ได้ไอเทมระดับสูง (Legendary / God / Pre-arch / Arch)</p>
+    <table><thead><tr><th>#</th><th>ผู้เล่น</th><th>ดาเมจ</th><th>รางวัล</th></tr></thead><tbody>{r.ranked.map(p => <tr key={p.id} className={p.id === me ? 'me' : ''}><td className="rk">{p.rank}</td>
+      <td><b style={{ color: CLASS_COLOR[p.classId] }}>{p.name}</b><br /><small>{CLASS_TH[p.classId] ?? p.classId}</small></td>
+      <td><div className="dm"><span>{fmt(p.damage)}</span><small>{(p.share * 100).toFixed(1)}%</small></div><div className="dmgbar"><i style={{ width: `${p.damage / top * 100}%` }} /></div></td>
+      <td>SoulGod {fmt(p.soulGod)}{p.guaranteed ? ` · ${p.guaranteed}` : ''}{p.highTier ? <><br /><b className="hi">★ {p.highTier}!</b></> : null}</td></tr>)}</tbody></table></section></div>;
+}
+
+export default function GameHUD() {
+  const network = useMultiplayerStore();
+  const deadUntil = useGameStore(s => s.deadUntil), pending = useGameStore(s => s.pending), charge = useGameStore(s => s.charge);
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => { const t = setInterval(() => setNow(Date.now()), 200); return () => clearInterval(t); }, []);
+  const [panel, setPanel] = useState<Panel>(null);
+  const layout = useScreenScale(); const [menuOpen, setMenuOpen] = useState(false);
+  const player = useGameStore(s => s.player), monsters = useGameStore(s => s.monsters), drops = useGameStore(s => s.drops), equipment = useGameStore(s => s.equipment);
+  const log = useGameStore(s => s.log), selectedMonster = useGameStore(s => s.selectedMonster), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
+  const hotbar = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar), cooldowns = useGameStore(s => s.cooldowns), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
+  const inventory = useGameStore(s => s.inventory), quests = useGameStore(s => s.quests);
+  const skillDefs = useConfigStore(s => s.skills.defs);
+  const selected = monsters.find(m => m.id === selectedMonster);
+  const cls = player.classId ?? 'Berserker', color = CLASS_COLOR[cls];
+  const city = CITIES[player.cityId ?? 'hollow'];
+  const derived = useMemo(() => derivedOf({ player, equipment, buffs, skillLevels }), [player, equipment, buffs, skillLevels]);
+  // HP / MP are simulated here (online too: the realm owns money, items and levels, not the fight)
+  const hp = player.hp, maxHp = derived.maxHp, mp = player.mp, maxMp = derived.maxMp;
+  const zone = city.id === 'wild0' ? zoneAt(player.position[0], player.position[1]) : null; // the Sorrowlands ruins of Ashen Outskirts
+  const toggle = (p: Panel) => { audio.play('ui_click', { vol: .35 }); setPanel(v => v === p ? null : p); };
+  useEffect(() => {
+    const key = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLElement && (e.target.closest('input,textarea,select') || e.target.isContentEditable)) return;
+      if (e.repeat) return; const k = e.key.toLowerCase(), g = useGameStore.getState();
+      if (g.journal) { if (k === 'escape') g.setJournal(false); return; }
+      const map: Record<string, Panel> = { i: 'inventory', c: 'character', k: 'skills', j: 'quests', l: 'codex', u: 'wardrobe', n: 'monsters', o: 'settings' };
+      if (map[k]) setPanel(p => p === map[k] ? null : map[k]);
+      if (k === 'escape') setPanel(null);
+      { const slot = { r: 4, t: 5, x: 6 }[k as 'r' | 't' | 'x']; if (slot) g.castSlot(slot);
+        if (k === '7') g.usePotion('hp'); if (k === '8') g.usePotion('mp'); if (k === '9') g.eatFood(); }
+    };
+    window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key);
+  }, []);
+  // zone banner when walking into a ruined area of the Sorrowlands
+  const [banner, setBanner] = useState<string | null>(null);
+  useEffect(() => { if (!zone) return; setBanner(zone.id); useGameStore.getState().emit({ type: 'visit', zone: zone.id }); useGameStore.getState().tip('ruins'); const t = setTimeout(() => setBanner(null), 4200); return () => clearTimeout(t); }, [zone?.id]);
+
+  const ids = [hotbar.skill, hotbar.buff, hotbar.special, ...extra];
+  const basic = () => {
+    if (titanInReach()) { gameConnection.attack(); return; }
+    const st = useGameStore.getState(); const t = st.monsters.find(m => m.id === st.selectedMonster && m.hp > 0) ?? st.monsters.filter(m => m.hp > 0).sort((a, b) => Math.hypot(a.x - st.player.position[0], a.z - st.player.position[1]) - Math.hypot(b.x - st.player.position[0], b.z - st.player.position[1]))[0];
+    if (t) { st.selectMonster(t.id); st.attack(t.id); }
+  };
+  const [px, pz] = player.position;
+  const hpCount = ['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((a, id) => a + countOf(inventory, id), 0), mpCount = ['potion-mp-m', 'potion-mp-s'].reduce((a, id) => a + countOf(inventory, id), 0);
+  const foodCount = FOOD_ITEMS.reduce((a, f) => a + countOf(inventory, f.id), 0), fed = buffs.some(b => b.id.startsWith('food-') && b.until > now);
+  const menu: [Exclude<Panel, null>, string, string, string][] = [['inventory', '🎒', 'I', 'กระเป๋า · อุปกรณ์'], ['character', '♜', 'C', 'ตัวละคร'], ['skills', '✺', 'K', 'สกิล'], ['quests', '❡', 'J', 'เควส'], ['codex', '✦', 'L', 'สมุดสะสม'], ['wardrobe', '👘', 'U', 'ตู้เสื้อผ้า'], ['monsters', '☠', 'N', 'สมุดมอนสเตอร์'],
+    ['auto', '⟳', 'Z', 'AUTO'], ['online', '⚑', '', 'ออนไลน์ / ปาร์ตี้'], ['cloud', '☁', '', 'เซฟคลาวด์'], ['settings', '⚙', 'O', 'ตั้งค่า']];
+  const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'inv', character: 'char', skills: 'skills', quests: 'quests', codex: 'codex', wardrobe: 'wardrobe', monsters: 'boss', auto: 'auto', online: 'online', cloud: 'cloud', settings: 'settings' };
+  const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสมอสูร', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
+
+  return <div className="hud-root h2 pointer-events-none">
+    <div className="h2-vignette" />
+    {/* PC / Mobile component sets (UX spec): frame, orbs, hotbar or touch wheel */}
+    {layout === 'pc' ? <PCHUDLayout hp={hp} maxHp={maxHp} mp={mp} maxMp={maxMp} now={now} onAuto={() => toggle('auto')} />
+      : <MobileHUDLayout hp={hp} maxHp={maxHp} mp={mp} maxMp={maxMp} now={now} menuOpen={menuOpen} onMenu={() => setMenuOpen(v => !v)} onStatus={() => toggle('character')} />}
+    <div className="h2-buffs"><BuffStrip /></div>
+    <QuestTracker onOpen={() => toggle('quests')} />
+    {/* top-centre: target / world boss */}
+    {network.connected && network.boss ? <div className="h2-boss"><div className="t"><b>☠ ABYSSAL FORGE TITAN · {network.boss.phase === 'enraged' ? 'คลั่ง!' : 'Raid'}</b><span>{(network.boss.hp / network.boss.maxHp * 100).toFixed(1)}%</span></div>
+      <div className="h2-bar hp boss"><i style={{ transform: `scaleX(${Math.max(0, network.boss.hp / network.boss.maxHp)})` }} /></div><small>เลือดปรับตามจำนวนผู้ท้าชิง · ออกแบบให้ใช้เวลา 15–30 นาที · หลบวงสีส้ม</small></div>
+      : selected && selected.hp > 0 && <div className="h2-target"><b className={selected.elite ? 'elite' : ''}>{selected.boss ? '☠ ' : selected.elite ? '★ ' : ''}{selected.name} <small>Lv.{selected.level}{selected.elite && !selected.boss ? ' · ELITE' : ''}{selected.telegraph?.kind === 'skill' ? ' · กำลังร่าย!' : ''}</small></b><Bar value={selected.hp} max={selected.maxHp} kind="hp" /></div>}
+    {banner && (() => { const z = ZONES.find(x => x.id === banner)!; return <div className="h2-banner"><h1>{z.name.toUpperCase()}</h1><p>{z.th}</p></div>; })()}
+    {/* top-right: minimap + menus */}
+    <section className="h2-mm pointer-events-auto"><svg viewBox={`${px - 28} ${pz - 28} 56 56`} aria-label="แผนที่ย่อ">
+      <rect x={-100} y={-100} width={200} height={200} fill="#0b0a0d" />
+      {city.parent ? <rect x={-(WORLD_LIMIT[city.id] ?? 23)} y={-(WORLD_LIMIT[city.id] ?? 23)} width={2 * (WORLD_LIMIT[city.id] ?? 23)} height={2 * (WORLD_LIMIT[city.id] ?? 23)} fill="#17151a" />
+        : <><rect x={-CAPITAL_HALF} y={-CAPITAL_HALF} width={2 * CAPITAL_HALF} height={2 * CAPITAL_HALF} fill={city.id === 'dawnveil' ? '#2f6f74' : '#1d1f25'} stroke="#000" strokeWidth="1.4" />
+          {city.id === 'dawnveil' && <rect x={-CANAL_IN} y={-CANAL_IN} width={2 * CANAL_IN} height={2 * CANAL_IN} fill="#1d1f25" />}
+          <path d={`M${-GATE_D} ${-GATE_D}L${GATE_D} ${GATE_D}M${-GATE_D} ${GATE_D}L${GATE_D} ${-GATE_D}M0 ${-24 * CITY_SCALE}V${24 * CITY_SCALE}M${-24 * CITY_SCALE} 0H${24 * CITY_SCALE}`} stroke="#4a443f" strokeWidth="5.4" strokeLinecap="round" /><circle r={13.6 * CITY_SCALE} fill="none" stroke="#4a443f" strokeWidth="5" /><circle r={PLAZA_R} fill="#4a443f" />
+          {CAPITAL_PIECES[city.id as MainCityId].filter(p => p.role || p.piece === 'tree').map((p, i) => <circle key={'b' + i} cx={p.x} cy={p.z} r={p.r} fill={p.role ? city.roof : '#2e4a30'} stroke={city.accent} strokeWidth=".3" />)}</>}
+      {city.id === 'wild0' && ZONES.map(z => <circle key={z.id} cx={z.x} cy={z.z} r={z.radius} fill="rgba(160,60,50,.16)" stroke="rgba(224,90,70,.45)" strokeWidth=".5" />)}
+      {city.buildings.map((b, i) => <rect key={i} x={b.x - b.w / 2} y={b.z - b.d / 2} width={b.w} height={b.d} fill={city.roof} stroke={city.accent} strokeWidth={.3} />)}
+      {portalsOf(city.id).map(p => <circle key={'g' + p.dir} cx={p.x} cy={p.z} r={GATE_TRIGGER} fill="none" stroke={p.kind === 'dungeon' ? '#c98aff' : '#62e6d2'} strokeWidth=".6" />)}
+      {npcsIn(city.id).map(n => { const [x, z] = npcPosition(n, city.id), mk = npcMarker(n.id, player.level, quests); return <text key={n.id} x={x} y={z + 1} fontSize="2.6" textAnchor="middle" fill={mk && mk !== '…' ? '#ffd36e' : n.color}>{mk && mk !== '…' ? mk : n.icon}</text>; })}
+      {spawnPoints(city.id).filter(p => p.elite).map(p => <circle key={p.id} cx={p.position[0]} cy={p.position[1]} r={p.boss ? 1.8 : 1.3} fill="none" stroke={p.boss ? '#ff9a3c' : '#ffd36e'} strokeWidth=".4" />)}
+      {monsters.filter(m => m.hp > 0).map(m => <circle key={m.id} cx={m.x} cy={m.z} r=".8" fill="#e37c6c" />)}
+      {network.connected && network.players.filter(p => p.id !== network.playerId).map(p => <circle key={p.id} cx={p.x} cy={p.z} r=".8" fill="#6dc8db" />)}
+      {drops.map(d => <circle key={d.id} cx={d.x} cy={d.z} r=".6" fill="#cb8ff2" />)}
+      {network.connected && network.boss && <circle cx={network.boss.x} cy={network.boss.z} r="1.8" fill="#ef6357" />}
+      <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span></section>
+    <div className="h2-zone">{zone ? zone.th : city.name}<small>{px.toFixed(0)}, {pz.toFixed(0)}</small><ChannelButton /></div>
+    <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/icons/menu/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{key && <small>{key}</small>}</button>)}
+      <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/icons/menu/map.webp" alt="" /><small>M</small></button>
+      <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/icons/menu/party.webp" alt="" /><small>P</small></button>
+      <button title="Wiki · ข้อมูลเกม (เปิดแท็บใหม่)" aria-label="Wiki" onClick={() => window.open('/wiki', '_blank', 'noopener')}><img className="sf-menu-ico" src="/art/icons/menu/guide.webp" alt="" /><small>W</small></button></nav>
+    {/* windows */}
+    {panel && layout === 'mobile' && (panel === 'inventory' || panel === 'character') ? <div className="h3-drawer pointer-events-auto" role="dialog" aria-label="กระเป๋าและสเตตัส">
+      <header><span className="dtabs"><button className={panel === 'inventory' ? 'on' : ''} onClick={() => setPanel('inventory')}>🎒 อุปกรณ์ & กระเป๋า</button><button className={panel === 'character' ? 'on' : ''} onClick={() => setPanel('character')}>♜ สเตตัส</button></span>
+        <button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header>
+      <div className="body">{panel === 'inventory' ? <MobileInventoryDrawer /> : <MobileStatusPanel />}</div></div>
+    : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' ? 'wide' : ''}`}><header><img className="sf-win-ico" src={`/art/icons/menu/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2><button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
+      {panel === 'inventory' && <PCInventoryPanel />}{panel === 'character' && <PCStatusPanel />}{panel === 'skills' && <SkillsPanel />}{panel === 'quests' && <QuestsPanel />}{panel === 'codex' && <CodexPanel />}{panel === 'wardrobe' && <WardrobePanel />}{panel === 'monsters' && <MonsterListPanel />}
+      {panel === 'auto' && <AutoPanel />}{panel === 'settings' && <SettingsPanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}</div></div>}
+    <div className={`h2-log ${layout === 'mobile' ? 'hidden' : ''}`}>{log.slice(0, 5).map((l, i) => <div key={`${l}-${i}`} style={{ opacity: 1 - i * .16 }}>› {l}</div>)}</div>
+    {(pending || charge) && <div className="h2-cast">{charge ? `ง้างสายธนู ×${(1 + 2 * Math.min(1, (now - charge.start) / 1600)).toFixed(1)}` : `ร่าย ${skillDefs.find(d => d.id === pending?.skillId)?.name ?? ''}`}<i style={{ transform: `scaleX(${charge ? Math.min(1, (now - charge.start) / 1600) : pending ? Math.min(1, 1 - (pending.at - now) / Math.max(1, (skillDefs.find(d => d.id === pending.skillId)?.castMs ?? 1))) : 0})` }} /></div>}
+    <TipCard /><BossDashboard /><NpcDialog />
+    {deadUntil > 0 && <div className="death-overlay"><div><h2>วิญญาณของเจ้ายังคงอยู่</h2><p>กลับสู่วิหาร</p><button disabled={now < deadUntil} onClick={() => useGameStore.getState().respawn()}>{now < deadUntil ? 'กำลังล้ม…' : 'ฟื้นคืนชีพ'}</button></div></div>}
+  </div>;
+}

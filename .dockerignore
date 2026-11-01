@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+# apps/game-server stays in the context: the realm image (apps/game-server/Dockerfile) builds from the repo root.
+# The web build ignores it anyway (tsconfig exclude), and the web Dockerfile only copies .next/standalone + public.
+apps/game-server/node_modules
+apps/game-server/dist
+blender
+reference
+docs
+tests
+_patches
+tools
+*.log
+.env*
+!.env.example

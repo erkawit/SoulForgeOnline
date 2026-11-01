@@ -1,0 +1,11 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {existsSync} from 'node:fs';
+import {BESTIARY} from '../src/game/bestiary';
+import {BOSS_DESIGNS,designedBossPhase,designedSoulCollapseRadius,canDesignCleanse} from '../src/game/bossDesign';
+import {DUNGEON_IDS} from '../src/game/content';
+import {cityMonsters} from '../src/store/useGameStore';
+test('all 37 bestiary artworks are packaged and distinct',()=>{const ids=[...BESTIARY.map(x=>x.id),...BOSS_DESIGNS.map(x=>x.id)];assert.equal(ids.length,37);assert.equal(new Set(ids).size,37);for(const id of ids)assert.ok(existsSync(`public/art/bestiary/${id}.png`),id);});
+test('boss design thresholds are strict and phases cannot regress',()=>{assert.equal(designedBossPhase('grave-marshal',.3),0);assert.equal(designedBossPhase('grave-marshal',.299),1);assert.equal(designedBossPhase('worldroot-devourer',.5),0);assert.equal(designedBossPhase('worldroot-devourer',.3),1);assert.equal(designedBossPhase('worldroot-devourer',.29),2);assert.equal(designedBossPhase('worldroot-devourer',.9,2),2);assert.equal(designedSoulCollapseRadius(1),8);assert.equal(designedSoulCollapseRadius(2),8.8);});
+test('cleanse design respects class, party, distance and cooldown',()=>{assert.equal(canDesignCleanse('Priest',true,false,0,18,18),true);assert.equal(canDesignCleanse('Priest',true,false,0,17,18),false);assert.equal(canDesignCleanse('Warrior',true,true,0,20,0),false);assert.equal(canDesignCleanse('Cleric',false,false,1,20,0),false);assert.equal(canDesignCleanse('Cleric',false,true,16,20,0),false);assert.equal(canDesignCleanse('High Priest',false,true,18,20,0),true);});
+test('dungeon boss names never leak into ordinary spawns',()=>{const names=new Set(BOSS_DESIGNS.map(x=>x.name as string));for(const id of DUNGEON_IDS){const mobs=cityMonsters(id);assert.equal(mobs.filter(m=>names.has(m.name)).length,1);}});

@@ -1,0 +1,28 @@
+# Netlify: the website + /play + /admin + the API routes (Next.js runtime). See docs/NETLIFY_SUPABASE_TH.md.
+# The realm (apps/game-server, a long-running WebSocket server) cannot run on Netlify — host it on Railway / Render /
+# Fly.io and point NEXT_PUBLIC_GAME_SERVER_URL at it (wss://…).
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# long cache for painted art and audio (file names change when the art changes)
+[[headers]]
+  for = "/art/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+[[headers]]
+  for = "/audio/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+    X-Frame-Options = "DENY"

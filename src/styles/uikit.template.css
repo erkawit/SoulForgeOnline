@@ -1,0 +1,93 @@
+/* SoulForge painted UI kit (reference/compact-cast-v2/sprit-model/uxui, cut by blender/sprites/cut_uikit.py → art/ui/).
+   Generated per target by blender/sprites/build_uikit_css.py: @UI@ is the art/ui/ base (preview: relative, game: /art/ui/).
+   Frames are nine-slices drawn on a ::before layer outside the box, so no element changes size. */
+
+/* ---------- panels and windows */
+.panel, .win, .sf-panel { isolation: isolate; }
+.panel { background: none !important; border-color: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
+.panel::before { content: "" !important; position: absolute !important; inset: -9px !important; width: auto !important; height: auto !important; z-index: -1; pointer-events: none;
+  border: 24px solid transparent !important; border-image: url(@UI@panel.webp) 34 36 30 36 fill / 24px 26px 22px 26px stretch !important; background: none !important; }
+.panel::after { display: none !important; }
+.win.panel::before { display: block !important; inset: -6px -10px -10px -10px !important; border-image: url(@UI@win.webp) 40 54 28 46 fill / 38px 52px 26px 44px stretch !important; border-width: 38px 52px 26px 44px !important; }
+.win > header { background: none !important; border-bottom: 0 !important; padding: 6px 54px 10px 44px !important; min-height: 30px; }
+.win > header h2 { text-align: center; color: #f6e2b4 !important; text-shadow: 0 1px 2px #000, 0 0 8px rgba(255, 90, 70, .35); font-size: 15px !important; }
+.win > header .x { position: absolute; right: -6px; top: -4px; width: 32px !important; height: 32px !important; opacity: 0; z-index: 2; }
+.tip.panel::before { inset: -8px !important; border-image: url(@UI@card-common.webp) 24 fill / 22px stretch !important; border-width: 22px !important; }
+.tip.panel[data-r=uncommon]::before { border-image-source: url(@UI@card-uncommon.webp) !important; }
+.tip.panel[data-r=rare]::before { border-image-source: url(@UI@card-rare.webp) !important; }
+.tip.panel[data-r=epic]::before { border-image-source: url(@UI@card-epic.webp) !important; }
+.tip.panel[data-r=legend]::before { border-image-source: url(@UI@card-legend.webp) !important; }
+
+/* ---------- buttons, tabs, inputs */
+.btn { border: 12px solid transparent !important; border-image: url(@UI@btn-gray.webp) 12 fill / 12px stretch !important; background: none !important; border-radius: 0 !important; padding: 0 6px !important; min-height: 14px; box-shadow: none !important; color: #f1e4c8 !important; text-shadow: 0 1px 2px #000; }
+.btn.primary { border-image-source: url(@UI@btn-red.webp) !important; color: #fff3df !important; }
+.btn.ghost { border-image-source: url(@UI@btn-dark.webp) !important; }
+.btn.ok, .btn.green { border-image-source: url(@UI@btn-green.webp) !important; }
+.btn.blue { border-image-source: url(@UI@btn-blue.webp) !important; }
+.btn.small { border-width: 9px !important; border-image-width: 9px !important; font-size: 12px; }
+.btn:hover { filter: brightness(1.2) saturate(1.1); }
+.btn[disabled] { filter: grayscale(.85) brightness(.75) !important; }
+.tabs button, .subtabs button, .bagtabs button, .chips button { border: 9px solid transparent !important; border-image: url(@UI@tab-off.webp) 10 fill / 9px stretch !important; background: none !important; border-radius: 0 !important; padding: 0 8px !important; }
+.tabs button.on, .subtabs button.on, .bagtabs button.on, .chips button.on { border-image-source: url(@UI@tab-on.webp) !important; color: #fff3df !important; }
+.input, select.input { border: 8px solid transparent !important; border-image: url(@UI@input.webp) 9 fill / 8px stretch !important; background: none !important; border-radius: 0 !important; padding: 2px 6px !important; }
+
+/* ---------- slots and item cells */
+.cell, .eqs, .slot:not(.basic) { background: url(@UI@slot-raw.webp) center / 100% 100% no-repeat, #0b0a0e !important; border-radius: 2px !important; }
+.cell.r { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--rc, #888) 70%, transparent), 0 0 8px color-mix(in srgb, var(--rc, #888) 30%, transparent) !important; border-color: transparent !important; }
+.pcrow { position: relative; border: 0 !important; background: none !important; box-shadow: none !important; padding: 10px 18px !important; isolation: isolate; }
+.pcrow::before { content: ""; position: absolute; inset: -4px 14px; z-index: -1; border: 22px solid transparent; border-image: url(@UI@panel.webp) 34 36 30 36 fill / 22px stretch; }
+.pcrow::after { content: ""; position: absolute; inset: -14px -16px; z-index: -1; pointer-events: none;
+  background: url(@UI@cap-l.webp) left center / auto 100% no-repeat, url(@UI@cap-r.webp) right center / auto 100% no-repeat; }
+
+/* ---------- HP / MP orbs: painted frame with the glass as the liquid */
+.orb .ofr, .orb .shine, .orb .wave, .orb .inglow, .orb .olbl { display: none !important; }
+.orb .glass { background: #070507 !important; }
+.orb.hp .liquid { background: url(@UI@orb-hp-glass.webp) center bottom / 100% auto no-repeat, #5a0a0e !important; }
+.orb.mp .liquid { background: url(@UI@orb-mp-glass.webp) center bottom / 100% auto no-repeat, #0a1c55 !important; }
+.orb .orb-ring { right: auto !important; bottom: auto !important; border-radius: 0 !important; box-shadow: none !important; z-index: 2; }
+.orb .orb-ring::before { display: none !important; }
+/* the frame's hole (r 54 px of the 204 x 189 art) sits over the 108 px glass: positions in % of the 124 px orb */
+.orb.hp .orb-ring { left: -50% !important; top: -22.3% !important; width: 164.5% !important; height: 152.4% !important; background: url(@UI@orb-hp-frame.webp) 0 0 / 100% 100% no-repeat !important; }
+.orb.mp .orb-ring { left: -15.4% !important; top: -22.3% !important; width: 162.9% !important; height: 152.4% !important; background: url(@UI@orb-mp-frame.webp) 0 0 / 100% 100% no-repeat !important; }
+.orb .otxt { z-index: 3; }
+
+/* ---------- bars: painted trough (end caps keep their shape) + fill strip */
+.bar { border: 0 !important; border-radius: 0 !important; box-shadow: none !important; overflow: visible !important; background: none !important; height: 16px !important; isolation: isolate; }
+.bar::before { content: ""; position: absolute; inset: -3px -7px; z-index: -1; border: 9px solid transparent; border-width: 9px 16px; border-image: url(@UI@bar-hp-trough.webp) 12 30 12 30 fill / 9px 16px stretch; pointer-events: none; }
+.bar.mp::before { border-image-source: url(@UI@bar-mp-trough.webp); } .bar.xp::before { border-image-source: url(@UI@bar-xp-trough.webp); }
+.bar i { inset: 1px 4px !important; border-radius: 3px; }
+.bar.hp i.v { background: url(@UI@bar-hp-fill.webp) 0 0 / 100% 100% !important; }
+.bar.mp i.v { background: url(@UI@bar-mp-fill.webp) 0 0 / 100% 100% !important; }
+.bar.xp i.v { background: url(@UI@bar-xp-fill.webp) 0 0 / 100% 100% !important; }
+.bar.xp { height: 9px !important; } .bar.xp::before { inset: -3px -6px; border-width: 6px 12px; border-image-width: 6px 12px; }
+.bar span { z-index: 2; }
+#bossbar .bar.boss { height: 20px !important; }
+#bossbar .bar.boss::before { inset: -22px -40px -10px; border-width: 26px 60px 14px; border-image: url(@UI@bar-boss-trough.webp) 49 80 24 80 fill / 26px 60px 14px stretch; }
+#bossbar .bar.boss i.v { background: url(@UI@bar-boss-fill.webp) 0 0 / 100% 100% !important; }
+
+/* ---------- portraits (round ring with a transparent centre) and the minimap ring */
+.portrait { border-radius: 50% !important; border: 0 !important; box-shadow: none !important; overflow: visible !important; }
+.portrait::after { content: ""; position: absolute; left: -8.9%; top: -18%; width: 134.4%; height: 136.9%; background: url(@UI@portrait-ring.webp) 0 0 / 100% 100% no-repeat; pointer-events: none; z-index: 1; }
+.portrait .lv { z-index: 2; }
+#minimap { overflow: visible !important; background: none !important; box-shadow: none !important; border: 0 !important; }
+#minimap::before { display: none !important; }
+#minimap .mm-ring { left: -28.1% !important; top: -17.9% !important; width: 156.8% !important; height: 136.4% !important; inset: auto; border-radius: 0 !important; box-shadow: none !important;
+  background: url(@UI@minimap-ring.webp) 0 0 / 100% 100% no-repeat !important; }
+#minimap .mm-n { display: none; }
+
+/* ---------- menu buttons, potions, cursor */
+#menu .mbtn, .mbtn { border: 10px solid transparent !important; border-image: url(@UI@btn-dark.webp) 12 fill / 10px stretch !important; background: none !important; border-radius: 0 !important; }
+.belt-slot img.kit { object-fit: contain; padding: 3px; }
+#hud, #app { cursor: url(@UI@cursor.png) 2 2, auto; }
+/* the painted ring is larger than the map: keep it on screen */
+.orb .orb-ring { display: block !important; }
+body[data-layout=pc] #minimap { top: 40px !important; right: 50px !important; }
+body[data-layout=pc] .mm-btns, body[data-layout=pc] #menu { margin-top: 34px; }
+body[data-layout=mobile] #minimap { top: 26px !important; right: 30px !important; }
+body[data-layout=mobile] .mm-btns { margin-top: 22px; }
+/* the painted orb frames are wider than the glass (statues on the outer side): room for them in the dock */
+body[data-layout=pc] #dock .orb.hp { margin-right: 26px; margin-left: 56px; }
+body[data-layout=pc] #dock .orb.mp { margin-left: 26px; }
+body[data-layout=pc] #dock .auto-wrap { margin-left: 72px; }
+.win > header::after { display: none !important; }
+body[data-layout=mobile] #tracker { margin-top: 12px; }

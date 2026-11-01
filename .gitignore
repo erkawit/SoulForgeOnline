@@ -1,0 +1,18 @@
+node_modules
+.next
+out
+dist
+.env*
+!.env.example
+*.tsbuildinfo
+*.log
+.DS_Store
+Thumbs.db
+.vercel
+apps/game-server/node_modules
+apps/game-server/dist
+# local tooling / renders (kept outside the repo)
+scratch/
+blender/
+reference/
+_patches/
