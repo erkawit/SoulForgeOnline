@@ -35,6 +35,10 @@ class Engine {
     const unlock = () => { if (this.unlocked) return; this.unlocked = true; void c.resume(); if (this.wantMusic) this.playMusic(this.wantMusic); for (const e of ['pointerdown', 'keydown', 'touchstart']) window.removeEventListener(e, unlock); };
     for (const e of ['pointerdown', 'keydown', 'touchstart']) window.addEventListener(e, unlock, { passive: true });
     if (c.state === 'running') this.unlocked = true;
+    // the volume / mute set in one tab reaches every other open game tab (each tab has its own audio engine)
+    window.addEventListener('storage', e => { if (e.key !== 'sf-audio' || !e.newValue) return; try { this.configure(JSON.parse(e.newValue)); } catch { /* */ } });
+    // a game tab in the background is silent (and its audio thread idle) until it is shown again
+    document.addEventListener('visibilitychange', () => { if (document.hidden) void c.suspend(); else if (this.unlocked) void c.resume(); });
   }
   configure(s: Partial<AudioSettings>) { this.settings = { ...this.settings, ...s }; this.apply(); }
   private apply() { if (!this.ctx) return; const s = this.settings, t = this.ctx.currentTime;
@@ -104,6 +108,7 @@ class Engine {
   }
 }
 export const audio = new Engine();
+if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') (window as unknown as { __audio?: Engine }).__audio = audio;
 
 // ---------------------------------------------------------------- what plays when
 const ELEMENT_SFX: Record<string, string> = { fire: 'fireball', frost: 'frost', storm: 'lightning', holy: 'holy', shadow: 'elite_cast', arcane: 'magic_bolt', nature: 'rune', physical: 'swing_heavy' };
