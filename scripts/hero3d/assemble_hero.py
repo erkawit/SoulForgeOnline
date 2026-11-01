@@ -5,6 +5,10 @@ import bpy, sys, os, math, glob
 from mathutils import Vector, Quaternion, Matrix
 
 a = sys.argv[sys.argv.index('--') + 1:]
+def flag(name, default=None):
+    if name in a: i = a.index(name); v = a[i + 1]; del a[i:i + 2]; return v
+    return default
+TEX = flag('--tex'); HAIR = flag('--hair')  # --hair "A06=path.glb;A03=path.glb"
 SRC, ANIMS, OUT = a[0], a[1], a[2]; SWORD = a[3] if len(a) > 3 else None; PREV = a[4] if len(a) > 4 else None
 CLIPS = {  # game clip -> Mixamo file (Great Sword pack)
     'Idle': 'great sword idle.fbx', 'Walk': 'great sword walk.fbx', 'Run': 'great sword run.fbx',
@@ -17,11 +21,65 @@ LOOP = {'Idle', 'Walk', 'Run', 'Guard', 'Channel'}
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.fbx(filepath=SRC)
-arm = next(o for o in bpy.data.objects if o.type == 'ARMATURE'); body = next(o for o in bpy.data.objects if o.type == 'MESH')
+arm = next(o for o in bpy.data.objects if o.type == 'ARMATURE')
+skinned = [o for o in bpy.data.objects if o.type == 'MESH' and any(m.type == 'ARMATURE' for m in o.modifiers)]
+body = max(skinned, key=lambda o: len(o.data.vertices)) if skinned else next(o for o in bpy.data.objects if o.type == 'MESH')
 for o in list(bpy.data.objects):
-    if o.type not in ('ARMATURE', 'MESH'): bpy.data.objects.remove(o, do_unlink=True)
+    if o not in (arm, body): bpy.data.objects.remove(o, do_unlink=True)  # extra static copies, empties, cameras
 for act in list(bpy.data.actions): bpy.data.actions.remove(act)
 arm.name = 'Hero'; body.name = 'HeroBody'
+if TEX:  # FBX re-exported by Mixamo without its Meshy texture: put it back as the base colour
+    img = bpy.data.images.load(TEX); mat = bpy.data.materials.new('Body'); mat.use_nodes = True; nt = mat.node_tree
+    bs = next(n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED'); tx = nt.nodes.new('ShaderNodeTexImage'); tx.image = img
+    nt.links.new(tx.outputs['Color'], bs.inputs['Base Color']); body.data.materials.clear(); body.data.materials.append(mat)
+
+# ---- hair: each style is a mesh parented to the Head bone, named Hair_<style>, fitted to this head
+def head_box():
+    vg = body.vertex_groups.get('mixamorig:Head')
+    if not vg: return None
+    pts = []
+    for v in body.data.vertices:
+        for g in v.groups:
+            if g.group == vg.index and g.weight > 0.5: pts.append(body.matrix_world @ v.co)
+    if not pts: return None
+    lo = Vector((min(p.x for p in pts), min(p.y for p in pts), min(p.z for p in pts))); hi = Vector((max(p.x for p in pts), max(p.y for p in pts), max(p.z for p in pts)))
+    return lo, hi
+if HAIR:
+    hb = head_box(); print('[hero] head box', hb)
+    for item in HAIR.split(';'):
+        if '=' not in item: continue
+        style, path = item.split('=', 1)
+        before = set(bpy.data.objects); bpy.ops.import_scene.gltf(filepath=path)
+        new = [o for o in bpy.data.objects if o not in before]; ms = [o for o in new if o.type == 'MESH']
+        bpy.ops.object.select_all(action='DESELECT')
+        for o in ms: o.select_set(True)
+        bpy.context.view_layer.objects.active = ms[0]
+        if len(ms) > 1: bpy.ops.object.join()
+        hair = bpy.context.view_layer.objects.active
+        for o in new:
+            if o != hair and o.name in bpy.data.objects: bpy.data.objects.remove(o, do_unlink=True)
+        hair.parent = None; bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+        n = len(hair.data.polygons)
+        if n > 6000:
+            m = hair.modifiers.new('d', 'DECIMATE'); m.ratio = 6000 / n; bpy.ops.object.modifier_apply(modifier=m.name)
+        P = [v.co.copy() for v in hair.data.vertices]
+        zt = max(p.z for p in P); zb = min(p.z for p in P); top = [p for p in P if p.z > zt - 0.35 * (zt - zb)]
+        hw = max(p.x for p in top) - min(p.x for p in top); hcx = (max(p.x for p in top) + min(p.x for p in top)) / 2; hcy = (max(p.y for p in top) + min(p.y for p in top)) / 2
+        lo, hi = hb; headw = hi.x - lo.x; k = headw * 1.16 / hw
+        hair.scale = (k, k, k); bpy.ops.object.transform_apply(scale=True)
+        P = [v.co.copy() for v in hair.data.vertices]; zt = max(p.z for p in P)
+        hair.location = Vector(((lo.x + hi.x) / 2 - hcx * k, (lo.y + hi.y) / 2 - hcy * k + 0.03 * (hi.y - lo.y), hi.z + 0.035 * (hi.z - lo.z) - zt))
+        bpy.ops.object.transform_apply(location=True)
+        for im in bpy.data.images:
+            if im.size[0] > 512 and im.users and any(nd.type == 'TEX_IMAGE' and nd.image == im for sl in hair.material_slots if sl.material and sl.material.use_nodes for nd in sl.material.node_tree.nodes): im.scale(512, 512)
+        for sl in hair.material_slots:
+            if sl.material: sl.material.name = f'Hair_{style}'
+        hair.name = f'Hair_{style}'
+        # follow the head
+        bpy.ops.object.select_all(action='DESELECT'); hair.select_set(True); arm.select_set(True); bpy.context.view_layer.objects.active = arm
+        arm.data.bones.active = arm.data.bones['mixamorig:Head']
+        bpy.ops.object.parent_set(type='BONE', keep_transform=True)
+        print('[hero] hair', style, n, '->', len(hair.data.polygons), 'scale', round(k, 3))
 def height(objs):
     zs = [(o.matrix_world @ v.co).z for o in objs if o.type == 'MESH' for v in o.data.vertices]
     return (max(zs) - min(zs)) if zs else 0
@@ -72,6 +130,8 @@ arm.animation_data.action = None
 for im in bpy.data.images:
     if im.size[0] > 1024: im.scale(1024, 1024)  # game texture size
 bpy.ops.object.select_all(action='DESELECT'); arm.select_set(True); body.select_set(True)
+for o in bpy.data.objects:
+    if o.name.startswith('Hair_'): o.select_set(True)
 bpy.context.view_layer.objects.active = arm
 bpy.ops.export_scene.gltf(filepath=OUT, export_format='GLB', use_selection=True, export_animations=True,
                           export_animation_mode='NLA_TRACKS', export_force_sampling=True, export_frame_step=1,

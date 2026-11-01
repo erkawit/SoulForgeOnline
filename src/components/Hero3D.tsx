@@ -11,11 +11,13 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { AnimationMixer, Box3, LoopOnce, LoopRepeat, Mesh, MeshMatcapMaterial, CanvasTexture, SRGBColorSpace, Group,
-  type AnimationAction, type Bone, type Material, type Object3D, type Texture, type MeshStandardMaterial } from 'three';
+import { AnimationMixer, Box3, Matrix4, Vector3, LoopOnce, LoopRepeat, Mesh, MeshMatcapMaterial, CanvasTexture, SRGBColorSpace, Group,
+  type AnimationAction, type Bone, type SkinnedMesh, type Material, type Object3D, type Texture, type MeshStandardMaterial } from 'three';
 import type { CharacterClip } from '@/game/characterModels';
 
-export const HERO3D_URL = (g: 'm' | 'f') => `/models/hero/hero-base-${g}.glb`;
+/** body model: the bare base, or a whole outfit body (same Mixamo skeleton and clips), e.g. 'thai' */
+export const HERO3D_URL = (g: 'm' | 'f', outfit?: string | null) => `/models/hero/hero-${outfit === 'thai' ? 'thai' : 'base'}-${g}.glb`;
+export const HAIR3D_STYLES = ['A06', 'A03', 'B01', 'B04'];
 export const WEAPON3D_URL = (tier: number, skin?: string | null) => skin === 'thai-greatsword' ? '/models/weapons/greatsword-thai.glb' : `/models/weapons/greatsword-t${Math.max(1, Math.min(8, tier + 1))}.glb`;
 const LOOPS = new Set(['Idle', 'Walk', 'Run', 'Guard', 'Channel']);
 const HEIGHT = 1.75;       // world units, the 2.5D hero's height
@@ -43,6 +45,40 @@ function paint(root: Object3D) {
 }
 const findBone = (root: Object3D, part: string) => { let b: Bone | null = null; root.traverse(o => { if (!b && (o as Bone).isBone && o.name.replace(/[^a-z]/gi, '').toLowerCase().endsWith(part.toLowerCase())) b = o as Bone; }); return b as Bone | null; };
 
+// hair: every style is fitted to THIS body's head at load, in the head bone's own space — the head is found from the
+// skinned vertices that follow the head bone (bind pose), so any body (base, outfit, other proportions) wears the same
+// hair files. Width = head width × 1.16 (measured on the top third of the hair), top just above the skull.
+function fitHair(model: Object3D) {
+  let body: SkinnedMesh | null = null; model.traverse(o => { const s = o as SkinnedMesh; if (s.isSkinnedMesh && (!body || s.geometry.attributes.position.count > body.geometry.attributes.position.count)) body = s; });
+  const head = findBone(model, 'Head'); if (!body || !head) return;
+  const b = body as SkinnedMesh; model.updateMatrixWorld(true); b.skeleton.update();
+  const bi = b.skeleton.bones.indexOf(head); if (bi < 0) return;
+  const pos = b.geometry.attributes.position, si = b.geometry.attributes.skinIndex, sw = b.geometry.attributes.skinWeight;
+  const toHead = new Matrix4().copy(head.matrixWorld).invert(), v = new Vector3();
+  const lo = new Vector3(Infinity, Infinity, Infinity), hi = new Vector3(-Infinity, -Infinity, -Infinity);
+  for (let i = 0; i < pos.count; i++) {
+    let w = 0; for (let k = 0; k < 4; k++) if (si.getComponent(i, k) === bi) w += sw.getComponent(i, k);
+    if (w < 0.5) continue;
+    v.fromBufferAttribute(pos, i); b.applyBoneTransform(i, v); v.applyMatrix4(b.matrixWorld).applyMatrix4(toHead); lo.min(v); hi.max(v);
+  }
+  if (!isFinite(lo.x)) return;
+  model.traverse(o => {
+    if (!/^Hair_[A-Z]\d\d/.test(o.name) || o.parent !== head) return;
+    const meshes: Mesh[] = []; o.traverse(c => { if ((c as Mesh).isMesh) meshes.push(c as Mesh); });
+    // hair points in the hair node's own (unscaled) space
+    const P: Vector3[] = []; o.updateMatrixWorld(true); const inv = new Matrix4().copy(o.matrixWorld).invert();
+    for (const m of meshes) { const pa = m.geometry.attributes.position, mw = new Matrix4().multiplyMatrices(inv, m.matrixWorld);
+      for (let i = 0; i < pa.count; i += 3) P.push(new Vector3().fromBufferAttribute(pa, i).applyMatrix4(mw)); }
+    if (!P.length) return;
+    let yt = -Infinity, yb = Infinity; for (const p of P) { yt = Math.max(yt, p.y); yb = Math.min(yb, p.y); }
+    const top = P.filter(p => p.y > yt - 0.35 * (yt - yb)); let x0 = Infinity, x1 = -Infinity, z0 = Infinity, z1 = -Infinity;
+    for (const p of top) { x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); z0 = Math.min(z0, p.z); z1 = Math.max(z1, p.z); }
+    const k = (hi.x - lo.x) * 1.16 / Math.max(1e-9, x1 - x0);
+    o.rotation.set(0, 0, 0); o.scale.setScalar(k);
+    o.position.set((lo.x + hi.x) / 2 - (x0 + x1) / 2 * k, hi.y + 0.035 * (hi.y - lo.y) - yt * k, (lo.z + hi.z) / 2 - (z0 + z1) / 2 * k - 0.03 * (hi.z - lo.z));
+  });
+}
+
 function Weapon({ hand, url }: { hand: Bone; url: string }) {
   const { scene } = useGLTF(url);
   const obj = useMemo(() => { const g = new Group(); const s = scene.clone(true); paint(s); s.scale.setScalar(WEAPON_LEN); g.add(s); return g; }, [scene]);
@@ -51,7 +87,7 @@ function Weapon({ hand, url }: { hand: Bone; url: string }) {
     hand.updateWorldMatrix(true, false); const ws = hand.getWorldScale(obj.scale.clone()); obj.scale.set(1 / ws.x, 1 / ws.y, 1 / ws.z);
     // weapon GLBs: blade along glTF -Z (Blender +Y), origin at the grip. Mixamo right hand: +X is the axis the fist closes
     // around (it points up in the Great Sword idle), so the blade goes along the hand's +X (tuned in the try-on stage)
-    obj.position.set(0, 0.075 / ws.y, 0.02 / ws.z); obj.rotation.set(0, -Math.PI / 2, 0);
+    obj.position.set(-0.06 / ws.x, 0.075 / ws.y, 0.02 / ws.z); obj.rotation.set(0, -Math.PI / 2, 0); // grip centred in the two fists
     hand.add(obj);
     if (process.env.NODE_ENV !== 'production') (window as unknown as { __heroWeapon?: Object3D }).__heroWeapon = obj; // dev: tune the grip live
     return () => { hand.remove(obj); };
@@ -59,11 +95,13 @@ function Weapon({ hand, url }: { hand: Bone; url: string }) {
   return null;
 }
 
-export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, duration, speedRef, weaponTier = 0, weaponSkin, noWeapon }: {
+export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, duration, speedRef, weaponTier = 0, weaponSkin, noWeapon, outfit, hair = 'A06', hairColor = '#a9a9ad', hideHair }: {
   gender?: 'm' | 'f'; clip?: CharacterClip | 'Attack3' | 'Dash' | 'Draw'; replay?: number; duration?: number; speedRef?: { current: number };
   weaponTier?: number; weaponSkin?: string | null; noWeapon?: boolean;
+  /** whole-body outfit model ('thai') or the bare base */ outfit?: string | null;
+  /** 3D hair style (Hair_<style> meshes on the head bone, tinted) — the other styles stay hidden */ hair?: string; hairColor?: string; hideHair?: boolean;
 }) {
-  const { scene, animations } = useGLTF(HERO3D_URL(gender));
+  const { scene, animations } = useGLTF(HERO3D_URL(gender, outfit));
   const model = useMemo(() => {
     const m = cloneSkinned(scene); paint(m); return m;
   }, [scene]);
@@ -77,12 +115,23 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
     const g = root.current; if (!g) return; g.add(model);
     // normalise the height (the Mixamo export keeps its own units) and stand on the ground — measured in the parent's space
     model.position.set(0, 0, 0); model.scale.setScalar(1); g.updateMatrixWorld(true);
-    const inv = g.matrixWorld.clone().invert(), box = new Box3().setFromObject(model, true).applyMatrix4(inv), h = box.max.y - box.min.y;
+    // measured from the skinned body only: the hair meshes and any extras must not change the body's size
+    const inv = g.matrixWorld.clone().invert(), box = new Box3();
+    model.traverse(o => { if ((o as SkinnedMesh).isSkinnedMesh) box.expandByObject(o, true); });
+    if (box.isEmpty()) box.setFromObject(model, true);
+    box.applyMatrix4(inv); const h = box.max.y - box.min.y;
     if (h > 1e-6) { const k = HEIGHT / h; model.scale.setScalar(k); model.position.y = -box.min.y * k; }
+    fitHair(model);
     if (process.env.NODE_ENV !== 'production') (window as unknown as { __hero?: Object3D }).__hero = model;
     return () => { g.remove(model); };
   }, [model]);
   useEffect(() => () => { mixer.stopAllAction(); }, [mixer]);
+  // hair: one style visible, tinted (the Meshy hair textures are neutral silver)
+  useEffect(() => {
+    const style = HAIR3D_STYLES.includes(hair) ? hair : 'A06';
+    model.traverse(o => { const m = o.name.match(/^Hair_([A-Z]\d\d)/); if (!m) return; o.visible = !hideHair && m[1] === style;
+      o.traverse(c => { const me = c as Mesh; if (me.isMesh) (me.material as MeshMatcapMaterial).color?.set(hairColor); }); });
+  }, [model, hair, hairColor, hideHair]);
   useEffect(() => {
     const name = actions[clip] ? clip : 'Idle', next = actions[name]; if (!next) return;
     const loop = LOOPS.has(name);

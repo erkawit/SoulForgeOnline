@@ -29,7 +29,7 @@ function Hero({ p, i, active, turn, solo }: { p: Pick; i: number; active: boolea
   return <group position={solo ? [0, 0, 0] : [X[i], 0, Math.abs(i - MID) * -0.35]}>
     <mesh position={[0, -.06, 0]}><cylinderGeometry args={[.6, .68, .12, 10]} /><meshBasicMaterial color="#17131c" /></mesh>
     <mesh position={[0, .005, 0]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[.42, .56, 40]} /><meshBasicMaterial color={p.glow} transparent opacity={active ? .9 : .35} /></mesh>
-    <group rotation={[0, solo ? 0 : -(i - MID) * 0.25, 0]}>{HERO_3D ? <Suspense fallback={null}><Hero3D gender={p.g} clip={clip} replay={stamp} weaponTier={0} /></Suspense> : <AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite />}</group>
+    <group rotation={[0, solo ? 0 : -(i - MID) * 0.25, 0]}>{HERO_3D ? <Suspense fallback={null}><Hero3D gender={p.g} outfit={p.costume} hair={p.hair} hairColor={p.hairColor} clip={clip} replay={stamp} weaponTier={0} /></Suspense> : <AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite />}</group>
   </group>;
 }
 function Rig({ solo }: { solo: boolean }) {
