@@ -1,0 +1,79 @@
+/* Round 17: wardrobe / Cash Shop try-on (components/WardrobePanel.tsx, FashionPreview.tsx, CashShop.tsx) */
+.fw { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; min-height: 0; }
+.fw-left { display: grid; gap: 8px; align-content: start; }
+.fw-right { display: grid; gap: 8px; align-content: start; min-width: 0; }
+
+.fp-stage { position: relative; height: 340px; border: 1px solid rgba(217, 180, 92, .35); border-radius: 6px; overflow: hidden; touch-action: none; cursor: grab;
+  background: radial-gradient(ellipse at 50% 38%, rgba(217, 180, 92, .16), transparent 62%), linear-gradient(180deg, #1d1a1d, #0c0b0e); }
+.fp-stage:active { cursor: grabbing; }
+.fp-stage canvas { display: block; }
+.fp-turn { position: absolute; inset: 50% 6px auto; display: flex; justify-content: space-between; pointer-events: none; transform: translateY(-50%); }
+.fp-turn button { pointer-events: auto; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(217, 180, 92, .55); background: rgba(12, 10, 14, .8); color: #f2d9a6; font: 700 20px/1 Cinzel, serif; cursor: pointer; }
+.fp-turn button:hover { background: rgba(60, 44, 20, .9); }
+.fp-clips { position: absolute; left: 6px; right: 6px; bottom: 6px; display: flex; gap: 4px; justify-content: center; }
+.fp-clips button { flex: 1; max-width: 70px; min-height: 26px; border: 1px solid rgba(217, 180, 92, .3); background: rgba(12, 10, 14, .82); color: #cdbb94; border-radius: 3px; font-size: 12px; cursor: pointer; }
+.fp-clips button.on { border-color: #d9b45c; color: #fff1c9; background: rgba(90, 60, 20, .9); }
+
+.fw-worn { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; }
+.fw-worn li { aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgba(255, 255, 255, .1); border-radius: 4px; background: #0d0c10; opacity: .5; font-size: 16px; }
+.fw-worn li.has { opacity: 1; border-color: rgba(217, 180, 92, .6); }
+.fw-worn img { width: 90%; height: 90%; object-fit: contain; }
+.fw-hint { margin: 0; font-size: 12px; color: #a99c84; }
+
+.fw-slots { display: flex; flex-wrap: wrap; gap: 4px; }
+.fw-slots button { border: 1px solid rgba(217, 180, 92, .22); background: #0e0c12; color: #bfb39a; border-radius: 3px; padding: 3px 8px; font-size: 12px; cursor: pointer; }
+.fw-slots button.on { border-color: #d9b45c; color: #fff1c9; }
+.fw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 8px; }
+.fw-card { display: grid; gap: 2px; justify-items: center; text-align: center; padding: 6px 6px 8px; border: 1px solid rgba(217, 180, 92, .22); border-radius: 5px; background: linear-gradient(180deg, #1a171b, #0e0d11); color: #e7dfcf; cursor: pointer; font: inherit; }
+.fw-card:hover { border-color: rgba(217, 180, 92, .6); }
+.fw-card.on { border-color: #e9c46a; box-shadow: 0 0 0 1px #e9c46a inset, 0 0 14px rgba(233, 196, 106, .3); }
+.fw-ico { position: relative; width: 84px; height: 84px; display: grid; place-items: center; border-radius: 4px; background: radial-gradient(circle at 50% 45%, rgba(217, 180, 92, .18), transparent 70%); }
+.fw-ico img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
+.fw-ico > i { font-style: normal; font-size: 34px; opacity: .8; }
+.fw-tag { position: absolute; top: -4px; right: -6px; font: 700 10px/1 sans-serif; font-style: normal; padding: 2px 5px; border-radius: 8px; background: #b2332a; color: #fff; }
+.fw-card b { font-size: 12px; line-height: 1.3; }
+.fw-card small { font-size: 11px; color: #a99c84; }
+.fw-status { font-size: 12px; } .fw-status b { color: #f2d48b; } .fw-status em { font-style: normal; color: #bfb39a; } .fw-status em.ok { color: #8fe0a0; }
+.fw-detail { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border: 1px solid rgba(217, 180, 92, .3); border-radius: 5px; background: #121015; }
+.fw-detail p { margin: 2px 0 0; font-size: 12px; color: #bfb39a; } .fw-detail small { color: #a99c84; }
+.fw-actions { display: flex; gap: 6px; }
+@media (max-width: 760px) {
+  .fw { grid-template-columns: 1fr; }
+  .fp-stage { height: 260px; }
+  .fw-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+  .fw-ico { width: 64px; height: 64px; }
+}
+.fw-grid > .npc-note { grid-column: 1 / -1; }
+
+/* Round 17: Collection book (components/CollectionPanel.tsx) */
+.col { display: grid; gap: 8px; }
+.npc-chips button small { opacity: .7; font-size: 11px; }
+.col-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid rgba(217, 180, 92, .3); border-radius: 5px; background: #121015; }
+.col-bonus { display: flex; flex-wrap: wrap; gap: 6px 14px; flex: 1; }
+.col-bonus span { display: grid; } .col-bonus small { color: #a99c84; font-size: 11px; } .col-bonus b { color: #8fe0a0; font-size: 15px; }
+.col-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.col-search { flex: 1; min-width: 160px; height: 30px; padding: 0 10px; border: 1px solid rgba(217, 180, 92, .3); border-radius: 3px; background: #0c0b0e; color: #e7dfcf; font: inherit; font-size: 13px; }
+.col-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 8px; }
+.col-card { --rc: #9a9a9a; display: grid; gap: 6px; padding: 8px 10px; border: 1px solid color-mix(in srgb, var(--rc) 45%, transparent); border-left: 3px solid var(--rc); border-radius: 5px; background: linear-gradient(180deg, #19161b, #0e0d11); }
+.col-card.r1 { --rc: #6fcf6f; } .col-card.r2 { --rc: #5aa7ff; } .col-card.r3 { --rc: #b57bff; } .col-card.r4 { --rc: #ffb347; } .col-card.r5 { --rc: #ff6b5a; } .col-card.r6 { --rc: #ffd76a; } .col-card.r7 { --rc: #7ff3ff; }
+.col-card.ready { box-shadow: 0 0 0 1px rgba(143, 224, 160, .5), 0 0 12px rgba(143, 224, 160, .15); }
+.col-card.done { background: linear-gradient(180deg, #1f1c14, #121009); }
+.col-card .col-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; } .col-card .col-head b { font-size: 13px; color: #f2e3bd; }
+.col-count { font: 700 13px Cinzel, serif; color: var(--rc); }
+.col-card.done .col-count { color: #8fe0a0; }
+.col-bar { height: 4px; border-radius: 2px; background: #2a2622; overflow: hidden; } .col-bar i { display: block; height: 100%; background: var(--rc); transition: width .3s; }
+.col-card.done .col-bar i { background: #8fe0a0; }
+.col-needs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.col-needs li { display: grid; justify-items: center; gap: 2px; text-align: center; padding: 4px 2px; border-radius: 4px; background: #0c0b0e; border: 1px solid rgba(255, 255, 255, .06); opacity: .62; }
+.col-needs li.in { opacity: 1; border-color: rgba(143, 224, 160, .45); }
+.col-needs li.can { opacity: 1; border-color: rgba(143, 224, 160, .8); }
+.col-needs small { font-size: 10px; line-height: 1.2; color: #bfb39a; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.4em; }
+.col-ico { position: relative; width: 48px; height: 48px; display: grid; place-items: center; }
+.col-ico > * { max-width: 100%; max-height: 100%; } .col-ico img { width: 100%; height: 100%; object-fit: contain; }
+.col-ico .atlas-icon, .col-ico .item-art { width: 44px !important; height: 44px !important; }
+.col-ico em { position: absolute; right: -4px; bottom: -2px; font: 700 10px/1 sans-serif; font-style: normal; padding: 2px 4px; border-radius: 6px; background: #3a2b10; color: #ffd76a; border: 1px solid #ffd76a; }
+.col-needs li.in .col-ico::after { content: ""; position: absolute; inset: 0; border-radius: 4px; box-shadow: inset 0 0 0 2px rgba(143, 224, 160, .7); }
+.col-state { font-size: 11px; color: #8fe0a0; } .col-state.off { color: #8a7f6c; font-size: 10px; }
+.col-needs button { white-space: nowrap; font-size: 10.5px; padding: 2px 5px; border-radius: 3px; border: 1px solid #8fe0a0; background: #163021; color: #c9f5d2; cursor: pointer; }
+.col-card .col-foot { font-size: 12px; color: #d9c99f; } .col-card .col-foot small { color: #8a7f6c; }
+@media (max-width: 760px) { .col-grid { grid-template-columns: 1fr; } }

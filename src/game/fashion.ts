@@ -26,18 +26,28 @@ export type FashionItem = {
   /** round 13 · weapon skin: the painted weapon sheet (public/art/anim/weapon/<sheet>.webp, 3 views, same grips) that replaces
    *  the equipped weapon's look on the layered Berserker — stats still come from the real weapon */ weaponSheet?: string;
   /** off = hidden in the shop (kept for owners) */ active: boolean; tag?: string;
+  /** round 17 · shop / wardrobe icon (path under /art/, one per gender allowed). Built-in pieces use art/fashion/icons/<id>.webp */
+  icon?: string | { m: string; f: string };
 };
+/** the picture shown on the wardrobe / Cash Shop card */
+export function fashionIcon(f: FashionItem, g: 'm' | 'f' = 'm'): string | null {
+  if (f.icon) return '/art/' + (typeof f.icon === 'string' ? f.icon : f.icon[g]);
+  return BUILTIN_ICONS.has(f.id) ? `/art/fashion/icons/${f.id}${f.slot === 'outfit' ? '-' + g : ''}.webp` : null;
+}
+const BUILTIN_ICONS = new Set(['costume-thai-white-gold', 'wings-dawn', 'aura-ember', 'skin-thai-naga-greatsword', 'skin-thai-garuda-greataxe', 'skin-thai-lotus-greathammer',
+  'wings-thai-garuda', 'wings-thai-ruby', 'wings-thai-kinnari', 'head-thai-garuda', 'aura-thai-ivory']);
+export const FASHION_SLOT_ICON: Record<FashionSlot, string> = { outfit: '👘', weapon: '⚔', wings: '🪽', cape: '🧥', head: '👑', other: '✦' };
 export const FASHION: FashionItem[] = [
   { id: 'costume-thai-white-gold', slot: 'outfit', name: 'Thai White & Gold Attire', th: 'ชุดไทยขาวทอง', description: 'ชุดไทยพิธีการสีขาวทอง ใส่ได้ทั้ง Berserker และ Reaver ชาย/หญิง · ไม่มีค่าสเตตัส', priceTHB: 349, priceSG: null, sprite: 'thai', active: true, tag: 'ใหม่' },
   { id: 'wings-dawn', slot: 'wings', name: 'Dawnlight Wings', th: 'ปีกแสงรุ่งอรุณ', description: 'ปีกแสงสีทองเรืองรองด้านหลังตัวละคร', priceTHB: 199, priceSG: null, procedural: 'dawn-wings', anchor: [0.5, 0.6], scale: 1.35, behind: true, active: true },
   // ---- round 13: the Thai ceremonial set for the Berserker / Reaver (art: output/thai-fashion-codex → Codex)
   { id: 'skin-thai-naga-greatsword', slot: 'weapon', name: 'Naga Ivory Greatsword', th: 'ดาบใหญ่นาคาคู่งาช้าง', description: 'อาวุธแฟชั่น: เปลี่ยนรูปอาวุธที่ถือเป็นดาบใหญ่ลายไทยงาช้างทอง (ค่าพลังมาจากอาวุธจริง)', priceTHB: 299, priceSG: null, weaponSheet: 'thai-greatsword', active: true, tag: 'thai' },
-  { id: 'skin-thai-garuda-greataxe', slot: 'weapon', name: 'Garuda Twin-Moon Greataxe', th: 'ขวานคู่จันทร์ครุฑ', description: 'อาวุธแฟชั่น: ขวานใหญ่สองคมลายไทยทอง (ค่าพลังมาจากอาวุธจริง)', priceTHB: 299, priceSG: null, weaponSheet: 'thai-greataxe', active: true, tag: 'thai' },
-  { id: 'skin-thai-lotus-greathammer', slot: 'weapon', name: 'Golden Lotus Greathammer', th: 'ค้อนใหญ่บัวทอง', description: 'อาวุธแฟชั่น: ค้อนใหญ่หัวบัวลายไทย (ค่าพลังมาจากอาวุธจริง)', priceTHB: 299, priceSG: null, weaponSheet: 'thai-greathammer', active: true, tag: 'thai' },
+  { id: 'skin-thai-garuda-greataxe', slot: 'weapon', name: 'Garuda Twin-Moon Greataxe', th: 'ขวานคู่จันทร์ครุฑ', description: 'อาวุธแฟชั่น: ขวานใหญ่สองคมลายไทยทอง (ค่าพลังมาจากอาวุธจริง)', priceTHB: 299, priceSG: null, weaponSheet: 'thai-greataxe', active: false /* round 17: no in-game art yet — hidden from the shop */, tag: 'thai' },
+  { id: 'skin-thai-lotus-greathammer', slot: 'weapon', name: 'Golden Lotus Greathammer', th: 'ค้อนใหญ่บัวทอง', description: 'อาวุธแฟชั่น: ค้อนใหญ่หัวบัวลายไทย (ค่าพลังมาจากอาวุธจริง)', priceTHB: 299, priceSG: null, weaponSheet: 'thai-greathammer', active: false /* round 17: no in-game art yet — hidden from the shop */, tag: 'thai' },
   { id: 'wings-thai-garuda', slot: 'wings', name: 'Golden Garuda Wings', th: 'ปีกครุฑทอง', description: 'ปีกขนนกสีทองงาช้าง ขยับตามทิศตัวละคร', priceTHB: 249, priceSG: null, art: 'fashion/wings-thai-garuda.webp', views: 8, frames: 8, fps: 8, anchor: [0.5, 0.62], scale: 1.3, behind: true, active: true, tag: 'thai' },
   { id: 'wings-thai-ruby', slot: 'wings', name: 'Ruby Hamsa Wings', th: 'ปีกหงส์ทับทิม', description: 'ปีกทองประดับทับทิม', priceTHB: 249, priceSG: null, art: 'fashion/wings-thai-ruby.webp', views: 8, frames: 8, fps: 8, anchor: [0.5, 0.62], scale: 1.3, behind: true, active: true, tag: 'thai' },
   { id: 'wings-thai-kinnari', slot: 'wings', name: 'Kinnari Veil Wings', th: 'ปีกกินรี', description: 'ปีกบางใสลายกินรี', priceTHB: 249, priceSG: null, art: 'fashion/wings-thai-kinnari.webp', views: 8, frames: 8, fps: 8, anchor: [0.5, 0.62], scale: 1.25, behind: true, active: true, tag: 'thai' },
-  { id: 'head-thai-garuda', slot: 'head', name: 'Garuda Battle Crown', th: 'มงกุฎหน้ากากครุฑ', description: 'มงกุฎศึกหน้าครุฑ สวมแทนทรงผม', priceTHB: 199, priceSG: null, art: 'fashion/head-thai-garuda.webp', views: 8, attach: 'head', hidesHair: true, anchor: [0.5, 0.82], scale: 0.42, active: true, tag: 'thai' },
+  { id: 'head-thai-garuda', slot: 'head', name: 'Garuda Battle Crown', th: 'มงกุฎหน้ากากครุฑ', description: 'มงกุฎศึกหน้าครุฑ สวมแทนทรงผม', priceTHB: 199, priceSG: null, art: 'fashion/head-thai-garuda.webp', views: 8, attach: 'head', hidesHair: true, anchor: [0.5, 0.82], scale: 0.42, active: false /* round 17: no in-game art yet — hidden from the shop */, tag: 'thai' },
   { id: 'aura-thai-ivory', slot: 'other', name: 'Ivory Gold Aura', th: 'ออร่าทองงาช้าง', description: 'วงแสงทองและประกายลอยรอบตัว', priceTHB: null, priceSG: 80000, art: 'fashion/aura-thai-ivory.webp', frames: 8, fps: 10, anchor: [0.5, 0.05], scale: 0.9, behind: true, active: true, tag: 'thai' },
   { id: 'aura-ember', slot: 'other', name: 'Ember Aura', th: 'ออร่าถ่านเพลิง', description: 'ประกายไฟลอยรอบตัวละคร', priceTHB: null, priceSG: 50000, procedural: 'ember-aura', anchor: [0.5, 0.45], scale: 1.1, behind: false, active: true },
 ];

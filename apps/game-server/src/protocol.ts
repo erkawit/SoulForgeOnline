@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { CityId } from '@/game/content';
 // round 9: ACT = one economy operation (src/store/authority.ts ActOp), POS = where the browser's simulation put the character
-const OPS = ['swap','equip','unequip','sell','buyShop','buyCatalog','use','enhance','craft','crystalCraft','brewPotion','starter','blessing','forge','learn','resetSkills','hotbar','promote','acceptQuest','turnIn','travel','pickup','event','kill','respawn','marketList','marketBuy','marketCancel','mailClaim','codex','sellJunk','wear','takeOff'] as const;
+const OPS = ['swap','equip','unequip','sell','buyShop','buyCatalog','use','enhance','craft','crystalCraft','brewPotion','starter','blessing','forge','learn','resetSkills','hotbar','promote','acceptQuest','turnIn','travel','pickup','event','kill','respawn','marketList','marketBuy','marketCancel','mailClaim','codex','collect','sellJunk','wear','takeOff'] as const;
 export const Intent = z.discriminatedUnion('type', [
  z.object({type:z.literal('MOVE'),dx:z.number().finite().min(-1).max(1),dz:z.number().finite().min(-1).max(1)}),
  z.object({type:z.literal('POS'),city:z.string().max(20),x:z.number().finite(),z:z.number().finite(),hp:z.number().finite().min(0).optional(),mp:z.number().finite().min(0).optional()}),

@@ -11,6 +11,7 @@ import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { createSnapshot, useGameStore } from '@/store/useGameStore';
 import { audio } from '@/game/audio/engine';
 import AutoPilot from './AutoPilot';
+import UiScale from './UiScale';
 
 const GameWorld = dynamic(() => import('./GameWorld'), { ssr: false,
   loading: () => <div className="world-loading">SUMMONING THE ECLIPSE...</div> });
@@ -41,5 +42,5 @@ function GameRoot() {
     const worldTick = setInterval(() => useGameStore.getState().tick(), 250);
     return () => { save(); clearInterval(timer); unsubscribe(); clearInterval(worldTick); window.removeEventListener('pagehide', save); };
   }, []);
-  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /><PlayOverlay /><AutoPilot /></main>;
+  return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /><PlayOverlay /><AutoPilot /><UiScale /></main>;
 }

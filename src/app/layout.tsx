@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import '@/styles/forge-ui.css';
 import '@/styles/forge-chrome.css';
+import '@/styles/responsive.css';
+import '@/styles/fashion.css';
 
 export const metadata: Metadata = {
   title: 'Soulforge: Eclipse Frontier — MMORPG Prototype',

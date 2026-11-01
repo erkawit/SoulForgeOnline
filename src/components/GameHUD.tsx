@@ -15,7 +15,7 @@ import { countOf, derivedOf, expRequired, useGameStore } from '@/store/useGameSt
 import CloudSave from './CloudSave';
 import { CITIES, WORLD_LIMIT, portalsOf, type MainCityId } from '@/game/content';
 import OnlinePanel from './OnlinePanel';
-import CodexPanel from './CodexPanel';
+import CollectionPanel from './CollectionPanel';
 import WardrobePanel from './WardrobePanel';
 import MonsterListPanel from './MonsterListPanel';
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
@@ -177,7 +177,7 @@ export default function GameHUD() {
   const menu: [Exclude<Panel, null>, string, string, string][] = [['inventory', '🎒', 'I', 'กระเป๋า · อุปกรณ์'], ['character', '♜', 'C', 'ตัวละคร'], ['skills', '✺', 'K', 'สกิล'], ['quests', '❡', 'J', 'เควส'], ['codex', '✦', 'L', 'สมุดสะสม'], ['wardrobe', '👘', 'U', 'ตู้เสื้อผ้า'], ['monsters', '☠', 'N', 'สมุดมอนสเตอร์'],
     ['auto', '⟳', 'Z', 'AUTO'], ['online', '⚑', '', 'ออนไลน์ / ปาร์ตี้'], ['cloud', '☁', '', 'เซฟคลาวด์'], ['settings', '⚙', 'O', 'ตั้งค่า']];
   const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'inv', character: 'char', skills: 'skills', quests: 'quests', codex: 'codex', wardrobe: 'wardrobe', monsters: 'boss', auto: 'auto', online: 'online', cloud: 'cloud', settings: 'settings' };
-  const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสมอสูร', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
+  const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
 
   return <div className="hud-root h2 pointer-events-none">
     <div className="h2-vignette" />
@@ -219,8 +219,8 @@ export default function GameHUD() {
       <header><span className="dtabs"><button className={panel === 'inventory' ? 'on' : ''} onClick={() => setPanel('inventory')}>🎒 อุปกรณ์ & กระเป๋า</button><button className={panel === 'character' ? 'on' : ''} onClick={() => setPanel('character')}>♜ สเตตัส</button></span>
         <button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header>
       <div className="body">{panel === 'inventory' ? <MobileInventoryDrawer /> : <MobileStatusPanel />}</div></div>
-    : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' ? 'wide' : ''}`}><header><img className="sf-win-ico" src={`/art/icons/menu/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2><button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
-      {panel === 'inventory' && <PCInventoryPanel />}{panel === 'character' && <PCStatusPanel />}{panel === 'skills' && <SkillsPanel />}{panel === 'quests' && <QuestsPanel />}{panel === 'codex' && <CodexPanel />}{panel === 'wardrobe' && <WardrobePanel />}{panel === 'monsters' && <MonsterListPanel />}
+    : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' || panel === 'wardrobe' || panel === 'codex' ? 'wide' : ''}`}><header><img className="sf-win-ico" src={`/art/icons/menu/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2><button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
+      {panel === 'inventory' && <PCInventoryPanel />}{panel === 'character' && <PCStatusPanel />}{panel === 'skills' && <SkillsPanel />}{panel === 'quests' && <QuestsPanel />}{panel === 'codex' && <CollectionPanel />}{panel === 'wardrobe' && <WardrobePanel />}{panel === 'monsters' && <MonsterListPanel />}
       {panel === 'auto' && <AutoPanel />}{panel === 'settings' && <SettingsPanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}</div></div>}
     <div className={`h2-log ${layout === 'mobile' ? 'hidden' : ''}`}>{log.slice(0, 5).map((l, i) => <div key={`${l}-${i}`} style={{ opacity: 1 - i * .16 }}>› {l}</div>)}</div>
     {(pending || charge) && <div className="h2-cast">{charge ? `ง้างสายธนู ×${(1 + 2 * Math.min(1, (now - charge.start) / 1600)).toFixed(1)}` : `ร่าย ${skillDefs.find(d => d.id === pending?.skillId)?.name ?? ''}`}<i style={{ transform: `scaleX(${charge ? Math.min(1, (now - charge.start) / 1600) : pending ? Math.min(1, 1 - (pending.at - now) / Math.max(1, (skillDefs.find(d => d.id === pending.skillId)?.castMs ?? 1))) : 0})` }} /></div>}

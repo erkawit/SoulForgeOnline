@@ -1,0 +1,38 @@
+/* Round 17: HUD windows follow the screen size.
+   components/UiScale.tsx sets --ui-s (0.6 … 1) from the window size; every window is zoomed by it, so the frame, slots
+   and text shrink together. Sizes and offsets below are divided by --ui-s because `zoom` multiplies them back — the
+   result is "this many real screen pixels". Phones (≤ 760 px or touch) keep --ui-s = 1 and their own layout. */
+:root { --ui-s: 1; }
+
+@media (min-width: 761px) and (pointer: fine) {
+  html body .h2 .h2-win, html body .npc-dialog, html body .sf-ch-dialog, html body .h2-modal section, html body .item-tooltip { zoom: var(--ui-s); }
+
+  /* the big centred windows (bag): never pinned to the bottom, always fully on screen */
+  html body .h2 .h2-win.wide {
+    left: 50%; right: auto; top: 50%; bottom: auto; transform: translate(-50%, -50%);
+    width: min(1000px, calc((100vw - 24px) / var(--ui-s)));
+    max-height: calc((100dvh - 24px) / var(--ui-s));
+  }
+  /* the side windows sit left of the minimap column at every width */
+  html body .h2 .h2-win:not(.wide) {
+    left: auto; bottom: auto; transform: none;
+    right: calc(214px / var(--ui-s)); top: calc(14px / var(--ui-s));
+    width: min(560px, calc((100vw - 240px) / var(--ui-s)));
+    max-height: calc((100dvh - 200px) / var(--ui-s));
+  }
+  html body .h2 .h2-win.tall:not(.wide) { max-height: calc((100dvh - 28px) / var(--ui-s)); }
+
+  /* Shop / Craft / Enchant */
+  html body .forge-dialog.npc-dialog { max-height: calc(min(640px * var(--ui-s), 80dvh) / var(--ui-s)); bottom: calc(10dvh / var(--ui-s)); width: min(860px, calc((100vw - 32px) / var(--ui-s))); }
+  html body .npc-dialog:not(.forge-dialog) { max-height: calc((100dvh - 180px) / var(--ui-s)); }
+  html body .sf-ch-dialog { max-height: calc((100dvh - 32px) / var(--ui-s)); }
+
+  /* bag: the paper doll and the grid stay side by side; the grid area scrolls, never the window */
+  html body .h2 .h2-win.wide .body { overflow: auto; }
+  html body .pcinv { min-width: 0; }
+}
+
+/* very short screens: the bag puts the paper doll above the grid instead of cutting it */
+@media (min-width: 761px) and (max-height: 520px) and (pointer: fine) {
+  html body .pcinv { grid-template-columns: 1fr; }
+}

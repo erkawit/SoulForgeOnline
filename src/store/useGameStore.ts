@@ -1,3 +1,4 @@
+import {isColKey} from '@/game/collection';
 import {spawnPoints} from '@/game/spawns';
 import {monsterExp,monsterSoulGod,bossDrops} from '@/game/rewards';
 import {EMPTY_GEAR,canEquipItem,migrateItem,npcPrice,makeGear,isConsumable,type WeaponKind} from '@/game/items';
@@ -115,6 +116,8 @@ type GameState = {
   sellNPC: (id:string,confirmed:boolean)=>boolean;
   /** round 11: register the next codex tier of a loot entry / sell loot the codex no longer needs (returns an error or null) */
   registerCodex: (id:string)=>string|null;
+  /** round 17: put one bag item into a collection slot (it is used up) */
+  registerCollection: (setId:string,index:number)=>string|null;
   sellJunk: ()=>string|null;
   wearFashion: (id:string)=>string|null;
   takeOffFashion: (slot:FashionSlot)=>void;
@@ -379,6 +382,7 @@ export const useGameStore = create<GameState>((set, get) => {
   unequip: slot => { const s=get(); if(!s.equipment[slot])return; const r=act('unequip',[slot],()=>eco.unequip(charOf(s),slot)); if(isPending(r))return;
     if(!r.ok){set({log:addLog(s.log,r.msg)});return;} commit(r); },
   registerCodex:id=>{const s=get();const r=act('codex',[id],c=>cdx.registerCodex(charOf(s),id,c));if(isPending(r))return null;if(!r.ok)return r.msg;commit(r);audio.play('coin',{vol:.5});return null;},
+  registerCollection:(setId,index)=>{const s=get();const r=act('collect',[setId,index],()=>cdx.registerCollection(charOf(s),setId,index));if(isPending(r))return null;if(!r.ok)return r.msg;commit(r);audio.play('coin',{vol:.5});return null;},
   sellJunk:()=>{const s=get();const r=act('sellJunk',[],c=>cdx.sellJunk(charOf(s),c));if(isPending(r))return null;if(!r.ok)return r.msg;commit(r);audio.play('coin',{vol:.5});return null;},
   wearFashion:id=>{const s=get();const r=act('wear',[id],()=>eco.wearFashion(charOf(s),id));if(isPending(r))return null;if(!r.ok)return r.msg;commit(r);return null;},
   takeOffFashion:slot=>{const s=get();const r=act('takeOff',[slot],()=>eco.takeOffFashion(charOf(s),slot));if(!isPending(r)&&r.ok)commit(r);},
@@ -473,7 +477,7 @@ function applyOutcome(s:GameState,def:SkillDef,out:Outcome,d:Derived,yaw:number,
 }
 
 /** a codex from a local save: known entries, whole tiers 1–5 (offline saves only; online the realm owns it) */
-function cleanCodex(raw:unknown):cdx.Codex{const out:cdx.Codex={};if(raw&&typeof raw==='object')for(const [id,t] of Object.entries(raw as Record<string,unknown>))if(LOOT_BY_ID[id]&&Number.isInteger(t)&&(t as number)>=1&&(t as number)<=5)out[id]=t as number;return out;}
+function cleanCodex(raw:unknown):cdx.Codex{const out:cdx.Codex={};if(raw&&typeof raw==='object')for(const [id,t] of Object.entries(raw as Record<string,unknown>)){if(LOOT_BY_ID[id]&&Number.isInteger(t)&&(t as number)>=1&&(t as number)<=5)out[id]=t as number;else if(isColKey(id)&&t===1)out[id]=1;}return out;}
 export function createSnapshot(): Snapshot {
   const s = useGameStore.getState();
   return { version: 1, economyVersion:3, player: s.player, inventory: s.inventory,

@@ -13,7 +13,7 @@ export type ActOp =
   // round 10: the player market and the mailbox — run by the realm only (database transaction), never applied locally
   | 'marketList' | 'marketBuy' | 'marketCancel' | 'mailClaim'
   // round 11: the monster codex and the shop's sell-junk button (deterministic: run locally too)
-  | 'codex' | 'sellJunk'
+  | 'codex' | 'collect' | 'sellJunk'
   // round 12: the wardrobe (deterministic)
   | 'wear' | 'takeOff';
 /** operations whose outcome is random: the client shows "waiting" and applies only the server's answer */

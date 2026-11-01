@@ -8,6 +8,8 @@ import { npcPrice } from '../items';
 import { CATEGORY, CODEX_SEAL, CODEX_TIERS, GRAND_TITLE, LOOT, LOOT_BY_ID, STAT_LABEL, TIER_LABEL, codexBonus, isLoot, tierOf, type Codex, type LootCategory } from '../codex';
 export { codexBonus, type Codex };
 import { countOf, takeFrom, type CharState, type Ctx, type Result } from './core';
+import { COLLECTION_BY_ID, colKey, filled, isDone, rewardText } from '../collection';
+import { ITEM_DEFINITIONS } from '../items';
 
 /** the largest bonus the codex can ever give (all entries at tier V, after caps) — shown so players see the ceiling */
 export const codexMax = (cfg: GameConfig) => codexBonus(Object.fromEntries(LOOT.map(l => [l.id, CODEX_TIERS])), cfg);
@@ -71,4 +73,22 @@ export function sellJunk(s: CharState, ctx: Ctx): Result {
   for (const l of plan.lines) { const it = inventory[l.index]!, left = (it.qty ?? 1) - l.qty; inventory[l.index] = left > 0 ? { ...it, qty: left } : null; }
   const n = plan.lines.reduce((a, l) => a + l.qty, 0), msg = `ขายของดรอป ${n} ชิ้น ได้ ${plan.total.toLocaleString()} SoulGod (เก็บส่วนที่สมุดสะสมยังต้องใช้ไว้)`;
   return { ok: true, state: { ...s, inventory, player: { ...s.player, gold: s.player.gold + plan.total } }, log: [msg], events: [], msg };
+}
+
+// ---------------------------------------------------------------- round 17: the Collection book (src/game/collection.ts)
+/** the bag slot that can fill one collection slot: the right item at the needed enhance level or more (lowest first) */
+export function collectionCandidate(inv: (Item | null)[], id: string, plus: number): number {
+  let best = -1; inv.forEach((it, i) => { if (!it || it.definitionId !== id || (it.enhance ?? 0) < plus) return; if (best < 0 || (it.enhance ?? 0) < (inv[best]!.enhance ?? 0)) best = i; }); return best;
+}
+/** register one item into a collection slot: it leaves the bag for good */
+export function registerCollection(s: CharState, setId: string, index: number): Result {
+  const set = COLLECTION_BY_ID[setId]; if (!set || set.tab === 'fashion') return { ok: false, msg: 'ไม่มีคอลเลกชันนี้' };
+  const need = set.needs[index]; if (!need) return { ok: false, msg: 'ไม่มีช่องนี้ในคอลเลกชัน' };
+  const key = colKey(setId, index); if (s.codex?.[key]) return { ok: false, msg: 'ลงทะเบียนช่องนี้แล้ว' };
+  const at = collectionCandidate(s.inventory, need.id, need.plus), name = ITEM_DEFINITIONS.find(d => d.id === need.id)?.name ?? need.id;
+  if (at < 0) return { ok: false, msg: `ไม่มี ${name}${need.plus ? ` +${need.plus} ขึ้นไป` : ''} ในกระเป๋า (ของที่สวมอยู่ต้องถอดก่อน)` };
+  const inventory = [...s.inventory]; inventory[at] = null;
+  const codex = { ...(s.codex ?? {}), [key]: 1 }, done = !isDone(set, s.codex) && isDone(set, codex);
+  const log = [`คอลเลกชัน ${set.th}: ลงทะเบียน ${name} (${filled(set, codex).filter(Boolean).length}/${set.needs.length})`, ...(done ? [`สะสมครบ「${set.th}」· ${rewardText(set.reward)}`] : [])];
+  return { ok: true, state: { ...s, inventory, codex }, log, events: [], msg: log.join(' · ') };
 }
