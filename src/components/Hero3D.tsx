@@ -8,20 +8,24 @@
 //    to the right-hand bone; the left hand follows the mocap (the Great Sword pack already closes both hands on the grip)
 //  • look: the texture shaded by a fixed painted matcap (top-left light), so it matches the 2.5D world in any scene
 import { useEffect, useMemo, useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { AnimationMixer, Box3, Matrix4, Vector3, LoopOnce, LoopRepeat, Mesh, MeshMatcapMaterial, CanvasTexture, SRGBColorSpace, Group,
+import { AnimationMixer, Box3, Matrix4, Vector3, type Quaternion, LoopOnce, LoopRepeat, Mesh, MeshMatcapMaterial, CanvasTexture, SRGBColorSpace, Group,
   type AnimationAction, type Bone, type SkinnedMesh, type Material, type Object3D, type Texture, type MeshStandardMaterial } from 'three';
 import type { CharacterClip } from '@/game/characterModels';
 
 /** body model: the bare base, or a whole outfit body (same Mixamo skeleton and clips), e.g. 'thai' */
-export const HERO3D_URL = (g: 'm' | 'f', outfit?: string | null) => `/models/hero/hero-${outfit === 'thai' ? 'thai' : 'base'}-${g}.glb`;
+/** outfit bodies that are ready (rigged from the same T-pose, arms checked). The first Thai outfit is withdrawn: its
+ *  arms deform badly, it will be remade on the new T-pose base — until then everyone wears the base body */
+export const OUTFIT3D = new Set<string>([]);
+export const HERO3D_URL = (g: 'm' | 'f', outfit?: string | null) => `/models/hero/hero-${outfit && OUTFIT3D.has(outfit) ? outfit : 'base'}-${g}.glb`;
 export const HAIR3D_STYLES = ['A06', 'A03', 'B01', 'B04'];
 export const WEAPON3D_URL = (tier: number, skin?: string | null) => skin === 'thai-greatsword' ? '/models/weapons/greatsword-thai.glb' : `/models/weapons/greatsword-t${Math.max(1, Math.min(8, tier + 1))}.glb`;
 const LOOPS = new Set(['Idle', 'Walk', 'Run', 'Guard', 'Channel']);
 const HEIGHT = 1.75;       // world units, the 2.5D hero's height
-const WEAPON_LEN = 1.3;    // greatsword length in world units (chibi scale: about 75 % of the hero)
+const WEAPON_LEN = 1.1;    // greatsword length in world units (about 63 % of the hero)
+const GRIP_CURL = 1.2;     // radians added to every finger joint (both hands) while a weapon is held: a closed fist
 const FADE = 0.18;
 
 // painted look that does not depend on the scene lights (the field is lit much brighter than the try-on stage): a matcap
@@ -87,7 +91,9 @@ function Weapon({ hand, url }: { hand: Bone; url: string }) {
     hand.updateWorldMatrix(true, false); const ws = hand.getWorldScale(obj.scale.clone()); obj.scale.set(1 / ws.x, 1 / ws.y, 1 / ws.z);
     // weapon GLBs: blade along glTF -Z (Blender +Y), origin at the grip. Mixamo right hand: +X is the axis the fist closes
     // around (it points up in the Great Sword idle), so the blade goes along the hand's +X (tuned in the try-on stage)
-    obj.position.set(-0.06 / ws.x, 0.075 / ws.y, 0.02 / ws.z); obj.rotation.set(0, -Math.PI / 2, 0); // grip centred in the two fists
+    // the grip axis runs through both closed fists of the Great Sword idle (measured on the base body with GRIP_CURL), the
+    // origin (0.12 from the pommel) in the lower fist, and the blade tilted 12° forward so it clears the head
+    obj.position.set(-0.1088 / ws.x, 0.0653 / ws.y, 0.0184 / ws.z); obj.rotation.set(1.472, -0.839, 1.52);
     hand.add(obj);
     if (process.env.NODE_ENV !== 'production') (window as unknown as { __heroWeapon?: Object3D }).__heroWeapon = obj; // dev: tune the grip live
     return () => { hand.remove(obj); };
@@ -110,6 +116,7 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
   const actions = useMemo(() => Object.fromEntries(animations.map(a => [a.name, mixer.clipAction(a)])) as Record<string, AnimationAction>, [animations, mixer]);
   const hand = useMemo(() => findBone(model, 'RightHand'), [model]);
   const current = useRef<AnimationAction | null>(null);
+  const fingers = useMemo(() => { const out: Bone[] = []; model.traverse(o => { if ((o as Bone).isBone && /(Left|Right)Hand(Index|Middle|Ring|Pinky)[123]$/.test(o.name)) out.push(o as Bone); }); return out; }, [model]);
   // fit to HEIGHT once, from the skinned bounds in the rest pose
   useEffect(() => {
     const g = root.current; if (!g) return; g.add(model);
@@ -126,6 +133,8 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
     return () => { g.remove(model); };
   }, [model]);
   useEffect(() => () => { mixer.stopAllAction(); }, [mixer]);
+  const three = useThree();
+  useEffect(() => { if (process.env.NODE_ENV !== 'production') Object.assign(window, { __heroMixer: mixer, __heroActions: actions, __heroThree: three }); }, [mixer, actions, three]);
   // hair: one style visible, tinted (the Meshy hair textures are neutral silver)
   useEffect(() => {
     const style = HAIR3D_STYLES.includes(hair) ? hair : 'A06';
@@ -151,6 +160,10 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
     const a = current.current;
     if (a && speedRef && (a === actions.Run || a === actions.Walk)) a.timeScale = Math.max(0.7, Math.min(1.8, speedRef.current / (a === actions.Run ? 4.2 : 2.2)));
     mixer.update(Math.min(dt, 0.1));
+    // close the fingers around the grip (the Mixamo pack leaves them half open)
+    // (only on a fresh pose: if the mixer did not write this bone this frame, it still holds last frame's curl)
+    if (!noWeapon) for (const b of fingers) { const last = b.userData.curled as Quaternion | undefined; if (last && b.quaternion.equals(last)) continue;
+      b.rotation.x += GRIP_CURL; b.userData.curled = b.quaternion.clone(); }
   });
   return <group ref={root}>{hand && !noWeapon && <Weapon hand={hand} url={WEAPON3D_URL(weaponTier, weaponSkin)} />}</group>;
 }
