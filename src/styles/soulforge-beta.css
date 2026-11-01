@@ -219,3 +219,13 @@ input[type="range"] { accent-color: var(--sf-gold); width: min(420px, 100%); }
 .sf-lineup-nav > button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(200, 155, 60, .6); background: radial-gradient(circle at 40% 35%, #3a332c, #141212); color: #f2d58a; font-size: 24px; line-height: 1; padding: 0 0 3px; cursor: pointer; touch-action: manipulation; }
 .sf-lineup-nav span { display: flex; gap: 8px; } .sf-lineup-nav span button { width: 12px; height: 12px; padding: 0; border-radius: 50%; border: 1px solid var(--cc); background: transparent; cursor: pointer; }
 .sf-lineup-nav span button.on { background: var(--cc); box-shadow: 0 0 8px var(--cc); }
+
+/* round 19: the login card is a HUD window (.h2 .h2-win: painted frame + title bar), placed in the page flow */
+.sf-gate.h2 { position: fixed; inset: 0; z-index: 50; }
+html body .sf-gate.h2 .h2-win.sf-gate-win { position: relative; inset: auto; transform: none; zoom: 1; width: min(560px, 100%); max-height: none; align-self: center; justify-self: center; }
+html body .sf-gate.h2 .h2-win.sf-gate-win .body { padding: 18px 26px 22px; display: flex; flex-direction: column; gap: 16px; overflow: visible; }
+.sf-gate.show .sf-gate-win { width: 100%; }
+.sf-gate-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 24px 16px; background: rgba(5, 4, 8, .62); }
+html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win { width: min(600px, 100%); max-height: calc(100dvh - 48px); }
+html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win .body { overflow: auto; display: block; }
+@media (max-width: 640px) { html body .sf-gate.h2 .h2-win.sf-gate-win .body { padding: 14px 16px 18px; } }

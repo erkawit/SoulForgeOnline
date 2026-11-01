@@ -6,6 +6,7 @@ import {classLook} from '@/game/advancement';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ComponentRef } from 'react';
 import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
+import FrameCap from './FrameCap';
 import { OrbitControls, OrthographicCamera, Sparkles } from '@react-three/drei';
 import { Vector3, Group, MathUtils } from 'three';
 import { useGameStore } from '@/store/useGameStore';
@@ -291,8 +292,11 @@ function WorldContent() {
 
 export default function GameWorld() {
   const shadows = useSettingsStore(s => s.shadows), quality = useSettingsStore(s => s.quality);
-  return <Canvas shadows={shadows} dpr={quality === 'high' ? [1, 2] : quality === 'low' ? [1, 1] : [1, 1.65]} gl={{ antialias: true, alpha: false }}
+  const renderScale = useSettingsStore(s => s.renderScale), fpsCap = useSettingsStore(s => s.fpsCap);
+  // pixel density: the quality ceiling × the player's render scale (never below 0.5 of a CSS pixel)
+  const top = (quality === 'high' ? 2 : quality === 'low' ? 1 : 1.65) * renderScale;
+  return <Canvas shadows={shadows} dpr={[Math.max(0.5, Math.min(1, top)), Math.max(0.5, top)]} frameloop={fpsCap ? 'demand' : 'always'} gl={{ antialias: renderScale >= 0.8, alpha: false, powerPreference: renderScale < 0.8 ? 'low-power' : 'high-performance' }}
     fallback={<div className="flex items-center justify-center h-full text-slate-300">WebGL is unavailable on this device.</div>}>
-    <WorldContent />
+    <FrameCap fps={fpsCap} /><WorldContent />
   </Canvas>;
 }

@@ -195,3 +195,18 @@
 .sf-guest .sf-guest-go:focus-visible { outline: 2px solid #f5d38d; outline-offset: 3px; }
 .sf-guest-back { color: #c9b07a; font-size: 13px; text-decoration: none; }
 .sf-guest-back:hover { color: #f2d58a; text-decoration: underline; }
+
+/* round 19: the settings gear — always on screen (game: top-right corner beside the minimap; login page: top-right) */
+.sf-gear { position: absolute; top: 8px; right: 8px; z-index: 25; width: 38px; height: 38px; padding: 0; border-radius: 50%; cursor: pointer;
+  border: 1px solid #a9844a; background: radial-gradient(circle at 50% 38%, #2c2420, #0b0808 72%);
+  box-shadow: inset 0 0 0 1px #000, inset 0 0 8px #000d, 0 0 0 2px #1d160c, 0 0 0 3px #6b5430, 0 2px 6px #000b; display: grid; place-items: center; }
+.sf-gear img { width: 74%; height: 74%; object-fit: contain; filter: drop-shadow(0 1px 2px #000); transition: transform .3s; }
+.sf-gear:hover, .sf-gear.on { border-color: #f0cd84; filter: brightness(1.15); } .sf-gear:hover img { transform: rotate(40deg); }
+.sf-gear:focus-visible { outline: 2px solid #f5d38d; outline-offset: 3px; }
+.sf-gate .sf-gear { position: fixed; top: 14px; right: 14px; }
+.sf-settings .npc-chips { margin-bottom: 6px; }
+.sf-settings .h2-row > span:first-child { min-width: 0; }
+.sf-settings .h2-row small { display: block; margin: 2px 0 0; font-size: 11px; }
+.sf-settings .h2-range input { width: clamp(110px, 22vw, 170px); }
+.sf-settings-foot { display: flex; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap; } .sf-settings-foot small { color: var(--mute, #9c937f); }
+.sf-settings .action-button { min-height: 38px; }

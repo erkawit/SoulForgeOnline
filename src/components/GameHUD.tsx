@@ -27,7 +27,8 @@ import { CAPITAL_HALF, CAPITAL_PIECES, CANAL_IN, CITY_SCALE, GATE_D, GATE_TRIGGE
 import { QUESTS, activeQuests, npcMarker, questProgressText } from '@/game/quests';
 import { FOCUS_TH, isSupportClass, skillRoles, type AutoFocus } from '@/game/auto';
 import { FOOD_ITEMS } from '@/game/items';
-import { audio, type AudioSettings } from '@/game/audio/engine';
+import { audio } from '@/game/audio/engine';
+import SettingsPanel from './SettingsPanel';
 import { useScreenScale } from './hud/common';
 import { ChannelButton } from './ChannelSwitch';
 import PCHUDLayout from './hud/PCHUDLayout';
@@ -90,18 +91,6 @@ function AutoPanel() {
       return <div key={i} className="h2-row"><span><b>{KEYS[i + 1]}</b> {d.name} <small>{skillRoles(d).map(r => ({ damage: 'โจมตี', heal: 'ฮีล', buff: 'บัฟ', shield: 'โล่', debuff: 'ดีบัฟ' } as Record<string, string>)[r]).join(' · ')}</small></span>
         <Sw on={on} onClick={() => { const sk = [...a.skills]; sk[i + 1] = !on; set({ skills: sk }); }} /></div>; })}
   </div>;
-}
-function SettingsPanel() {
-  const st = useSettingsStore(); const [au, setAu] = useState<AudioSettings>(audio.settings);
-  const put = (p: Partial<AudioSettings>) => { audio.configure(p); setAu({ ...audio.settings }); try { localStorage.setItem('sf-audio', JSON.stringify(audio.settings)); } catch { /* */ } };
-  const R = ({ k, t }: { k: keyof Omit<AudioSettings, 'muted'>; t: string }) => <div className="h2-row"><span>{t}</span><span className="h2-range"><input type="range" min={0} max={1} step={.05} value={au[k]} onChange={e => put({ [k]: +e.target.value })} /><b>{Math.round(au[k] * 100)}</b></span></div>;
-  return <div><div className="h2-sub">เสียง</div><R k="master" t="เสียงรวม" /><R k="music" t="ดนตรี" /><R k="sfx" t="เอฟเฟกต์ (โจมตี สกิล มอนสเตอร์)" /><R k="voice" t="เสียงพูดตัวละคร" />
-    <div className="h2-row"><span>ปิดเสียงทั้งหมด</span><button className={`h2-switch ${au.muted ? 'on' : ''}`} onClick={() => put({ muted: !au.muted })} /></div>
-    <div className="h2-sub">กราฟิก</div>
-    <div className="h2-row"><span>คุณภาพ</span><span className="h2-seg">{(['low', 'medium', 'high'] as const).map(q => <button key={q} className={st.quality === q ? 'on' : ''} onClick={() => st.set({ quality: q })}>{({ low: 'ต่ำ', medium: 'กลาง', high: 'สูง' })[q]}</button>)}</span></div>
-    <div className="h2-row"><span>เงา</span><button className={`h2-switch ${st.shadows ? 'on' : ''}`} onClick={() => st.set({ shadows: !st.shadows })} /></div>
-    <div className="h2-row"><span>ตัวเลขดาเมจ</span><button className={`h2-switch ${st.damageNumbers ? 'on' : ''}`} onClick={() => st.set({ damageNumbers: !st.damageNumbers })} /></div>
-    <div className="h2-sub">ปุ่ม</div><p className="h2-note">WASD วิ่ง · 1 โจมตี · Space Q E R T X สกิล · 7 8 ยา · 9 อาหาร · Z AUTO · I กระเป๋า · C ตัวละคร · K สกิล · J เควส · O ตั้งค่า · ⌖ สมุดเดินทาง</p></div>;
 }
 function TipCard() {
   const tip = useGameStore(s => s.tips[0]), more = useGameStore(s => s.tips.length - 1);
@@ -209,6 +198,7 @@ export default function GameHUD() {
       {drops.map(d => <circle key={d.id} cx={d.x} cy={d.z} r=".6" fill="#cb8ff2" />)}
       {network.connected && network.boss && <circle cx={network.boss.x} cy={network.boss.z} r="1.8" fill="#ef6357" />}
       <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span></section>
+    <button type="button" className={`sf-gear pointer-events-auto ${panel === 'settings' ? 'on' : ''}`} title="ตั้งค่า (O)" aria-label="ตั้งค่า" onClick={() => toggle('settings')}><img src="/art/icons/menu/settings.webp" alt="" /></button>
     <div className="h2-zone">{zone ? zone.th : city.name}<small>{px.toFixed(0)}, {pz.toFixed(0)}</small><ChannelButton /></div>
     <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/icons/menu/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{key && <small>{key}</small>}</button>)}
       <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/icons/menu/map.webp" alt="" /><small>M</small></button>

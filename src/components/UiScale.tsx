@@ -4,6 +4,7 @@
 // the whole window — frame, slots, text — shrinks together instead of being cut off. Phones keep their own layout
 // (drawers / full-width windows), so the scale stays 1 there.
 import { useEffect } from 'react';
+import { useSettingsStore } from '@/store/useSettingsStore';
 
 const DESIGN_W = 1040, DESIGN_H = 800, MIN = 0.6;
 
@@ -13,15 +14,16 @@ export function uiScaleFor(w: number, h: number, coarse: boolean) {
 }
 
 export default function UiScale() {
+  const user = useSettingsStore(s => s.uiScale); // the player's own size (ตั้งค่า → การแสดงผล), on top of the fit
   useEffect(() => {
     const coarse = matchMedia('(pointer: coarse)');
     const apply = () => {
-      const s = uiScaleFor(innerWidth, innerHeight, coarse.matches);
+      const s = uiScaleFor(innerWidth, innerHeight, coarse.matches) * user;
       document.documentElement.style.setProperty('--ui-s', s.toFixed(3));
     };
     apply();
     addEventListener('resize', apply); coarse.addEventListener('change', apply);
     return () => { removeEventListener('resize', apply); coarse.removeEventListener('change', apply); document.documentElement.style.removeProperty('--ui-s'); };
-  }, []);
+  }, [user]);
   return null;
 }

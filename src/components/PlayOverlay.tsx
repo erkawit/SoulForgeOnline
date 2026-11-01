@@ -1,10 +1,9 @@
 'use client';
 // In-game overlay added for the playable beta: cast bar + Archer charge gauge, party frames with class portraits,
-// and the Party (P), World Map (M), Settings (O) windows plus the Codex guide link (G → /guide in a new tab).
+// and the Party (P) and World Map (M) windows plus the Codex guide link (G → /guide in a new tab).
 import { useEffect, useRef, useState } from 'react';
 import { useGameStore, CHARGE_MAX_MS } from '@/store/useGameStore';
 import { useMultiplayerStore, type PartyMemberView } from '@/store/useMultiplayerStore';
-import { useSettingsStore, type Quality } from '@/store/useSettingsStore';
 import { gameConnection } from '@/lib/multiplayer/socket';
 import { skillLib } from '@/store/useConfigStore';
 import { CITIES, ZONE_IDS, type CityId } from '@/game/content';
@@ -14,7 +13,7 @@ import { npcsIn, npcPosition } from '@/game/npcs';
 const CLASS_COLOR: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff' };
 const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เซิร์กเกอร์', Reaver: 'รีเวอร์' };
 const portrait = (cls: string, kind: 'face' | 'full' = 'face') => `/art/portraits/${cls.toLowerCase()}-${kind}.png`;
-type Win = 'party' | 'map' | 'settings' | null;
+type Win = 'party' | 'map' | null; // settings live in the HUD window (SettingsPanel)
 
 /** Cast bar (skills with a cast time) and the Archer's draw gauge, animated every frame without React re-renders. */
 function CombatBars() {
@@ -106,18 +105,6 @@ function WorldMap() {
   </div>;
 }
 
-function SettingsWindow() {
-  const s = useSettingsStore(); const seg = (v: Quality, t: string) => <button aria-pressed={s.quality === v} onClick={() => s.set({ quality: v })}>{t}</button>;
-  const sw = (k: 'shadows' | 'damageNumbers', t: string) => <label className="row"><span>{t}</span><input type="checkbox" checked={s[k]} onChange={e => s.set({ [k]: e.target.checked })} /></label>;
-  return <>
-    <div className="row"><span>คุณภาพกราฟิก<small>จำนวนหญ้า ใบไม้ เงา</small></span><span className="sf-seg">{seg('low', 'ต่ำ')}{seg('medium', 'กลาง')}{seg('high', 'สูง')}</span></div>
-    {sw('shadows', 'เงาแบบเรียลไทม์')}{sw('damageNumbers', 'ตัวเลขดาเมจ')}
-    <label className="row"><span>แรงลม<small>ต้นไม้และหญ้าไหวตามลม</small></span><input type="range" min={0} max={1.2} step={.05} value={s.wind} onChange={e => s.set({ wind: +e.target.value })} /></label>
-    <label className="row"><span>ทิศลม</span><input type="range" min={0} max={360} step={5} value={s.windDir} onChange={e => s.set({ windDir: +e.target.value })} /></label>
-    <button className="sf-btn ghost" onClick={() => s.reset()}>คืนค่าเริ่มต้น</button>
-  </>;
-}
-
 // touch controls (joystick + attack wheel) now belong to MobileHUDLayout (components/hud)
 
 export default function PlayOverlay() {
@@ -126,19 +113,19 @@ export default function PlayOverlay() {
     const key = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLElement && (e.target.closest('input,textarea,select') || e.target.isContentEditable)) return;
       const k = e.key.toLowerCase();
-      if (k === 'p') setWin(w => w === 'party' ? null : 'party'); if (k === 'm') setWin(w => w === 'map' ? null : 'map'); if (k === 'o') setWin(w => w === 'settings' ? null : 'settings');
+      if (k === 'p') setWin(w => w === 'party' ? null : 'party'); if (k === 'm') setWin(w => w === 'map' ? null : 'map');
       if (k === 'g') window.open('/wiki', '_blank', 'noopener'); if (e.key === 'Escape') setWin(null);
     };
     // the main menu (GameHUD) opens these windows too — the separate button row was removed from the game screen
-    const open = (e: Event) => { const w = (e as CustomEvent<string>).detail; if (w === 'party' || w === 'map' || w === 'settings') setWin(v => v === w ? null : w); };
+    const open = (e: Event) => { const w = (e as CustomEvent<string>).detail; if (w === 'party' || w === 'map') setWin(v => v === w ? null : w); };
     window.addEventListener('keydown', key); window.addEventListener('sf-open-win', open);
     return () => { window.removeEventListener('keydown', key); window.removeEventListener('sf-open-win', open); };
   }, []);
   return <>
     <CombatBars /><PartyFrames />
-    {win && <section className="sf-win" style={{ ['--w' as string]: win === 'map' ? '980px' : win === 'party' ? '860px' : '620px' }} role="dialog" aria-label={win}>
-      <header><h2>{win === 'party' ? 'ปาร์ตี้' : win === 'map' ? 'แผนที่โลก' : 'ตั้งค่า'}</h2><button className="sf-close" aria-label="ปิด" title="ปิด" onClick={() => setWin(null)} /></header>
-      {win === 'party' && <PartyWindow />}{win === 'map' && <WorldMap />}{win === 'settings' && <SettingsWindow />}
+    {win && <section className="sf-win" style={{ ['--w' as string]: win === 'map' ? '980px' : '860px' }} role="dialog" aria-label={win}>
+      <header><h2>{win === 'party' ? 'ปาร์ตี้' : 'แผนที่โลก'}</h2><button className="sf-close" aria-label="ปิด" title="ปิด" onClick={() => setWin(null)} /></header>
+      {win === 'party' && <PartyWindow />}{win === 'map' && <WorldMap />}
     </section>}
   </>;
 }

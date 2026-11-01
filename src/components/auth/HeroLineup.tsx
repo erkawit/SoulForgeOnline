@@ -11,13 +11,15 @@ import AnimatedCharacter from '../AnimatedCharacter';
 import Hero3D from '../Hero3D';
 import { HERO_3D } from '@/game/hero3d';
 import { CLASS_GLOW, type Gender } from '@/game/sprites/catalog';
+import { useSettingsStore } from '@/store/useSettingsStore';
+import FrameCap from '../FrameCap';
 
 type Pick = { key: string; cls: ClassId; g: Gender; promotion?: PromotionId; th: string; role: string; glow: string; costume?: string; hair?: string; hairColor?: string };
 // round 16: one class on show — the 3D-rendered Berserker in the Thai attire, male and female, plain grey hair (A06)
 const HAIR = 'A06', GREY = '#a9a9ad';
 const LINEUP: Pick[] = [
-  { key: 'bm', cls: 'Berserker', g: 'm', th: 'เบอร์เซิร์กเกอร์', role: 'ชุดไทย · อาวุธสองมือ', glow: CLASS_GLOW.Berserker, costume: 'thai', hair: HAIR, hairColor: GREY },
-  { key: 'bf', cls: 'Berserker', g: 'f', th: 'เบอร์เซิร์กเกอร์', role: 'ชุดไทย · อาวุธสองมือ', glow: CLASS_GLOW.Berserker, costume: 'thai', hair: HAIR, hairColor: GREY },
+  { key: 'bm', cls: 'Berserker', g: 'm', th: 'เบอร์เซิร์กเกอร์', role: 'ดาบใหญ่สองมือ', glow: CLASS_GLOW.Berserker, hair: HAIR, hairColor: GREY },
+  { key: 'bf', cls: 'Berserker', g: 'f', th: 'เบอร์เซิร์กเกอร์', role: 'ดาบใหญ่สองมือ', glow: CLASS_GLOW.Berserker, hair: HAIR, hairColor: GREY },
 ];
 const N = LINEUP.length, MID = (N - 1) / 2;
 const X = LINEUP.map((_, i) => (i - MID) * 1.9);
@@ -38,6 +40,8 @@ function Rig({ solo }: { solo: boolean }) {
 }
 
 export default function HeroLineup({ compact = false }: { compact?: boolean }) {
+  // a backdrop, not the game: drawn at 30 fps and at most 1.25× pixel density (scaled by the player's render setting)
+  const renderScale = useSettingsStore(s => s.renderScale), dpr = Math.max(0.6, 1.25 * renderScale);
   const [turn, setTurn] = useState(0); const n = useRef(0);
   const box = useRef<HTMLDivElement>(null); const [solo, setSolo] = useState(false); const [idx, setIdx] = useState(0);
   useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(([e]) => setSolo(e.contentRect.width < 760)); ro.observe(el); return () => ro.disconnect(); }, []);
@@ -53,7 +57,8 @@ export default function HeroLineup({ compact = false }: { compact?: boolean }) {
   };
   const active = (i: number) => solo ? i === idx : turn % N === i;
   return <div ref={box} className={`sf-lineup${compact ? ' compact' : ''}${solo ? ' solo' : ''}`} onPointerDown={down} onPointerUp={up} aria-label={solo ? `${LINEUP[idx].th} — ปัดหรือคลิกเพื่อดูแบบอื่น` : undefined}>
-    <Canvas camera={{ fov: 30, position: [0, 1.75, 9.2] }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true }}>
+    <Canvas camera={{ fov: 30, position: [0, 1.75, 9.2] }} dpr={[Math.min(1, dpr), dpr]} frameloop="demand" gl={{ antialias: renderScale >= 0.8, alpha: true, powerPreference: 'low-power' }}>
+      <FrameCap fps={30} />
       <ambientLight intensity={1.4} /><directionalLight position={[-3, 5, 4]} intensity={2.2} />
       {LINEUP.map((p, i) => <Hero key={p.key} p={p} i={i} active={active(i)} turn={turn} solo={solo} />)}<Rig solo={solo} />
     </Canvas>

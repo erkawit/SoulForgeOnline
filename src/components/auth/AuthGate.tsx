@@ -10,6 +10,7 @@ import { normalizeInvite, isInviteFormat } from '@/game/balance/invite';
 import type { ClassKey } from '@/game/balance/config';
 import CharacterCreate from './CharacterCreate';
 import HeroLineup from './HeroLineup';
+import SettingsPanel from '../SettingsPanel';
 import { loginEmail } from '@/lib/loginName';
 
 /** display_name / class_id stay null until the character is created (account-first sign-up, migration 0006) */
@@ -57,11 +58,24 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
   return <>{children}</>;
 }
 
+// round 19: the login page is a game window — the same painted frame, title bar, buttons and close button as the HUD
+// windows (.h2 .h2-win), not a separately drawn card — with the settings gear (sound / graphics) in the corner
 function Shell({ children, showcase }: { children: ReactNode; showcase?: boolean }) {
-  return <main className={`sf-gate${showcase ? ' show' : ''}`}>{showcase ? <HeroLineup /> : <div className="sf-gate-veil" />}<section className="sf-gate-card">
-    <div className="sf-brand"><span className="sf-sigil">✦</span><div><b>SOUL<span>FORGE</span></b><small>CLOSED BETA · ECLIPSE FRONTIER</small></div></div>
-    {children}
-  </section></main>;
+  const [settings, setSettings] = useState(false);
+  useEffect(() => { if (!settings) return; const k = (e: KeyboardEvent) => { if (e.key === 'Escape') setSettings(false); }; addEventListener('keydown', k); return () => removeEventListener('keydown', k); }, [settings]);
+  return <main className={`sf-gate h2${showcase ? ' show' : ''}`}>{showcase ? <HeroLineup /> : <div className="sf-gate-veil" />}
+    <section className="h2-win sf-gate-win" aria-label="SoulForge">
+      <header><img className="sf-win-ico" src="/art/icons/menu/char.webp" alt="" /><h2>SOULFORGE · ECLIPSE FRONTIER</h2></header>
+      <div className="body"><div className="sf-brand"><span className="sf-sigil">✦</span><div><b>SOUL<span>FORGE</span></b><small>CLOSED BETA · ECLIPSE FRONTIER</small></div></div>
+        {children}</div>
+    </section>
+    <button type="button" className={`sf-gear${settings ? ' on' : ''}`} title="ตั้งค่า" aria-label="ตั้งค่า" onClick={() => setSettings(v => !v)}><img src="/art/icons/menu/settings.webp" alt="" /></button>
+    {settings && <div className="sf-gate-modal" onClick={() => setSettings(false)}>
+      <section className="h2-win sf-gate-win" role="dialog" aria-label="ตั้งค่า" onClick={e => e.stopPropagation()}>
+        <header><img className="sf-win-ico" src="/art/icons/menu/settings.webp" alt="" /><h2>ตั้งค่า</h2><button className="sf-close" aria-label="ปิด" title="ปิด (Esc)" onClick={() => setSettings(false)} /></header>
+        <div className="body"><SettingsPanel inGame={false} /></div>
+      </section></div>}
+  </main>;
 }
 
 function GuestEntry({ onEnter }: { onEnter: () => void }) {
