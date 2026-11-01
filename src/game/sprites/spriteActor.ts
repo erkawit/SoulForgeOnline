@@ -491,6 +491,7 @@ export class SpriteActor {
     const dc = a.clips.death;
     if (this.dead && dc) idx = dc[0] + Math.min(dc[1] - 1, Math.floor(Math.max(0, this.deathT) * 8));
     else if (this.dead) idx = c[0];
+    else if (shot && name === 'talk' && c[1] > 2) { const k = Math.floor(this.animT * TALK_FPS) % (c[1] * 2 - 2); idx = c[0] + (k < c[1] ? k : c[1] * 2 - 2 - k); } // NPC gestures: ping-pong, never a jump
     else if (shot) idx = c[0] + Math.min(c[1] - 1, Math.floor(this.shotU * c[1]));
     else if (name === 'idle' && c[1] > 2) { const k = Math.floor(this.animT * fps) % (c[1] * 2 - 2); idx = c[0] + (k < c[1] ? k : c[1] * 2 - 2 - k); } // ping-pong: no jump at the loop
     else idx = c[0] + Math.floor(this.animF) % c[1];
@@ -506,8 +507,8 @@ const HIT: SpriteClip = { dur: 0.32, keys: [{ t: 0 }, { t: 1 }] };
 /** game clip → flipbook clip names, first one the sheet has wins */
 const SHOT_CLIPS: Record<string, string[]> = {
   Attack: ['attack', 'cast'], Attack2: ['attack2', 'attack', 'cast'], Skill: ['skill', 'dash', 'attack', 'cast'], Special: ['special', 'ultimate', 'skill', 'attack', 'cast'],
-  Buff: ['buff', 'skill', 'cast', 'idle'], Channel: ['skill', 'buff', 'cast', 'idle'], Guard: ['guard', 'armor', 'idle'], Hit: ['hurt', 'idle'], Talk: ['idle'],
+  Buff: ['buff', 'skill', 'cast', 'idle'], Channel: ['skill', 'buff', 'cast', 'idle'], Guard: ['guard', 'armor', 'idle'], Hit: ['hurt', 'idle'], Talk: ['talk', 'idle'],
 };
 /** flipbook playback rates — painted sheets have few frames, so slower reads as smoother (was 8 / 10 / 12) */
-const IDLE_FPS = 5, WALK_FPS = 8, RUN_FPS = 10;
+const IDLE_FPS = 5, WALK_FPS = 8, RUN_FPS = 10, TALK_FPS = 3.2;
 const FALLBACK: Record<string, string> = { Attack2: 'Attack', Skill: 'Attack', Special: 'Skill', Buff: 'Channel', Guard: 'Channel' };

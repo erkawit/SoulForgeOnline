@@ -47,6 +47,8 @@ export const SPRITE_ANIMS: Record<string, SpriteAnim> = {
  'void-reaper':{cw:242,ch:218,cols:10,n:30,fx:0.4983,fy:0.0612,bodyPx:200.0,clips:{idle:[0,6],walk:[6,9],run:[15,7],attack:[22,8]}},
 };
 /** species without their own sheet that share a close relative's flipbook */
+import { NPC_ANIMS } from './npcAnims';
+Object.assign(SPRITE_ANIMS, NPC_ANIMS); // round 17: town NPCs
 export const ANIM_ALIAS: Record<string, string> = {
   'crypt-crawler': 'grave-crawler',
   // heroes with free-texture sheets (round 12: the 10-action Warrior sheets for both genders, the 8-way Mage sheets);

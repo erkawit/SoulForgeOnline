@@ -27,6 +27,7 @@ export function iconSource(item: Item, gender: 'm' | 'f' = 'm'): Src {
     if (item.slot === 'costume') return { url: `/art/sprites/costume-thai-${gender}.webp` };
     return { glyph: id === 'codex-seal' ? '✦' : item.family === 'crystal' ? '◆' : id.startsWith('food') ? '🍲' : '⛏', color: RARITY_COLOR[item.rarity] ?? '#9fd8cf' };
   }
+  if (/^weapon-Berserker-[0-7]$/.test(id)) return { url: `/art/icons/weapons/greatsword-t${Number(id.slice(-1)) + 1}.webp` }; // round 17: 3D greatsword renders
   if (ITEM_ICONS.has(id)) return { url: `/art/icons/items/${id}.webp` };
   if (d?.atlas === 'arms') return { url: '/art/items-arms.webp', crop: { col: d.column, cols: 10, row: d.row, rows: 8 } };
   if (d?.atlas === 'loot') return { url: '/art/items-loot.webp', crop: { col: d.column, cols: 6, row: d.row, rows: 4 } };

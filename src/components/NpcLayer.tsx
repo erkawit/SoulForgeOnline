@@ -14,14 +14,22 @@ import { useGameStore } from '@/store/useGameStore';
 
 class Quiet extends Component<{ children: ReactNode; fallback: ReactNode }, { failed: boolean }> { state = { failed: false }; static getDerivedStateFromError() { return { failed: true }; } render() { return this.state.failed ? this.props.fallback : this.props.children; } }
 
-function Model({ npc, talking }: { npc: Npc; talking: boolean }) {
+function Model({ npc, talking, at, yaw }: { npc: Npc; talking: boolean; at: [number, number]; yaw: number }) {
   const id = npcSpriteId(npc.name) ?? 'npc-elder-corvin';
-  const actor = useMemo(() => new SpriteActor(id), [id]);
+  // round 17: painted 8-way sheets — a slow breathing idle, and the talk gestures while the dialog is open
+  const actor = useMemo(() => new SpriteActor(id, { pace: 0.72 }), [id]);
   useEffect(() => () => actor.dispose(), [actor]);
   const holder = useAttached(actor.root);
-  // talking loops the NPC's gesture (Mira: greet -> offer potion -> return); hovering plays it once
   useEffect(() => { if (talking) actor.play('Talk', { loop: true }); else actor.endShot(); }, [actor, talking]);
-  useFrame(({ camera }, dt) => { spriteView.camera = camera; actor.update(dt); });
+  const turn = useRef(0);
+  useFrame(({ camera }, dt) => {
+    spriteView.camera = camera;
+    // look at the player when they come close (and always while talking); otherwise face out of the door again
+    const [px, pz] = useGameStore.getState().player.position, dx = px - at[0], dz = pz - at[1], near = Math.hypot(dx, dz) < (talking ? 99 : 6.5);
+    const want = near ? Math.atan2(dx, dz) - yaw : 0, cur = turn.current, diff = Math.atan2(Math.sin(want - cur), Math.cos(want - cur));
+    turn.current = cur + diff * (1 - Math.exp(-6 * Math.min(dt, .05))); actor.root.rotation.y = turn.current;
+    actor.update(dt);
+  });
   const wave = () => { if (!talking && !actor.busy) actor.play('Talk'); };
   return <group ref={holder} onPointerOver={wave} />;
 }
@@ -37,7 +45,7 @@ function NpcActor({ npc, city }: { npc: Npc; city: CityId }) {
   const yaw = CITIES[city]?.parent ? 0 : buildingOf(city as MainCityId, (npc.id === 'ranger' ? 'warden' : npc.id) as Role).facing;
   const click = (e: ThreeEvent<MouseEvent>) => { e.stopPropagation(); approach.current = npc; };
   return <group position={[x, 0, z]} rotation={[0, yaw, 0]} onClick={click}>
-    <Quiet fallback={<Placeholder npc={npc} />}><Suspense fallback={<Placeholder npc={npc} />}><Model npc={npc} talking={talking} /></Suspense></Quiet>
+    <Quiet fallback={<Placeholder npc={npc} />}><Suspense fallback={<Placeholder npc={npc} />}><Model npc={npc} talking={talking} at={[x, z]} yaw={yaw} /></Suspense></Quiet>
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, .03, 0]}><ringGeometry args={[.55, .62, 36]} /><meshBasicMaterial color={npc.color} transparent opacity={talking ? .95 : .45} /></mesh>
     <Label3D position={[0, npc.id === 'warden' ? 2.6 : 2.0, 0]} color={npc.color} text={`${npc.icon} ${npc.th}`} sub={npc.title}/>
   </group>;

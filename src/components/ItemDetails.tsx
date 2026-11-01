@@ -26,6 +26,8 @@ export function ItemArt({item}:{item:Item}){if(item.definitionId?.startsWith('so
   if(item.slot==='costume')return <span role="img" aria-label={item.name} className="atlas-icon r2-icon" style={{backgroundImage:`url(/art/sprites/costume-thai-${g}.webp)`,backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}/>;
   const glyph=item.definitionId==='codex-seal'?'✦':item.family==='crystal'?'◆':item.definitionId?.startsWith('food')?'🍲':'⛏';
   return <span role="img" aria-label={item.name} className="atlas-icon fallback r2-icon" style={{color:item.family==='crystal'?CRYSTAL_COLOR[item.rarity]:'#9fd8cf',textShadow:`0 0 10px ${item.family==='crystal'?CRYSTAL_COLOR[item.rarity]:'#62d7cb'}`}}>{glyph}</span>;}
+// round 17: greatswords show the same 3D model the hero holds (rendered from the Meshy GLBs, art/icons/weapons)
+ if(/^weapon-Berserker-[0-7]$/.test(item.definitionId??''))return <span role="img" aria-label={item.name} className="atlas-icon" style={{backgroundImage:`url(/art/icons/weapons/greatsword-t${Number(item.definitionId!.slice(-1))+1}.webp)`,backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}/>;
 // monster loot: one 6 × 4 sheet (round 11)
  if(ITEM_ICONS.has(item.definitionId??''))return <span role="img" aria-label={item.name} className="atlas-icon" style={{backgroundImage:`url(/art/icons/items/${item.definitionId}.webp)`,backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}/>;
  if(d?.atlas==='arms')return <span role="img" aria-label={item.name} className="atlas-icon" style={{backgroundImage:'url(/art/items-arms.webp)',backgroundSize:'1000% 800%',backgroundPosition:`${d.column/9*100}% ${d.row/7*100}%`}}/>;
