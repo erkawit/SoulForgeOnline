@@ -18,8 +18,9 @@ import type { CharacterClip } from '@/game/characterModels';
 /** body model: the bare base, or a whole outfit body (same Mixamo skeleton and clips), e.g. 'thai' */
 /** whole dressed bodies (Meshy outfit on the same T-pose mannequin, skinned with the base body's weights, same skeleton
  *  and clips). The class outfit is what a hero wears with no fashion outfit on; 'base' is the bare mannequin. */
-export const OUTFIT3D = new Set<string>(['berserker', 'base']);
-export const CLASS_OUTFIT3D = 'berserker';
+export const OUTFIT3D = new Set<string>(['base']);
+// the Berserker outfit body is on hold (not checked in every clip yet): every hero wears the bare base body
+export const CLASS_OUTFIT3D = 'base';
 export const HERO3D_URL = (g: 'm' | 'f', outfit?: string | null) => `/models/hero/hero-${outfit && OUTFIT3D.has(outfit) ? outfit : CLASS_OUTFIT3D}-${g}.glb`;
 export const HAIR3D_STYLES = ['A06', 'A03', 'B01', 'B04'];
 export const WEAPON3D_URL = (tier: number, skin?: string | null) => skin === 'thai-greatsword' ? '/models/weapons/greatsword-thai.glb' : `/models/weapons/greatsword-t${Math.max(1, Math.min(8, tier + 1))}.glb`;
@@ -88,6 +89,7 @@ function fitHair(model: Object3D, fit = HAIR_FIT.m) {
 
 // per body (its hands sit differently in the same clip): position in metres from the right-hand bone, rotation (XYZ)
 const GRIP: Record<'m' | 'f', { pos: [number, number, number]; rot: [number, number, number] }> = {
+  // base bodies, measured in /dev-hero (handle through both fists, edge facing forward)
   m: { pos: [-0.1531, 0.0208, 0.0074], rot: [1.627, -0.932, -2.568] },
   f: { pos: [-0.1261, -0.017, -0.0455], rot: [1.981, -0.714, -2.12] },
 };
