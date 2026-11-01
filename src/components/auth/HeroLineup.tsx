@@ -2,12 +2,14 @@
 // Login / sign-up backdrop (round 16): the Berserker in the Thai attire, male + female (3D-rendered rigs, grey A06 hair),
 // as 2.5D sprites on rune pedestals. Wide column → all four, each showing off a move in turn. Narrow column (< 760 px,
 // phones) → one hero at a time: swipe left / right, click either side, use the arrows, dots or ← → keys.
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { type ClassId } from '@/game/content';
 import { type PromotionId } from '@/game/advancement';
 import type { CharacterClip } from '@/game/characterModels';
 import AnimatedCharacter from '../AnimatedCharacter';
+import Hero3D from '../Hero3D';
+import { HERO_3D } from '@/game/hero3d';
 import { CLASS_GLOW, type Gender } from '@/game/sprites/catalog';
 
 type Pick = { key: string; cls: ClassId; g: Gender; promotion?: PromotionId; th: string; role: string; glow: string; costume?: string; hair?: string; hairColor?: string };
@@ -27,7 +29,7 @@ function Hero({ p, i, active, turn, solo }: { p: Pick; i: number; active: boolea
   return <group position={solo ? [0, 0, 0] : [X[i], 0, Math.abs(i - MID) * -0.35]}>
     <mesh position={[0, -.06, 0]}><cylinderGeometry args={[.6, .68, .12, 10]} /><meshBasicMaterial color="#17131c" /></mesh>
     <mesh position={[0, .005, 0]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[.42, .56, 40]} /><meshBasicMaterial color={p.glow} transparent opacity={active ? .9 : .35} /></mesh>
-    <group rotation={[0, solo ? 0 : -(i - MID) * 0.25, 0]}><AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite /></group>
+    <group rotation={[0, solo ? 0 : -(i - MID) * 0.25, 0]}>{HERO_3D ? <Suspense fallback={null}><Hero3D gender={p.g} clip={clip} replay={stamp} weaponTier={0} /></Suspense> : <AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite />}</group>
   </group>;
 }
 function Rig({ solo }: { solo: boolean }) {
@@ -52,6 +54,7 @@ export default function HeroLineup({ compact = false }: { compact?: boolean }) {
   const active = (i: number) => solo ? i === idx : turn % N === i;
   return <div ref={box} className={`sf-lineup${compact ? ' compact' : ''}${solo ? ' solo' : ''}`} onPointerDown={down} onPointerUp={up} aria-label={solo ? `${LINEUP[idx].th} — ปัดหรือคลิกเพื่อดูแบบอื่น` : undefined}>
     <Canvas camera={{ fov: 30, position: [0, 1.75, 9.2] }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true }}>
+      <ambientLight intensity={1.4} /><directionalLight position={[-3, 5, 4]} intensity={2.2} />
       {LINEUP.map((p, i) => <Hero key={p.key} p={p} i={i} active={active(i)} turn={turn} solo={solo} />)}<Rig solo={solo} />
     </Canvas>
     {solo && <div className="sf-lineup-nav" onPointerDown={e => e.stopPropagation()} onPointerUp={e => e.stopPropagation()}>

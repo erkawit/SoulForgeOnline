@@ -6,6 +6,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import type { Group } from 'three';
 import AnimatedCharacter from './AnimatedCharacter';
+import Hero3D from './Hero3D';
+import { HERO_3D } from '@/game/hero3d';
+import { Suspense } from 'react';
 import type { CharacterClip } from '@/game/characterModels';
 import type { ClassId } from '@/game/content';
 import type { Gender } from '@/game/sprites/catalog';
@@ -38,11 +41,13 @@ export default function FashionPreview({ look, glow = '#d9b45c' }: { look: Previ
     onPointerMove={e => { if (drag.current == null) return; const dx = e.clientX - drag.current; if (Math.abs(dx) > 34) { turn(dx > 0 ? -1 : 1); drag.current = e.clientX; } }}
     onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }}>
     <Canvas camera={{ fov: 28, position: [0, 1.35, 5.6] }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true }} onCreated={({ camera }) => camera.lookAt(0, 1.0, 0)}>
+      <ambientLight intensity={1.4} /><directionalLight position={[-3, 5, 4]} intensity={2.2} />
       <mesh position={[0, -.06, 0]}><cylinderGeometry args={[.62, .7, .12, 12]} /><meshBasicMaterial color="#17131c" /></mesh>
       <mesh position={[0, .005, 0]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[.44, .58, 48]} /><meshBasicMaterial color={glow} transparent opacity={.75} /></mesh>
       <Turntable yaw={dir * STEP}>
-        <AnimatedCharacter job={look.job} gender={look.gender} promotion={look.promotion} costume={costume} weapon={look.weapon} weaponSkin={weaponSkin}
-          fashion={fashion} hair={look.hair} hairColor={look.hairColor} clip={clip} replay={stamp} glow={glow} />
+        {HERO_3D ? <Suspense fallback={null}><Hero3D gender={look.gender} clip={clip} replay={stamp} weaponTier={look.weapon?.tier ?? 0} weaponSkin={weaponSkin} /></Suspense>
+          : <AnimatedCharacter job={look.job} gender={look.gender} promotion={look.promotion} costume={costume} weapon={look.weapon} weaponSkin={weaponSkin}
+          fashion={fashion} hair={look.hair} hairColor={look.hairColor} clip={clip} replay={stamp} glow={glow} />}
       </Turntable>
     </Canvas>
     <div className="fp-turn" onPointerDown={e => e.stopPropagation()}>
