@@ -24,7 +24,7 @@ export const HAIR3D_STYLES = ['A06', 'A03', 'B01', 'B04'];
 export const WEAPON3D_URL = (tier: number, skin?: string | null) => skin === 'thai-greatsword' ? '/models/weapons/greatsword-thai.glb' : `/models/weapons/greatsword-t${Math.max(1, Math.min(8, tier + 1))}.glb`;
 const LOOPS = new Set(['Idle', 'Walk', 'Run', 'Guard', 'Channel']);
 const HEIGHT = 1.75;       // world units, the 2.5D hero's height
-const WEAPON_LEN = 1.1;    // greatsword length in world units (about 63 % of the hero)
+const WEAPON_LEN = 1.2;    // greatsword length in world units (about 70 % of the hero; the grip must take both fists)
 const GRIP_CURL = 1.2;     // radians added to every finger joint (both hands) while a weapon is held: a closed fist
 const FADE = 0.18;
 
@@ -83,21 +83,25 @@ function fitHair(model: Object3D) {
   });
 }
 
-function Weapon({ hand, url }: { hand: Bone; url: string }) {
+// per body (its hands sit differently in the same clip): position in metres from the right-hand bone, rotation (XYZ)
+const GRIP: Record<'m' | 'f', { pos: [number, number, number]; rot: [number, number, number] }> = {
+  m: { pos: [-0.1531, 0.0208, 0.0074], rot: [1.627, -0.932, -2.568] },
+  f: { pos: [-0.1261, -0.017, -0.0455], rot: [1.981, -0.714, -2.12] },
+};
+function Weapon({ hand, url, gender }: { hand: Bone; url: string; gender: 'm' | 'f' }) {
   const { scene } = useGLTF(url);
   const obj = useMemo(() => { const g = new Group(); const s = scene.clone(true); paint(s); s.scale.setScalar(WEAPON_LEN); g.add(s); return g; }, [scene]);
   useEffect(() => {
     // the hand bone's world scale includes the armature's import scale: undo it so the sword keeps its world size
     hand.updateWorldMatrix(true, false); const ws = hand.getWorldScale(obj.scale.clone()); obj.scale.set(1 / ws.x, 1 / ws.y, 1 / ws.z);
-    // weapon GLBs: blade along glTF -Z (Blender +Y), origin at the grip. Mixamo right hand: +X is the axis the fist closes
-    // around (it points up in the Great Sword idle), so the blade goes along the hand's +X (tuned in the try-on stage)
-    // the grip axis runs through both closed fists of the Great Sword idle (measured on the base body with GRIP_CURL), the
-    // origin (0.12 from the pommel) in the lower fist, and the blade tilted 12° forward so it clears the head
-    obj.position.set(-0.1088 / ws.x, 0.0653 / ws.y, 0.0184 / ws.z); obj.rotation.set(1.472, -0.839, 1.52);
+    // grip measured on the base body in the Great Sword idle with GRIP_CURL: the handle runs through the middle of both
+    // closed fists (the right fist just under the guard, the left one at the pommel end of the handle), and the blade is
+    // rolled so its edges face where the hero faces (the flat to the sides). Weapon GLBs: blade along -Z, edges along X.
+    const gp = GRIP[gender]; obj.position.set(gp.pos[0] / ws.x, gp.pos[1] / ws.y, gp.pos[2] / ws.z); obj.rotation.set(...gp.rot);
     hand.add(obj);
     if (process.env.NODE_ENV !== 'production') (window as unknown as { __heroWeapon?: Object3D }).__heroWeapon = obj; // dev: tune the grip live
     return () => { hand.remove(obj); };
-  }, [hand, obj]);
+  }, [hand, obj, gender]);
   return null;
 }
 
@@ -165,6 +169,6 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
     if (!noWeapon) for (const b of fingers) { const last = b.userData.curled as Quaternion | undefined; if (last && b.quaternion.equals(last)) continue;
       b.rotation.x += GRIP_CURL; b.userData.curled = b.quaternion.clone(); }
   });
-  return <group ref={root}>{hand && !noWeapon && <Weapon hand={hand} url={WEAPON3D_URL(weaponTier, weaponSkin)} />}</group>;
+  return <group ref={root}>{hand && !noWeapon && <Weapon hand={hand} gender={gender} url={WEAPON3D_URL(weaponTier, weaponSkin)} />}</group>;
 }
 useGLTF.preload(HERO3D_URL('m'));
