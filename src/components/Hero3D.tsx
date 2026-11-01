@@ -11,15 +11,16 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { AnimationMixer, Box3, Matrix4, Vector3, type Quaternion, LoopOnce, LoopRepeat, Mesh, MeshMatcapMaterial, CanvasTexture, SRGBColorSpace, Group,
+import { AnimationMixer, DoubleSide, Box3, Matrix4, Vector3, type Quaternion, LoopOnce, LoopRepeat, Mesh, MeshMatcapMaterial, CanvasTexture, SRGBColorSpace, Group,
   type AnimationAction, type Bone, type SkinnedMesh, type Material, type Object3D, type Texture, type MeshStandardMaterial } from 'three';
 import type { CharacterClip } from '@/game/characterModels';
 
 /** body model: the bare base, or a whole outfit body (same Mixamo skeleton and clips), e.g. 'thai' */
-/** outfit bodies that are ready (rigged from the same T-pose, arms checked). The first Thai outfit is withdrawn: its
- *  arms deform badly, it will be remade on the new T-pose base — until then everyone wears the base body */
-export const OUTFIT3D = new Set<string>([]);
-export const HERO3D_URL = (g: 'm' | 'f', outfit?: string | null) => `/models/hero/hero-${outfit && OUTFIT3D.has(outfit) ? outfit : 'base'}-${g}.glb`;
+/** whole dressed bodies (Meshy outfit on the same T-pose mannequin, skinned with the base body's weights, same skeleton
+ *  and clips). The class outfit is what a hero wears with no fashion outfit on; 'base' is the bare mannequin. */
+export const OUTFIT3D = new Set<string>(['berserker', 'base']);
+export const CLASS_OUTFIT3D = 'berserker';
+export const HERO3D_URL = (g: 'm' | 'f', outfit?: string | null) => `/models/hero/hero-${outfit && OUTFIT3D.has(outfit) ? outfit : CLASS_OUTFIT3D}-${g}.glb`;
 export const HAIR3D_STYLES = ['A06', 'A03', 'B01', 'B04'];
 export const WEAPON3D_URL = (tier: number, skin?: string | null) => skin === 'thai-greatsword' ? '/models/weapons/greatsword-thai.glb' : `/models/weapons/greatsword-t${Math.max(1, Math.min(8, tier + 1))}.glb`;
 const LOOPS = new Set(['Idle', 'Walk', 'Run', 'Guard', 'Channel']);
@@ -52,7 +53,9 @@ const findBone = (root: Object3D, part: string) => { let b: Bone | null = null; 
 // hair: every style is fitted to THIS body's head at load, in the head bone's own space — the head is found from the
 // skinned vertices that follow the head bone (bind pose), so any body (base, outfit, other proportions) wears the same
 // hair files. Width = head width × 1.16 (measured on the top third of the hair), top just above the skull.
-function fitHair(model: Object3D) {
+/** hair width as a share of the head's width, per body (tuned in /dev-hero) */
+export const HAIR_FIT: Record<'m' | 'f', { w: number; top: number; back: number }> = { m: { w: 1.08, top: 0.025, back: 0.04 }, f: { w: 1.06, top: 0.02, back: 0.04 } };
+function fitHair(model: Object3D, fit = HAIR_FIT.m) {
   let body: SkinnedMesh | null = null; model.traverse(o => { const s = o as SkinnedMesh; if (s.isSkinnedMesh && (!body || s.geometry.attributes.position.count > body.geometry.attributes.position.count)) body = s; });
   const head = findBone(model, 'Head'); if (!body || !head) return;
   const b = body as SkinnedMesh; model.updateMatrixWorld(true); b.skeleton.update();
@@ -77,9 +80,9 @@ function fitHair(model: Object3D) {
     let yt = -Infinity, yb = Infinity; for (const p of P) { yt = Math.max(yt, p.y); yb = Math.min(yb, p.y); }
     const top = P.filter(p => p.y > yt - 0.35 * (yt - yb)); let x0 = Infinity, x1 = -Infinity, z0 = Infinity, z1 = -Infinity;
     for (const p of top) { x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); z0 = Math.min(z0, p.z); z1 = Math.max(z1, p.z); }
-    const k = (hi.x - lo.x) * 1.16 / Math.max(1e-9, x1 - x0);
+    const k = (hi.x - lo.x) * fit.w / Math.max(1e-9, x1 - x0);
     o.rotation.set(0, 0, 0); o.scale.setScalar(k);
-    o.position.set((lo.x + hi.x) / 2 - (x0 + x1) / 2 * k, hi.y + 0.035 * (hi.y - lo.y) - yt * k, (lo.z + hi.z) / 2 - (z0 + z1) / 2 * k - 0.03 * (hi.z - lo.z));
+    o.position.set((lo.x + hi.x) / 2 - (x0 + x1) / 2 * k, hi.y + fit.top * (hi.y - lo.y) - yt * k, (lo.z + hi.z) / 2 - (z0 + z1) / 2 * k - fit.back * (hi.z - lo.z));
   });
 }
 
@@ -132,10 +135,11 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
     if (box.isEmpty()) box.setFromObject(model, true);
     box.applyMatrix4(inv); const h = box.max.y - box.min.y;
     if (h > 1e-6) { const k = HEIGHT / h; model.scale.setScalar(k); model.position.y = -box.min.y * k; }
-    fitHair(model);
+    fitHair(model, HAIR_FIT[gender]);
+    if (process.env.NODE_ENV !== 'production') (window as unknown as { __refitHair?: (f: typeof HAIR_FIT.m) => void }).__refitHair = f => fitHair(model, f);
     if (process.env.NODE_ENV !== 'production') (window as unknown as { __hero?: Object3D }).__hero = model;
     return () => { g.remove(model); };
-  }, [model]);
+  }, [model, gender]);
   useEffect(() => () => { mixer.stopAllAction(); }, [mixer]);
   const three = useThree();
   useEffect(() => { if (process.env.NODE_ENV !== 'production') Object.assign(window, { __heroMixer: mixer, __heroActions: actions, __heroThree: three }); }, [mixer, actions, three]);
@@ -143,7 +147,7 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
   useEffect(() => {
     const style = HAIR3D_STYLES.includes(hair) ? hair : 'A06';
     model.traverse(o => { const m = o.name.match(/^Hair_([A-Z]\d\d)/); if (!m) return; o.visible = !hideHair && m[1] === style;
-      o.traverse(c => { const me = c as Mesh; if (me.isMesh) (me.material as MeshMatcapMaterial).color?.set(hairColor); }); });
+      o.traverse(c => { const me = c as Mesh; if (!me.isMesh) return; const mm = me.material as MeshMatcapMaterial; mm.color?.set(hairColor); mm.side = DoubleSide; }); }); // both sides: no scalp through the strands
   }, [model, hair, hairColor, hideHair]);
   useEffect(() => {
     const name = actions[clip] ? clip : 'Idle', next = actions[name]; if (!next) return;

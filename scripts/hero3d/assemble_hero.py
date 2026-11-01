@@ -8,7 +8,7 @@ a = sys.argv[sys.argv.index('--') + 1:]
 def flag(name, default=None):
     if name in a: i = a.index(name); v = a[i + 1]; del a[i:i + 2]; return v
     return default
-TEX = flag('--tex'); HAIR = flag('--hair')  # --hair "A06=path.glb;A03=path.glb"
+TEX = flag('--tex'); HAIR = flag('--hair'); OUTFIT = flag('--outfit'); FACES = int(flag('--faces', '18000'))  # --hair "A06=path.glb;A03=path.glb"
 SRC, ANIMS, OUT = a[0], a[1], a[2]; SWORD = a[3] if len(a) > 3 else None; PREV = a[4] if len(a) > 4 else None
 CLIPS = {  # game clip -> Mixamo file (Great Sword pack)
     'Idle': 'great sword idle.fbx', 'Walk': 'great sword walk.fbx', 'Run': 'great sword run.fbx',
@@ -32,6 +32,59 @@ if TEX:  # FBX re-exported by Mixamo without its Meshy texture: put it back as t
     img = bpy.data.images.load(TEX); mat = bpy.data.materials.new('Body'); mat.use_nodes = True; nt = mat.node_tree
     bs = next(n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED'); tx = nt.nodes.new('ShaderNodeTexImage'); tx.image = img
     nt.links.new(tx.outputs['Color'], bs.inputs['Base Color']); body.data.materials.clear(); body.data.materials.append(mat)
+
+# ---- outfit: a whole dressed body (Meshy, same T-pose mannequin) replaces the base body. It is fitted to the base body's
+# bounds, decimated, and skinned by copying the base body's weights from the nearest surface (no Mixamo round trip).
+def facing(ob):
+    # the toes stick out further in front than the heels behind the ankle
+    P = [ob.matrix_world @ v.co for v in ob.data.vertices]
+    z0 = min(p.z for p in P); H = max(p.z for p in P) - z0
+    low = [p.y for p in P if p.z < z0 + 0.04 * H]; ank = [p.y for p in P if z0 + 0.07 * H < p.z < z0 + 0.11 * H]
+    return -1 if (min(low) + max(low)) / 2 - sum(ank) / len(ank) < 0 else 1
+def bounds(ob):
+    P = [ob.matrix_world @ v.co for v in ob.data.vertices]
+    return Vector([min(p[i] for p in P) for i in range(3)]), Vector([max(p[i] for p in P) for i in range(3)])
+if OUTFIT:
+    before = set(bpy.data.objects); bpy.ops.import_scene.gltf(filepath=OUTFIT)
+    new = [o for o in bpy.data.objects if o not in before]; ms = [o for o in new if o.type == 'MESH']
+    bpy.ops.object.select_all(action='DESELECT')
+    for o in ms: o.select_set(True)
+    bpy.context.view_layer.objects.active = ms[0]
+    if len(ms) > 1: bpy.ops.object.join()
+    out = bpy.context.view_layer.objects.active
+    for o in new:
+        if o != out and o.name in bpy.data.objects: bpy.data.objects.remove(o, do_unlink=True)
+    out.parent = None; bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    n = len(out.data.polygons)
+    if n > FACES:
+        m = out.modifiers.new('d', 'DECIMATE'); m.ratio = FACES / n; bpy.ops.object.modifier_apply(modifier=m.name)
+    print('[hero] outfit faces', n, '->', len(out.data.polygons))
+    if facing(out) != facing(body):
+        out.rotation_euler = (0, 0, math.pi); bpy.ops.object.transform_apply(rotation=True); print('[hero] outfit turned 180')
+    lo, hi = bounds(body); ol, oh = bounds(out)
+    k = (hi.z - lo.z) / (oh.z - ol.z); out.scale = (k, k, k); bpy.ops.object.transform_apply(scale=True)
+    ol, oh = bounds(out)
+    out.location = Vector(((lo.x + hi.x) / 2 - (ol.x + oh.x) / 2, (lo.y + hi.y) / 2 - (ol.y + oh.y) / 2, lo.z - ol.z)); bpy.ops.object.transform_apply(location=True)
+    print('[hero] outfit fit scale', round(k, 4), 'span', round(oh.x - ol.x, 3), 'vs body', round(hi.x - lo.x, 3))
+    # weights: every base vertex group, copied from the nearest point on the base body's surface
+    arm.data.pose_position = 'REST'; bpy.context.view_layer.update()  # transfer from the bind pose, not the last imported frame
+    for vg in body.vertex_groups: out.vertex_groups.new(name=vg.name)
+    dt = out.modifiers.new('w', 'DATA_TRANSFER'); dt.object = body; dt.use_vert_data = True; dt.data_types_verts = {'VGROUP_WEIGHTS'}
+    dt.vert_mapping = 'POLYINTERP_NEAREST'; dt.layers_vgroup_select_src = 'ALL'; dt.layers_vgroup_select_dst = 'NAME'
+    bpy.ops.object.select_all(action='DESELECT'); out.select_set(True); bpy.context.view_layer.objects.active = out
+    bpy.ops.object.modifier_apply(modifier=dt.name)
+    bpy.ops.object.vertex_group_limit_total(group_select_mode='ALL', limit=4); bpy.ops.object.vertex_group_normalize_all(lock_active=False)
+    used = {}
+    for v in out.data.vertices:
+        for g in v.groups:
+            if g.weight > 0.01: used[out.vertex_groups[g.group].name] = used.get(out.vertex_groups[g.group].name, 0) + 1
+    print('[hero] weighted groups', len(used), 'head', used.get('mixamorig:Head'), 'src groups', len(body.vertex_groups), 'src head', sum(1 for v in body.data.vertices for g in v.groups if body.vertex_groups[g.group].name == 'mixamorig:Head' and g.weight > .5))
+    arm.data.pose_position = 'POSE'
+    am = out.modifiers.new('Armature', 'ARMATURE'); am.object = arm
+    out.parent = arm; out.matrix_parent_inverse = arm.matrix_world.inverted()
+    old = body; body = out; bpy.data.objects.remove(old, do_unlink=True); body.name = 'HeroBody'
+    for im in bpy.data.images:
+        if im.size[0] > 1024: im.scale(1024, 1024)
 
 # ---- hair: each style is a mesh parented to the Head bone, named Hair_<style>, fitted to this head
 def head_box():
