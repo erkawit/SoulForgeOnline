@@ -41,8 +41,13 @@ export function deriveCharacter(cls: ClassKey, level: number, gear: GearLike[], 
   const best = (k: 'atkPct' | 'defPct' | 'expPct' | 'hpRegen' | 'moveSpeed' | 'critRate' | 'atkSpeed' | 'dmgTaken') => Math.max(0, ...live.map(b => b[k] ?? 0));
   const L = Math.max(1, level);
   // round 13: Berserker and Reaver are both physical two-handed fighters (STR main, DEX for precision)
-  const physical = true;
-  const mainAtk = attrs.str * v.strAtk + attrs.dex;
+  // round 20: primary[0] is the attack stat (STR keeps the Berserker formula); INT / WIS casters deal magic damage
+  const main = c.primary[0] ?? 'str', second = c.primary[1] ?? 'dex';
+  const physical = main !== 'int' && main !== 'wis';
+  const mainAtk = main === 'str' ? attrs.str * v.strAtk + attrs.dex
+    : main === 'int' ? attrs.int * v.intMatk + attrs[second] * 0.5
+    : main === 'wis' ? attrs.wis * v.intMatk * 0.8 + attrs[second] * 0.5
+    : attrs[main] * v.dexAtk + attrs[second];
   const attack = (10 + L * c.atkPerLevel + mainAtk + g.atk) * (1 + (s.atkPct + best('atkPct')) / 100) * c.damageMultiplier;
   const defense = (3 + L * c.defPerLevel + attrs.vit * v.vitDef + attrs.str * v.strDef + g.def) * (1 + (s.defPct + best('defPct')) / 100);
   const maxHp = (100 + L * c.hpPerLevel + attrs.vit * v.vitHp) * (1 + s.hpPct / 100);

@@ -22,7 +22,7 @@ export type SkillEffect =
 /** round 13: atkSpeed (Blood Tempo), and three Berserker-only stats that are not gear options: lowHpDmg (Red Resolve —
  *  damage while HP ≤ 40 %), rageGain (Rage Conduit), slowResist (Unbroken Fury) — all in % per level */
 export type PassiveBonus = { stat: 'atkPct' | 'defPct' | 'hpPct' | 'mpPct' | 'critRate' | 'critDmg' | 'cdr' | 'healPower' | 'skillDmg' | 'moveSpeed' | 'lifesteal' | 'bossDmg' | 'dmgReduce' | 'atkSpeed' | 'lowHpDmg' | 'rageGain' | 'slowResist'; perLevel: number };
-export type FxRef = { cls: 'Berserker'; kind: 'attack' | 'skill' | 'buff' | 'special' };
+export type FxRef = { cls: import('../content').ClassId; kind: 'attack' | 'skill' | 'buff' | 'special' };
 export type SkillDef = {
   id: string; name: string; th: string; cls: FxRef['cls']; kind: 'active' | 'passive';
   /** the animation the caster plays */ motion: 'Attack' | 'Skill' | 'Buff' | 'Special';

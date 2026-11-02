@@ -10,8 +10,8 @@ import {passiveTotals} from '../src/game/skills/engine';
 import type {QuestLog} from '../src/game/quests';
 beforeEach(()=>{useMultiplayerStore.setState(useMultiplayerStore.getInitialState());useGameStore.setState(useGameStore.getInitialState());});
 const trials:QuestLog={'q-path':{id:'q-path',status:'done',progress:[],acceptedAt:0},'q-ascension':{id:'q-ascension',status:'done',progress:[],acceptedAt:0}};
-test('one class, one advancement: Berserker → Reaver at Lv60',()=>{
- assert.deepEqual([...CLASS_IDS],['Berserker']);assert.deepEqual(PROMOTION_IDS,['Reaver']);
+test('eight classes, one advancement: Berserker → Reaver at Lv60',()=>{
+ assert.deepEqual([...CLASS_IDS],['Paladin','Berserker','Hawkeye','RuneMaster','Elementalist','Assassin','HighPriest','Inquisitor']);assert.deepEqual(PROMOTION_IDS,['Reaver']);
  const p=PROMOTIONS.Reaver;assert.equal(p.base,'Berserker');assert.equal(p.level,60);
  assert.equal(canPromote('Berserker',59,undefined,'Reaver'),false);assert.equal(canPromote('Berserker',60,undefined,'Reaver'),true);
  assert.equal(canPromote('Berserker',60,'Reaver','Reaver'),false,'only once');assert.equal(canPromote('Berserker',60,undefined,'Reaver',2),false,'needs the stage-3 trial');

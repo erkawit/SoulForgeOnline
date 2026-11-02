@@ -108,7 +108,7 @@ function Editor({ def, node, lib, cls, errors, onDef, onNode, onRemove }: { def:
         {num('เวลาร่าย (ms)', def.castMs, v => onDef({ ...def, castMs: v }), 100)}{num('ระยะ (ม.)', def.range, v => onDef({ ...def, range: v }), 0.5)}{num('เลเวลสูงสุด', def.maxLevel, v => onDef({ ...def, maxLevel: v }))}
         <label className="ad-num"><span>ท่าทาง</span><span className="ad-num-input"><select value={def.motion} onChange={e => onDef({ ...def, motion: e.target.value as SkillDef['motion'] })}>{['Attack', 'Skill', 'Buff', 'Special'].map(m => <option key={m}>{m}</option>)}</select></span></label>
         <label className="ad-num"><span>เอฟเฟกต์ภาพ</span><span className="ad-num-input"><select value={`${def.fx.cls}:${def.fx.kind}`} onChange={e => { const [c, k] = e.target.value.split(':'); onDef({ ...def, fx: { cls: c as ClassKey, kind: k as SkillDef['fx']['kind'] } }); }}>
-          {CLASS_KEYS.flatMap(c => (['attack', 'skill', 'buff', 'special'] as const).map(k => <option key={c + k} value={`${c}:${k}`}>{c} · {FX_NAMES[c][k]}</option>))}</select></span></label>
+          {CLASS_KEYS.flatMap(c => (['attack', 'skill', 'buff', 'special'] as const).map(k => <option key={c + k} value={`${c}:${k}`}>{c} · {FX_NAMES[c as keyof typeof FX_NAMES]?.[k] ?? k}</option>))}</select></span></label>
       </div>
       <h4>เอฟเฟกต์ ({def.effects.length}/6)</h4>
       {def.effects.map((e, i) => <div key={i} className="sk-effect" style={{ borderColor: 'element' in e ? ELEMENT_COLOR[e.element] : undefined }}>

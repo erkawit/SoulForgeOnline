@@ -71,7 +71,8 @@ export function makeGear(id:string,preferred?:ClassId,rng:()=>number=Math.random
  const classLock=classLockFor(d,preferred,rng);
  return {...base,classLock,name:base.name,bonuses:{atk:base.bonuses.atk,def:base.bonuses.def},options:rollOptions(d.rarity,classLock??null,rng),enhance:0};
 }
-export function canEquipItem(item:Item,base:ClassId){if(item.slot==='costume')return true;return item.classLock?item.classLock===base:canEquip(item,base);}
+/** round 20: until each class has its own weapons, the (Berserker) gear is shared — a Berserker lock binds no one */
+export function canEquipItem(item:Item,base:ClassId){if(item.slot==='costume')return true;return item.classLock&&item.classLock!=='Berserker'?item.classLock===base:canEquip(item,base);}
 /** Gear dropped for a player (one class: any wearable piece of that rarity). */
 export function pickGearId(rarity:Item['rarity'],cls:ClassId,rng:()=>number=Math.random){
  void cls;const pool=ITEM_DEFINITIONS.filter(i=>i.rarity===rarity&&i.slot&&i.slot!=='costume');return pool[Math.floor(rng()*pool.length)].id;

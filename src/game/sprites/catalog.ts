@@ -16,7 +16,7 @@ export type ActorDef = {
   clips: Partial<Record<string, SpriteClip>>;
 };
 export type Gender = 'm' | 'f';
-export const CLASS_GLOW: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff', Warrior: '#ff8a5c', Mage: '#b685ff', Priest: '#ffdb86', Archer: '#8bdb9a', Enchanter: '#62dfdf' };
+export const CLASS_GLOW: Record<string, string> = { Paladin: '#ffe08a', Hawkeye: '#8bdb9a', RuneMaster: '#62dfdf', Elementalist: '#b685ff', Assassin: '#c97bff', HighPriest: '#ffdb86', Inquisitor: '#ffb35c', Berserker: '#ff4a3a', Reaver: '#c03cff', Warrior: '#ff8a5c', Mage: '#b685ff', Priest: '#ffdb86', Archer: '#8bdb9a', Enchanter: '#62dfdf' };
 const ARMS: Record<string, ActorDef['arm']> = {
   Warrior: { rect: [0, .05, .42, .62], pivot: [.36, .62] }, Mage: { rect: [0, .08, .48, 1], pivot: [.42, .58] },
   Priest: { rect: [0, .04, .4, .58], pivot: [.36, .56] }, Archer: { rect: [.55, .2, 1, 1], pivot: [.6, .62], dir: -1 },
@@ -87,7 +87,10 @@ function proceduralHero(cls: string): ActorDef['clips'] {
 }
 /** `costume` = an equipped fashion outfit (currently 'thai': reference/thai-fashion-and-grip) */
 /** round 12: `promotion` = the class-advancement look (Reaver, Archmage …) when that look has art; a costume still wins */
+/** round 20: classes whose own 8-direction sheets have not shipped yet wear the Berserker frames */
+export const ART_CLASS = (cls: string) => (['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'].includes(cls) ? 'Berserker' : cls);
 export function heroId(cls: string, g: Gender = 'm', costume?: string | null, promotion?: string | null) {
+  cls = ART_CLASS(cls);
   if (costume) return `hero:${g}:${cls}:${costume}`;
   // round 13: the Berserker (no promotion yet) wears its own painted look until the Codex 8-way frames ship
   const look = promotion ?? (cls === 'Berserker' ? 'Berserker' : null);

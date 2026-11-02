@@ -9,7 +9,7 @@ export const ATTRIBUTE_LABEL: Record<AttributeId, string> = { str: 'STR', int: '
 
 // Round 13: one class. Every character is a Berserker; at Lv60 it advances to Reaver (player.promotionId), which uses the
 // Reaver row below (STR+8 DEX+2 AGI+2 VIT+6 on top of the Berserker base — output/berserker-reaver-review/…/reaver/data/balance.json).
-export const CLASS_KEYS = ['Berserker', 'Reaver'] as const;
+export const CLASS_KEYS = ['Paladin', 'Berserker', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor', 'Reaver'] as const;
 export type ClassKey = typeof CLASS_KEYS[number];
 export const RARITY_KEYS = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'God', 'Pre-arch', 'Arch'] as const;
 export type RarityKey = typeof RARITY_KEYS[number];
@@ -94,6 +94,14 @@ export const DEFAULT_CONFIG: GameConfig = {
   version: 1,
   classes: {
     // base attributes from the Berserker v2 / Reaver v1 balance proposal (fixed, no stat points)
+    // round 20 (balance proposal, not play-tested): every base block sums to 60 like the Berserker; primary[0] is the attack stat
+    Paladin:      { base: { str: 16, int: 2,  dex: 6,  agi: 6,  wis: 8,  vit: 22 }, primary: ['str', 'vit'], hpPerLevel: 30, mpPerLevel: 4, atkPerLevel: 2.0, defPerLevel: 2.0, damageMultiplier: 1, healingMultiplier: 1 },
+    Hawkeye:      { base: { str: 4,  int: 2,  dex: 22, agi: 16, wis: 4,  vit: 12 }, primary: ['dex', 'agi'], hpPerLevel: 20, mpPerLevel: 4, atkPerLevel: 2.4, defPerLevel: 1.2, damageMultiplier: 1, healingMultiplier: 1 },
+    RuneMaster:   { base: { str: 2,  int: 20, dex: 6,  agi: 8,  wis: 12, vit: 12 }, primary: ['int', 'wis'], hpPerLevel: 20, mpPerLevel: 6, atkPerLevel: 2.3, defPerLevel: 1.3, damageMultiplier: 1, healingMultiplier: 1 },
+    Elementalist: { base: { str: 2,  int: 24, dex: 6,  agi: 8,  wis: 10, vit: 10 }, primary: ['int', 'wis'], hpPerLevel: 18, mpPerLevel: 7, atkPerLevel: 2.6, defPerLevel: 1.1, damageMultiplier: 1, healingMultiplier: 1 },
+    Assassin:     { base: { str: 8,  int: 2,  dex: 16, agi: 22, wis: 2,  vit: 10 }, primary: ['agi', 'dex'], hpPerLevel: 21, mpPerLevel: 4, atkPerLevel: 2.5, defPerLevel: 1.2, damageMultiplier: 1, healingMultiplier: 1 },
+    HighPriest:   { base: { str: 2,  int: 10, dex: 4,  agi: 6,  wis: 24, vit: 14 }, primary: ['wis', 'int'], hpPerLevel: 22, mpPerLevel: 8, atkPerLevel: 1.8, defPerLevel: 1.4, damageMultiplier: 1, healingMultiplier: 1.2 },
+    Inquisitor:   { base: { str: 8,  int: 4,  dex: 18, agi: 8,  wis: 10, vit: 12 }, primary: ['dex', 'wis'], hpPerLevel: 24, mpPerLevel: 5, atkPerLevel: 2.5, defPerLevel: 1.5, damageMultiplier: 1, healingMultiplier: 1 },
     Berserker: { base: { str: 20, int: 2, dex: 8,  agi: 10, wis: 4, vit: 16 }, primary: ['str', 'vit'], hpPerLevel: 26, mpPerLevel: 3, atkPerLevel: 2.4, defPerLevel: 1.6, damageMultiplier: 1, healingMultiplier: 1 },
     Reaver:    { base: { str: 28, int: 2, dex: 10, agi: 12, wis: 4, vit: 22 }, primary: ['str', 'vit'], hpPerLevel: 28, mpPerLevel: 3, atkPerLevel: 2.6, defPerLevel: 1.7, damageMultiplier: 1, healingMultiplier: 1 },
   },

@@ -2,6 +2,7 @@
 // Reaver v1 (Lv60 advancement: 6 + 6 that EVOLVE the Berserker skills slot for slot). Numbers from the balance proposal in
 // output/berserker-reaver-review/sources/berserker_reaver_skill_vfx_v3/{berserker,reaver}/data/balance.json
 // ("balance-proposal-not-playtested"). Admins add or override skills in Skill Forge.
+import { CLASS_DEFS, CLASS_EXTRA, CLASS_HOTBAR, CLASS_TREES } from './classes';
 import type { Element, FxRef, PassiveBonus, SkillDef, SkillEffect, SkillLibrary, TreeNode } from './engine';
 
 type Cls = FxRef['cls'];
@@ -65,6 +66,7 @@ const defs: SkillDef[] = [
 
 /** Berserker on the left (active · passive, unlocked by level), Reaver on the right (after the advancement) */
 const trees: SkillLibrary['trees'] = {
+  ...CLASS_TREES,
   Berserker: [
     node('b-rending-rush', 1, 0, 1), node('b-greatweapon-mastery', 1, 1, 2), reaver('r-savage-rend', 1, 2), reaver('r-dreadweapon-mastery', 1, 3),
     node('b-blood-howl', 2, 0, 3), node('b-blood-tempo', 2, 1, 4), reaver('r-dread-howl', 2, 2), reaver('r-slaughter-tempo', 2, 3),
@@ -74,9 +76,11 @@ const trees: SkillLibrary['trees'] = {
     node('b-whirlwind', 6, 0, 15), node('b-rage-conduit', 6, 1, 14), reaver('r-cataclysm-descent', 6, 2), reaver('r-abyssal-rage', 6, 3),
   ],
 };
-export const DEFAULT_SKILLS: SkillLibrary = { defs, trees };
+export const DEFAULT_SKILLS: SkillLibrary = { defs: [...defs, ...CLASS_DEFS], trees };
+export { CLASS_EXTRA };
 /** What Space / Q / E cast for a fresh character (slots 4–6 are taught by quests: Carnage Cyclone, Execution Frenzy, Whirlwind). */
 export const DEFAULT_HOTBAR: Record<Cls, { skill: string; buff: string; special: string }> = {
+  ...CLASS_HOTBAR,
   Berserker: { skill: 'b-rending-rush', buff: 'b-blood-howl', special: 'b-bloodquake' },
 };
 /** the skill actually cast from a slot: its Reaver evolution once that one is learned */

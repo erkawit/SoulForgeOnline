@@ -6,7 +6,7 @@ import {type ClassId} from './content';
 import {DEFAULT_SKILLS} from './skills/defaults';
 export type Skill={id:string;name:string;base:ClassId;job:string;stage:1|2|3|4;kind:'active'|'passive'|'ultimate1'|'ultimate2'|'architected';description:string;icon:number;locked:boolean};
 export const SKILLS:Skill[]=DEFAULT_SKILLS.defs.map((d,icon)=>({
- id:d.id,name:d.name,base:'Berserker' as ClassId,job:d.promotion??'Berserker',stage:d.promotion?3:1,
+ id:d.id,name:d.name,base:d.cls as ClassId,job:d.promotion??d.cls,stage:d.promotion?3:1,
  kind:d.ultimate?(d.promotion?'ultimate2':'ultimate1'):d.kind,description:`${d.th} · ${d.description}`,icon,locked:false,
 }));
 export function unlockedSkills(base:ClassId,promotion?:PromotionId){return SKILLS.filter(s=>s.base===base&&!s.locked&&(s.stage===1||s.job===promotion));}

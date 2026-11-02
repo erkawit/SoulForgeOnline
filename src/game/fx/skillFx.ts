@@ -6,7 +6,11 @@ import {
   RingGeometry, ShaderMaterial, SphereGeometry, Sprite, SpriteMaterial, Texture, TorusGeometry, Vector3, Color,
 } from 'three';
 
-export type FxClass = 'Berserker' | 'Warrior' | 'Mage' | 'Priest' | 'Archer' | 'Enchanter';
+type FxBase = 'Warrior' | 'Mage' | 'Priest' | 'Archer' | 'Enchanter';
+export type FxClass = 'Berserker' | FxBase | 'Paladin' | 'Hawkeye' | 'RuneMaster' | 'Elementalist' | 'Assassin' | 'HighPriest' | 'Inquisitor';
+/** round 20: each playable class borrows one of the five effect designs (own colours from FX_COLORS) */
+const FX_BASE: Record<FxClass, FxBase> = { Berserker: 'Warrior', Warrior: 'Warrior', Mage: 'Mage', Priest: 'Priest', Archer: 'Archer', Enchanter: 'Enchanter',
+  Paladin: 'Warrior', Assassin: 'Warrior', Hawkeye: 'Archer', Inquisitor: 'Archer', RuneMaster: 'Enchanter', Elementalist: 'Mage', HighPriest: 'Priest' };
 export type FxKind = 'attack' | 'skill' | 'buff' | 'special';
 export interface FxSpec { cls: FxClass; kind: FxKind; origin: Vector3; yaw: number; target?: Vector3 | null; color?: string;
   /** combo step 0,1,2… — alternates slash direction, the 3rd hit is a finisher */ combo?: number; /** 0..1 charge (Archer charged shot / long casts) scales the effect */ power?: number; }
@@ -14,6 +18,7 @@ export interface FxHandle { update(dt: number): boolean; dispose(): void; readon
 
 export const FX_COLORS: Record<FxClass, [string, string]> = {
   Berserker: ['#ff9368', '#8a1c1c'], Warrior: ['#62d7cb', '#b3263a'], Mage: ['#b685ff', '#3b1a6e'], Priest: ['#ffdb86', '#ff9a3c'], Archer: ['#8bdb9a', '#e8f5c8'], Enchanter: ['#62dfdf', '#d9b45c'],
+  Paladin: ['#ffe08a', '#5b7bd6'], Assassin: ['#c97bff', '#2a1838'], Hawkeye: ['#8bdb9a', '#e8f5c8'], Inquisitor: ['#ffb35c', '#fff1c8'], RuneMaster: ['#62dfdf', '#d9b45c'], Elementalist: ['#ff8a4a', '#6fc8ff'], HighPriest: ['#ffdb86', '#ffffff'],
 };
 /** when (0..1 of the action) the hit lands — matches the chibi clip timing */
 export const FX_DURATION: Record<FxKind, number> = { attack: 0.65, skill: 1.0, buff: 1.1, special: 2.0 };
@@ -197,7 +202,7 @@ function casterAura(fx: Fx, o: Vector3, c: string, a = 0, b = 1, r = 0.7) {
 
 // ---------------------------------------------------------------- per-class designs
 type Ctx = { fx: Fx; o: Vector3; yaw: number; fwd: Vector3; tgt: Vector3; hand: Vector3; c: string; c2: string; combo: number; power: number };
-const DESIGNS_BASE: Record<Exclude<FxClass, 'Berserker'>, Record<FxKind, (x: Ctx) => void>> = {
+const DESIGNS_BASE: Record<FxBase, Record<FxKind, (x: Ctx) => void>> = {
   Warrior: {
     attack: ({ fx, o, yaw, tgt, c, c2, combo }) => {   // 3-hit chain: right→left, left→right, overhead finisher
       const step = combo % 3, fin = step === 2;
@@ -329,7 +334,7 @@ const DESIGNS_BASE: Record<Exclude<FxClass, 'Berserker'>, Record<FxKind, (x: Ctx
   },
 };
 /** round 13: the Berserker / Reaver swing with the Warrior's heavy-blade designs, in ember red (FX_COLORS.Berserker) */
-const DESIGNS: Record<FxClass, Record<FxKind, (x: Ctx) => void>> = { ...DESIGNS_BASE, Berserker: DESIGNS_BASE.Warrior };
+const DESIGNS = (cls: FxClass) => DESIGNS_BASE[FX_BASE[cls] ?? 'Warrior'];
 function arrow(color: string, scale = 1) {
   return (g: Group) => {
     const shaft = new Mesh(new CylinderGeometry(0.018 * scale, 0.018 * scale, 0.7 * scale, 6), glowMat(color, 1)); shaft.rotation.x = Math.PI / 2; g.add(shaft);
@@ -340,13 +345,13 @@ function arrow(color: string, scale = 1) {
 /** Spawn one class effect. `origin` is the caster's feet, `yaw` its facing (atan2(dx,dz)). */
 export function spawnSkillFx(scene: Object3D, spec: FxSpec): FxHandle {
   const [c0, c2] = FX_COLORS[spec.cls] ?? FX_COLORS.Warrior; const c = spec.color ?? c0;
-  const fx = new Fx(FX_DURATION[spec.kind] * (spec.kind === 'attack' && spec.cls === 'Archer' ? 1.15 : 1));
+  const fx = new Fx(FX_DURATION[spec.kind] * (spec.kind === 'attack' && FX_BASE[spec.cls] === 'Archer' ? 1.15 : 1));
   const fwd = new Vector3(Math.sin(spec.yaw), 0, Math.cos(spec.yaw));
   const tgt = spec.target ? spec.target.clone().setY(spec.origin.y) : spec.origin.clone().addScaledVector(fwd, 4);
   const hand = spec.origin.clone().addScaledVector(fwd, 0.45).setY(spec.origin.y + 1.05);
   const ctx: Ctx = { fx, o: spec.origin.clone(), yaw: spec.yaw, fwd, tgt, hand, c, c2, combo: spec.combo ?? 0, power: spec.power ?? 0 };
   if (spec.kind !== 'attack') casterAura(fx, ctx.o, c, 0, spec.kind === 'special' ? 0.7 : 0.85, spec.kind === 'buff' ? 0.85 : 0.7);
-  DESIGNS[spec.cls][spec.kind](ctx);
+  DESIGNS(spec.cls)[spec.kind](ctx);
   scene.add(fx.object); fx.update(0);
   return fx;
 }
@@ -356,18 +361,19 @@ export function spawnSkillFx(scene: Object3D, spec: FxSpec): FxHandle {
 export function spawnChannelFx(scene: Object3D, spec: { cls: FxClass; origin: Vector3; yaw: number; durationSec: number; color?: string }): FxHandle {
   const [c0, c2] = FX_COLORS[spec.cls] ?? FX_COLORS.Warrior; const c = spec.color ?? c0, d = Math.max(0.25, spec.durationSec);
   const fx = new Fx(d), o = spec.origin.clone(), fwd = new Vector3(Math.sin(spec.yaw), 0, Math.cos(spec.yaw));
-  const style = ({ Berserker: 'hex', Warrior: 'hex', Mage: 'tri', Priest: 'sun', Archer: 'circle', Enchanter: 'hex' } as const)[spec.cls];
-  const hand = spec.cls === 'Priest' ? o.clone().setY(o.y + 1.0).addScaledVector(fwd, 0.25) : spec.cls === 'Enchanter' ? o.clone().setY(o.y + 1.35).addScaledVector(fwd, 0.35) : o.clone().setY(o.y + 1.05).addScaledVector(fwd, 0.45);
-  runeCircle(fx, o, c, 1.05, 0, 1, style, spec.cls === 'Enchanter' ? -1.2 : 0.9, 0.85);
+  const base = FX_BASE[spec.cls] ?? 'Warrior';
+  const style = ({ Warrior: 'hex', Mage: 'tri', Priest: 'sun', Archer: 'circle', Enchanter: 'hex' } as const)[base];
+  const hand = base === 'Priest' ? o.clone().setY(o.y + 1.0).addScaledVector(fwd, 0.25) : base === 'Enchanter' ? o.clone().setY(o.y + 1.35).addScaledVector(fwd, 0.35) : o.clone().setY(o.y + 1.05).addScaledVector(fwd, 0.45);
+  runeCircle(fx, o, c, 1.05, 0, 1, style, base === 'Enchanter' ? -1.2 : 0.9, 0.85);
   casterAura(fx, o, c, 0, 1, 0.62);
   // motes converge into the hand: negative speed pulls them inward from a wide spread
   for (let i = 0; i < 3; i++) sparks(fx, hand, i % 2 ? c2 : c, 14, -1.1, i / 3 * 0.8, Math.min(1, i / 3 * 0.8 + 0.4), { spread: 1.6, gravity: 0, size: 0.12 });
   flare(fx, hand, c, 0.55, 0, 1, 0.12);
-  if (spec.cls === 'Priest') { // a halo forms above the bowed head while praying
+  if (base === 'Priest') { // a halo forms above the bowed head while praying
     const hm = glowMat(c, 0); const halo = new Mesh(new TorusGeometry(0.3, 0.025, 8, 40), hm); halo.rotation.x = Math.PI / 2;
     fx.add(halo, hm, (t, el) => { halo.position.set(o.x, o.y + 1.75 + 0.03 * Math.sin(el * 4), o.z); halo.scale.setScalar(0.6 + 0.4 * ease(t)); hm.opacity = Math.min(1, t * 3) * (1 - Math.max(0, t - 0.92) / 0.08); });
   }
-  if (spec.cls === 'Enchanter') { // the arm draws a ring of glyphs in the air
+  if (base === 'Enchanter') { // the arm draws a ring of glyphs in the air
     for (let i = 0; i < 6; i++) {
       const m = glowMat(i % 2 ? c2 : c, 0, glyphTex(i * 4 + 2)); const p = new Mesh(new PlaneGeometry(0.22, 0.22), m);
       fx.add(p, m, (t, el) => { const show = t > i / 6 * 0.7; p.visible = show; const a = (i / 6) * Math.PI * 2 + el * 0.8; p.position.set(o.x + Math.cos(a) * 0.55 + fwd.x * 0.35, o.y + 1.25 + Math.sin(a) * 0.45, o.z + Math.sin(a) * 0.12 + fwd.z * 0.35); p.lookAt(p.position.clone().add(fwd)); m.opacity = show ? Math.min(1, (t - i / 6 * 0.7) * 8) : 0; });
@@ -377,7 +383,7 @@ export function spawnChannelFx(scene: Object3D, spec: { cls: FxClass; origin: Ve
 }
 /** Advance an effect so its release/impact plays right away (used after a cast bar completes). */
 export function prerollFx(h: FxHandle, seconds: number) { if (seconds > 0) h.update(seconds); return h; }
-export const FX_NAMES: Record<FxClass, Record<FxKind, string>> = {
+export const FX_NAMES: Partial<Record<FxClass, Record<FxKind, string>>> = {
   Berserker: { attack: 'Ember cleave', skill: 'Carnage spin · blood wave', buff: 'Blood Howl · rage pillar', special: 'Bloodquake · ground burst' },
   Warrior: { attack: 'Crescent slash', skill: 'Crescent Cleave · 360° wave', buff: 'Iron Vow · vow pillar', special: 'Bastion · hex shield dome' },
   Mage: { attack: 'Soul orb', skill: 'Astral Lance · beam', buff: 'Attunement · orbit runes', special: 'Eclipse Nova · black sun' },

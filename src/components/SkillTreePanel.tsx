@@ -32,7 +32,7 @@ export default function SkillTreePanel() {
   const lib = useConfigStore(s => s.skills);
   const cls = useGameStore(s => s.player.classId ?? 'Berserker'), level = useGameStore(s => s.player.level);
   const levels = useGameStore(s => s.skillLevels), hotbar = useGameStore(s => s.hotbar);
-  const [browseClass, setBrowseClass] = useState<'Berserker' | 'Reaver'>(cls);
+  const [browseClass, setBrowseClass] = useState<string>(cls);
   const promoted = useGameStore(s => s.player.promotionId === 'Reaver');
   const tree = (lib.trees[cls] ?? []).filter(n => browseClass === 'Reaver' ? !!n.promotion : !n.promotion);
   const [sel, setSel] = useState<string | null>(tree[0]?.skillId ?? null);
@@ -41,7 +41,7 @@ export default function SkillTreePanel() {
   const def = lib.defs.find(d => d.id === sel), node = tree.find(n => n.skillId === sel), cur = sel ? levels[sel] ?? 0 : 0;
   const check = useMemo(() => (sel ? canLearn(lib, cls, sel, levels, level, promoted) : { ok: false }), [lib, cls, sel, levels, level, promoted]);
   return <div className="st-panel">
-    <nav className="forge-tabs forge-class-tabs" aria-label="อาชีพสกิล">{(['Berserker','Reaver'] as const).map(c=><button key={c} aria-pressed={browseClass===c} onClick={()=>{setBrowseClass(c);setSel(lib.trees[cls]?.find(n => c === 'Reaver' ? !!n.promotion : !n.promotion)?.skillId??null);setMsg('');}}>{c}{cls===c?' · อาชีพปัจจุบัน':''}</button>)}</nav>
+    <nav className="forge-tabs forge-class-tabs" aria-label="อาชีพสกิล">{(cls==='Berserker'?['Berserker','Reaver']:[cls]).map(c=><button key={c} aria-pressed={browseClass===c} onClick={()=>{setBrowseClass(c);setSel(lib.trees[cls]?.find(n => c === 'Reaver' ? !!n.promotion : !n.promotion)?.skillId??null);setMsg('');}}>{c}{cls===c?' · อาชีพปัจจุบัน':''}</button>)}</nav>
     <div className="st-points"><span>แต้มสกิลคงเหลือ <b>{points}</b></span><span>เลเวล {level}</span></div>
     <div className="h2-tabs"><button className={view === 'star' ? 'on' : ''} onClick={() => setView('star')}>✦ กลุ่มดาววิญญาณ</button><button className={view === 'list' ? 'on' : ''} onClick={() => setView('list')}>☰ รายการ</button></div>
     {view === 'star' && <Constellation tree={tree} sel={sel} onSel={id => { setSel(id); setMsg(''); }} levels={levels} bound={Object.values(hotbar).filter((v): v is string => !!v)} />}
@@ -63,7 +63,7 @@ export default function SkillTreePanel() {
       {!check.ok && 'reason' in check && check.reason && cur < def.maxLevel && <span className="npc-note">{check.reason}</span>}
       {msg && <span className="npc-note">{msg}</span>}
     </div>}
-    <div className="forge-hotbar" aria-label="สกิลที่ติดตั้ง">{(['skill','buff','special'] as const).map(k=><button key={k} onClick={()=>{const id=hotbar[k];if(id){setBrowseClass(lib.defs.find(d=>d.id===id)?.promotion?'Reaver':'Berserker');setSel(id);}}}><small>{SLOT_LABEL[k]}</small>{hotbar[k]?<span className="forge-skill-icon" style={skillIconStyle(hotbar[k]!)}/>:<span>ว่าง</span>}</button>)}</div>
+    <div className="forge-hotbar" aria-label="สกิลที่ติดตั้ง">{(['skill','buff','special'] as const).map(k=><button key={k} onClick={()=>{const id=hotbar[k];if(id){setBrowseClass(lib.defs.find(d=>d.id===id)?.promotion?'Reaver':cls);setSel(id);}}}><small>{SLOT_LABEL[k]}</small>{hotbar[k]?<span className="forge-skill-icon" style={skillIconStyle(hotbar[k]!)}/>:<span>ว่าง</span>}</button>)}</div>
     <p className="npc-note">{browseClass!==cls?'แสดงตัวอย่างอาชีพ · เรียนได้ตามเงื่อนไขอาชีพปัจจุบันเท่านั้น · ':''}รีเซ็ตแต้มสกิลได้ที่ Master Ysolde ในลานเมือง (มีค่าใช้จ่าย SoulGod)</p>
   </div>;
 }

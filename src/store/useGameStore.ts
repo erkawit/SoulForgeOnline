@@ -4,7 +4,7 @@ import {monsterExp,monsterSoulGod,bossDrops} from '@/game/rewards';
 import {EMPTY_GEAR,canEquipItem,migrateItem,npcPrice,makeGear,isConsumable,type WeaponKind} from '@/game/items';
 import {canPromote,validPromotion,classLook,type PromotionId} from '@/game/advancement';
 import {advanceMonster} from '@/game/monsterAI';
-import { CITIES, isClass, isCity, walkable, safePosition, WORLD_LIMIT, arrivalPoint, homePoint, respawnPoint, statClass, type ClassId, type CityId, type ActionId } from '@/game/content';
+import { CITIES, isClass, isCity, walkable, safePosition, WORLD_LIMIT, arrivalPoint, homePoint, respawnPoint, statClass, RANGED, type ClassId, type CityId, type ActionId } from '@/game/content';
 import { useMultiplayerStore } from './useMultiplayerStore';
 import { cfg, skillLib } from './useConfigStore';
 import { create } from 'zustand';
@@ -12,7 +12,7 @@ import { deriveFor, rollLoot } from '@/lib/combat';
 import { incomingDamage, monsterStats, rollDamage, type ActiveBuff, type Derived } from '@/game/balance/stats';
 import { newbieBuff, refreshNewbie } from '@/game/balance/buffs';
 import { resolveEnhance } from '@/game/balance/enhance';
-import { DEFAULT_HOTBAR, evolvedSkill } from '@/game/skills/defaults';
+import { CLASS_EXTRA, DEFAULT_HOTBAR, evolvedSkill } from '@/game/skills/defaults';
 import { learn, needsTarget, resetCost, resolveSkill, starterLevels, type FxRef, type Hotbar, type Outcome, type SkillDef, type SkillLevels } from '@/game/skills/engine';
 import { NPC_BY_ID, SHOP_ITEMS, STARTER_KITS, nearNpc, type NpcService } from '@/game/npcs';
 import { starterGear, starterPlayer } from '@/lib/seed';
@@ -43,10 +43,10 @@ export type CombatEvent = { seq: number; kind: DamageKind; value: number | strin
 let combatSeq = 0;
 const pushCombat = (list: CombatEvent[], ...evs: Omit<CombatEvent, 'seq'>[]) => [...list, ...evs.map(e => ({ ...e, seq: ++combatSeq }))].slice(-48);
 /** basic-attack chain: clip per step and damage multiplier (3rd hit is the finisher) */
-const COMBO_MULT: Record<ClassId, number[]> = { Berserker: [1, 1.1, 1.6] };
+const COMBO_MULT: Record<ClassId, number[]> = { Berserker: [1, 1.1, 1.6], Paladin: [1, 1.1, 1.5], Assassin: [0.9, 1, 1.7], Hawkeye: [1, 1, 1.4], RuneMaster: [1, 1, 1.4], Elementalist: [1, 1, 1.5], HighPriest: [1, 1, 1.3], Inquisitor: [1, 1.1, 1.4] };
 const comboClip = (cls: ClassId, step: number): CharacterClip => { void cls; return step === 1 ? 'Attack2' : 'Attack'; };
 /** ms from the swing to the visible hit (matches the class attack effect) */
-export const HIT_MS: Record<ClassId, number> = { Berserker: 340 };
+export const HIT_MS: Record<ClassId, number> = { Berserker: 340, Paladin: 320, Assassin: 220, Hawkeye: 480, RuneMaster: 460, Elementalist: 480, HighPriest: 440, Inquisitor: 420 };
 /** round 13: Rage (Berserker / Reaver resource, balance proposal berserker-v2 secondary_defaults) */
 export const RAGE = { max: 100, basicHit: 8, whenHit: 3, hitIcdMs: 600, decayDelayMs: 5000, decayPerSec: 5 };
 export const CHARGE_MAX_MS = 1600;
@@ -157,6 +157,7 @@ const killQueue: QuestEvent[] = [];
 const killClaims: { city: CityId; id: string }[] = [];
 /** hotbar slots 4–6 per class (slots 1–3 are DEFAULT_HOTBAR skill / buff / special) */
 export const EXTRA_SLOTS: Record<ClassId, (string | null)[]> = {
+  ...CLASS_EXTRA,
   Berserker: ['b-carnage-cyclone', 'b-execution-frenzy', 'b-whirlwind'],
 };
 
@@ -172,7 +173,7 @@ const ACTION_MS:Record<SkillDef['motion'],number>={Attack:650,Skill:1000,Buff:11
 
 export function cityMonsters(city:CityId):Monster[]{return eco.monstersFor(city,cfg());}
 const activeClass=()=>classLook(getClass(),useGameStore.getState().player.promotionId);
-function getClass():ClassId{return 'Berserker';}
+function getClass():ClassId{const c=useGameStore.getState().player.classId;return isClass(c)?c:'Berserker';}
 const clamp = (n: number, low: number, high: number) => Math.max(low, Math.min(high, n));
 /** Everything a character's numbers depend on: class base, level, gear options, buffs, passive skills, live admin config. */
 export function derivedOf(s:Pick<GameState,'player'|'equipment'|'buffs'|'skillLevels'>&{codex?:cdx.Codex},now=Date.now()):Derived{
@@ -287,11 +288,11 @@ export const useGameStore = create<GameState>((set, get) => {
     if (!target) return { hit: false, reason: 'No target' };
     const distance = Math.hypot(target.x - s.player.position[0], target.z - s.player.position[1]);
     if (distance > activeClass().range) return { hit: false, reason: 'Out of range' };
-    const derived = derivedOf(s,now), cls:ClassId='Berserker', step=now<s.combo.until?(s.combo.step+1)%3:0;
+    const derived = derivedOf(s,now), cls:ClassId=getClass(), step=now<s.combo.until?(s.combo.step+1)%3:0;
     const lowHp=s.player.hp/Math.max(1,derived.maxHp)<=0.4?1+derived.lowHpDmg:1;
     const roll = rollDamage(derived, monsterDefense(target), COMBO_MULT[cls][step]*lowHp, { boss: target.boss });
     const result = { hit: true, damage: roll.damage, crit: roll.crit };
-    { const sfx=BASIC_SFX[cls]; audio.play(step===2?'swing_heavy':sfx.swing,{vol:.55}); setTimeout(()=>audio.play(roll.crit?'crit':sfx.hit,{vol:.5}),HIT_MS[cls]); }
+    { const sfx=BASIC_SFX[cls]; audio.play(step===2&&!RANGED[cls]?'swing_heavy':sfx.swing,{vol:.55}); setTimeout(()=>audio.play(roll.crit?'crit':sfx.hit,{vol:.5}),HIT_MS[cls]); }
     get().tip('combat');
     set(current => {
       const monster = current.monsters.find(m => m.id === id);
@@ -302,7 +303,7 @@ export const useGameStore = create<GameState>((set, get) => {
         log:addLog(current.log, `${roll.crit ? 'CRITICAL! ' : ''}${roll.damage} damage → ${monster.name}`)};
       if (dead) next=grantKill(next,monster,derived,current.equipment,current.skillLevels);
       // round 13: every basic attack that lands builds Rage (+8, Rage Conduit / Abyssal Rage add their %)
-      return { monsters, ...next, selectedMonster: dead ? null : id, rage: Math.min(RAGE.max, current.rage + RAGE.basicHit * (1 + derived.rageGain)), rageAt: now,
+      return { monsters, ...next, selectedMonster: dead ? null : id, ...(cls==='Berserker'?{rage: Math.min(RAGE.max, current.rage + RAGE.basicHit * (1 + derived.rageGain)), rageAt: now}:{}),
         cooldowns:{...current.cooldowns,attack:now+Math.round(700/derived.attackSpeed)},
         action:{kind:'attack',stamp:now,duration:650,clip:comboClip(cls,step),combo:step}, combo:{step,until:now+1600}, attackFx: { stamp: now, skill:false },
         combat: pushCombat(current.combat,{kind:roll.crit?'crit':step===2?'skill':'hit',value:roll.damage,x:monster.x,z:monster.z,on:'monster',id,delay:HIT_MS[cls]}) };
@@ -320,7 +321,7 @@ export const useGameStore = create<GameState>((set, get) => {
     set(cur=>{const m=cur.monsters.find(x=>x.id===target.id);if(!m||m.hp<=0)return {};const dead=m.hp<=roll.damage;
       const monsters=cur.monsters.map(x=>x.id===m.id?{...x,hp:Math.max(0,x.hp-roll.damage),respawnAt:dead?now+(m.boss?300000:8000):null}:x);
       let next:Acc={player:cur.player,drops:cur.drops,soulShards:cur.soulShards,buffs:cur.buffs,log:addLog(cur.log,`ศรง้าง ×${(1+2*power).toFixed(1)} · ${roll.damage} → ${m.name}`)};if(dead)next=grantKill(next,m,d,cur.equipment,cur.skillLevels);
-      return {monsters,...next,selectedMonster:dead?null:m.id,cooldowns:{...cur.cooldowns,attack:now+500},action:{kind:'attack',stamp:now,duration:650,clip:'Attack2',fx:{cls:'Berserker',kind:'special'},power},attackFx:{stamp:now,skill:true},
+      return {monsters,...next,selectedMonster:dead?null:m.id,cooldowns:{...cur.cooldowns,attack:now+500},action:{kind:'attack',stamp:now,duration:650,clip:'Attack2',fx:{cls:getClass(),kind:'special'},power},attackFx:{stamp:now,skill:true},
         combat:pushCombat(cur.combat,{kind:roll.crit?'crit':'skill',value:roll.damage,x:m.x,z:m.z,on:'monster',id:m.id,delay:180})};}); },
   tick: () => set(s => {
     const now = Date.now();
@@ -392,7 +393,7 @@ export const useGameStore = create<GameState>((set, get) => {
     if (data?.version !== 1 || !data.player || !Array.isArray(data.inventory) || data.inventory.length !== 24) return;
     const city=isCity(data.player.cityId)?data.player.cityId:'hollow';
     const locked=get().lockedClass;
-    const cls:ClassId=locked??'Berserker'; // round 13: every save is a Berserker (old classes are converted below)
+    const cls:ClassId=locked??(isClass(data.player.classId)?data.player.classId:'Berserker'); // round 20: the save's own class
     const lib=skillLib(),now=Date.now();
     const levels=Object.fromEntries(Object.entries(data.skills?.levels??{}).filter(([id,l])=>lib.defs.find(d=>d.id===id)?.cls===cls&&Number.isInteger(l)&&l>0));
     const skills=Object.keys(levels).length?{skillLevels:levels,hotbar:{...DEFAULT_HOTBAR[cls],...(data.skills?.hotbar??{})} as Hotbar}:freshSkills(cls);
@@ -428,7 +429,7 @@ export const useGameStore = create<GameState>((set, get) => {
     const id=s.extraHotbar[slot-4];if(!id){set({log:addLog(s.log,'ช่องนี้ยังว่าง — ตั้งสกิลได้ที่ต้นไม้สกิล (K)')});return;}
     // slots 4–6 reuse the cast pipeline through a temporary hotbar binding (same cooldowns, cast bars and outcomes)
     const keep=s.hotbar.skill,keepCd=s.cooldowns.skill;set({hotbar:{...s.hotbar,skill:id}});get().cast('skill');set(c=>({hotbar:{...c.hotbar,skill:keep},cooldowns:{...c.cooldowns,skill:keepCd??0}}));},
-  setExtraSlot:(i,id)=>set(s=>{const def=skillLib().defs.find(d=>d.id===id);if(!def||def.kind!=='active'||def.cls!=='Berserker'||def.evolvesFrom)return {};const extra=[...s.extraHotbar];extra[i]=id;return {extraHotbar:extra};}),
+  setExtraSlot:(i,id)=>set(s=>{const def=skillLib().defs.find(d=>d.id===id);if(!def||def.kind!=='active'||def.cls!==getClass()||def.evolvesFrom)return {};const extra=[...s.extraHotbar];extra[i]=id;return {extraHotbar:extra};}),
   emit:e=>{if(e.type==='talk'||e.type==='visit'||e.type==='auto')authority.send('event',[e]);const s=get(),r=questEvent(s.quests,e);if(!r.progressed.length)return;set({quests:r.log});
     for(const id of r.ready){set(c=>({log:addLog(c.log,`เควสพร้อมส่ง · ${QUEST_BY_ID[id].title}`)}));audio.play('quest_done',{vol:.6});get().tip('quest-ready');}
     if(!r.ready.length)get().tip('quest-progress');},
@@ -508,7 +509,7 @@ export function applyServerHit(hit: { damage: number; hp: number; evaded?: boole
  *  level-up; a different map (a refused or server-side move) reloads the monsters there. */
 export function applyServerState(c: eco.CharState, opts: { first?: boolean; message?: string } = {}) {
   const s = useGameStore.getState(), city = c.player.cityId ?? 'hollow', moved = opts.first || city !== (s.player.cityId ?? 'hollow');
-  const lib = skillLib(), cls: ClassId = 'Berserker';
+  const lib = skillLib(), cls: ClassId = isClass(c.player.classId) ? c.player.classId : 'Berserker';
   const levels = Object.fromEntries(Object.entries(c.skillLevels ?? {}).filter(([id, l]) => lib.defs.find(d => d.id === id)?.cls === cls && Number.isInteger(l) && l > 0));
   const player = { ...c.player, hp: s.player.hp, mp: s.player.mp, position: moved ? c.player.position : s.player.position };
   const next = { player, inventory: c.inventory, equipment: { ...EMPTY_GEAR, ...c.equipment }, soulShards: c.soulShards, skillLevels: Object.keys(levels).length ? levels : freshSkills(cls).skillLevels,

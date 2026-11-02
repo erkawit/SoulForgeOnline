@@ -9,16 +9,23 @@ import AnimatedCharacter from '../AnimatedCharacter';
 import { useConfigStore } from '@/store/useConfigStore';
 import { useGameStore } from '@/store/useGameStore';
 import { ATTRIBUTES, ATTRIBUTE_LABEL } from '@/game/balance/config';
-import { CLASS_IDS, type ClassId } from '@/game/content';
+import { CLASS_IDS, CLASS_NAME, type ClassId } from '@/game/content';
 import { ATTRIBUTE_HELP } from '@/game/balance/stats';
 import { DEFAULT_HOTBAR, DEFAULT_SKILLS } from '@/game/skills/defaults';
 import type { CharacterClip } from '@/game/characterModels';
 import { audio, VOICE_LINES } from '@/game/audio/engine';
 
 const UI: Record<ClassId, { th: string; color: string; role: string; lore: string; basic: string; diff: number }> = {
+  Paladin: { th: 'พาลาดิน', color: '#ffe08a', role: 'แทงก์แนวหน้า · ดาบมือเดียว + โล่', lore: 'อัศวินผู้ถือคำสัตย์ ยืนรับแรงปะทะแทนเพื่อน ป้องกันแน่นหนาที่สุด และมีแสงศักดิ์สิทธิ์ทั้งโจมตีและรักษา', basic: 'ฟันดาบ 3 จังหวะ · ตัวทนที่สุด', diff: 1 },
+  Hawkeye: { th: 'ฮอว์คอาย', color: '#8bdb9a', role: 'ยิงไกล · ธนูยาว', lore: 'พรานผู้แม่นยำ ยิงจากระยะไกลที่สุดในเกม คริติคอลสูง ความเร็วโจมตีไว ต้องรักษาระยะห่างจากศัตรู', basic: 'ยิงศร ระยะ 9 ม.', diff: 2 },
+  RuneMaster: { th: 'รูนมาสเตอร์', color: '#62dfdf', role: 'เวทอักขระ · กับดักและวงเวท', lore: 'ผู้จารอักขระลงอากาศและผืนดิน วางกับดัก ทำให้ศัตรูช้าลง และเสริมพลังให้ทั้งปาร์ตี้', basic: 'ยิงอักขระ ระยะ 7 ม.', diff: 3 },
+  Elementalist: { th: 'อีลีเมนทัลลิสต์', color: '#b685ff', role: 'เวทธาตุ · คทาสองมือ', lore: 'ผู้บัญชาไฟ น้ำแข็ง และสายฟ้า ดาเมจพื้นที่สูงที่สุด แต่ตัวบางที่สุด สกิลแรงบางท่าต้องร่าย', basic: 'ยิงลูกเวท ระยะ 8.5 ม.', diff: 2 },
+  Assassin: { th: 'แอสแซสซิน', color: '#c97bff', role: 'ประชิดเร็ว · มีดคู่', lore: 'นักฆ่าในเงา ตีเร็ว คริแรง พุ่งเข้าประชิดแล้วปิดฉากเป้าที่ใกล้ตาย แลกกับพลังชีวิตน้อย', basic: 'แทงมีดคู่ 3 จังหวะ · เร็วที่สุด', diff: 3 },
+  HighPriest: { th: 'ไฮพรีสต์', color: '#ffdb86', role: 'รักษา · บัฟปาร์ตี้', lore: 'นักบวชชั้นสูง รักษาและอวยพรเพื่อนร่วมทีม เกราะพลังให้ทั้งปาร์ตี้ และยังเผาศัตรูด้วยแสงได้', basic: 'ยิงแสง ระยะ 7 ม.', diff: 1 },
+  Inquisitor: { th: 'อินควิซิเตอร์', color: '#ffb35c', role: 'ระยะกลาง · หน้าไม้ศักดิ์สิทธิ์', lore: 'นักล่าผู้พิพากษา ยิงหน้าไม้ระยะกลาง ประทับตราบาปลดเกราะศัตรู และปิดฉากด้วยลูกดอกเดียว', basic: 'ยิงหน้าไม้ ระยะ 6.5 ม.', diff: 2 },
   Berserker: { th: 'เบอร์เซิร์กเกอร์', color: '#ff4a3a', role: 'ดาเมจประชิด · อาวุธสองมือ', lore: 'นักรบผู้ปล่อยให้ความโกรธเป็นอาวุธ แบกดาบใหญ่ ขวานใหญ่ หรือค้อนใหญ่ สะสม Rage จากทุกการฟันและทุกบาดแผล แล้วระเบิดออกเป็นสกิลที่รุนแรงที่สุดในสนาม ยิ่งเลือดน้อยยิ่งอันตราย — ถึง Lv60 เลื่อนขั้นเป็น Reaver ผู้เก็บเกี่ยววิญญาณ', basic: 'ฟันคอมโบ 3 จังหวะ · ทุกการโดนได้ Rage', diff: 2 },
 };
-const SPOTS = CLASS_IDS.map((_, i) => { const a = (i - (CLASS_IDS.length - 1) / 2) * 0.36; return new Vector3(Math.sin(a) * 4.2, 0, -Math.cos(a) * 4.2 + 3); });
+const SPOTS = CLASS_IDS.map((_, i) => { const a = (i - (CLASS_IDS.length - 1) / 2) * 0.3; return new Vector3(Math.sin(a) * 6, 0, -Math.cos(a) * 6 + 4.8); });
 
 function Hero({ cls, i, selected, onPick, gender, hair, hairColor }: { cls: ClassId; i: number; selected: boolean; onPick: () => void; gender: Gender; hair: string; hairColor: string }) {
   const [clip, setClip] = useState<CharacterClip>('Idle'); const [stamp, setStamp] = useState(0);
@@ -45,7 +52,7 @@ function Rig({ sel }: { sel: number }) {
 const HAIRS = ['B04', 'B01', 'A03', 'A06'];  // only the finished 3D hair styles
 const HAIR_COLORS = ['#e8e2d6', '#d9b26a', '#b8732e', '#7a4a26', '#3d2518', '#1d1a1e', '#a8322c', '#5f6f8f'];
 export default function CharacterCreate({ onCreate }: { onCreate: (name: string, cls: ClassId, gender: Gender) => Promise<string | null> }) {
-  const [sel, setSel] = useState(0); const [gender, setGender] = useState<Gender>('m'); const cls = CLASS_IDS[sel]; const config = useConfigStore(s => s.config);
+  const [sel, setSel] = useState(Math.max(0, CLASS_IDS.indexOf('Berserker'))); const [gender, setGender] = useState<Gender>('m'); const cls = CLASS_IDS[sel]; const config = useConfigStore(s => s.config);
   const [hair, setHair] = useState('B04'); const [hairColor, setHairColor] = useState('#7a4a26');
   const [name, setName] = useState(''); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
   // each class speaks its line when picked (and again when the male / female look changes)
@@ -68,11 +75,11 @@ export default function CharacterCreate({ onCreate }: { onCreate: (name: string,
       <Suspense fallback={null}>{CLASS_IDS.map((c, i) => <Hero key={c} cls={c} i={i} gender={gender} hair={hair} hairColor={hairColor} selected={i === sel} onPick={() => setSel(i)} />)}</Suspense>
       <Rig sel={sel} />
     </Canvas>
-    <header className="sf-create-top"><h1>สร้าง Berserker ของคุณ</h1><p>เลือกชาย/หญิง ตั้งชื่อ แล้วเริ่มผจญภัย · ถึง Lv60 เลื่อนขั้นเป็น Reaver</p></header>
+    <header className="sf-create-top"><h1>สร้างตัวละครของคุณ</h1><p>เลือกอาชีพ ชาย/หญิง ตั้งชื่อ แล้วเริ่มผจญภัย</p></header>
     <nav className="sf-create-rail" aria-label="อาชีพ">{CLASS_IDS.map((c, i) => <button key={c} type="button" aria-pressed={i === sel} style={{ ['--cc' as string]: UI[c].color }} onClick={() => setSel(i)}>
-      <b>{c}</b><span>{UI[c].th} · {UI[c].role}</span></button>)}</nav>
+      <b>{CLASS_NAME[c]}</b><span>{UI[c].th} · {UI[c].role}</span></button>)}</nav>
     <aside className="sf-create-info">
-      <div className="role">{UI[cls].role}</div><h2>{cls}</h2>
+      <div className="role">{UI[cls].role}</div><h2>{CLASS_NAME[cls]}</h2>
       <div className="sf-gender" role="group" aria-label="รูปลักษณ์">{(['m', 'f'] as const).map(g => <button key={g} type="button" aria-pressed={gender === g} onClick={() => setGender(g)}>{g === 'm' ? 'ชาย' : 'หญิง'}</button>)}</div>
       <div className="sf-hair" role="group" aria-label="ทรงผม"><b>ทรงผม</b><div className="styles">{HAIRS.map(h => <button key={h} type="button" aria-pressed={hair === h} onClick={() => setHair(h)}>{h}</button>)}</div>
         <b>สีผม</b><div className="colors">{HAIR_COLORS.map(c => <button key={c} type="button" aria-label={c} aria-pressed={hairColor === c} style={{ background: c }} onClick={() => setHairColor(c)} />)}<input type="color" aria-label="เลือกสีเอง" value={hairColor} onChange={e => setHairColor(e.target.value)} /></div></div>
@@ -80,7 +87,7 @@ export default function CharacterCreate({ onCreate }: { onCreate: (name: string,
       <p className="quote">“{VOICE_LINES[cls]}” <button type="button" className="voice-btn" aria-label="ฟังเสียงพูด" onClick={() => void audio.voice(cls, gender)}>🔊</button></p>
       <p className="lore">{UI[cls].lore}</p>
       <div className="stats">{ATTRIBUTES.map(a => <div key={a} title={ATTRIBUTE_HELP[a]}><b>{ATTRIBUTE_LABEL[a]}</b><i><em style={{ width: `${config.classes[cls].base[a] / 24 * 100}%` }} /></i><span>{config.classes[cls].base[a]}</span></div>)}</div>
-      <p className="note">สเตตัส 6 ค่าตายตัว — เพิ่มได้จากออปชันอุปกรณ์ · Reaver (Lv60) ได้ค่าพื้นฐานสูงขึ้นและสกิลทั้งหมดวิวัฒน์</p>
+      <p className="note">สเตตัส 6 ค่าตายตัว — เพิ่มได้จากออปชันอุปกรณ์{cls === 'Berserker' ? ' · Reaver (Lv60) ได้ค่าพื้นฐานสูงขึ้นและสกิลทั้งหมดวิวัฒน์' : ' · ภาพตัวละครของอาชีพนี้ยังใช้ภาพชั่วคราว'}</p>
       <div className="kit"><div><b>{UI[cls].basic}</b></div>{kit.map(d => <div key={d.id}><b>{d.name} · {d.th}</b><small>{d.description}{d.castMs ? ` · ร่าย ${(d.castMs / 1000).toFixed(1)}s` : ''}</small></div>)}</div>
     </aside>
     <form className="sf-create-bottom" onSubmit={submit}>

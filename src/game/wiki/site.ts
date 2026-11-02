@@ -17,6 +17,14 @@ const fmt = (n: number) => Math.round(n).toLocaleString('en-US');
 const RC: Record<string, string> = { Common: '#b9c6d2', Uncommon: '#69cf7b', Rare: '#4db7ff', Epic: '#b477ff', Legendary: '#e35a64', God: '#ffd36e', 'Pre-arch': '#fb9446', Arch: '#c58aef' };
 /** [class, Thai name, colour, blurb, painted look] — round 13: one class and its Lv60 advancement */
 const CLASSES: [string, string, string, string, string][] = [
+  // round 20: the seven new classes (they show the Berserker art until their own sheets ship)
+  ['Paladin', 'พาลาดิน', '#ffe08a', 'อัศวินดาบมือเดียวกับโล่ ยืนรับแรงปะทะแทนเพื่อน ป้องกันแน่นที่สุด มีแสงศักดิ์สิทธิ์ทั้งโจมตีและรักษา', 'look-Berserker'],
+  ['Hawkeye', 'ฮอว์คอาย', '#8bdb9a', 'นักธนูยิงไกลที่สุดในเกม คริสูง ตีเร็ว ต้องรักษาระยะห่างจากศัตรู', 'look-Berserker'],
+  ['RuneMaster', 'รูนมาสเตอร์', '#62dfdf', 'จารอักขระ วางกับดัก ทำให้ศัตรูช้าลง และเสริมพลังให้ทั้งปาร์ตี้', 'look-Berserker'],
+  ['Elementalist', 'อีลีเมนทัลลิสต์', '#b685ff', 'บัญชาไฟ น้ำแข็ง สายฟ้า ดาเมจพื้นที่สูงที่สุด แต่ตัวบางที่สุด', 'look-Berserker'],
+  ['Assassin', 'แอสแซสซิน', '#c97bff', 'มีดคู่ ตีเร็ว คริแรง พุ่งเข้าประชิดแล้วปิดฉากเป้าที่ใกล้ตาย', 'look-Berserker'],
+  ['HighPriest', 'ไฮพรีสต์', '#ffdb86', 'รักษาและอวยพรเพื่อนร่วมทีม เกราะพลังให้ทั้งปาร์ตี้ และเผาศัตรูด้วยแสง', 'look-Berserker'],
+  ['Inquisitor', 'อินควิซิเตอร์', '#ffb35c', 'หน้าไม้ระยะกลาง ประทับตราบาปลดเกราะศัตรู ปิดฉากด้วยลูกดอกเดียว', 'look-Berserker'],
   ['Berserker', 'เบอร์เซิร์กเกอร์', '#ff4a3a', 'นักรบอาวุธสองมือ (ดาบใหญ่ ขวานใหญ่ ค้อนใหญ่) สะสม Rage จากการฟันและการถูกตี แล้วระเบิดออกเป็นสกิลรุนแรง ยิ่งเลือดน้อยยิ่งแรง', 'look-Berserker'],
   ['Reaver', 'รีเวอร์ · เลื่อนขั้น Lv60', '#c03cff', 'ร่างเลื่อนขั้นของ Berserker — สกิลทั้ง 12 วิวัฒน์เป็นเวอร์ชันมืด ดูดวิญญาณคืนเลือด ปิดฉากศัตรูที่เลือดน้อย และ Cataclysm Descent', 'look-Reaver'],
 ]
@@ -90,7 +98,7 @@ export function buildHomeHtml(opts: SiteOpts = {}) {
     <div class="pills"><span>Berserker → Reaver · ชาย/หญิง</span><span>เล่นได้ทั้ง PC และมือถือ</span><span>ล่าบอส 15–30 นาที</span><span>คราฟ 8 ระดับ T1–T8</span><span>ตลาด SoulGod</span><span>AUTO ล่าอัตโนมัติ</span></div></div></section>
   <section id="patch" class="band"><header><h2>แพตช์โน้ต · เวอร์ชัน ${GAME_VERSION}</h2><p>รายละเอียดทุกการอัปเดตของเกม เวอร์ชันล่าสุดอยู่บนสุด</p></header>${PATCHES.map(p => `<details class="card" ${p.version === GAME_VERSION ? 'open' : ''}><summary><b>v${p.version}</b> · ${esc(p.title)} <small>${p.date}</small></summary><ul>${p.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>${p.compat ? `<small class="muted">ต้องใช้ไคลเอนต์ ≥ ${p.compat.minClient} · ฐานข้อมูล ${p.compat.db}</small>` : ''}</details>`).join('')}</section>
   <section id="news" class="band news"><header><h2>อัปเดตล่าสุด</h2><p>Closed Beta · ${NEWS_DATE}</p></header><div class="ngrid">${NEWS.map(n => `<article><b>${n[0]}</b><p>${n[1]}</p></article>`).join('')}</div></section>
-  <section id="classes" class="band"><header><h2>Berserker และ Reaver</h2><p>อาชีพเดียว เลื่อนขั้นครั้งเดียวที่ Lv60 — ความต่างมาจากอาวุธ (ดาบ/ขวาน/ค้อนใหญ่) อุปกรณ์ ออปชัน และสกิลที่เลือกเก็บ</p></header><div class="hcls-grid">${classes}</div></section>
+  <section id="classes" class="band"><header><h2>8 อาชีพ</h2><p>เลือกได้ตอนสร้างตัวละคร — Berserker เลื่อนขั้นเป็น Reaver ที่ Lv60 · ภาพเฉพาะของแต่ละอาชีพกำลังทำ</p></header><div class="hcls-grid">${classes}</div></section>
   <section id="world" class="band"><header><h2>สามเมืองหลวง · ประตูวาร์ปสู่ทุ่งล่า</h2><p>เมืองกำแพงสี่ด้าน อาคารบริการครบ 9 หลังในทุกเมือง ในเมืองไม่มีมอนสเตอร์ — เดินเข้าวงประตูวาร์ปที่มุมกำแพงเพื่อออกล่า</p></header>
     <div class="capgrid">${CAPS.map(c => `<article class="cap"><a href="${o.wiki}#map"><img class="wide-img" src="${a}world/${c}/city.webp" alt="${esc(CITIES[c].name)}" loading="lazy"></a><h3>${esc(CITIES[c].name)} <small>${esc(CITIES[c].subtitle)}</small></h3>${gateList(c, o.wiki)}</article>`).join('')}</div>
     <h3 class="sub" style="text-align:center;margin-top:34px">ดินแดนแห่งความโศกเศร้า · Ashen Outskirts</h3><p class="muted" style="text-align:center">ทุ่งนอกประตูทิศใต้ของ Hollow Reach — ซากหมู่บ้าน ปราสาท มหาวิหาร และถ้ำ แต่ละเขตมี Elite ที่มีสกิลของตัวเอง</p>

@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 're
 import type { Session } from '@supabase/supabase-js';
 import { getSupabaseBrowser } from '@/lib/supabase';
 import { useConfigStore } from '@/store/useConfigStore';
+import { useGameStore } from '@/store/useGameStore';
 import { normalizeInvite, isInviteFormat } from '@/game/balance/invite';
 import type { ClassKey } from '@/game/balance/config';
 import CharacterCreate from './CharacterCreate';
@@ -30,8 +31,10 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
   const [ready, setReady] = useState(!closed); const [made, setMade] = useState(0);
   // round 16: without the closed beta (local / guest play) the login page still comes first — website → เข้าเกม → this
   // page with the hero lineup → เข้าเกม. Shown every time the game page opens.
-  const [guestIn, setGuestIn] = useState(false);
+  const [guestIn, setGuestIn] = useState(false); const [guestCreate, setGuestCreate] = useState(false);
   const enterGuest = () => setGuestIn(true);
+  // round 20: test mode can create a character (any class) — it replaces the one saved in this browser
+  const hasGuestSave = useMemo(() => { try { return typeof window !== 'undefined' && !!window.localStorage.getItem('soulforge_guest_v1'); } catch { return false; } }, []);
   useEffect(() => { void useConfigStore.getState().load(); }, []);
   useEffect(() => {
     if (!supabase) { setReady(true); return; }
@@ -45,7 +48,13 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
       .then(({ data }) => { setProfile((data as BetaProfile | null) ?? null); if (data && !data.banned && data.class_id) onProfile?.(data as BetaProfile); });
   }, [supabase, session, onProfile, made]);
 
-  if (!closed) return guestIn ? <>{children}</> : <Shell showcase><GuestEntry onEnter={enterGuest} /></Shell>;
+  if (!closed) {
+    if (guestIn) return <>{children}</>;
+    if (guestCreate) return <CharacterCreate onCreate={async (name, cls, gender) => {
+      try { window.localStorage.removeItem('soulforge_guest_v1'); } catch { /* storage unavailable */ }
+      useGameStore.getState().applyProfile(name, cls, gender); setGuestIn(true); return null; }} />;
+    return <Shell showcase><GuestEntry onEnter={enterGuest} onCreate={() => setGuestCreate(true)} hasSave={hasGuestSave} /></Shell>;
+  }
   if (!supabase) return <Shell><h2 className="sf-h2">ยังไม่ได้เชื่อมเซิร์ฟเวอร์</h2><p className="sf-muted">ตั้งค่า NEXT_PUBLIC_SUPABASE_URL และ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ก่อนเปิดโหมดทดสอบปิด</p></Shell>;
   if (!ready || (session && profile === undefined)) return <Shell><p className="sf-muted">กำลังตรวจสอบสิทธิ์…</p></Shell>;
   if (!session) return <Shell showcase><AuthForms /></Shell>;
@@ -78,11 +87,13 @@ function Shell({ children, showcase }: { children: ReactNode; showcase?: boolean
   </main>;
 }
 
-function GuestEntry({ onEnter }: { onEnter: () => void }) {
+function GuestEntry({ onEnter, onCreate, hasSave }: { onEnter: () => void; onCreate: () => void; hasSave: boolean }) {
   return <div className="sf-guest">
     <h2 className="sf-h2">เข้าสู่ดินแดนต้องสาป</h2>
     <p className="sf-muted">โหมดทดลองเล่น — ยังไม่ได้เชื่อมเซิร์ฟเวอร์ ตัวละครจะถูกบันทึกในเบราว์เซอร์นี้</p>
-    <button className="sf-btn sf-guest-go" autoFocus onClick={onEnter}>เข้าเกม</button>
+    {hasSave && <button className="sf-btn sf-guest-go" autoFocus onClick={onEnter}>เข้าเกม (ตัวละครเดิม)</button>}
+    <button className={`sf-btn sf-guest-go${hasSave ? ' ghost' : ''}`} autoFocus={!hasSave} onClick={onCreate}>สร้างตัวละครใหม่</button>
+    {hasSave && <p className="sf-muted">สร้างตัวละครใหม่จะแทนที่ตัวละครเดิมในเบราว์เซอร์นี้</p>}
     <a className="sf-guest-back" href="/">← กลับหน้าเว็บไซต์</a>
   </div>;
 }
@@ -161,7 +172,7 @@ function RegisterForm() {
     <label className="sf-check"><input id="reg-rules" type="checkbox" checked={f.rules} onChange={e => setF({ ...f, rules: e.target.checked })} /> ยอมรับกติกา Closed Beta: 1 โค้ดต่อ 1 บัญชี · ห้ามซื้อขายโค้ด · ข้อมูลอาจถูกรีเซ็ตเมื่อจบเบต้า</label>
     <button className="sf-btn" disabled={busy}>{busy ? 'กำลังสร้างบัญชี…' : 'สร้างบัญชี'}</button>
     {msg && <p className="sf-error" role="alert">{msg}</p>}
-    <p className="sf-muted">สร้างบัญชีแล้วจะไปหน้าสร้าง Berserker (เลือกชาย/หญิง) และตั้งชื่อตัวละคร</p>
+    <p className="sf-muted">สร้างบัญชีแล้วจะไปหน้าสร้างตัวละคร (เลือกอาชีพ ชาย/หญิง) และตั้งชื่อ</p>
   </form>;
 }
 

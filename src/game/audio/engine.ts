@@ -6,6 +6,13 @@ export type MusicId = 'title' | 'field';
 export const VOICE_LINES: Record<string, string> = {
   Berserker: 'ยิ่งเลือดเดือด ขวานของข้ายิ่งหนักขึ้น',
   Reaver: 'ทุกชีวิตที่ขวางทาง คือผลผลิตที่รอเก็บเกี่ยว',
+  Paladin: 'โล่นี้คือคำสัตย์ ข้าจะยืนอยู่ตรงนี้จนตัวตาย',
+  Hawkeye: 'ลมสงบ เป้านิ่ง ศรดอกเดียวก็พอ',
+  RuneMaster: 'ทุกอักขระคือคำสั่ง และโลกต้องเชื่อฟัง',
+  Elementalist: 'ไฟ น้ำแข็ง สายฟ้า จงตอบรับเสียงเรียกของข้า',
+  Assassin: 'เจ้าจะไม่ทันเห็นเงาของข้าด้วยซ้ำ',
+  HighPriest: 'แสงสว่างจะนำทางเรา แม้ในคืนที่มืดที่สุด',
+  Inquisitor: 'ความผิดบาปทุกอย่าง ต้องได้รับการพิพากษา',
 };
 /** speech pitch / rate for the TTS fallback (round 13: Berserker, and the Reaver a little deeper) */
 const VOICE_TONE: Record<string, Record<'m' | 'f', { pitch: number; rate: number }>> = {
@@ -115,6 +122,9 @@ const ELEMENT_SFX: Record<string, string> = { fire: 'fireball', frost: 'frost', 
 export const sfxForElement = (el: string | undefined) => ELEMENT_SFX[el ?? 'physical'] ?? 'magic_bolt';
 export const BASIC_SFX: Record<string, { swing: string; hit: string }> = {
   Berserker: { swing: 'swing_heavy', hit: 'hit_slash' }, Reaver: { swing: 'swing_heavy', hit: 'hit_blunt' },
+  Paladin: { swing: 'swing', hit: 'hit_metal' }, Assassin: { swing: 'swing', hit: 'hit_slash' }, Hawkeye: { swing: 'arrow_release', hit: 'arrow_hit' },
+  Inquisitor: { swing: 'arrow_release', hit: 'holy' }, Elementalist: { swing: 'fireball', hit: 'magic_bolt' }, RuneMaster: { swing: 'rune', hit: 'magic_bolt' },
+  HighPriest: { swing: 'holy', hit: 'magic_bolt' },
 };
 export type MonsterTier = 'normal' | 'elite' | 'boss';
 export const MONSTER_SFX: Record<MonsterTier, { aggro: string; attack: string; hurt: string; die: string; cast: string }> = {

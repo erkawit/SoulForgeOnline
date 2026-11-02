@@ -9,7 +9,7 @@
 // (questEvent in src/game/quests.ts) the caller feeds back through `applyEvents`.
 import { POTION_RECIPES, SOUL_STONES, stoneFor } from '../ui/forgeCatalog';
 import type { GearSlot, Item, Loot, Monster, Player, Rarity } from '@/lib/types';
-import { CITIES, homePoint, arrivalPoint, isCity, nearPortal, portalsOf, statClass, type ClassId, type CityId } from '../content';
+import { CITIES, CLASS_IDS, isClass, homePoint, arrivalPoint, isCity, nearPortal, portalsOf, statClass, type ClassId, type CityId } from '../content';
 import { spawnPoints } from '../spawns';
 import { monsterStats, type ActiveBuff, type Derived } from '../balance/stats';
 import { deriveFor, rollLoot } from '@/lib/combat';
@@ -21,7 +21,7 @@ import { newbieBuff, refreshNewbie } from '../balance/buffs';
 import { resolveEnhance } from '../balance/enhance';
 import { craftBlocker, craftCost, crystalCraft as crystalRoll, crystalId, rollCraft, type CraftSlot, type CrystalTier } from '../balance/craft';
 import { learn, resetCost, starterLevels, type Hotbar, type SkillLevels, type SkillLibrary } from '../skills/engine';
-import { DEFAULT_HOTBAR, REAVER_SKILLS } from '../skills/defaults';
+import { CLASS_EXTRA, DEFAULT_HOTBAR, REAVER_SKILLS } from '../skills/defaults';
 import { acceptQuest as acceptQ, questEvent, turnInQuest as turnInQ, QUEST_BY_ID, stageUnlocked, type QuestEvent, type QuestLog, type SkillReward } from '../quests';
 import { zoneAt } from '../world/zones';
 import type { GameConfig } from '../balance/config';
@@ -121,7 +121,7 @@ export function grantKill(s: CharState, m: Monster, ctx: Ctx): Ok {
   const d = derive(s, ctx);
   // round 12: party EXP (balance/party.ts) — ctx.party = members on this map within range, the killer included
   state.player.gold += monsterSoulGod(m, ctx.config); state.player.exp += Math.round(monsterExp(m) * (1 + d.expBonus) * (1 + partyExpBonus(ctx.party ?? 1)));
-  const loot = [...(m.boss ? bossDrops(m).map(i => ({ ...i, id: ctx.uuid() })) : []), ...rollLoot(m, 'Berserker', ctx.config, rng).map(i => ({ ...i, id: ctx.uuid() }))];
+  const loot = [...(m.boss ? bossDrops(m).map(i => ({ ...i, id: ctx.uuid() })) : []), ...rollLoot(m, classOf(s), ctx.config, rng).map(i => ({ ...i, id: ctx.uuid() }))];
   // crafting materials: ore from everything (more in the Sorrowlands), shards / cores from elites, food now and then
   const zone = state.player.cityId === 'wild0' ? zoneAt(m.x, m.z) : null, mat = (id: string, q: number) => ({ ...newItem(id, ctx), qty: q });
   if (rng() < .8) loot.push(mat('material-ore', Math.max(1, Math.round((1 + rng() * 1.5) * (m.elite ? 3 : 1) * (zone ? 1.5 : 1)))));
@@ -165,7 +165,7 @@ export function swapInventory(s: CharState, from: number, to: number): Result {
 }
 export function equip(s: CharState, index: number, ctx: Ctx): Result {
   const item = s.inventory[index]; if (!item || !item.slot) return fail('Nothing to equip');
-  if (!canEquipItem(item, 'Berserker')) return fail(`${item.name} ใช้ได้เฉพาะ ${item.classLock ?? 'อาชีพอื่น'} เท่านั้น`);
+  if (!canEquipItem(item, classOf(s))) return fail(`${item.name} ใช้ได้เฉพาะ ${item.classLock ?? 'อาชีพอื่น'} เท่านั้น`);
   const inventory = [...s.inventory], old = s.equipment[item.slot]; inventory[index] = old;
   const equipment = { ...s.equipment, [item.slot]: item }, maxHp = derive({ ...s, equipment }, ctx).maxHp;
   return done({ ...s, inventory, equipment, player: { ...s.player, hp: Math.min(s.player.hp, maxHp) } }, [`Equipped ${item.name}`], [{ type: 'equip', slot: item.slot }]);
@@ -268,11 +268,11 @@ export function crystalCraft(s: CharState, tier: CrystalTier, cls: ClassId, slot
   return done({ ...s, inventory }, [`คริสตัล ${r.spend} เม็ด → ${it.name} (100%)`], [{ type: 'craft', rarity: tier }], { msg: `คริสตัลหลอมเป็น ${it.name} สำเร็จ 100%` });
 }
 export function claimStarterKit(s: CharState, ctx: Ctx): Result {
-  const cls: ClassId = 'Berserker';
+  const cls: ClassId = classOf(s);
   if (!near(s, 'starter')) return fail('ต้องคุยกับ Quartermaster Hale'); if (s.starterKits.includes(cls)) return fail(`รับชุด ${cls} ไปแล้ว`);
-  const ids = STARTER_KITS[cls], free = s.inventory.filter(i => i === null).length; if (free < ids.length) return fail(`ต้องมีช่องว่างในกระเป๋า ${ids.length} ช่อง`);
+  const ids = STARTER_KITS[cls] ?? STARTER_KITS.Berserker, free = s.inventory.filter(i => i === null).length; if (free < ids.length) return fail(`ต้องมีช่องว่างในกระเป๋า ${ids.length} ช่อง`);
   const inventory = [...s.inventory];
-  for (const id of ids) inventory[inventory.indexOf(null)] = { ...makeGear(id, cls, ctx.rng), id: ctx.uuid(), classLock: cls };
+  for (const id of ids) inventory[inventory.indexOf(null)] = { ...makeGear(id, cls, ctx.rng), id: ctx.uuid(), ...(cls === 'Berserker' ? { classLock: cls } : {}) };
   return done({ ...s, inventory, starterKits: [...s.starterKits, cls] }, [`ได้รับชุดเริ่มต้น ${cls} (ดูในกระเป๋า I)`]);
 }
 export function receiveBlessing(s: CharState, ctx: Ctx): Result {
@@ -289,12 +289,12 @@ export function forgeSoul(s: CharState): Result {
 // ------------------------------------------------------------------ skills, class advancement
 export const freshSkills = (lib: SkillLibrary, cls: ClassId = 'Berserker') => ({ skillLevels: starterLevels(lib, cls), hotbar: { ...DEFAULT_HOTBAR[cls] } as Hotbar });
 export function learnSkill(s: CharState, id: string, ctx: Ctx): Result {
-  const r = learn(ctx.skills, 'Berserker', id, s.skillLevels, s.player.level, s.player.promotionId === 'Reaver');
+  const r = learn(ctx.skills, classOf(s), id, s.skillLevels, s.player.level, s.player.promotionId === 'Reaver');
   if (!r.ok) return fail(r.reason ?? 'เรียนไม่ได้'); const def = ctx.skills.defs.find(d => d.id === id)!;
   return done({ ...s, skillLevels: r.levels }, [`เรียน ${def.name} Lv.${r.levels[id]}`], [{ type: 'learn', skill: id }]);
 }
 export function resetSkills(s: CharState, ctx: Ctx): Result {
-  const cls: ClassId = 'Berserker';
+  const cls: ClassId = classOf(s);
   if (!near(s, 'skills')) return fail('ต้องคุยกับ Master Ysolde ในเมือง');
   const cost = resetCost(s.player.level, ctx.config.economy.skillResetBase, ctx.config.economy.skillResetPerLevel);
   if (s.player.gold < cost) return fail(`ต้องใช้ ${cost.toLocaleString()} SoulGod`);
@@ -302,13 +302,13 @@ export function resetSkills(s: CharState, ctx: Ctx): Result {
 }
 export function setHotbar(s: CharState, slot: keyof Hotbar, id: string, ctx: Ctx): Result {
   const def = ctx.skills.defs.find(d => d.id === id);
-  if (!def || def.kind !== 'active' || def.cls !== 'Berserker' || !(s.skillLevels[id] > 0) || !(slot in s.hotbar)) return fail('Invalid skill');
+  if (!def || def.kind !== 'active' || def.cls !== classOf(s) || !(s.skillLevels[id] > 0) || !(slot in s.hotbar)) return fail('Invalid skill');
   const hotbar = { ...s.hotbar }; for (const k of Object.keys(hotbar) as (keyof Hotbar)[]) if (hotbar[k] === id) hotbar[k] = s.hotbar[slot]; hotbar[slot] = id;
   return done({ ...s, hotbar });
 }
 /** class advancement at the plaza (within 6 m of the centre of a capital) */
 export function promote(s: CharState, id: PromotionId): Result {
-  if (Math.hypot(...s.player.position) >= 6 || !canPromote('Berserker', s.player.level, s.player.promotionId, id, stageUnlocked(s.quests))) return fail('ต้องผ่านเควสทดสอบสายอาชีพของ Master Ysolde ก่อน และยืนที่ลานกลางเมือง');
+  if (Math.hypot(...s.player.position) >= 6 || !canPromote(classOf(s), s.player.level, s.player.promotionId, id, stageUnlocked(s.quests))) return fail('ต้องผ่านเควสทดสอบสายอาชีพของ Master Ysolde ก่อน และยืนที่ลานกลางเมือง');
   // the six Reaver skills open at rank 1 and take over their Berserker slots (the Berserker ranks are kept)
   const skillLevels = { ...s.skillLevels }; for (const sid of REAVER_SKILLS) if (!(skillLevels[sid] > 0)) skillLevels[sid] = 1;
   return done({ ...s, skillLevels, player: { ...s.player, promotionId: id } }, [`เลื่อนขั้นเป็น ${id}! สกิลทั้ง 6 ช่องพัฒนาร่างแล้ว (ต้นไม้สกิล K)`]);
@@ -317,6 +317,7 @@ export function promote(s: CharState, id: PromotionId): Result {
 // ------------------------------------------------------------------ quests
 /** the hotbar skill a quest teaches for this class (slots 4–6 are the class's extra skills) */
 export const QUEST_EXTRA: Record<ClassId, [string, string, string]> = {
+  ...(CLASS_EXTRA as Record<Exclude<ClassId, 'Berserker'>, [string, string, string]>),
   Berserker: ['b-carnage-cyclone', 'b-execution-frenzy', 'b-whirlwind'],
 };
 export function questSkill(cls: ClassId, slot: SkillReward): string | null {
@@ -338,7 +339,7 @@ export function turnInQuest(s: CharState, id: string, npc: string | null, ctx: C
   for (const [it, n] of r.rewards.items ?? []) { const next = SHOP_ITEMS.some(x => x.id === it) ? giveShop(inventory, it, n, ctx) : giveTo(inventory, it, n, ctx); if (next) inventory = next; }
   const state: CharState = { ...s, quests: r.log, inventory, player: { ...s.player, gold: s.player.gold + r.rewards.soulGod, exp: s.player.exp + r.rewards.xp } }, log: string[] = [];
   // skills taught by the quest giver: at least level 1, no skill point spent
-  for (const slot of r.rewards.skills ?? []) { const sid = questSkill('Berserker', slot); if (sid && !(state.skillLevels[sid] > 0)) { state.skillLevels = { ...state.skillLevels, [sid]: 1 }; log.push(`เรียนสกิลใหม่จากภารกิจ: ${ctx.skills.defs.find(d => d.id === sid)?.name ?? sid}`); } }
+  for (const slot of r.rewards.skills ?? []) { const sid = questSkill(classOf(s), slot); if (sid && !(state.skillLevels[sid] > 0)) { state.skillLevels = { ...state.skillLevels, [sid]: 1 }; log.push(`เรียนสกิลใหม่จากภารกิจ: ${ctx.skills.defs.find(d => d.id === sid)?.name ?? sid}`); } }
   levelUps(state, ctx, log, [], false);
   return done(state, [`ส่งเควส ${QUEST_BY_ID[id].title} · EXP +${r.rewards.xp} · SoulGod +${r.rewards.soulGod}`, ...log]);
 }
@@ -374,11 +375,15 @@ export { nearPortal };
  *  off-hand slot for the bag, or the ground under the character when the bag is full; skills of the old classes are
  *  dropped (their points return automatically: points come from the level); a Reaver advancement is kept at Lv60+.
  *  Idempotent — a migrated state comes back unchanged (same object). */
+/** round 20: the character's own class (old saves without one are Berserkers) */
+const classOf = (s: { player: { classId?: unknown } }): ClassId => isClass(s.player.classId) ? s.player.classId : 'Berserker';
 export function migrateCharState(s: CharState, lib: SkillLibrary): CharState {
-  const known = new Set(lib.defs.filter(d => d.cls === 'Berserker').map(d => d.id));
+  // round 20: the eight current classes keep their class; only the five retired ones become Berserkers
+  const cls: ClassId = CLASS_IDS.includes(s.player.classId as ClassId) ? s.player.classId as ClassId : 'Berserker';
+  const known = new Set(lib.defs.filter(d => d.cls === cls).map(d => d.id));
   const oldSkills = Object.keys(s.skillLevels ?? {}).some(id => !known.has(id));
-  const promo = validPromotion('Berserker', s.player.level, s.player.promotionId);
-  const touched = (s.player.classId as string) !== 'Berserker' || promo !== s.player.promotionId || oldSkills || !!s.equipment.offhand
+  const promo = validPromotion(cls, s.player.level, s.player.promotionId);
+  const touched = (s.player.classId as string) !== cls || promo !== s.player.promotionId || oldSkills || !!s.equipment.offhand
     || [...s.inventory, ...Object.values(s.equipment), ...s.drops.map(d => d.item)].some(i => !!i && migrateClassItem(i) !== i);
   if (!touched) return s;
   const inventory = s.inventory.map(i => migrateClassItem(i));
@@ -387,10 +392,10 @@ export function migrateCharState(s: CharState, lib: SkillLibrary): CharState {
   const off = equipment.offhand; equipment.offhand = null;
   if (off) { const free = inventory.indexOf(null); if (free >= 0) inventory[free] = off; else drops = [...drops, { id: `${off.id}-drop`, x: s.player.position[0], z: s.player.position[1], item: off }]; }
   const skillLevels = Object.fromEntries(Object.entries(s.skillLevels ?? {}).filter(([id]) => known.has(id)));
-  const fresh = freshSkills(lib, 'Berserker');
+  const fresh = freshSkills(lib, cls);
   const hotbarOk = Object.values(s.hotbar ?? {}).every(id => !id || known.has(id));
   return { ...s, inventory, equipment, drops,
-    player: { ...s.player, classId: 'Berserker', promotionId: promo },
+    player: { ...s.player, classId: cls, promotionId: promo },
     skillLevels: Object.keys(skillLevels).length ? { ...fresh.skillLevels, ...skillLevels } : fresh.skillLevels,
     hotbar: hotbarOk && Object.keys(skillLevels).length ? s.hotbar : fresh.hotbar };
 }

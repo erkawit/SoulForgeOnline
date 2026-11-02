@@ -10,6 +10,7 @@ import { useCallback } from 'react';
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { createSnapshot, useGameStore } from '@/store/useGameStore';
 import { audio } from '@/game/audio/engine';
+import { isClass } from '@/game/content';
 import AutoPilot from './AutoPilot';
 import UiScale from './UiScale';
 
@@ -19,11 +20,13 @@ const GameWorld = dynamic(() => import('./GameWorld'), { ssr: false,
 export default function GameClient() {
   // title music on the login / creation screens; GameRoot switches to the field theme
   useEffect(() => { audio.init(); try { const a = JSON.parse(localStorage.getItem('sf-audio') ?? 'null'); if (a) audio.configure(a); } catch { /* */ } audio.playMusic('title'); }, []);
-  const onProfile = useCallback((p: BetaProfile) => useGameStore.getState().applyProfile(p.display_name ?? 'Adventurer', 'Berserker', p.gender === 'f' ? 'f' : 'm'), []);
+  const onProfile = useCallback((p: BetaProfile) => useGameStore.getState().applyProfile(p.display_name ?? 'Adventurer', isClass(p.class_id) ? p.class_id : 'Berserker', p.gender === 'f' ? 'f' : 'm'), []);
   return <AuthGate onProfile={onProfile}><GameRoot /></AuthGate>;
 }
 
 function GameRoot() {
+  // dev only: the store on window for test scripts
+  useEffect(() => { if (process.env.NODE_ENV !== 'production') (window as unknown as { __game?: typeof useGameStore }).__game = useGameStore; }, []);
   useEffect(() => { audio.playMusic('field'); const t = setTimeout(() => useGameStore.getState().tip('start'), 1500); return () => { clearTimeout(t); audio.playMusic('title'); }; }, []);
   useEffect(() => {
     try {

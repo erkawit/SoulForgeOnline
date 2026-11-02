@@ -6,6 +6,13 @@ import type { ItemOption } from './stats';
 /** Specials that make sense per class (a Berserker never rolls Healing power). */
 export const CLASS_SPECIALS: Record<ClassKey, SpecialKey[]> = {
   Berserker: ['atkPct', 'defPct', 'hpPct', 'critRate', 'critDmg', 'atkSpeed', 'skillDmg', 'bossDmg', 'lifesteal', 'dmgReduce', 'moveSpeed', 'cdr'],
+  Paladin: ['atkPct', 'defPct', 'hpPct', 'critRate', 'skillDmg', 'bossDmg', 'lifesteal', 'dmgReduce', 'moveSpeed', 'cdr', 'healPower'],
+  Hawkeye: ['atkPct', 'hpPct', 'critRate', 'critDmg', 'atkSpeed', 'skillDmg', 'bossDmg', 'moveSpeed', 'cdr'],
+  RuneMaster: ['atkPct', 'hpPct', 'mpPct', 'critRate', 'critDmg', 'skillDmg', 'bossDmg', 'cdr', 'moveSpeed'],
+  Elementalist: ['atkPct', 'hpPct', 'mpPct', 'critRate', 'critDmg', 'skillDmg', 'bossDmg', 'cdr', 'moveSpeed'],
+  Assassin: ['atkPct', 'hpPct', 'critRate', 'critDmg', 'atkSpeed', 'skillDmg', 'bossDmg', 'lifesteal', 'moveSpeed', 'cdr'],
+  HighPriest: ['hpPct', 'mpPct', 'defPct', 'healPower', 'cdr', 'skillDmg', 'dmgReduce', 'moveSpeed', 'atkPct'],
+  Inquisitor: ['atkPct', 'hpPct', 'critRate', 'critDmg', 'atkSpeed', 'skillDmg', 'bossDmg', 'cdr', 'moveSpeed'],
   Reaver: ['atkPct', 'defPct', 'hpPct', 'critRate', 'critDmg', 'atkSpeed', 'skillDmg', 'bossDmg', 'lifesteal', 'dmgReduce', 'moveSpeed', 'cdr'],
 };
 
