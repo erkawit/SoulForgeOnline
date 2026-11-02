@@ -18,7 +18,7 @@ import type { CharacterClip } from '@/game/characterModels';
 /** body model: the bare base, or a whole outfit body (same Mixamo skeleton and clips), e.g. 'thai' */
 /** whole dressed bodies (Meshy outfit on the same T-pose mannequin, skinned with the base body's weights, same skeleton
  *  and clips). The class outfit is what a hero wears with no fashion outfit on; 'base' is the bare mannequin. */
-export const OUTFIT3D = new Set<string>(['base']);
+export const OUTFIT3D = new Set<string>(['base', 'berserker']);
 // the Berserker outfit body is on hold (not checked in every clip yet): every hero wears the bare base body
 export const CLASS_OUTFIT3D = 'base';
 export const HERO3D_URL = (g: 'm' | 'f', outfit?: string | null) => `/models/hero/hero-${outfit && OUTFIT3D.has(outfit) ? outfit : CLASS_OUTFIT3D}-${g}.glb`;
@@ -88,12 +88,14 @@ function fitHair(model: Object3D, fit = HAIR_FIT.m) {
 }
 
 // per body (its hands sit differently in the same clip): position in metres from the right-hand bone, rotation (XYZ)
-const GRIP: Record<'m' | 'f', { pos: [number, number, number]; rot: [number, number, number] }> = {
-  // base bodies, measured in /dev-hero (handle through both fists, edge facing forward)
-  m: { pos: [-0.1531, 0.0208, 0.0074], rot: [1.627, -0.932, -2.568] },
-  f: { pos: [-0.1261, -0.017, -0.0455], rot: [1.981, -0.714, -2.12] },
+type Grip = { pos: [number, number, number]; rot: [number, number, number] };
+/** where the greatsword sits in the right hand, per body (each Mixamo rig puts the hands a little differently): position
+ *  in metres from the right-hand bone, rotation XYZ. Measured in /dev-hero: the handle runs through both closed fists. */
+const GRIP: Record<string, Record<'m' | 'f', Grip>> = {
+  base: { m: { pos: [-0.1531, 0.0208, 0.0074], rot: [1.627, -0.932, -2.568] }, f: { pos: [-0.1261, -0.017, -0.0455], rot: [1.981, -0.714, -2.12] } },
+  berserker: { m: { pos: [-0.1308, 0.0125, 0.0986], rot: [0.657, -0.914, 2.481] }, f: { pos: [-0.1596, 0.033, 0.0436], rot: [-0.06, -1.411, 1.962] } },
 };
-function Weapon({ hand, url, gender }: { hand: Bone; url: string; gender: 'm' | 'f' }) {
+function Weapon({ hand, url, grip }: { hand: Bone; url: string; grip: Grip }) {
   const { scene } = useGLTF(url);
   const obj = useMemo(() => { const g = new Group(); const s = scene.clone(true); paint(s); s.scale.setScalar(WEAPON_LEN); g.add(s); return g; }, [scene]);
   useEffect(() => {
@@ -102,11 +104,11 @@ function Weapon({ hand, url, gender }: { hand: Bone; url: string; gender: 'm' | 
     // grip measured on the base body in the Great Sword idle with GRIP_CURL: the handle runs through the middle of both
     // closed fists (the right fist just under the guard, the left one at the pommel end of the handle), and the blade is
     // rolled so its edges face where the hero faces (the flat to the sides). Weapon GLBs: blade along -Z, edges along X.
-    const gp = GRIP[gender]; obj.position.set(gp.pos[0] / ws.x, gp.pos[1] / ws.y, gp.pos[2] / ws.z); obj.rotation.set(...gp.rot);
+    const gp = grip; obj.position.set(gp.pos[0] / ws.x, gp.pos[1] / ws.y, gp.pos[2] / ws.z); obj.rotation.set(...gp.rot);
     hand.add(obj);
     if (process.env.NODE_ENV !== 'production') (window as unknown as { __heroWeapon?: Object3D }).__heroWeapon = obj; // dev: tune the grip live
     return () => { hand.remove(obj); };
-  }, [hand, obj, gender]);
+  }, [hand, obj, grip]);
   return null;
 }
 
@@ -116,6 +118,7 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
   /** whole-body outfit model ('thai') or the bare base */ outfit?: string | null;
   /** 3D hair style (Hair_<style> meshes on the head bone, tinted) — the other styles stay hidden */ hair?: string; hairColor?: string; hideHair?: boolean;
 }) {
+  const body = outfit && OUTFIT3D.has(outfit) ? outfit : CLASS_OUTFIT3D;
   const { scene, animations } = useGLTF(HERO3D_URL(gender, outfit));
   const model = useMemo(() => {
     const m = cloneSkinned(scene); paint(m); return m;
@@ -175,6 +178,6 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
     if (!noWeapon) for (const b of fingers) { const last = b.userData.curled as Quaternion | undefined; if (last && b.quaternion.equals(last)) continue;
       b.rotation.x += GRIP_CURL; b.userData.curled = b.quaternion.clone(); }
   });
-  return <group ref={root}>{hand && !noWeapon && <Weapon hand={hand} gender={gender} url={WEAPON3D_URL(weaponTier, weaponSkin)} />}</group>;
+  return <group ref={root}>{hand && !noWeapon && <Weapon hand={hand} grip={(GRIP[body] ?? GRIP.base)[gender]} url={WEAPON3D_URL(weaponTier, weaponSkin)} />}</group>;
 }
 useGLTF.preload(HERO3D_URL('m'));

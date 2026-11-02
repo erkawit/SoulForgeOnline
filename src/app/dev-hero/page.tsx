@@ -28,7 +28,7 @@ export default function DevHero() {
   return <div style={{ position: 'fixed', inset: 0, background: '#2a2433' }}>
     <Canvas camera={{ fov: 30, position: [0, 1.2, 4.2] }} dpr={1} gl={{ preserveDrawingBuffer: true, alpha: true }}>
       <ambientLight intensity={1.4} /><directionalLight position={[-3, 5, 4]} intensity={2.2} /><Rig />
-      <Suspense fallback={null}><Hero3D key={g} gender={g} clip={clip as never} hair={hair} hairColor="#a9a9ad" weaponTier={0} /></Suspense>
+      <Suspense fallback={null}><Hero3D key={g + (q?.get('outfit') ?? '')} gender={g} outfit={q?.get('outfit') ?? null} clip={clip as never} hair={hair} hairColor="#a9a9ad" weaponTier={0} /></Suspense>
     </Canvas>
   </div>;
 }
