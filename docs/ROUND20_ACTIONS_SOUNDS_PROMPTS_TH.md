@@ -96,3 +96,47 @@ ElevenLabs → Sound Effects → วางคำบรรยาย (ภาษา
 | inquisitor_thor_hammer.mp3 | 2.5 | a giant hammer swinging down with a deep whoosh, earth-shaking impact, massive thunderclap |
 
 ได้ภาพหรือเสียงครบชุดไหน บอกผมได้เลย ผมจะใส่เกม ปรับจังหวะให้ตรงเฟรมที่โดน (เฟรม 4) แล้วผูกเสียงกับสกิล
+
+## D. Berserker (และ Reaver ร่างเลื่อนขั้น Lv60) — เอฟเฟกต์ + เสียง
+
+สถานะตอนนี้: Berserker มีท่าครบและไอคอนแล้ว แต่ **เอฟเฟกต์สกิลยังเป็นแบบโค้ดวาดเอง** (วงฟันสีแดง วงแหวนพื้น) ยังไม่มีภาพวาด
+และ **เสียงเป็นเสียงกลาง** (ฟันหนัก ๆ เหมือนกันทุกสกิล, คำรามใช้เสียงบัฟทั่วไป)
+
+### D1. เอฟเฟกต์ (ChatGPT แชทเดียวกับเอฟเฟกต์ Rune Master / Inquisitor) — 12 ภาพ
+ใช้กติกาเดิม: พื้นดำสนิท 1536×1024, 6 เฟรม (3 คอลัมน์ × 2 แถว), ตั้งชื่อตามวงเล็บ วางใน `Downloads\All Class\effect_skill\Berserker\`
+
+```
+Same rules as the Rune Master and Inquisitor effects: pure black background, 1536x1024, exactly 6 frames in a 3x2 grid
+(build-up, peak, fade), no characters, no text, glowing painted magic, camera about 30 degrees down.
+Theme: BERSERKER — blood red and ember orange rage, dark smoke, sparks. One image per reply, then wait for "next".
+ 1. [Rending-Rush.png]       four fast crossing blood-red slash arcs, blood droplets spraying
+ 2. [Blood-Howl.png]         a roaring shockwave of red rage rising upward, ember sparks, red aura pillar
+ 3. [Carnage-Cyclone.png]    a spinning red tornado of greatsword slashes (loopable spin)
+ 4. [Bloodquake.png]         a greatsword slamming the ground, red cracks and molten ground burst
+ 5. [Execution-Frenzy.png]   two slashes then one huge downward execution slash glowing white-red
+ 6. [Whirlwind.png]          a wide continuous ring of spinning blades with red wind and sparks (loopable)
+Theme for 7-12: REAVER — darker crimson and violet soul fire, black smoke, ghostly skull wisps.
+ 7. [Savage-Rend.png]        six savage crimson-violet claw slashes, soul sparks
+ 8. [Dread-Howl.png]         a dark violet roar shockwave with screaming ghostly skulls rising
+ 9. [Reaping-Cyclone.png]    a spinning scythe-like crimson-violet vortex (loopable)
+10. [Ruinbreaker.png]        an axe smash cracking the ground, violet soul fire bursting from the cracks
+11. [Soul-Reave.png]         a ghostly violet soul ripped out in a spiral, then a crimson finishing slash
+12. [Cataclysm-Descent.png]  a falling blast from the sky: a crimson meteor-like impact, huge violet-red explosion ring
+Start with effect 1.
+```
+
+### D2. เสียง (ElevenLabs) — วางใน `Downloads\All Class\sfx\`
+
+| ไฟล์ | วินาที | คำบรรยาย |
+|---|---|---|
+| berserker_swing.mp3 | 0.7 | a huge greatsword swinging through the air with a deep heavy whoosh |
+| berserker_hit.mp3 | 0.6 | a greatsword cleaving armor, brutal metal crunch with a wet slash |
+| berserker_rending_rush.mp3 | 1.2 | four rapid brutal sword slashes in a row, blood splatter |
+| berserker_blood_howl.mp3 | 1.5 | a savage warrior battle roar, deep and furious, echoing |
+| berserker_cyclone.mp3 | 2.5 | a greatsword spinning rapidly, continuous heavy whooshing blades, loopable |
+| berserker_bloodquake.mp3 | 1.5 | a giant sword slamming the ground three times, earth cracking, rocks flying |
+| berserker_execution.mp3 | 1.5 | two quick slashes then one massive executioner strike with a deep impact boom |
+| berserker_whirlwind.mp3 | 6 | a long whirlwind of spinning blades and rushing wind, intense and continuous |
+| reaver_dread_howl.mp3 | 1.5 | a demonic roar mixed with ghostly screams, dark and terrifying |
+| reaver_soul_reave.mp3 | 1.5 | a ghostly soul being torn out with an eerie wail, then a heavy slash |
+| reaver_cataclysm.mp3 | 2.5 | a warrior leaping and crashing down from the sky, huge dark explosion, deep rumble |
