@@ -11,7 +11,16 @@ export const skillIconIndex = (id: string | null | undefined) => {
   return cell ? cell - 1 : -1;
 };
 /** CSS for an element that should show the icon of `id` (empty object when the skill has no icon cell) */
+/** round 20: the new classes' own icons (scripts/sprites/build_class_icons.py) — 9 columns = the class's skills in
+ *  skills/classes.ts order (6 actives, then 3 passives), one row per class */
+export const CLASS_ICON_ATLAS = '/art/ui-forge/skills-classes.webp';
+const CLASS_ROWS = ['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'];
 export function skillIconStyle(id: string | null | undefined): Record<string, string> {
+  const own = id ? DEFAULT_SKILLS.defs.find(d => d.id === id) : undefined, row = own ? CLASS_ROWS.indexOf(own.cls) : -1;
+  if (own && row >= 0 && SLOT_OF.has(own.id)) {
+    const col = SLOT_OF.get(own.id)!;
+    return { backgroundImage: `url(${CLASS_ICON_ATLAS})`, backgroundSize: `900% ${CLASS_ROWS.length * 100}%`, backgroundPosition: `${col / 8 * 100}% ${row / (CLASS_ROWS.length - 1) * 100}%` };
+  }
   const i = skillIconIndex(id); if (i < 0 || i >= SKILL_ICON_COLS * SKILL_ICON_ROWS) return {};
   const c = i % SKILL_ICON_COLS, r = Math.floor(i / SKILL_ICON_COLS);
   return { backgroundImage: `url(${SKILL_ICON_ATLAS})`, backgroundSize: `${1261/210*100}% ${1247/200*100}%`,

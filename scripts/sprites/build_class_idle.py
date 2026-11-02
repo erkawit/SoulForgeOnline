@@ -27,21 +27,21 @@ def gap(counts, lo, hi):
     seg = np.convolve(counts[lo:hi].astype(float), np.ones(5) / 5, mode='same'); m = seg.min()
     idx = np.where(seg <= m + 0.5)[0]; return lo + int(idx[len(idx) // 2])
 
-def cut(path):
+def cut(path, ncols=4):
     """5 x 4 figures on a regular grid. Centres = evenly spaced peaks of the opaque mass; the line between two neighbours is
     the emptiest line inside that column (rows) / that row (columns), so a head never goes to the row above and a sword
     tip stays with its owner."""
     im = Image.open(path).convert('RGBA'); arr = np.array(im); a = arr[:, :, 3]; H, W = a.shape; solid = a > 60
-    ys_c = peaks((a > 200).sum(1).astype(float), 5, H // 7); xs_c = peaks((a > 200).sum(0).astype(float), 4, W // 6)
-    xb = [0] + [(xs_c[i] + xs_c[i + 1]) // 2 for i in range(3)] + [W]   # rough column strips to find the row gaps
+    ys_c = peaks((a > 200).sum(1).astype(float), 5, H // 7); xs_c = peaks((a > 200).sum(0).astype(float), ncols, W // (ncols + 2))
+    xb = [0] + [(xs_c[i] + xs_c[i + 1]) // 2 for i in range(ncols - 1)] + [W]   # rough column strips to find the row gaps
     out = []
     for r in range(5):
         frames = []
-        for c in range(4):
+        for c in range(ncols):
             strip = solid[:, xb[c]:xb[c + 1]].sum(1)
             top = 0 if r == 0 else gap(strip, ys_c[r - 1], ys_c[r]); bot = H if r == 4 else gap(strip, ys_c[r], ys_c[r + 1])
             band = solid[top:bot].sum(0)
-            left = 0 if c == 0 else gap(band, xs_c[c - 1], xs_c[c]); right = W if c == 3 else gap(band, xs_c[c], xs_c[c + 1])
+            left = 0 if c == 0 else gap(band, xs_c[c - 1], xs_c[c]); right = W if c == ncols - 1 else gap(band, xs_c[c], xs_c[c + 1])
             px = arr[top:bot, left:right].copy()
             # slivers of a neighbour cut by the cell line: small blobs touching the cell edge
             lab, n = ndimage.label(px[:, :, 3] > 8); sizes = ndimage.sum(np.ones_like(lab), lab, range(1, n + 1)); big = sizes.max()
@@ -56,32 +56,44 @@ def cut(path):
         out.append(frames)
     return out
 
+# action -> (frames per row, file names tried, scale from its own south row?)
+ACTIONS = [('idle', 4, ['{c}', '{c}.png', '{c}-{g}.png'], True), ('walk', 6, ['{c}_walk.png', '{c}-{g}_walk.png'], True),
+           ('attack', 6, ['{c}_attack.png'], True), ('skill', 6, ['{c}_skill.png'], True), ('buff', 4, ['{c}_buff.png'], True),
+           ('death', 5, ['{c}_death.png'], False)]
 anims, frames = {}, {}
 for cls in CLASSES:
-    cand = [f for f in os.listdir(SRC) if os.path.splitext(f)[0] in (cls, f'{cls}-{G}')]
-    if not cand: print('skip', cls); continue
-    grid = cut(os.path.join(SRC, cand[0]))
-    body = np.median([f[0].size[1] for f in grid[0]])  # south-facing idle height
-    k = BODY_PX / body
-    scaled = [[(c.resize((max(1, round(c.size[0] * k)), max(1, round(c.size[1] * k))), Image.LANCZOS), fx * k) for c, fx in row] for row in grid]
-    # cell: wide enough for the furthest reach either side of the feet, tall enough for the tallest frame
-    left = max(fx for row in scaled for _, fx in row); right = max(c.size[0] - fx for row in scaled for c, fx in row)
-    half = int(np.ceil(max(left, right))) + PAD; cw = half * 2; ch = int(max(c.size[1] for row in scaled for c, _ in row)) + PAD * 2
-    dirs = scaled + [[(c.transpose(Image.FLIP_LEFT_RIGHT), c.size[0] - fx) for c, fx in scaled[i]] for i in (3, 2, 1)]  # NE, E, SE
-    cols, n = 16, 32; atlas = Image.new('RGBA', (cw * cols, ch * (n // cols)), (0, 0, 0, 0))
-    for d, row in enumerate(dirs):
-        for f, (c, fx) in enumerate(row):
-            i = d * 4 + f; cx, cy = (i % cols) * cw, (i // cols) * ch
-            atlas.alpha_composite(c, (cx + int(round(half - fx)), cy + ch - PAD - c.size[1]))
+    sheets = []
+    for act, n, names, own in ACTIONS:
+        path = next((os.path.join(SRC, x.format(c=cls, g=G)) for x in names if os.path.exists(os.path.join(SRC, x.format(c=cls, g=G)))), None)
+        if path: sheets.append((act, n, cut(path, n), own))
+    if not sheets or sheets[0][0] != 'idle': print('skip', cls); continue
+    k_idle = BODY_PX / np.median([f[0].size[1] for f in sheets[0][2][0]])
+    clips, scaled_all = {}, []
+    for act, n, grid, own in sheets:
+        k = BODY_PX / np.median([f[0].size[1] for f in grid[0]]) if own else k_idle
+        sc = [[(c.resize((max(1, round(c.size[0] * k)), max(1, round(c.size[1] * k))), Image.LANCZOS), fx * k) for c, fx in row] for row in grid]
+        scaled_all.append((act, n, sc + [[(c.transpose(Image.FLIP_LEFT_RIGHT), c.size[0] - fx) for c, fx in sc[i]] for i in (3, 2, 1)]))  # + NE, E, SE
+    # one cell for every clip: wide enough for the furthest reach either side of the feet, tall enough for the tallest frame
+    allf = [cf for _, _, dirs in scaled_all for row in dirs for cf in row]
+    half = int(np.ceil(max(max(fx for _, fx in allf), max(c.size[0] - fx for c, fx in allf)))) + PAD; cw = half * 2
+    ch = int(max(c.size[1] for c, _ in allf)) + PAD * 2
+    total = sum(8 * n for _, n, _ in scaled_all); cols = min(16, 4096 // cw); rows = (total + cols - 1) // cols  # stay inside a 4096 px texture (mobile GPUs)
+    atlas = Image.new('RGBA', (cw * cols, ch * rows), (0, 0, 0, 0)); start = 0
+    for act, n, dirs in scaled_all:
+        clips[act] = [start, n]
+        for d, row in enumerate(dirs):
+            for f, (c, fx) in enumerate(row):
+                i = start + d * n + f; cx, cy = (i % cols) * cw, (i // cols) * ch
+                atlas.alpha_composite(c, (cx + int(round(half - fx)), cy + ch - PAD - c.size[1]))
+        start += 8 * n
     key = f'{G}-{cls}'
-    atlas.save(os.path.join(ROOT, 'public', 'art', 'anim', key + '.webp'), 'WEBP', quality=90, method=6)
+    atlas.save(os.path.join(ROOT, 'public', 'art', 'anim', key + '.webp'), 'WEBP', quality=88, method=6)
     still = atlas.crop((0, 0, cw, ch)); bb = still.getbbox(); still = still.crop((bb[0], 0, bb[2], ch))
     still.save(os.path.join(ROOT, 'public', 'art', 'sprites', key + '.webp'), 'WEBP', quality=90, method=6)
-    sh = ch - PAD  # still: feet at PAD from the bottom
-    anims[key] = {'cw': cw, 'ch': ch, 'cols': cols, 'n': n, 'fx': 0.5, 'fy': round(PAD / ch, 4), 'bodyPx': BODY_PX, 'clips': {'idle': [0, 4]}, 'dirs': 8}
+    anims[key] = {'cw': cw, 'ch': ch, 'cols': cols, 'n': total, 'fx': 0.5, 'fy': round(PAD / ch, 4), 'bodyPx': BODY_PX, 'clips': clips, 'dirs': 8}
     hs = WORLD_H * ch / BODY_PX
     frames[key] = {'w': round(hs * still.size[0] / ch, 4), 'h': round(WORLD_H, 4), 'fx': round((half - bb[0]) / still.size[0], 4), 'fy': round(PAD / ch, 4), 'px': [still.size[0], ch]}
-    print(key, 'cell', cw, ch, 'scale', round(k, 3))
+    print(key, 'cell', cw, ch, 'clips', clips, 'atlas', atlas.size)
 
 ts = os.path.join(ROOT, 'src', 'game', 'sprites', 'classAnims.ts')
 old = {}
@@ -93,8 +105,7 @@ if os.path.exists(ts):
 anims = {**old.get('ANIMS', {}), **anims}; frames = {**old.get('FRAMES', {}), **frames}
 with open(ts, 'w', encoding='utf-8', newline='\n') as f:
     f.write('// Round 20: 8-direction idle sheets of the new classes (ChatGPT, 5 painted facings + 3 mirrored), built by\n')
-    f.write('// scripts/sprites/build_class_idle.py — do not edit by hand. Walk / attack / skill play as rig motion on these frames\n')
-    f.write('// until the per-action sheets ship.\n')
+    f.write('// scripts/sprites/build_class_idle.py — do not edit by hand. Actions without a sheet play as rig motion on the idle frames\n')
     f.write("import type { SpriteAnim } from './anims';\nimport type { SpriteFrame } from './frames';\n")
     f.write('export const CLASS_ANIMS: Record<string, SpriteAnim> = ' + json.dumps(anims, indent=1) + ';\n')
     f.write('export const CLASS_FRAMES: Record<string, SpriteFrame> = ' + json.dumps(frames, indent=1) + ';\n')
