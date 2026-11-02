@@ -123,7 +123,7 @@ export const sfxForElement = (el: string | undefined) => ELEMENT_SFX[el ?? 'phys
 export const BASIC_SFX: Record<string, { swing: string; hit: string }> = {
   Berserker: { swing: 'swing_heavy', hit: 'hit_slash' }, Reaver: { swing: 'swing_heavy', hit: 'hit_blunt' },
   Paladin: { swing: 'swing', hit: 'hit_metal' }, Assassin: { swing: 'swing', hit: 'hit_slash' }, Hawkeye: { swing: 'arrow_release', hit: 'arrow_hit' },
-  Inquisitor: { swing: 'swing', hit: 'hit_blunt' }, Elementalist: { swing: 'fireball', hit: 'magic_bolt' }, RuneMaster: { swing: 'swing', hit: 'rune' },
+  Inquisitor: { swing: 'swing', hit: 'lightning' }, Elementalist: { swing: 'fireball', hit: 'magic_bolt' }, RuneMaster: { swing: 'swing', hit: 'rune' },
   HighPriest: { swing: 'holy', hit: 'magic_bolt' },
 };
 export type MonsterTier = 'normal' | 'elite' | 'boss';

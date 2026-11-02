@@ -41,15 +41,17 @@ const KITS: Kit[] = [
     pas(H, 'h-hunter', 'Hunter Instinct', 'สัญชาตญาณพราน', [{ stat: 'critDmg', perLevel: 4 }], 'ดาเมจคริ +4% ต่อเลเวล'),
   ] },
   { cls: R, actives: [
-    act(R, { id: 'r2-rune-bolt', name: 'Rune Slash', th: 'ฟันอักขระ', motion: 'Attack', fx: 'attack', mp: 8, cd: 4, range: 2.4, effects: [dmg('single', 0.75, 0.05, 'arcane', 0, { hits: 2, hitIntervalMs: 200 })], description: 'ฟันดาบรูน 2 ครั้ง ครั้งละ 75% ATK (ดาเมจเวท)' }),
-    act(R, { id: 'r2-inscription', name: 'Inscription', th: 'จารึกพลัง', motion: 'Buff', fx: 'buff', mp: 16, cd: 25, range: 0, effects: [buff('atkPct', 12, 2, 12, 'party'), buff('defPct', 8, 1, 12, 'party')], description: 'ปาร์ตี้ ATK +12% และ DEF +8% นาน 12 วินาที' }),
-    act(R, { id: 'r2-rune-fracture', name: 'Rune Fracture', th: 'อักขระแตกสลาย', motion: 'Special', fx: 'special', mp: 24, cd: 12, range: 3, effects: [dmg('circle', 1.6, 0.12, 'arcane', 2.8, { delayMs: 300, maxTargets: 6 })], description: 'ปักดาบลงพื้น อักขระระเบิด 160% ATK รัศมี 2.8 ม.' }),
-    act(R, { id: 'r2-rune-trap', name: 'Rune Trap', th: 'กับดักอักขระ', motion: 'Skill', fx: 'skill', mp: 18, cd: 10, range: 6, effects: [dot(0.35, 'arcane', 5, 2.4), debuff('slow', 35, 4, 2.4)], description: 'ขว้างแผ่นอักขระวางวงกับดัก ดาเมจต่อเนื่อง 5 วินาทีและทำให้ช้าลง' }),
-    act(R, { id: 'r2-sigil-ward', name: 'Sigil Ward', th: 'ตราผนึกป้องกัน', motion: 'Buff', fx: 'buff', mp: 20, cd: 30, range: 0, effects: [{ type: 'shield', pctMaxHp: 15, perLevel: 1.5, durationSec: 10 }], description: 'เกราะอักขระ 15% ของ HP นาน 10 วินาที' }),
-    act(R, { id: 'r2-concord-circle', name: 'Concord Circle', th: 'วงอักขระสามัคคี', motion: 'Special', fx: 'special', mp: 45, cd: 70, range: 0, ultimate: true, effects: [dmg('self-circle', 0.7, 0.08, 'arcane', 3.6, { hits: 8, hitIntervalMs: 400, maxTargets: 10 })], description: 'ท่าไม้ตาย: วงอักขระใหญ่รอบตัวระเบิดต่อเนื่อง 8 ครั้ง รัศมี 3.6 ม.' }),
+    // Rune Master: rune-blade spellsword. Basic attack = a slash that launches a magic sword wave (range 5).
+    // Skills plant rune pillars (pillar effects in fx/skillFx.ts SKILL_FX) — damage, bind, heal, party buff, hex — plus a venom burst.
+    act(R, { id: 'r2-venom-burst', name: 'Venom Rune Burst', th: 'ระเบิดอักขระพิษ', motion: 'Attack', fx: 'attack', mp: 14, cd: 8, range: 6, effects: [dmg('circle', 1.2, 0.08, 'nature', 2.8, { delayMs: 250, maxTargets: 8 }), dot(0.18, 'nature', 4, 2.8)], description: 'อักขระพิษระเบิดกลางกลุ่มศัตรู 120% ATK รัศมี 2.8 ม. และพิษ 4 วินาที' }),
+    act(R, { id: 'r2-valor-pillar', name: 'Pillar of Valor', th: 'เสาอักขระเสริมพลัง', motion: 'Buff', fx: 'buff', mp: 20, cd: 30, range: 0, effects: [buff('atkPct', 15, 2, 15, 'party'), buff('defPct', 15, 2, 15, 'party')], description: 'ปักเสาเสริมพลัง ตัวเองและปาร์ตี้ในระยะ 8 ม. ATK +15% และ DEF +15% นาน 15 วินาที' }),
+    act(R, { id: 'r2-binding-pillar', name: 'Binding Pillar', th: 'เสาอักขระตรึง', motion: 'Special', fx: 'special', mp: 22, cd: 14, range: 6, effects: [debuff('slow', 100, 3, 3), dmg('circle', 0.4, 0.04, 'arcane', 3, { hits: 3, hitIntervalMs: 1000, maxTargets: 8 })], description: 'ปักเสาตรึงศัตรูทั้งกลุ่มรัศมี 3 ม. ให้ขยับไม่ได้ 3 วินาที พร้อมดาเมจ 3 ครั้ง' }),
+    act(R, { id: 'r2-renewal-pillar', name: 'Pillar of Renewal', th: 'เสาอักขระฟื้นฟู', motion: 'Buff', fx: 'buff', mp: 26, cd: 20, range: 0, effects: [{ type: 'heal', target: 'party', radius: 8, coefficient: 1.0, perLevel: 0.1, pctMaxHp: 8 }, buff('hpRegen', 8, 1.5, 10, 'party')], description: 'ปักเสาฟื้นฟู รักษาตัวเองและปาร์ตี้ในระยะ 8 ม. และฟื้น HP ต่อเนื่อง 10 วินาที' }),
+    act(R, { id: 'r2-hex-pillar', name: 'Pillar of Hexes', th: 'เสาอักขระสาป', motion: 'Special', fx: 'special', mp: 20, cd: 18, range: 6, effects: [debuff('defPct', 20, 10, 3.5), debuff('atkPct', 15, 10, 3.5)], description: 'ปักเสาสาปกลางกลุ่มศัตรู รัศมี 3.5 ม. เกราะ −20% และพลังโจมตี −15% นาน 10 วินาที (ใช้กับบอสได้)' }),
+    act(R, { id: 'r2-ruin-pillar', name: 'Pillar of Ruin', th: 'เสาอักขระพินาศ', motion: 'Special', fx: 'special', mp: 45, cd: 70, range: 6, ultimate: true, effects: [dmg('circle', 0.6, 0.07, 'arcane', 3.6, { hits: 10, hitIntervalMs: 500, maxTargets: 10 })], description: 'ท่าไม้ตาย: ปักเสาอักขระยักษ์ ยิงพลังเวทใส่ศัตรูรอบเสา 10 ครั้งใน 5 วินาที รัศมี 3.6 ม.' }),
   ], passives: [
     pas(R, 'r2-glyph-lore', 'Glyph Lore', 'ปราชญ์อักขระ', [{ stat: 'skillDmg', perLevel: 2 }], 'ดาเมจสกิล +2% ต่อเลเวล'),
-    pas(R, 'r2-deep-well', 'Rune Edge', 'คมอักขระ', [{ stat: 'critRate', perLevel: 1.5 }], 'คริ +1.5% ต่อเลเวล'),
+    pas(R, 'r2-deep-well', 'Rune Edge', 'คมดาบเวท', [{ stat: 'critRate', perLevel: 1.5 }], 'คริ +1.5% ต่อเลเวล'),
     pas(R, 'r2-swift-script', 'Swift Script', 'จารเร็ว', [{ stat: 'cdr', perLevel: 1.5 }], 'ลดคูลดาวน์ 1.5% ต่อเลเวล'),
   ] },
   { cls: E, actives: [
@@ -89,14 +91,15 @@ const KITS: Kit[] = [
     pas(Q, 'q-grace', 'Grace', 'พระคุณ', [{ stat: 'cdr', perLevel: 1.5 }], 'ลดคูลดาวน์ 1.5% ต่อเลเวล'),
   ] },
   { cls: I, actives: [
-    act(I, { id: 'i-holy-bolt', name: 'Judgement Hammer', th: 'ค้อนพิพากษา', motion: 'Attack', fx: 'attack', mp: 8, cd: 4, range: 2.2, effects: [dmg('single', 1.5, 0.1, 'holy'), debuff('slow', 25, 2)], description: 'ทุบค้อนศักดิ์สิทธิ์ 150% ATK และทำให้ช้าลง 2 วินาที' }),
-    act(I, { id: 'i-mark-of-guilt', name: 'Mark of Guilt', th: 'ตราบาป', motion: 'Buff', fx: 'buff', mp: 14, cd: 20, range: 4, effects: [debuff('defPct', 20, 10), debuff('atkPct', 10, 10)], description: 'ประทับตราบาป เป้าเกราะ −20% และพลังโจมตี −10% นาน 10 วินาที' }),
-    act(I, { id: 'i-purging-volley', name: 'Purging Slam', th: 'ทุบชำระบาป', motion: 'Special', fx: 'special', mp: 24, cd: 12, range: 0, effects: [dmg('self-circle', 0.9, 0.06, 'holy', 2.8, { hits: 2, hitIntervalMs: 300, maxTargets: 6 })], description: 'ทุบพื้นแสงศักดิ์สิทธิ์ 2 ครั้ง รัศมี 2.8 ม.' }),
-    act(I, { id: 'i-zeal', name: 'Zeal', th: 'ศรัทธาเดือด', motion: 'Buff', fx: 'buff', mp: 16, cd: 25, range: 0, effects: [buff('atkSpeed', 20, 2, 12), buff('atkPct', 10, 2, 12)], description: 'ความเร็วโจมตี +20% และ ATK +10% นาน 12 วินาที' }),
-    act(I, { id: 'i-chain-of-faith', name: 'Shield of Faith', th: 'โล่ศรัทธา', motion: 'Buff', fx: 'buff', mp: 18, cd: 20, range: 0, effects: [{ type: 'guard', reducePct: 40, perLevel: 3, durationSec: 4 }, { type: 'heal', target: 'self', coefficient: 0.8, perLevel: 0.08, pctMaxHp: 5 }], description: 'ยกโล่ลดดาเมจ 40% นาน 4 วินาที และฟื้น HP' }),
-    act(I, { id: 'i-final-verdict', name: 'Final Verdict', th: 'คำตัดสินสุดท้าย', motion: 'Special', fx: 'special', mp: 45, cd: 70, range: 2.6, ultimate: true, cast: 600, effects: [dmg('circle', 4.5, 0.5, 'holy', 2.4, { maxTargets: 5, execute: { below: 0.35, mul: 1.5 } })], description: 'ท่าไม้ตาย: ฟาดค้อนศักดิ์สิทธิ์ลงเต็มแรง 450% รัศมี 2.4 ม. · HP ≤ 35% รับ ×1.5' }),
+    // Inquisitor: storm judge with hammer and shield — lightning magic (storm cloud, Thor's hammer, lightning pillars).
+    act(I, { id: 'i-thunder-smite', name: 'Thunder Smite', th: 'ค้อนอัสนี', motion: 'Attack', fx: 'attack', mp: 8, cd: 4, range: 2.4, effects: [dmg('single', 1.6, 0.1, 'storm'), debuff('slow', 25, 2)], description: 'ทุบค้อนอัดสายฟ้า 160% ATK และทำให้ช้าลง 2 วินาที' }),
+    act(I, { id: 'i-lightning-burst', name: 'Lightning Burst', th: 'ระเบิดพลังสายฟ้า', motion: 'Skill', fx: 'skill', mp: 18, cd: 10, range: 0, effects: [dmg('self-circle', 1.3, 0.08, 'storm', 3, { maxTargets: 8 }), { type: 'knockback', distance: 1.2 }], description: 'ปลดพลังสายฟ้ารอบตัว 130% ATK รัศมี 3 ม. และผลักศัตรูออก' }),
+    act(I, { id: 'i-storm-cloud', name: 'Thunderstorm', th: 'เมฆพายุอัสนี', motion: 'Special', fx: 'special', mp: 26, cd: 14, range: 8, effects: [dmg('circle', 0.45, 0.05, 'storm', 3.5, { hits: 8, hitIntervalMs: 500, maxTargets: 8 })], description: 'ร่ายเมฆครึ้มเหนือศัตรู ฟ้าผ่าลงมา 8 ครั้งใน 4 วินาที รัศมี 3.5 ม.' }),
+    act(I, { id: 'i-shock-pillar', name: 'Shock Pillar', th: 'เสาช็อตอัสนี', motion: 'Special', fx: 'special', mp: 22, cd: 16, range: 7, effects: [dmg('circle', 0.4, 0.04, 'storm', 3, { hits: 6, hitIntervalMs: 700, maxTargets: 8 }), debuff('slow', 30, 4, 3)], description: 'ปักเสาสายฟ้า ช็อตศัตรูรอบเสาเป็นกลุ่ม 6 ครั้งใน 4 วินาที และทำให้ช้าลง' }),
+    act(I, { id: 'i-blast-pillar', name: 'Thunder Spike', th: 'เสาระเบิดอัสนี', motion: 'Special', fx: 'special', mp: 24, cd: 15, range: 7, effects: [dmg('circle', 2.6, 0.2, 'storm', 3, { delayMs: 1400, maxTargets: 8 })], description: 'ปักเสาสายฟ้าที่สะสมพลังแล้วระเบิด 260% ATK รัศมี 3 ม.' }),
+    act(I, { id: 'i-mjolnir', name: 'Hammer of Thor', th: 'ค้อนเทพธอร์', motion: 'Special', fx: 'special', mp: 50, cd: 75, range: 8, ultimate: true, cast: 600, effects: [dmg('circle', 5, 0.5, 'storm', 4, { delayMs: 900, maxTargets: 10 }), { type: 'knockback', distance: 1.5 }], description: 'ท่าไม้ตาย: เรียกค้อนเทพธอร์เหวี่ยงลงจากฟ้าทุบพื้น 500% ATK รัศมี 4 ม.' }),
   ], passives: [
-    pas(I, 'i-conviction', 'Conviction', 'ปณิธาน', [{ stat: 'defPct', perLevel: 2.5 }], 'DEF +2.5% ต่อเลเวล'),
+    pas(I, 'i-conviction', 'Storm Conduit', 'ตัวนำพายุ', [{ stat: 'skillDmg', perLevel: 2.4 }], 'ดาเมจสกิล +2.4% ต่อเลเวล'),
     pas(I, 'i-hunter-of-heretics', 'Heretic Hunter', 'นักล่านอกรีต', [{ stat: 'bossDmg', perLevel: 3 }], 'ดาเมจบอส +3% ต่อเลเวล'),
     pas(I, 'i-iron-faith', 'Iron Faith', 'ศรัทธาเหล็ก', [{ stat: 'dmgReduce', perLevel: 1 }], 'ลดดาเมจที่ได้รับ 1% ต่อเลเวล'),
   ] },

@@ -2,7 +2,7 @@
 // Pure three.js so the game (R3F) and the standalone preview viewer share the same code.
 import {
   AdditiveBlending, BufferAttribute, BufferGeometry, CanvasTexture, ConeGeometry, CylinderGeometry, DoubleSide, Group,
-  IcosahedronGeometry, Material, Mesh, MeshBasicMaterial, NormalBlending, Object3D, PlaneGeometry, Points, PointsMaterial,
+  IcosahedronGeometry, BoxGeometry, Material, Mesh, MeshBasicMaterial, NormalBlending, Object3D, PlaneGeometry, Points, PointsMaterial,
   RingGeometry, ShaderMaterial, SphereGeometry, Sprite, SpriteMaterial, Texture, TorusGeometry, Vector3, Color,
 } from 'three';
 
@@ -10,7 +10,7 @@ type FxBase = 'Warrior' | 'Mage' | 'Priest' | 'Archer' | 'Enchanter';
 export type FxClass = 'Berserker' | FxBase | 'Paladin' | 'Hawkeye' | 'RuneMaster' | 'Elementalist' | 'Assassin' | 'HighPriest' | 'Inquisitor';
 /** round 20: each playable class borrows one of the five effect designs (own colours from FX_COLORS) */
 const FX_BASE: Record<FxClass, FxBase> = { Berserker: 'Warrior', Warrior: 'Warrior', Mage: 'Mage', Priest: 'Priest', Archer: 'Archer', Enchanter: 'Enchanter',
-  Paladin: 'Warrior', Assassin: 'Warrior', Hawkeye: 'Archer', Inquisitor: 'Priest', RuneMaster: 'Enchanter', Elementalist: 'Mage', HighPriest: 'Priest' };
+  Paladin: 'Warrior', Assassin: 'Warrior', Hawkeye: 'Archer', Inquisitor: 'Mage', RuneMaster: 'Enchanter', Elementalist: 'Mage', HighPriest: 'Priest' };
 export type FxKind = 'attack' | 'skill' | 'buff' | 'special';
 export interface FxSpec { cls: FxClass; kind: FxKind; origin: Vector3; yaw: number; target?: Vector3 | null; color?: string;
   /** combo step 0,1,2… — alternates slash direction, the 3rd hit is a finisher */ combo?: number; /** 0..1 charge (Archer charged shot / long casts) scales the effect */ power?: number; }
@@ -18,7 +18,7 @@ export interface FxHandle { update(dt: number): boolean; dispose(): void; readon
 
 export const FX_COLORS: Record<FxClass, [string, string]> = {
   Berserker: ['#ff9368', '#8a1c1c'], Warrior: ['#62d7cb', '#b3263a'], Mage: ['#b685ff', '#3b1a6e'], Priest: ['#ffdb86', '#ff9a3c'], Archer: ['#8bdb9a', '#e8f5c8'], Enchanter: ['#62dfdf', '#d9b45c'],
-  Paladin: ['#ffe08a', '#5b7bd6'], Assassin: ['#c97bff', '#2a1838'], Hawkeye: ['#8bdb9a', '#e8f5c8'], Inquisitor: ['#ffb35c', '#fff1c8'], RuneMaster: ['#62dfdf', '#d9b45c'], Elementalist: ['#ff8a4a', '#6fc8ff'], HighPriest: ['#ffdb86', '#ffffff'],
+  Paladin: ['#ffe08a', '#5b7bd6'], Assassin: ['#c97bff', '#2a1838'], Hawkeye: ['#8bdb9a', '#e8f5c8'], Inquisitor: ['#8fd3ff', '#ffffff'], RuneMaster: ['#62dfdf', '#d9b45c'], Elementalist: ['#ff8a4a', '#6fc8ff'], HighPriest: ['#ffdb86', '#ffffff'],
 };
 /** when (0..1 of the action) the hit lands — matches the chibi clip timing */
 export const FX_DURATION: Record<FxKind, number> = { attack: 0.65, skill: 1.0, buff: 1.1, special: 2.0 };
@@ -342,6 +342,123 @@ function arrow(color: string, scale = 1) {
   };
 }
 
+// ---------------------------------------------------------------- round 20: per-skill effects (Rune Master pillars, Inquisitor lightning)
+/** a jagged lightning bolt from -> to that flickers between a and b (re-rolls its zig-zag every few frames) */
+function lightning(fx: Fx, from: Vector3, to: Vector3, color: string, a: number, b: number, width = 0.05, segs = 9) {
+  const g = new Group(); fx.object.add(g); const mats: MeshBasicMaterial[] = []; const parts: Mesh[] = [];
+  for (let i = 0; i < segs; i++) for (const [w, col] of [[width, color], [width * 0.35, '#ffffff']] as const) {
+    const m = glowMat(col, 0); mats.push(m); const mesh = new Mesh(new CylinderGeometry(w, w, 1, 5, 1, true), m); g.add(mesh); parts.push(mesh);
+  }
+  let seed = -1; const pts: Vector3[] = [];
+  const roll = () => { pts.length = 0; const len = from.distanceTo(to); for (let i = 0; i <= segs; i++) { const p = from.clone().lerp(to, i / segs); if (i > 0 && i < segs) p.add(new Vector3((Math.random() - 0.5) * len * 0.12, (Math.random() - 0.5) * len * 0.05, (Math.random() - 0.5) * len * 0.12)); pts.push(p); } };
+  fx.add(g, mats, (t, el) => {
+    const k = ph(t, a, b); g.visible = k > 0 && k < 1; if (!g.visible) return;
+    const r = Math.floor(el * 30); if (r !== seed) { seed = r; roll(); }
+    for (let i = 0; i < segs; i++) for (let j = 0; j < 2; j++) {
+      const mesh = parts[i * 2 + j], p0 = pts[i], p1 = pts[i + 1], d = p1.clone().sub(p0);
+      mesh.position.copy(p0).addScaledVector(d, 0.5); mesh.scale.set(1, d.length(), 1); mesh.quaternion.setFromUnitVectors(new Vector3(0, 1, 0), d.normalize());
+    }
+    const flick = 0.6 + 0.4 * Math.sin(el * 70); for (const m of mats) m.opacity = flick * Math.min(1, (1 - k) * 4);
+  });
+}
+/** a rune pillar planted at `at`: a four-sided stone obelisk with glowing runes, a rune circle and an aura band, alive a..b */
+function runePillar(fx: Fx, at: Vector3, color: string, a: number, b: number, height = 1.9, style: Parameters<typeof runeCircleTex>[0] = 'hex', radius = 1.4) {
+  const stone = new MeshBasicMaterial({ color: '#2a2f38', transparent: true, opacity: 0 });
+  const geo = new CylinderGeometry(0.16, 0.3, height, 4, 1); geo.translate(0, height / 2, 0); const body = new Mesh(geo, stone); body.position.copy(at); body.rotation.y = Math.PI / 4;
+  const rm = glowMat(color, 0, glyphTex(3)); const rgeo = new CylinderGeometry(0.165, 0.305, height * 0.9, 4, 1, true); rgeo.translate(0, height * 0.48, 0); const runes = new Mesh(rgeo, rm); runes.position.copy(at); runes.rotation.y = Math.PI / 4;
+  const cap = flare(fx, at.clone().setY(at.y + height + 0.15), color, 0.9, a, b, 0.25);
+  const rise = (k: number) => ease(Math.min(1, k * 8)); void cap;
+  fx.add(body, stone, t => { const k = ph(t, a, b); body.visible = k > 0 && k < 1; body.scale.set(1, rise(k), 1); stone.opacity = Math.min(1, k * 10) * Math.min(1, (1 - k) * 8); });
+  fx.add(runes, rm, (t, el) => { const k = ph(t, a, b); runes.visible = k > 0 && k < 1; runes.scale.set(1, rise(k), 1); rm.opacity = (0.65 + 0.35 * Math.sin(el * 6)) * Math.min(1, k * 8) * Math.min(1, (1 - k) * 8); });
+  runeCircle(fx, at, color, radius, a, b, style, 0.8, 0.9);
+  sparks(fx, at.clone().setY(at.y + 0.1), color, 14, 0.5, a, b, { up: 6, gravity: -1.2, spread: radius, size: 0.12 });
+}
+/** a dark storm cloud hanging over `at` (a..b) */
+function stormCloud(fx: Fx, at: Vector3, radius: number, a: number, b: number, color: string) {
+  for (let i = 0; i < 14; i++) {
+    const m = new SpriteMaterial({ map: smokeTex(), color: i % 3 ? '#1c2230' : '#2c3550', transparent: true, depthWrite: false, opacity: 0 }); const sp = new Sprite(m);
+    const ang = Math.random() * Math.PI * 2, r = Math.random() * radius, y = 4.2 + Math.random() * 0.6, sz = 1.6 + Math.random() * 1.4;
+    fx.add(sp, m, (t, el) => { const k = ph(t, a, b); sp.visible = k > 0 && k < 1; sp.position.set(at.x + Math.cos(ang + el * 0.15) * r, y, at.z + Math.sin(ang + el * 0.15) * r); sp.scale.setScalar(sz * (0.7 + 0.3 * ease(Math.min(1, k * 5)))); m.opacity = 0.85 * Math.min(1, k * 6) * Math.min(1, (1 - k) * 5); });
+  }
+  const glow = flare(fx, at.clone().setY(4.4), color, radius * 1.6, a, b, 0.5); void glow;
+}
+/** Thor's hammer: appears up in the sky on a 45° line behind the target and swings down head-first into the ground */
+function thorHammer(fx: Fx, at: Vector3, yaw: number, color: string, hitAt: number) {
+  const back = new Vector3(-Math.sin(yaw), 0, -Math.cos(yaw)); const pivot = at.clone().addScaledVector(back, 3.2).setY(3.2); // 45°: as far back as it is high
+  const holder = new Group(); holder.position.copy(pivot); holder.rotation.y = yaw; fx.object.add(holder);
+  const arm = new Group(); holder.add(arm); // rotates about the local X axis: the swing
+  const metal = new MeshBasicMaterial({ color: '#9aa3ad', transparent: true, opacity: 0 }), dark = new MeshBasicMaterial({ color: '#4a5058', transparent: true, opacity: 0 });
+  const wood = new MeshBasicMaterial({ color: '#5b3b22', transparent: true, opacity: 0 }), rim = glowMat(color, 0);
+  const L = 4.53; // pivot -> hammer head centre = the 45° diagonal to the target
+  const handle = new Mesh(new CylinderGeometry(0.07, 0.08, L - 0.3, 8), wood); handle.position.y = -(L - 0.3) / 2; arm.add(handle);
+  const head = new Mesh(new BoxGeometry(1.2, 0.7, 0.7), metal); head.position.y = -L; arm.add(head);
+  const faceA = new Mesh(new BoxGeometry(0.14, 0.78, 0.78), dark); faceA.position.set(0.62, -L, 0); arm.add(faceA);
+  const faceB = faceA.clone(); faceB.position.x = -0.62; arm.add(faceB);
+  const glowShell = new Mesh(new BoxGeometry(1.36, 0.86, 0.86), rim); glowShell.position.y = -L; arm.add(glowShell);
+  const mats = [metal, dark, wood, rim];
+  // start raised behind (head up, pointing back), swing forward-down until the head meets the ground at the target
+  const start = -Math.PI * 0.95, end = -Math.PI / 4;
+  fx.add(holder, mats, (t, el) => {
+    const appear = Math.min(1, t / (hitAt * 0.35)), k = ph(t, hitAt * 0.35, hitAt), fade = ph(t, hitAt + 0.25, 1);
+    holder.visible = t < 1 && fade < 1; const sw = k < 1 ? start + (end - start) * (k * k) : end; // accelerates into the blow
+    arm.rotation.x = sw + (k >= 1 ? Math.sin(el * 40) * 0.015 * (1 - fade) : 0);
+    for (const m of [metal, dark, wood]) m.opacity = appear * (1 - fade); rim.opacity = (0.35 + 0.35 * Math.sin(el * 30)) * appear * (1 - fade);
+  });
+  // charged bolts crackle onto the hammer while it rises, then the impact
+  for (let i = 0; i < 3; i++) lightning(fx, pivot.clone().add(new Vector3((Math.random() - 0.5) * 3, 3, (Math.random() - 0.5) * 3)), pivot, color, i * 0.08, hitAt * 0.5 + i * 0.06, 0.04, 6);
+  impact(fx, at, color, hitAt, 2.4); groundRing(fx, at, '#ffffff', 0.4, 4.2, hitAt, Math.min(1, hitAt + 0.25), 0.08);
+  groundRing(fx, at, color, 0.5, 4.6, hitAt, Math.min(1, hitAt + 0.35), 0.22); smoke(fx, at, 12, 2.4, hitAt, 1, 0.8);
+  for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; lightning(fx, at.clone().setY(0.2), at.clone().add(new Vector3(Math.cos(a) * 3.6, 0.1, Math.sin(a) * 3.6)), color, hitAt, Math.min(1, hitAt + 0.3), 0.04, 6); }
+  sparks(fx, at.clone().setY(0.4), color, 50, 6, hitAt, Math.min(1, hitAt + 0.5), { up: 0.6, gravity: 2 });
+}
+type SkillFxSpec = { origin: Vector3; yaw: number; target: Vector3 | null };
+/** effects built for one skill: [duration s, builder] */
+const SKILL_FX: Record<string, [number, (fx: Fx, o: Vector3, tgt: Vector3, yaw: number) => void]> = {
+  // ---- Rune Master
+  'r2-venom-burst': [1.4, (fx, o, tgt) => { runeCircle(fx, tgt, '#7dff6a', 2.8, 0, 0.5, 'tri', 1.6); flare(fx, tgt.clone().setY(0.6), '#9dff7a', 3.2, 0.18, 0.5); sparks(fx, tgt.clone().setY(0.5), '#7dff6a', 46, 4.5, 0.18, 0.7, { up: 0.7 }); groundRing(fx, tgt, '#5cff8a', 0.4, 3, 0.18, 0.5, 0.2);
+    for (let i = 0; i < 12; i++) { const m = new SpriteMaterial({ map: smokeTex(), color: '#3f8a2a', transparent: true, depthWrite: false, opacity: 0 }); const sp = new Sprite(m); const ang = Math.random() * 6.28, r = Math.random() * 2.4;
+      fx.add(sp, m, t => { const k = ph(t, 0.2, 1); sp.visible = k > 0 && k < 1; sp.position.set(tgt.x + Math.cos(ang) * r * (0.5 + k), 0.4 + k * 0.8, tgt.z + Math.sin(ang) * r * (0.5 + k)); sp.scale.setScalar(1.2 + k); m.opacity = 0.55 * bell(k); }); } }],
+  'r2-valor-pillar': [15, (fx, o) => { runePillar(fx, o.clone().add(new Vector3(0.9, 0, 0.6)), '#ffd36a', 0, 1, 2, 'sun', 8); pillar(fx, o, '#ffd36a', 1.1, 2.4, 0, 0.08); }],
+  'r2-binding-pillar': [3.2, (fx, o, tgt) => { runePillar(fx, tgt, '#b685ff', 0, 1, 1.9, 'hex', 3);
+    for (let i = 0; i < 5; i++) { const a = (i / 5) * Math.PI * 2; lightning(fx, tgt.clone().setY(1.5), tgt.clone().add(new Vector3(Math.cos(a) * 2.6, 0.2, Math.sin(a) * 2.6)), '#b685ff', 0.05, 0.95, 0.03, 5); } }],
+  'r2-renewal-pillar': [10, (fx, o) => { const at = o.clone().add(new Vector3(-0.9, 0, 0.6)); runePillar(fx, at, '#6dffa8', 0, 1, 2, 'circle', 8);
+    for (let i = 0; i < 6; i++) sparks(fx, at.clone().setY(0.1), '#9dffc2', 16, 0.6, i / 6, Math.min(1, i / 6 + 0.25), { up: 8, gravity: -1.5, spread: 3, size: 0.16 }); }],
+  'r2-hex-pillar': [10, (fx, o, tgt) => { runePillar(fx, tgt, '#ff4d6a', 0, 1, 1.8, 'cross', 3.5); smoke(fx, tgt, 8, 2.2, 0, 0.3, 0.5); }],
+  'r2-ruin-pillar': [5.2, (fx, o, tgt) => { runePillar(fx, tgt, '#62dfdf', 0, 1, 3.2, 'hex', 3.6);
+    for (let i = 0; i < 10; i++) { const a = Math.random() * 6.28, r = 0.8 + Math.random() * 2.6, t0 = 0.06 + i * 0.09; const hit = tgt.clone().add(new Vector3(Math.cos(a) * r, 0, Math.sin(a) * r));
+      beam(fx, tgt.clone().setY(3.1), hit.clone().setY(0.2), '#62dfdf', 0.08, t0, t0 + 0.05); impact(fx, hit, '#62dfdf', t0 + 0.02, 0.6); } }],
+  // ---- Inquisitor
+  'i-thunder-smite': [0.9, (fx, o, tgt) => { lightning(fx, tgt.clone().setY(5), tgt.clone().setY(0.1), '#8fd3ff', 0.3, 0.6, 0.07); impact(fx, tgt, '#8fd3ff', 0.35, 1); }],
+  'i-lightning-burst': [1.1, (fx, o) => { flare(fx, o.clone().setY(1), '#cfefff', 3, 0.1, 0.5); groundRing(fx, o, '#8fd3ff', 0.4, 3.2, 0.12, 0.55, 0.2);
+    for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2; lightning(fx, o.clone().setY(1), o.clone().add(new Vector3(Math.cos(a) * 3, 0.3, Math.sin(a) * 3)), '#8fd3ff', 0.12, 0.6, 0.04, 6); }
+    sparks(fx, o.clone().setY(1), '#cfefff', 40, 5, 0.12, 0.6, { up: 0.4 }); }],
+  'i-storm-cloud': [4.4, (fx, o, tgt) => { stormCloud(fx, tgt, 3.2, 0, 1, '#4a7dff');
+    for (let i = 0; i < 8; i++) { const t0 = 0.1 + i * 0.1, a = Math.random() * 6.28, r = Math.random() * 3; const hit = tgt.clone().add(new Vector3(Math.cos(a) * r, 0, Math.sin(a) * r));
+      lightning(fx, hit.clone().setY(4.2), hit.clone().setY(0.05), '#9fdcff', t0, t0 + 0.05, 0.07); impact(fx, hit, '#8fd3ff', t0, 0.7); } }],
+  'i-shock-pillar': [4.4, (fx, o, tgt) => { runePillar(fx, tgt, '#8fd3ff', 0, 1, 2.1, 'cross', 3);
+    for (let i = 0; i < 6; i++) { const t0 = 0.06 + i * 0.15; for (let j = 0; j < 3; j++) { const a = Math.random() * 6.28, r = 1 + Math.random() * 2; lightning(fx, tgt.clone().setY(2), tgt.clone().add(new Vector3(Math.cos(a) * r, 0.5, Math.sin(a) * r)), '#8fd3ff', t0, t0 + 0.06, 0.035, 6); } } }],
+  'i-blast-pillar': [2.3, (fx, o, tgt) => { runePillar(fx, tgt, '#8fd3ff', 0, 0.64, 2.1, 'cross', 2.2); flare(fx, tgt.clone().setY(2.2), '#cfefff', 1.4, 0.1, 0.62, 1.2);
+    impact(fx, tgt, '#8fd3ff', 0.62, 2); groundRing(fx, tgt, '#ffffff', 0.4, 3.2, 0.62, 0.85, 0.1);
+    for (let i = 0; i < 7; i++) { const a = (i / 7) * Math.PI * 2; lightning(fx, tgt.clone().setY(1.2), tgt.clone().add(new Vector3(Math.cos(a) * 3, 0.2, Math.sin(a) * 3)), '#8fd3ff', 0.62, 0.85, 0.05, 6); } }],
+  'i-mjolnir': [2.4, (fx, o, tgt, yaw) => { stormCloud(fx, tgt, 2.6, 0, 0.8, '#4a7dff'); thorHammer(fx, tgt, yaw, '#8fd3ff', 0.38); }],
+};
+/** the skill's own effect, if it has one (round 20) */
+export function spawnCustomSkillFx(scene: Object3D, skillId: string | undefined, spec: SkillFxSpec): FxHandle | null {
+  const def = skillId ? SKILL_FX[skillId] : undefined; if (!def) return null;
+  const fx = new Fx(def[0]); const o = spec.origin.clone(), fwd = new Vector3(Math.sin(spec.yaw), 0, Math.cos(spec.yaw));
+  const tgt = spec.target ? spec.target.clone().setY(o.y) : o.clone().addScaledVector(fwd, 3);
+  def[1](fx, o, tgt, spec.yaw); scene.add(fx.object); fx.update(0); return fx;
+}
+/** Rune Master basic attack: the slash, then a crescent of rune light flies to the target */
+function runeSwordWave(x: Ctx) {
+  const { fx, o, yaw, tgt, c, c2, combo } = x, step = combo % 3, fin = step === 2;
+  crescent(fx, o, yaw + (step === 1 ? Math.PI : 0), c, 1.3, 2.2, 0.3, 0.55, step === 1 ? -0.35 : 0.35, 1.0);
+  const from = o.clone().addScaledVector(x.fwd, 0.8).setY(1), to = tgt.clone().setY(0.9);
+  projectile(fx, from, to, 0.38, 0.72, g => { for (const [w, col, op] of [[0.25, c, 0.9], [0.08, '#ffffff', 1]] as const) {
+    const m = glowMat(col, op); const r = fin ? 0.9 : 0.65; const mesh = new Mesh(new RingGeometry(r * (1 - w), r, 32, 1, Math.PI * 0.15, Math.PI * 0.7), m); mesh.rotation.y = Math.PI / 2; mesh.rotation.z = Math.PI / 2; g.add(mesh); } }, c2, 10);
+  impact(fx, tgt, c, 0.72, fin ? 1.2 : 0.8);
+}
+
 /** Spawn one class effect. `origin` is the caster's feet, `yaw` its facing (atan2(dx,dz)). */
 export function spawnSkillFx(scene: Object3D, spec: FxSpec): FxHandle {
   const [c0, c2] = FX_COLORS[spec.cls] ?? FX_COLORS.Warrior; const c = spec.color ?? c0;
@@ -351,7 +468,7 @@ export function spawnSkillFx(scene: Object3D, spec: FxSpec): FxHandle {
   const hand = spec.origin.clone().addScaledVector(fwd, 0.45).setY(spec.origin.y + 1.05);
   const ctx: Ctx = { fx, o: spec.origin.clone(), yaw: spec.yaw, fwd, tgt, hand, c, c2, combo: spec.combo ?? 0, power: spec.power ?? 0 };
   if (spec.kind !== 'attack') casterAura(fx, ctx.o, c, 0, spec.kind === 'special' ? 0.7 : 0.85, spec.kind === 'buff' ? 0.85 : 0.7);
-  DESIGNS(spec.cls)[spec.kind](ctx);
+  if (spec.cls === 'RuneMaster' && spec.kind === 'attack') runeSwordWave(ctx); else DESIGNS(spec.cls)[spec.kind](ctx);
   scene.add(fx.object); fx.update(0);
   return fx;
 }

@@ -50,5 +50,5 @@ export function advanceMonster(m:Monster,player:[number,number],city:CityId,now:
   const target:[number,number]=profile.kind==='slam'?[m.x,m.z]:[...player];
   return {monster:{...base,telegraph:{kind:profile.kind,target,at:now+profile.delay,radius:profile.radius}},damage:0};
  }
- return {monster:distance<10&&distance>profile.range*.85?step(base,player,city,(m.form==='golem'?.13:.23)*(1-Math.min(.8,(m.slow??0)/100))):base,damage:0};
+ return {monster:distance<10&&distance>profile.range*.85?step(base,player,city,(m.form==='golem'?.13:.23)*((m.slow??0)>=100?0:1-Math.min(.8,(m.slow??0)/100))):base,damage:0};
 }

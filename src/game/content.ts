@@ -12,11 +12,11 @@ export const CLASS_NAME: Record<ClassId,string> = { Paladin:'Paladin', Berserker
 export const CLASSES: Record<ClassId,{role:string;cloth:string;metal:string;glow:string;range:number;skills:[string,string,string];special:string}> = {
  Paladin:{role:'One-hand sword · shield · Frontline tank',cloth:'#3d4a66',metal:'#c9ccd4',glow:'#ffe08a',range:2.2,skills:['Shield Bash','Sacred Vow','Judgement Blade'],special:'Bulwark of Dawn: a holy dome that halves the damage you take.'},
  Hawkeye:{role:'Longbow · Long-range marksman',cloth:'#33503a',metal:'#8a7552',glow:'#8bdb9a',range:9,skills:['Piercing Arrow','Eagle Eye','Arrow Rain'],special:'Storm of Talons: a long volley over the whole area.'},
- RuneMaster:{role:'Rune blade · rune tablet · Spellblade, close range',cloth:'#2d4652',metal:'#d9b45c',glow:'#62dfdf',range:2.4,skills:['Rune Slash','Inscription','Rune Fracture'],special:'Concord Circle: a great rune field around you that keeps detonating.'},
+ RuneMaster:{role:'Rune blade · rune pillars · Spellsword support',cloth:'#2d4652',metal:'#d9b45c',glow:'#62dfdf',range:5,skills:['Venom Rune Burst','Pillar of Valor','Binding Pillar'],special:'Pillar of Ruin: a giant rune pillar that blasts everything around it for 5 seconds.'},
  Elementalist:{role:'Two-hand staff · Fire, frost and storm',cloth:'#3b2a5e',metal:'#9a8fc2',glow:'#b685ff',range:8.5,skills:['Firebolt','Frost Nova','Chain Lightning'],special:'Cataclysm: fire, frost and lightning fall together.'},
  Assassin:{role:'Dual daggers · Shadow burst',cloth:'#24222c',metal:'#7c7f8c',glow:'#c97bff',range:2,skills:['Twin Fang','Shadow Step','Fan of Blades'],special:'Death Lotus: a blur of thirty cuts around you.'},
  HighPriest:{role:'Short staff · orb · Healing and blessings',cloth:'#e8e0cc',metal:'#d9b45c',glow:'#ffdb86',range:7,skills:['Holy Light','Blessing','Sanctuary'],special:'Divine Grace: a great heal and a shield for the whole party.'},
- Inquisitor:{role:'One-hand warhammer · shield · Holy bruiser',cloth:'#4a2a2a',metal:'#a8a39a',glow:'#ffb35c',range:2.2,skills:['Judgement Hammer','Mark of Guilt','Purging Slam'],special:'Final Verdict: one sanctified blow that executes the wounded.'},
+ Inquisitor:{role:'Hammer · shield · Lightning magic',cloth:'#4a2a2a',metal:'#a8a39a',glow:'#8fd3ff',range:2.4,skills:['Thunder Smite','Lightning Burst','Thunderstorm'],special:'Hammer of Thor: the god\'s hammer swings down from the sky and smashes the ground.'},
  Berserker:{role:'Two-handed greatsword · greataxe · greathammer · Frontline',cloth:'#552b32',metal:'#4d4547',glow:'#ff9368',range:2.6,skills:['Rending Rush','Blood Howl','Carnage Cyclone'],special:'Whirlwind: spin for 6 seconds — 36 strikes on everything around you.'}
 };
 /** round 13: the one advancement — Berserker → Reaver at this level (quest "การเลื่อนขั้น") */
@@ -24,7 +24,7 @@ export const REAVER_LEVEL = 60;
 /** the balance row a character uses: 'Reaver' once promoted, else its class */
 export const statClass = (p: { classId?: ClassId; promotionId?: string }): ClassId | 'Reaver' => p.promotionId === 'Reaver' && (p.classId ?? 'Berserker') === 'Berserker' ? 'Reaver' : (p.classId && CLASS_IDS.includes(p.classId) ? p.classId : 'Berserker');
 /** classes that fight from range (basic attack is a projectile) */
-export const RANGED: Record<ClassId, boolean> = { Paladin:false, Berserker:false, Hawkeye:true, RuneMaster:false, Elementalist:true, Assassin:false, HighPriest:true, Inquisitor:false };
+export const RANGED: Record<ClassId, boolean> = { Paladin:false, Berserker:false, Hawkeye:true, RuneMaster:true, Elementalist:true, Assassin:false, HighPriest:true, Inquisitor:false };
 export const TIER_COLORS=['#d9dce3','#69cf7b','#57b9f6','#ae79ed','#e35a64','#e6c36d','#fb9446','#c58aef'];
 export const TIER_NAMES=['Common','Uncommon','Rare','Epic','Legendary','God','Pre-arch','Arch'];
 export const TIER_POWER=[1,1.15,1.35,1.6,1.9,2.25,2.65,3.1];
