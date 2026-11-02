@@ -4,6 +4,11 @@
 import { SPRITE_FRAMES } from './frames';
 import { lookFrame } from './looks';
 import './codexAnims'; // registers Codex's 8-way sheets before any lookup
+import { SPRITE_ANIMS, ANIM_ALIAS } from './anims';
+import { CLASS_ANIMS, CLASS_FRAMES } from './classAnims';
+// round 20: the new classes' 8-direction idle sheets (scripts/sprites/build_class_idle.py)
+Object.assign(SPRITE_ANIMS, CLASS_ANIMS); Object.assign(SPRITE_FRAMES, CLASS_FRAMES);
+for (const key of Object.keys(CLASS_ANIMS)) { const [g, cls] = key.split('-'); ANIM_ALIAS[`hero:${g}:${cls}`] = key; }
 
 export type SpriteKey = { t: number; f?: string; arm?: number; lean?: number; sq?: number; dx?: number; dy?: number; rot?: number; glow?: number; shake?: number };
 export type SpriteClip = { dur: number; loop?: boolean; keys: SpriteKey[] };
@@ -87,10 +92,11 @@ function proceduralHero(cls: string): ActorDef['clips'] {
 }
 /** `costume` = an equipped fashion outfit (currently 'thai': reference/thai-fashion-and-grip) */
 /** round 12: `promotion` = the class-advancement look (Reaver, Archmage …) when that look has art; a costume still wins */
-/** round 20: classes whose own 8-direction sheets have not shipped yet wear the Berserker frames */
-export const ART_CLASS = (cls: string) => (['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'].includes(cls) ? 'Berserker' : cls);
+/** round 20: a new class wears its own 8-direction sheet when one exists for that gender, else the Berserker frames */
+export const ART_CLASS = (cls: string, g: Gender = 'm') => (['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'].includes(cls) && !CLASS_ANIMS[`${g}-${cls}`] ? 'Berserker' : cls);
 export function heroId(cls: string, g: Gender = 'm', costume?: string | null, promotion?: string | null) {
-  cls = ART_CLASS(cls);
+  if (!costume && CLASS_ANIMS[`${g}-${cls}`]) return `hero:${g}:${cls}`;
+  cls = ART_CLASS(cls, g);
   if (costume) return `hero:${g}:${cls}:${costume}`;
   // round 13: the Berserker (no promotion yet) wears its own painted look until the Codex 8-way frames ship
   const look = promotion ?? (cls === 'Berserker' ? 'Berserker' : null);

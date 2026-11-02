@@ -8,6 +8,7 @@ import type { Group } from 'three';
 import AnimatedCharacter from './AnimatedCharacter';
 import Hero3D from './Hero3D';
 import { HERO_3D } from '@/game/hero3d';
+import { CLASS_ANIMS } from '@/game/sprites/classAnims';
 import { Suspense } from 'react';
 import type { CharacterClip } from '@/game/characterModels';
 import type { ClassId } from '@/game/content';
@@ -30,7 +31,7 @@ function Turntable({ yaw, children }: { yaw: number; children: React.ReactNode }
 export default function FashionPreview({ look, glow = '#d9b45c' }: { look: PreviewLook; glow?: string }) {
   const list = look.catalog ?? FASHION;
   const [dir, setDir] = useState(0), [clip, setClip] = useState<CharacterClip>('Idle'), [stamp, setStamp] = useState(0);
-  const costume = outfitSprite(look.wardrobe, list) ?? 'thai'; // same rule as the field (ClassActor)
+  const costume = outfitSprite(look.wardrobe, list) ?? (CLASS_ANIMS[`${look.gender}-${look.job}`] ? null : 'thai'); // same rule as the field (ClassActor)
   const fashion = useMemo(() => overlays(look.wardrobe, list), [look.wardrobe, list]);
   const skinId = look.wardrobe.worn.weapon, weaponSkin = skinId ? FASHION_BY_ID(list)[skinId]?.weaponSheet ?? null : null;
   // one-shot clips replay every 1.6 s so the move keeps showing

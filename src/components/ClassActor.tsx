@@ -9,6 +9,7 @@ import {characterClip,type CharacterClip} from '@/game/characterModels';
 import AnimatedCharacter from './AnimatedCharacter';
 import Hero3D from './Hero3D';
 import {HERO_3D} from '@/game/hero3d';
+import {CLASS_ANIMS} from '@/game/sprites/classAnims';
 import LegacyClassActor from './LegacyClassActor';
 import {costumeSprite} from '@/game/items';
 import {useMemo} from 'react';
@@ -17,7 +18,7 @@ class ModelBoundary extends Component<{children:ReactNode},{failed:boolean}>{sta
 function BaseClassActor(){
  const job=useGameStore(s=>s.player.classId??'Berserker'),promotion=useGameStore(s=>s.player.promotionId),weapon=useGameStore(s=>s.equipment.weapon),equipCostume=useGameStore(s=>costumeSprite(s.equipment.costume)),wardrobe=useGameStore(s=>s.wardrobe),gender=useGameStore(s=>s.player.gender==='f'?'f':'m' as const),hair=useGameStore(s=>s.player.hair),hairColor=useGameStore(s=>s.player.hairColor),action=useGameStore(s=>s.action);
  // round 13: the wardrobe drives the look — outfit sprite, overlays (wings / head / aura) and the weapon skin
- const costume=outfitSprite(wardrobe)??equipCostume??'thai',/* the Thai white-gold attire is the only finished outfit so far: worn until others exist */fashion=useMemo(()=>overlays(wardrobe),[wardrobe]),weaponSkin=wardrobe?.worn.weapon?FASHION_BY_ID()[wardrobe.worn.weapon]?.weaponSheet??null:null;
+ const costume=outfitSprite(wardrobe)??equipCostume??(CLASS_ANIMS[`${gender}-${job}`]?null:'thai'),/* round 20: a class with its own painted sheet wears it *//* the Thai white-gold attire is the only finished outfit so far: worn until others exist */fashion=useMemo(()=>overlays(wardrobe),[wardrobe]),weaponSkin=wardrobe?.worn.weapon?FASHION_BY_ID()[wardrobe.worn.weapon]?.weaponSheet??null:null;
  const root=useRef<Group>(null),last=useRef<[number,number]|null>(null),facing=useRef(0),current=useRef<CharacterClip>('Idle'),speed=useRef(0),movedAt=useRef(-1e9);
  const [clip,setClip]=useState<CharacterClip>('Idle');const glow=weapon?.tier?TIER_COLORS[Math.min(7,weapon.tier)]:CLASSES[job].glow;
  useFrame((_,delta)=>{if(!root.current)return;const s=useGameStore.getState(),p=s.player.position;const distance=last.current?Math.hypot(p[0]-last.current[0],p[1]-last.current[1]):0;
