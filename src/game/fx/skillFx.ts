@@ -10,7 +10,7 @@ type FxBase = 'Warrior' | 'Mage' | 'Priest' | 'Archer' | 'Enchanter';
 export type FxClass = 'Berserker' | FxBase | 'Paladin' | 'Hawkeye' | 'RuneMaster' | 'Elementalist' | 'Assassin' | 'HighPriest' | 'Inquisitor';
 /** round 20: each playable class borrows one of the five effect designs (own colours from FX_COLORS) */
 const FX_BASE: Record<FxClass, FxBase> = { Berserker: 'Warrior', Warrior: 'Warrior', Mage: 'Mage', Priest: 'Priest', Archer: 'Archer', Enchanter: 'Enchanter',
-  Paladin: 'Warrior', Assassin: 'Warrior', Hawkeye: 'Archer', Inquisitor: 'Archer', RuneMaster: 'Enchanter', Elementalist: 'Mage', HighPriest: 'Priest' };
+  Paladin: 'Warrior', Assassin: 'Warrior', Hawkeye: 'Archer', Inquisitor: 'Priest', RuneMaster: 'Enchanter', Elementalist: 'Mage', HighPriest: 'Priest' };
 export type FxKind = 'attack' | 'skill' | 'buff' | 'special';
 export interface FxSpec { cls: FxClass; kind: FxKind; origin: Vector3; yaw: number; target?: Vector3 | null; color?: string;
   /** combo step 0,1,2… — alternates slash direction, the 3rd hit is a finisher */ combo?: number; /** 0..1 charge (Archer charged shot / long casts) scales the effect */ power?: number; }

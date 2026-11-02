@@ -43,10 +43,10 @@ export type CombatEvent = { seq: number; kind: DamageKind; value: number | strin
 let combatSeq = 0;
 const pushCombat = (list: CombatEvent[], ...evs: Omit<CombatEvent, 'seq'>[]) => [...list, ...evs.map(e => ({ ...e, seq: ++combatSeq }))].slice(-48);
 /** basic-attack chain: clip per step and damage multiplier (3rd hit is the finisher) */
-const COMBO_MULT: Record<ClassId, number[]> = { Berserker: [1, 1.1, 1.6], Paladin: [1, 1.1, 1.5], Assassin: [0.9, 1, 1.7], Hawkeye: [1, 1, 1.4], RuneMaster: [1, 1, 1.4], Elementalist: [1, 1, 1.5], HighPriest: [1, 1, 1.3], Inquisitor: [1, 1.1, 1.4] };
+const COMBO_MULT: Record<ClassId, number[]> = { Berserker: [1, 1.1, 1.6], Paladin: [1, 1.1, 1.5], Assassin: [0.9, 1, 1.7], Hawkeye: [1, 1, 1.4], RuneMaster: [1, 1.1, 1.5], Elementalist: [1, 1, 1.5], HighPriest: [1, 1, 1.3], Inquisitor: [1, 1.1, 1.6] };
 const comboClip = (cls: ClassId, step: number): CharacterClip => { void cls; return step === 1 ? 'Attack2' : 'Attack'; };
 /** ms from the swing to the visible hit (matches the class attack effect) */
-export const HIT_MS: Record<ClassId, number> = { Berserker: 340, Paladin: 320, Assassin: 220, Hawkeye: 480, RuneMaster: 460, Elementalist: 480, HighPriest: 440, Inquisitor: 420 };
+export const HIT_MS: Record<ClassId, number> = { Berserker: 340, Paladin: 320, Assassin: 220, Hawkeye: 480, RuneMaster: 300, Elementalist: 480, HighPriest: 440, Inquisitor: 360 };
 /** round 13: Rage (Berserker / Reaver resource, balance proposal berserker-v2 secondary_defaults) */
 export const RAGE = { max: 100, basicHit: 8, whenHit: 3, hitIcdMs: 600, decayDelayMs: 5000, decayPerSec: 5 };
 export const CHARGE_MAX_MS = 1600;

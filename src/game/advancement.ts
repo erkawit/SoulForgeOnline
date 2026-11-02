@@ -20,7 +20,7 @@ export function validPromotion(base:ClassId,level:number,id:unknown):PromotionId
 export function canPromote(base:ClassId,level:number,current:PromotionId|undefined,target:PromotionId,stage?:number){
  const p=PROMOTIONS[target];return !!p&&p.base===base&&level>=p.level&&(stage===undefined||stage>=p.stage)&&!current;
 }
-export const baseKit:Record<ClassId,WeaponKit>={Berserker:'greatsword',Paladin:'swordShield',Hawkeye:'bow',RuneMaster:'rune',Elementalist:'staff',Assassin:'daggers',HighPriest:'maceBook',Inquisitor:'bow'};
+export const baseKit:Record<ClassId,WeaponKit>={Berserker:'greatsword',Paladin:'swordShield',Hawkeye:'bow',RuneMaster:'spellSword',Elementalist:'staff',Assassin:'daggers',HighPriest:'maceBook',Inquisitor:'hammer'};
 export function classLook(base:ClassId,id?:PromotionId){
  const p=id&&PROMOTIONS[id]?.base===base?PROMOTIONS[id]:undefined;
  return {...CLASSES[base],...p,kit:p?.kit??baseKit[base],stage:p?3:1,name:p?.id??base,skills:p?['Savage Rend','Dread Howl','Reaping Cyclone'] as [string,string,string]:CLASSES[base].skills,

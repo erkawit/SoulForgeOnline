@@ -65,11 +65,11 @@ Same character, same size, same outfit and colors in every frame; feet on the sa
 | Paladin | holy knight in polished silver plate with blue tabard, one-handed longsword in the right hand, large kite shield with a golden sun emblem on the left arm | เงิน น้ำเงิน ทอง |
 | Berserker | savage warrior in dark red leather and iron plates, huge two-handed greatsword | แดงเข้ม เหล็กดำ |
 | Hawkeye | ranger in green hooded leather armor and cloak, longbow, quiver of arrows on the back | เขียว น้ำตาล |
-| RuneMaster (Rune Master) | rune scholar in teal robes with gold trim, floating glowing stone rune tablets around one hand, rune book at the hip | เขียวอมฟ้า ทอง |
+| RuneMaster (Rune Master) | rune swordsman in teal robes with gold trim, glowing teal rune sword in one hand, a floating glowing rune tablet above the other hand | เขียวอมฟ้า ทอง |
 | Elementalist | mage in deep purple robes, tall two-handed staff topped with a crystal crackling with fire, frost and lightning | ม่วง ส้มไฟ ฟ้าน้ำแข็ง |
 | Assassin | rogue in black and dark purple fitted leather, hood and face mask, a dagger in each hand | ดำ ม่วง |
 | HighPriest (High Priest) | priest in white and gold vestments, short staff in the right hand, glowing holy orb floating above the left hand | ขาว ทอง |
-| Inquisitor | witch hunter in a dark red long coat and wide-brimmed hat, silver armor plates, ornate one-hand crossbow | แดงเข้ม เงิน ส้มทอง |
+| Inquisitor | holy warrior in a dark red long coat and wide-brimmed hat, silver armor plates, one-handed warhammer and a red shield with a golden cross | แดงเข้ม เงิน ส้มทอง |
 
 ## 6. หลังส่งภาพ ผมทำอะไรต่อ
 
