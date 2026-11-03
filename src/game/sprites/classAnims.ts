@@ -4,10 +4,10 @@ import type { SpriteAnim } from './anims';
 import type { SpriteFrame } from './frames';
 export const CLASS_ANIMS: Record<string, SpriteAnim> = {
  "m-Paladin": {
-  "cw": 296,
+  "cw": 388,
   "ch": 236,
-  "cols": 13,
-  "n": 80,
+  "cols": 10,
+  "n": 128,
   "fx": 0.5,
   "fy": 0.0254,
   "bodyPx": 200,
@@ -19,15 +19,19 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    "walk": [
     32,
     6
+   ],
+   "attack": [
+    80,
+    6
    ]
   },
   "dirs": 8
  },
  "m-Hawkeye": {
-  "cw": 216,
+  "cw": 360,
   "ch": 223,
-  "cols": 16,
-  "n": 80,
+  "cols": 11,
+  "n": 128,
   "fx": 0.5,
   "fy": 0.0269,
   "bodyPx": 200,
@@ -39,17 +43,21 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    "walk": [
     32,
     6
+   ],
+   "attack": [
+    80,
+    6
    ]
   },
   "dirs": 8
  },
  "m-RuneMaster": {
-  "cw": 294,
-  "ch": 230,
-  "cols": 13,
-  "n": 80,
+  "cw": 490,
+  "ch": 232,
+  "cols": 8,
+  "n": 128,
   "fx": 0.5,
-  "fy": 0.0261,
+  "fy": 0.0259,
   "bodyPx": 200,
   "clips": {
    "idle": [
@@ -58,6 +66,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    ],
    "walk": [
     32,
+    6
+   ],
+   "attack": [
+    80,
     6
    ]
   },
@@ -84,10 +96,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "dirs": 8
  },
  "m-Assassin": {
-  "cw": 288,
+  "cw": 314,
   "ch": 224,
-  "cols": 14,
-  "n": 80,
+  "cols": 13,
+  "n": 128,
   "fx": 0.5,
   "fy": 0.0268,
   "bodyPx": 200,
@@ -99,15 +111,19 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    "walk": [
     32,
     6
+   ],
+   "attack": [
+    80,
+    6
    ]
   },
   "dirs": 8
  },
  "m-HighPriest": {
-  "cw": 228,
+  "cw": 476,
   "ch": 232,
-  "cols": 16,
-  "n": 80,
+  "cols": 8,
+  "n": 128,
   "fx": 0.5,
   "fy": 0.0259,
   "bodyPx": 200,
@@ -118,6 +134,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    ],
    "walk": [
     32,
+    6
+   ],
+   "attack": [
+    80,
     6
    ]
   },
@@ -169,10 +189,10 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "w": 1.6686,
   "h": 1.62,
   "fx": 0.6068,
-  "fy": 0.0261,
+  "fy": 0.0259,
   "px": [
    206,
-   230
+   232
   ]
  },
  "m-Elementalist": {

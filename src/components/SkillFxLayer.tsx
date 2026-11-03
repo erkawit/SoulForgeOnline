@@ -26,13 +26,13 @@ export default function SkillFxLayer(){
     if(!target&&a.kind!=='buff'){let best=9;for(const m of alive){const d=Math.hypot(m.x-px,m.z-pz);if(d<best){best=d;target=m;}}}
     if(target&&a.kind!=='buff')yaw.current=Math.atan2(target.x-px,target.z-pz);
     const cls=a.fx?.cls??s.player.classId??'Berserker',kind=(a.fx?.kind??a.kind) as FxKind,origin=new Vector3(px,0,pz);
-    if(a.clip==='Channel'){
-     if(a.channel){channel.current=spawnChannelFx(scene,{cls,origin,yaw:yaw.current,durationSec:a.duration/1000});live.current.push(channel.current);}
-    }else{
+    if(a.clip==='Channel'&&a.channel){
+     channel.current=spawnChannelFx(scene,{cls,origin,yaw:yaw.current,durationSec:a.duration/1000});live.current.push(channel.current);
+    }else if(a.clip!=='Channel'||a.skillId){ // round 20: a channelled spin (Whirlwind) plays its own effect
      // round 13: a painted (Codex) effect for this skill / combo step wins over the procedural one
      // round 20: the Berserker's painted basic swings belong to the Berserker only; a skill with its own effect uses it
      const painted=paintedFor(a.skillId??(a.kind==='attack'&&a.combo!=null&&cls==='Berserker'?`basic-${a.combo%3}`:undefined));
-     const custom=painted?null:spawnCustomSkillFx(scene,a.skillId,{origin,yaw:yaw.current,target:target?new Vector3(target.x,0,target.z):null});
+     const custom=painted?null:spawnCustomSkillFx(scene,a.skillId,{origin,yaw:yaw.current,target:target?new Vector3(target.x,0,target.z):null,follow:()=>{const p=useGameStore.getState().player.position;return new Vector3(p[0],0,p[1]);}});
      const fx=custom?custom:painted?spawnPaintedFx(scene,painted,{origin,yaw:yaw.current,camera:()=>camera,durationSec:a.duration/1000})
       :spawnSkillFx(scene,{cls,kind,origin,yaw:yaw.current,target:target&&a.kind!=='buff'?new Vector3(target.x,0,target.z):null,combo:a.combo,power:a.power});
      // released casts and charged shots start at their release so the hit lands right after the bar / draw

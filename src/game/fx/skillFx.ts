@@ -347,7 +347,7 @@ function arrow(color: string, scale = 1) {
  *  plan 'once' plays the six frames across a..b; 'hold' builds up (0-2), loops the peak (2-3) and fades out (4-5) at the end,
  *  for effects that stay for seconds (pillars, storms). mode 'ground' lies flat on the ground. */
 const fxLoader = new TextureLoader(); const fxSheets = new Map<string, Texture>();
-function paintedAnim(fx: Fx, key: string, at: Vector3, size: number, a: number, b: number, opts: { plan?: 'once' | 'hold'; mode?: 'billboard' | 'ground'; lift?: number; foot?: boolean; opacity?: number } = {}) {
+function paintedAnim(fx: Fx, key: string, at: Vector3, size: number, a: number, b: number, opts: { plan?: 'once' | 'hold'; mode?: 'billboard' | 'ground'; lift?: number; foot?: boolean; opacity?: number; live?: boolean } = {}) {
   let base = fxSheets.get(key); if (!base) { base = fxLoader.load(`/art/fx/class/${key}.webp`); base.colorSpace = SRGBColorSpace; fxSheets.set(key, base); }
   const tex = base.clone(); tex.needsUpdate = true; tex.repeat.set(1 / 3, 1 / 2);
   const span = (b - a) * fx.duration, plan = opts.plan ?? 'once', op = opts.opacity ?? 1;
@@ -367,9 +367,10 @@ function paintedAnim(fx: Fx, key: string, at: Vector3, size: number, a: number, 
   }
   const m = new SpriteMaterial({ map: tex, transparent: true, depthWrite: false, blending: AdditiveBlending, opacity: 0 }); const sp = new Sprite(m);
   if (opts.foot) sp.center.set(0.5, 0.08); sp.scale.set(size, size, 1); sp.position.copy(at).setY(at.y + (opts.lift ?? 0));
-  fx.add(sp, m, (t, el) => { const k = ph(t, a, b); sp.visible = k > 0 && k < 1; setFrame(frameAt(k, el)); m.opacity = op; });
+  fx.add(sp, m, (t, el) => { const k = ph(t, a, b); sp.visible = k > 0 && k < 1; setFrame(frameAt(k, el)); m.opacity = op; if (opts.live) sp.position.copy(at).setY(at.y + (opts.lift ?? 0)); });
 }
-type SkillFxSpec = { origin: Vector3; yaw: number; target: Vector3 | null };
+/** follow: the caster's live position, for effects that travel with a moving caster (Whirlwind) */
+type SkillFxSpec = { origin: Vector3; yaw: number; target: Vector3 | null; follow?: () => Vector3 | null };
 /** effects built for one skill: [duration s, builder] */
 const SKILL_FX: Record<string, [number, (fx: Fx, o: Vector3, tgt: Vector3, yaw: number) => void]> = {
   // ---- Rune Master (painted pillars from the ChatGPT sheets + a procedural ground ring)
@@ -380,6 +381,19 @@ const SKILL_FX: Record<string, [number, (fx: Fx, o: Vector3, tgt: Vector3, yaw: 
   'r2-hex-pillar': [10, (fx, o, tgt) => { paintedAnim(fx, 'pillar-hexes', tgt, 3.6, 0, 1, { plan: 'hold', foot: true }); runeCircle(fx, tgt, '#ff4d6a', 3.5, 0, 1, 'cross', 0.5, 0.5); }],
   'r2-ruin-pillar': [5.2, (fx, o, tgt) => { paintedAnim(fx, 'rune-circle', tgt, 7.4, 0, 1, { plan: 'hold', mode: 'ground', opacity: 0.85 }); paintedAnim(fx, 'pillar-ruin', tgt, 5.2, 0, 1, { plan: 'hold', foot: true });
     for (let i = 0; i < 10; i++) { const a = Math.random() * 6.28, r = 0.8 + Math.random() * 2.6, t0 = 0.06 + i * 0.09; impact(fx, tgt.clone().add(new Vector3(Math.cos(a) * r, 0, Math.sin(a) * r)), '#62dfdf', t0, 0.6); } }],
+  // ---- Berserker / Reaver (painted ChatGPT sheets; `o` follows the caster while the effect lives)
+  'b-rending-rush': [0.95, (fx, o, tgt) => { paintedAnim(fx, 'b-rending-rush', tgt, 3.6, 0, 1, { lift: 1 }); }],
+  'b-blood-howl': [1.2, (fx, o) => { paintedAnim(fx, 'b-blood-howl', o, 4.2, 0, 1, { foot: true, live: true }); groundRing(fx, o, '#ff5a3c', 0.4, 2.6, 0.1, 0.6, 0.15); }],
+  'b-carnage-cyclone': [2.4, (fx, o) => { paintedAnim(fx, 'b-carnage-cyclone', o, 5, 0, 1, { plan: 'hold', foot: true, live: true }); }],
+  'b-bloodquake': [1.4, (fx, o, tgt) => { paintedAnim(fx, 'b-bloodquake', tgt, 5.8, 0, 1, { foot: true }); groundRing(fx, tgt, '#ff7a3a', 0.4, 2.8, 0.2, 0.6, 0.2); }],
+  'b-execution-frenzy': [1.3, (fx, o, tgt) => { paintedAnim(fx, 'b-execution-frenzy', tgt, 4.2, 0, 1, { foot: true }); }],
+  'b-whirlwind': [6, (fx, o) => { paintedAnim(fx, 'b-whirlwind', o, 7.2, 0, 1, { plan: 'hold', mode: 'ground', opacity: 0.95 }); paintedAnim(fx, 'b-carnage-cyclone', o, 4.6, 0, 1, { plan: 'hold', foot: true, live: true, opacity: 0.8 }); }],
+  'r-savage-rend': [1.05, (fx, o, tgt) => { paintedAnim(fx, 'r-savage-rend', tgt, 3.8, 0, 1, { lift: 1 }); }],
+  'r-dread-howl': [1.3, (fx, o) => { paintedAnim(fx, 'r-dread-howl', o, 5, 0, 1, { foot: true, live: true }); }],
+  'r-reaping-cyclone': [2.5, (fx, o) => { paintedAnim(fx, 'r-reaping-cyclone', o, 6.4, 0, 1, { plan: 'hold', foot: true, live: true }); }],
+  'r-ruinbreaker': [1.5, (fx, o, tgt) => { paintedAnim(fx, 'r-ruinbreaker', tgt, 6, 0, 1, { foot: true }); }],
+  'r-soul-reave': [1.4, (fx, o, tgt) => { paintedAnim(fx, 'r-soul-reave', tgt, 4.2, 0, 1, { foot: true }); }],
+  'r-cataclysm-descent': [2.1, (fx, o, tgt) => { paintedAnim(fx, 'r-cataclysm-descent', tgt, 8, 0, 1, { foot: true }); impact(fx, tgt, '#c94aff', 0.43, 2.2); smoke(fx, tgt, 12, 3, 0.43, 1, 0.8); }],
   // ---- Inquisitor
   'i-thunder-smite': [0.8, (fx, o, tgt) => { paintedAnim(fx, 'thunder-smite', tgt, 4.4, 0, 1, { foot: true }); impact(fx, tgt, '#8fd3ff', 0.4, 1); }],
   'i-lightning-burst': [1, (fx, o) => { paintedAnim(fx, 'lightning-burst', o, 6.2, 0.05, 1, { lift: 0.9 }); groundRing(fx, o, '#8fd3ff', 0.4, 3.2, 0.12, 0.55, 0.2); }],
@@ -395,6 +409,7 @@ export function spawnCustomSkillFx(scene: Object3D, skillId: string | undefined,
   const def = skillId ? SKILL_FX[skillId] : undefined; if (!def) return null;
   const fx = new Fx(def[0]); const o = spec.origin.clone(), fwd = new Vector3(Math.sin(spec.yaw), 0, Math.cos(spec.yaw));
   const tgt = spec.target ? spec.target.clone().setY(o.y) : o.clone().addScaledVector(fwd, 3);
+  if (spec.follow) fx.add(new Group(), [], () => { const p = spec.follow!(); if (p) o.set(p.x, o.y, p.z); });
   def[1](fx, o, tgt, spec.yaw); scene.add(fx.object); fx.update(0); return fx;
 }
 /** Rune Master basic attack: the slash, then a crescent of rune light flies to the target */

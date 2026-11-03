@@ -7,6 +7,10 @@ MAP = {'Rune-Master/Sword-Wave.png': 'sword-wave', 'Rune-Master/Venom-of-burst.p
        'Rune-Master/Pillar-of-Binding.png': 'pillar-binding', 'Rune-Master/Pillar-of-Renewal.png': 'pillar-renewal', 'Rune-Master/Pillar-of-Hexes.png': 'pillar-hexes',
        'Rune-Master/Pillar-of-Ruin.png': 'pillar-ruin', 'Rune-Master/Rune-Circle.png': 'rune-circle',
        'Inquisitor/Thunder-Smite.png': 'thunder-smite', 'Inquisitor/Lightning-Burst.png': 'lightning-burst', 'Inquisitor/Thunder-Storm.png': 'thunder-storm',
+       'Berserker/Rending-Rush.png': 'b-rending-rush', 'Berserker/Blood-Howl.png': 'b-blood-howl', 'Berserker/Carnage-Cyclone.png': 'b-carnage-cyclone',
+       'Berserker/Bloodquake.png': 'b-bloodquake', 'Berserker/Execution-Frenzy.png': 'b-execution-frenzy', 'Berserker/Whilewind.png': 'b-whirlwind',
+       'Berserker/Savage-Rend.png': 'r-savage-rend', 'Berserker/Dread-Howl.png': 'r-dread-howl', 'Berserker/Reaping-Cyclone.png': 'r-reaping-cyclone',
+       'Berserker/Ruinbreaker.png': 'r-ruinbreaker', 'Berserker/Soul-reave.png': 'r-soul-reave', 'Berserker/Cataclysm-Descent.png': 'r-cataclysm-descent',
        'Inquisitor/Shock-Pillar.png': 'shock-pillar', 'Inquisitor/Thunder-Spike.png': 'thunder-spike', 'Inquisitor/Thor-Hammer.png': 'thor-hammer', 'Inquisitor/Impact-Ring.png': 'impact-ring'}
 out_dir = os.path.join(ROOT, 'public', 'art', 'fx', 'class'); os.makedirs(out_dir, exist_ok=True)
 for src, key in MAP.items():

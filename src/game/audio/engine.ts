@@ -120,11 +120,26 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') (win
 // ---------------------------------------------------------------- what plays when
 const ELEMENT_SFX: Record<string, string> = { fire: 'fireball', frost: 'frost', storm: 'lightning', holy: 'holy', shadow: 'elite_cast', arcane: 'magic_bolt', nature: 'rune', physical: 'swing_heavy' };
 export const sfxForElement = (el: string | undefined) => ELEMENT_SFX[el ?? 'physical'] ?? 'magic_bolt';
+/** round 20: skills with their own recorded sound (ElevenLabs, public/audio/sfx); the rest use their element's sound */
+export const SKILL_SFX: Record<string, string> = {
+  'p-shield-bash': 'paladin_shield_bash', 'p-bulwark': 'paladin_holy_dome', 'p-sacred-vow': 'paladin_holy_dome', 'p-dawn-crusade': 'paladin_crusade',
+  'h-piercing-arrow': 'hawkeye_bow_shot', 'h-twin-shot': 'hawkeye_bow_shot', 'h-crippling-shot': 'hawkeye_bow_shot', 'h-arrow-rain': 'hawkeye_arrow_rain', 'h-talon-storm': 'hawkeye_arrow_rain',
+  'r2-venom-burst': 'rune_venom_burst', 'r2-valor-pillar': 'rune_pillar_rise', 'r2-binding-pillar': 'rune_chains_bind', 'r2-renewal-pillar': 'rune_heal', 'r2-hex-pillar': 'rune_hex', 'r2-ruin-pillar': 'rune_pillar_rise',
+  'e-meteor': 'elemental_meteor', 'e-cataclysm': 'elemental_meteor', 'e-frost-nova': 'elemental_frost_nova', 'e-chain-lightning': 'elemental_chain_lightning',
+  's-twin-fang': 'assassin_twin_slash', 's-shadow-step': 'assassin_shadow_step', 's-fan-of-blades': 'assassin_death_lotus', 's-death-lotus': 'assassin_death_lotus', 's-cripple': 'assassin_twin_slash',
+  'q-holy-light': 'priest_holy_light', 'q-smite': 'priest_holy_light', 'q-sanctuary': 'priest_divine_grace', 'q-divine-grace': 'priest_divine_grace',
+  'i-thunder-smite': 'inquisitor_hammer_smite', 'i-lightning-burst': 'inquisitor_lightning_burst', 'i-storm-cloud': 'inquisitor_thunderstorm', 'i-shock-pillar': 'inquisitor_shock_pillar',
+  'i-blast-pillar': 'inquisitor_thunder_spike', 'i-mjolnir': 'inquisitor_thor_hammer',
+  'b-rending-rush': 'berserker_rending_rush', 'b-blood-howl': 'berserker_blood_howl', 'b-carnage-cyclone': 'berserker_cyclone', 'b-bloodquake': 'berserker_bloodquake',
+  'b-execution-frenzy': 'berserker_execution', 'b-whirlwind': 'berserker_whirlwind',
+  'r-savage-rend': 'berserker_rending_rush', 'r-dread-howl': 'reaver_dread_howl', 'r-reaping-cyclone': 'berserker_cyclone', 'r-ruinbreaker': 'berserker_bloodquake',
+  'r-soul-reave': 'reaver_soul_reave', 'r-cataclysm-descent': 'reaver_cataclysm',
+};
 export const BASIC_SFX: Record<string, { swing: string; hit: string }> = {
-  Berserker: { swing: 'swing_heavy', hit: 'hit_slash' }, Reaver: { swing: 'swing_heavy', hit: 'hit_blunt' },
-  Paladin: { swing: 'swing', hit: 'hit_metal' }, Assassin: { swing: 'swing', hit: 'hit_slash' }, Hawkeye: { swing: 'arrow_release', hit: 'arrow_hit' },
-  Inquisitor: { swing: 'swing', hit: 'lightning' }, Elementalist: { swing: 'fireball', hit: 'magic_bolt' }, RuneMaster: { swing: 'swing', hit: 'rune' },
-  HighPriest: { swing: 'holy', hit: 'magic_bolt' },
+  Berserker: { swing: 'berserker_swing', hit: 'berserker_hit' }, Reaver: { swing: 'berserker_swing', hit: 'berserker_hit' },
+  Paladin: { swing: 'swing', hit: 'hit_metal' }, Assassin: { swing: 'assassin_twin_slash', hit: 'hit_slash' }, Hawkeye: { swing: 'hawkeye_bow_shot', hit: 'arrow_hit' },
+  Inquisitor: { swing: 'swing', hit: 'inquisitor_hammer_smite' }, Elementalist: { swing: 'fireball', hit: 'magic_bolt' }, RuneMaster: { swing: 'rune_sword_wave', hit: 'rune' },
+  HighPriest: { swing: 'priest_holy_light', hit: 'magic_bolt' },
 };
 export type MonsterTier = 'normal' | 'elite' | 'boss';
 export const MONSTER_SFX: Record<MonsterTier, { aggro: string; attack: string; hurt: string; die: string; cast: string }> = {

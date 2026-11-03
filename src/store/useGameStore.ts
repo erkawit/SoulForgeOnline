@@ -26,7 +26,7 @@ import { tipFor, markSeen, type Tip, type TipTrigger } from '@/game/tutorial';
 import { defaultAuto, type AutoSettings } from '@/game/auto';
 import { craftBlocker, craftCost, crystalCraft as crystalRoll, crystalId, rollCraft, type CraftSlot, type CrystalTier } from '@/game/balance/craft';
 import { zoneAt } from '@/game/world/zones';
-import { audio, BASIC_SFX, MONSTER_SFX, sfxForElement, tierOf, monsterPitch } from '@/game/audio/engine';
+import { audio, BASIC_SFX, MONSTER_SFX, sfxForElement, SKILL_SFX, tierOf, monsterPitch } from '@/game/audio/engine';
 import { skillRoles } from '@/game/auto';
 import * as eco from '@/game/economy/core';
 import * as cdx from '@/game/economy/codex';
@@ -46,7 +46,7 @@ const pushCombat = (list: CombatEvent[], ...evs: Omit<CombatEvent, 'seq'>[]) => 
 const COMBO_MULT: Record<ClassId, number[]> = { Berserker: [1, 1.1, 1.6], Paladin: [1, 1.1, 1.5], Assassin: [0.9, 1, 1.7], Hawkeye: [1, 1, 1.4], RuneMaster: [1, 1.1, 1.5], Elementalist: [1, 1, 1.5], HighPriest: [1, 1, 1.3], Inquisitor: [1, 1.1, 1.6] };
 const comboClip = (cls: ClassId, step: number): CharacterClip => { void cls; return step === 1 ? 'Attack2' : 'Attack'; };
 /** ms from the swing to the visible hit (matches the class attack effect) */
-export const HIT_MS: Record<ClassId, number> = { Berserker: 340, Paladin: 320, Assassin: 220, Hawkeye: 480, RuneMaster: 460, Elementalist: 480, HighPriest: 440, Inquisitor: 360 };
+export const HIT_MS: Record<ClassId, number> = { Berserker: 340, Paladin: 340, Assassin: 330, Hawkeye: 480, RuneMaster: 460, Elementalist: 480, HighPriest: 440, Inquisitor: 340 };
 /** round 13: Rage (Berserker / Reaver resource, balance proposal berserker-v2 secondary_defaults) */
 export const RAGE = { max: 100, basicHit: 8, whenHit: 3, hitIcdMs: 600, decayDelayMs: 5000, decayPerSec: 5 };
 export const CHARGE_MAX_MS = 1600;
@@ -257,7 +257,7 @@ export const useGameStore = create<GameState>((set, get) => {
     const base={rage,rageAt:now,channel,player:{...s.player,mp:s.player.mp-probe.mpCost},cooldowns:{...s.cooldowns,[def.id]:now+probe.cooldownMs,[kind]:now+probe.cooldownMs},
       action:def.castMs>0?{kind:MOTION_ACTION[def.motion],stamp:now,duration:def.castMs,fx:def.fx,skillId:def.id,clip:'Channel' as CharacterClip,channel:true}:{kind:MOTION_ACTION[def.motion],stamp:now,duration:def.channelMs??ACTION_MS[def.motion],fx:def.fx,skillId:def.id,clip:skillClip(def)},selectedMonster:target?.id??null,attackFx:{stamp:now,skill:true},log:addLog(s.log,`${def.name} Lv.${level}`)};
     { const roles=skillRoles(def),el=(def.effects.find(e=>e.type==='damage'||e.type==='dot') as {element?:string}|undefined)?.element;
-      const name=roles.includes('damage')?sfxForElement(el):roles.includes('heal')?'heal':roles.includes('shield')?'shield':'buff';
+      const name=SKILL_SFX[def.id]??(roles.includes('damage')?sfxForElement(el):roles.includes('heal')?'heal':roles.includes('shield')?'shield':'buff');
       if(def.castMs>0){audio.play('cast_loop',{vol:.35});setTimeout(()=>audio.play(name,{vol:.7}),def.castMs);}else audio.play(name,{vol:.7}); }
     if(def.castMs>0){set({...base,pending:{at:now+def.castMs,target:target?.id??null,skillId:def.id,kind}});return;}
     const out=resolveSkill(def,level,{caster:d,x:px,z:pz,yaw,targetId:target?.id??null,targets,maxHp:d.maxHp,now,hp:s.player.hp});
