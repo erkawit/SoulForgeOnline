@@ -8,7 +8,8 @@ from PIL import Image
 
 SRC, G = sys.argv[1], (sys.argv[2] if len(sys.argv) > 2 else 'm')
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-CLASSES = ['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor']
+CLASSES = ['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor', 'Berserker']
+if len(sys.argv) > 3: CLASSES = sys.argv[3].split(',')  # rebuild only these
 BODY_PX, PAD, WORLD_H = 200, 6, 1.62
 
 from scipy import ndimage

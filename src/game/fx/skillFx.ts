@@ -362,7 +362,7 @@ function paintedAnim(fx: Fx, key: string, at: Vector3, size: number, a: number, 
   if (opts.mode === 'ground') {
     const m = new MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, blending: AdditiveBlending, side: DoubleSide, opacity: 0 });
     const mesh = new Mesh(new PlaneGeometry(size, size), m); mesh.rotation.x = -Math.PI / 2; mesh.position.copy(at).setY(at.y + 0.06);
-    fx.add(mesh, m, (t, el) => { const k = ph(t, a, b); mesh.visible = k > 0 && k < 1; setFrame(frameAt(k, el)); m.opacity = op; });
+    fx.add(mesh, m, (t, el) => { const k = ph(t, a, b); mesh.visible = k > 0 && k < 1; setFrame(frameAt(k, el)); m.opacity = op; if (opts.live) mesh.position.set(at.x, at.y + 0.06, at.z); });
     return;
   }
   const m = new SpriteMaterial({ map: tex, transparent: true, depthWrite: false, blending: AdditiveBlending, opacity: 0 }); const sp = new Sprite(m);
@@ -387,7 +387,7 @@ const SKILL_FX: Record<string, [number, (fx: Fx, o: Vector3, tgt: Vector3, yaw: 
   'b-carnage-cyclone': [2.4, (fx, o) => { paintedAnim(fx, 'b-carnage-cyclone', o, 5, 0, 1, { plan: 'hold', foot: true, live: true }); }],
   'b-bloodquake': [1.4, (fx, o, tgt) => { paintedAnim(fx, 'b-bloodquake', tgt, 5.8, 0, 1, { foot: true }); groundRing(fx, tgt, '#ff7a3a', 0.4, 2.8, 0.2, 0.6, 0.2); }],
   'b-execution-frenzy': [1.3, (fx, o, tgt) => { paintedAnim(fx, 'b-execution-frenzy', tgt, 4.2, 0, 1, { foot: true }); }],
-  'b-whirlwind': [6, (fx, o) => { paintedAnim(fx, 'b-whirlwind', o, 7.2, 0, 1, { plan: 'hold', mode: 'ground', opacity: 0.95 }); paintedAnim(fx, 'b-carnage-cyclone', o, 4.6, 0, 1, { plan: 'hold', foot: true, live: true, opacity: 0.8 }); }],
+  'b-whirlwind': [6, (fx, o) => { paintedAnim(fx, 'b-whirlwind', o, 7.2, 0, 1, { plan: 'hold', mode: 'ground', opacity: 0.95, live: true }); paintedAnim(fx, 'b-carnage-cyclone', o, 4.6, 0, 1, { plan: 'hold', foot: true, live: true, opacity: 0.8 }); }],
   'r-savage-rend': [1.05, (fx, o, tgt) => { paintedAnim(fx, 'r-savage-rend', tgt, 3.8, 0, 1, { lift: 1 }); }],
   'r-dread-howl': [1.3, (fx, o) => { paintedAnim(fx, 'r-dread-howl', o, 5, 0, 1, { foot: true, live: true }); }],
   'r-reaping-cyclone': [2.5, (fx, o) => { paintedAnim(fx, 'r-reaping-cyclone', o, 6.4, 0, 1, { plan: 'hold', foot: true, live: true }); }],

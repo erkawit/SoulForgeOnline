@@ -15,7 +15,8 @@ import { BREATH_ANIMS, BREATH_PERIOD } from './breath';
 import { placeLayers, rigFrame, weaponSheet, type LayeredRig } from './layered';
 import { HERO_RIGS } from './rigs';
 // layered heroes register their body sheets as ordinary 8-way flipbooks
-for (const [key, { rig, ids }] of Object.entries(HERO_RIGS)) { SPRITE_ANIMS[key] = rig.anim; for (const id of ids) ANIM_ALIAS[id] = key; }
+// round 20: a class's own painted sheet (sprites/classAnims.ts, registered by the catalog) wins over the layered rig
+for (const [key, { rig, ids }] of Object.entries(HERO_RIGS)) { SPRITE_ANIMS[key] = rig.anim; for (const id of ids) ANIM_ALIAS[id] ??= key; }
 
 // ------------------------------------------------------------------ fashion textures (round 12)
 const fashionCache = new Map<string, Texture>();
