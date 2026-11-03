@@ -140,3 +140,39 @@ Start with effect 1.
 | reaver_dread_howl.mp3 | 1.5 | a demonic roar mixed with ghostly screams, dark and terrifying |
 | reaver_soul_reave.mp3 | 1.5 | a ghostly soul being torn out with an eerie wail, then a heavy slash |
 | reaver_cataclysm.mp3 | 2.5 | a warrior leaping and crashing down from the sky, huge dark explosion, deep rumble |
+
+## E. Prompt รวมท่าที่ยังขาด (ณ 3 พ.ย. 2026) — 27 ภาพ
+
+```
+Same characters as before: same faces, outfits, colours, weapons and size as their idle and walk sheets.
+Same layout: transparent background, exactly 5 rows (row 1 facing the camera / south, row 2 three-quarter front facing
+screen-left, row 3 side view facing screen-left, row 4 three-quarter back facing screen-left, row 5 back to the camera),
+frames left to right, feet on one baseline, no ground shadow, no text.
+VERY IMPORTANT: leave WIDE empty space between frames. Weapons, magic, sparks and trails must stay inside their own
+frame and never touch or reach into the next frame.
+One image per reply; after each, tell me the file name and wait for "next".
+
+Queue (file name in brackets):
+REDO (frames were overlapping):
+ 1. [Elementalist_attack.png] 6 frames: thrust the staff forward, a fire / frost spark bursts from the crystal on frame 4
+ 2. [Inquisitor_attack.png]   6 frames: an overhead hammer smash, blue sparks on impact on frame 4
+NEW:
+ 3. [Berserker_attack.png]    6 frames: a heavy two-handed greatsword slash, contact on frame 4
+SKILL — 6 frames, impact on frame 4:
+ 4. [Paladin_skill.png]       leap and drive the sword down, golden light bursts around him
+ 5. [Hawkeye_skill.png]       aim upward and loose a glowing green volley into the sky
+ 6. [RuneMaster_skill.png]    plunge the rune sword into the ground, a teal rune pillar rises beside him
+ 7. [Elementalist_skill.png]  raise the staff high with both hands, fire, frost and lightning swirl around the crystal
+ 8. [Assassin_skill.png]      spin with both daggers, a purple blade whirl around him
+ 9. [HighPriest_skill.png]    lift both arms, a golden halo of light expands from the orb
+10. [Inquisitor_skill.png]    raise the hammer to the sky, lightning strikes it, slam it into the ground on frame 4
+11. [Berserker_skill.png]     spin with the greatsword, a red blood-rage whirl around him
+BUFF — 4 frames, a power-up glow rising around the body (frame 3 brightest), each in its class colour:
+12. [Paladin_buff.png] 13. [Hawkeye_buff.png] 14. [RuneMaster_buff.png] 15. [Elementalist_buff.png]
+16. [Assassin_buff.png] 17. [HighPriest_buff.png] 18. [Inquisitor_buff.png] 19. [Berserker_buff.png] (a furious battle roar)
+DEATH — 5 frames: hit and stagger, knees buckle, fall, last frame lying still on the ground, weapon dropped beside him:
+20. [Paladin_death.png] 21. [Hawkeye_death.png] 22. [RuneMaster_death.png] 23. [Elementalist_death.png]
+24. [Assassin_death.png] 25. [HighPriest_death.png] 26. [Inquisitor_death.png] 27. [Berserker_death.png]
+
+Start with sheet 1: Elementalist_attack.png.
+```
