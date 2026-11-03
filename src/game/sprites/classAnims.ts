@@ -5,11 +5,11 @@ import type { SpriteFrame } from './frames';
 export const CLASS_ANIMS: Record<string, SpriteAnim> = {
  "m-Paladin": {
   "cw": 388,
-  "ch": 236,
+  "ch": 247,
   "cols": 10,
-  "n": 128,
+  "n": 208,
   "fx": 0.5,
-  "fy": 0.0254,
+  "fy": 0.0243,
   "bodyPx": 200,
   "clips": {
    "idle": [
@@ -23,17 +23,25 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    "attack": [
     80,
     6
+   ],
+   "skill": [
+    128,
+    6
+   ],
+   "buff": [
+    176,
+    4
    ]
   },
   "dirs": 8
  },
  "m-Hawkeye": {
   "cw": 360,
-  "ch": 223,
+  "ch": 242,
   "cols": 11,
-  "n": 128,
+  "n": 176,
   "fx": 0.5,
-  "fy": 0.0269,
+  "fy": 0.0248,
   "bodyPx": 200,
   "clips": {
    "idle": [
@@ -46,6 +54,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    ],
    "attack": [
     80,
+    6
+   ],
+   "skill": [
+    128,
     6
    ]
   },
@@ -53,11 +65,11 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
  },
  "m-RuneMaster": {
   "cw": 490,
-  "ch": 232,
+  "ch": 233,
   "cols": 8,
-  "n": 128,
+  "n": 176,
   "fx": 0.5,
-  "fy": 0.0259,
+  "fy": 0.0258,
   "bodyPx": 200,
   "clips": {
    "idle": [
@@ -70,6 +82,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    ],
    "attack": [
     80,
+    6
+   ],
+   "skill": [
+    128,
     6
    ]
   },
@@ -77,11 +93,11 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
  },
  "m-Elementalist": {
   "cw": 416,
-  "ch": 241,
+  "ch": 252,
   "cols": 9,
-  "n": 128,
+  "n": 176,
   "fx": 0.5,
-  "fy": 0.0249,
+  "fy": 0.0238,
   "bodyPx": 200,
   "clips": {
    "idle": [
@@ -94,6 +110,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    ],
    "attack": [
     80,
+    6
+   ],
+   "skill": [
+    128,
     6
    ]
   },
@@ -103,7 +123,7 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "cw": 314,
   "ch": 224,
   "cols": 13,
-  "n": 128,
+  "n": 176,
   "fx": 0.5,
   "fy": 0.0268,
   "bodyPx": 200,
@@ -119,6 +139,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    "attack": [
     80,
     6
+   ],
+   "skill": [
+    128,
+    6
    ]
   },
   "dirs": 8
@@ -127,7 +151,7 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "cw": 476,
   "ch": 232,
   "cols": 8,
-  "n": 128,
+  "n": 176,
   "fx": 0.5,
   "fy": 0.0259,
   "bodyPx": 200,
@@ -143,17 +167,21 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    "attack": [
     80,
     6
+   ],
+   "skill": [
+    128,
+    6
    ]
   },
   "dirs": 8
  },
  "m-Inquisitor": {
-  "cw": 268,
-  "ch": 264,
-  "cols": 15,
-  "n": 128,
+  "cw": 336,
+  "ch": 281,
+  "cols": 12,
+  "n": 176,
   "fx": 0.5,
-  "fy": 0.0227,
+  "fy": 0.0214,
   "bodyPx": 200,
   "clips": {
    "idle": [
@@ -167,6 +195,10 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
    "attack": [
     80,
     6
+   ],
+   "skill": [
+    128,
+    6
    ]
   },
   "dirs": 8
@@ -175,7 +207,7 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "cw": 426,
   "ch": 251,
   "cols": 9,
-  "n": 200,
+  "n": 248,
   "fx": 0.5,
   "fy": 0.0239,
   "bodyPx": 200,
@@ -184,20 +216,24 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
     0,
     4
    ],
-   "attack": [
+   "walk": [
     32,
     6
    ],
-   "skill": [
+   "attack": [
     80,
     6
    ],
-   "buff": [
+   "skill": [
     128,
+    6
+   ],
+   "buff": [
+    176,
     4
    ],
    "death": [
-    160,
+    208,
     5
    ]
   },
@@ -209,40 +245,40 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "w": 1.5633,
   "h": 1.62,
   "fx": 0.4197,
-  "fy": 0.0254,
+  "fy": 0.0243,
   "px": [
    193,
-   236
+   247
   ]
  },
  "m-Hawkeye": {
   "w": 1.1259,
   "h": 1.62,
   "fx": 0.4676,
-  "fy": 0.0269,
+  "fy": 0.0248,
   "px": [
    139,
-   223
+   242
   ]
  },
  "m-RuneMaster": {
   "w": 1.6686,
   "h": 1.62,
   "fx": 0.6068,
-  "fy": 0.0259,
+  "fy": 0.0258,
   "px": [
    206,
-   232
+   233
   ]
  },
  "m-Elementalist": {
   "w": 1.1016,
   "h": 1.62,
   "fx": 0.5,
-  "fy": 0.0249,
+  "fy": 0.0238,
   "px": [
    136,
-   241
+   252
   ]
  },
  "m-Assassin": {
@@ -269,10 +305,10 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "w": 1.4094,
   "h": 1.62,
   "fx": 0.546,
-  "fy": 0.0227,
+  "fy": 0.0214,
   "px": [
    174,
-   264
+   281
   ]
  },
  "m-Berserker": {

@@ -17,7 +17,12 @@ export const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เ
 export const KEYS = ['1', 'Space', 'Q', 'E', 'R', 'T', 'X'];
 export const fmt = (n: number) => Math.round(n).toLocaleString();
 /** painted portraits: public/art/portraits/[f-]<class>-face.png · -full.png */
-export const portrait = (cls: string, g?: string, kind: 'face' | 'full' = 'face') => ['Berserker','Reaver'].includes(cls) ? `/art/sprites/${g === 'f' ? 'f' : 'm'}-look-${cls}.webp` : `/art/portraits/${g === 'f' ? 'f-' : ''}${cls.toLowerCase()}-${kind}.png`;
+const NEW_PORTRAIT = ['Paladin','Hawkeye','RuneMaster','Elementalist','Assassin','HighPriest','Inquisitor','Berserker'];
+export const portrait = (cls: string, g?: string, kind: 'face' | 'full' = 'face') => {
+  const c = cls === 'Reaver' ? 'Berserker' : cls;
+  if (g !== 'f' && NEW_PORTRAIT.includes(c)) return `/art/portraits/${c.toLowerCase()}-${kind}.png`; // Round 20 class art (male)
+  return ['Berserker','Reaver'].includes(cls) ? `/art/sprites/${g === 'f' ? 'f' : 'm'}-look-${cls}.webp` : `/art/portraits/${g === 'f' ? 'f-' : ''}${cls.toLowerCase()}-${kind}.png`;
+};
 
 /** spec screen-scale checker: < 768 px (or a phone held sideways) → Mobile component set */
 export function useScreenScale(): Layout {

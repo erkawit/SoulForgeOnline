@@ -64,7 +64,7 @@ function PartyWindow() {
   const members: PartyMemberView[] = party?.members ?? [{ id: me ?? 'me', name: self.name, classId: self.classId ?? 'Berserker', online: true, graceLeft: 0, level: self.level }];
   return <>
     <div className="sf-cards">{members.map(m => <div key={m.id} className="sf-card" style={{ ['--cc' as string]: CLASS_COLOR[m.classId] }}>
-      <img src={portrait(m.classId, 'full')} alt={m.classId} style={m.online ? undefined : { filter: 'grayscale(1) brightness(.6)' }} />
+      <img src={portrait(m.classId, undefined, 'full')} alt={m.classId} style={m.online ? undefined : { filter: 'grayscale(1) brightness(.6)' }} />
       <h3>{party?.leader === m.id ? '♛ ' : ''}{m.name}{m.id === me ? ' (คุณ)' : ''}</h3><div className="cls">{CLASS_TH[m.classId]} · {m.classId}{m.level ? ` · Lv.${m.level}` : ''}</div>
       <div className="st" style={{ color: m.online ? '#7fd69a' : '#ffb15a' }}>{m.online ? '● ออนไลน์' : `⟳ หลุดการเชื่อมต่อ · จองที่ไว้ ${m.graceLeft} วิ`}</div>
       {party && party.leader === me && m.id !== me && <button className="sf-btn ghost" onClick={() => gameConnection.party.kick(m.id)}>นำออก</button>}
