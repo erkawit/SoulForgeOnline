@@ -66,7 +66,7 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
     if (guestCreate) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
       try { window.localStorage.removeItem('soulforge_guest_v1'); } catch { /* storage unavailable */ }
       useGameStore.getState().applyProfile(name, cls, gender); setGuestIn(true); return null; }} />;
-    return <Shell showcase onPick={setPicked}><GuestEntry onEnter={enterGuest} onCreate={() => setGuestCreate(true)} hasSave={hasGuestSave} /></Shell>;
+    return <Shell showcase onPick={setPicked}><GuestEntry onEnter={enterGuest} onCreate={() => setGuestCreate(true)} hasSave={hasGuestSave} />{!hasGuestSave && <GuestButton onGuest={playGuest} />}</Shell>;
   }
   if (!supabase) return <Shell showcase onPick={setPicked}><h2 className="sf-h2">ยังไม่ได้เชื่อมเซิร์ฟเวอร์</h2><p className="sf-muted">ตั้งค่า NEXT_PUBLIC_SUPABASE_URL และ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ก่อนเปิดโหมดทดสอบปิด</p><GuestButton onGuest={playGuest} /></Shell>;
   if (!ready || (session && profile === undefined)) return <Shell><p className="sf-muted">กำลังตรวจสอบสิทธิ์…</p></Shell>;
