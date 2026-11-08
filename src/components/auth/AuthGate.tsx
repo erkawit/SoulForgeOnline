@@ -141,9 +141,19 @@ function LoginForm() {
     <label className="sf-field"><span>อีเมล (แอดมินใช้ชื่อผู้ใช้ได้)</span><input id="login-email" autoComplete="username" inputMode="email" required value={email} onChange={e => setEmail(e.target.value)} /></label>
     <label className="sf-field"><span>รหัสผ่าน</span><input id="login-password" type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)} /></label>
     <button className="sf-btn" disabled={busy}>{busy ? 'กำลังเข้าสู่ระบบ…' : 'เข้าสู่โลก SoulForge'}</button>
+    {GOOGLE_LOGIN && <button type="button" className="sf-btn ghost" disabled={busy} onClick={google}>เข้าสู่ระบบด้วย Google</button>}
     {msg && <p className="sf-error" role="alert">{msg}</p>}
   </form>;
+  // round 22: Google sign-in (Supabase OAuth). A new Google account has no beta profile yet, so it lands on the
+  // invite-code step (RedeemForm) — the closed beta still needs a code.
+  async function google() {
+    setBusy(true); setMsg('');
+    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: `${location.origin}/play` } });
+    if (error) { setMsg('เข้าสู่ระบบด้วย Google ไม่สำเร็จ'); setBusy(false); }
+  }
 }
+/** round 22: the Google button stays hidden until NEXT_PUBLIC_GOOGLE_LOGIN=true is set (and Google is enabled in Supabase) */
+const GOOGLE_LOGIN = process.env.NEXT_PUBLIC_GOOGLE_LOGIN === 'true';
 
 /** Two steps: (1) only the invite-code box is shown; the code is checked on the server without being used up.
  *  (2) once it passes, the account form appears (e-mail, password, rules). The code is consumed at step 2. */
