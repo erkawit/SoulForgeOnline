@@ -12,7 +12,7 @@ import { NPC_BY_ID, npcsIn, npcPosition } from '@/game/npcs';
 import { spawnPoints } from '@/game/spawns';
 import {navigationOverlay,NAVIGATION_COLORS} from '@/game/world/navigationOverlay';
 import {navigationPlan} from '@/game/world/terrainNavigation';
-import { useGameStore } from '@/store/useGameStore';
+import { useGameStore, MAP_WARP, mapWarpCost } from '@/store/useGameStore';
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 
 type Category = 'building' | 'monster' | 'npc' | 'warp';
@@ -131,6 +131,18 @@ function Region({city,live,here,browse,onWalk}:{city:CityId;live:ReturnType<type
     setRoute(points);
     if(points?.length){window.dispatchEvent(new CustomEvent('sf-map-route',{detail:{city,points}}));onWalk();}
   }
+  const [msg,setMsg]=useState('');
+  /** round 22: warp straight to the end of the route (a walkable spot within reach of the target) for SoulGod */
+  function warp(){
+    if(!choice||!local)return;const pts=route??mapRoute(city,useGameStore.getState().player.position,choice.entry??choice.pos,reach(choice));
+    const end=pts?.length?pts[pts.length-1]:choice.entry??choice.pos;const err=useGameStore.getState().mapWarp(end[0],end[1]);
+    if(err){setMsg(err);return;}setMsg('');onWalk();
+  }
+  const fmt=(p:Point)=>`X ${p[0].toFixed(1)} · Y ${p[1].toFixed(1)}`;
+  const dist=choice&&local?Math.hypot(choice.pos[0]-live.player.position[0],choice.pos[1]-live.player.position[1]):0;
+  // warp is charged on the straight hop to the route's end (where the player lands), so price the button the same way
+  const warpEnd=route?.length?route[route.length-1]:choice?.entry??choice?.pos;
+  const warpD=choice&&local&&warpEnd?Math.hypot(warpEnd[0]-live.player.position[0],warpEnd[1]-live.player.position[1]):0;
   const player = project(city,live.player.position);
   return <div className="atlas-layout">
     <main className="atlas-stage">
@@ -165,6 +177,17 @@ function Region({city,live,here,browse,onWalk}:{city:CityId;live:ReturnType<type
         <button aria-label="แสดงทั้งพื้นที่" title="แสดงทั้งพื้นที่" onClick={()=>{setZoom(1);setCenter(middle);}}>⛶</button>
       </div>
       {showWalkable&&<div className="atlas-walk-legend"><span style={{color:NAVIGATION_COLORS.road}}>● ทางเดิน</span><span style={{color:NAVIGATION_COLORS.plaza}}>● ลาน</span><span style={{color:NAVIGATION_COLORS.ground}}>● พื้นเดินได้</span><span style={{color:NAVIGATION_COLORS.blocked}}>● ห้ามเดิน</span><small>{navigationPlan(city)?.blockedName??'อาคาร / กำแพง / คลอง / สิ่งกีดขวาง'}{area.parent&&city!=='wild2'&&!plan?' · ภาพภูมิภาคเป็นภาพอ้างอิง ดูขอบเขตจริงในผังทางเดิน':''}</small></div>}
+      {choice && <div className="atlas-pop" role="dialog" aria-label={choice.name}>
+        <button className="atlas-pop-x" aria-label="ปิด" onClick={()=>{setSelected(null);setRoute(null);setMsg('');}}>×</button>
+        <strong>{choice.name}</strong><small>{choice.detail}</small>
+        <p>{fmt(choice.pos)}{local?` · ห่าง ${Math.round(dist)} ม.`:''}</p>
+        {local?<div className="atlas-pop-btns">
+          <button disabled={!route?.length} onClick={walk}>{route===null?'ไม่พบทางเดิน':route.length?`เดินไป (${Math.round(dist)} ม.)`:'ถึงแล้ว'}</button>
+          <button disabled={warpD<MAP_WARP.min} title={warpD<MAP_WARP.min?`วาร์ปได้เมื่อห่าง ${MAP_WARP.min} ม. ขึ้นไป`:undefined} onClick={warp}>{warpD<MAP_WARP.min?`วาร์ป (ต้องห่าง ${MAP_WARP.min} ม.+)`:`วาร์ป · ${mapWarpCost(warpD)} SG`}</button>
+        </div>:<p className="atlas-pop-note">อยู่คนละพื้นที่ · เดินทางผ่านประตูวาร์ปก่อน</p>}
+        {msg&&<p className="atlas-pop-note">{msg}</p>}
+      </div>}
+      <div className="atlas-coords">ตำแหน่งของฉัน · {fmt(live.player.position)}</div>
     </main>
     <aside className="atlas-sidebar">
       <label className="atlas-area" style={{backgroundImage:`linear-gradient(90deg,#151319f5,#151319b0),url("${regionArt(city)}")`}}>เลือกพื้นที่

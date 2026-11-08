@@ -37,7 +37,7 @@ function Hero({ cls, i, selected, onPick, gender, hair, hairColor }: { cls: Clas
     <mesh position={[0, .35, 0]} receiveShadow><cylinderGeometry args={[.54, .6, .06, 8]} /><meshStandardMaterial color="#2a2530" roughness={.7} flatShading /></mesh>
     <mesh position={[0, .386, 0]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[.38, .52, 48]} /><meshBasicMaterial color={UI[cls].color} transparent opacity={selected ? .95 : .3} depthWrite={false} /></mesh>
     {selected && <pointLight position={[0, 1.4, .6]} color={UI[cls].color} intensity={3} distance={4} decay={2} />}
-    <group position={[0, .38, 0]} rotation={[0, Math.PI / 2, 0]}><AnimatedCharacter job={cls} gender={gender} hair={hair} hairColor={hairColor} clip={clip} replay={stamp} duration={clip === 'Buff' ? 1.1 : undefined} /></group>
+    <group position={[0, .38, 0]}><AnimatedCharacter job={cls} gender={gender} hair={hair} hairColor={hairColor} clip={clip} replay={stamp} duration={clip === 'Buff' ? 1.1 : undefined} /></group>
   </group>;
 }
 function Rig({ sel }: { sel: number }) {
@@ -48,12 +48,9 @@ function Rig({ sel }: { sel: number }) {
   return null;
 }
 
-/** hair styles painted for the layered Berserker (public/art/anim/hair) and a starter colour palette */
-const HAIRS = ['B04', 'B01', 'A03', 'A06'];  // only the finished 3D hair styles
-const HAIR_COLORS = ['#e8e2d6', '#d9b26a', '#b8732e', '#7a4a26', '#3d2518', '#1d1a1e', '#a8322c', '#5f6f8f'];
-export default function CharacterCreate({ onCreate }: { onCreate: (name: string, cls: ClassId, gender: Gender) => Promise<string | null> }) {
-  const [sel, setSel] = useState(Math.max(0, CLASS_IDS.indexOf('Berserker'))); const [gender, setGender] = useState<Gender>('m'); const cls = CLASS_IDS[sel]; const config = useConfigStore(s => s.config);
-  const [hair, setHair] = useState('B04'); const [hairColor, setHairColor] = useState('#7a4a26');
+export default function CharacterCreate({ onCreate, only }: { onCreate: (name: string, cls: ClassId, gender: Gender) => Promise<string | null>; /** the class picked on the entry screen: only that one is shown */ only?: ClassId | null }) {
+  const [sel, setSel] = useState(Math.max(0, CLASS_IDS.indexOf(only ?? 'Berserker'))); const gender: Gender = 'm'; /* round 22: female sheets not drawn yet */ const cls = CLASS_IDS[sel]; const config = useConfigStore(s => s.config);
+  const hair = 'B04', hairColor = '#7a4a26'; // the layered-rig hair options are off while each class uses its painted sheet
   const [name, setName] = useState(''); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
   // each class speaks its line when picked (and again when the male / female look changes)
   const first = useRef(true);
@@ -72,17 +69,14 @@ export default function CharacterCreate({ onCreate }: { onCreate: (name: string,
       <directionalLight position={[3, 7, 6]} intensity={2.4} color="#ffe6c8" castShadow shadow-mapSize={[2048, 2048]} shadow-camera-left={-7} shadow-camera-right={7} shadow-camera-top={7} shadow-camera-bottom={-7} />
       <directionalLight position={[-6, 4, -5]} intensity={1.1} color="#62d7cb" /><directionalLight position={[6, 3, -4]} intensity={.8} color="#b685ff" />
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow><planeGeometry args={[40, 40]} /><meshStandardMaterial color="#120f16" roughness={.92} /></mesh>
-      <Suspense fallback={null}>{CLASS_IDS.map((c, i) => <Hero key={c} cls={c} i={i} gender={gender} hair={hair} hairColor={hairColor} selected={i === sel} onPick={() => setSel(i)} />)}</Suspense>
+      <Suspense fallback={null}>{CLASS_IDS.map((c, i) => (!only || c === only) && <Hero key={c} cls={c} i={i} gender={gender} hair={hair} hairColor={hairColor} selected={i === sel} onPick={() => setSel(i)} />)}</Suspense>
       <Rig sel={sel} />
     </Canvas>
-    <header className="sf-create-top"><h1>สร้างตัวละครของคุณ</h1><p>เลือกอาชีพ ชาย/หญิง ตั้งชื่อ แล้วเริ่มผจญภัย</p></header>
-    <nav className="sf-create-rail" aria-label="อาชีพ">{CLASS_IDS.map((c, i) => <button key={c} type="button" aria-pressed={i === sel} style={{ ['--cc' as string]: UI[c].color }} onClick={() => setSel(i)}>
-      <b>{CLASS_NAME[c]}</b><span>{UI[c].th} · {UI[c].role}</span></button>)}</nav>
+    <header className="sf-create-top"><h1>สร้างตัวละครของคุณ</h1><p>{only ? `${CLASS_NAME[cls]} · ตั้งชื่อ แล้วเริ่มผจญภัย` : 'เลือกอาชีพ ตั้งชื่อ แล้วเริ่มผจญภัย'}</p></header>
+    {!only && <nav className="sf-create-rail" aria-label="อาชีพ">{CLASS_IDS.map((c, i) => <button key={c} type="button" aria-pressed={i === sel} style={{ ['--cc' as string]: UI[c].color }} onClick={() => setSel(i)}>
+      <b>{CLASS_NAME[c]}</b><span>{UI[c].th} · {UI[c].role}</span></button>)}</nav>}
     <aside className="sf-create-info">
       <div className="role">{UI[cls].role}</div><h2>{CLASS_NAME[cls]}</h2>
-      <div className="sf-gender" role="group" aria-label="รูปลักษณ์">{(['m', 'f'] as const).map(g => <button key={g} type="button" aria-pressed={gender === g} onClick={() => setGender(g)}>{g === 'm' ? 'ชาย' : 'หญิง'}</button>)}</div>
-      <div className="sf-hair" role="group" aria-label="ทรงผม"><b>ทรงผม</b><div className="styles">{HAIRS.map(h => <button key={h} type="button" aria-pressed={hair === h} onClick={() => setHair(h)}>{h}</button>)}</div>
-        <b>สีผม</b><div className="colors">{HAIR_COLORS.map(c => <button key={c} type="button" aria-label={c} aria-pressed={hairColor === c} style={{ background: c }} onClick={() => setHairColor(c)} />)}<input type="color" aria-label="เลือกสีเอง" value={hairColor} onChange={e => setHairColor(e.target.value)} /></div></div>
       <div className="sub">{UI[cls].th} · ความยาก <span className="diff">{[1, 2, 3].map(d => <i key={d} className={d <= UI[cls].diff ? 'on' : ''} />)}</span></div>
       <p className="quote">“{VOICE_LINES[cls]}” <button type="button" className="voice-btn" aria-label="ฟังเสียงพูด" onClick={() => void audio.voice(cls, gender)}>🔊</button></p>
       <p className="lore">{UI[cls].lore}</p>

@@ -11,6 +11,7 @@ import { normalizeInvite, isInviteFormat } from '@/game/balance/invite';
 import type { ClassKey } from '@/game/balance/config';
 import CharacterCreate from './CharacterCreate';
 import HeroLineup from './HeroLineup';
+import type { ClassId } from '@/game/content';
 import SettingsPanel from '../SettingsPanel';
 import { loginEmail } from '@/lib/loginName';
 
@@ -32,6 +33,8 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
   // round 16: without the closed beta (local / guest play) the login page still comes first — website → เข้าเกม → this
   // page with the hero lineup → เข้าเกม. Shown every time the game page opens.
   const [guestIn, setGuestIn] = useState(false); const [guestCreate, setGuestCreate] = useState(false);
+  // round 22: the class clicked in the entry lineup is the one the create screen shows (no switching there)
+  const [picked, setPicked] = useState<ClassId | null>(null);
   const enterGuest = () => setGuestIn(true);
   // round 20: test mode can create a character (any class) — it replaces the one saved in this browser
   // read after mount: the server never sees localStorage, so reading it during render broke hydration
@@ -52,16 +55,16 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
 
   if (!closed) {
     if (guestIn) return <>{children}</>;
-    if (guestCreate) return <CharacterCreate onCreate={async (name, cls, gender) => {
+    if (guestCreate) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
       try { window.localStorage.removeItem('soulforge_guest_v1'); } catch { /* storage unavailable */ }
       useGameStore.getState().applyProfile(name, cls, gender); setGuestIn(true); return null; }} />;
-    return <Shell showcase><GuestEntry onEnter={enterGuest} onCreate={() => setGuestCreate(true)} hasSave={hasGuestSave} /></Shell>;
+    return <Shell showcase onPick={setPicked}><GuestEntry onEnter={enterGuest} onCreate={() => setGuestCreate(true)} hasSave={hasGuestSave} /></Shell>;
   }
   if (!supabase) return <Shell><h2 className="sf-h2">ยังไม่ได้เชื่อมเซิร์ฟเวอร์</h2><p className="sf-muted">ตั้งค่า NEXT_PUBLIC_SUPABASE_URL และ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ก่อนเปิดโหมดทดสอบปิด</p></Shell>;
   if (!ready || (session && profile === undefined)) return <Shell><p className="sf-muted">กำลังตรวจสอบสิทธิ์…</p></Shell>;
-  if (!session) return <Shell showcase><AuthForms /></Shell>;
+  if (!session) return <Shell showcase onPick={setPicked}><AuthForms /></Shell>;
   if (profile === null) return <Shell><RedeemForm token={session.access_token} onDone={() => setSession({ ...session })} /></Shell>;
-  if (profile && !profile.banned && !profile.class_id) return <CharacterCreate onCreate={async (name, cls, gender) => {
+  if (profile && !profile.banned && !profile.class_id) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
     const { error } = await supabase.rpc('create_character', { p_name: name, p_class: cls, p_gender: gender });
     if (error) return CREATE_ERRORS[Object.keys(CREATE_ERRORS).find(k => error.message.includes(k)) ?? ''] ?? 'สร้างตัวละครไม่สำเร็จ';
     setMade(m => m + 1); return null; }} />;
@@ -71,13 +74,13 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
 
 // round 19: the login page is a game window — the same painted frame, title bar, buttons and close button as the HUD
 // windows (.h2 .h2-win), not a separately drawn card — with the settings gear (sound / graphics) in the corner
-function Shell({ children, showcase }: { children: ReactNode; showcase?: boolean }) {
+function Shell({ children, showcase, onPick }: { children: ReactNode; showcase?: boolean; onPick?: (c: ClassId | null) => void }) {
   const [settings, setSettings] = useState(false);
   useEffect(() => { if (!settings) return; const k = (e: KeyboardEvent) => { if (e.key === 'Escape') setSettings(false); }; addEventListener('keydown', k); return () => removeEventListener('keydown', k); }, [settings]);
-  return <main className={`sf-gate h2${showcase ? ' show' : ''}`}>{showcase ? <HeroLineup /> : <div className="sf-gate-veil" />}
+  return <main className={`sf-gate h2${showcase ? ' show' : ''}`}>{showcase ? <HeroLineup onPick={onPick} /> : <div className="sf-gate-veil" />}
     <section className="h2-win sf-gate-win" aria-label="SoulForge">
       <header><img className="sf-win-ico" src="/art/icons/menu/char.webp" alt="" /><h2>SOULFORGE · ECLIPSE FRONTIER</h2></header>
-      <div className="body"><div className="sf-brand"><span className="sf-sigil">✦</span><div><b>SOUL<span>FORGE</span></b><small>CLOSED BETA · ECLIPSE FRONTIER</small></div></div>
+      <div className="body"><div className="sf-brand sf-brand-logo"><img src="/art/brand/soulforge-logo.webp" alt="SoulForge" /><small>CLOSED BETA · ECLIPSE FRONTIER</small></div>
         {children}</div>
     </section>
     <button type="button" className={`sf-gear${settings ? ' on' : ''}`} title="ตั้งค่า" aria-label="ตั้งค่า" onClick={() => setSettings(v => !v)}><img src="/art/icons/menu/settings.webp" alt="" /></button>

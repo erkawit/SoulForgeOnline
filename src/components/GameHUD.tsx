@@ -192,7 +192,7 @@ export default function GameHUD() {
       {network.connected && network.players.filter(p => p.id !== network.playerId).map(p => <circle key={p.id} cx={p.x} cy={p.z} r=".8" fill="#6dc8db" />)}
       {drops.map(d => <circle key={d.id} cx={d.x} cy={d.z} r=".6" fill="#cb8ff2" />)}
       {network.connected && network.boss && <circle cx={network.boss.x} cy={network.boss.z} r="1.8" fill="#ef6357" />}
-      <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span></section>
+      <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span><span className="h2-coords" aria-label="พิกัด">X {px.toFixed(0)} · Y {pz.toFixed(0)}</span></section>
     <button type="button" className={`sf-gear pointer-events-auto ${panel === 'settings' ? 'on' : ''}`} title="ตั้งค่า (O)" aria-label="ตั้งค่า" onClick={() => toggle('settings')}><img src="/art/ui-kit/icon_menu_settings_gear.webp" alt="" /></button>
     <div className="h2-zone">{zone ? zone.th : city.name}<small>{px.toFixed(0)}, {pz.toFixed(0)}</small><ChannelButton /></div>
     <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{key && <small>{key}</small>}</button>)}

@@ -33,7 +33,9 @@ import FrameCap from './FrameCap';
 import DamageLayer from './DamageLayer';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { touchMove } from '@/store/touchInput';
-import { CLASSES,CITIES,CLASS_IDS } from '@/game/content';
+import { CLASSES,CITIES,CLASS_IDS,walkable,type CityId } from '@/game/content';
+import { mapRoute, nearestWalkable } from '@/game/world/mapRoute';
+import { lineClear } from '@/game/monsterAI';
 
 const UP = new Vector3(0, 1, 0);
 const tempForward = new Vector3();
@@ -43,6 +45,8 @@ const tempMove = new Vector3();
 const clickTarget: { x: number; z: number; set: boolean } = { x: 0, z: 0, set: false };
 const clickCity = { v: '' };
 let remainingRoute: [number, number][] = [];
+/** chase path around obstacles (recomputed every 0.6 s while the straight line is blocked) */
+const chase: { id: string; at: number; route: [number, number][] } = { id: '', at: 0, route: [] };
 
 /** invisible ground under the player that catches left-clicks for click-to-move */
 function ClickGround() {
@@ -50,7 +54,13 @@ function ClickGround() {
   useFrame(() => { const g = ref.current; if (!g) return; const [x, z] = useGameStore.getState().player.position; g.position.set(x, 0, z); });
   return <group ref={ref}><mesh rotation={[-Math.PI / 2, 0, 0]} renderOrder={-20} onClick={e => {
     if (e.button !== 0 || e.delta > 6) return; const s = useGameStore.getState(); if (s.journal || s.deadUntil) return;
-    remainingRoute = []; clickTarget.x = e.point.x; clickTarget.z = e.point.z; clickTarget.set = true; s.selectMonster(null);
+    s.selectMonster(null); clickCity.v = s.player.cityId ?? 'hollow';
+    // round 22: walk around buildings and walls — a short path search; straight line when nothing is in the way or no path is found
+    // a click on a building's footprint walks to its nearest open edge instead
+    const city = (s.player.cityId ?? 'hollow') as CityId, to: [number, number] = nearestWalkable(city, [e.point.x, e.point.z], s.player.position) ?? [e.point.x, e.point.z];
+    const route = lineClear(city, s.player.position, to) ? null : mapRoute(city, s.player.position, to, walkable(city, ...to) ? 0 : 1.4, Math.hypot(to[0] - s.player.position[0], to[1] - s.player.position[1]) * 2 + 12, 5000);
+    if (route?.length) { [clickTarget.x, clickTarget.z] = route[0]; remainingRoute = route.slice(1); } else { remainingRoute = []; clickTarget.x = to[0]; clickTarget.z = to[1]; }
+    clickTarget.set = true;
   }}><planeGeometry args={[240, 240]} /><meshBasicMaterial transparent opacity={0} depthWrite={false} colorWrite={false} /></mesh></group>;
 }
 
@@ -130,7 +140,15 @@ function InputAndChase() {
       if (!mob) { state.selectMonster(null); return; }
       const [px, pz] = state.player.position;
       const dist = Math.hypot(mob.x - px, mob.z - pz);
-      if (dist > classLook(state.player.classId??'Berserker',state.player.promotionId).range-.3) state.move((mob.x - px) / dist, (mob.z - pz) / dist, step);
+      const range = classLook(state.player.classId??'Berserker',state.player.promotionId).range;
+      if (dist > range-.3) {
+        // round 22: chase around obstacles — straight while it makes progress, otherwise follow a short path to the monster
+        const city = (state.player.cityId ?? 'hollow') as CityId, now = performance.now();
+        if (chase.id !== mob.id || now - chase.at > 600) { chase.id = mob.id; chase.at = now; chase.route = lineClear(city, [px, pz], [mob.x, mob.z]) ? [] : (mapRoute(city, [px, pz], [mob.x, mob.z], Math.max(.8, range - .5), dist * 2 + 10, 3000) ?? []); }
+        while (chase.route.length && Math.hypot(chase.route[0][0] - px, chase.route[0][1] - pz) < .25) chase.route.shift();
+        const [tx, tz] = chase.route[0] ?? [mob.x, mob.z], td = Math.hypot(tx - px, tz - pz) || 1;
+        state.move((tx - px) / td, (tz - pz) / td, step);
+      }
       else if (Date.now() - lastAttack.current > 700) {
         state.attack(mob.id);
         lastAttack.current = Date.now();

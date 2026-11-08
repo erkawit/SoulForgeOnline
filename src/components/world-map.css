@@ -49,3 +49,12 @@
 .atlas-tools .atlas-layer { width:auto; padding:0 9px; border-radius:12px; font-size:12px; }
 .atlas-walk-legend{position:absolute;bottom:12px;left:16px;right:16px;display:flex;gap:14px;flex-wrap:wrap;padding:10px 14px;border:1px solid #64563b;border-radius:8px;background:#101318e8;font-size:12px;pointer-events:none}.atlas-walk-legend small{flex-basis:100%;color:#b7b3a9}
 .atlas-tools{bottom:104px}.atlas-walk-legend{max-width:650px}.atlas-tools{flex-wrap:wrap;right:12px}
+
+/* round 22: marker popup (walk / warp) and coordinates */
+.atlas-pop{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);min-width:300px;max-width:min(420px,90%);background:#12100ef2;border:1px solid #8c7044;box-shadow:0 10px 30px #000a;padding:14px 16px;display:grid;gap:6px;color:#eadcc0;z-index:5}
+.atlas-pop strong{font-size:17px;color:#ffe2a4}.atlas-pop small{color:#a99b80}.atlas-pop p{margin:0;font-size:13px}
+.atlas-pop-btns{display:flex;gap:8px;margin-top:4px}.atlas-pop-btns button{flex:1;min-height:40px;background:#2a1712;border:1px solid #b2463a;color:#ffe2c0;cursor:pointer}
+.atlas-pop-btns button:last-child{background:#13202a;border-color:#4d8fc9}.atlas-pop-btns button:disabled{opacity:.5;cursor:not-allowed}
+.atlas-pop-x{position:absolute;right:6px;top:4px;background:none;border:0;color:#cdbb92;font-size:20px;cursor:pointer}
+.atlas-pop-note{color:#d9a48a}
+.atlas-coords{position:absolute;left:12px;top:64px;font:600 12px/1.4 system-ui;color:#f2e0b4;background:#0b0a0dcc;padding:4px 8px;border:1px solid #5a4a32;pointer-events:none}

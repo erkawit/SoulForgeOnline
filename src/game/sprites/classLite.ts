@@ -6,7 +6,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 148,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.5172,
   "fy": 0.0243,
   "bodyPx": 120,
   "clips": {
@@ -29,7 +29,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 145,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.4213,
   "fy": 0.0248,
   "bodyPx": 120,
   "clips": {
@@ -52,7 +52,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 140,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.4337,
   "fy": 0.0258,
   "bodyPx": 120,
   "clips": {
@@ -75,7 +75,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 151,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.51,
   "fy": 0.0238,
   "bodyPx": 120,
   "clips": {
@@ -98,7 +98,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 134,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.3723,
   "fy": 0.0268,
   "bodyPx": 120,
   "clips": {
@@ -121,7 +121,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 139,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.4965,
   "fy": 0.0259,
   "bodyPx": 120,
   "clips": {
@@ -144,7 +144,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 169,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.6064,
   "fy": 0.0214,
   "bodyPx": 120,
   "clips": {
@@ -167,7 +167,7 @@ export const CLASS_LITE: Record<string, SpriteAnim> = {
   "ch": 151,
   "cols": 8,
   "n": 16,
-  "fx": 0.5,
+  "fx": 0.5566,
   "fy": 0.0239,
   "bodyPx": 120,
   "clips": {

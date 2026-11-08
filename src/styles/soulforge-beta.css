@@ -230,3 +230,7 @@ html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win { width: min(600px, 100
 html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win .body { overflow: auto; display: block; }
 @media (max-width: 640px) { html body .sf-gate.h2 .h2-win.sf-gate-win .body { padding: 14px 16px 18px; } }
 .sf-lineup-names li { cursor: pointer; }
+/* round 22: the painted SoulForge wordmark on the entry panel (dark backdrop blends into the panel) */
+.sf-brand.sf-brand-logo { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sf-brand.sf-brand-logo img { width: min(100%, 360px); height: auto; mix-blend-mode: lighten; -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 62%, transparent 100%); }
+.sf-brand.sf-brand-logo small { letter-spacing: .25em; font-size: 11px; color: #b9a988; }

@@ -50,13 +50,15 @@ function Rig({ solo }: { solo: boolean }) {
   return null;
 }
 
-export default function HeroLineup({ compact = false }: { compact?: boolean }) {
+export default function HeroLineup({ compact = false, onPick }: { compact?: boolean; /** reports the picked class (null when un-picked) */ onPick?: (c: ClassId | null) => void }) {
   // a backdrop, not the game: drawn at 30 fps and at most 1.25× pixel density (scaled by the player's render setting)
   const renderScale = useSettingsStore(s => s.renderScale), dpr = Math.max(0.6, 1.25 * renderScale);
   const box = useRef<HTMLDivElement>(null); const [solo, setSolo] = useState(false); const [idx, setIdx] = useState(0);
   useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(([e]) => setSolo(e.contentRect.width < 760)); ro.observe(el); return () => ro.disconnect(); }, []);
   // nothing moves on its own: a hero animates when pointed at / touched, and the picked one steps to the front
   const [pick, setPick] = useState<number | null>(null);
+  useEffect(() => { onPick?.(pick == null ? null : LINEUP[pick].cls); }, [pick]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (solo) onPick?.(LINEUP[idx].cls); }, [solo, idx]); // eslint-disable-line react-hooks/exhaustive-deps
   const step = (d: number) => setIdx(i => (i + d + N) % N);
   useEffect(() => { if (!solo) return; const k = (e: KeyboardEvent) => { if ((e.target as HTMLElement)?.closest?.('input,textarea')) return; if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); }; addEventListener('keydown', k); return () => removeEventListener('keydown', k); }, [solo]);
   const start = useRef<[number, number] | null>(null);

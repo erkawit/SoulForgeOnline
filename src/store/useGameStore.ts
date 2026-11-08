@@ -92,6 +92,8 @@ type GameState = {
   setLook:(hair:string,hairColor:string)=>void;
   /** move to another map; `gate` = walked through a waygate (free), otherwise Gatewarden Orrin's travel (fee for fields) */
   travel: (id:CityId,opts?:{gate?:boolean})=>void;
+  /** round 22: world-map warp inside the current map — costs SoulGod, only for long hops; returns an error message or null */
+  mapWarp: (x:number,z:number)=>string|null;
   cast: (kind:'skill'|'buff'|'special')=>void;
   preview: (kind:ActionId)=>void;
   respawn: ()=>void;
@@ -198,6 +200,9 @@ function grantKill(state:Acc,m:Monster,_d:Derived,equipment:Record<GearSlot,Item
 type Pending={ok:true;pending:true};
 const PENDING_MSG='กำลังส่งคำขอไปยังเซิร์ฟเวอร์…';
 
+/** round 22: map warp — at least 30 m away; 20 SG + 2 SG per metre */
+export const MAP_WARP={min:30,base:20,perMetre:2};
+export const mapWarpCost=(d:number)=>MAP_WARP.base+Math.ceil(d)*MAP_WARP.perMetre;
 export const useGameStore = create<GameState>((set, get) => {
   const ctx=(ids?:string[]):eco.Ctx=>{const q=ids?[...ids]:null;return {config:cfg(),skills:skillLib(),rng:Math.random,now:Date.now(),uuid:()=>q&&q.length?q.shift()!:crypto.randomUUID()};};
   const charOf=(s:GameState):eco.CharState=>({player:s.player,inventory:s.inventory,equipment:s.equipment,soulShards:s.soulShards,skillLevels:s.skillLevels,hotbar:s.hotbar,buffs:s.buffs,starterKits:s.starterKits,quests:s.quests,drops:s.drops,codex:s.codex,wardrobe:s.wardrobe});
@@ -228,6 +233,11 @@ export const useGameStore = create<GameState>((set, get) => {
   applyProfile:(name,cls,gender)=>{const s=get();const same=s.player.classId===cls;
     const keep=same&&Object.keys(s.skillLevels).some(k=>skillLib().defs.find(d=>d.id===k)?.cls===cls);
     set({lockedClass:cls,player:{...s.player,name,classId:cls,gender:gender??s.player.gender,promotionId:same?s.player.promotionId:undefined,stats:classBase(cls)},...(keep?{}:freshSkills(cls)),journal:false,...(same?{}:{extraHotbar:[...EXTRA_SLOTS[cls]],auto:defaultAuto(cls)})});},
+  mapWarp:(x,z)=>{const s=get(),city=s.player.cityId??'hollow';
+    if(s.deadUntil||s.pending)return 'ทำไม่ได้ในตอนนี้';if(authority.online())return 'วาร์ปบนแผนที่ยังไม่เปิดในโหมดออนไลน์';
+    const d=Math.hypot(x-s.player.position[0],z-s.player.position[1]);if(d<MAP_WARP.min)return `ใกล้เกินไป · วาร์ปได้เมื่อห่างอย่างน้อย ${MAP_WARP.min} ม.`;
+    if(!walkable(city,x,z))return 'จุดนี้วาร์ปไปไม่ได้';const cost=mapWarpCost(d);if(s.player.gold<cost)return `โกลด์ไม่พอ · ต้องใช้ ${cost} SG`;
+    set({player:{...s.player,gold:s.player.gold-cost,position:[x,z]},selectedMonster:null,pending:null,log:addLog(s.log,`วาร์ป ${Math.round(d)} ม. · ${cost} SG`)});return null;},
   travel:(id,opts)=>{const s=get();if(!isCity(id)||s.deadUntil)return;
     if(id===s.player.cityId){set({journal:false});return;}
     const r=act('travel',[id,!!opts?.gate],c=>eco.travel(charOf(s),id,!!opts?.gate,c));if(isPending(r))return;

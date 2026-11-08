@@ -76,3 +76,4 @@
 .h2 .h2-menu button:hover .sf-menu-ico, .h2 .h2-menu button.on .sf-menu-ico { filter: drop-shadow(0 0 6px #e0b765) drop-shadow(0 2px 3px #000) !important; }
 .h2 .h2-menu button small { bottom: -2px !important; right: -2px !important; font-size: 10px !important; color: #f0d79a !important; }
 .h2 .h2-menu.mobile button .sf-menu-ico { inset: 0 !important; width: 100% !important; height: 100% !important; }
+.h2 .h2-mm .h2-coords { position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%); font: 700 11px system-ui; color: #f2e0b4; background: #0b0a0dd9; border: 1px solid #5a4a32; padding: 1px 8px; white-space: nowrap; pointer-events: none; z-index: 3; }
