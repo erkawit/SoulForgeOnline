@@ -69,3 +69,10 @@
 .h2-menu .sf-menu-ico, .h2-win .sf-win-ico { object-fit: contain; }
 .h3 .gi, .h3 .mcell { background: url(/art/ui-kit/slot_item_normal_common.webp) center / 100% 100% no-repeat, transparent !important; }
 .sk-row.on { border-color: transparent !important; background: url(/art/ui-kit/panel_list_row_banner_9slice.webp) center / 100% 100% no-repeat !important; }
+/* Round 22 fix: the right-side menu shows each painted icon whole, full brightness, no hover needed */
+.h2 .h2-menu:not(.mobile) { grid-template-columns: repeat(3, 54px) !important; gap: 6px !important; padding: 8px !important; }
+.h2 .h2-menu button { width: 54px !important; height: 54px !important; overflow: visible !important; border: 0 !important; border-image: none !important; background: none !important; filter: none !important; opacity: 1 !important; }
+.h2 .h2-menu button .sf-menu-ico { inset: 0 !important; width: 100% !important; height: 100% !important; padding: 0 !important; object-fit: contain !important; filter: drop-shadow(0 2px 3px #000) !important; opacity: 1 !important; transform: none !important; }
+.h2 .h2-menu button:hover .sf-menu-ico, .h2 .h2-menu button.on .sf-menu-ico { filter: drop-shadow(0 0 6px #e0b765) drop-shadow(0 2px 3px #000) !important; }
+.h2 .h2-menu button small { bottom: -2px !important; right: -2px !important; font-size: 10px !important; color: #f0d79a !important; }
+.h2 .h2-menu.mobile button .sf-menu-ico { inset: 0 !important; width: 100% !important; height: 100% !important; }

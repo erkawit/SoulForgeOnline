@@ -49,7 +49,7 @@ export function OrbFrame({ kind }: { kind: 'hp' | 'mp' }) {
 export function SkullOrb({ value, max, kind }: { value: number; max: number; kind: 'hp' | 'mp' }) {
   const k = Math.max(0, Math.min(1, value / Math.max(1, max)));
   return <div className={`h3-orb ${kind} ${kind === 'hp' && k < .3 ? 'low' : ''}`} role="meter" aria-label={kind === 'hp' ? 'HP' : 'MP'} aria-valuenow={Math.round(value)} aria-valuemax={Math.round(max)}>
-    <div className="glass"><i className="liquid" style={{ transform: `translateY(${(1 - k) * 100}%)` }}><b /></i><span className="inglow" /><span className="shine" /></div>
+    <div className="glass"><i className="liquid" style={{ clipPath: `inset(${((1 - k) * 100).toFixed(1)}% 0 0 0)` }}><b /></i><span className="inglow" /><span className="shine" /></div>
     <OrbFrame kind={kind} /><div className="kit-ring" aria-hidden="true" /><div className="txt">{fmt(value)}<small>/ {fmt(max)}</small></div><div className="lbl">{kind === 'hp' ? 'HP' : 'MP'}</div></div>;
 }
 

@@ -7,7 +7,7 @@
 /* ---- skull orbs */
 .h3-orb { position: relative; width: 124px; height: 124px; flex: none; }
 .h3-orb .glass { position: absolute; inset: 8px; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 50% 40%, #1a1218, #050406 75%); box-shadow: inset 0 0 18px #000; }
-.h3-orb .liquid { position: absolute; inset: 0; transition: transform .15s; }
+.h3-orb .liquid { position: absolute; inset: 0; transition: clip-path .15s; } /* the painted orb stays put; only its visible height drops */
 .h3-orb.hp .liquid { background: radial-gradient(circle at 42% 32%, #e0401a 0%, #b30d0d 28%, var(--sf-hp) 55%, #3d0000 92%); }
 .h3-orb.mp .liquid { background: radial-gradient(circle at 42% 32%, #6f63ff 0%, #3a3ab8 25%, var(--sf-mp1) 55%, var(--sf-mp2) 80%, #12052a 96%); }
 .h3-orb .liquid b { position: absolute; left: -25%; right: -25%; top: -6px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, .16); animation: h2wave 3s ease-in-out infinite; }

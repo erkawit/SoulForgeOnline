@@ -15,27 +15,26 @@ import { useSettingsStore } from '@/store/useSettingsStore';
 import FrameCap from '../FrameCap';
 
 type Pick = { key: string; cls: ClassId; g: Gender; promotion?: PromotionId; th: string; role: string; glow: string; costume?: string; hair?: string; hairColor?: string };
-// round 16: one class on show — the 3D-rendered Berserker in the Thai attire, male and female, plain grey hair (A06)
-const HAIR = 'A06', GREY = '#a9a9ad';
-const LINEUP: Pick[] = [
-  { key: 'bm', cls: 'Berserker', g: 'm', th: 'เบอร์เซิร์กเกอร์', role: 'ดาบใหญ่สองมือ', glow: CLASS_GLOW.Berserker, hair: HAIR, hairColor: GREY },
-  { key: 'bf', cls: 'Berserker', g: 'f', th: 'เบอร์เซิร์กเกอร์', role: 'ดาบใหญ่สองมือ', glow: CLASS_GLOW.Berserker, hair: HAIR, hairColor: GREY },
-];
+// round 22: every class (male, painted 8-way sheets), all facing the camera
+const ROSTER: [ClassId, string, string][] = [['Paladin', 'พาลาดิน', 'ดาบ · โล่'], ['Berserker', 'เบอร์เซิร์กเกอร์', 'ดาบใหญ่สองมือ'], ['Hawkeye', 'ฮอว์คอาย', 'ธนูยาว'],
+  ['RuneMaster', 'รูนมาสเตอร์', 'ดาบเวท · เสาอักขระ'], ['Elementalist', 'เอเลเมนทัลลิสต์', 'ไฟ · น้ำแข็ง · สายฟ้า'], ['Assassin', 'แอสซาซิน', 'มีดคู่'],
+  ['HighPriest', 'ไฮพรีสต์', 'ฮีล · บัฟ'], ['Inquisitor', 'อินควิซิเตอร์', 'ค้อน · สายฟ้า']];
+const LINEUP: Pick[] = ROSTER.map(([cls, th, role]) => ({ key: cls, cls, g: 'm', th, role, glow: CLASS_GLOW[cls] }));
 const N = LINEUP.length, MID = (N - 1) / 2;
-const X = LINEUP.map((_, i) => (i - MID) * 1.9);
+const X = LINEUP.map((_, i) => (i - MID) * 1.0);
 
 function Hero({ p, i, active, turn, solo }: { p: Pick; i: number; active: boolean; turn: number; solo: boolean }) {
   const [clip, setClip] = useState<CharacterClip>('Idle'); const [stamp, setStamp] = useState(0);
   useEffect(() => { if (!active) return; const list: CharacterClip[] = ['Skill', 'Attack', 'Special']; setClip(list[Math.floor(turn / N) % list.length]); setStamp(Date.now()); const t = setTimeout(() => setClip('Idle'), 2000); return () => clearTimeout(t); }, [turn, active]);
   if (solo && !active) return null;
-  return <group position={solo ? [0, 0, 0] : [X[i], 0, Math.abs(i - MID) * -0.35]}>
+  return <group position={solo ? [0, 0, 0] : [X[i], 0, (i % 2) * -0.6]}>
     <mesh position={[0, -.06, 0]}><cylinderGeometry args={[.6, .68, .12, 10]} /><meshBasicMaterial color="#17131c" /></mesh>
     <mesh position={[0, .005, 0]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[.42, .56, 40]} /><meshBasicMaterial color={p.glow} transparent opacity={active ? .9 : .35} /></mesh>
-    <group rotation={[0, solo ? 0 : -(i - MID) * 0.25, 0]}>{HERO_3D ? <Suspense fallback={null}><Hero3D gender={p.g} outfit={p.costume} hair={p.hair} hairColor={p.hairColor} clip={clip} replay={stamp} weaponTier={0} /></Suspense> : <AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite />}</group>
+    <group>{HERO_3D ? <Suspense fallback={null}><Hero3D gender={p.g} outfit={p.costume} hair={p.hair} hairColor={p.hairColor} clip={clip} replay={stamp} weaponTier={0} /></Suspense> : <AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite />}</group>
   </group>;
 }
 function Rig({ solo }: { solo: boolean }) {
-  useFrame(({ camera, clock }) => { const t = clock.elapsedTime; if (solo) { camera.position.set(Math.sin(t * .2) * .15, 1.35, 4.6); camera.lookAt(0, .85, 0); } else { camera.position.set(Math.sin(t * .12) * .35, 1.5, 6.6); camera.lookAt(0, .82, 0); } });
+  useFrame(({ camera, clock }) => { const t = clock.elapsedTime; if (solo) { camera.position.set(Math.sin(t * .2) * .15, 1.35, 4.6); camera.lookAt(0, .85, 0); } else { camera.position.set(Math.sin(t * .12) * .2, 1.6, 12.5); camera.lookAt(0, .8, 0); } });
   return null;
 }
 
