@@ -2,6 +2,7 @@
 import Label3D from './Label3D';
 import WildTerrain from './WildTerrain';
 import NavigationGround from './NavigationGround';
+import PaintedFieldGround, { paintedFieldUrl } from './PaintedFieldGround';
 import {navigationPlan} from '@/game/world/terrainNavigation';
 import {useEffect,useMemo,useRef} from 'react';
 import {useFrame} from '@react-three/fiber';
@@ -81,17 +82,17 @@ export default function StarterCity(){
  const selected=useGameStore(s=>s.player.cityId??'hollow');
  const c=CITIES[selected];
  // the capitals are drawn by CitySpritesLayer (the painted kit); fields and dungeons get their ground, terrain and props here
- const lim=WORLD_LIMIT[c.id]??23;
+ const lim=WORLD_LIMIT[c.id]??23, painted=!!c.parent&&!!paintedFieldUrl(c.id);
  const steps=Math.ceil(lim),tiles=Array.from({length:steps*steps},(_,i)=>({x:-lim+1+(i%steps)*2,z:-lim+1+Math.floor(i/steps)*2}))
   .filter(t=>onFieldRoad(c.id,t.x,t.z)&&(!c.water||Math.abs(t.x-c.water.x)>c.water.w/2+.1||(c.water.bridges??[0]).some(z=>Math.abs(t.z-z)<2.1)));
  return <group>
   {c.parent&&<>
   <mesh rotation={[-Math.PI/2,0,0]} receiveShadow><planeGeometry args={[lim*2+40,lim*2+40]}/><meshStandardMaterial color={c.ground} roughness={1}/></mesh>
-  {navigationPlan(c.id)&&<NavigationGround city={c}/>}
-  {c.biome&&<WildTerrain city={c}/>}  {spawnPoints(c.id).map(p=><mesh key={p.id} position={[p.position[0],.13,p.position[1]]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[.9,1.02,32]}/><meshBasicMaterial color={p.boss?'#e5ba66':p.elite?'#be84e8':'#e37c6c'} transparent opacity={.5} depthWrite={false}/></mesh>)}
-  {!navigationPlan(c.id)&&<Instances key={c.id} limit={Math.max(1,tiles.length)} receiveShadow><boxGeometry args={[1.94,.1,1.94]}/><meshStandardMaterial roughness={.9}/>{tiles.map((t,i)=><Instance key={i} position={[t.x,c.water&&Math.abs(t.x-c.water.x)<c.water.w/2+.1?.18:.015,t.z]} color={i%4===0?c.stone:c.ground}/>)}</Instances>}
-  {c.water&&<mesh rotation={[-Math.PI/2,0,0]} position={[c.water.x,.08,0]}><planeGeometry args={[c.water.w,lim*2]}/><meshStandardMaterial color="#3b808e" metalness={.65} roughness={.15} transparent opacity={.8}/></mesh>}
-  {c.buildings.map((b,i)=><Structure key={i} b={b} stone={c.stone} roof={c.roof} accent={c.accent}/>)}
+  {/* round 22: a field with a painting is drawn by its painting (paths, trees, ruins included); the rest keep the built terrain */}
+  {painted?<PaintedFieldGround city={c.id}/>:<>{navigationPlan(c.id)&&<NavigationGround city={c}/>}{c.biome&&<WildTerrain city={c}/>}</>}  {spawnPoints(c.id).map(p=><mesh key={p.id} position={[p.position[0],.13,p.position[1]]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[.9,1.02,32]}/><meshBasicMaterial color={p.boss?'#e5ba66':p.elite?'#be84e8':'#e37c6c'} transparent opacity={.5} depthWrite={false}/></mesh>)}
+  {!painted&&!navigationPlan(c.id)&&<Instances key={c.id} limit={Math.max(1,tiles.length)} receiveShadow><boxGeometry args={[1.94,.1,1.94]}/><meshStandardMaterial roughness={.9}/>{tiles.map((t,i)=><Instance key={i} position={[t.x,c.water&&Math.abs(t.x-c.water.x)<c.water.w/2+.1?.18:.015,t.z]} color={i%4===0?c.stone:c.ground}/>)}</Instances>}
+  {!painted&&c.water&&<mesh rotation={[-Math.PI/2,0,0]} position={[c.water.x,.08,0]}><planeGeometry args={[c.water.w,lim*2]}/><meshStandardMaterial color="#3b808e" metalness={.65} roughness={.15} transparent opacity={.8}/></mesh>}
+  {!painted&&c.buildings.map((b,i)=><Structure key={i} b={b} stone={c.stone} roof={c.roof} accent={c.accent}/>)}
   </>}
   <Waygates city={c.id}/>
   <Sparkles count={65} scale={[lim*2,7,lim*2]} color={c.accent} size={1.5} speed={.15}/>

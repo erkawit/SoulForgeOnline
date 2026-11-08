@@ -28,6 +28,7 @@ import NpcLayer from './NpcLayer';
 import RuinsLayer from './RuinsLayer';
 import CitySpritesLayer from './CitySpritesLayer';
 import NatureLayer from './NatureLayer';
+import { paintedFieldUrl } from './PaintedFieldGround';
 import FrameCap from './FrameCap';
 import DamageLayer from './DamageLayer';
 import { useSettingsStore } from '@/store/useSettingsStore';
@@ -287,12 +288,13 @@ function WorldContent() {
       shadow-camera-right={28} shadow-camera-top={28} shadow-camera-bottom={-28} />
     <pointLight position={[-7, 8, -2]} intensity={35} distance={35} color="#632f9c" />
     <StarterCity />
-    {cityId === 'wild0' && <RuinsLayer />}{/* the Sorrowlands lie in Ashen Outskirts, below Hollow Reach */}
+    {cityId === 'wild0' && !paintedFieldUrl(cityId) && <RuinsLayer />}{/* the Sorrowlands lie in Ashen Outskirts, below Hollow Reach */}
     {!city.parent && <CitySpritesLayer city={cityId} />}
     <ClassActor />
     {monsters.map(m => <Creature key={m.id} mob={m} />)}
     {drops.map(d => <LootObject key={d.id} loot={d} />)}
-    <NatureLayer city={cityId} />
+    {/* round 22: painted fields already show their trees and rocks */}
+    {!(city.parent && paintedFieldUrl(cityId)) && <NatureLayer city={cityId} />}
     <SkillFxLayer />
     <DamageLayer />
     <DevExpose />
@@ -300,7 +302,7 @@ function WorldContent() {
     <MultiplayerActors />
     <ClickGround />
     <InputAndChase />
-    <FollowCamera painted={cityId === 'hollow'} />
+    <FollowCamera painted={cityId === 'hollow' || (!!city.parent && !!paintedFieldUrl(cityId))} />
   </>;
 }
 
