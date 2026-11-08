@@ -12,9 +12,10 @@ export type Orientation = 'portrait' | 'landscape';
  * otherwise the PC set. Phones held sideways are wider than 768 but only ~390 px tall and driven by touch,
  * so a coarse pointer on a screen shorter than 500 px also gets the Mobile set.
  */
-export function layoutFor(width: number, height: number, coarsePointer: boolean, mode: ControlMode = 'auto'): Layout {
+export function layoutFor(width: number, height: number, coarsePointer: boolean, mode: ControlMode = 'auto', phone = false): Layout {
   if (mode === 'touch') return 'mobile';
   if (mode === 'pc') return 'pc';
+  if (phone) return 'mobile';
   if (width < 768) return 'mobile';
   if (coarsePointer && height < 500) return 'mobile';
   return 'pc';
@@ -29,7 +30,15 @@ export function urlControlMode(): ControlMode | null {
 export function currentLayout(mode: ControlMode = 'auto'): Layout {
   if (typeof window === 'undefined') return 'pc';
   const coarse = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
-  return layoutFor(window.innerWidth, window.innerHeight, coarse, urlControlMode() ?? mode);
+  return layoutFor(window.innerWidth, window.innerHeight, coarse, urlControlMode() ?? mode, isPhone(coarse));
+}
+/** round 23: a phone, whatever width the page reports — "desktop site" mode and some in-app browsers lay the page out
+ *  ~980 px wide, which used to pick the PC layout and shrink it. The physical screen's short side and the user agent don't lie. */
+export function isPhone(coarse: boolean): boolean {
+  if (typeof window === 'undefined') return false;
+  const short = Math.min(window.screen?.width ?? 9999, window.screen?.height ?? 9999);
+  const ua = typeof navigator !== 'undefined' && /iPhone|iPod|Android.+Mobile|Mobile.+Firefox|Windows Phone/i.test(navigator.userAgent);
+  return ua || (coarse && short < 600);
 }
 
 /** theme palette (spec §1) */

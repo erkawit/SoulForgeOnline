@@ -13,7 +13,7 @@ test('screen scale: < 768 px is mobile, phones held sideways too, desktops stay 
   assert.equal(layoutFor(844, 390, true), 'mobile'); assert.equal(layoutFor(1024, 768, true), 'pc');
   assert.equal(layoutFor(1280, 720, false), 'pc'); assert.equal(layoutFor(900, 420, false), 'pc');
   // round 22: the control setting overrides the screen rule; orientation picks the touch layout
-  assert.equal(layoutFor(1280, 720, false, 'touch'), 'mobile'); assert.equal(layoutFor(390, 844, true, 'pc'), 'pc');
+  assert.equal(layoutFor(1280, 720, false, 'touch'), 'mobile'); assert.equal(layoutFor(980, 1800, true, 'auto', true), 'mobile'); assert.equal(layoutFor(390, 844, true, 'pc'), 'pc');
   assert.equal(orientationFor(390, 844), 'portrait'); assert.equal(orientationFor(844, 390), 'landscape');
 });
 test('tiers: T1–T8 follow the spec colours and cover every rarity in order', () => {

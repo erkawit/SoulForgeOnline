@@ -93,3 +93,9 @@
 /* bag on touch: the item picture sits inside the tooltip host, which had no size in the grid cell */
 .mcell .item-detail-host { position: absolute; inset: 0; display: grid; place-items: center; }
 .mcell .item-detail-host > span:first-child { display: grid; place-items: center; width: 100%; height: 100%; }
+
+/* round 23: readable on a real phone — nothing smaller than ~11 px */
+.h2.touch .tc-frame .nm { font-size: 13px; } .h2.touch .tc-frame .mbar { height: 13px; } .h2.touch .tc-frame .mbar span { font-size: 10.5px; line-height: 13px; }
+.h2.touch .h2-tracker { font-size: 12.5px; } .h2.touch .h2-mm .h2-coords { font-size: 11.5px; }
+.tc-quick .tq small { font-size: 10.5px; } .tc-quick .tq b { font-size: 12px; } .tc-quick .tq .q { font-size: 11px; }
+.tc-act .sk .k { font-size: 9.5px; } .tc-act .basic span { font-size: 11px; } .tc-act .page b { font-size: 12px; }
