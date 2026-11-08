@@ -6,7 +6,6 @@ import {classLook} from '@/game/advancement';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ComponentRef } from 'react';
 import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
-import FrameCap from './FrameCap';
 import { OrbitControls, OrthographicCamera, Sparkles } from '@react-three/drei';
 import { Vector3, Group, MathUtils } from 'three';
 import { useGameStore } from '@/store/useGameStore';
@@ -29,8 +28,7 @@ import NpcLayer from './NpcLayer';
 import RuinsLayer from './RuinsLayer';
 import CitySpritesLayer from './CitySpritesLayer';
 import NatureLayer from './NatureLayer';
-import PaintedCity from './PaintedCity';
-import { isPainted } from '@/game/world/paintedCity';
+import FrameCap from './FrameCap';
 import DamageLayer from './DamageLayer';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { touchMove } from '@/store/touchInput';
@@ -43,6 +41,7 @@ const tempMove = new Vector3();
 /** left-click on the ground: walk there (cleared by WASD, arrival, a wall, or clicking a monster) */
 const clickTarget: { x: number; z: number; set: boolean } = { x: 0, z: 0, set: false };
 const clickCity = { v: '' };
+let remainingRoute: [number, number][] = [];
 
 /** invisible ground under the player that catches left-clicks for click-to-move */
 function ClickGround() {
@@ -50,7 +49,7 @@ function ClickGround() {
   useFrame(() => { const g = ref.current; if (!g) return; const [x, z] = useGameStore.getState().player.position; g.position.set(x, 0, z); });
   return <group ref={ref}><mesh rotation={[-Math.PI / 2, 0, 0]} renderOrder={-20} onClick={e => {
     if (e.button !== 0 || e.delta > 6) return; const s = useGameStore.getState(); if (s.journal || s.deadUntil) return;
-    clickTarget.x = e.point.x; clickTarget.z = e.point.z; clickTarget.set = true; s.selectMonster(null);
+    remainingRoute = []; clickTarget.x = e.point.x; clickTarget.z = e.point.z; clickTarget.set = true; s.selectMonster(null);
   }}><planeGeometry args={[240, 240]} /><meshBasicMaterial transparent opacity={0} depthWrite={false} colorWrite={false} /></mesh></group>;
 }
 
@@ -59,6 +58,17 @@ function InputAndChase() {
   const pressed = useRef<Set<string>>(new Set());
   const lastAttack = useRef(0);
   useEffect(() => {
+    const followMapRoute = (event: Event) => {
+      const {city, points} = (event as CustomEvent<{city: string; points: [number, number][]}>).detail;
+      const state = useGameStore.getState();
+      if (city !== (state.player.cityId ?? 'hollow') || state.deadUntil || !points.length) return;
+      state.selectMonster(null);
+      clickCity.v = city;
+      remainingRoute = points.slice(1);
+      [clickTarget.x, clickTarget.z] = points[0];
+      clickTarget.set = true;
+    };
+    window.addEventListener('sf-map-route', followMapRoute);
     const keyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLElement && (e.target.closest('input,textarea,select') || e.target.isContentEditable)) return;
       if(useGameStore.getState().journal)return;
@@ -83,6 +93,7 @@ function InputAndChase() {
     return () => {
       window.removeEventListener('keydown', keyDown);
       window.removeEventListener('keyup', keyUp);
+      window.removeEventListener('sf-map-route', followMapRoute);
       window.removeEventListener('blur', blur);
     };
   }, []);
@@ -95,11 +106,15 @@ function InputAndChase() {
     const strafe = (Number(p.has('d') || p.has('arrowright')) - Number(p.has('a') || p.has('arrowleft'))) || touchMove.x;
     const state = useGameStore.getState();
     if ((state.player.cityId ?? 'hollow') !== clickCity.v) { clickCity.v = state.player.cityId ?? 'hollow'; clickTarget.set = false; } // a warp drops the old click target
-    if(state.journal||state.deadUntil){pressed.current.clear();return;}
+    if(state.journal||state.deadUntil){pressed.current.clear(); if (state.deadUntil) clickTarget.set = false; return;}
     if (forwards || strafe) clickTarget.set = false;
     if (!forwards && !strafe && clickTarget.set && !state.pending) {
       const [px, pz] = state.player.position, dx = clickTarget.x - px, dz = clickTarget.z - pz, d = Math.hypot(dx, dz);
-      if (d < 0.2) clickTarget.set = false;
+      if (d < 0.2) {
+        const next = remainingRoute.shift();
+        if (next) [clickTarget.x, clickTarget.z] = next;
+        else clickTarget.set = false;
+      }
       else { state.move(dx / d, dz / d, step); const [nx, nz] = useGameStore.getState().player.position; if (Math.hypot(nx - px, nz - pz) < 1e-4) clickTarget.set = false; }
       return;
     }
@@ -262,7 +277,6 @@ function WorldContent() {
   const city=CITIES[cityId];
   const monsters = useGameStore(s => s.monsters);
   const drops = useGameStore(s => s.drops);
-  const painted = isPainted(cityId); // painted capital (world/paintedCity.ts): one picture + depth + walk grid, fixed camera yaw
   return <>
     <color attach="background" args={[city.sky]} />
     <fog attach="fog" args={[city.sky, 123, 198]} />
@@ -274,11 +288,11 @@ function WorldContent() {
     <pointLight position={[-7, 8, -2]} intensity={35} distance={35} color="#632f9c" />
     <StarterCity />
     {cityId === 'wild0' && <RuinsLayer />}{/* the Sorrowlands lie in Ashen Outskirts, below Hollow Reach */}
-    {painted ? <PaintedCity city={cityId} /> : !city.parent && <CitySpritesLayer city={cityId} />}
+    {!city.parent && <CitySpritesLayer city={cityId} />}
     <ClassActor />
     {monsters.map(m => <Creature key={m.id} mob={m} />)}
     {drops.map(d => <LootObject key={d.id} loot={d} />)}
-    {!painted && <NatureLayer city={cityId} />}
+    <NatureLayer city={cityId} />
     <SkillFxLayer />
     <DamageLayer />
     <DevExpose />
@@ -286,7 +300,7 @@ function WorldContent() {
     <MultiplayerActors />
     <ClickGround />
     <InputAndChase />
-    <FollowCamera painted={painted} />
+    <FollowCamera painted={cityId === 'hollow'} />
   </>;
 }
 

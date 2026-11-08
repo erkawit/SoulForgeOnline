@@ -111,7 +111,7 @@ test('round trips: out through a gate and back lands you at that same gate', () 
 
 test('no monsters in the capitals; the Sorrowlands live in Ashen Outskirts below Hollow Reach', () => {
   for (const c of MAIN) { assert.equal(spawnPoints(c).length, 0, c); assert.ok(inTown(c, 20, -20)); }
-  const s = spawnPoints('wild0'); assert.ok(s.some(p => p.id.includes('-z-')), 'Sorrowlands spawns'); assert.equal(WORLD_LIMIT.wild0, 50);
+  const s = spawnPoints('wild0'); assert.ok(s.some(p => p.id.includes('-z-')), 'Sorrowlands spawns'); assert.equal(WORLD_LIMIT.wild0, 70);
   assert.ok(s.every(p => walkable('wild0', ...p.position) || p.id.includes('-z-')));
   for (const c of MAIN) assert.equal(huntingGrounds(c).length, portalsOf(c).filter(p => p.kind === 'field').length, `${c}: the ranger lists the fields`);
   for (const id of [...ZONE_IDS, ...DUNGEON_IDS]) assert.ok(FIELD_ART[id], `${id} has its painting`);

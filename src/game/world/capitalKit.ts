@@ -58,7 +58,7 @@ function groundTexture(city: MainCityId, pieces: KitPiece[]) {
     gr.addColorStop(0, c0); gr.addColorStop(1, c0 + '00'); g.globalAlpha = 0.1 + r() * 0.14; g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2); }
   g.globalAlpha = 1;
   // yards under each building / monument, a little wider than its footprint
-  for (const q of pieces) if (q.role || q.piece === 'tree') { g.fillStyle = p.yard; g.beginPath(); g.arc(X(q.x), X(q.z), (q.r + 1.3) * k, 0, 7); g.fill(); }
+  for (const q of pieces) if (q.role || q.landmark || q.piece === 'tree') { g.fillStyle = p.yard; g.beginPath(); g.arc(X(q.x), X(q.z), (q.r + 1.3) * k, 0, 7); g.fill(); }
   // cobbles wherever the plan has road: running-bond rows of stones of mixed length, each a rounded block with a
   // lit top edge and a dark joint, the tone drifting between the two road colours
   const rr = (x: number, y: number, w: number, h: number, rad: number) => { g.beginPath(); g.moveTo(x + rad, y); g.arcTo(x + w, y, x + w, y + h, rad); g.arcTo(x + w, y + h, x, y + h, rad); g.arcTo(x, y + h, x, y, rad); g.arcTo(x, y, x + w, y, rad); g.closePath(); };
@@ -136,9 +136,11 @@ export function buildCapital(city: MainCityId) {
         const near = w.nx * ux + w.nz * uz > 0.25, d = player ? Math.abs((w.axis === 'x' ? player.x : player.z) - w.line) : 99;
         const want = near && d < 11 ? 0.22 : 1; w.fade += (want - w.fade) * k; w.mat.opacity = w.fade; w.mat.depthWrite = w.fade > 0.6;
       }
-      for (const it of items) if (it.p.fade) {
-        const toCam = (it.p.x * ux + it.p.z * uz) > 0, d = player ? Math.hypot(player.x - it.p.x, player.z - it.p.z) : 99;
-        const want = toCam && d < 9 ? 0.3 : 1; it.fade += (want - it.fade) * k; it.mat.opacity = it.fade; it.mat.depthWrite = it.fade > 0.6;
+      for (const it of items) if (it.p.fade || it.p.role || it.p.landmark) {
+        const dx = it.p.x - (player?.x ?? 0), dz = it.p.z - (player?.z ?? 0);
+        const depth = dx * ux + dz * uz, side = Math.abs(dx * uz - dz * ux);
+        const obscures = player && depth >= 0 && depth < it.p.w && side < it.p.w * .45;
+        const want = obscures ? 0.3 : 1; it.fade += (want - it.fade) * k; it.mat.opacity = it.fade; it.mat.depthWrite = it.fade > 0.6;
       }
     },
     dispose() { ground.geometry.dispose(); (ground.material as MeshStandardMaterial).map?.dispose(); },

@@ -1,6 +1,7 @@
 // The Sorrowlands: four ruined farming grounds around Hollow Reach (outside the 46 × 46 city square).
 // Data only — world/ruins.ts builds the 3D ruins from it, spawns.ts / the preview place monsters, the wiki lists it.
-export const WORLD_HALF = 50;
+import { FIELD_HALF, SORROWLANDS_SCALE } from './fieldDimensions';
+export const WORLD_HALF = FIELD_HALF;
 export type ZoneSpawn = { x: number; z: number; species: string; level: number; elite?: boolean; boss?: boolean; count?: number };
 export type Zone = {
   id: 'ashfen' | 'ashen-keep' | 'weeping-cathedral' | 'shadowtear-cave';
@@ -21,6 +22,12 @@ export const ZONES: Zone[] = [
     story: 'ถ้ำหินที่ผลึกสีฟ้าเรืองแสงหยดน้ำตาลงไม่หยุด แมงมุมหนามและผีเสื้อจันทร์ทำรังในความมืด',
     spawns: [{ x: -6, z: 34, species: 'Thorn Spider', level: 5, count: 3 }, { x: 6, z: 36, species: 'Moon Moth', level: 7, count: 2 }, { x: 0, z: 43, species: 'Thorn Spider', level: 7, count: 2 }, { x: 9, z: 44, species: 'Root Reaper', level: 9, elite: true }] },
 ];
+// Move each ruin as a district, keeping its walls, doorways and local spawn offsets aligned.
+for(const zone of ZONES){
+ const dx=zone.x*(SORROWLANDS_SCALE-1),dz=zone.z*(SORROWLANDS_SCALE-1);
+ zone.x+=dx;zone.z+=dz;
+ zone.spawns=zone.spawns.map(spawn=>({...spawn,x:spawn.x+dx,z:spawn.z+dz}));
+}
 export const ZONE_BY_ID = Object.fromEntries(ZONES.map(z => [z.id, z])) as Record<Zone['id'], Zone>;
 /** which ruined zone a point is in (null = city / road) */
 export function zoneAt(x: number, z: number): Zone | null { return ZONES.find(o => Math.hypot(x - o.x, z - o.z) <= o.radius + 2) ?? null; }

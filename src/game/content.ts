@@ -1,7 +1,7 @@
+import { FIELD_HALF, FIELD_GATE_INSET, fieldScale } from './world/fieldDimensions';
+import { configureFieldNavigation, navigationSurface, SWAMP_SPAWNS, fieldImagePoint } from './world/terrainNavigation';
 import { blockedByProps } from './world/colliders';
-import { paintedBlocked, isPainted } from './world/paintedCity';
-import { CAPITAL_SPAWN, CAPITAL_SPAWNS, CAPITAL_WALK, OPPOSITE, capitalBlocked, gateArrival, type GateDir } from './world/capitalPlan';
-// round 20: eight playable classes (2D 8-direction sprites; until each class's own art ships it borrows the Berserker frames)
+import { CAPITAL_SPAWN, CAPITAL_SPAWNS, CAPITAL_WALK, GATE_POS, OPPOSITE, capitalBlocked, gateArrival, type GateDir } from './world/capitalPlan';
 export const CLASS_IDS = ['Paladin', 'Berserker', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'] as const;
 export type ClassId = typeof CLASS_IDS[number];
 export type MainCityId = 'hollow'|'dawnveil'|'thornwatch';
@@ -73,14 +73,25 @@ export const isClass=(x:unknown):x is ClassId=>CLASS_IDS.includes(x as ClassId);
 export const isCity=(x:unknown):x is CityId=>Object.prototype.hasOwnProperty.call(CITIES,x as string);
 /** The three capitals are walled squares (world/capitalPlan.ts, after mmorpg-world-assets/cities/<city>/maps/city.png) that open
  *  through a waygate in each corner onto their hunting fields (CAPITAL_GATES). Walkable square = ±limit; Ashen Outskirts
- *  (wild0, below Hollow Reach's south gate) carries the Sorrowlands ruins out to ±50. */
-export const WORLD_LIMIT:Partial<Record<CityId,number>>={hollow:CAPITAL_WALK,dawnveil:CAPITAL_WALK,thornwatch:CAPITAL_WALK,wild0:50};
+ *  (wild0, below Hollow Reach's south gate) carries the Sorrowlands ruins out to the shared field boundary. */
+export const WORLD_LIMIT:Partial<Record<CityId,number>>={
+ hollow:CAPITAL_WALK,dawnveil:CAPITAL_WALK,thornwatch:CAPITAL_WALK,
+ ...Object.fromEntries([...ZONE_IDS,...DUNGEON_IDS].map(id=>[id,FIELD_HALF])),
+};
+// Reposition the authored landmarks without enlarging individual actors or buildings.
+for(const id of [...ZONE_IDS,...DUNGEON_IDS]){
+ const c=CITIES[id],s=fieldScale(id),round=(n:number)=>Math.round(n*100)/100;
+ c.buildings=c.buildings.map(b=>({...b,x:round(b.x*s),z:round(b.z*s)}));
+ c.hunt=c.hunt.map(([x,z])=>[round(x*s),round(z*s)]);
+ if(c.water)c.water={...c.water,x:round(c.water.x*s),bridges:(c.water.bridges??[0]).map(z=>round(z*s))};
+ c.mapPath=c.mapPath.replace(/-?\d+(?:\.\d+)?/g,n=>String(round(Number(n)*s)));
+}
 export function walkable(city:CityId,x:number,z:number){
  const lim=WORLD_LIMIT[city]??23;
  if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>lim||Math.abs(z)>lim)return false;
  const c=CITIES[city];
+ if(c.parent&&navigationSurface(city,x,z)==='blocked')return false;
  if(!c.parent&&capitalBlocked(city,x,z))return false; // walls, Dawnveil's canal
- if(isPainted(city))return !paintedBlocked(city,x,z)&&!blockedByProps(city,x,z); // painted capital: its walk grid + NPC bodies
  if(c.water&&Math.abs(x-c.water.x)<c.water.w/2+.25&&!(c.water.bridges??[0]).some(b=>Math.abs(z-b)<=2.1))return false;
  if(c.buildings.some(b=>Math.abs(x-b.x)<b.w/2+.4&&Math.abs(z-b.z)<b.d/2+.4))return false;
  // painted buildings, trees, rocks, tombstones, NPCs… registered by world/registry.ts → setColliders
@@ -126,14 +137,14 @@ export function fieldGate(id:CityId):{city:MainCityId;dir:GateDir}|null{
  for(const city of ['hollow','dawnveil','thornwatch'] as MainCityId[]){const d=gateTo(city,id);if(d)return {city,dir:d};}return null;}
 
 /** waygates inside the fields and dungeons sit in the corners too, (±FIELD_GATE_D, ±FIELD_GATE_D) */
-export const FIELD_GATE_D=17.5;
+export const FIELD_GATE_D=FIELD_HALF-FIELD_GATE_INSET;
 const CORNER:Record<GateDir,[number,number]>={top:[-1,-1],bottom:[1,1],left:[-1,1],right:[1,-1]};
 export type Portal={to:CityId;x:number;z:number;dir:GateDir;kind:'city'|'field'|'dungeon'};
 /** Every waygate of a map: the four corners of a capital, and in a field the way back (on the side facing its capital) plus
  *  the dungeon door at the far end of the field above each capital. Dungeons lead back to their entrance field. */
 export function portalsOf(id:CityId):Portal[]{
  const c=CITIES[id];if(!c)return [];
- if(!c.parent)return (Object.entries(CAPITAL_GATES[id as MainCityId]) as [GateDir,CityId][]).map(([dir,to])=>{const [x,z]=CORNER[dir];return {to,dir,x:x*27,z:z*27,kind:CITIES[to].parent?'field':'city'};});
+ if(!c.parent)return (Object.entries(CAPITAL_GATES[id as MainCityId]) as [GateDir,CityId][]).map(([dir,to])=>{const [x,z]=GATE_POS[dir];return {to,dir,x,z,kind:CITIES[to].parent?'field':'city'};});
  const out:Portal[]=[];const at=(dir:GateDir,to:CityId,kind:Portal['kind'])=>{const [x,z]=CORNER[dir];out.push({to,dir,x:x*FIELD_GATE_D,z:z*FIELD_GATE_D,kind});};
  if(c.dungeon){at('bottom',c.entrance!,'field');return out;}
  const g=fieldGate(id);if(g)at(OPPOSITE[g.dir],g.city,'city');else at('bottom',c.parent,'city');
@@ -156,26 +167,16 @@ export const nearPortal=(city:CityId,x:number,z:number,r=6)=>portalsOf(city).som
 
 // The fields reuse one ring of hunting points; any point within 8 m of one of the field's waygates is turned round the
 // centre (22.5° at a time) until it is clear of them, so nobody arrives next to a pack.
-/** Round 22 map standard (docs/ROUND22_TEMPLATES_TH.md §4): a field holds 6 monster camps on a ring well inside the map —
- *  clear of the decorative edge ring (r ≥ 16), the waygates and the buildings — two neighbouring camps per species, so
- *  species never mix. spawns.ts places a pack of CAMP.pack monsters around each camp centre. */
-export const CAMP={count:6,ring:13,pack:3,packR:1.8,clear:3.2,portalGap:8} as const;
-const campFree=(c:City,x:number,z:number)=>!c.buildings.some(b=>Math.abs(x-b.x)<b.w/2+CAMP.clear&&Math.abs(z-b.z)<b.d/2+CAMP.clear)
- &&!(c.water&&Math.abs(x-c.water.x)<c.water.w/2+CAMP.clear);
-for(const id of ZONE_IDS){
- // each camp keeps its sixth of the ring; a blocked camp slides along its sector / in or out until it is clear
- const ps=portalsOf(id),c=CITIES[id],out:[number,number][]=[];
- for(let k=0;k<CAMP.count;k++){
-  search: for(const r of [CAMP.ring,CAMP.ring-2,CAMP.ring+2,CAMP.ring-4])for(const d of [0,5,-5,10,-10,15,-15,20,-20,25,-25]){
-   const a=(30+k*360/CAMP.count+d)*Math.PI/180,x=Math.round(Math.cos(a)*r*10)/10,z=Math.round(Math.sin(a)*r*10)/10;
-   if(ps.every(p=>Math.hypot(p.x-x,p.z-z)>=CAMP.portalGap)&&campFree(c,x,z)&&out.every(([ox,oz])=>Math.hypot(ox-x,oz-z)>=9)){out.push([x,z]);break search;}
-  }
- }
- c.hunt=out;
-}
-for(const id of DUNGEON_IDS){
+for(const id of [...ZONE_IDS,...DUNGEON_IDS]){
  const ps=portalsOf(id),c=CITIES[id],taken:[number,number][]=[];
  c.hunt=c.hunt.map(([x,z])=>{let a=Math.atan2(z,x);const r=Math.hypot(x,z);
   for(let i=0;i<16;i++){const px=Math.cos(a)*r,pz=Math.sin(a)*r;if(ps.every(p=>Math.hypot(p.x-px,p.z-pz)>=8)&&taken.every(([tx,tz])=>Math.hypot(tx-px,tz-pz)>=4.5)){taken.push([px,pz]);return [Math.round(px*10)/10,Math.round(pz*10)/10] as [number,number];}a+=Math.PI/8;}
   taken.push([x,z]);return [x,z] as [number,number];});
 }
+// The swamp uses only its traced dry courtyards and bridges, not the old generic canal strip.
+CITIES.wild2.water=undefined;
+CITIES.wild2.hunt=SWAMP_SPAWNS;
+CITIES.wild2.buildings=[[550,350],[880,460]].map(([u,v],i)=>{
+ const [x,z]=fieldImagePoint(u,v);return {x,z,w:5,d:5,h:5,kind:i?'tower':'temple'};
+});
+for(const id of [...ZONE_IDS,...DUNGEON_IDS])configureFieldNavigation(id,CITIES[id].hunt,portalsOf(id).map(p=>[p.x,p.z]));

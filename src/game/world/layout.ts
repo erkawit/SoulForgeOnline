@@ -1,6 +1,9 @@
 // Deterministic nature layout per city / zone: trees, rocks, bushes and where grass may grow.
 // The same seed gives the same world on every client and on the server, so colliders always agree.
-import { CAMP, CITIES, CAPITAL_WALLS, WORLD_LIMIT, portalsOf, type CityId } from '../content';
+import { onFieldRoad } from './fieldDimensions';
+import { navigationSurface } from './terrainNavigation';
+import { ZONES } from './zones';
+import { CITIES, CAPITAL_WALLS, WORLD_LIMIT, portalsOf, type CityId } from '../content';
 import type { Collider } from './colliders';
 import { CAPITAL_PIECES, CAPITAL_WALK, inCanal, onRoad } from './capitalPlan';
 
@@ -42,41 +45,44 @@ export function natureLayout(city: CityId): NatureLayout {
     return { city, trees: [], backdrop: [], rocks: [], bushes: [], colliders: [], grass: { ...def.grass, density: def.grass.density * (city === 'thornwatch' ? 0.9 : 0.45) }, allowGrass,
       palette: { leaf: def.leaf, bark: def.bark, rock: def.rock, glow: def.glow } };
   }
+  const lim = WORLD_LIMIT[city] ?? 23;
+  const density = Math.min(4, (lim / 23) ** 2);
   const hunt = c.hunt, walls = CAPITAL_WALLS[city] ?? [];
   const portals: [number, number][] = portalsOf(city).map(p => [p.x, p.z]);
-  const onPath = (x: number, z: number) => capital ? Math.abs(x) < 2.8 || Math.abs(z) < 2.5 : Math.abs(x) < 1.8 || Math.abs(z) < 1.6;
+  const onPath = (x: number, z: number) => onFieldRoad(city,x,z);
   const props: { x: number; z: number; hw: number; hd: number }[] = [];
   const onProp = (x: number, z: number, m: number) => props.some(b => Math.abs(x - b.x) < b.hw + m && Math.abs(z - b.z) < b.hd + m);
   const free = (x: number, z: number, m: number) => !onProp(x, z, m) && !(!!c.water && Math.abs(x - c.water.x) < c.water.w / 2 + 0.8 + m) && !hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < 4 + m);
   const excluded = (x: number, z: number, m: number) =>
-    Math.abs(x) > 22.4 || Math.abs(z) > 22.4 || Math.hypot(x, z) < (capital ? 7.4 : 4) + m || onProp(x, z, m) ||
+    Math.abs(x) > lim-.6 || Math.abs(z) > lim-.6 || Math.hypot(x, z) < 4 + m || onProp(x, z, m) ||
+    (city==='wild0' && ZONES.some(zone=>Math.hypot(x-zone.x,z-zone.z)<zone.radius+3+m)) ||
     c.buildings.some(b => Math.abs(x - b.x) < b.w / 2 + 1 + m && Math.abs(z - b.z) < b.d / 2 + 1 + m) ||
     walls.some(b => Math.abs(x - b.x) < b.w / 2 + 0.8 + m && Math.abs(z - b.z) < b.d / 2 + 0.8 + m) ||
     (!!c.water && Math.abs(x - c.water.x) < c.water.w / 2 + 0.8 + m) ||
-    hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < CAMP.clear + m) || portals.some(([px, pz]) => Math.hypot(x - px, z - pz) < 4.5 + m);
+    hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < 2.4 + m) || portals.some(([px, pz]) => Math.hypot(x - px, z - pz) < 4.5 + m);
   const trees: Prop[] = [], rocks: Rock[] = [], bushes: Bush[] = [], colliders: Collider[] = [];
   const place = (n: number, minGap: number, ok: (x: number, z: number) => boolean, put: (x: number, z: number) => void) => {
     let tries = 0, made = 0; const pts: [number, number][] = [];
     while (made < n && tries++ < n * 60) {
-      const x = (r() * 2 - 1) * 22, z = (r() * 2 - 1) * 22;
+      const x = (r() * 2 - 1) * (lim-1), z = (r() * 2 - 1) * (lim-1);
       if (!ok(x, z) || pts.some(([a, b]) => Math.hypot(a - x, b - z) < minGap)) continue;
       pts.push([x, z]); put(x, z); made++;
     }
   };
-  place(def.trees, 2.6, (x, z) => !excluded(x, z, 0.4) && !onPath(x, z), (x, z) => {
+  place(Math.round(def.trees*density), 2.6, (x, z) => !excluded(x, z, 0.4) && !onPath(x, z), (x, z) => {
     const kind = def.kinds[Math.floor(r() * def.kinds.length)], s = 0.85 + r() * 0.5;
     trees.push({ x, z, s, rot: r() * Math.PI * 2, kind, tint: r() });
     colliders.push({ kind: 'circle', x, z, r: kind === 'crystal' ? 0.5 * s : kind === 'mushroom' ? 0.35 * s : 0.32 * s });
   });
-  place(def.rocks, 1.4, (x, z) => !excluded(x, z, 0) && !onPath(x, z), (x, z) => {
+  place(Math.round(def.rocks*density), 1.4, (x, z) => !excluded(x, z, 0) && !onPath(x, z), (x, z) => {
     const s = 0.3 + r() * (biome === 'grave' ? 0.4 : 0.7), tall = biome === 'grave' && r() < 0.55;
     rocks.push({ x, z, s, rot: r() * Math.PI * 2, tall });
     if (s > 0.45 || tall) colliders.push(tall ? { kind: 'box', x, z, hw: 0.32 * s * 1.6, hd: 0.12 * s * 1.6, rot: rocks.at(-1)!.rot } : { kind: 'circle', x, z, r: s * 0.75 });
   });
-  place(def.bushes, 1.2, (x, z) => !excluded(x, z, -0.6) && !onPath(x, z), (x, z) => bushes.push({ x, z, s: 0.45 + r() * 0.45, tint: r() }));
+  place(Math.round(def.bushes*density), 1.2, (x, z) => !excluded(x, z, -0.6) && !onPath(x, z), (x, z) => bushes.push({ x, z, s: 0.45 + r() * 0.45, tint: r() }));
   // outskirts of Dawnveil / Thornwatch (±50, see citySprites.ts): woods and boulders off the roads, clear of farms, camps and
   // the hunting grounds; Hollow's outskirts are the Sorrowlands (world/ruins.ts)
-  const lim = WORLD_LIMIT[city] ?? 23, outskirts = capital && lim > 23 && city !== 'hollow';
+  const outskirts = capital && lim > 23 && city !== 'hollow';
   if (outskirts) {
     const ring = (n: number, gap: number, put: (x: number, z: number) => void) => { let tries = 0, made = 0; const pts: [number, number][] = [];
       while (made < n && tries++ < n * 80) { const x = (r() * 2 - 1) * (lim - 1.5), z = (r() * 2 - 1) * (lim - 1.5);
@@ -93,9 +99,10 @@ export function natureLayout(city: CityId): NatureLayout {
     const [x, z] = side === 0 ? [along, -d] : side === 1 ? [d, along] : side === 2 ? [-along, d] : [-d, -along];
     backdrop.push({ x, z, s: 1.3 + r() * 0.9, rot: r() * 6.28, kind: def.kinds[i % def.kinds.length], tint: r() });
   } else for (let i = 0; i < 46; i++) {
-    const a = (i / 46) * Math.PI * 2 + r() * 0.1, d = 25 + r() * 6;
+    const a = (i / 46) * Math.PI * 2 + r() * 0.1;
+    const d = (lim+3+r()*6)/Math.max(Math.abs(Math.cos(a)),Math.abs(Math.sin(a)));
     backdrop.push({ x: Math.cos(a) * d, z: Math.sin(a) * d, s: 1.1 + r() * 0.8, rot: r() * 6.28, kind: def.kinds[i % def.kinds.length], tint: r() });
   }
   return { city, trees, backdrop, rocks, bushes, colliders, grass: def.grass, palette: { leaf: def.leaf, bark: def.bark, rock: def.rock, glow: def.glow },
-    allowGrass: (x, z) => !excluded(x, z, -1.4) && !(capital && onPath(x, z)) && !(!capital && Math.abs(x) < 1.1) };
+    allowGrass: (x, z) => navigationSurface(city,x,z)!=='blocked' && !excluded(x, z, -1.4) && !(capital && onPath(x, z)) && !onPath(x,z) };
 }

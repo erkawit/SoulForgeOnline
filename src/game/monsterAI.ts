@@ -11,7 +11,7 @@ function step(m:Monster,target:[number,number],city:CityId,speed:number){
  const dx=target[0]-m.x,dz=target[1]-m.z,d=Math.hypot(dx,dz);if(d<.05)return m;
  const s=Math.min(speed,d),x=m.x+dx/d*s,z=m.z+dz/d*s;
  // monsters never cross into a capital's walls (town is safe ground; hunting happens outside)
- const ok=(px:number,pz:number)=>walkable(city,px,pz)&&!inTown(city,px,pz);
+ const ok=(px:number,pz:number)=>lineClear(city,[m.x,m.z],[px,pz])&&!inTown(city,px,pz);
  if(ok(x,z))return {...m,x,z};
  if(ok(x,m.z))return {...m,x};
  if(ok(m.x,z))return {...m,z};return m;

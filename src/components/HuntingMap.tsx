@@ -1,6 +1,6 @@
 'use client';
 import {useState} from 'react';
-import {CITIES,CITY_IDS,ZONE_IDS,DUNGEON_IDS,type CityId} from '@/game/content';
+import {CITIES,CITY_IDS,ZONE_IDS,DUNGEON_IDS,WORLD_LIMIT,portalsOf,type CityId} from '@/game/content';
 import {spawnPoints} from '@/game/spawns';
 import {useGameStore} from '@/store/useGameStore';
 import {useMultiplayerStore} from '@/store/useMultiplayerStore';
@@ -10,6 +10,7 @@ export default function HuntingMap(){
  const level=useGameStore(s=>s.player.level);
  const online=useMultiplayerStore(s=>s.online);
  const [area,setArea]=useState<CityId>(current),[point,setPoint]=useState(0);
+ const lim=WORLD_LIMIT[area]??23;
  const c=CITIES[area],region=c.parent??c.id,points=spawnPoints(area),selected=points[point]??points[0];
  const selectArea=(id:CityId)=>{setArea(id);setPoint(0);};
  return <section className="hunting-atlas" aria-label="แผนที่จุดเกิดมอนสเตอร์">
@@ -18,17 +19,17 @@ export default function HuntingMap(){
   <p>เลือกเมืองและพื้นที่ แล้วเลือกหมายเลขเพื่อดูมอนสเตอร์ประจำจุด · ทิศเหนืออยู่ด้านบน</p>
   <div className="atlas-regions">{CITY_IDS.map(id=><button key={id} aria-pressed={region===id} onClick={()=>selectArea(id)}><strong>{CITIES[id].name}</strong><small>{id==='hollow'?'ป้อมกอธิก / โรงหลอม · รอบเมือง Lv.1–40':id==='dawnveil'?'วิหารริมคลอง · รอบเมือง Lv.45–82':'เมืองชายป่า / หอเฝ้าระวัง · รอบเมือง Lv.85–90'}</small></button>)}</div>
   <div className="atlas-layout"><div className="atlas-areas" aria-label="พื้นที่ในอาณาเขต">{[region,...ZONE_IDS.filter(id=>CITIES[id].parent===region),...DUNGEON_IDS.filter(id=>CITIES[id].parent===region)].map(id=><button key={id} aria-pressed={area===id} onClick={()=>selectArea(id)}><strong>{CITIES[id].name}</strong><small>{CITIES[id].levels?`Lv. ${CITIES[id].levels!.join('–')} · ${CITIES[id].dungeon?'ดันเจี้ยน':'พื้นที่ล่า'}`:'เมืองหลัก · จุดฝึกรอบนอก Lv.1 / 5 / 10'}</small></button>)}</div>
-  <div><h3>{c.name}</h3><p>{c.description}</p>
-   <svg className="atlas-map" viewBox="-27 -28 54 56" role="img" aria-label={`แผนที่ ${c.name}: จุดเกิด ${points.length} จุด เลือกผ่านรายการหมายเลขด้านล่าง`}>
-    <rect x="-25" y="-25" width="50" height="50" rx="1" fill={c.ground}/>
-    {c.water&&<rect x={c.water.x-c.water.w/2} y="-25" width={c.water.w} height="50" fill="#397b94"/>}
+  <div><h3>{c.name} · {lim*2} × {lim*2} ม.</h3><p>{c.description}</p>
+   <svg className="atlas-map" viewBox={`${-lim-5} ${-lim-5} ${2*lim+10} ${2*lim+10}`} role="img" aria-label={`แผนที่ ${c.name}: จุดเกิด ${points.length} จุด เลือกผ่านรายการหมายเลขด้านล่าง`}>
+    <rect x={-lim} y={-lim} width={lim*2} height={lim*2} rx="1" fill={c.ground}/>
+    {c.water&&<rect x={c.water.x-c.water.w/2} y={-lim} width={c.water.w} height={lim*2} fill="#397b94"/>}
     <path d={c.mapPath} stroke="#c4b99d" strokeWidth="2" fill="none" opacity=".6"/>
     {c.water&&<rect x={c.water.x-c.water.w/2-.5} y="-2" width={c.water.w+1} height="4" fill="#c4b99d"/>}
     {c.buildings.map((b,i)=><rect key={i} x={b.x-b.w/2} y={b.z-b.d/2} width={b.w} height={b.d} fill={c.roof} stroke={c.accent} strokeWidth=".3"/>)}
-    <circle r="6" fill={c.accent} fillOpacity=".18" stroke={c.accent} strokeWidth=".25"/>
-    <text y="1" textAnchor="middle" fill="#fff" fontSize="1.8">SAFE</text>
-    <path d="M6 -1.2L7.2 0 6 1.2 4.8 0Z" fill="#bf99ff"><title>Waygate (6, 0)</title></path>
-    <text x="23" y="-26" fill="#eee" fontSize="2.2">N ↑</text>
+    {!c.parent && <g><circle r="6" fill={c.accent} fillOpacity=".18" stroke={c.accent} strokeWidth=".25"/>
+    <text y="1" textAnchor="middle" fill="#fff" fontSize="1.8">SAFE</text></g>}
+    {portalsOf(area).map(p=><circle key={p.to} cx={p.x} cy={p.z} r="2.2" fill="#bf99ff"><title>{CITIES[p.to].name}</title></circle>)}
+    <text x={lim-4} y={-lim-2} fill="#eee" fontSize="2.2">N ↑</text>
     {points.map(p=><g key={p.id} onClick={()=>setPoint(p.index)} style={{cursor:'pointer'}}><title>{`${p.index+1}. ${p.name} Lv.${p.level} (${p.position.join(', ')})`}</title><circle cx={p.position[0]} cy={p.position[1]} r={p.index===point?2:1.6} fill={p.boss?'#dca94f':p.elite?'#be84e8':'#a7483f'} stroke={p.index===point?'#fff':'#edc8a0'} strokeWidth=".25"/><text x={p.position[0]} y={p.position[1]+.65} textAnchor="middle" fontSize="1.8" fill="#fff">{p.index+1}</text></g>)}
    </svg>
    <p className="atlas-legend">แดง: ทั่วไป · ม่วง: Elite · ทอง: Boss · วงกลาง: เขตปลอดภัย · ◆ Waygate</p>

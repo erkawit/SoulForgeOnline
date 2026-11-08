@@ -1,3 +1,5 @@
+import {lineClear} from '@/game/monsterAI';
+import {mapRoute} from '@/game/world/mapRoute';
 // One online character on the realm: its authoritative state, the checks on what the client claims (kills, movement),
 // and the operations it may ask for. The browser still runs the combat simulation; the realm decides what it is worth.
 //
@@ -104,7 +106,16 @@ export class CharacterSession {
     this.moveBudget = Math.min(l.dashBudget, this.moveBudget + speed * Math.max(0, now - this.moveAt) / 1000); this.moveAt = now;
     const [px, pz] = this.position, dist = Math.hypot(x - px, z - pz);
     if (dist > this.moveBudget || !walkable(c, x, z)) { this.strikes.move++; return { ok: false, fix: this.position, city: c }; }
-    this.moveBudget -= dist; this.state = { ...this.state, player: { ...this.state.player, position: [x, z] } };
+    // Network reports may span a corner. Accept a real detour within the movement budget,
+    // never a shortcut through water/walls merely because its endpoint is dry.
+    let travelled=dist;
+    if(!lineClear(c,[px,pz],[x,z])){
+      const route=mapRoute(c,[px,pz],[x,z],0,this.moveBudget);
+      if(!route){this.strikes.move++;return {ok:false,fix:this.position,city:c};}
+      let last:[number,number]=[px,pz];travelled=0;
+      for(const point of route){travelled+=Math.hypot(point[0]-last[0],point[1]-last[1]);last=point;}
+    }
+    this.moveBudget -= travelled; this.state = { ...this.state, player: { ...this.state.player, position: [x, z] } };
     if (dist > 0.05) this.touch(now);
     return { ok: true };
   }

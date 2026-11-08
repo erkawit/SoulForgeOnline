@@ -1,0 +1,134 @@
+[
+  {
+    "file": "src/game/world/fieldDimensions.ts",
+    "before": null
+  },
+  {
+    "file": "src/game/world/terrainNavigation.ts",
+    "before": null
+  },
+  {
+    "file": "src/game/world/navigationOverlay.ts",
+    "before": null
+  },
+  {
+    "file": "src/game/world/mapRoute.ts",
+    "before": null
+  },
+  {
+    "file": "src/game/world/cityAtlas.ts",
+    "before": null
+  },
+  {
+    "file": "src/game/world/capitalPlan.ts",
+    "before": "ab3fcbb7d8c8888b52e08bad2a27bf7dc6394f57f07e21c6f71427459c22cf33"
+  },
+  {
+    "file": "src/game/world/capitalKit.ts",
+    "before": "9c695a5681d550702bc11b18a2f63cb5f06d967c6ed5143e3ce753891622adc1"
+  },
+  {
+    "file": "src/game/world/layout.ts",
+    "before": "a8aeb575b69ef35b9fb8dd21fb42517cbdf1be7c26728e789c3c4a026bda314a"
+  },
+  {
+    "file": "src/game/world/registry.ts",
+    "before": "16628f1ff01086ced864d8bfe78fa1491c64dd2ecaca46b8eb1d0c3125fcbcde"
+  },
+  {
+    "file": "src/game/world/zones.ts",
+    "before": "c41c9d2652dabfeb1e799e28cae32f773a16bcf0830ee9ed197af0f197d0e65c"
+  },
+  {
+    "file": "src/game/world/nature.ts",
+    "before": "7854f77f1b0fcef26974b199f28c1b18eb349398b60f46d8aed42e6369d86649"
+  },
+  {
+    "file": "src/game/spawns.ts",
+    "before": "d8f543fd6d896a504b3f8fad7cfe11b07959e1b2446c7f2789fa5cbce4da6800"
+  },
+  {
+    "file": "src/components/WorldMap.tsx",
+    "before": null
+  },
+  {
+    "file": "src/components/NavigationGround.tsx",
+    "before": null
+  },
+  {
+    "file": "src/components/StarterCity.tsx",
+    "before": "f28f560d1b888ffd06cfa0afb8caa42734a971bdabcfb4afbcfcde8a85d6c735"
+  },
+  {
+    "file": "src/components/WildTerrain.tsx",
+    "before": "f6139e6c989fc2975bac85a0da1595ad198cd3f3e9f5a159ef615182b17b8469"
+  },
+  {
+    "file": "src/components/HuntingMap.tsx",
+    "before": "fee80ec96e3b465db99c284bd54bfccce0602da9e95b53296f40108b12df5ce0"
+  },
+  {
+    "file": "src/components/world-map.css",
+    "before": null
+  },
+  {
+    "file": "scripts/render-navigation-atlas.mts",
+    "before": null
+  },
+  {
+    "file": "scripts/render-city-atlas.mts",
+    "before": null
+  },
+  {
+    "file": "docs/NAVIGATION_TH.md",
+    "before": null
+  },
+  {
+    "file": "tests/terrain-navigation.test.ts",
+    "before": null
+  },
+  {
+    "file": "tests/field-expansion.test.ts",
+    "before": null
+  },
+  {
+    "file": "tests/world-links.test.ts",
+    "before": "da54b4664e27a08dcb189a59f917616f92322b056c56104d99cf593a28159e14"
+  },
+  {
+    "file": "src/game/content.ts",
+    "before": "61eedf58532f3b11df40d2506a7cd58b0b00ff8c0a6e3e5793df4fcfc5f198f5"
+  },
+  {
+    "file": "src/components/GameWorld.tsx",
+    "before": "5eec9015cae7f3db6396beade293b752b66fe7e423be59a7958449f37c4417f6"
+  },
+  {
+    "file": "src/components/PlayOverlay.tsx",
+    "before": "1497f26889c9b9af2ca65996858109f5edb2d6f3dd1708664ca9517c7afd6dd2"
+  },
+  {
+    "file": "src/store/useGameStore.ts",
+    "before": "ef16364f1c51204032a1e9eddf45ca028bf09a640f62a0b74e8196ebe5669f4a"
+  },
+  {
+    "file": "src/game/monsterAI.ts",
+    "before": "1166cfbc6c570ae9802280dd3c4aee00ea230683c49a3445a6dcadeca48b665c"
+  },
+  {
+    "file": "apps/game-server/src/session.ts",
+    "before": "d6ee32bcca15745da3831a871f1e0172aa184570da8be57e015bc0ca849e943c"
+  },
+  {
+    "file": "public/art/atlas/hollow.webp",
+    "before": null
+  },
+  {
+    "file": "public/art/atlas/dawnveil.webp",
+    "before": null
+  },
+  {
+    "file": "public/art/atlas/thornwatch.webp",
+    "before": null
+  }
+]

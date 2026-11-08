@@ -25,10 +25,10 @@ export const faceYaw = (f: ScreenFace) => ISO_YAW - VIEW_OF[f] * Math.PI / 4;
  *  (view 0…7); a piece facing yaw F seen by a camera at yaw C shows its front turned by C − F. */
 export function viewIndex(camYaw: number, facing: number) { const d = Math.round((camYaw - facing) / (Math.PI / 4)); return ((d % 8) + 8) % 8; }
 
-/** Round 13: the capitals are laid out at twice the map's scale so crowds fit (output/city-maps-codex/CITY_PLAN_TH.md):
- *  the buildings keep their size, the distances between them double, the plaza and the roads widen and the new space
+/** Round 13: the capitals are laid out at a larger scale so crowds fit (output/city-maps-codex/CITY_PLAN_TH.md):
+ *  the buildings keep their size, the blocks spread out, the plaza and the roads widen and the new space
  *  between the blocks is dressed with the city's own trees, lamps and crates (districts) until the filler houses ship. */
-export const CITY_SCALE = 2;
+export const CITY_SCALE = 2.5;
 const BASE_GATE_D = 27;
 /** the wall line, the inner face of the walls (walkable limit) and the waygate points */
 export const CAPITAL_HALF = 29.5 * CITY_SCALE, CAPITAL_WALK = 28 * CITY_SCALE, GATE_D = BASE_GATE_D * CITY_SCALE;
@@ -65,7 +65,7 @@ export const ROLE_BUILDING: Record<Role, string> = {
 /** One painted piece in the world. `w` = its width on screen in the default view (world units), `r` = round collider,
  *  `depth` = how far toward the camera its billboard stands (the near edge of its footprint, so actors sort right),
  *  `under` = walked over (plaza, bridges): drawn below the actors without depth writes. */
-export type KitPiece = { piece: string; x: number; z: number; facing: number; w: number; r: number; depth: number; under?: boolean; role?: Role; fade?: boolean };
+export type KitPiece = { piece: string; x: number; z: number; facing: number; w: number; r: number; depth: number; under?: boolean; landmark?: string; description?: string; role?: Role; fade?: boolean };
 
 type B = [Role, number, number, number, ScreenFace];
 /** [role, u, v, map width, sign facing] read off cities/<city>/maps/city.png */
@@ -131,6 +131,15 @@ function plan(city: MainCityId): KitPiece[] {
   // Dawnveil's gate arch stands on the canal with its own bridge (gate views), so the road needs no extra bridge piece
   // the plaza's centre piece (Dawnveil's angel statue, the compass dais of the other two) is part of the plaza sprite
   out.push({ piece: '', x: 0, z: 0, facing: 0, w: 0, r: (city === 'dawnveil' ? 1.6 : 0.9) * 1.6, depth: 0 });
+  // Civic annexes in the outer blocks share the capital's architectural kit.
+  const annexes: [string, string, Role, number, number, ScreenFace][] = [
+    ['เรือนพักผู้เดินทาง','ที่พักของกองคาราวานก่อนออกจากเมือง','guide',-48,-23,'SE'], ['โรงเก็บเกวียน','ลานพักเกวียนและขนถ่ายเสบียง','supplier',-25,52,'S'],
+    ['โรงช่างฝึกหัด','อาคารฝึกงานของช่างอาวุธและช่างเกราะ','merchant',23,-50,'SW'], ['หอจดหมายเหตุ','ที่เก็บบันทึกเมืองและแผนผังเส้นทางเก่า','mentor',49,22,'SW'],
+    ['คลังสินค้าตลาด','โกดังพักสินค้าของพ่อค้าประจำเมือง','broker',25,54,'NW'], ['เรือนพักเวรยาม','อาคารผลัดเวรของทหารลาดตระเวนกำแพง','warden',-52,22,'SE'],
+  ];
+  for (const [landmark, description, role, x, z, face] of annexes) {
+    out.push(piece(ART_OF[city][role] ?? role, x, z, faceYaw(face), 7, 2.35, {landmark, description}));
+  }
   return [...out, ...districts(city, out)];
 }
 
@@ -143,6 +152,7 @@ function districts(city: MainCityId, fixed: KitPiece[]): KitPiece[] {
   for (let gx = -lim; gx <= lim; gx += step) for (let gz = -lim; gz <= lim; gz += step) {
     const x = round(gx + (rnd() - 0.5) * 2.4), z = round(gz + (rnd() - 0.5) * 2.4), roll = rnd();
     if (Math.abs(x) > lim || Math.abs(z) > lim || Math.hypot(x, z) < PLAZA_R + 4 || !clearOfRoad(x, z)) continue;
+    if (city === 'dawnveil' && Math.max(Math.abs(x), Math.abs(z)) > CANAL_IN - 4) continue; // leave a walking strip along the canal bank
     if ([...fixed, ...out].some(p => (p.r > 0 || p.piece) && Math.hypot(p.x - x, p.z - z) < (p.role ? p.r + 5 : p.piece === 'gate' || p.piece === 'corner' ? 11 : Math.max(p.r, 1) + 2.6))) continue;
     if (roll < treeShare) out.push(piece('tree', x, z, ISO_YAW + Math.floor(rnd() * 8) * Math.PI / 4, round(3.8 + rnd() * 1.8), 1.0));
     else if (roll < treeShare + 0.08) out.push(piece('lamp', x, z, ISO_YAW, city === 'hollow' ? 1.25 : 1.1, 0.3));

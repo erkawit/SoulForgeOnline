@@ -3,7 +3,7 @@ import {spawnPoints} from '@/game/spawns';
 import {monsterExp,monsterSoulGod,bossDrops} from '@/game/rewards';
 import {EMPTY_GEAR,canEquipItem,migrateItem,npcPrice,makeGear,isConsumable,type WeaponKind} from '@/game/items';
 import {canPromote,validPromotion,classLook,type PromotionId} from '@/game/advancement';
-import {advanceMonster} from '@/game/monsterAI';
+import {advanceMonster,lineClear} from '@/game/monsterAI';
 import { CITIES, isClass, isCity, walkable, safePosition, WORLD_LIMIT, arrivalPoint, homePoint, respawnPoint, statClass, RANGED, type ClassId, type CityId, type ActionId } from '@/game/content';
 import { useMultiplayerStore } from './useMultiplayerStore';
 import { cfg, skillLib } from './useConfigStore';
@@ -273,8 +273,8 @@ export const useGameStore = create<GameState>((set, get) => {
     const speed = derivedOf(s).speed*(s.channel&&Date.now()<s.channel.until?s.channel.move:1);
     const city=s.player.cityId??'hollow';
     const lim=WORLD_LIMIT[city]??23,nx=clamp(s.player.position[0]+x*speed*dt,-lim,lim),nz=clamp(s.player.position[1]+z*speed*dt,-lim,lim);
-    const px=walkable(city,nx,s.player.position[1])?nx:s.player.position[0];
-    const pz=walkable(city,px,nz)?nz:s.player.position[1];
+    const px=lineClear(city,s.player.position,[nx,s.player.position[1]])?nx:s.player.position[0];
+    const pz=lineClear(city,[px,s.player.position[1]],[px,nz])?nz:s.player.position[1];
     return {player:{...s.player,position:[px,pz]}};
   }),
   selectMonster: id => set({ selectedMonster: id }),
@@ -466,8 +466,8 @@ function applyOutcome(s:GameState,def:SkillDef,out:Outcome,d:Derived,yaw:number,
   if(out.heal>0)combat=pushCombat(combat,{kind:'heal',value:Math.round(out.heal),x:s.player.position[0],z:s.player.position[1],on:'player',delay:250});
   if(out.hits.length)acc.log=addLog(acc.log,`${def.name}: ${total.toLocaleString()} damage${byId.size>1?` · ${byId.size} targets`:''}${out.hits.some(h=>h.crit)?' · CRIT':''}`);
   for(const x of out.debuffs)monsters=monsters.map(m=>m.id!==x.id?m:{...m,debuffUntil:Math.max(m.debuffUntil??0,x.until),...(x.stat==='slow'?{slow:Math.max(m.slow??0,x.value)}:x.stat==='atkPct'?{weaken:Math.max(m.weaken??0,x.value)}:{armorBreak:Math.max(m.armorBreak??0,x.value)})});
-  if(out.knockback){const[px,pz]=acc.player.position;monsters=monsters.map(m=>{if(!byId.has(m.id)||m.hp<=0||m.boss)return m;const dx=m.x-px,dz=m.z-pz,l=Math.hypot(dx,dz)||1,nx=m.x+dx/l*out.knockback,nz=m.z+dz/l*out.knockback;return walkable(s.player.cityId??'hollow',nx,nz)?{...m,x:nx,z:nz}:m;});}
-  if(out.dash){const[px,pz]=acc.player.position,lim=WORLD_LIMIT[s.player.cityId??'hollow']??23,nx=clamp(px+Math.sin(yaw)*out.dash,-lim,lim),nz=clamp(pz+Math.cos(yaw)*out.dash,-lim,lim);if(walkable(s.player.cityId??'hollow',nx,nz))acc.player.position=[nx,nz];}
+  if(out.knockback){const[px,pz]=acc.player.position;monsters=monsters.map(m=>{if(!byId.has(m.id)||m.hp<=0||m.boss)return m;const dx=m.x-px,dz=m.z-pz,l=Math.hypot(dx,dz)||1,nx=m.x+dx/l*out.knockback,nz=m.z+dz/l*out.knockback;return lineClear(s.player.cityId??'hollow',[m.x,m.z],[nx,nz])?{...m,x:nx,z:nz}:m;});}
+  if(out.dash){const[px,pz]=acc.player.position,lim=WORLD_LIMIT[s.player.cityId??'hollow']??23,nx=clamp(px+Math.sin(yaw)*out.dash,-lim,lim),nz=clamp(pz+Math.cos(yaw)*out.dash,-lim,lim);if(lineClear(s.player.cityId??'hollow',[px,pz],[nx,nz]))acc.player.position=[nx,nz];}
   const heal=out.heal+total*d.lifesteal;if(heal>0){acc.player.hp=Math.min(d.maxHp,acc.player.hp+heal);if(out.heal)acc.log=addLog(acc.log,`${def.name}: +${Math.round(out.heal).toLocaleString()} HP`);}
   let buffs=acc.buffs;for(const b of out.buffs)buffs=[...buffs.filter(x=>x.id!==b.id),b];
   const dots=[...s.dots,...out.dots.map(x=>({id:x.id,perTick:x.perTick,ticks:x.ticks,next:now+x.intervalMs,interval:x.intervalMs}))];

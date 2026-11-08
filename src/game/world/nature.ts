@@ -6,6 +6,7 @@ import {
   Material, Matrix4, MeshDepthMaterial, MeshStandardMaterial, Object3D, OctahedronGeometry, Points, PointsMaterial, Quaternion, RGBADepthPacking, SphereGeometry, Vector3, Vector4,
   CanvasTexture,
 } from 'three';
+import { WORLD_LIMIT } from '../content';
 import type { NatureLayout, Prop, TreeKind } from './layout';
 
 export type Quality = 'low' | 'medium' | 'high';
@@ -179,7 +180,7 @@ export function createNature(layout: NatureLayout, quality: Quality = 'medium'):
     const patch = (x: number, z: number) => 0.5 + 0.5 * Math.sin(x * 0.31 + Math.sin(z * 0.17) * 2) * Math.cos(z * 0.27 + Math.cos(x * 0.13) * 2);
     const flowerSpots: [number, number, number][] = [];
     while (made < count && tries++ < count * 8) {
-      const x = (Math.random() * 2 - 1) * 22.6, z = (Math.random() * 2 - 1) * 22.6;
+      const x = (Math.random() * 2 - 1) * ((WORLD_LIMIT[layout.city]??23)-.4), z = (Math.random() * 2 - 1) * ((WORLD_LIMIT[layout.city]??23)-.4);
       if (!layout.allowGrass(x, z) || Math.random() > 0.25 + 0.75 * patch(x, z)) continue;
       const h = gs.height * (0.6 + Math.random() * 0.8) * (0.7 + patch(x, z) * 0.6);
       place(mesh, made, x, z, Math.random() * 6.28, 0.9 + Math.random() * 0.5, h);
