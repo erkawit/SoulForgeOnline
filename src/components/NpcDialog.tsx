@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { useGameStore } from '@/store/useGameStore';
 import { useConfigStore } from '@/store/useConfigStore';
+import { ITEM_BY_ID } from '@/game/items';
 import { GUIDE_TOPICS, NPC_BY_ID, SHOP_ITEMS, STARTER_KITS, TALK_RANGE, npcPosition, type Npc } from '@/game/npcs';
 import { CITIES, CITY_IDS, type CityId } from '@/game/content';
 import { enhanceChance, enhanceCost, enhanceMultiplier } from '@/game/balance/enhance';
@@ -54,7 +55,7 @@ function Service({ npc }: { npc: Npc }) {
   if (npc.service === 'shop') return <ShopPanel />;
   if (npc.service === 'enhance') return <Forge />;
   if (npc.service === 'starter') { const cls = s.player.classId ?? 'Berserker', got = s.starterKits.includes(cls); return <>
-    <p className="npc-note">ชุดเริ่มต้น Berserker: ดาบใหญ่ Ragebound + ชุดเกราะหนัก 4 ชิ้น ({STARTER_KITS[cls].length} ชิ้น) รับได้ครั้งเดียวต่อตัวละคร</p>
+    <p className="npc-note">ชุดเริ่มต้น {cls}: {ITEM_BY_ID[(STARTER_KITS[cls] ?? STARTER_KITS.Berserker)[0]]?.name ?? 'อาวุธประจำอาชีพ'} + ชุดเกราะ 4 ชิ้น ({(STARTER_KITS[cls] ?? STARTER_KITS.Berserker).length} ชิ้น) รับได้ครั้งเดียวต่อตัวละคร</p>
     <button className="action-button" disabled={got} onClick={() => setRes(done(s.claimStarterKit(), 'รับชุดเริ่มต้นแล้ว เปิดกระเป๋า (I) แล้วดับเบิลคลิกเพื่อสวม'))}>{got ? 'รับไปแล้ว' : 'รับชุดเริ่มต้น'}</button><Result text={res} /></>; }
   if (npc.service === 'buyer') { const items = s.inventory.map((it, i) => [it, i] as const).filter(([it]) => it); return <>{dialog}
     <div className="npc-list">{items.length ? items.map(([it]) => <div key={it!.id} className="npc-row"><span style={{ color: RARITY_COLOR[it!.rarity] }}>{it!.name}{it!.qty ? ` ×${it!.qty}` : ''}</span>

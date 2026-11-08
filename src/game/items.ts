@@ -15,7 +15,7 @@ const sets={heavy:['Ironbound','Mossguard','Azure Bastion','Duskwarden','Blood R
 export const ITEM_DEFINITIONS:ItemDefinition[]=SOUL_STONES.map(s => ({id:s.id,name:s.name,rarity:'Rare',slot:null,family:'material',tier:2,npcValue:Math.floor(s.price/4),description:'หินวิญญาณมืด · ใช้ 1 ก้อนต่อการตีบวกหนึ่งครั้ง ซื้อได้ที่ร้าน Mira',bonuses:{},atlas:'soul-stones',column:s.cell,columns:3,row:0}));
 for(const [family,names] of Object.entries(sets))for(let tier=0;tier<8;tier++)for(const [column,slot] of (['armor','helmet','gloves','boots'] as const).entries()){
  const power=[1,2,4,7,11,16,23,32][tier],factor=slot==='armor'?3:1;
- ITEM_DEFINITIONS.push({id:`${family}-${slot}-${tier}`,name:`${names[tier]} ${slot==='armor'?'Vestment':slot}`,rarity:RARITIES[tier],slot,family,tier,npcValue:Math.max(1,Math.floor((tier+1)*factor)),description:'Berserker · เกราะหนัก ป้องกันและพลังชีวิต',bonuses:{def:power*factor,vit:power},atlas:family,column,columns:4,row:tier});
+ ITEM_DEFINITIONS.push({id:`${family}-${slot}-${tier}`,name:`${names[tier]} ${slot==='armor'?'Vestment':slot}`,rarity:RARITIES[tier],slot,family,tier,npcValue:Math.max(1,Math.floor((tier+1)*factor)),description:'ทุกอาชีพ · เกราะหนัก ป้องกันและพลังชีวิต',bonuses:{def:power*factor,vit:power},atlas:family,column,columns:4,row:tier});
 }
 for(let tier=0;tier<8;tier++)for(const [column,family] of ['defense','physical'].entries()){
  const power=[1,2,4,7,11,16,23,32][tier];ITEM_DEFINITIONS.push({id:`accessory-${family}-${tier}`,name:`${RARITIES[tier]} ${family} Seal`,rarity:RARITIES[tier],slot:'ring',family,tier,npcValue:tier+1,description:family==='defense'?'เกราะป้องกัน + พลังชีวิต':'เพิ่มพลังโจมตีกายภาพ',bonuses:family==='defense'?{def:power*2,vit:power}:{atk:power*3,str:power},atlas:'accessories',column,columns:4,row:tier});
@@ -35,6 +35,22 @@ for(let tier=0;tier<8;tier++)for(const [column,kind] of (['greatsword','greataxe
  const power=[2,4,7,11,16,23,32,44][tier],k=WEAPON_KINDS[kind];
  ITEM_DEFINITIONS.push({id:weaponId(kind,tier),name:`${WEAPON_NAMES[kind][tier]} ${kind==='greatsword'?'Greatsword':kind==='greataxe'?'Greataxe':'Greathammer'}`,rarity:RARITIES[tier],slot:'weapon',family:'Berserker',tier,npcValue:(tier+1)*2,
   description:`Berserker · ${k.th}สองมือ · ATK ×${k.atk} · ความเร็วโจมตี ×${k.speed.toFixed(2)}`,bonuses:{atk:Math.round(power*3*k.atk),str:power},atlas:'berserker-arms',column,columns:3,row:tier});
+}
+/** Round 22: one weapon line per class (8 tiers), class-locked. Icons: public/art/items-arms.webp (10 cols × 8 tiers):
+ *  0 sword · 2 staff · 4 mace · 6 bow · 8 sceptre. The Berserker keeps the three two-handed kinds above. */
+export const CLASS_WEAPONS:Record<string,{col:number;th:string;stat:'str'|'dex'|'agi'|'int'|'wis';names:string[];kind:string}>={
+ Paladin:{col:0,th:'ดาบยาว',stat:'str',kind:'Longsword',names:['Squire','Oathkeeper','Dawnbrand','Lionheart','Sunforged','Radiant','Seraph','Aurora']},
+ Hawkeye:{col:6,th:'ธนูยาว',stat:'dex',kind:'Longbow',names:['Hunter','Falconer','Windstring','Galeshot','Stormwing','Skypiercer','Tempest','Zenith']},
+ RuneMaster:{col:0,th:'ดาบอักขระ',stat:'int',kind:'Runeblade',names:['Etched','Glyphbound','Sigil','Runecarver','Spellsteel','Arcblade','Aeon','Worldrune']},
+ Elementalist:{col:2,th:'คทาธาตุ',stat:'int',kind:'Staff',names:['Ember','Frostbloom','Stormcall','Prism','Tri-Element','Cataclysm','Primordial','Genesis']},
+ Assassin:{col:0,th:'มีดคู่',stat:'agi',kind:'Twin Daggers',names:['Cutthroat','Nightfang','Shadeedge','Viper','Duskreaper','Umbral','Voidkiss','Eclipse']},
+ HighPriest:{col:8,th:'คทาศักดิ์สิทธิ์',stat:'wis',kind:'Sceptre',names:['Acolyte','Blessed','Hallowed','Sanctum','Divine','Celestial','Seraphic','Empyrean']},
+ Inquisitor:{col:4,th:'ค้อนศึก',stat:'int',kind:'Warhammer',names:['Zealot','Verdict','Thunder','Judgement','Stormbrand','Tribunal','Mjolnir','Heavensfall']},
+};
+for(const [cls,w] of Object.entries(CLASS_WEAPONS))for(let tier=0;tier<8;tier++){
+ const power=[2,4,7,11,16,23,32,44][tier];
+ ITEM_DEFINITIONS.push({id:`weapon-${cls}-${tier}`,name:`${w.names[tier]} ${w.kind}`,rarity:RARITIES[tier],slot:'weapon',family:cls,tier,npcValue:(tier+1)*2,
+  description:`${cls} · ${w.th} · ใช้ได้เฉพาะอาชีพ ${cls}`,bonuses:{atk:power*3,[w.stat]:power},atlas:'arms',column:w.col,columns:10,row:tier});
 }
 // the Reaver advancement trial item (SQL migration 0012: quest-reaver-sigil)
 ITEM_DEFINITIONS.push({id:'quest-reaver-sigil',name:'Reaver Sigil',rarity:'Legendary',slot:null,family:'quest',tier:4,npcValue:1,description:'ตราผู้เก็บเกี่ยว · ของเควสเลื่อนขั้น Reaver',bonuses:{},atlas:'materials',column:3,columns:4,row:0});
@@ -58,7 +74,8 @@ ITEM_DEFINITIONS.push({id:CODEX_SEAL,name:'Codex Seal',rarity:'Rare',slot:null,f
 export const ITEM_ICONS=new Set(['potion-hp-s','potion-hp-m','potion-hp-l','potion-mp-s','potion-mp-m','scroll-return','scroll-protect','material-ore','material-3','material-4','material-6','codex-seal']);
 export const ITEM_BY_ID=Object.fromEntries(ITEM_DEFINITIONS.map(x=>[x.id,x]));
 export function makeItem(id:string):Item {const d=ITEM_BY_ID[id];if(!d)throw new Error('Unknown item definition');return {id:crypto.randomUUID(),definitionId:d.id,name:d.name,rarity:d.rarity,slot:d.slot,family:d.family,tier:d.tier,bonuses:{...d.bonuses},description:d.description,npcValue:d.npcValue};}
-export function canEquip(item:Item,base:ClassId){void base;return !item.family||item.slot==='costume'||item.slot==='ring'||item.family==='heavy'||item.family==='Berserker';}
+/** Round 22: weapons are class-locked (the Reaver uses the Berserker's); armour, rings and costumes are shared */
+export function canEquip(item:Item,base:ClassId){if(item.slot==='weapon')return item.family===((base as string)==='Reaver'?'Berserker':base);return !item.family||item.slot==='costume'||item.slot==='ring'||item.family==='heavy';}
 export function npcPrice(item:Item){return ITEM_BY_ID[item.definitionId??'']?.npcValue??1;}
 export function migrateItem(item:Item|null,modern:boolean):Item|null{if(!item)return null;if(modern)return item;const old=['Common','Uncommon','Rare','Epic','Crimson','Legendary','Ascendant','Eclipse'];const tier=old.indexOf(item.rarity);return {...item,rarity:RARITIES[tier<0?0:tier],tier:tier<0?0:tier};}
 
@@ -75,7 +92,7 @@ export function makeGear(id:string,preferred?:ClassId,rng:()=>number=Math.random
 export function canEquipItem(item:Item,base:ClassId){if(item.slot==='costume')return true;return item.classLock&&item.classLock!=='Berserker'?item.classLock===base:canEquip(item,base);}
 /** Gear dropped for a player (one class: any wearable piece of that rarity). */
 export function pickGearId(rarity:Item['rarity'],cls:ClassId,rng:()=>number=Math.random){
- void cls;const pool=ITEM_DEFINITIONS.filter(i=>i.rarity===rarity&&i.slot&&i.slot!=='costume');return pool[Math.floor(rng()*pool.length)].id;
+ const own=(cls as string)==='Reaver'?'Berserker':cls;const pool=ITEM_DEFINITIONS.filter(i=>i.rarity===rarity&&i.slot&&i.slot!=='costume'&&(i.slot!=='weapon'||i.family===own));return pool[Math.floor(rng()*pool.length)].id;
 }
 /** Round 13: the catalog id an item of the five retired classes maps to (same tier) — the id itself when unchanged */
 export function migrateDefId(id:string):string{let m:RegExpMatchArray|null;

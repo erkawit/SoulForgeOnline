@@ -6,8 +6,9 @@ import { lookFrame } from './looks';
 import './codexAnims'; // registers Codex's 8-way sheets before any lookup
 import { SPRITE_ANIMS, ANIM_ALIAS } from './anims';
 import { CLASS_ANIMS, CLASS_FRAMES } from './classAnims';
+import { CLASS_LITE } from './classLite';
 // round 20: the new classes' 8-direction idle sheets (scripts/sprites/build_class_idle.py)
-Object.assign(SPRITE_ANIMS, CLASS_ANIMS); Object.assign(SPRITE_FRAMES, CLASS_FRAMES);
+Object.assign(SPRITE_ANIMS, CLASS_ANIMS, CLASS_LITE); Object.assign(SPRITE_FRAMES, CLASS_FRAMES);
 for (const key of Object.keys(CLASS_ANIMS)) { const [g, cls] = key.split('-'); ANIM_ALIAS[`hero:${g}:${cls}`] = key; }
 
 export type SpriteKey = { t: number; f?: string; arm?: number; lean?: number; sq?: number; dx?: number; dy?: number; rot?: number; glow?: number; shake?: number };

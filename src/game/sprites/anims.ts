@@ -57,5 +57,6 @@ export const ANIM_ALIAS: Record<string, string> = {
 };
 /** login / class-select: idle + one cast only (m-<Class>-lite) */
 /** (round 12: Warrior and Mage use their full new sheets everywhere, so they have no lite version) */
-export const liteAnim = (cls: string) => cls !== 'Berserker' && cls !== 'Warrior' && cls !== 'Mage' && SPRITE_ANIMS[`m-${cls}-lite`] ? `m-${cls}-lite` : null;
+/** login lineup atlas: the round 22 class-lite sheets (idle / attack / skill, facing the camera) or the legacy idle + cast ones */
+export const liteAnim = (cls: string) => { const k = `m-${cls}-lite`, a = SPRITE_ANIMS[k]; if (!a) return null; return a.clips.attack || !['Berserker', 'Warrior', 'Mage'].includes(cls) ? k : null; };
 export function animFor(id: string): { key: string; anim: SpriteAnim } | null { const key = SPRITE_ANIMS[id] ? id : ANIM_ALIAS[id]; return key && SPRITE_ANIMS[key] ? { key, anim: SPRITE_ANIMS[key] } : null; }

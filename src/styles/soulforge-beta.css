@@ -229,3 +229,4 @@ html body .sf-gate.h2 .h2-win.sf-gate-win .body { padding: 18px 26px 22px; displ
 html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win { width: min(600px, 100%); max-height: calc(100dvh - 48px); }
 html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win .body { overflow: auto; display: block; }
 @media (max-width: 640px) { html body .sf-gate.h2 .h2-win.sf-gate-win .body { padding: 14px 16px 18px; } }
+.sf-lineup-names li { cursor: pointer; }

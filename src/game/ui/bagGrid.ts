@@ -1,4 +1,4 @@
-// Spec inventory: a 10 × 10 grid where items occupy footprints (1×1, 2×1, 2×2, weapons 1×3).
+// Spec inventory: a 10 × 10 grid where items occupy footprints (1×1, 2×1, 2×2; weapons 1×1 since round 22).
 // Pure placement logic — no DOM — shared by the PC panel (drag & drop) and tests. The mobile drawer shows the
 // same items as a 5-column list, so the grid positions only matter on PC.
 export const GRID_W = 10, GRID_H = 10;
@@ -6,10 +6,10 @@ export type GridPos = { x: number; y: number };
 export type Sized = { id: string; slot?: string | null; family?: string | null };
 export type Placement = GridPos & { id: string; w: number; h: number };
 
-/** footprint in cells: weapon 1×3 · body armour / helmet / gloves / boots / costume 2×2 · ring + stackables 1×1 */
+/** footprint in cells: weapon 1×1 · body armour / helmet / gloves / boots / costume 2×2 · ring + stackables 1×1 */
 export function itemSize(it: Sized): { w: number; h: number } {
   switch (it.slot) {
-    case 'weapon': return { w: 1, h: 3 };
+    case 'weapon': return { w: 1, h: 1 }; // round 22: one cell (was 1×3)
     case 'armor': case 'costume': return { w: 2, h: 2 };
     case 'helmet': case 'gloves': case 'boots': return { w: 2, h: 2 };
     case 'ring': return { w: 1, h: 1 };

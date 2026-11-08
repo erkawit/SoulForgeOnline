@@ -14,6 +14,7 @@ import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js
 import { AnimationMixer, DoubleSide, Box3, Matrix4, Vector3, type Quaternion, LoopOnce, LoopRepeat, Mesh, MeshMatcapMaterial, CanvasTexture, SRGBColorSpace, Group,
   type AnimationAction, type Bone, type SkinnedMesh, type Material, type Object3D, type Texture, type MeshStandardMaterial } from 'three';
 import type { CharacterClip } from '@/game/characterModels';
+import { HERO_3D } from '@/game/hero3d';
 
 /** body model: the bare base, or a whole outfit body (same Mixamo skeleton and clips), e.g. 'thai' */
 /** whole dressed bodies (Meshy outfit on the same T-pose mannequin, skinned with the base body's weights, same skeleton
@@ -180,4 +181,5 @@ export default function Hero3D({ gender = 'm', clip = 'Idle', replay = 0, durati
   });
   return <group ref={root}>{hand && !noWeapon && <Weapon hand={hand} grip={(GRIP[body] ?? GRIP.base)[gender]} url={WEAPON3D_URL(weaponTier, weaponSkin)} />}</group>;
 }
-useGLTF.preload(HERO3D_URL('m'));
+// round 22: only fetch the 3D hero when the 3D mode is on (the 2D sprite build never draws it — it cost a ~3–8 MB download on every login)
+if (HERO_3D) useGLTF.preload(HERO3D_URL('m'));

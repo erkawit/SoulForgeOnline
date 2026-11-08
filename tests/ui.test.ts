@@ -24,16 +24,16 @@ test('equipment: 12 spec slots + costume, every game gear slot has a home', () =
 });
 test('bag grid: footprints, collision, first fit, moves and overflow', () => {
   const sword = { id: 'w', slot: 'weapon' }, armor = { id: 'a', slot: 'armor' }, pot = { id: 'p', slot: null, family: 'consumable' };
-  assert.deepEqual(itemSize(sword), { w: 1, h: 3 }); assert.deepEqual(itemSize(armor), { w: 2, h: 2 }); assert.deepEqual(itemSize(pot), { w: 1, h: 1 });
+  assert.deepEqual(itemSize(sword), { w: 1, h: 1 }); assert.deepEqual(itemSize(armor), { w: 2, h: 2 }); assert.deepEqual(itemSize(pot), { w: 1, h: 1 });
   const { placed, positions } = layoutBag([pot, sword, armor]);
-  assert.equal(placed.length, 3); assert.equal(freeCells(placed), 100 - 1 - 3 - 4);
+  assert.equal(placed.length, 3); assert.equal(freeCells(placed), 100 - 1 - 1 - 4);
   // big items first: the armour takes (0,0), the sword sits right of it
-  assert.deepEqual(positions.a, { x: 0, y: 0 }); assert.deepEqual(positions.w, { x: 2, y: 0 });
-  assert.equal(fits(placed, pot, 0, 0), false); assert.equal(fits(placed, pot, 9, 9), true); assert.equal(fits(placed, sword, 9, 8), false);
-  const moved = moveItem([pot, sword, armor], positions, 'w', 9, 7)!; assert.deepEqual(moved.w, { x: 9, y: 7 });
+  assert.deepEqual(positions.a, { x: 0, y: 0 }); assert.equal(positions.w.y, 0); assert.ok(positions.w.x >= 2);
+  assert.equal(fits(placed, pot, 0, 0), false); assert.equal(fits(placed, pot, 9, 9), true); assert.equal(fits(placed, sword, 1, 1), false);
+  const moved = moveItem([pot, sword, armor], positions, 'w', 9, 9)!; assert.deepEqual(moved.w, { x: 9, y: 9 });
   assert.equal(moveItem([pot, sword, armor], positions, 'w', 0, 0), null);
   // saved positions survive a reload; a blocked saved spot gets re-placed
-  const again = layoutBag([pot, sword, armor], moved); assert.deepEqual(again.positions.w, { x: 9, y: 7 });
+  const again = layoutBag([pot, sword, armor], moved); assert.deepEqual(again.positions.w, { x: 9, y: 9 });
   const many = Array.from({ length: 30 }, (_, i) => ({ id: 'x' + i, slot: 'armor' })); const full = layoutBag(many);
   assert.equal(full.placed.length, (GRID_W / 2) * (GRID_H / 2)); assert.equal(full.overflow.length, 5);
 });

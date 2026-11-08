@@ -165,7 +165,7 @@ export function swapInventory(s: CharState, from: number, to: number): Result {
 }
 export function equip(s: CharState, index: number, ctx: Ctx): Result {
   const item = s.inventory[index]; if (!item || !item.slot) return fail('Nothing to equip');
-  if (!canEquipItem(item, classOf(s))) return fail(`${item.name} ใช้ได้เฉพาะ ${item.classLock ?? 'อาชีพอื่น'} เท่านั้น`);
+  if (!canEquipItem(item, classOf(s))) return fail(`${item.name} ใช้ได้เฉพาะอาชีพ ${item.slot === 'weapon' ? item.family : (item.classLock ?? 'อื่น')} เท่านั้น`);
   const inventory = [...s.inventory], old = s.equipment[item.slot]; inventory[index] = old;
   const equipment = { ...s.equipment, [item.slot]: item }, maxHp = derive({ ...s, equipment }, ctx).maxHp;
   return done({ ...s, inventory, equipment, player: { ...s.player, hp: Math.min(s.player.hp, maxHp) } }, [`Equipped ${item.name}`], [{ type: 'equip', slot: item.slot }]);

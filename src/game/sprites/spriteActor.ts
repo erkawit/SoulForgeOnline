@@ -196,7 +196,7 @@ export class SpriteActor {
       s.rotation.x = -Math.PI / 2; s.position.y = 0.02; s.renderOrder = -1; const w = Math.min(f.w * 0.62, (this.def.shadowW ?? f.w * 0.62)) * this.scale;
       s.scale.set(w, w * 0.42, 1); this.root.add(s); this.shadow = s;
     }
-    preloadSprites([id]);
+    if (!opts.anim) preloadSprites([id]); // round 22: an actor given its own flipbook (login lineup) never needs the full atlas
     const r = this.anim ? HERO_RIGS[this.anim.key] : undefined;
     if (r) { this.rig = r.rig; this.setHair(r.rig.hair3d?.[0] ?? r.rig.hair.styles[0] ?? ''); }  // default = the finished 3D hair
   }

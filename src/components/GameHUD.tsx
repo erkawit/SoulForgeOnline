@@ -175,7 +175,8 @@ export default function GameHUD() {
       : selected && selected.hp > 0 && <div className="h2-target"><b className={selected.elite ? 'elite' : ''}>{selected.boss ? '☠ ' : selected.elite ? '★ ' : ''}{selected.name} <small>Lv.{selected.level}{selected.elite && !selected.boss ? ' · ELITE' : ''}{selected.telegraph?.kind === 'skill' ? ' · กำลังร่าย!' : ''}</small></b><Bar value={selected.hp} max={selected.maxHp} kind="hp" /></div>}
     {banner && (() => { const z = ZONES.find(x => x.id === banner)!; return <div className="h2-banner"><h1>{z.name.toUpperCase()}</h1><p>{z.th}</p></div>; })()}
     {/* top-right: minimap + menus */}
-    <section className="h2-mm pointer-events-auto"><svg viewBox={`${px - 28} ${pz - 28} 56 56`} aria-label="แผนที่ย่อ">
+    <section className="h2-mm pointer-events-auto"><svg viewBox={`${px - 28} ${pz - 28} 56 56`} aria-label="แผนที่ย่อ — คลิกเพื่อเปิดแผนที่โลก" role="button" tabIndex={0} style={{ cursor: 'pointer' }}
+      onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))} onKeyDown={e => { if (e.key === 'Enter') window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' })); }}>
       <rect x={-100} y={-100} width={200} height={200} fill="#0b0a0d" />
       {city.parent ? <rect x={-(WORLD_LIMIT[city.id] ?? 23)} y={-(WORLD_LIMIT[city.id] ?? 23)} width={2 * (WORLD_LIMIT[city.id] ?? 23)} height={2 * (WORLD_LIMIT[city.id] ?? 23)} fill="#17151a" />
         : <><rect x={-CAPITAL_HALF} y={-CAPITAL_HALF} width={2 * CAPITAL_HALF} height={2 * CAPITAL_HALF} fill={city.id === 'dawnveil' ? '#2f6f74' : '#1d1f25'} stroke="#000" strokeWidth="1.4" />

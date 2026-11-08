@@ -77,6 +77,8 @@ export function nearNpc(city: CityId | undefined, pos: [number, number], service
 /** round 13: the Berserker kit — a Common greatsword (two-handed, no off-hand) + 4 pieces of heavy armour */
 export const STARTER_KITS: Record<string, string[]> = {
   Berserker: ['weapon-Berserker-0', 'heavy-armor-0', 'heavy-helmet-0', 'heavy-gloves-0', 'heavy-boots-0'],
+  // round 22: every class gets its own weapon + the shared armour set
+  ...Object.fromEntries(['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'].map(c => [c, [`weapon-${c}-0`, 'heavy-armor-0', 'heavy-helmet-0', 'heavy-gloves-0', 'heavy-boots-0']])),
 };
 export type ShopItem = { id: string; name: string; th: string; price: number; effect: { hp?: number; mp?: number; hpPct?: number; mpPct?: number; returnHome?: boolean; protect?: boolean } };
 export const SHOP_ITEMS: ShopItem[] = [

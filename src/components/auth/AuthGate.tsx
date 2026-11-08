@@ -34,7 +34,9 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
   const [guestIn, setGuestIn] = useState(false); const [guestCreate, setGuestCreate] = useState(false);
   const enterGuest = () => setGuestIn(true);
   // round 20: test mode can create a character (any class) — it replaces the one saved in this browser
-  const hasGuestSave = useMemo(() => { try { return typeof window !== 'undefined' && !!window.localStorage.getItem('soulforge_guest_v1'); } catch { return false; } }, []);
+  // read after mount: the server never sees localStorage, so reading it during render broke hydration
+  const [hasGuestSave, setHasGuestSave] = useState(false);
+  useEffect(() => { try { setHasGuestSave(!!window.localStorage.getItem('soulforge_guest_v1')); } catch { /* storage blocked */ } }, []);
   useEffect(() => { void useConfigStore.getState().load(); }, []);
   useEffect(() => {
     if (!supabase) { setReady(true); return; }
