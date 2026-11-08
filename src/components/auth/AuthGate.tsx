@@ -36,6 +36,14 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
   // round 22: the class clicked in the entry lineup is the one the create screen shows (no switching there)
   const [picked, setPicked] = useState<ClassId | null>(null);
   const enterGuest = () => setGuestIn(true);
+  // round 22: the Guest button plays straight away without an account — the saved guest character, or a new one of the
+  // class picked in the lineup (Paladin when none) — kept in this browser only, never on the server
+  const [guest, setGuest] = useState(false);
+  const playGuest = () => {
+    let saved = false; try { saved = !!window.localStorage.getItem('soulforge_guest_v1'); } catch { /* storage blocked */ }
+    if (!saved) useGameStore.getState().applyProfile(`Guest${Math.floor(1000 + Math.random() * 9000)}`, picked ?? 'Paladin', 'm');
+    setGuest(true); setGuestIn(true);
+  };
   // round 20: test mode can create a character (any class) — it replaces the one saved in this browser
   // read after mount: the server never sees localStorage, so reading it during render broke hydration
   const [hasGuestSave, setHasGuestSave] = useState(false);
@@ -53,16 +61,16 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
       .then(({ data }) => { setProfile((data as BetaProfile | null) ?? null); if (data && !data.banned && data.class_id) onProfile?.(data as BetaProfile); });
   }, [supabase, session, onProfile, made]);
 
-  if (!closed) {
+  if (!closed || guest) {
     if (guestIn) return <>{children}</>;
     if (guestCreate) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
       try { window.localStorage.removeItem('soulforge_guest_v1'); } catch { /* storage unavailable */ }
       useGameStore.getState().applyProfile(name, cls, gender); setGuestIn(true); return null; }} />;
     return <Shell showcase onPick={setPicked}><GuestEntry onEnter={enterGuest} onCreate={() => setGuestCreate(true)} hasSave={hasGuestSave} /></Shell>;
   }
-  if (!supabase) return <Shell><h2 className="sf-h2">ยังไม่ได้เชื่อมเซิร์ฟเวอร์</h2><p className="sf-muted">ตั้งค่า NEXT_PUBLIC_SUPABASE_URL และ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ก่อนเปิดโหมดทดสอบปิด</p></Shell>;
+  if (!supabase) return <Shell showcase onPick={setPicked}><h2 className="sf-h2">ยังไม่ได้เชื่อมเซิร์ฟเวอร์</h2><p className="sf-muted">ตั้งค่า NEXT_PUBLIC_SUPABASE_URL และ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ก่อนเปิดโหมดทดสอบปิด</p><GuestButton onGuest={playGuest} /></Shell>;
   if (!ready || (session && profile === undefined)) return <Shell><p className="sf-muted">กำลังตรวจสอบสิทธิ์…</p></Shell>;
-  if (!session) return <Shell showcase onPick={setPicked}><AuthForms /></Shell>;
+  if (!session) return <Shell showcase onPick={setPicked}><AuthForms /><GuestButton onGuest={playGuest} /></Shell>;
   if (profile === null) return <Shell><RedeemForm token={session.access_token} onDone={() => setSession({ ...session })} /></Shell>;
   if (profile && !profile.banned && !profile.class_id) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
     const { error } = await supabase.rpc('create_character', { p_name: name, p_class: cls, p_gender: gender });
@@ -100,6 +108,14 @@ function GuestEntry({ onEnter, onCreate, hasSave }: { onEnter: () => void; onCre
     <button className={`sf-btn sf-guest-go${hasSave ? ' ghost' : ''}`} autoFocus={!hasSave} onClick={onCreate}>สร้างตัวละครใหม่</button>
     {hasSave && <p className="sf-muted">สร้างตัวละครใหม่จะแทนที่ตัวละครเดิมในเบราว์เซอร์นี้</p>}
     <a className="sf-guest-back" href="/">← กลับหน้าเว็บไซต์</a>
+  </div>;
+}
+
+function GuestButton({ onGuest }: { onGuest: () => void }) {
+  return <div className="sf-guest-quick">
+    <span>หรือ</span>
+    <button type="button" className="sf-btn ghost" onClick={onGuest}>เข้าเล่นแบบ Guest (ไม่ต้องล็อกอิน)</button>
+    <small className="sf-muted">ตัวละคร Guest บันทึกในเบราว์เซอร์นี้เท่านั้น ไม่ขึ้นเซิร์ฟเวอร์</small>
   </div>;
 }
 

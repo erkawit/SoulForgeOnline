@@ -14,7 +14,7 @@ const password = process.argv[3] ?? process.env.ADMIN_PASSWORD;
 const email = user.includes('@') ? user : `${user}@soulforge.local`;
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL, secret = process.env.SUPABASE_SECRET_KEY;
 if (!url || !secret) { console.error('ตั้งค่า NEXT_PUBLIC_SUPABASE_URL และ SUPABASE_SECRET_KEY ใน .env.local ก่อน'); process.exit(1); }
-if (!password || password.length < 12) { console.error('ใส่รหัสผ่านอย่างน้อย 12 ตัว: node scripts/create-admin.mjs admin "รหัสผ่าน"'); process.exit(1); }
+if (!password || password.length < 8) { console.error('ใส่รหัสผ่านอย่างน้อย 8 ตัว: node scripts/create-admin.mjs admin "รหัสผ่าน"'); process.exit(1); }
 
 const db = createClient(url, secret, { auth: { persistSession: false, autoRefreshToken: false } });
 let id;
@@ -31,4 +31,7 @@ else {
 }
 const { error } = await db.rpc('bootstrap_admin', { p_user: id, p_role: 'owner' });
 if (error) { console.error('เพิ่มสิทธิ์แอดมินไม่สำเร็จ (รัน migration 0007 แล้วหรือยัง?):', error.message); process.exit(1); }
+// round 22: the admin can also play — a beta profile without an invite code, so the login goes to character creation
+{ const { error: pe } = await db.from('player_profiles').upsert({ user_id: id }, { onConflict: 'user_id', ignoreDuplicates: true });
+  if (pe) console.error('สร้างโปรไฟล์ผู้เล่นให้แอดมินไม่สำเร็จ (ยังเข้า /admin ได้):', pe.message); }
 console.log(`✓ แอดมินพร้อมใช้งาน\n  ชื่อผู้ใช้: ${user}\n  อีเมลล็อกอิน: ${email}\n  สิทธิ์: owner\n  เข้าเกม → ล็อกอิน → เปิด /admin`);
