@@ -29,7 +29,7 @@ import { FOCUS_TH, isSupportClass, skillRoles, type AutoFocus } from '@/game/aut
 import { FOOD_ITEMS } from '@/game/items';
 import { audio } from '@/game/audio/engine';
 import SettingsPanel from './SettingsPanel';
-import { useScreenScale } from './hud/common';
+import { useScreenScale, useOrientation } from './hud/common';
 import { ChannelButton } from './ChannelSwitch';
 import PCHUDLayout from './hud/PCHUDLayout';
 import MobileHUDLayout from './hud/MobileHUDLayout';
@@ -37,6 +37,7 @@ import { PCInventoryPanel, MobileInventoryDrawer } from './hud/InventoryPanels';
 import { PCStatusPanel, MobileStatusPanel } from './hud/StatusPanels';
 import '@/styles/hud3.css';
 import '@/styles/uikit.css';
+import '@/styles/touch-controls.css';
 
 type Panel = 'inventory' | 'character' | 'skills' | 'quests' | 'codex' | 'wardrobe' | 'monsters' | 'auto' | 'settings' | 'cloud' | 'online' | null;
 const KEYS = ['1', 'Space', 'Q', 'E', 'R', 'T', 'X'];
@@ -117,7 +118,7 @@ export default function GameHUD() {
   const [now, setNow] = useState(Date.now());
   useEffect(() => { const t = setInterval(() => setNow(Date.now()), 200); return () => clearInterval(t); }, []);
   const [panel, setPanel] = useState<Panel>(null);
-  const layout = useScreenScale(); const [menuOpen, setMenuOpen] = useState(false);
+  const layout = useScreenScale(), orientation = useOrientation(); const [menuOpen, setMenuOpen] = useState(false);
   const player = useGameStore(s => s.player), monsters = useGameStore(s => s.monsters), drops = useGameStore(s => s.drops), equipment = useGameStore(s => s.equipment);
   const log = useGameStore(s => s.log), selectedMonster = useGameStore(s => s.selectedMonster), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
   const hotbar = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar), cooldowns = useGameStore(s => s.cooldowns), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
@@ -162,7 +163,7 @@ export default function GameHUD() {
   const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'menu_03_inventory', character: 'menu_12_character_helm', skills: 'menu_04_skill_book', quests: 'menu_22_quest_scrolls', codex: 'menu_11_codex_book', wardrobe: 'menu_09_avatar_armor', monsters: 'menu_32_boss_battle_locked', auto: 'icon_refresh', online: 'menu_28_community_friends', cloud: 'icon_crystal_orb', settings: 'icon_menu_settings_gear' };
   const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
 
-  return <div className="hud-root h2 pointer-events-none">
+  return <div className={`hud-root h2 pointer-events-none${layout === 'mobile' ? ` touch ${orientation}` : ''}`}>
     <div className="h2-vignette" />
     {/* PC / Mobile component sets (UX spec): frame, orbs, hotbar or touch wheel */}
     {layout === 'pc' ? <PCHUDLayout hp={hp} maxHp={maxHp} mp={mp} maxMp={maxMp} now={now} onAuto={() => toggle('auto')} />

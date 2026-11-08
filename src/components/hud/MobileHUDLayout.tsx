@@ -1,48 +1,95 @@
 'use client';
-// MobileHUDLayout (< 768 px, or a phone held sideways): mini HP / MP bars + level tag top-left, joystick bottom-left,
-// touch wheel bottom-right (big attack + 4 skills, a page toggle for 5–6), compact potion / AUTO / menu buttons.
+// Round 22 touch controller — one component set for phones and tablets, laid out for the way the device is held
+// (styles: src/styles/touch-controls.css, scoped under .h2.touch.portrait / .h2.touch.landscape on the HUD root).
+//   · status frame top-left (tap → status), EXP line along the bottom edge
+//   · floating joystick: touch anywhere in the lower-left zone and the stick appears under the thumb; let go and it
+//     returns to its resting spot. A small dead zone stops drift; it keeps tracking the same finger (multi-touch safe)
+//   · action cluster bottom-right: big attack button, skills on an arc around it — portrait shows 4 + a page chip for
+//     5–6, landscape has the room for all 6 at once. Cooldown sweep, MP warning and a short vibration on press
+//   · quick row above the joystick: HP potion, MP potion, AUTO, next target, menu
 import { skillIconStyle } from '@/game/skills/icons';
-import { useRef, useState } from 'react';
+import { useRef, useState, type PointerEvent as RPointerEvent } from 'react';
 import { Swords } from 'lucide-react';
 import { useGameStore, countOf, expRequired } from '@/store/useGameStore';
-import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { touchMove } from '@/store/touchInput';
-import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, ForgeGauge } from './common';
+import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, useOrientation, ForgeGauge } from './common';
 
-const RING4: [number, number][] = [[104, 180], [104, 148], [104, 116], [104, 86]];
+/** [radius px, angle°] from the attack button's centre (0° = right, 90° = up) */
+const ARC: Record<'portrait' | 'landscape', [number, number][]> = {
+  portrait: [[108, 180], [108, 148], [108, 116], [108, 84]],
+  landscape: [[100, 180], [100, 150], [100, 120], [100, 90], [166, 166], [166, 132]],
+};
+const PAGE_CHIP: [number, number] = [168, 95];
 const at = ([r, a]: [number, number]) => ({ ['--x' as string]: `${Math.cos(a * Math.PI / 180) * r}px`, ['--y' as string]: `${-Math.sin(a * Math.PI / 180) * r}px` });
+const buzz = (ms = 12) => { try { navigator.vibrate?.(ms); } catch { /* not supported (iOS) */ } };
 
-function Joystick() {
-  const knob = useRef<HTMLElement>(null);
-  const move = (e: React.PointerEvent<HTMLDivElement>) => { const r = e.currentTarget.getBoundingClientRect(); let x = (e.clientX - r.left - r.width / 2) / (r.width / 2), y = (e.clientY - r.top - r.height / 2) / (r.height / 2); const l = Math.hypot(x, y); if (l > 1) { x /= l; y /= l; } touchMove.x = x; touchMove.y = y; if (knob.current) knob.current.style.transform = `translate(${x * 38}px, ${y * 38}px)`; };
-  const end = () => { touchMove.x = 0; touchMove.y = 0; if (knob.current) knob.current.style.transform = ''; };
-  return <div className="h3-stick pointer-events-auto" onPointerDown={e => { e.currentTarget.setPointerCapture(e.pointerId); move(e); }} onPointerMove={e => { if (e.buttons || e.pointerType === 'touch') move(e); }} onPointerUp={end} onPointerCancel={end} aria-label="จอยสติ๊กเดิน"><i ref={knob} /></div>;
+const STICK_R = 54, DEAD = 0.12;
+function FloatingStick() {
+  const base = useRef<HTMLSpanElement>(null), knob = useRef<HTMLElement>(null), finger = useRef<number | null>(null), centre = useRef<[number, number]>([0, 0]);
+  const place = (x: number, y: number) => { const b = base.current; if (b) { b.style.left = `${x}px`; b.style.top = `${y}px`; b.classList.add('live'); } };
+  const steer = (cx: number, cy: number) => {
+    let dx = (cx - centre.current[0]) / STICK_R, dy = (cy - centre.current[1]) / STICK_R; const l = Math.hypot(dx, dy);
+    if (l > 1) { dx /= l; dy /= l; }
+    const on = l > DEAD; touchMove.x = on ? dx : 0; touchMove.y = on ? dy : 0;
+    if (knob.current) knob.current.style.transform = `translate(${dx * STICK_R * .72}px, ${dy * STICK_R * .72}px)`;
+  };
+  const release = () => {
+    finger.current = null; touchMove.x = 0; touchMove.y = 0; if (knob.current) knob.current.style.transform = '';
+    const b = base.current; if (b) { b.style.left = ''; b.style.top = ''; b.classList.remove('live'); }
+  };
+  return <div className="tc-stickzone pointer-events-auto" aria-label="จอยสติ๊กเดิน — แตะค้างตรงไหนก็ได้ในโซนล่างซ้าย"
+    onPointerDown={e => {
+      if (finger.current !== null) return; finger.current = e.pointerId; try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* pointer already gone */ }
+      const r = e.currentTarget.getBoundingClientRect(), m = STICK_R + 6;
+      const x = Math.min(r.width - m, Math.max(m, e.clientX - r.left)), y = Math.min(r.height - m, Math.max(m, e.clientY - r.top));
+      centre.current = [r.left + x, r.top + y]; place(x, y); steer(e.clientX, e.clientY);
+    }}
+    onPointerMove={e => { if (e.pointerId === finger.current) steer(e.clientX, e.clientY); }}
+    onPointerUp={e => { if (e.pointerId === finger.current) release(); }} onPointerCancel={e => { if (e.pointerId === finger.current) release(); }}
+    onLostPointerCapture={e => { if (e.pointerId === finger.current) release(); }}>
+    <span ref={base} className="tc-stick"><i ref={knob} /></span>
+  </div>;
 }
+
+/** next living monster by distance (within 22 m), after the one already selected */
+function nextTarget() {
+  const st = useGameStore.getState(), [px, pz] = st.player.position;
+  const near = st.monsters.filter(m => m.hp > 0).map(m => ({ m, d: Math.hypot(m.x - px, m.z - pz) })).filter(x => x.d < 22).sort((a, b) => a.d - b.d);
+  if (!near.length) { st.selectMonster(null); return; }
+  const i = near.findIndex(x => x.m.id === st.selectedMonster); st.selectMonster(near[(i + 1) % near.length].m.id);
+}
+
 export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, onMenu, onStatus }: { hp: number; maxHp: number; mp: number; maxMp: number; now: number; menuOpen: boolean; onMenu: () => void; onStatus: () => void }) {
-  const player = useGameStore(s => s.player), inventory = useGameStore(s => s.inventory), auto = useGameStore(s => s.auto), online = useMultiplayerStore(s => s.online);
-  const [page, setPage] = useState(0); const cls = player.classId ?? 'Berserker';
-  const slots = useSkillSlots(now, mp), shown = page ? slots.slice(4, 6) : slots.slice(0, 4);
+  const player = useGameStore(s => s.player), inventory = useGameStore(s => s.inventory), auto = useGameStore(s => s.auto), target = useGameStore(s => s.selectedMonster);
+  const o = useOrientation(); const [page, setPage] = useState(0); const cls = player.classId ?? 'Berserker';
+  const slots = useSkillSlots(now, mp), shown = o === 'landscape' ? slots.slice(0, 6) : page ? slots.slice(4, 6) : slots.slice(0, 4);
   const hpCount = ['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((a, id) => a + countOf(inventory, id), 0);
+  const mpCount = ['potion-mp-m', 'potion-mp-s'].reduce((a, id) => a + countOf(inventory, id), 0);
   const k = (v: number, m: number) => Math.max(0, Math.min(1, v / Math.max(1, m)));
+  const tap = (fn: () => void) => (e: RPointerEvent) => { e.preventDefault(); e.stopPropagation(); buzz(); fn(); };
   return <>
-    <section className={`h3-mframe pointer-events-auto ${k(hp, maxHp) < .3 ? 'low' : ''}`} onClick={onStatus}>
+    <section className={`h3-mframe tc-frame pointer-events-auto ${k(hp, maxHp) < .3 ? 'low' : ''}`} onClick={onStatus} aria-label="สถานะตัวละคร">
       <span className="lv">{player.level}</span>
       <div className="col"><div className="nm">{player.name}</div>
         <div className="mbar hp"><i style={{ transform: `scaleX(${k(hp, maxHp)})` }} /><span>{fmt(hp)}/{fmt(maxHp)}</span></div>
         <div className="mbar mp"><i style={{ transform: `scaleX(${k(mp, maxMp)})` }} /><span>{fmt(mp)}/{fmt(maxMp)}</span></div><ForgeGauge mini /></div>
     </section>
     <div className="h3-mxp"><i style={{ transform: `scaleX(${Math.min(1, player.exp / expRequired(player.level))})` }} /></div>
-    <Joystick />
-    <div className="h3-mbtns pointer-events-auto">
-      <button className={`mb ${hpCount ? '' : 'empty'}`} onPointerDown={e => { e.preventDefault(); useGameStore.getState().usePotion('hp'); }} aria-label="ยา HP">🧪<b className="q">{hpCount}</b></button>
-      <button className={`mb auto ${auto.enabled ? 'on' : ''}`} onClick={() => useGameStore.getState().setAuto(!auto.enabled)}><b>AUTO</b><small>{auto.enabled ? 'เปิด' : 'ปิด'}</small></button>
-      <button className={`mb ${menuOpen ? 'on' : ''}`} onClick={onMenu} aria-label="เมนู">☰</button>
+    <FloatingStick />
+    <div className="tc-quick pointer-events-auto">
+      <button className={`tq ${hpCount ? '' : 'empty'}`} onPointerDown={tap(() => useGameStore.getState().usePotion('hp'))} aria-label="ยา HP"><span className="ico hp" /><b className="q">{hpCount}</b></button>
+      <button className={`tq ${mpCount ? '' : 'empty'}`} onPointerDown={tap(() => useGameStore.getState().usePotion('mp'))} aria-label="ยา MP"><span className="ico mp" /><b className="q">{mpCount}</b></button>
+      <button className={`tq auto ${auto.enabled ? 'on' : ''}`} onPointerDown={tap(() => useGameStore.getState().setAuto(!auto.enabled))} aria-pressed={auto.enabled} aria-label="ล่าอัตโนมัติ"><b>AUTO</b><small>{auto.enabled ? 'เปิด' : 'ปิด'}</small></button>
+      <button className={`tq ${target ? 'on' : ''}`} onPointerDown={tap(nextTarget)} aria-label="เปลี่ยนเป้าหมาย"><span className="ico tgt" /><small>เป้า</small></button>
+      <button className={`tq ${menuOpen ? 'on' : ''}`} onClick={onMenu} aria-label="เมนู" aria-expanded={menuOpen}><span className="ico menu" /><small>เมนู</small></button>
     </div>
-    <div className="h3-wheel pointer-events-auto" style={{ ['--cc' as string]: CLASS_COLOR[cls] }}>
-      <button className="basic" onPointerDown={e => { e.preventDefault(); basicDown(); }} onPointerUp={basicUp} onPointerCancel={basicUp} aria-label="โจมตี"><Swords size={34} /><span>โจมตี</span></button>
-      {shown.map((s, j) => <button key={s.i} className={`sk ${s.off ? 'off' : ''} ${s.nomp ? 'nomp' : ''}`} style={at(RING4[j])} title={s.title} onPointerDown={e => { e.preventDefault(); castSlot(s.i); }}>
-        <span className="g">{s.glyph}</span><i className="ic" aria-hidden style={skillIconStyle(s.shows)} /><b className="k">{KEYS[s.i]}</b>{s.left > 0 && <span className="cd" style={{ ['--p' as string]: `${Math.min(100, s.left / s.total * 100)}%` }}><b>{Math.ceil(s.left / 1000)}</b></span>}</button>)}
-      <button className="page" style={at([172, 134])} onPointerDown={e => { e.preventDefault(); setPage(p => p ^ 1); }} aria-label="สลับหน้าสกิล"><b>{page ? '1–4' : '5–6'}</b><small>สกิล</small></button>
+    <div className="tc-act pointer-events-auto" style={{ ['--cc' as string]: CLASS_COLOR[cls] ?? '#c89b3c' }}>
+      <button className="basic" onPointerDown={e => { e.preventDefault(); buzz(8); basicDown(); }} onPointerUp={basicUp} onPointerCancel={basicUp} aria-label="โจมตี"><Swords size={32} /><span>โจมตี</span></button>
+      {shown.map((s, j) => <button key={s.i} className={`sk ${s.off ? 'off' : ''} ${s.nomp ? 'nomp' : ''}`} style={at(ARC[o][j])} title={s.title} aria-label={s.name}
+        onPointerDown={tap(() => castSlot(s.i))}>
+        <span className="g">{s.glyph}</span><i className="ic" aria-hidden style={skillIconStyle(s.shows)} /><b className="k">{KEYS[s.i]}</b>
+        {s.left > 0 && <span className="cd" style={{ ['--p' as string]: `${Math.min(100, s.left / s.total * 100)}%` }}><b>{Math.ceil(s.left / 1000)}</b></span>}</button>)}
+      {o === 'portrait' && <button className="page" style={at(PAGE_CHIP)} onPointerDown={tap(() => setPage(p => p ^ 1))} aria-label="สลับหน้าสกิล"><b>{page ? '1–4' : '5–6'}</b></button>}
     </div>
   </>;
 }

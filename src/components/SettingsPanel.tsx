@@ -47,6 +47,8 @@ export default function SettingsPanel({ inGame = true }: { inGame?: boolean }) {
       <div className="h2-row"><span>เงาแบบเรียลไทม์</span><Sw label="เงา" on={st.shadows} onClick={() => st.set({ shadows: !st.shadows })} /></div>
     </>}
     {tab === 'display' && <>
+      <div className="h2-row"><span>ปุ่มควบคุม</span>
+        <Seg label="ปุ่มควบคุม" value={st.controls} options={[['auto', 'อัตโนมัติ'], ['touch', 'จอสัมผัส'], ['pc', 'คีย์บอร์ด·เมาส์']]} onPick={v => st.set({ controls: v })} /></div>
       <div className="h2-row"><span>ขนาดหน้าต่างและตัวอักษร</span>
         <Range label="ขนาด UI" value={st.uiScale} min={0.8} max={1.2} step={0.05} onChange={v => st.set({ uiScale: v })} show={`${Math.round(st.uiScale * 100)}%`} /></div>
       <div className="h2-row"><span>ตัวเลขดาเมจ</span><Sw label="ตัวเลขดาเมจ" on={st.damageNumbers} onClick={() => st.set({ damageNumbers: !st.damageNumbers })} /></div>

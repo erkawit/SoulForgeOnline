@@ -3,20 +3,33 @@
 import type { Rarity } from '@/lib/types';
 
 export type Layout = 'pc' | 'mobile';
+/** round 22: how the player controls the game — 'auto' picks by screen, 'touch' forces the touch controller, 'pc' forces
+ * keyboard + mouse (Settings → Display). `?controls=touch|pc` in the URL overrides both, for testing on a desktop. */
+export type ControlMode = 'auto' | 'touch' | 'pc';
+export type Orientation = 'portrait' | 'landscape';
 /**
  * Spec rule: width < 768 px → Mobile set (MobileHUDLayout / MobileInventoryDrawer / MobileStatusPanel),
  * otherwise the PC set. Phones held sideways are wider than 768 but only ~390 px tall and driven by touch,
  * so a coarse pointer on a screen shorter than 500 px also gets the Mobile set.
  */
-export function layoutFor(width: number, height: number, coarsePointer: boolean): Layout {
+export function layoutFor(width: number, height: number, coarsePointer: boolean, mode: ControlMode = 'auto'): Layout {
+  if (mode === 'touch') return 'mobile';
+  if (mode === 'pc') return 'pc';
   if (width < 768) return 'mobile';
   if (coarsePointer && height < 500) return 'mobile';
   return 'pc';
 }
-export function currentLayout(): Layout {
+export const orientationFor = (width: number, height: number): Orientation => width > height ? 'landscape' : 'portrait';
+/** the URL override (?controls=touch|pc) or null */
+export function urlControlMode(): ControlMode | null {
+  if (typeof location === 'undefined') return null;
+  const v = new URLSearchParams(location.search).get('controls');
+  return v === 'touch' || v === 'pc' || v === 'auto' ? v : null;
+}
+export function currentLayout(mode: ControlMode = 'auto'): Layout {
   if (typeof window === 'undefined') return 'pc';
   const coarse = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
-  return layoutFor(window.innerWidth, window.innerHeight, coarse);
+  return layoutFor(window.innerWidth, window.innerHeight, coarse, urlControlMode() ?? mode);
 }
 
 /** theme palette (spec §1) */

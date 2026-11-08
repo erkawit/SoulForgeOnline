@@ -2,7 +2,8 @@
 // Shared pieces of the UX-spec HUD: screen-scale hook, the skull-framed orbs, hotbar data and the basic attack.
 // PC and Mobile layouts are separate component sets (spec) — only data/logic lives here.
 import { useEffect, useState } from 'react';
-import { currentLayout, type Layout } from '@/game/ui/layout';
+import { currentLayout, orientationFor, type Layout, type Orientation } from '@/game/ui/layout';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import { useGameStore } from '@/store/useGameStore';
 import { useConfigStore } from '@/store/useConfigStore';
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
@@ -26,9 +27,15 @@ export const portrait = (cls: string, g?: string, kind: 'face' | 'full' = 'face'
 
 /** spec screen-scale checker: < 768 px (or a phone held sideways) → Mobile component set */
 export function useScreenScale(): Layout {
-  const [l, setL] = useState<Layout>('pc');
-  useEffect(() => { const f = () => setL(currentLayout()); f(); addEventListener('resize', f); addEventListener('orientationchange', f); return () => { removeEventListener('resize', f); removeEventListener('orientationchange', f); }; }, []);
+  const [l, setL] = useState<Layout>('pc'); const mode = useSettingsStore(s => s.controls);
+  useEffect(() => { const f = () => setL(currentLayout(mode)); f(); addEventListener('resize', f); addEventListener('orientationchange', f); return () => { removeEventListener('resize', f); removeEventListener('orientationchange', f); }; }, [mode]);
   return l;
+}
+/** round 22: portrait / landscape — the touch controller lays itself out differently for each */
+export function useOrientation(): Orientation {
+  const [o, setO] = useState<Orientation>('portrait');
+  useEffect(() => { const f = () => setO(orientationFor(innerWidth, innerHeight)); f(); addEventListener('resize', f); addEventListener('orientationchange', f); return () => { removeEventListener('resize', f); removeEventListener('orientationchange', f); }; }, []);
+  return o;
 }
 
 export function OrbFrame({ kind }: { kind: 'hp' | 'mp' }) {
