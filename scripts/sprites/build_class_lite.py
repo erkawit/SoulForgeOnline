@@ -27,23 +27,25 @@ for key, a in anims.items():
     atlas = Image.new('RGBA', (lc * lw, rows * lh), (0, 0, 0, 0))
     for k, fr in enumerate(frames): atlas.paste(fr, ((k % lc) * lw, (k // lc) * lh))
     atlas.save(os.path.join(ROOT, f'public/art/anim/{key}-lite.webp'), 'WEBP', quality=90, method=6)
-    # stand the figure on its pedestal: pivot x = centre of the feet in the first idle frame (the cell centre is off
-    # when a shield / sword sticks out to one side, e.g. Paladin, Berserker)
+    # stand the figure on its pedestal: pivot x = midpoint of the two boots in the first idle frame. The bottom 6 % of the
+    # figure is cut into solid runs; thin runs (a sword tip) drop out, and the boots are the heaviest run plus the run
+    # nearest to it (a big blade resting on the ground, e.g. Berserker, is farther away than the other boot).
     import numpy as np
     al = np.array(frames[0])[..., 3] > 60; ys = np.where(al.any(1))[0]
-    band = al[max(ys[-1] - int((ys[-1] - ys[0]) * 0.12), 0):ys[-1] + 1]; col = band.sum(0).astype(float)
-    # feet = the widest run of solidly filled columns (a sword tip or shield rim near the ground is thin and drops out)
-    on = col > 0.35 * col.max(); runs, s0 = [], None
+    band = al[max(ys[-1] - int((ys[-1] - ys[0]) * 0.06), 0):ys[-1] + 1]; col = band.sum(0).astype(float)
+    on = col > 0.3 * col.max(); runs, s0 = [], None
     for i, v in enumerate(list(on) + [False]):
         if v and s0 is None: s0 = i
         if not v and s0 is not None: runs.append((s0, i - 1)); s0 = None
-    # boots are usually two runs close together: merge runs separated by a small gap, then keep the heaviest group
-    groups = []
-    for r in runs:
-        if groups and r[0] - groups[-1][1] < lw * 0.06: groups[-1] = (groups[-1][0], r[1])
-        else: groups.append(r)
-    g = max(groups, key=lambda r: col[r[0]:r[1] + 1].sum()) if groups else None
-    fx = round(float((g[0] + g[1]) / 2 / lw), 4) if g else a['fx']
+    runs = [r for r in runs if r[1] - r[0] + 1 >= lw * 0.03]
+    mass = [col[r[0]:r[1] + 1].sum() for r in runs]
+    if runs:
+        h = int(np.argmax(mass)); mid = lambda r: (r[0] + r[1]) / 2
+        others = [r for r, m in zip(runs, mass) if r != runs[h] and m >= 0.3 * mass[h] and abs(mid(r) - mid(runs[h])) < lw * 0.35]
+        pair = [runs[h]] + ([min(others, key=lambda r: abs(mid(r) - mid(runs[h])))] if others else [])
+        fx = round(float((min(r[0] for r in pair) + max(r[1] for r in pair)) / 2 / lw), 4)
+    else:
+        fx = a['fx']
     out[f'{key}-lite'] = {'cw': lw, 'ch': lh, 'cols': lc, 'n': len(frames), 'fx': fx, 'fy': a['fy'], 'bodyPx': round(a['bodyPx'] * SCALE), 'clips': clips}
     print(key, atlas.size, clips)
 with open(os.path.join(ROOT, 'src/game/sprites/classLite.ts'), 'w', encoding='utf-8') as fh:
