@@ -234,3 +234,16 @@ html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win .body { overflow: auto;
 .sf-brand.sf-brand-logo { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .sf-brand.sf-brand-logo img { width: min(100%, 360px); height: auto; mix-blend-mode: lighten; -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 62%, transparent 100%); }
 .sf-brand.sf-brand-logo small { letter-spacing: .25em; font-size: 11px; color: #b9a988; }
+/* round 23: class step after login — lineup + a compact confirm panel (no big logo) */
+.sf-gate.pick .sf-brand { display: none; }
+.sf-pick { display: flex; flex-direction: column; gap: 12px; text-align: center; }
+.sf-pick .sf-h2 { margin: 0; } .sf-pick .sf-muted { margin: 0; } .sf-pick-cls { color: #f2d58a; font-family: Cinzel, Georgia, serif; }
+@media (max-width: 760px) { html body .sf-gate.h2.pick .h2-win.sf-gate-win .body { padding: 12px 16px 14px; gap: 10px; } .sf-gate.pick .sf-lineup > div:first-child { height: 40vh; max-height: 340px; } }
+
+/* round 23: create screen on a portrait phone — hero in the top band, info card scrolls in the middle, name + button pinned below */
+@media (max-width: 760px) {
+  .sf-create-info { top: 42dvh; bottom: calc(132px + env(safe-area-inset-bottom, 0px)); left: 12px; right: 12px; width: auto; max-height: none; transform: none; }
+  .sf-create-bottom { left: 12px; right: 12px; transform: none; bottom: max(12px, env(safe-area-inset-bottom, 0px)); flex-wrap: nowrap; }
+  .sf-create-bottom input { width: auto; flex: 1; min-width: 0; }
+  .sf-create-top h1 { font-size: 20px; }
+}

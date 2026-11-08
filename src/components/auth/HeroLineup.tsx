@@ -46,7 +46,7 @@ function Hero({ p, i, selected, solo, onPick }: { p: Pick; i: number; selected: 
   </group>;
 }
 function Rig({ solo }: { solo: boolean }) {
-  useFrame(({ camera }) => { if (solo) { camera.position.set(0, 1.35, 4.6); camera.lookAt(0, .85, 0); } else { camera.position.set(0, 1.9, 14.5); camera.lookAt(0, .9, 0); } });
+  useFrame(({ camera }) => { if (solo) { camera.position.set(0, 1.25, 6.4); camera.lookAt(0, .8, 0); } else { camera.position.set(0, 1.9, 14.5); camera.lookAt(0, .9, 0); } });
   return null;
 }
 

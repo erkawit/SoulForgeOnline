@@ -43,8 +43,9 @@ function Hero({ cls, i, selected, onPick, gender, hair, hairColor }: { cls: Clas
 function Rig({ sel }: { sel: number }) {
   const { camera, size } = useThree(); const look = useRef(new Vector3(0, .85, 0));
   useFrame((_, dt) => { const s = SPOTS[sel], wide = size.width >= 760, bias = wide ? .55 : 0;
-    const pos = new Vector3(s.x * .8 + bias, wide ? 2.4 : 3.2, s.z + (wide ? 8.4 : 12)); camera.position.lerp(pos, 1 - Math.exp(-dt * 3));
-    look.current.lerp(new Vector3(s.x * .8 + bias, .85, s.z - .4), 1 - Math.exp(-dt * 3.5)); camera.lookAt(look.current); });
+    // round 23: on a narrow (portrait) screen the hero sits in the top ~40 % above the info card, at a modest size
+    const pos = new Vector3(s.x * .8 + bias, wide ? 2.4 : 2.9, s.z + (wide ? 8.4 : 14)); camera.position.lerp(pos, 1 - Math.exp(-dt * 3));
+    look.current.lerp(new Vector3(s.x * .8 + bias, wide ? .85 : -1.05, s.z - .4), 1 - Math.exp(-dt * 3.5)); camera.lookAt(look.current); });
   return null;
 }
 
