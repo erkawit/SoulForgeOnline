@@ -64,7 +64,7 @@
 .npc-dialog .npc-body { min-height: 0; }
 
 /* ---------- compact Shop / Craft / Enchant (reference: "shop and crafting board-28") ---------- */
-@media (min-width: 761px) {
+@media (min-width: 768px) {
   .forge-dialog.npc-dialog { width: min(860px, calc(100vw - 32px)); max-height: min(640px, 78dvh); bottom: 11dvh; }
   .forge-dialog .npc-head { padding: 6px 10px 6px 12px; }
   .forge-dialog .npc-head .npc-badge { width: 34px; height: 34px; font-size: 16px; }
@@ -122,7 +122,7 @@
 .sf-btn.sf-tool .sf-tool-ico { width: 20px; height: 20px; margin: 0; }
 
 /* 761–1100 px wide: keep HUD windows left of the minimap column so the tool row never sits on top of them */
-@media (min-width: 761px) and (max-width: 1100px) {
+@media (min-width: 768px) and (max-width: 1100px) {
   .h2 .h2-win:not(.wide) { right: 214px; left: auto; top: 14px; bottom: auto; width: min(560px, calc(100vw - 240px)); max-height: calc(100vh - 200px); }
 }
 

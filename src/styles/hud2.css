@@ -48,7 +48,7 @@
 .h2-tabs { display: flex; gap: 4px; margin-bottom: 8px; } .h2-tabs button { border: 1px solid var(--line); background: #0e0c12; color: var(--mute); padding: 4px 10px; border-radius: 3px; cursor: pointer; } .h2-tabs button.on { color: var(--g2); border-color: var(--g); }
 .h2-quest { padding: 10px 12px; border: 1px solid var(--line); border-radius: 3px; margin-bottom: 8px; background: rgba(0, 0, 0, .25); } .h2-quest h4 { margin: 0 0 4px; font: 700 14px Cinzel, serif; color: #f2e3bf; } .h2-quest h4 small { font: 400 11px "Noto Sans Thai"; color: var(--mute); }
 .h2-quest p { margin: 2px 0; } .h2-quest ul { margin: 4px 0; padding-left: 18px; color: #cfc6b3; } .h2-quest .rw { color: var(--g2); font-size: 12px; } .h2-quest.ready { border-color: var(--g); } .h2-quest.done { opacity: .55; }
-.h2-inv { display: grid; grid-template-columns: 210px 1fr; gap: 14px; } @media (max-width: 760px) { .h2-inv { grid-template-columns: 1fr; } }
+.h2-inv { display: grid; grid-template-columns: 210px 1fr; gap: 14px; } @media (max-width: 767px) { .h2-inv { grid-template-columns: 1fr; } }
 .h2-doll { position: relative; height: 320px; border: 1px solid var(--line); border-radius: 3px; background: radial-gradient(ellipse at 50% 60%, color-mix(in srgb, var(--cc) 18%, #0f0c14), #08070b); }
 .h2-doll img { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); height: 270px; pointer-events: none; opacity: .9; }
 .h2-eq { position: absolute; width: 50px; height: 50px; } .h2-eq.helmet { left: 6px; top: 10px; } .h2-eq.armor { left: 6px; top: 74px; } .h2-eq.gloves { left: 6px; top: 138px; }
@@ -109,7 +109,7 @@
 .sf-create-info .quote { font: italic 600 15px Cinzel, Georgia, serif; color: color-mix(in srgb, var(--cc) 55%, #fff); margin: 10px 0 4px; }
 .voice-btn { border: 1px solid rgba(217, 180, 92, .3); background: #0e0c12; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 12px; padding: 0; }
 @media (max-width: 1100px) { .h2-dock { transform: translateX(-70%) scale(.9); transform-origin: 50% 100%; } .h2-win { right: 14px; top: auto; bottom: 200px; } }
-@media (pointer: coarse), (max-width: 760px) {
+@media (pointer: coarse), (max-width: 767px) {
   .h2-log, .h2-zone small { display: none; } .h2-mm { width: 120px; height: 120px; } .h2-zone { top: 138px; width: 120px; } .h2-menu { top: 160px; grid-template-columns: repeat(3, 34px); } .h2-menu button { width: 34px; height: 34px; font-size: 14px; }
   .h2-dock { left: 10px; bottom: 166px; transform: scale(.62); transform-origin: 0 100%; } .h2-wheel { right: 18px; bottom: 18px; transform: scale(.78); transform-origin: 100% 100%; }
   .h2-frame { width: 220px; grid-template-columns: 44px 1fr; } .h2-frame .pt { width: 44px; height: 44px; } .h2-tracker { top: 110px; width: 200px; } .h2-tip { left: 10px; top: auto; bottom: 330px; width: min(320px, calc(100vw - 20px)); }

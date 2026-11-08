@@ -9,7 +9,7 @@ import { useSettingsStore } from '@/store/useSettingsStore';
 const DESIGN_W = 1040, DESIGN_H = 800, MIN = 0.6;
 
 export function uiScaleFor(w: number, h: number, coarse: boolean) {
-  if (coarse || w <= 760) return 1;
+  if (coarse || w < 768) return 1;
   return Math.max(MIN, Math.min(1, w / DESIGN_W, h / DESIGN_H));
 }
 

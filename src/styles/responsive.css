@@ -1,10 +1,10 @@
 /* Round 17: HUD windows follow the screen size.
    components/UiScale.tsx sets --ui-s (0.6 … 1) from the window size; every window is zoomed by it, so the frame, slots
    and text shrink together. Sizes and offsets below are divided by --ui-s because `zoom` multiplies them back — the
-   result is "this many real screen pixels". Phones (≤ 760 px or touch) keep --ui-s = 1 and their own layout. */
+   result is "this many real screen pixels". Phones (< 768 px or touch) keep --ui-s = 1 and their own layout. */
 :root { --ui-s: 1; }
 
-@media (min-width: 761px) and (pointer: fine) {
+@media (min-width: 768px) and (pointer: fine) {
   html body .h2 .h2-win, html body .npc-dialog, html body .sf-ch-dialog, html body .h2-modal section, html body .item-tooltip { zoom: var(--ui-s); }
 
   /* the big centred windows (bag): never pinned to the bottom, always fully on screen */
@@ -33,6 +33,6 @@
 }
 
 /* very short screens: the bag puts the paper doll above the grid instead of cutting it */
-@media (min-width: 761px) and (max-height: 520px) and (pointer: fine) {
+@media (min-width: 768px) and (max-height: 520px) and (pointer: fine) {
   html body .pcinv { grid-template-columns: 1fr; }
 }

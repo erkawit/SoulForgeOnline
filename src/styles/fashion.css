@@ -37,7 +37,7 @@
 .fw-detail { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border: 1px solid rgba(217, 180, 92, .3); border-radius: 5px; background: #121015; }
 .fw-detail p { margin: 2px 0 0; font-size: 12px; color: #bfb39a; } .fw-detail small { color: #a99c84; }
 .fw-actions { display: flex; gap: 6px; }
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   .fw { grid-template-columns: 1fr; }
   .fp-stage { height: 260px; }
   .fw-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
@@ -76,4 +76,4 @@
 .col-state { font-size: 11px; color: #8fe0a0; } .col-state.off { color: #8a7f6c; font-size: 10px; }
 .col-needs button { white-space: nowrap; font-size: 10.5px; padding: 2px 5px; border-radius: 3px; border: 1px solid #8fe0a0; background: #163021; color: #c9f5d2; cursor: pointer; }
 .col-card .col-foot { font-size: 12px; color: #d9c99f; } .col-card .col-foot small { color: #8a7f6c; }
-@media (max-width: 760px) { .col-grid { grid-template-columns: 1fr; } }
+@media (max-width: 767px) { .col-grid { grid-template-columns: 1fr; } }

@@ -1,6 +1,6 @@
 'use client';
 // Login / sign-up backdrop (round 16): the Berserker in the Thai attire, male + female (3D-rendered rigs, grey A06 hair),
-// as 2.5D sprites on rune pedestals. Wide column → all eight in one row; pointing at one plays a move, clicking brings it to the front. Narrow column (< 760 px,
+// as 2.5D sprites on rune pedestals. Wide column → all eight in one row; pointing at one plays a move, clicking brings it to the front. Narrow column (< 768 px,
 // phones) → one hero at a time: swipe left / right, click either side, use the arrows, dots or ← → keys.
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -54,7 +54,7 @@ export default function HeroLineup({ compact = false, onPick }: { compact?: bool
   // a backdrop, not the game: drawn at 30 fps and at most 1.25× pixel density (scaled by the player's render setting)
   const renderScale = useSettingsStore(s => s.renderScale), dpr = Math.max(0.6, 1.25 * renderScale);
   const box = useRef<HTMLDivElement>(null); const [solo, setSolo] = useState(false); const [idx, setIdx] = useState(0);
-  useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(([e]) => setSolo(e.contentRect.width < 760)); ro.observe(el); return () => ro.disconnect(); }, []);
+  useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(() => setSolo(window.innerWidth < 768)); /* round 23: the screen rule (< 768 px = phone), not the column width */ ro.observe(el); return () => ro.disconnect(); }, []);
   // nothing moves on its own: a hero animates when pointed at / touched, and the picked one steps to the front
   const [pick, setPick] = useState<number | null>(null);
   useEffect(() => { onPick?.(pick == null ? null : LINEUP[pick].cls); }, [pick]); // eslint-disable-line react-hooks/exhaustive-deps

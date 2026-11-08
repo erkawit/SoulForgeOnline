@@ -148,7 +148,7 @@ input[type="range"] { accent-color: var(--sf-gold); width: min(420px, 100%); }
 .sf-create-info .kit div { padding: 6px 0; border-top: 1px solid rgba(255, 255, 255, .05); font-size: 12.5px; } .sf-create-info .kit small { display: block; color: var(--sf-ash); }
 .sf-create-bottom { position: absolute; bottom: max(22px, env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 12px; border: 1px solid var(--sf-line); border-radius: 6px; background: rgba(12, 10, 16, .92); }
 .sf-create-bottom input { width: 240px; padding: 10px 12px; border-radius: 4px; border: 1px solid rgba(255, 255, 255, .12); background: #0b0a0e; color: var(--sf-bone); font: inherit; }
-@media (max-width: 760px) { .sf-create-rail { top: 70px; transform: none; grid-template-columns: repeat(5, 1fr); left: 8px; right: 8px; } .sf-create-rail button { width: auto; padding: 6px; } .sf-create-rail button span { display: none; } .sf-create-info { top: auto; bottom: 100px; transform: none; max-height: 38dvh; } }
+@media (max-width: 767px) { .sf-create-rail { top: 70px; transform: none; grid-template-columns: repeat(5, 1fr); left: 8px; right: 8px; } .sf-create-rail button { width: auto; padding: 6px; } .sf-create-rail button span { display: none; } .sf-create-info { top: auto; bottom: 100px; transform: none; max-height: 38dvh; } }
 
 /* ------------------------------------------------------------------ in-game: cast bar, charge gauge, party frames, windows */
 .sf-cast { position: fixed; left: 50%; bottom: 120px; transform: translateX(-50%); width: 320px; padding: 6px 10px 8px; border: 1px solid var(--sf-line); border-radius: 4px; background: rgba(12, 10, 16, .9); z-index: 30; pointer-events: none; }
@@ -238,10 +238,10 @@ html body .sf-gate.h2 .sf-gate-modal .h2-win.sf-gate-win .body { overflow: auto;
 .sf-gate.pick .sf-brand { display: none; }
 .sf-pick { display: flex; flex-direction: column; gap: 12px; text-align: center; }
 .sf-pick .sf-h2 { margin: 0; } .sf-pick .sf-muted { margin: 0; } .sf-pick-cls { color: #f2d58a; font-family: Cinzel, Georgia, serif; }
-@media (max-width: 760px) { html body .sf-gate.h2.pick .h2-win.sf-gate-win .body { padding: 12px 16px 14px; gap: 10px; } .sf-gate.pick .sf-lineup > div:first-child { height: 40vh; max-height: 340px; } }
+@media (max-width: 767px) { html body .sf-gate.h2.pick .h2-win.sf-gate-win .body { padding: 12px 16px 14px; gap: 10px; } .sf-gate.pick .sf-lineup > div:first-child { height: 40vh; max-height: 340px; } }
 
 /* round 23: create screen on a portrait phone — hero in the top band, info card scrolls in the middle, name + button pinned below */
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   .sf-create-info { top: 42dvh; bottom: calc(132px + env(safe-area-inset-bottom, 0px)); left: 12px; right: 12px; width: auto; max-height: none; transform: none; }
   .sf-create-bottom { left: 12px; right: 12px; transform: none; bottom: max(12px, env(safe-area-inset-bottom, 0px)); flex-wrap: nowrap; }
   .sf-create-bottom input { width: auto; flex: 1; min-width: 0; }
