@@ -15,18 +15,18 @@ export type SiteOpts = { gameUrl?: string; homeUrl?: string; wikiUrl?: string; c
 const esc = (s: string) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
 const fmt = (n: number) => Math.round(n).toLocaleString('en-US');
 const RC: Record<string, string> = { Common: '#b9c6d2', Uncommon: '#69cf7b', Rare: '#4db7ff', Epic: '#b477ff', Legendary: '#e35a64', God: '#ffd36e', 'Pre-arch': '#fb9446', Arch: '#c58aef' };
-/** [class, Thai name, colour, blurb, painted look] — round 13: one class and its Lv60 advancement */
+/** [class, Thai name, colour, weapon, blurb] — round 22: the eight classes exactly as the game's entry lineup shows them
+ * (same order, Thai names and weapons as auth/HeroLineup, pedestal colours = sprites/catalog CLASS_GLOW), each with its
+ * painted portrait; male only for now */
 const CLASSES: [string, string, string, string, string][] = [
-  // round 20: the seven new classes (they show the Berserker art until their own sheets ship)
-  ['Paladin', 'พาลาดิน', '#ffe08a', 'อัศวินดาบมือเดียวกับโล่ ยืนรับแรงปะทะแทนเพื่อน ป้องกันแน่นที่สุด มีแสงศักดิ์สิทธิ์ทั้งโจมตีและรักษา', 'look-Berserker'],
-  ['Hawkeye', 'ฮอว์คอาย', '#8bdb9a', 'นักธนูยิงไกลที่สุดในเกม คริสูง ตีเร็ว ต้องรักษาระยะห่างจากศัตรู', 'look-Berserker'],
-  ['RuneMaster', 'รูนมาสเตอร์', '#62dfdf', 'นักดาบเวท ฟันแล้วปล่อยคลื่นดาบเวท ปักเสาอักขระโจมตี ตรึง ฟื้นฟู บัฟปาร์ตี้ และสาปศัตรู พร้อมระเบิดพิษหมู่', 'look-Berserker'],
-  ['Elementalist', 'อีลีเมนทัลลิสต์', '#b685ff', 'บัญชาไฟ น้ำแข็ง สายฟ้า ดาเมจพื้นที่สูงที่สุด แต่ตัวบางที่สุด', 'look-Berserker'],
-  ['Assassin', 'แอสแซสซิน', '#c97bff', 'มีดคู่ ตีเร็ว คริแรง พุ่งเข้าประชิดแล้วปิดฉากเป้าที่ใกล้ตาย', 'look-Berserker'],
-  ['HighPriest', 'ไฮพรีสต์', '#ffdb86', 'รักษาและอวยพรเพื่อนร่วมทีม เกราะพลังให้ทั้งปาร์ตี้ และเผาศัตรูด้วยแสง', 'look-Berserker'],
-  ['Inquisitor', 'อินควิซิเตอร์', '#8fd3ff', 'ค้อนและโล่กับเวทสายฟ้า ร่ายเมฆพายุให้ฟ้าผ่าหมู่ ปักเสาสายฟ้า และเรียกค้อนเทพธอร์ลงมาทุบ', 'look-Berserker'],
-  ['Berserker', 'เบอร์เซิร์กเกอร์', '#ff4a3a', 'นักรบอาวุธสองมือ (ดาบใหญ่ ขวานใหญ่ ค้อนใหญ่) สะสม Rage จากการฟันและการถูกตี แล้วระเบิดออกเป็นสกิลรุนแรง ยิ่งเลือดน้อยยิ่งแรง', 'look-Berserker'],
-  ['Reaver', 'รีเวอร์ · เลื่อนขั้น Lv60', '#c03cff', 'ร่างเลื่อนขั้นของ Berserker — สกิลทั้ง 12 วิวัฒน์เป็นเวอร์ชันมืด ดูดวิญญาณคืนเลือด ปิดฉากศัตรูที่เลือดน้อย และ Cataclysm Descent', 'look-Reaver'],
+  ['Paladin', 'พาลาดิน', '#ffe08a', 'ดาบ · โล่', 'อัศวินดาบมือเดียวกับโล่ ยืนรับแรงปะทะแทนเพื่อน ป้องกันแน่นที่สุด มีแสงศักดิ์สิทธิ์ทั้งโจมตีและรักษา'],
+  ['Berserker', 'เบอร์เซิร์กเกอร์', '#ff4a3a', 'ดาบใหญ่สองมือ', 'นักรบอาวุธสองมือ สะสม Rage จากการฟันและการถูกตี แล้วระเบิดออกเป็นสกิลรุนแรง ยิ่งเลือดน้อยยิ่งแรง · เลื่อนขั้นเป็น Reaver ที่ Lv60'],
+  ['Hawkeye', 'ฮอว์คอาย', '#8bdb9a', 'ธนูยาว', 'นักธนูยิงไกลที่สุดในเกม คริสูง ตีเร็ว ต้องรักษาระยะห่างจากศัตรู'],
+  ['RuneMaster', 'รูนมาสเตอร์', '#62dfdf', 'ดาบเวท · เสาอักขระ', 'นักดาบเวท ฟันแล้วปล่อยคลื่นดาบเวท ปักเสาอักขระโจมตี ตรึง ฟื้นฟู บัฟปาร์ตี้ และสาปศัตรู พร้อมระเบิดพิษหมู่'],
+  ['Elementalist', 'เอเลเมนทัลลิสต์', '#b685ff', 'ไฟ · น้ำแข็ง · สายฟ้า', 'บัญชาไฟ น้ำแข็ง สายฟ้า ดาเมจพื้นที่สูงที่สุด แต่ตัวบางที่สุด'],
+  ['Assassin', 'แอสซาซิน', '#c97bff', 'มีดคู่', 'มีดคู่ ตีเร็ว คริแรง พุ่งเข้าประชิดแล้วปิดฉากเป้าที่ใกล้ตาย'],
+  ['HighPriest', 'ไฮพรีสต์', '#ffdb86', 'ฮีล · บัฟ', 'รักษาและอวยพรเพื่อนร่วมทีม เกราะพลังให้ทั้งปาร์ตี้ และเผาศัตรูด้วยแสง'],
+  ['Inquisitor', 'อินควิซิเตอร์', '#ffb35c', 'ค้อน · สายฟ้า', 'ค้อนและโล่กับเวทสายฟ้า ร่ายเมฆพายุให้ฟ้าผ่าหมู่ ปักเสาสายฟ้า และเรียกค้อนเทพธอร์ลงมาทุบ'],
 ]
 const opt = (o: SiteOpts) => ({ game: o.gameUrl ?? '/play', home: o.homeUrl ?? '/', wiki: o.wikiUrl ?? '/wiki', codex: o.codexUrl ?? '/guide', art: (o.art ?? '/art/').replace(/\/?$/, '/'), play: o.playAttr ?? '' });
 
@@ -35,7 +35,7 @@ function shell(title: string, o: ReturnType<typeof opt>, active: 'home' | 'wiki'
   const links: [string, string, boolean, string][] = [[o.home, 'หน้าแรก', active === 'home', 'home'], [o.home + '#world', 'โลก', false, 'external'], [o.home + '#classes', 'อาชีพ', false, 'party'],
     [o.wiki, 'Wiki', active === 'wiki', 'book'], [o.wiki + '#bosses', 'บอส', false, 'trophy'], [o.home + '#patch', 'แพตช์', false, 'scroll']];
   return `<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title>
-<meta name="description" content="SoulForge Online — MMORPG แฟนตาซีมืด 2.5D ไอโซเมตริก เล่นเป็น Berserker ล่าบอสหลายร้อยคน คราฟอุปกรณ์ 8 ระดับ">
+<meta name="description" content="SoulForge Online — MMORPG แฟนตาซีมืด 2.5D ไอโซเมตริก 8 อาชีพ ล่าบอสหลายร้อยคน คราฟอุปกรณ์ 8 ระดับ">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
 <style>${SITE_CSS}${kitCss(o.art)}${FORGE_SITE_CSS}${extraCss}.sf-sound{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:6px;padding:6px 12px 6px 6px;border:1px solid #6b5326;border-radius:22px;background:rgba(14,11,16,.92);color:#dccfb3;font:600 13px 'Noto Sans Thai',sans-serif;cursor:pointer}.sf-sound img{width:30px;height:30px;opacity:.55}.sf-sound.on{border-color:#e2bd6a;color:#fff3d6}.sf-sound.on img{opacity:1}</style></head><body class="page-${active}">
 <header class="top"><div class="top-in">
@@ -68,7 +68,7 @@ const NEWS: [string, string][] = [
   ['⟁ ประตูวาร์ปทั้งสี่มุมเมือง', 'เดินเข้าวงที่มุมกำแพงเพื่อไปทุ่งล่าของภูมิภาคได้ทันที ไม่เสียค่าเดินทาง · ดันเจี้ยนอยู่สุดปลายทุ่งทางเหนือของแต่ละเมือง · ในเมืองไม่มีมอนสเตอร์'],
   ['🧭 NPC ครบทุกเมือง', 'ทั้ง 9 บริการ (ผู้นำทาง อาจารย์ ช่างตีบวก ร้านค้า เสบียง รับซื้อ ตลาด ผู้ประทานพร ผู้เฝ้าประตู) ยืนหน้าประตูอาคารของตัวเองในทุกเมืองหลวง · พรานเคสเทรลอยู่ข้างป้อมยาม Thornwatch'],
   ['☠ ดินแดนแห่งความโศกเศร้าย้ายไป Ashen Outskirts', 'หมู่บ้านร้าง ปราสาท มหาวิหาร และถ้ำ อยู่ในทุ่งนอกประตูทิศใต้ของ Hollow Reach (Lv 1–10) พร้อมบอส Grave Marshal'],
-  ['🎞 ตัวละครและมอนสเตอร์ขยับแบบเฟรมจริง', 'Berserker ชาย/หญิง (กำลังทำภาพเคลื่อนไหว 8 ทิศ) มอนสเตอร์ 28 ชนิด และบอส Abyssal Forge Titan มีท่ายืน เดิน วิ่ง โจมตี และสกิลแบบภาพวาดทีละเฟรม'],
+  ['🎞 ตัวละครและมอนสเตอร์ขยับแบบเฟรมจริง', 'ทั้ง 8 อาชีพ (ภาพวาด 8 ทิศ) มอนสเตอร์ 28 ชนิด และบอส Abyssal Forge Titan มีท่ายืน เดิน วิ่ง โจมตี และสกิลแบบภาพวาดทีละเฟรม'],
   ['📱 เล่นบนมือถือได้เต็มรูปแบบ', 'หน้าจอแยกชุด PC กับมือถือ · มือถือมีจอยสติ๊ก วงล้อโจมตี + สกิล 4 ปุ่ม และกระเป๋าแบบดึงขึ้นจากด้านล่าง'],
   ['🎒 กระเป๋า 10×10 และสี Tier', 'ไอเทมกินพื้นที่ตามขนาดจริง ลากวาง ลากสวมได้ · ช่องอุปกรณ์ 12 ช่อง · ป้ายระดับ T1–T8 ทุกไอเทม'],
   ['🔥 ไฟเตาหลอม · Tooltip สองชั้น', 'เกจกลางแถบสกิลลุกโชนเมื่อสู้ต่อเนื่อง · กด Alt ค้างดูช่วงค่าออปชัน และเทียบกับของที่ใส่อยู่'],
@@ -88,17 +88,17 @@ const CAPS: MainCityId[] = ['hollow', 'dawnveil', 'thornwatch'];
 /** home page: hero, classes (with their voice lines), the Sorrowlands, raid bosses, crafting and the way in */
 export function buildHomeHtml(opts: SiteOpts = {}) {
   const o = opt(opts), a = o.art;
-  const classes = CLASSES.map(([k, th, c, d, look]) => `<article class="hcls" style="--cc:${c}"><div class="hpics"><img src="${a}sprites/m-${look}.webp" alt="${k} ชาย" loading="lazy"><img src="${a}sprites/f-${look}.webp" alt="${k} หญิง" loading="lazy"></div>
-    <h3>${k}<small>${th}</small></h3><p>${d}</p><q>${esc(VOICE_LINES[k])}</q></article>`).join('');
+  const classes = CLASSES.map(([k, th, c, w, d]) => `<article class="hcls" style="--cc:${c}"><div class="hpics"><img src="${a}portraits/${k.toLowerCase()}-full.png" alt="${k}" loading="lazy"></div>
+    <h3>${k}<small>${th} · ${w}</small></h3><p>${d}</p><q>${esc(VOICE_LINES[k])}</q></article>`).join('');
   const zones = zoneEntries().map(z => `<a class="zcard" href="${o.wiki}#zone-${z.id}" style="--zc:${z.tint}"><img src="${a}wiki/zone-${z.id}.webp" alt="${esc(z.th)}" loading="lazy"><div><h4>${esc(z.th)}<small>${esc(z.name)} · Lv.${z.levels[0]}–${z.levels[1]}</small></h4><p>${esc(z.story)}</p></div></a>`).join('');
   const bosses = BOSSES.map(b => `<a class="bcard" href="${o.wiki}#boss-${b.name.toLowerCase().replace(/\s+/g, '-')}"><img src="${a}sprites/${b.name.toLowerCase().replace(/\s+/g, '-')}.webp" alt="${esc(b.name)}" loading="lazy"><div><small>${esc(b.title)} · Lv.${b.level}</small><h4>${esc(b.name)}</h4><p>${esc(b.th)} — ${esc(b.home)}</p></div></a>`).join('');
   const body = `<section class="hero"><div class="hero-art"><img src="${a}ui-forge/cathedral-hero.png" alt="มหาวิหาร SoulForge"></div><div class="hero-in">
     <span class="hero-eyebrow">SOULFORGE ONLINE</span><h1>A DARKER<br>WORLD AWAITS</h1><p class="tag">ดินแดนต้องสาปที่วิญญาณถูกหลอมเป็นอาวุธ — MMORPG แฟนตาซีมืด 2.5D ไอโซเมตริก</p>
     <div class="hero-cta"><a class="big-play" href="${o.game}" ${o.play} aria-label="เข้าเกม">▶ เข้าเกม</a></div>
-    <div class="pills"><span>Berserker → Reaver · ชาย/หญิง</span><span>เล่นได้ทั้ง PC และมือถือ</span><span>ล่าบอส 15–30 นาที</span><span>คราฟ 8 ระดับ T1–T8</span><span>ตลาด SoulGod</span><span>AUTO ล่าอัตโนมัติ</span></div></div></section>
+    <div class="pills"><span>8 อาชีพ · Berserker → Reaver</span><span>เล่นได้ทั้ง PC และมือถือ</span><span>ล่าบอส 15–30 นาที</span><span>คราฟ 8 ระดับ T1–T8</span><span>ตลาด SoulGod</span><span>AUTO ล่าอัตโนมัติ</span></div></div></section>
   <section id="patch" class="band"><header><h2>แพตช์โน้ต · เวอร์ชัน ${GAME_VERSION}</h2><p>รายละเอียดทุกการอัปเดตของเกม เวอร์ชันล่าสุดอยู่บนสุด</p></header>${PATCHES.map(p => `<details class="card" ${p.version === GAME_VERSION ? 'open' : ''}><summary><b>v${p.version}</b> · ${esc(p.title)} <small>${p.date}</small></summary><ul>${p.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>${p.compat ? `<small class="muted">ต้องใช้ไคลเอนต์ ≥ ${p.compat.minClient} · ฐานข้อมูล ${p.compat.db}</small>` : ''}</details>`).join('')}</section>
   <section id="news" class="band news"><header><h2>อัปเดตล่าสุด</h2><p>Closed Beta · ${NEWS_DATE}</p></header><div class="ngrid">${NEWS.map(n => `<article><b>${n[0]}</b><p>${n[1]}</p></article>`).join('')}</div></section>
-  <section id="classes" class="band"><header><h2>8 อาชีพ</h2><p>เลือกได้ตอนสร้างตัวละคร — Berserker เลื่อนขั้นเป็น Reaver ที่ Lv60 · ภาพเฉพาะของแต่ละอาชีพกำลังทำ</p></header><div class="hcls-grid">${classes}</div></section>
+  <section id="classes" class="band"><header><h2>8 อาชีพ</h2><p>เลือกอาชีพจากแถวตัวละครในหน้าเข้าเกม แล้วสร้างตัวละครอาชีพนั้น · อาวุธใช้ได้เฉพาะอาชีพของตัวเอง · Berserker เลื่อนขั้นเป็น Reaver ที่ Lv60 · ตอนนี้เปิดเฉพาะตัวละครชาย</p></header><div class="hcls-grid">${classes}</div></section>
   <section id="world" class="band"><header><h2>สามเมืองหลวง · ประตูวาร์ปสู่ทุ่งล่า</h2><p>เมืองกำแพงสี่ด้าน อาคารบริการครบ 9 หลังในทุกเมือง ในเมืองไม่มีมอนสเตอร์ — เดินเข้าวงประตูวาร์ปที่มุมกำแพงเพื่อออกล่า</p></header>
     <div class="capgrid">${CAPS.map(c => `<article class="cap"><a href="${o.wiki}#map"><img class="wide-img" src="${a}world/${c}/city.webp" alt="${esc(CITIES[c].name)}" loading="lazy"></a><h3>${esc(CITIES[c].name)} <small>${esc(CITIES[c].subtitle)}</small></h3>${gateList(c, o.wiki)}</article>`).join('')}</div>
     <h3 class="sub" style="text-align:center;margin-top:34px">ดินแดนแห่งความโศกเศร้า · Ashen Outskirts</h3><p class="muted" style="text-align:center">ทุ่งนอกประตูทิศใต้ของ Hollow Reach — ซากหมู่บ้าน ปราสาท มหาวิหาร และถ้ำ แต่ละเขตมี Elite ที่มีสกิลของตัวเอง</p>
@@ -106,7 +106,7 @@ export function buildHomeHtml(opts: SiteOpts = {}) {
   <section class="band"><header><h2>บอสที่ต้องรวมพล</h2><p>เลือดบอสปรับตามจำนวนผู้ท้าชิง ออกแบบให้ใช้เวลา ${DEFAULT_CONFIG.raid.minMinutes}–${DEFAULT_CONFIG.raid.maxMinutes} นาที · จบแล้วจัดอันดับดาเมจ 10 อันดับ อันดับ 1 มีโอกาส 50% ได้ไอเทมระดับสูง</p></header><div class="bgrid">${bosses}</div></section>
   <section class="band feats"><div><h3>⚒ คราฟและคริสตัล</h3><p>ใช้ SoulGod และวัตถุดิบเพิ่มขึ้นตามระดับ · Legendary 75% · God 70% · Pre-arch 60% · Arch 45% · พลาดได้คริสตัลสีตามระดับ ครบ 3 เม็ด = สำเร็จ 100% เลือกประเภทอาวุธได้</p></div>
     <div><h3>⚙ AUTO อัจฉริยะ</h3><p>ตั้ง % ดื่มยา กินอาหารบัฟ เปิด/ปิดสกิลทีละช่อง · รอ Rage ให้พอก่อนกดสกิล และไม่ขัดจังหวะ Whirlwind ที่กำลังหมุน</p></div>
-    <div><h3>👘 ชุดแฟชั่น</h3><p>${COSTUMES.map(c => esc(c.th)).join(', ')} — สวมแล้วเปลี่ยนรูปลักษณ์ทั้งเดิน วิ่ง โจมตี ร่ายสกิล ใส่ได้ทั้ง Berserker และ Reaver</p></div>
+    <div><h3>👘 ชุดแฟชั่น</h3><p>${COSTUMES.map(c => esc(c.th)).join(', ')} — สวมแล้วเปลี่ยนรูปลักษณ์ทั้งเดิน วิ่ง โจมตี ร่ายสกิล ใส่ได้ทุกอาชีพ</p></div>
     <div><h3>❡ เควสนำทาง</h3><p>${QUESTS.length} เควสเรื่องหลักพาตั้งแต่ตื่นในวิหารจนถึงล้ม Grave Marshal พร้อมคำแนะนำที่ขึ้นครั้งเดียว</p></div></section>
   <section class="band cta"><h2>พร้อมหลอมวิญญาณแล้วหรือยัง?</h2><a class="big-play" href="${o.game}" ${o.play} aria-label="เข้าเกม">▶ เข้าเกม</a><p>Closed Beta — ลงทะเบียนด้วยโค้ดเชิญ</p></section>`;
   return shell('SoulForge Online', o, 'home', body);
@@ -283,7 +283,7 @@ a{color:var(--g2)}img{max-width:100%}
 .ghost{display:inline-block;padding:14px 28px;border:1px solid var(--line2);color:var(--g2);text-decoration:none;font:700 16px Cinzel,Georgia,serif;letter-spacing:.06em}
 .pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:26px}.pills span{padding:4px 12px;border:1px solid var(--line);border-radius:20px;font-size:12.5px;color:var(--m);background:rgba(0,0,0,.4)}
 .band{max-width:1240px;margin:0 auto;padding:64px 20px 10px}.band>header{text-align:center;margin-bottom:26px}.band h2,section>header h2{font:700 clamp(22px,3vw,30px) Cinzel,Georgia,serif;letter-spacing:.06em;margin:0;color:var(--g2)}.band>header p{color:var(--m);max-width:760px;margin:6px auto 0}
-.hcls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.hcls{border:1px solid color-mix(in srgb,var(--cc) 35%,transparent);background:linear-gradient(180deg,color-mix(in srgb,var(--cc) 10%,#0e0b10),#08070a);border-radius:4px;padding:14px;text-align:center}
+.hcls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}@media(min-width:900px){.hcls-grid{grid-template-columns:repeat(4,1fr)}}.hcls{border:1px solid color-mix(in srgb,var(--cc) 35%,transparent);background:linear-gradient(180deg,color-mix(in srgb,var(--cc) 10%,#0e0b10),#08070a);border-radius:4px;padding:14px;text-align:center}
 .news .ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}.news article{border:1px solid var(--line);border-radius:4px;padding:12px 14px;background:linear-gradient(180deg,#151016,#09070a)}.news b{font:700 15px Cinzel,Georgia,serif;color:#f2e3bf}.news p{margin:6px 0 0;color:#cfc6b3;font-size:13.5px}
 .hpics{display:flex;justify-content:center;gap:4px;height:170px}.hpics img{height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px #000)}.hcls h3{margin:8px 0 2px;font:700 19px Cinzel,Georgia,serif;color:var(--cc)}.hcls h3 small{display:block;font:400 12px "Noto Sans Thai";color:var(--m)}.hcls p{font-size:13px;color:#cfc6b3;margin:6px 0}.hcls q{display:block;font:italic 600 13px Cinzel,Georgia,serif;color:color-mix(in srgb,var(--cc) 60%,#fff)}
 .wide-img{width:100%;border:1px solid var(--line);border-radius:4px;display:block;margin-bottom:14px}
