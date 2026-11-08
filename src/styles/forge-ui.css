@@ -35,3 +35,21 @@
 
 .forge-worn-slot .item-detail-host,.forge-worn-slot .item-detail-host>span{display:block;width:44px;height:50px}.h3 .gi .gart .item-detail-host>span{display:block;width:100%;height:100%}.h3 .gi .gart .forge-art{margin:auto}.forge-worn-slot .atlas-icon{display:block!important;width:44px!important;height:50px!important}
 
+/* Round 22 skill window: list left, details right */
+.sk-panel{display:flex;flex-direction:column;gap:10px;color:var(--forge-text,#e7d9bb);font-family:var(--sf-body)}
+.sk-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.sk-head button{background:#0b0d0e;border:1px solid #6d5938;color:#cdbb92;padding:8px 14px;min-height:40px}.sk-head button[aria-pressed=true]{border-color:#e0b765;color:#ffe2a4;background:#1d1710}
+.sk-points{margin-left:auto;font-size:13px;color:#a99b80}.sk-points b{color:#f0c977}
+.sk-body{display:grid;grid-template-columns:minmax(220px,38%) 1fr;gap:12px;min-height:420px}
+.sk-list{list-style:none;margin:0;padding:6px;border:1px solid #4a3d28;background:#07090a;overflow-y:auto;max-height:62vh}
+.sk-group{font-size:11px;letter-spacing:.08em;color:#8f8268;padding:8px 4px 4px}
+.sk-row{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:10px;width:100%;text-align:left;background:#0d1012;border:1px solid #2e2a22;color:inherit;padding:6px;margin-bottom:4px;cursor:pointer;min-height:52px}
+.sk-row .forge-skill-icon{width:40px;height:40px}.sk-row:hover{border-color:#8c7044}.sk-row.on{border-color:#e0b765;background:#1b1610}.sk-row.locked{opacity:.45}
+.sk-name{display:flex;flex-direction:column;min-width:0}.sk-name b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sk-name small{font-size:11px;color:#9a8e76;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-rank{font-size:12px;color:#f0c977;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.sk-rank em{font-style:normal;font-size:10px;border:1px solid #8c7044;padding:0 4px;color:#e7d4aa}
+.sk-info{border:1px solid #4a3d28;background:#080a0bd9;padding:16px;display:flex;flex-direction:column;gap:12px}
+.sk-title{display:flex;gap:12px;align-items:center}.sk-title h3{margin:0;font-size:20px;color:#ffe2a4}.sk-title small{color:#a99b80}.forge-skill-icon.big{width:64px;height:64px}
+.sk-big-rank{margin-left:auto;font-size:28px;color:#f0c977}.sk-big-rank small{font-size:14px;color:#8f8268}
+.sk-info p{margin:0;line-height:1.6}.sk-info dl{display:grid;grid-template-columns:120px 1fr;gap:6px 12px;margin:0;font-size:13px}.sk-info dt{color:#8f8268}.sk-info dd{margin:0}
+.sk-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:auto}.sk-keys{display:flex;gap:6px}.sk-keys button{min-width:52px;min-height:40px;background:#0b0d0e;border:1px solid #6d5938;color:#e7d4aa}.sk-keys button[aria-pressed=true]{border-color:#e0b765;background:#2a2012;color:#ffe2a4}
+.sk-note{color:#d9a48a;font-size:13px}.sk-foot{font-size:12px;color:#8f8268;margin:0}
+@media(max-width:760px){.sk-body{grid-template-columns:1fr}.sk-list{max-height:34vh}.sk-info dl{grid-template-columns:1fr}}

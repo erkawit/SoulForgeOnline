@@ -156,7 +156,24 @@ export const nearPortal=(city:CityId,x:number,z:number,r=6)=>portalsOf(city).som
 
 // The fields reuse one ring of hunting points; any point within 8 m of one of the field's waygates is turned round the
 // centre (22.5° at a time) until it is clear of them, so nobody arrives next to a pack.
-for(const id of [...ZONE_IDS,...DUNGEON_IDS]){
+/** Round 22 map standard (docs/ROUND22_TEMPLATES_TH.md §4): a field holds 6 monster camps on a ring well inside the map —
+ *  clear of the decorative edge ring (r ≥ 16), the waygates and the buildings — two neighbouring camps per species, so
+ *  species never mix. spawns.ts places a pack of CAMP.pack monsters around each camp centre. */
+export const CAMP={count:6,ring:13,pack:3,packR:1.8,clear:3.2,portalGap:8} as const;
+const campFree=(c:City,x:number,z:number)=>!c.buildings.some(b=>Math.abs(x-b.x)<b.w/2+CAMP.clear&&Math.abs(z-b.z)<b.d/2+CAMP.clear)
+ &&!(c.water&&Math.abs(x-c.water.x)<c.water.w/2+CAMP.clear);
+for(const id of ZONE_IDS){
+ // each camp keeps its sixth of the ring; a blocked camp slides along its sector / in or out until it is clear
+ const ps=portalsOf(id),c=CITIES[id],out:[number,number][]=[];
+ for(let k=0;k<CAMP.count;k++){
+  search: for(const r of [CAMP.ring,CAMP.ring-2,CAMP.ring+2,CAMP.ring-4])for(const d of [0,5,-5,10,-10,15,-15,20,-20,25,-25]){
+   const a=(30+k*360/CAMP.count+d)*Math.PI/180,x=Math.round(Math.cos(a)*r*10)/10,z=Math.round(Math.sin(a)*r*10)/10;
+   if(ps.every(p=>Math.hypot(p.x-x,p.z-z)>=CAMP.portalGap)&&campFree(c,x,z)&&out.every(([ox,oz])=>Math.hypot(ox-x,oz-z)>=9)){out.push([x,z]);break search;}
+  }
+ }
+ c.hunt=out;
+}
+for(const id of DUNGEON_IDS){
  const ps=portalsOf(id),c=CITIES[id],taken:[number,number][]=[];
  c.hunt=c.hunt.map(([x,z])=>{let a=Math.atan2(z,x);const r=Math.hypot(x,z);
   for(let i=0;i<16;i++){const px=Math.cos(a)*r,pz=Math.sin(a)*r;if(ps.every(p=>Math.hypot(p.x-px,p.z-pz)>=8)&&taken.every(([tx,tz])=>Math.hypot(tx-px,tz-pz)>=4.5)){taken.push([px,pz]);return [Math.round(px*10)/10,Math.round(pz*10)/10] as [number,number];}a+=Math.PI/8;}

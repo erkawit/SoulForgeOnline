@@ -35,8 +35,8 @@ export default function PCHUDLayout({ hp, maxHp, mp, maxMp, now, onAuto }: { hp:
             {s.left > 0 && <span className="cd" style={{ ['--p' as string]: `${Math.min(100, s.left / s.total * 100)}%` }}><b>{Math.ceil(s.left / 1000)}</b></span>}</button>)}
         </div><i className="sep" />
         <div className="belt">
-          <button className="slot pot" title="ยา HP (7)" onClick={() => g().usePotion('hp')} disabled={!hpCount}><img src="/art/ui/potion-red.webp" alt="" /><b className="k">7</b><b className="q">{hpCount}</b></button>
-          <button className="slot pot mp" title="ยา MP (8)" onClick={() => g().usePotion('mp')} disabled={!mpCount}><img src="/art/ui/potion-blue.webp" alt="" /><b className="k">8</b><b className="q">{mpCount}</b></button>
+          <button className="slot pot" title="ยา HP (7)" onClick={() => g().usePotion('hp')} disabled={!hpCount}><img src="/art/ui-kit/item_potion_hp_small.webp" alt="" /><b className="k">7</b><b className="q">{hpCount}</b></button>
+          <button className="slot pot mp" title="ยา MP (8)" onClick={() => g().usePotion('mp')} disabled={!mpCount}><img src="/art/ui-kit/item_potion_mp_small.webp" alt="" /><b className="k">8</b><b className="q">{mpCount}</b></button>
           <button className={`slot pot ${fed ? 'fed' : ''}`} title="อาหารบัฟ 15 นาที (9)" onClick={() => g().eatFood()} disabled={!foodCount}><span className="ico">🍲</span><b className="k">9</b><b className="q">{foodCount}</b></button>
         </div></div>
         <div className="xp"><i style={{ transform: `scaleX(${Math.min(1, player.exp / expRequired(player.level))})` }} /></div></div>

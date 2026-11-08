@@ -3,27 +3,27 @@
 .h2-frame, .h2-win, .h2-tracker, .h2-menu, .h2-tip, .h2-target, .h2-boss, .h2-log, .npc-dialog, .item-tooltip, .h2-modal section, .h3-drawer { isolation: isolate; }
 .h2-frame, .h2-tracker, .h2-menu, .h2-tip, .h2-target, .npc-dialog, .h2-modal section, .h3-drawer { background: none !important; border-color: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
 .h2-frame::before, .h2-tracker::before, .h2-menu::before, .h2-tip::before, .h2-target::before, .npc-dialog::before, .h2-modal section::before, .h3-drawer::before {
-  content: ""; position: absolute; inset: -9px; z-index: -1; pointer-events: none; border: 24px solid transparent; border-width: 24px 26px 22px 26px;
-  border-image: url(/art/ui/panel.webp) 34 36 30 36 fill / 24px 26px 22px 26px stretch; }
+  content: ""; position: absolute; inset: -9px; z-index: -1; pointer-events: none; border: 22px solid transparent;
+  border-image: url(/art/ui-kit/panel_sub_tooltip_9slice.webp) 36 fill / 22px stretch; }
 .h2-win { background: none !important; border-color: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
-.h2-win::before { content: ""; position: absolute; inset: -6px -10px -10px -10px; z-index: -1; pointer-events: none; border: 38px solid transparent; border-width: 38px 52px 26px 44px;
-  border-image: url(/art/ui/win.webp) 40 54 28 46 fill / 38px 52px 26px 44px stretch; }
-.h2 .h2-win header { background: none !important; border-bottom: 0 !important; padding: 6px 54px 10px 44px !important; }
+.h2-win::before { content: ""; position: absolute; inset: -6px -10px -10px -10px; z-index: -1; pointer-events: none; border: 40px solid transparent;
+  border-image: url(/art/ui-kit/panel_main_window_9slice.webp) 88 fill / 40px stretch; }
+.h2 .h2-win header { background: none !important; border-bottom: 0 !important; padding: 10px 44px 10px 40px !important; }
 .h2-win header h2 { text-align: center; color: #f6e2b4 !important; text-shadow: 0 1px 2px #000, 0 0 8px rgba(255, 90, 70, .35); font-size: 15px !important; }
 .h2-win header button:last-child { position: absolute; right: -6px; top: -4px; width: 32px !important; height: 32px !important; opacity: 0; z-index: 2; }
 .item-tooltip { background: none !important; border-color: transparent !important; box-shadow: none !important; }
-.item-tooltip::before { content: ""; position: absolute; inset: -8px; z-index: -1; pointer-events: none; border: 22px solid transparent; border-image: url(/art/ui/card-legend.webp) 24 fill / 22px stretch; }
+.item-tooltip::before { content: ""; position: absolute; inset: -8px; z-index: -1; pointer-events: none; border: 22px solid transparent; border-image: url(/art/ui-kit/panel_sub_tooltip_9slice.webp) 36 fill / 22px stretch; }
 
 /* buttons */
-.action-button, .sf-btn { border: 12px solid transparent !important; border-image: url(/art/ui/btn-red.webp) 12 fill / 12px stretch !important; background: none !important; border-radius: 0 !important; padding: 0 8px !important; color: #fff3df !important; text-shadow: 0 1px 2px #000; }
-.action-button.ghost, .sf-btn.ghost { border-image-source: url(/art/ui/btn-gray.webp) !important; color: #f1e4c8 !important; }
+.action-button, .sf-btn { border: 12px solid transparent !important; border-image: url(/art/ui-kit/btn_primary_crimson.webp) 18 36 fill / 12px 20px stretch !important; min-height: 40px; background: none !important; border-radius: 0 !important; padding: 0 8px !important; color: #fff3df !important; text-shadow: 0 1px 2px #000; }
+.action-button.ghost, .sf-btn.ghost { border-image: url(/art/ui-kit/btn_secondary_dark_iron.webp) 18 30 fill / 12px 18px stretch !important; color: #f1e4c8 !important; }
 .action-button:disabled, .sf-btn:disabled { filter: grayscale(.85) brightness(.75); }
-.h2-menu button { border: 10px solid transparent !important; border-image: url(/art/ui/btn-dark.webp) 12 fill / 10px stretch !important; background: none !important; border-radius: 0 !important; }
+.h2-menu button { border: 0 !important; border-image: none !important; background: none !important; border-radius: 0 !important; }
 
 /* slots */
-.h3-dock .slot, .eqs, .mslot, .mcell { background: url(/art/ui/slot-raw.webp) center / 100% 100% no-repeat, #0b0a0e !important; }
+.h3-dock .slot, .eqs, .mslot, .mcell { background: url(/art/ui-kit/slot_item_normal_common.webp) center / 100% 100% no-repeat, transparent !important; }
 .h3-dock .row { position: relative; border: 0 !important; background: none !important; box-shadow: none !important; padding: 10px 18px !important; isolation: isolate; }
-.h3-dock .row::before { content: ""; position: absolute; inset: -4px 14px; z-index: -1; border: 22px solid transparent; border-image: url(/art/ui/panel.webp) 34 36 30 36 fill / 22px stretch; }
+.h3-dock .row::before { content: ""; position: absolute; inset: -4px 14px; z-index: -1; border: 22px solid transparent; border-image: url(/art/ui-kit/panel_sub_tooltip_9slice.webp) 36 fill / 22px stretch; }
 .h3-dock .row::after { content: ""; position: absolute; inset: -14px -16px; z-index: -1; pointer-events: none; background: url(/art/ui/cap-l.webp) left center / auto 100% no-repeat, url(/art/ui/cap-r.webp) right center / auto 100% no-repeat; }
 .h3-dock .slot.pot img { width: 100%; height: 100%; object-fit: contain; padding: 3px; }
 
@@ -40,11 +40,11 @@
 
 /* bars */
 .h2-bar { border: 0 !important; border-radius: 0 !important; box-shadow: none !important; overflow: visible !important; background: none !important; height: 16px !important; isolation: isolate; }
-.h2-bar::before { content: ""; position: absolute; inset: -3px -7px; z-index: -1; pointer-events: none; border: 9px solid transparent; border-width: 9px 16px; border-image: url(/art/ui/bar-hp-trough.webp) 12 30 12 30 fill / 9px 16px stretch; }
-.h2-bar.mp::before { border-image-source: url(/art/ui/bar-mp-trough.webp); } .h2-bar.xp::before { border-image-source: url(/art/ui/bar-xp-trough.webp); inset: -3px -6px; border-width: 6px 12px; border-image-width: 6px 12px; }
+.h2-bar::before { content: ""; position: absolute; inset: -3px -7px; z-index: -1; pointer-events: none; border: 6px solid transparent; border-width: 6px 18px; border-image: url(/art/ui-kit/hud_status_bar_empty_frame.webp) 20 65 fill / 6px 18px stretch; }
+.h2-bar.xp::before { inset: -3px -6px; border-width: 6px 12px; border-image-width: 6px 12px; }
 .h2-bar i { inset: 1px 4px !important; border-radius: 3px; }
-.h2-bar.hp i { background: url(/art/ui/bar-hp-fill.webp) 0 0 / 100% 100% !important; } .h2-bar.mp i { background: url(/art/ui/bar-mp-fill.webp) 0 0 / 100% 100% !important; }
-.h2-bar.xp { height: 9px !important; } .h2-bar.xp i { background: url(/art/ui/bar-xp-fill.webp) 0 0 / 100% 100% !important; }
+.h2-bar.hp i { background: url(/art/ui-kit/hud_hp_bar_red_fill.webp) 0 0 / 100% 100% !important; } .h2-bar.mp i { background: url(/art/ui-kit/hud_mp_bar_blue_fill.webp) 0 0 / 100% 100% !important; }
+.h2-bar.xp { height: 9px !important; } .h2-bar.xp i { background: url(/art/ui-kit/hud_exp_bar_gold_fill.webp) 0 0 / 100% 100% !important; }
 .h2-bar span { z-index: 2; }
 .h2-boss .h2-bar { height: 20px !important; }
 .h2-boss .h2-bar::before { inset: -22px -40px -10px; border-width: 26px 60px 14px; border-image: url(/art/ui/bar-boss-trough.webp) 49 80 24 80 fill / 26px 60px 14px stretch; }
@@ -60,3 +60,12 @@
 .h2-mm .n { display: none; }
 .h2 .h2-mm { top: 40px; right: 50px; }
 .h2 { cursor: url(/art/ui/cursor.png) 2 2, auto; }
+
+/* ---- Round 22 kit additions (src/asset/ui guides → public/art/ui-kit, scripts/ui/build_ui_kit.py) ---- */
+.sf-close, .h2 .h2-win header .sf-close, .npc-dialog .npc-head .sf-close, .h3-drawer header .sf-close { border: 0 !important; border-radius: 0 !important; box-shadow: none !important; width: 32px; height: 32px; background: url(/art/ui-kit/btn_icon_close_x.webp) center / contain no-repeat !important; }
+.h2-win header button:last-child { opacity: 1; }
+.h2-tabs button, .forge-tabs button, .sk-head button { border: 10px solid transparent !important; border-image: url(/art/ui-kit/tab_header_inactive_dark.webp) 28 45 16 45 fill / 10px 16px 6px stretch !important; background: none !important; border-radius: 0 !important; color: #cdbb92 !important; }
+.h2-tabs button.on, .forge-tabs button[aria-pressed=true], .sk-head button[aria-pressed=true] { border-image-source: url(/art/ui-kit/tab_header_active_glow.webp) !important; color: #ffe2a4 !important; }
+.h2-menu .sf-menu-ico, .h2-win .sf-win-ico { object-fit: contain; }
+.h3 .gi, .h3 .mcell { background: url(/art/ui-kit/slot_item_normal_common.webp) center / 100% 100% no-repeat, transparent !important; }
+.sk-row.on { border-color: transparent !important; background: url(/art/ui-kit/panel_list_row_banner_9slice.webp) center / 100% 100% no-repeat !important; }

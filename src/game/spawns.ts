@@ -1,4 +1,4 @@
-import {CITIES, FIELD_ART, portalsOf, type CityId} from './content';
+import {CAMP, CITIES, FIELD_ART, ZONE_IDS, portalsOf, walkable, type CityId} from './content';
 import {ZONES} from './world/zones';
 
 export type SpawnPoint = {
@@ -11,6 +11,17 @@ export function spawnPoints(city:CityId):SpawnPoint[]{
  const c=CITIES[city],levels=c.monsterLevels??[1,5,10];
  const capitalSpecies = city==='dawnveil'?CITIES.wild2.species:city==='thornwatch'?CITIES.wild1.species:CITIES.wild0.species;
  const species=c.species??capitalSpecies!;
+ // fields (Round 22 standard): one pack of CAMP.pack per camp, two neighbouring camps per species, every spot walkable
+ if(ZONE_IDS.includes(city)){
+  const out:SpawnPoint[]=[];let n=0;const kinds=Math.min(3,species.length);
+  c.hunt.forEach(([cx,cz],k)=>{const s=Math.floor(k*kinds/c.hunt.length);
+   for(let j=0;j<CAMP.pack;j++){const a=k*.7+j*2*Math.PI/CAMP.pack;let x=+(cx+Math.cos(a)*CAMP.packR).toFixed(2),z=+(cz+Math.sin(a)*CAMP.packR).toFixed(2);
+    if(!walkable(city,x,z)){x=+(cx+Math.cos(a)*.6).toFixed(2);z=+(cz+Math.sin(a)*.6).toFixed(2);}
+    if(!walkable(city,x,z))continue;
+    out.push({id:`${city}-${n}`,index:n++,position:[x,z],name:species[s],level:levels[s%levels.length],elite:false,boss:false,respawnSeconds:8});}
+  });
+  return city==='wild0'?[...out,...sorrowlandSpawns(out.length)]:out;
+ }
  const town:SpawnPoint[]=c.hunt.map(([x,z],index)=>{
   const boss=!!c.dungeon&&index===c.hunt.length-1;
   return {id:`${city}-${index}`,index,position:[x,z],name:species[boss?2:index%(c.dungeon?2:3)],

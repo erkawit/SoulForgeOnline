@@ -1,0 +1,282 @@
+{
+  "system": "7. Animated GIF Sparkle & Aura Effects for 8-Tier Monster Drop Loot Chests (Common to Arch)",
+  "color_mode": "GIF89a with Transparent Background (Index 0 = Transparent, Disposal Method = 2 Restore to Background)",
+  "frame_count": 10,
+  "frame_delay_ms": 90,
+  "fps": 11.1,
+  "full_sheet_overlay_gif": {
+    "filename": "ui_loot_chests_8tiers_sparkle_overlay.gif",
+    "resolution": {
+      "width": 1376,
+      "height": 768
+    },
+    "paired_chest_atlas": "ui_loot_chests_8tiers_atlas.png",
+    "how_to_use": "วางทับ (position: absolute; top: 0; left: 0; pointer-events: none) บนแผ่น ui_loot_chests_8tiers_atlas.png ได้ทันที พิกัดจุดศูนย์กลางของเอฟเฟกต์ทั้ง 8 ระดับตรงกับตำแหน่งหีบทั้ง 8 ใบ 100%"
+  },
+  "individual_tier_gifs": [
+    {
+      "tier": 1,
+      "rarity": "Common (ขาวอมเทานิดๆ)",
+      "gif_filename": "effect_tier1_common.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier1_common",
+      "target_chest_center_on_atlas": {
+        "x": 170,
+        "y": 174
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 35,
+        "y": 45,
+        "w": 270,
+        "h": 260
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 3,
+        "floating_mote_count": 5,
+        "star_size_multiplier": 0.65,
+        "eight_point_major_stars": false,
+        "special_aura_type": "none"
+      },
+      "visual_description_th": "ระดับที่ 1 (Common - ขาวอมเทานิดๆ): ละอองแสงสีขาวอมเทาจางๆ 5 จุด ลอยตัวช้าๆ พร้อมประกายดาว 4 แฉกขนาดเล็ก 3 จุดกระพริบเบาๆ บริเวณขอบเหล็ก",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier1_common.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ Common (ขาวอมเทานิดๆ) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (170, 174) ของหีบ"
+    },
+    {
+      "tier": 2,
+      "rarity": "Uncommon (เขียวอ่อน)",
+      "gif_filename": "effect_tier2_uncommon.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier2_uncommon",
+      "target_chest_center_on_atlas": {
+        "x": 515,
+        "y": 174
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 378,
+        "y": 40,
+        "w": 274,
+        "h": 270
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 5,
+        "floating_mote_count": 8,
+        "star_size_multiplier": 0.78,
+        "eight_point_major_stars": false,
+        "special_aura_type": "soft_rim"
+      },
+      "visual_description_th": "ระดับที่ 2 (Uncommon - เขียวอ่อน): ละอองแสงสีเขียวมิ้นต์อ่อน 8 จุด และประกายดาว 4 แฉกสีเขียวมรกต 5 จุด กระพริบตามแนวขอบทองเหลือง",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier2_uncommon.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ Uncommon (เขียวอ่อน) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (515, 174) ของหีบ"
+    },
+    {
+      "tier": 3,
+      "rarity": "Rare (น้ำเงินอ่อน)",
+      "gif_filename": "effect_tier3_rare.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier3_rare",
+      "target_chest_center_on_atlas": {
+        "x": 858,
+        "y": 175
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 718,
+        "y": 40,
+        "w": 280,
+        "h": 270
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 7,
+        "floating_mote_count": 12,
+        "star_size_multiplier": 0.9,
+        "eight_point_major_stars": false,
+        "special_aura_type": "rune_pulse"
+      },
+      "visual_description_th": "ระดับที่ 3 (Rare - น้ำเงินอ่อน): รัศมีอักขระรูนสีฟ้าไพลินกระพริบเป็นจังหวะ พร้อมละอองคริสตัลสีฟ้า 12 จุด และประกายดาว 7 จุด",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier3_rare.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ Rare (น้ำเงินอ่อน) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (858, 175) ของหีบ"
+    },
+    {
+      "tier": 4,
+      "rarity": "Epic (ม่วงอ่อน)",
+      "gif_filename": "effect_tier4_epic.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier4_epic",
+      "target_chest_center_on_atlas": {
+        "x": 1201,
+        "y": 173
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 1052,
+        "y": 28,
+        "w": 296,
+        "h": 290
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 10,
+        "floating_mote_count": 16,
+        "star_size_multiplier": 1.02,
+        "eight_point_major_stars": false,
+        "special_aura_type": "amethyst_aura"
+      },
+      "visual_description_th": "ระดับที่ 4 (Epic - ม่วงอ่อน): ออร่าสีม่วงอเมทิสต์อ่อนโอบรอบตัวหีบ พร้อมละอองแสงสีม่วงลาเวนเดอร์ 16 จุด และประกายดาวคมชัด 10 จุด",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier4_epic.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ Epic (ม่วงอ่อน) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (1201, 173) ของหีบ"
+    },
+    {
+      "tier": 5,
+      "rarity": "Legendary (แดงเข้ม)",
+      "gif_filename": "effect_tier5_legendary.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier5_legendary",
+      "target_chest_center_on_atlas": {
+        "x": 172,
+        "y": 591
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 28,
+        "y": 446,
+        "w": 288,
+        "h": 286
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 13,
+        "floating_mote_count": 20,
+        "star_size_multiplier": 1.15,
+        "eight_point_major_stars": true,
+        "special_aura_type": "crimson_gold"
+      },
+      "visual_description_th": "ระดับที่ 5 (Legendary - แดงเข้ม): รัศมีสีแดงทับทิมตัดแสงสีทองคำ สะเก็ดอัญมณีสีแดง-ทองลอยขึ้น 20 จุด และประกายดาว 8 แฉก 13 จุด",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier5_legendary.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ Legendary (แดงเข้ม) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (172, 591) ของหีบ"
+    },
+    {
+      "tier": 6,
+      "rarity": "God (สีทองสว่างไสว สบายตา)",
+      "gif_filename": "effect_tier6_god.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier6_god",
+      "target_chest_center_on_atlas": {
+        "x": 515,
+        "y": 587
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 355,
+        "y": 430,
+        "w": 320,
+        "h": 312
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 16,
+        "floating_mote_count": 24,
+        "star_size_multiplier": 1.25,
+        "eight_point_major_stars": true,
+        "special_aura_type": "celestial_halo"
+      },
+      "visual_description_th": "ระดับที่ 6 (God - สีทองสว่างไสว สบายตา): วงแหวนรัศมีเทพเจ้าสีทองครีมนวลตา (Celestial Halo) ล้อมรอบหีบ พร้อมละอองแสงสีทองอบอุ่น 24 จุด และประกายดาว 8 แฉก 16 จุด",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier6_god.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ God (สีทองสว่างไสว สบายตา) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (515, 587) ของหีบ"
+    },
+    {
+      "tier": 7,
+      "rarity": "Pre-Arch (ส้ม มีลักษณะเหมือนเปลวไฟ)",
+      "gif_filename": "effect_tier7_pre_arch.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier7_pre",
+      "target_chest_center_on_atlas": {
+        "x": 861,
+        "y": 584
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 714,
+        "y": 432,
+        "w": 294,
+        "h": 304
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 18,
+        "floating_mote_count": 28,
+        "star_size_multiplier": 1.35,
+        "eight_point_major_stars": true,
+        "special_aura_type": "flame_wisps"
+      },
+      "visual_description_th": "ระดับที่ 7 (Pre-Arch - ส้ม เปลวไฟ): ริ้วเปลวเพลิงสีส้มทอง (Flame Tongues) ลุกพลิ้วขึ้นจากตัวหีบต่อเนื่อง พร้อมสะเก็ดไฟฟีนิกซ์ 28 จุด และประกายดาวเพลิง 18 จุด",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier7_pre_arch.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ Pre-Arch (ส้ม มีลักษณะเหมือนเปลวไฟ) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (861, 584) ของหีบ"
+    },
+    {
+      "tier": 8,
+      "rarity": "Arch (ม่วงประกายระยิบระยับ สูงสุด งดงามที่สุด)",
+      "gif_filename": "effect_tier8_arch.gif",
+      "gif_resolution": {
+        "width": 240,
+        "height": 240
+      },
+      "gif_pivot_center": {
+        "x": 120,
+        "y": 120
+      },
+      "target_chest_id": "chest_tier8_arch",
+      "target_chest_center_on_atlas": {
+        "x": 1202,
+        "y": 589
+      },
+      "target_chest_frame_on_atlas": {
+        "x": 1050,
+        "y": 436,
+        "w": 304,
+        "h": 306
+      },
+      "sparkle_intensity_progression": {
+        "star_flare_count": 24,
+        "floating_mote_count": 36,
+        "star_size_multiplier": 1.5,
+        "eight_point_major_stars": true,
+        "special_aura_type": "arch_cosmic_double_ring"
+      },
+      "visual_description_th": "ระดับที่ 8 (Arch - ม่วงประกายระยิบระยับ สูงสุด): วงแหวนดาราจักร 2 ชั้นสีม่วงอเมทิสต์และทองคำหมุนสวนทางกันอย่างสง่างาม พร้อมละอองเนบิวลา 36 จุด และประกายดาว 8 แฉกสองชั้น 24 จุดที่ระยิบระยับงดงามที่สุดโดยไม่แสบตา",
+      "how_to_place_on_chest": "นำไฟล์ effect_tier8_arch.gif (ขนาด 240x240px) ไปวางซ้อนทับกึ่งกลางหีบระดับ Arch (ม่วงประกายระยิบระยับ สูงสุด งดงามที่สุด) โดยให้จุดกึ่งกลางของ GIF (120, 120) ตรงกับจุด center_pivot (1202, 589) ของหีบ"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "atlas_name": "ui_general_merchant_potions_atlas.png",
+  "resolution": {
+    "width": 1376,
+    "height": 768
+  },
+  "color_mode": "RGBA (Transparent Background, Alpha Channel)",
+  "covered_system": "5. General Merchant (หน้าต่างร้านค้าทั่วไปและไอเทมยา/บัฟจำเป็นครบชุด)",
+  "shop_window_layout_guide": {
+    "structure": "ใช้ 'panel_main_window_9slice' สร้างหน้าต่างร้านค้าแบ่งเป็น 2 ฝั่ง (คล้ายผังหน้าตีบวกในภาพที่ 1 หรือผังซ้าย-ขวาในภาพที่ 9):",
+    "left_catalog_panel": "ฝั่งซ้าย (ความกว้าง 45%): แสดงแท็บหมวดสินค้า ('ทั้งหมด', 'ยาฟื้นฟู', 'ยาบัฟต่อสู้', 'ยาแก้สถานะ/คัมภีร์') ด้านล่างเป็นรายการสินค้าในกรอบ 'panel_list_row_banner_9slice' โดยแต่ละแถววางกรอบ 'slot_item_normal_common' ซ้อนด้วยไอคอนยาจากแผ่นนี้ พร้อมชื่อยา สรรพคุณย่อ และราคา Gold ('currency_gold_coin')",
+    "right_purchase_panel": "ฝั่งขวา (ความกว้าง 55%): ด้านบนแสดงกรอบ 'panel_sub_tooltip_9slice' แสดงรูปไอคอนยาขนาดใหญ่ ชื่อเต็ม คำอธิบายสรรพคุณ เวลาคูลดาวน์ และระยะเวลาบัฟ ด้านล่างมีปุ่มเลือกจำนวน ('btn_icon_minus', ช่องตัวเลข, 'btn_icon_plus', ปุ่ม '+10', 'MAX') แสดงราคารวม และปุ่มซื้อสินค้าสีแดง 'btn_primary_crimson'"
+  },
+  "items": [
+    {
+      "id": "item_potion_hp_small",
+      "name_th": "ยาเลือดขนาดเล็ก (Small HP Potion)",
+      "frame": {
+        "x": 211,
+        "y": 34,
+        "w": 95,
+        "h": 131
+      },
+      "category": "HP Recovery",
+      "effect_desc": "ฟื้นฟูพลังชีวิต (HP) ทันที 250 หน่วย (คูลดาวน์ 3 วินาที)",
+      "visual": "ขวดแก้วกลมบรรจุน้ำยาสีแดงสดพร้อมจุกไม้ก๊อก"
+    },
+    {
+      "id": "item_potion_hp_medium",
+      "name_th": "ยาเลือดขนาดกลาง (Medium HP Potion)",
+      "frame": {
+        "x": 494,
+        "y": 14,
+        "w": 114,
+        "h": 169
+      },
+      "category": "HP Recovery",
+      "effect_desc": "ฟื้นฟูพลังชีวิต (HP) ทันที 650 หน่วย (คูลดาวน์ 3 วินาที)",
+      "visual": "ขวดคริสตัลเจียระไนทรงเพชรพันโซ่ทองเหลือง น้ำยาสีแดงทับทิม"
+    },
+    {
+      "id": "item_potion_hp_large",
+      "name_th": "ยาเลือดขนาดใหญ่ (Large HP Potion)",
+      "frame": {
+        "x": 776,
+        "y": 9,
+        "w": 113,
+        "h": 180
+      },
+      "category": "HP Recovery",
+      "effect_desc": "ฟื้นฟูพลังชีวิต (HP) ทันที 1,500 หน่วย (คูลดาวน์ 3 วินาที)",
+      "visual": "คนโทแก้วหุ้มลวดลายกอธิคทองคำประดับอัญมณีแดง น้ำยาสีแดงเข้มเรืองแสง"
+    },
+    {
+      "id": "item_potion_mp_small",
+      "name_th": "ยามานาขนาดเล็ก (Small MP Potion)",
+      "frame": {
+        "x": 1069,
+        "y": 34,
+        "w": 95,
+        "h": 131
+      },
+      "category": "MP Recovery",
+      "effect_desc": "ฟื้นฟูมานา (MP) ทันที 150 หน่วย (คูลดาวน์ 3 วินาที)",
+      "visual": "ขวดแก้วกลมบรรจุน้ำยามานาสีฟ้าสด"
+    },
+    {
+      "id": "item_potion_mp_medium",
+      "name_th": "ยามานาขนาดกลาง (Medium MP Potion)",
+      "frame": {
+        "x": 198,
+        "y": 204,
+        "w": 119,
+        "h": 170
+      },
+      "category": "MP Recovery",
+      "effect_desc": "ฟื้นฟูมานา (MP) ทันที 400 หน่วย (คูลดาวน์ 3 วินาที)",
+      "visual": "ขวดคริสตัลเจียระไนประดับกรอบเงิน-ทองเหลือง น้ำยาสีน้ำเงินไพลิน"
+    },
+    {
+      "id": "item_potion_mp_large",
+      "name_th": "ยามานาขนาดใหญ่ (Large MP Potion)",
+      "frame": {
+        "x": 493,
+        "y": 198,
+        "w": 113,
+        "h": 180
+      },
+      "category": "MP Recovery",
+      "effect_desc": "ฟื้นฟูมานา (MP) ทันที 1,000 หน่วย (คูลดาวน์ 3 วินาที)",
+      "visual": "คนโทเวทมนตร์หุ้มลวดลายทองคำ น้ำยาสีน้ำเงินเข้มประกายดาว"
+    },
+    {
+      "id": "item_potion_haste_atk_spd",
+      "name_th": "ยาโจมตีไวชั่วขณะ (Elixir of Haste - Attack Speed)",
+      "frame": {
+        "x": 765,
+        "y": 215,
+        "w": 151,
+        "h": 151
+      },
+      "category": "Combat Buff",
+      "effect_desc": "เพิ่มความเร็วในการโจมตี (ATK SPD) +25% เป็นเวลา 300 วินาที",
+      "visual": "ขวดแก้วทรงเพรียวติดปีกทองเหลือง บรรจุน้ำยาสีเหลืองสายฟ้าเรืองแสง"
+    },
+    {
+      "id": "item_potion_swiftness_move_spd",
+      "name_th": "ยาเคลื่อนที่ไวชั่วขณะ (Windwalk Draught - Movement Speed)",
+      "frame": {
+        "x": 1054,
+        "y": 200,
+        "w": 146,
+        "h": 174
+      },
+      "category": "Movement Buff",
+      "effect_desc": "เพิ่มความเร็วในการเคลื่อนที่ (MOVE SPD) +30% เป็นเวลา 300 วินาที",
+      "visual": "ขวดแก้วเกลียวคลื่นลมติดปีกนกคู่ บรรจุน้ำยาสีฟ้าอมเขียว (Cyan Wind)"
+    },
+    {
+      "id": "item_potion_ironskin_defense",
+      "name_th": "ยาเพิ่มป้องกันชั่วขณะ (Ironbark Potion - Defense Boost)",
+      "frame": {
+        "x": 205,
+        "y": 395,
+        "w": 106,
+        "h": 160
+      },
+      "category": "Defense Buff",
+      "effect_desc": "เพิ่มพลังป้องกันกายภาพและเวท (DEF/MDEF) +20% เป็นเวลา 300 วินาที",
+      "visual": "ขวดทรงโล่เกราะอัศวินหุ้มเหล็ก บรรจุน้ำยาสีทองอำพัน"
+    },
+    {
+      "id": "item_potion_precision_crit",
+      "name_th": "ยาเพิ่มโอกาสติดคริชั่วขณะ (Draught of Precision - Crit Rate)",
+      "frame": {
+        "x": 487,
+        "y": 395,
+        "w": 122,
+        "h": 161
+      },
+      "category": "Combat Buff",
+      "effect_desc": "เพิ่มอัตราคริติคอล (CRIT RATE) +15% และความแรงคริติคอล +25% เป็นเวลา 180 วินาที",
+      "visual": "ขวดแก้วเจียระไนทรงดาวแฉกคมกริบ บรรจุน้ำยาสีส้มแดงเพลิง"
+    },
+    {
+      "id": "item_potion_antidote_poison",
+      "name_th": "ยาแก้ล้างพิษ (Herbal Antidote - Cure Poison)",
+      "frame": {
+        "x": 773,
+        "y": 394,
+        "w": 118,
+        "h": 159
+      },
+      "category": "Status Cure",
+      "effect_desc": "ขจัดสถานะพิษ (Poison) และเลือดไหลทั้งหมดทันที พร้อมต้านทานพิษ 30 วินาที",
+      "visual": "ขวดแก้วพันใบสมุนไพรสีเขียวมรกตเรืองแสง"
+    },
+    {
+      "id": "item_potion_holy_uncurse",
+      "name_th": "ยาล้างคำสาป (Blessed Holy Water - Remove Curse)",
+      "frame": {
+        "x": 1049,
+        "y": 393,
+        "w": 119,
+        "h": 166
+      },
+      "category": "Status Cure",
+      "effect_desc": "ขจัดสถานะคำสาป (Curse), ลดค่าสถานะ และความมืดทั้งหมดทันที",
+      "visual": "ขวดแก้วทรงกลมจุกไม้กางเขนทองคำ บรรจุน้ำศักดิ์สิทธิ์สีเงินอมม่วงประกายมุก"
+    },
+    {
+      "id": "item_scroll_town_portal",
+      "name_th": "ม้วนคัมภีร์กลับเมือง (Town Portal Scroll)",
+      "frame": {
+        "x": 185,
+        "y": 572,
+        "w": 151,
+        "h": 162
+      },
+      "category": "Utility Essential",
+      "effect_desc": "วาร์ปตัวละครกลับจุดเซฟในเมืองหลักทันที",
+      "visual": "ม้วนคัมภีร์จารึกอักขระเวทสีฟ้าเรืองแสง"
+    },
+    {
+      "id": "item_scroll_resurrection",
+      "name_th": "ม้วนคัมภีร์ชุบชีวิต (Scroll of Resurrection)",
+      "frame": {
+        "x": 464,
+        "y": 565,
+        "w": 171,
+        "h": 171
+      },
+      "category": "Utility Essential",
+      "effect_desc": "ฟื้นคืนชีพตัวละคร ณ จุดที่ตายพร้อมฟื้นฟู HP/MP 100%",
+      "visual": "ม้วนคัมภีร์ทองคำประดับตราปีกทูตสวรรค์เรืองแสง"
+    },
+    {
+      "id": "item_kit_weapon_repair",
+      "name_th": "ชุดหินลับคมและซ่อมอุปกรณ์ (Blacksmith Whetstone & Repair Kit)",
+      "frame": {
+        "x": 753,
+        "y": 581,
+        "w": 155,
+        "h": 145
+      },
+      "category": "Utility Essential",
+      "effect_desc": "ซ่อมแซมความทนทาน (Durability) ของอาวุธและชุดเกราะที่สวมใส่ทั้งหมด 100%",
+      "visual": "หินลับมีดเวทมนตร์พร้อมค้อนและคีมช่างตีเหล็ก"
+    },
+    {
+      "id": "item_food_campfire_ration",
+      "name_th": "เสบียงอาหารนักผจญภัย (Hearty Campfire Ration)",
+      "frame": {
+        "x": 1038,
+        "y": 580,
+        "w": 154,
+        "h": 148
+      },
+      "category": "Recovery Buff",
+      "effect_desc": "เพิ่มอัตราฟื้นฟู HP/MP ตามธรรมชาติ +10 ต่อวินาที และ CRIT +2% เป็นเวลา 15 นาที (เหมือนบัฟชาถ่านอุ่นในภาพที่ 1)",
+      "visual": "ชุดเนื้อย่าง ขนมปังอบ และถุงเครื่องเทศ"
+    }
+  ]
+}

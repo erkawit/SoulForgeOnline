@@ -1,0 +1,456 @@
+{
+  "atlas_name": "ui_complete_menu_icons_atlas.png",
+  "resolution": {
+    "width": 1376,
+    "height": 768
+  },
+  "color_mode": "RGBA (Transparent Background, Alpha Channel)",
+  "covered_system": "6. ไอคอนเมนูครบทุกหมวดตามภาพที่ 5 (รวม 37 ไอคอนแยกชิ้น พร้อมตัวเลือกสำรองสำหรับจัดวางในแผงเมนูพับด้านขวาและแถบด้านบน)",
+  "drawer_grid_layout_guide": "จัดเรียงในแผงเมนูด้านขวา (ภาพที่ 5) ด้วย CSS Grid 5 คอลัมน์ x 6 แถว (ขนาดแสดงผลไอคอน 42x42px พร้อมข้อความชื่อเมนูภาษาไทยขนาด 12px ด้านล่างไอคอน) และแถบ Footer ด้านล่างสุดอีก 5 ไอคอน",
+  "icons": [
+    {
+      "id": "menu_01_event",
+      "name_th": "อีเวนต์ (Event)",
+      "grid_pos_in_image5": "แถว 1 คอลัมน์ 1",
+      "frame": {
+        "x": 21,
+        "y": 13,
+        "w": 128,
+        "h": 127
+      },
+      "description": "แตรปาร์ตี้โปรยดาวทอง ใช้เปิดหน้ากิจกรรมประจำสัปดาห์/อีเวนต์พิเศษ"
+    },
+    {
+      "id": "menu_02_cash_shop",
+      "name_th": "ร้านแคช / มาร์เก็ตเพลส (Cash Shop / Marketplace Stall)",
+      "grid_pos_in_image5": "แถว 1 คอลัมน์ 2 (และแถว 5 คอลัมน์ 4)",
+      "frame": {
+        "x": 195,
+        "y": 12,
+        "w": 131,
+        "h": 128
+      },
+      "description": "ซุ้มร้านค้าประดับเพชร ใช้เปิดร้านค้าเพชร (Cash Shop) หรือมาร์เก็ตเพลส"
+    },
+    {
+      "id": "menu_03_inventory",
+      "name_th": "กระเป๋า (Inventory Bag)",
+      "grid_pos_in_image5": "แถว 1 คอลัมน์ 3 (และแถบขวาบน)",
+      "frame": {
+        "x": 370,
+        "y": 7,
+        "w": 134,
+        "h": 133
+      },
+      "description": "กระเป๋าสัมภาระหนังคาดทองเหลือง ใช้เปิดหน้าต่าง Inventory"
+    },
+    {
+      "id": "menu_04_skill_book",
+      "name_th": "สกิล (Skill Tome 'A')",
+      "grid_pos_in_image5": "แถว 1 คอลัมน์ 4 (และแถบขวาบน)",
+      "frame": {
+        "x": 558,
+        "y": 13,
+        "w": 94,
+        "h": 129
+      },
+      "description": "สมุดสกิลสลักอักษร A ใช้เปิดหน้าต่างรายการสกิล (ภาพที่ 7)"
+    },
+    {
+      "id": "menu_05_atra_ranking_1",
+      "name_th": "อันดับ Atra แบบที่ 1 (Atra Ranking Podium)",
+      "grid_pos_in_image5": "แถว 2 คอลัมน์ 1",
+      "frame": {
+        "x": 708,
+        "y": 16,
+        "w": 136,
+        "h": 116
+      },
+      "description": "แท่นรางวัล 3 อันดับประดับดาว ใช้เปิดตารางจัดอันดับ"
+    },
+    {
+      "id": "menu_06_atra_ranking_numbered",
+      "name_th": "อันดับ Atra แบบที่ 2 (Numbered Podium I, II, III)",
+      "grid_pos_in_image5": "แถว 2 คอลัมน์ 1 (ตัวเลือกสำรอง)",
+      "frame": {
+        "x": 880,
+        "y": 12,
+        "w": 138,
+        "h": 120
+      },
+      "description": "แท่นจัดอันดับสลักเลขโรมัน I, II, III"
+    },
+    {
+      "id": "menu_07_season_pass_crest",
+      "name_th": "Atra Pass / Season Pass แบบที่ 1",
+      "grid_pos_in_image5": "แถว 2 คอลัมน์ 2",
+      "frame": {
+        "x": 1051,
+        "y": 8,
+        "w": 139,
+        "h": 132
+      },
+      "description": "ตราโล่ Season Pass ประดับรวงข้าวทองคำ ใช้เปิดหน้า Battle Pass"
+    },
+    {
+      "id": "menu_08_season_pass_shield",
+      "name_th": "Atra Pass / Season Pass แบบที่ 2",
+      "grid_pos_in_image5": "แถว 2 คอลัมน์ 2 (ตัวเลือกสำรอง)",
+      "frame": {
+        "x": 1223,
+        "y": 8,
+        "w": 138,
+        "h": 131
+      },
+      "description": "ตราโล่ Season Pass ทรงอัศวิน"
+    },
+    {
+      "id": "menu_09_avatar_armor",
+      "name_th": "อวตาร (Avatar / Costume Armor)",
+      "grid_pos_in_image5": "แถว 2 คอลัมน์ 3",
+      "frame": {
+        "x": 23,
+        "y": 159,
+        "w": 126,
+        "h": 137
+      },
+      "description": "ชุดเกราะอัศวินเต็มยศ ใช้เปิดหน้าเปลี่ยนชุดอวตาร/คอสตูม"
+    },
+    {
+      "id": "menu_10_astel_card",
+      "name_th": "Astel / การ์ดคู่หู (Astel Tarot Card)",
+      "grid_pos_in_image5": "แถว 2 คอลัมน์ 4",
+      "frame": {
+        "x": 218,
+        "y": 165,
+        "w": 85,
+        "h": 129
+      },
+      "description": "ไพ่ทาโรต์สลักดาวแปดแฉก ใช้เปิดหน้าระบบการ์ด/ภูตรับใช้ (Astel)"
+    },
+    {
+      "id": "menu_11_codex_book",
+      "name_th": "สมุดภาพสะสม (Codex Open Book)",
+      "grid_pos_in_image5": "แถว 2 คอลัมน์ 5",
+      "frame": {
+        "x": 358,
+        "y": 177,
+        "w": 160,
+        "h": 104
+      },
+      "description": "สมุดเปิดกางแสดงภาพมอนสเตอร์และไอเทม ใช้เปิดหน้าสารานุกรมสะสม (Codex)"
+    },
+    {
+      "id": "menu_12_character_helm",
+      "name_th": "ตัวละคร (Character Status Helmet)",
+      "grid_pos_in_image5": "แถว 3 คอลัมน์ 1",
+      "frame": {
+        "x": 556,
+        "y": 162,
+        "w": 93,
+        "h": 134
+      },
+      "description": "หมวกเกราะนักรบพู่ทอง ใช้เปิดหน้าข้อมูลค่าสถานะตัวละคร (Stats & Equipment)"
+    },
+    {
+      "id": "menu_13_skill_upgrade",
+      "name_th": "อัปเกรดสกิล (Skill Upgrade Book)",
+      "grid_pos_in_image5": "แถว 3 คอลัมน์ 2",
+      "frame": {
+        "x": 739,
+        "y": 168,
+        "w": 110,
+        "h": 126
+      },
+      "description": "สมุดสกิลพร้อมลูกศรชี้อัปเกรด 2 ชั้น ใช้เปิดหน้าต่างอัปเกรดสกิล (ภาพที่ 8)"
+    },
+    {
+      "id": "menu_14_treasure_orb_purple",
+      "name_th": "สมบัติ / ลูกแก้วพยากรณ์ (Treasure Crystal Orb)",
+      "grid_pos_in_image5": "แถว 3 คอลัมน์ 3",
+      "frame": {
+        "x": 902,
+        "y": 164,
+        "w": 96,
+        "h": 131
+      },
+      "description": "ลูกแก้วเวทมนตร์บนฐานทองคำ ใช้เปิดหน้าระบบสมบัติโบราณ/กาชา"
+    },
+    {
+      "id": "menu_15_emblem_shield",
+      "name_th": "ตราเกียรติยศ / พันธมิตร (Heraldic Crest)",
+      "grid_pos_in_image5": "ไอคอนเสริมแถบเมนูบน",
+      "frame": {
+        "x": 1068,
+        "y": 171,
+        "w": 105,
+        "h": 117
+      },
+      "description": "โล่ตราคริสตัลและดาบไขว้ ใช้สำหรับเมนูฉายาหรือสมาพันธ์"
+    },
+    {
+      "id": "menu_16_treasure_orb_gold",
+      "name_th": "สมบัติสีทอง (Golden Treasure Orb)",
+      "grid_pos_in_image5": "แถว 3 คอลัมน์ 3 (ตัวเลือกสีทอง)",
+      "frame": {
+        "x": 1242,
+        "y": 164,
+        "w": 98,
+        "h": 133
+      },
+      "description": "ลูกแก้วแสงทองคำบนขาตั้งกอธิค"
+    },
+    {
+      "id": "menu_17_constellation",
+      "name_th": "กลุ่มดาว (Constellation Stars)",
+      "grid_pos_in_image5": "แถว 3 คอลัมน์ 4",
+      "frame": {
+        "x": 15,
+        "y": 331,
+        "w": 143,
+        "h": 105
+      },
+      "description": "เส้นเชื่อมกลุ่มดาวสีทองเรืองแสง ใช้เปิดหน้าระบบอัปเกรดดวงดาว (Constellation)"
+    },
+    {
+      "id": "menu_18_rune_stone",
+      "name_th": "รูน (Carved Rune Stone)",
+      "grid_pos_in_image5": "แถว 3 คอลัมน์ 5",
+      "frame": {
+        "x": 205,
+        "y": 311,
+        "w": 121,
+        "h": 146
+      },
+      "description": "ศิลาจารึกอักษรรูนเรืองแสงสีทอง ใช้เปิดหน้าระบบติดตั้งรูน (Rune)"
+    },
+    {
+      "id": "menu_19_market_scale",
+      "name_th": "ตลาด (Market Balance Scale)",
+      "grid_pos_in_image5": "แถว 4 คอลัมน์ 1",
+      "frame": {
+        "x": 374,
+        "y": 321,
+        "w": 137,
+        "h": 128
+      },
+      "description": "ตราชั่งสองแขนทองเหลือง ใช้เปิดหน้าตลาดกลางซื้อขายแลกเปลี่ยนระหว่างผู้เล่น"
+    },
+    {
+      "id": "menu_20_craft_anvil_simple",
+      "name_th": "สร้างสิ่งของ แบบทั่งเดี่ยว (Anvil)",
+      "grid_pos_in_image5": "แถว 4 คอลัมน์ 2 (และหน้าตีบวกภาพที่ 1)",
+      "frame": {
+        "x": 552,
+        "y": 364,
+        "w": 136,
+        "h": 81
+      },
+      "description": "ทั่งตีเหล็กโลหะรมดำ ใช้สำหรับหน้าช่างตีเหล็ก/ตีบวก"
+    },
+    {
+      "id": "menu_21_craft_anvil_hammer",
+      "name_th": "สร้างสิ่งของ แบบทั่งและค้อน (Crafting Anvil & Hammer)",
+      "grid_pos_in_image5": "แถว 4 คอลัมน์ 2",
+      "frame": {
+        "x": 723,
+        "y": 318,
+        "w": 138,
+        "h": 129
+      },
+      "description": "ทั่งตีเหล็กพร้อมค้อนช่าง ใช้เปิดหน้าต่างคราฟต์ไอเทม (ภาพที่ 9)"
+    },
+    {
+      "id": "menu_22_quest_scrolls",
+      "name_th": "เควส (Quest Scroll with '!')",
+      "grid_pos_in_image5": "แถว 4 คอลัมน์ 3 (และหน้าความสำเร็จภาพที่ 4)",
+      "frame": {
+        "x": 910,
+        "y": 323,
+        "w": 213,
+        "h": 122
+      },
+      "description": "ม้วนคัมภีร์เควสเครื่องหมายตกใจ (!) และม้วนบันทึก ใช้เปิดหน้าภารกิจหลัก/ภารกิจย่อย"
+    },
+    {
+      "id": "menu_23_daily_request",
+      "name_th": "คำขอรายวัน (Daily Request Clipboard & Quill)",
+      "grid_pos_in_image5": "แถว 4 คอลัมน์ 4",
+      "frame": {
+        "x": 1235,
+        "y": 316,
+        "w": 130,
+        "h": 135
+      },
+      "description": "กระดานรายการภารกิจพร้อมปากกาขนนก ใช้เปิดหน้าเควสรายวัน (Daily Quests)"
+    },
+    {
+      "id": "menu_24_achievement_trophy",
+      "name_th": "ความสำเร็จ (Achievement Trophy Chalice)",
+      "grid_pos_in_image5": "แถว 4 คอลัมน์ 5",
+      "frame": {
+        "x": 19,
+        "y": 475,
+        "w": 136,
+        "h": 130
+      },
+      "description": "ถ้วยรางวัลทองคำ ใช้เปิดหน้าต่างความสำเร็จ (ภาพที่ 4)"
+    },
+    {
+      "id": "menu_25_checkin_calendar",
+      "name_th": "เช็คอิน (Daily Check-in Calendar)",
+      "grid_pos_in_image5": "แถว 5 คอลัมน์ 1",
+      "frame": {
+        "x": 207,
+        "y": 478,
+        "w": 119,
+        "h": 122
+      },
+      "description": "ปฏิทินเช็คอินรายวัน ใช้เปิดหน้ารับรางวัลล็อกอินประจำวัน"
+    },
+    {
+      "id": "menu_26_guild_shield_plain",
+      "name_th": "กิลด์ แบบโล่อัศวิน (Guild Shield)",
+      "grid_pos_in_image5": "แถว 5 คอลัมน์ 2",
+      "frame": {
+        "x": 394,
+        "y": 472,
+        "w": 98,
+        "h": 134
+      },
+      "description": "โล่อัศวินทองเหลือง ใช้เปิดหน้าระบบกิลด์"
+    },
+    {
+      "id": "menu_27_guild_shield_royal",
+      "name_th": "กิลด์ แบบโล่ราชสีห์ (Royal Guild Crest)",
+      "grid_pos_in_image5": "แถว 5 คอลัมน์ 2 (ตัวเลือกลายละเอียด)",
+      "frame": {
+        "x": 561,
+        "y": 468,
+        "w": 113,
+        "h": 139
+      },
+      "description": "โล่กิลด์สลักตราสิงโต 4 ช่อง"
+    },
+    {
+      "id": "menu_28_community_friends",
+      "name_th": "ชุมชน / เพื่อน / ปาร์ตี้ (Community & Friends)",
+      "grid_pos_in_image5": "แถว 5 คอลัมน์ 3 (และปุ่มปาร์ตี้ซ้ายล่าง)",
+      "frame": {
+        "x": 732,
+        "y": 487,
+        "w": 133,
+        "h": 101
+      },
+      "description": "ไอคอนบุคคลคู่สีทอง ใช้เปิดหน้ารายชื่อเพื่อน ชุมชน หรือจัดการปาร์ตี้"
+    },
+    {
+      "id": "menu_29_ranking_medal",
+      "name_th": "อันดับ (Ranking Laurel Medal)",
+      "grid_pos_in_image5": "แถว 5 คอลัมน์ 4",
+      "frame": {
+        "x": 942,
+        "y": 473,
+        "w": 141,
+        "h": 132
+      },
+      "description": "เหรียญเกียรติยศล้อมช่อมะกอกทองคำ ใช้เปิดหน้าจัดอันดับผู้เล่น"
+    },
+    {
+      "id": "menu_30_pvp_book",
+      "name_th": "สมุด PvP (PvP Battle Record Tome)",
+      "grid_pos_in_image5": "แถว 5 คอลัมน์ 5",
+      "frame": {
+        "x": 1241,
+        "y": 474,
+        "w": 99,
+        "h": 133
+      },
+      "description": "สมุดปกดาบไขว้สลักคำว่า PVP ใช้เปิดหน้าสถิติการต่อสู้ระหว่างผู้เล่น"
+    },
+    {
+      "id": "menu_31_dungeon_arch",
+      "name_th": "ดันเจี้ยน (Dungeon Stone Archway)",
+      "grid_pos_in_image5": "แถว 6 คอลัมน์ 1",
+      "frame": {
+        "x": 27,
+        "y": 626,
+        "w": 121,
+        "h": 135
+      },
+      "description": "ซุ้มประตูหินทางลงดันเจี้ยน ใช้เปิดหน้าเลือกดันเจี้ยน"
+    },
+    {
+      "id": "menu_32_boss_battle_locked",
+      "name_th": "การต่อสู้บอส (Boss Raid Skull & Lock)",
+      "grid_pos_in_image5": "แถว 6 คอลัมน์ 2",
+      "frame": {
+        "x": 207,
+        "y": 628,
+        "w": 124,
+        "h": 132
+      },
+      "description": "กะโหลกบอสมีเขาพร้อมแม่กุญแจล็อก ใช้เปิดหน้าล่าบอสโลก/บอสดันเจี้ยน"
+    },
+    {
+      "id": "menu_33_colosseum_swords_banner",
+      "name_th": "โคลอสเซียม แบบธงดาบไขว้ (Colosseum War Banner)",
+      "grid_pos_in_image5": "แถว 6 คอลัมน์ 3",
+      "frame": {
+        "x": 374,
+        "y": 624,
+        "w": 139,
+        "h": 138
+      },
+      "description": "ธงศึกดาบไขว้และหอกคู่ ใช้เปิดหน้าลานประลอง (Colosseum / Arena)"
+    },
+    {
+      "id": "menu_34_colosseum_arena_banner",
+      "name_th": "โคลอสเซียม แบบธงสนามประลอง (Arena Banner)",
+      "grid_pos_in_image5": "แถว 6 คอลัมน์ 3 (ตัวเลือกสำรอง)",
+      "frame": {
+        "x": 548,
+        "y": 619,
+        "w": 139,
+        "h": 149
+      },
+      "description": "ธงศึกสลักภาพสนามประลองโคลอสเซียม"
+    },
+    {
+      "id": "menu_35_mailbox_envelope",
+      "name_th": "ไปรษณีย์ (Mailbox Envelope)",
+      "grid_pos_in_image5": "แถบล่างสุด คอลัมน์ 1",
+      "frame": {
+        "x": 733,
+        "y": 648,
+        "w": 131,
+        "h": 92
+      },
+      "description": "ซองจดหมายผนึกตราครั่งแดง ใช้เปิดกล่องจดหมายรับของรางวัล"
+    },
+    {
+      "id": "menu_36_control_keys_wasd",
+      "name_th": "คีย์ควบคุม (Control Keys WASD)",
+      "grid_pos_in_image5": "แถบล่างสุด คอลัมน์ 2",
+      "frame": {
+        "x": 947,
+        "y": 636,
+        "w": 165,
+        "h": 115
+      },
+      "description": "ปุ่มคีย์บอร์ด WASD และลูกศร ใช้เปิดหน้าตั้งค่าปุ่มคีย์ลัดสำหรับเล่นบนเว็บเบราว์เซอร์"
+    },
+    {
+      "id": "menu_37_exit_game_door",
+      "name_th": "ออก / ล็อกเอาต์ (Exit / Logout Door)",
+      "grid_pos_in_image5": "แถบล่างสุด คอลัมน์ 5",
+      "frame": {
+        "x": 1237,
+        "y": 629,
+        "w": 119,
+        "h": 131
+      },
+      "description": "บานประตูเปิดพร้อมลูกศรชี้ออก ใช้สำหรับปุ่มกลับหน้าเลือกตัวละครหรือออกจากเกม"
+    }
+  ]
+}

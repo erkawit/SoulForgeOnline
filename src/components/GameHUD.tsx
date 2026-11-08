@@ -48,13 +48,7 @@ function Bar({ value, max, kind }: { value: number; max: number; kind: 'hp' | 'm
 }
 
 // inventory / status now live in ./hud (PCInventoryPanel · MobileInventoryDrawer · PCStatusPanel · MobileStatusPanel)
-function SkillsPanel() {
-  const extra = useGameStore(s => s.extraHotbar), lv = useGameStore(s => s.skillLevels), cls = useGameStore(s => s.player.classId ?? 'Berserker'); const defs = useConfigStore(s => s.skills.defs);
-  const actives = defs.filter(d => d.cls === cls && d.kind === 'active');
-  return <div><SkillTreePanel /><div className="h2-sub">ช่องสกิล 4–6 (R · T · X)</div>
-    {[0, 1, 2].map(i => <div key={i} className="h2-row"><b>{KEYS[i + 4]}</b><select value={extra[i] ?? ''} onChange={e => useGameStore.getState().setExtraSlot(i, e.target.value)}>
-      {actives.map(d => <option key={d.id} value={d.id}>{d.name} · {d.th}{(lv[d.id] ?? 0) > 0 ? '' : ' (ยังไม่เรียน)'}</option>)}</select></div>)}</div>;
-}
+function SkillsPanel() { return <SkillTreePanel />; }
 function QuestsPanel() {
   const quests = useGameStore(s => s.quests); const [all, setAll] = useState(false);
   const list = QUESTS.filter(q => all || (quests[q.id] && quests[q.id].status !== 'done'));
@@ -165,7 +159,7 @@ export default function GameHUD() {
   const foodCount = FOOD_ITEMS.reduce((a, f) => a + countOf(inventory, f.id), 0), fed = buffs.some(b => b.id.startsWith('food-') && b.until > now);
   const menu: [Exclude<Panel, null>, string, string, string][] = [['inventory', '🎒', 'I', 'กระเป๋า · อุปกรณ์'], ['character', '♜', 'C', 'ตัวละคร'], ['skills', '✺', 'K', 'สกิล'], ['quests', '❡', 'J', 'เควส'], ['codex', '✦', 'L', 'สมุดสะสม'], ['wardrobe', '👘', 'U', 'ตู้เสื้อผ้า'], ['monsters', '☠', 'N', 'สมุดมอนสเตอร์'],
     ['auto', '⟳', 'Z', 'AUTO'], ['online', '⚑', '', 'ออนไลน์ / ปาร์ตี้'], ['cloud', '☁', '', 'เซฟคลาวด์'], ['settings', '⚙', 'O', 'ตั้งค่า']];
-  const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'inv', character: 'char', skills: 'skills', quests: 'quests', codex: 'codex', wardrobe: 'wardrobe', monsters: 'boss', auto: 'auto', online: 'online', cloud: 'cloud', settings: 'settings' };
+  const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'menu_03_inventory', character: 'menu_12_character_helm', skills: 'menu_04_skill_book', quests: 'menu_22_quest_scrolls', codex: 'menu_11_codex_book', wardrobe: 'menu_09_avatar_armor', monsters: 'menu_32_boss_battle_locked', auto: 'icon_refresh', online: 'menu_28_community_friends', cloud: 'icon_crystal_orb', settings: 'icon_menu_settings_gear' };
   const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
 
   return <div className="hud-root h2 pointer-events-none">
@@ -198,18 +192,18 @@ export default function GameHUD() {
       {drops.map(d => <circle key={d.id} cx={d.x} cy={d.z} r=".6" fill="#cb8ff2" />)}
       {network.connected && network.boss && <circle cx={network.boss.x} cy={network.boss.z} r="1.8" fill="#ef6357" />}
       <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span></section>
-    <button type="button" className={`sf-gear pointer-events-auto ${panel === 'settings' ? 'on' : ''}`} title="ตั้งค่า (O)" aria-label="ตั้งค่า" onClick={() => toggle('settings')}><img src="/art/icons/menu/settings.webp" alt="" /></button>
+    <button type="button" className={`sf-gear pointer-events-auto ${panel === 'settings' ? 'on' : ''}`} title="ตั้งค่า (O)" aria-label="ตั้งค่า" onClick={() => toggle('settings')}><img src="/art/ui-kit/icon_menu_settings_gear.webp" alt="" /></button>
     <div className="h2-zone">{zone ? zone.th : city.name}<small>{px.toFixed(0)}, {pz.toFixed(0)}</small><ChannelButton /></div>
-    <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/icons/menu/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{key && <small>{key}</small>}</button>)}
-      <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/icons/menu/map.webp" alt="" /><small>M</small></button>
-      <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/icons/menu/party.webp" alt="" /><small>P</small></button>
-      <button title="Wiki · ข้อมูลเกม (เปิดแท็บใหม่)" aria-label="Wiki" onClick={() => window.open('/wiki', '_blank', 'noopener')}><img className="sf-menu-ico" src="/art/icons/menu/guide.webp" alt="" /><small>W</small></button></nav>
+    <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{key && <small>{key}</small>}</button>)}
+      <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/ui-kit/map_waypoint_node_swords.webp" alt="" /><small>M</small></button>
+      <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" /><small>P</small></button>
+      <button title="Wiki · ข้อมูลเกม (เปิดแท็บใหม่)" aria-label="Wiki" onClick={() => window.open('/wiki', '_blank', 'noopener')}><img className="sf-menu-ico" src="/art/ui-kit/menu_23_daily_request.webp" alt="" /><small>W</small></button></nav>
     {/* windows */}
     {panel && layout === 'mobile' && (panel === 'inventory' || panel === 'character') ? <div className="h3-drawer pointer-events-auto" role="dialog" aria-label="กระเป๋าและสเตตัส">
       <header><span className="dtabs"><button className={panel === 'inventory' ? 'on' : ''} onClick={() => setPanel('inventory')}>🎒 อุปกรณ์ & กระเป๋า</button><button className={panel === 'character' ? 'on' : ''} onClick={() => setPanel('character')}>♜ สเตตัส</button></span>
         <button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header>
       <div className="body">{panel === 'inventory' ? <MobileInventoryDrawer /> : <MobileStatusPanel />}</div></div>
-    : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' || panel === 'wardrobe' || panel === 'codex' ? 'wide' : ''}`}><header><img className="sf-win-ico" src={`/art/icons/menu/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2><button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
+    : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' || panel === 'wardrobe' || panel === 'codex' ? 'wide' : ''}`}><header><img className="sf-win-ico" src={`/art/ui-kit/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2><button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
       {panel === 'inventory' && <PCInventoryPanel />}{panel === 'character' && <PCStatusPanel />}{panel === 'skills' && <SkillsPanel />}{panel === 'quests' && <QuestsPanel />}{panel === 'codex' && <CollectionPanel />}{panel === 'wardrobe' && <WardrobePanel />}{panel === 'monsters' && <MonsterListPanel />}
       {panel === 'auto' && <AutoPanel />}{panel === 'settings' && <SettingsPanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}</div></div>}
     <div className={`h2-log ${layout === 'mobile' ? 'hidden' : ''}`}>{log.slice(0, 5).map((l, i) => <div key={`${l}-${i}`} style={{ opacity: 1 - i * .16 }}>› {l}</div>)}</div>

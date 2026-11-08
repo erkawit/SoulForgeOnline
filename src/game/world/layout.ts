@@ -1,6 +1,6 @@
 // Deterministic nature layout per city / zone: trees, rocks, bushes and where grass may grow.
 // The same seed gives the same world on every client and on the server, so colliders always agree.
-import { CITIES, CAPITAL_WALLS, WORLD_LIMIT, portalsOf, type CityId } from '../content';
+import { CAMP, CITIES, CAPITAL_WALLS, WORLD_LIMIT, portalsOf, type CityId } from '../content';
 import type { Collider } from './colliders';
 import { CAPITAL_PIECES, CAPITAL_WALK, inCanal, onRoad } from './capitalPlan';
 
@@ -53,7 +53,7 @@ export function natureLayout(city: CityId): NatureLayout {
     c.buildings.some(b => Math.abs(x - b.x) < b.w / 2 + 1 + m && Math.abs(z - b.z) < b.d / 2 + 1 + m) ||
     walls.some(b => Math.abs(x - b.x) < b.w / 2 + 0.8 + m && Math.abs(z - b.z) < b.d / 2 + 0.8 + m) ||
     (!!c.water && Math.abs(x - c.water.x) < c.water.w / 2 + 0.8 + m) ||
-    hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < 2.4 + m) || portals.some(([px, pz]) => Math.hypot(x - px, z - pz) < 4.5 + m);
+    hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < CAMP.clear + m) || portals.some(([px, pz]) => Math.hypot(x - px, z - pz) < 4.5 + m);
   const trees: Prop[] = [], rocks: Rock[] = [], bushes: Bush[] = [], colliders: Collider[] = [];
   const place = (n: number, minGap: number, ok: (x: number, z: number) => boolean, put: (x: number, z: number) => void) => {
     let tries = 0, made = 0; const pts: [number, number][] = [];
