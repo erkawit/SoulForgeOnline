@@ -20,8 +20,9 @@ test('every painted still without a flipbook breathes (female heroes, costumes, 
 
 test('the UI kit ships every piece the stylesheets reference', () => {
   for (const css of ['src/styles/uikit.css', '../preview/src/uikit.css'].filter(existsSync)) {
-    const refs = [...readFileSync(css, 'utf8').matchAll(/url\((?:\/|)art\/ui\/([\w-]+\.(?:webp|png))\)/g)].map(m => m[1]);
+    // Round 22: the kit cut from src/asset/ui lives in art/ui-kit; older pieces stay in art/ui
+    const refs = [...readFileSync(css, 'utf8').matchAll(/url\((?:\/|)art\/(ui|ui-kit)\/([\w-]+\.(?:webp|png))\)/g)].map(m => `${m[1]}/${m[2]}`);
     assert.ok(refs.length > 20, css);
-    for (const f of new Set(refs)) assert.ok(existsSync(`public/art/ui/${f}`), `${css}: ${f}`);
+    for (const f of new Set(refs)) assert.ok(existsSync(`public/art/${f}`), `${css}: ${f}`);
   }
 });
