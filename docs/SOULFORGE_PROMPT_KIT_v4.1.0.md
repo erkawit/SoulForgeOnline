@@ -48,6 +48,8 @@ DIRECTIONS (image left/right):
   W = full side profile facing the LEFT edge of the image
   SW = three-quarter front, body turned toward the LEFT side of the image
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
+WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
+  In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 ```
 
 ---
