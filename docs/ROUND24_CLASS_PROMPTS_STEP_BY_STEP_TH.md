@@ -2,8 +2,9 @@
 
 ## ลำดับการทำ
 ทำทีละอาชีพตามเลขไฟล์ `01` → `08` แต่ละอาชีพใช้ **1 แชทใหม่** (ChatGPT หรือ Gemini)
-1. ถ้าไฟล์มี **ขั้น M** ทำก่อน (สร้างต้นแบบใหม่ ส่งให้ผมอนุมัติ) แล้วทำ **ขั้น 0** (วางข้อความ + แนบภาพต้นแบบ) รอ AI ตอบยืนยัน
-2. ไล่ **ขั้น 1 → 7** คัดลอกทีละกล่อง 1 กล่อง = 1 ภาพ = 1 ท่า × 1 ทิศ
+1. **ขั้น 0** วางข้อความแรก (ไม่ต้องแนบไฟล์) รอ AI ตอบยืนยัน
+   **ขั้น 1** ให้ AI สร้างภาพต้นแบบใหม่จากข้อความ เลือกจนพอใจ บันทึกไฟล์ และส่งให้ผมดู
+2. ไล่ **ขั้น 2 → 8** ในแชทเดียวกัน คัดลอกทีละกล่อง 1 กล่อง = 1 ภาพ = 1 ท่า × 1 ทิศ
 3. บันทึกภาพตามชื่อที่เขียนไว้เหนือแต่ละกล่อง ลงโฟลเดอร์ `output\sprites-v4\<อาชีพ>\`
 4. ครบแต่ละท่า (8 ภาพ) บอกผมได้เลย ผมจะต่อเข้าเกมและส่งภาพให้ดูก่อน
 
@@ -33,7 +34,7 @@
 `Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
 
 ลำดับท่าเรียงตามความสำคัญ: เดิน → ตาย → โดนตี → ยืน → โจมตี → สกิล → บัฟ
-ถ้าเวลาน้อย ทำแค่ **ขั้น 1 (เดิน)** ของทุกอาชีพก่อน จะแก้อาการเดินกระตุกได้ทั้งเกม
+ถ้าเวลาน้อย ทำแค่ **ขั้น 1 (ต้นแบบ) + ขั้น 2 (เดิน)** ของทุกอาชีพก่อน จะแก้อาการเดินกระตุกได้ทั้งเกม
 
 ## ตั้งค่าขนาดภาพ
 - ChatGPT: กล่องที่เขียน `1536x1024 landscape` เลือก **Landscape**; `1024x1024 square` เลือก **Square**
@@ -42,26 +43,26 @@
 ## ถ้าภาพผิด ให้ตอบกลับด้วยประโยคเหล่านี้ (เจนใหม่ อย่าแก้ด้วยการกลับภาพ)
 - มือสลับ: `Wrong hands. Redo: the weapon must be in the character's RIGHT hand as in the master reference.`
 - ทิศผิด: `Wrong direction. Redo facing <ทิศตามกล่อง>.`
-- หน้าตาเพี้ยน: แนบภาพต้นแบบอีกครั้ง + `Match the master reference exactly. Redo.`
+- หน้าตาเพี้ยน: แนบไฟล์ต้นแบบที่บันทึกไว้ + `Match this master reference exactly. Redo.`
 - มีพื้น/เงา/ตัวหนังสือ: `Remove the ground, shadow and any text. Flat background only. Redo.`
 - อาวุธชี้ผิดทาง/เหวี่ยงออกข้าง: `Wrong weapon direction. The weapon must point the same way the character faces, partly hidden by the body is fine. Redo.`
 - อาวุธงอ/บิด/เปลี่ยนแบบ: `Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
 - จำนวนช่องผิด: `Wrong grid. Redo with exactly <จำนวน> equal cells.`
 
 ## ชุดบังคับของแต่ละอาชีพ (ปรับรอบนี้)
-| อาชีพ | ผ้าคลุม | หมวก/ของสวมหัว | ต้องทำต้นแบบใหม่ (ขั้น M) |
+| อาชีพ | ผ้าคลุม | หมวก/ของสวมหัว | เปลี่ยนจากแบบเดิม |
 |---|---|---|---|
 | Paladin | ผ้าคลุมยาวสีน้ำเงิน ลายพระอาทิตย์ทอง | หมวกเหล็กเปิดหน้า มีปีกนกสองข้าง | **ใช่** (โล่มีปีกสยายด้านบน ดาบมีปีกที่โกร่ง) |
 | Berserker | ผ้าคลุมหนังขนหมาป่าสีน้ำตาลเข้ม | หมวกเหล็กดำมีเขาโค้ง | **ใช่** |
 | Assassin | ผ้าคลุมสั้นสีดำซับม่วง ชายขาด | ฮู้ด + ผ้าปิดหน้า (ของเดิม) | **ใช่** |
-| Hawkeye | ผ้าคลุมเขียว (ของเดิม) | ฮู้ด (ของเดิม) | ไม่ต้อง |
+| Hawkeye | ผ้าคลุมเขียว (ของเดิม) | ฮู้ด (ของเดิม) | ไม่เปลี่ยน |
 | HighPriest | — | หมวกไมเตอร์ (หมวกบิชอป) ขาว-ทอง | **ใช่** |
-| Inquisitor | — | หมวกปีกกว้าง (ของเดิม) | ไม่ต้อง |
-| Elementalist | — | ไม่มี (ตามที่กำหนด) | ไม่ต้อง |
-| RuneMaster | — | ไม่มี (ตามที่กำหนด) | ไม่ต้อง |
+| Inquisitor | — | หมวกปีกกว้าง (ของเดิม) | ไม่เปลี่ยน |
+| Elementalist | — | ไม่มี (ตามที่กำหนด) | ไม่เปลี่ยน |
+| RuneMaster | — | ไม่มี (ตามที่กำหนด) | ไม่เปลี่ยน |
 
-อาชีพที่ต้องทำต้นแบบใหม่: ทำ **ขั้น M** ก่อน แล้วส่งภาพให้ผมดู ผมตอบ APPROVED แล้วค่อยเริ่มขั้น 0 โดยแนบไฟล์ `_master_ref_v2.png`
-ชีตเก่าของอาชีพเหล่านี้ (รวมท่าตาย/บัฟที่เคยบอกให้ข้าม) **ใช้ไม่ได้แล้ว ต้องเจนใหม่ทุกท่า** เพราะชุดเปลี่ยน
+ทุกอาชีพสร้างต้นแบบใหม่จากข้อความในขั้น 1 **ไม่ต้องแนบไฟล์ต้นแบบเดิม** (ไฟล์ใน `master-refs` ที่ไม่มี `_v2` เป็นของเก่า ไม่ต้องใช้แล้ว)
+ชีตเก่าในเกมจะถูกแทนด้วยชุดใหม่ทั้งหมด จึงต้องเจนครบทุกท่าของทุกอาชีพ
 
 คำอธิบายหน้าตายังตามภาพในเกมเป็นหลัก: HighPriest ถือลูกแสง (ไม่ใช่คัมภีร์) และ Berserker เปลือยท่อนบน
 
@@ -70,36 +71,13 @@
 
 # 1. Paladin — พาลาดิน · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png` · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
 
-บันทึกไฟล์ที่: `output\sprites-v4\paladin\`
+บันทึกไฟล์ที่: `output\sprites-v4\paladin\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png`
 
-## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
-
-1. เปิดแชทใหม่ แนบ `Paladin_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
-2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
-3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
-
-```text
-You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
-
-The attached image is the CURRENT design of Paladin (male). Keep the same face, hair, body proportions, color palette and art style.
-CHANGES TO MAKE: Add an open-face silver helmet with a pair of white-and-silver bird wings on BOTH sides (face still visible). Add a long deep-blue cape with gold trim and a golden sun on the back. Add small gold wing engravings to the pauldrons. Change the shield: keep the deep blue kite shield with the golden sun, and add a pair of spread silver-and-gold wings rising from its TOP edge. Change the sword: keep the straight longsword, and replace the crossguard with a WINGED crossguard (two small metal wings spread sideways between the blade and the grip).
-
-FINAL LOOK: Chibi holy knight with short brown hair and blue eyes (same face as the reference). Open-face polished silver helmet with a pair of white-and-silver bird wings spreading from BOTH sides of the helmet. Polished silver plate armor with gold trim and small gold wing engravings on the pauldrons, deep blue tabard with a golden sun emblem, brown leather belt. Long deep-blue cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in deep blue with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
-HAND RULE: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction.
-Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
-
-Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.):
-left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
-```
-
-- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
-
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Paladin_male_master_ref_v2.png` ไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -113,7 +91,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -129,21 +107,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
-The attached image is the MASTER REFERENCE of the character for this chat: Paladin (male).
-LOOK: Chibi holy knight with short brown hair and blue eyes (same face as the reference). Open-face polished silver helmet with a pair of white-and-silver bird wings spreading from BOTH sides of the helmet. Polished silver plate armor with gold trim and small gold wing engravings on the pauldrons, deep blue tabard with a golden sun emblem, brown leather belt. Long deep-blue cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in deep blue with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
+CHARACTER FOR THIS CHAT: Paladin (male), player class.
+LOOK: Chibi holy knight with short brown hair and blue eyes. Open-face polished silver helmet with a pair of white-and-silver bird wings spreading from BOTH sides of the helmet. Polished silver plate armor with gold trim and small gold wing engravings on the pauldrons, deep blue tabard with a golden sun emblem, brown leather belt. Long deep-blue cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in deep blue with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
 HAND RULE: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction.
 DEFAULT POSE: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `paladin_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of Paladin (male):
+Create the MASTER REFERENCE of Paladin (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `paladin_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -154,10 +152,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `paladin_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `paladin_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -168,10 +166,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `paladin_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `paladin_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -182,10 +180,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `paladin_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `paladin_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -196,10 +194,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `paladin_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `paladin_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -210,10 +208,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `paladin_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `paladin_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -224,10 +222,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `paladin_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `paladin_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -238,10 +236,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `paladin_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `paladin_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -254,12 +252,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `paladin_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `paladin_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -270,10 +268,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `paladin_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `paladin_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -284,10 +282,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `paladin_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `paladin_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -298,10 +296,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `paladin_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `paladin_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -312,10 +310,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `paladin_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `paladin_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -326,10 +324,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `paladin_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `paladin_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -340,10 +338,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `paladin_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `paladin_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -354,10 +352,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `paladin_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `paladin_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -370,12 +368,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `paladin_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `paladin_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -386,10 +384,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `paladin_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `paladin_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -400,10 +398,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `paladin_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `paladin_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -414,10 +412,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `paladin_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `paladin_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -428,10 +426,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `paladin_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `paladin_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -442,10 +440,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `paladin_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `paladin_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -456,10 +454,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `paladin_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `paladin_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -470,10 +468,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `paladin_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `paladin_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -486,12 +484,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `paladin_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `paladin_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -502,10 +500,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `paladin_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `paladin_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -516,10 +514,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `paladin_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `paladin_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -530,10 +528,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `paladin_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `paladin_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -544,10 +542,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `paladin_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `paladin_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -558,10 +556,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `paladin_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `paladin_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -572,10 +570,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `paladin_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `paladin_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -586,10 +584,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `paladin_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `paladin_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -602,12 +600,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `paladin_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `paladin_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -618,10 +616,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `paladin_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `paladin_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -632,10 +630,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `paladin_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `paladin_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -646,10 +644,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `paladin_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `paladin_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -660,10 +658,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `paladin_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `paladin_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -674,10 +672,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `paladin_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `paladin_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -688,10 +686,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `paladin_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `paladin_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -702,10 +700,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `paladin_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `paladin_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -718,12 +716,12 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `paladin_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `paladin_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -734,10 +732,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `paladin_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `paladin_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -748,10 +746,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `paladin_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `paladin_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -762,10 +760,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `paladin_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `paladin_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -776,10 +774,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `paladin_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `paladin_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -790,10 +788,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `paladin_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `paladin_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -804,10 +802,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `paladin_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `paladin_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -818,10 +816,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `paladin_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `paladin_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -834,12 +832,12 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `paladin_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `paladin_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -850,10 +848,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `paladin_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `paladin_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -864,10 +862,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `paladin_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `paladin_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -878,10 +876,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `paladin_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `paladin_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -892,10 +890,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `paladin_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `paladin_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -906,10 +904,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `paladin_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `paladin_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -920,10 +918,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `paladin_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `paladin_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -934,10 +932,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `paladin_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `paladin_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Paladin (male):
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -958,11 +956,13 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 
 # 2. Hawkeye — ฮอว์คอาย (ARCHER) · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Hawkeye_male_master_ref.png` · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
 
-บันทึกไฟล์ที่: `output\sprites-v4\hawkeye\`
+บันทึกไฟล์ที่: `output\sprites-v4\hawkeye\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Hawkeye_male_master_ref_v2.png`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Hawkeye_male_master_ref.png` ไปด้วย)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -976,7 +976,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -992,21 +992,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
-The attached image is the MASTER REFERENCE of the character for this chat: Hawkeye (male).
+CHARACTER FOR THIS CHAT: Hawkeye (male), player class.
 LOOK: Chibi ranger with a dark forest-green hood pulled over brown hair, long ragged green cloak, brown leather tunic with straps and belt, leather bracers, tall brown boots, a quiver full of arrows on the back.
 HAND RULE: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap.
 DEFAULT POSE: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `hawkeye_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Create the MASTER REFERENCE of Hawkeye (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\Hawkeye_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `hawkeye_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1017,10 +1037,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1031,10 +1051,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `hawkeye_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `hawkeye_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1045,10 +1065,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1059,10 +1079,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `hawkeye_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `hawkeye_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1073,10 +1093,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1087,10 +1107,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `hawkeye_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `hawkeye_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1101,10 +1121,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1117,12 +1137,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `hawkeye_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `hawkeye_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1133,10 +1153,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1147,10 +1167,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `hawkeye_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `hawkeye_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1161,10 +1181,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1175,10 +1195,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `hawkeye_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `hawkeye_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1189,10 +1209,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1203,10 +1223,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `hawkeye_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `hawkeye_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1217,10 +1237,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1233,12 +1253,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `hawkeye_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `hawkeye_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1249,10 +1269,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1263,10 +1283,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `hawkeye_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `hawkeye_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1277,10 +1297,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1291,10 +1311,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `hawkeye_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `hawkeye_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1305,10 +1325,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1319,10 +1339,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `hawkeye_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `hawkeye_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1333,10 +1353,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1349,12 +1369,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `hawkeye_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `hawkeye_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1365,10 +1385,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1379,10 +1399,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `hawkeye_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `hawkeye_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1393,10 +1413,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1407,10 +1427,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `hawkeye_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `hawkeye_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1421,10 +1441,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1435,10 +1455,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `hawkeye_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `hawkeye_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1449,10 +1469,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1465,12 +1485,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `hawkeye_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `hawkeye_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1481,10 +1501,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1495,10 +1515,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `hawkeye_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `hawkeye_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1509,10 +1529,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1523,10 +1543,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `hawkeye_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `hawkeye_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1537,10 +1557,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1551,10 +1571,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `hawkeye_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `hawkeye_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1565,10 +1585,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1581,12 +1601,12 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `hawkeye_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `hawkeye_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1597,10 +1617,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1611,10 +1631,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `hawkeye_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `hawkeye_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1625,10 +1645,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1639,10 +1659,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `hawkeye_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `hawkeye_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1653,10 +1673,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1667,10 +1687,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `hawkeye_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `hawkeye_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1681,10 +1701,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1697,12 +1717,12 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `hawkeye_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `hawkeye_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1713,10 +1733,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1727,10 +1747,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `hawkeye_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `hawkeye_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1741,10 +1761,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1755,10 +1775,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `hawkeye_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `hawkeye_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1769,10 +1789,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1783,10 +1803,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `hawkeye_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `hawkeye_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1797,10 +1817,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Hawkeye (male):
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1821,11 +1841,13 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 
 # 3. RuneMaster — รูนมาสเตอร์ · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\RuneMaster_male_master_ref.png` · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
 
-บันทึกไฟล์ที่: `output\sprites-v4\runemaster\`
+บันทึกไฟล์ที่: `output\sprites-v4\runemaster\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\RuneMaster_male_master_ref_v2.png`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `RuneMaster_male_master_ref.png` ไปด้วย)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -1839,7 +1861,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -1855,21 +1877,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
-The attached image is the MASTER REFERENCE of the character for this chat: RuneMaster (male).
+CHARACTER FOR THIS CHAT: RuneMaster (male), player class.
 LOOK: Adult-proportioned chibi rune swordsman with dark swept-back hair, a long dark-teal and navy coat with high collar and golden rune embroidery down the front, crossed leather straps, brown boots.
 HAND RULE: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap.
 DEFAULT POSE: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `runemaster_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Create the MASTER REFERENCE of RuneMaster (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\RuneMaster_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `runemaster_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1880,10 +1922,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `runemaster_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `runemaster_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1894,10 +1936,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `runemaster_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `runemaster_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1908,10 +1950,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `runemaster_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `runemaster_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1922,10 +1964,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `runemaster_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `runemaster_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1936,10 +1978,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `runemaster_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `runemaster_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1950,10 +1992,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `runemaster_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `runemaster_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1964,10 +2006,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `runemaster_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `runemaster_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1980,12 +2022,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `runemaster_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `runemaster_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -1996,10 +2038,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `runemaster_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `runemaster_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2010,10 +2052,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `runemaster_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `runemaster_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2024,10 +2066,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `runemaster_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `runemaster_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2038,10 +2080,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `runemaster_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `runemaster_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2052,10 +2094,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `runemaster_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `runemaster_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2066,10 +2108,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `runemaster_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `runemaster_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2080,10 +2122,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `runemaster_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `runemaster_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2096,12 +2138,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `runemaster_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `runemaster_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2112,10 +2154,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `runemaster_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `runemaster_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2126,10 +2168,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `runemaster_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `runemaster_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2140,10 +2182,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `runemaster_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `runemaster_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2154,10 +2196,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `runemaster_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `runemaster_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2168,10 +2210,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `runemaster_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `runemaster_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2182,10 +2224,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `runemaster_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `runemaster_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2196,10 +2238,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `runemaster_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `runemaster_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2212,12 +2254,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `runemaster_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `runemaster_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2228,10 +2270,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `runemaster_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `runemaster_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2242,10 +2284,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `runemaster_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `runemaster_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2256,10 +2298,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `runemaster_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `runemaster_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2270,10 +2312,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `runemaster_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `runemaster_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2284,10 +2326,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `runemaster_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `runemaster_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2298,10 +2340,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `runemaster_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `runemaster_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2312,10 +2354,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `runemaster_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `runemaster_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2328,12 +2370,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `runemaster_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `runemaster_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2344,10 +2386,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `runemaster_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `runemaster_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2358,10 +2400,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `runemaster_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `runemaster_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2372,10 +2414,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `runemaster_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `runemaster_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2386,10 +2428,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `runemaster_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `runemaster_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2400,10 +2442,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `runemaster_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `runemaster_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2414,10 +2456,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `runemaster_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `runemaster_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2428,10 +2470,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `runemaster_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `runemaster_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2444,12 +2486,12 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `runemaster_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `runemaster_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2460,10 +2502,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `runemaster_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `runemaster_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2474,10 +2516,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `runemaster_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `runemaster_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2488,10 +2530,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `runemaster_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `runemaster_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2502,10 +2544,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `runemaster_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `runemaster_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2516,10 +2558,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `runemaster_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `runemaster_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2530,10 +2572,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `runemaster_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `runemaster_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2544,10 +2586,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `runemaster_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `runemaster_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2560,12 +2602,12 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `runemaster_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `runemaster_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2576,10 +2618,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `runemaster_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `runemaster_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2590,10 +2632,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `runemaster_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `runemaster_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2604,10 +2646,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `runemaster_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `runemaster_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2618,10 +2660,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `runemaster_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `runemaster_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2632,10 +2674,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `runemaster_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `runemaster_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2646,10 +2688,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `runemaster_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `runemaster_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2660,10 +2702,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `runemaster_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `runemaster_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of RuneMaster (male):
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -2684,11 +2726,13 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 
 # 4. Elementalist — เอเลเมนทัลลิสต์ · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Elementalist_male_master_ref.png` · พื้นหลัง **#00FF00**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#00FF00**
 
-บันทึกไฟล์ที่: `output\sprites-v4\elementalist\`
+บันทึกไฟล์ที่: `output\sprites-v4\elementalist\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Elementalist_male_master_ref_v2.png`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Elementalist_male_master_ref.png` ไปด้วย)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -2702,7 +2746,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -2719,21 +2763,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
 
-The attached image is the MASTER REFERENCE of the character for this chat: Elementalist (male).
+CHARACTER FOR THIS CHAT: Elementalist (male), player class.
 LOOK: Chibi young mage with messy dark-purple hair and violet eyes, layered dark-purple tattered cloak with high collar and gold trim, dark clothes underneath, black boots. Long ornate staff topped with a large blue crystal wreathed in small orange-and-blue magic flames.
 HAND RULE: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap.
 DEFAULT POSE: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `elementalist_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of Elementalist (male):
+Create the MASTER REFERENCE of Elementalist (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #00FF00 background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\Elementalist_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `elementalist_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2744,10 +2808,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `elementalist_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `elementalist_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2758,10 +2822,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `elementalist_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `elementalist_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2772,10 +2836,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `elementalist_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `elementalist_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2786,10 +2850,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `elementalist_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `elementalist_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2800,10 +2864,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `elementalist_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `elementalist_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2814,10 +2878,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `elementalist_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `elementalist_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2828,10 +2892,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `elementalist_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `elementalist_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2844,12 +2908,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `elementalist_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `elementalist_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2860,10 +2924,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `elementalist_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `elementalist_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2874,10 +2938,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `elementalist_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `elementalist_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2888,10 +2952,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `elementalist_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `elementalist_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2902,10 +2966,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `elementalist_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `elementalist_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2916,10 +2980,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `elementalist_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `elementalist_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2930,10 +2994,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `elementalist_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `elementalist_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2944,10 +3008,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `elementalist_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `elementalist_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2960,12 +3024,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `elementalist_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `elementalist_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2976,10 +3040,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `elementalist_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `elementalist_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -2990,10 +3054,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `elementalist_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `elementalist_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3004,10 +3068,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `elementalist_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `elementalist_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3018,10 +3082,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `elementalist_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `elementalist_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3032,10 +3096,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `elementalist_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `elementalist_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3046,10 +3110,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `elementalist_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `elementalist_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3060,10 +3124,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `elementalist_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `elementalist_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3076,12 +3140,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `elementalist_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `elementalist_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3092,10 +3156,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `elementalist_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `elementalist_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3106,10 +3170,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `elementalist_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `elementalist_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3120,10 +3184,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `elementalist_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `elementalist_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3134,10 +3198,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `elementalist_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `elementalist_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3148,10 +3212,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `elementalist_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `elementalist_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3162,10 +3226,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `elementalist_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `elementalist_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3176,10 +3240,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `elementalist_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `elementalist_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3192,12 +3256,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `elementalist_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `elementalist_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3208,10 +3272,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `elementalist_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `elementalist_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3222,10 +3286,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `elementalist_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `elementalist_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3236,10 +3300,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `elementalist_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `elementalist_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3250,10 +3314,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `elementalist_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `elementalist_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3264,10 +3328,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `elementalist_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `elementalist_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3278,10 +3342,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `elementalist_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `elementalist_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3292,10 +3356,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `elementalist_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `elementalist_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3308,12 +3372,12 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `elementalist_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `elementalist_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3324,10 +3388,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `elementalist_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `elementalist_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3338,10 +3402,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `elementalist_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `elementalist_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3352,10 +3416,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `elementalist_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `elementalist_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3366,10 +3430,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `elementalist_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `elementalist_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3380,10 +3444,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `elementalist_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `elementalist_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3394,10 +3458,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `elementalist_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `elementalist_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3408,10 +3472,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `elementalist_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `elementalist_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3424,12 +3488,12 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `elementalist_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `elementalist_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3440,10 +3504,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `elementalist_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `elementalist_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3454,10 +3518,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `elementalist_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `elementalist_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3468,10 +3532,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `elementalist_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `elementalist_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3482,10 +3546,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `elementalist_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `elementalist_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3496,10 +3560,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `elementalist_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `elementalist_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3510,10 +3574,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `elementalist_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `elementalist_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3524,10 +3588,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `elementalist_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `elementalist_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Elementalist (male):
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3548,36 +3612,13 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 
 # 5. Assassin — แอสแซสซิน · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png` · พื้นหลัง **#00FF00**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#00FF00**
 
-บันทึกไฟล์ที่: `output\sprites-v4\assassin\`
+บันทึกไฟล์ที่: `output\sprites-v4\assassin\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png`
 
-## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
-
-1. เปิดแชทใหม่ แนบ `Assassin_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
-2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
-3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
-
-```text
-You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
-
-The attached image is the CURRENT design of Assassin (male). Keep the same face, hair, body proportions, color palette and art style.
-CHANGES TO MAKE: Turn the hood into part of a proper short ragged black cloak with dark purple lining, from the shoulders to mid-thigh, torn and split at the hem, flowing behind the body. Keep the hood, mask, armor and both daggers exactly the same.
-
-FINAL LOOK: Chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
-HAND RULE: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present.
-Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
-
-Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (crouched ready stance, knees bent, both daggers held low at the sides.):
-left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
-Flat solid #00FF00 background, no floor, no shadow, no text, no labels, no frames.
-```
-
-- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
-
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Assassin_male_master_ref_v2.png` ไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -3591,7 +3632,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -3608,21 +3649,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
 
-The attached image is the MASTER REFERENCE of the character for this chat: Assassin (male).
+CHARACTER FOR THIS CHAT: Assassin (male), player class.
 LOOK: Chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
 HAND RULE: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present.
 DEFAULT POSE: crouched ready stance, knees bent, both daggers held low at the sides.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `assassin_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of Assassin (male):
+Create the MASTER REFERENCE of Assassin (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (crouched ready stance, knees bent, both daggers held low at the sides):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #00FF00 background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `assassin_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3633,10 +3694,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `assassin_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `assassin_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3647,10 +3708,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `assassin_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `assassin_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3661,10 +3722,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `assassin_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `assassin_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3675,10 +3736,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `assassin_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `assassin_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3689,10 +3750,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `assassin_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `assassin_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3703,10 +3764,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `assassin_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `assassin_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3717,10 +3778,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `assassin_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `assassin_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3733,12 +3794,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `assassin_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `assassin_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3749,10 +3810,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `assassin_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `assassin_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3763,10 +3824,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `assassin_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `assassin_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3777,10 +3838,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `assassin_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `assassin_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3791,10 +3852,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `assassin_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `assassin_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3805,10 +3866,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `assassin_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `assassin_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3819,10 +3880,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `assassin_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `assassin_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3833,10 +3894,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `assassin_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `assassin_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3849,12 +3910,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `assassin_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `assassin_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3865,10 +3926,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `assassin_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `assassin_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3879,10 +3940,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `assassin_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `assassin_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3893,10 +3954,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `assassin_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `assassin_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3907,10 +3968,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `assassin_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `assassin_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3921,10 +3982,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `assassin_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `assassin_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3935,10 +3996,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `assassin_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `assassin_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3949,10 +4010,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `assassin_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `assassin_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3965,12 +4026,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `assassin_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `assassin_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3981,10 +4042,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `assassin_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `assassin_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -3995,10 +4056,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `assassin_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `assassin_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4009,10 +4070,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `assassin_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `assassin_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4023,10 +4084,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `assassin_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `assassin_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4037,10 +4098,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `assassin_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `assassin_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4051,10 +4112,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `assassin_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `assassin_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4065,10 +4126,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `assassin_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `assassin_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4081,12 +4142,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `assassin_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `assassin_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4097,10 +4158,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `assassin_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `assassin_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4111,10 +4172,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `assassin_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `assassin_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4125,10 +4186,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `assassin_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `assassin_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4139,10 +4200,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `assassin_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `assassin_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4153,10 +4214,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `assassin_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `assassin_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4167,10 +4228,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `assassin_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `assassin_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4181,10 +4242,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `assassin_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `assassin_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4197,12 +4258,12 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `assassin_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `assassin_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4213,10 +4274,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `assassin_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `assassin_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4227,10 +4288,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `assassin_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `assassin_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4241,10 +4302,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `assassin_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `assassin_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4255,10 +4316,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `assassin_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `assassin_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4269,10 +4330,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `assassin_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `assassin_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4283,10 +4344,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `assassin_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `assassin_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4297,10 +4358,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `assassin_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `assassin_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4313,12 +4374,12 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `assassin_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `assassin_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4329,10 +4390,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `assassin_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `assassin_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4343,10 +4404,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `assassin_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `assassin_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4357,10 +4418,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `assassin_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `assassin_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4371,10 +4432,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `assassin_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `assassin_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4385,10 +4446,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `assassin_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `assassin_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4399,10 +4460,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `assassin_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `assassin_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4413,10 +4474,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `assassin_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `assassin_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Assassin (male):
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
@@ -4437,36 +4498,13 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 
 # 6. HighPriest — ไฮพรีสต์ (PRIEST) · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png` · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
 
-บันทึกไฟล์ที่: `output\sprites-v4\highpriest\`
+บันทึกไฟล์ที่: `output\sprites-v4\highpriest\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png`
 
-## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
-
-1. เปิดแชทใหม่ แนบ `HighPriest_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
-2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
-3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
-
-```text
-You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
-
-The attached image is the CURRENT design of HighPriest (male). Keep the same face, hair, body proportions, color palette and art style.
-CHANGES TO MAKE: Add a tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons hanging at the back; some blond hair still visible below it. Keep the robes, the sceptre and the light orb exactly the same.
-
-FINAL LOOK: Chibi young priest with soft blond hair and grey eyes (same face as the reference). Tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
-HAND RULE: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap.
-Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
-
-Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.):
-left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
-```
-
-- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
-
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `HighPriest_male_master_ref_v2.png` ไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -4480,7 +4518,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -4496,21 +4534,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
-The attached image is the MASTER REFERENCE of the character for this chat: HighPriest (male).
-LOOK: Chibi young priest with soft blond hair and grey eyes (same face as the reference). Tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
+CHARACTER FOR THIS CHAT: HighPriest (male), player class.
+LOOK: Chibi young priest with soft blond hair and grey eyes. Tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
 HAND RULE: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap.
 DEFAULT POSE: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `highpriest_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of HighPriest (male):
+Create the MASTER REFERENCE of HighPriest (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `highpriest_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4521,10 +4579,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `highpriest_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `highpriest_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4535,10 +4593,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `highpriest_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `highpriest_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4549,10 +4607,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `highpriest_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `highpriest_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4563,10 +4621,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `highpriest_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `highpriest_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4577,10 +4635,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `highpriest_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `highpriest_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4591,10 +4649,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `highpriest_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `highpriest_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4605,10 +4663,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `highpriest_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `highpriest_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4621,12 +4679,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `highpriest_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `highpriest_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4637,10 +4695,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `highpriest_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `highpriest_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4651,10 +4709,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `highpriest_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `highpriest_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4665,10 +4723,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `highpriest_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `highpriest_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4679,10 +4737,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `highpriest_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `highpriest_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4693,10 +4751,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `highpriest_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `highpriest_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4707,10 +4765,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `highpriest_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `highpriest_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4721,10 +4779,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `highpriest_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `highpriest_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4737,12 +4795,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `highpriest_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `highpriest_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4753,10 +4811,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `highpriest_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `highpriest_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4767,10 +4825,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `highpriest_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `highpriest_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4781,10 +4839,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `highpriest_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `highpriest_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4795,10 +4853,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `highpriest_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `highpriest_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4809,10 +4867,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `highpriest_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `highpriest_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4823,10 +4881,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `highpriest_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `highpriest_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4837,10 +4895,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `highpriest_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `highpriest_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4853,12 +4911,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `highpriest_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `highpriest_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4869,10 +4927,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `highpriest_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `highpriest_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4883,10 +4941,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `highpriest_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `highpriest_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4897,10 +4955,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `highpriest_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `highpriest_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4911,10 +4969,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `highpriest_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `highpriest_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4925,10 +4983,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `highpriest_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `highpriest_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4939,10 +4997,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `highpriest_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `highpriest_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4953,10 +5011,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `highpriest_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `highpriest_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4969,12 +5027,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `highpriest_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `highpriest_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4985,10 +5043,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `highpriest_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `highpriest_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -4999,10 +5057,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `highpriest_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `highpriest_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5013,10 +5071,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `highpriest_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `highpriest_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5027,10 +5085,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `highpriest_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `highpriest_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5041,10 +5099,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `highpriest_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `highpriest_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5055,10 +5113,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `highpriest_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `highpriest_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5069,10 +5127,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `highpriest_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `highpriest_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5085,12 +5143,12 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `highpriest_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `highpriest_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5101,10 +5159,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `highpriest_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `highpriest_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5115,10 +5173,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `highpriest_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `highpriest_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5129,10 +5187,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `highpriest_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `highpriest_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5143,10 +5201,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `highpriest_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `highpriest_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5157,10 +5215,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `highpriest_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `highpriest_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5171,10 +5229,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `highpriest_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `highpriest_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5185,10 +5243,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `highpriest_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `highpriest_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5201,12 +5259,12 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `highpriest_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `highpriest_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5217,10 +5275,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `highpriest_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `highpriest_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5231,10 +5289,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `highpriest_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `highpriest_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5245,10 +5303,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `highpriest_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `highpriest_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5259,10 +5317,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `highpriest_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `highpriest_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5273,10 +5331,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `highpriest_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `highpriest_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5287,10 +5345,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `highpriest_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `highpriest_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5301,10 +5359,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `highpriest_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `highpriest_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of HighPriest (male):
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5325,11 +5383,13 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 
 # 7. Inquisitor — อินควิซิเตอร์ · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Inquisitor_male_master_ref.png` · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
 
-บันทึกไฟล์ที่: `output\sprites-v4\inquisitor\`
+บันทึกไฟล์ที่: `output\sprites-v4\inquisitor\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Inquisitor_male_master_ref_v2.png`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Inquisitor_male_master_ref.png` ไปด้วย)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -5343,7 +5403,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -5359,21 +5419,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
-The attached image is the MASTER REFERENCE of the character for this chat: Inquisitor (male).
+CHARACTER FOR THIS CHAT: Inquisitor (male), player class.
 LOOK: Chibi inquisitor with a short dark beard, wide-brimmed black hat with a red band and small gold cross, long red coat with ragged hem, silver shoulder plates and bracers, gold cross on the chest, belts with pouches, black boots.
 HAND RULE: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap.
 DEFAULT POSE: shield upright at the left side, hammer lowered at the right side.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `inquisitor_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Create the MASTER REFERENCE of Inquisitor (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield upright at the left side, hammer lowered at the right side):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\Inquisitor_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `inquisitor_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5384,10 +5464,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5398,10 +5478,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `inquisitor_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `inquisitor_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5412,10 +5492,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5426,10 +5506,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `inquisitor_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `inquisitor_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5440,10 +5520,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5454,10 +5534,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `inquisitor_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `inquisitor_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5468,10 +5548,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5484,12 +5564,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `inquisitor_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `inquisitor_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5500,10 +5580,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5514,10 +5594,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `inquisitor_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `inquisitor_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5528,10 +5608,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5542,10 +5622,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `inquisitor_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `inquisitor_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5556,10 +5636,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5570,10 +5650,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `inquisitor_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `inquisitor_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5584,10 +5664,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5600,12 +5680,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `inquisitor_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `inquisitor_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5616,10 +5696,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5630,10 +5710,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `inquisitor_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `inquisitor_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5644,10 +5724,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5658,10 +5738,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `inquisitor_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `inquisitor_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5672,10 +5752,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5686,10 +5766,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `inquisitor_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `inquisitor_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5700,10 +5780,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5716,12 +5796,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `inquisitor_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `inquisitor_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5732,10 +5812,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5746,10 +5826,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `inquisitor_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `inquisitor_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5760,10 +5840,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5774,10 +5854,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `inquisitor_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `inquisitor_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5788,10 +5868,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5802,10 +5882,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `inquisitor_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `inquisitor_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5816,10 +5896,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5832,12 +5912,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `inquisitor_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `inquisitor_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5848,10 +5928,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5862,10 +5942,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `inquisitor_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `inquisitor_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5876,10 +5956,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5890,10 +5970,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `inquisitor_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `inquisitor_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5904,10 +5984,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5918,10 +5998,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `inquisitor_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `inquisitor_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5932,10 +6012,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5948,12 +6028,12 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `inquisitor_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `inquisitor_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5964,10 +6044,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5978,10 +6058,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `inquisitor_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `inquisitor_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -5992,10 +6072,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6006,10 +6086,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `inquisitor_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `inquisitor_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6020,10 +6100,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6034,10 +6114,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `inquisitor_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `inquisitor_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6048,10 +6128,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6064,12 +6144,12 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `inquisitor_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `inquisitor_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6080,10 +6160,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6094,10 +6174,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `inquisitor_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `inquisitor_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6108,10 +6188,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6122,10 +6202,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `inquisitor_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `inquisitor_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6136,10 +6216,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6150,10 +6230,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `inquisitor_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `inquisitor_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6164,10 +6244,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Inquisitor (male):
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6188,36 +6268,13 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 
 # 8. Berserker — เบอร์เซิร์กเกอร์ · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png` · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
 
-บันทึกไฟล์ที่: `output\sprites-v4\berserker\`
+บันทึกไฟล์ที่: `output\sprites-v4\berserker\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png`
 
-## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
-
-1. เปิดแชทใหม่ แนบ `Berserker_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
-2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
-3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
-
-```text
-You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
-
-The attached image is the CURRENT design of Berserker (male). Keep the same face, hair, body proportions, color palette and art style.
-CHANGES TO MAKE: Add a black iron horned helmet with two thick curved horns and a brow guard (open face, red hair flowing out at the back). Add a heavy dark-brown wolf-fur pelt cloak over the shoulders with a ragged hem down to the knees, fastened with an iron clasp. Keep everything else, including the greatsword, exactly the same.
-
-FINAL LOOK: Chibi barbarian with long wild red hair and a full red beard (same face as the reference). Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
-HAND RULE: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt.
-Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
-
-Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (greatsword resting on the right shoulder, blade pointing up and back behind the head.):
-left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
-```
-
-- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
-
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Berserker_male_master_ref_v2.png` ไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -6231,7 +6288,7 @@ BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole 
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
-CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
+CONSISTENCY: the master reference you create in this chat is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
 HANDS: left/right always means the CHARACTER'S own left/right, not the image's. Never swap the hands of the weapon/shield/focus in any direction.
 DIRECTIONS (image left/right):
   S = facing the camera, front view
@@ -6247,21 +6304,41 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
-The attached image is the MASTER REFERENCE of the character for this chat: Berserker (male).
-LOOK: Chibi barbarian with long wild red hair and a full red beard (same face as the reference). Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
+CHARACTER FOR THIS CHAT: Berserker (male), player class.
+LOOK: Chibi barbarian with long wild red hair and a full red beard. Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
 HAND RULE: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt.
 DEFAULT POSE: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
 
-> รอให้ตอบยืนยันก่อน แล้วค่อยเริ่มขั้น 1 · ถ้าเจนไปแล้วราว 8 ภาพแล้วตัวละครเริ่มเพี้ยน ให้**แนบภาพต้นแบบซ้ำ**ในข้อความถัดไป
+> รอให้ AI ตอบยืนยันก่อน แล้วไปขั้น 1
 
-## ขั้น 1 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
-
-**1.1 ทิศ S** → บันทึกเป็น `berserker_male_walk_S_raw_v1.png`
+## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Using the attached master reference of Berserker (male):
+Create the MASTER REFERENCE of Berserker (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
+ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (greatsword resting on the right shoulder, blade pointing up and back behind the head):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
+2. พอใจแล้วตอบในแชทว่า:
+```text
+This is the approved MASTER REFERENCE. From now on, every sprite sheet in this chat must match this image 100%: same face, hair, outfit, headwear, cloak, colors, and the exact same weapon and shield shapes.
+```
+3. ดาวน์โหลดภาพเก็บไว้เป็น `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png` และ**ส่งให้ผมดู** (แนะนำให้รอผมตอบก่อนเจนต่อ จะได้ไม่เสียแรงถ้าแบบต้องแก้)
+4. ถ้าเจนไปหลายภาพแล้วตัวละครเริ่มเพี้ยน ให้แนบไฟล์ต้นแบบนี้กลับเข้าแชท แล้วพิมพ์ `Match this master reference exactly.`
+
+- [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
+
+## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**2.1 ทิศ S** → บันทึกเป็น `berserker_male_walk_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6272,10 +6349,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**1.2 ทิศ SE** → บันทึกเป็น `berserker_male_walk_SE_raw_v1.png`
+**2.2 ทิศ SE** → บันทึกเป็น `berserker_male_walk_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6286,10 +6363,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**1.3 ทิศ E** → บันทึกเป็น `berserker_male_walk_E_raw_v1.png`
+**2.3 ทิศ E** → บันทึกเป็น `berserker_male_walk_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6300,10 +6377,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**1.4 ทิศ NE** → บันทึกเป็น `berserker_male_walk_NE_raw_v1.png`
+**2.4 ทิศ NE** → บันทึกเป็น `berserker_male_walk_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6314,10 +6391,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**1.5 ทิศ N** → บันทึกเป็น `berserker_male_walk_N_raw_v1.png`
+**2.5 ทิศ N** → บันทึกเป็น `berserker_male_walk_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6328,10 +6405,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**1.6 ทิศ NW** → บันทึกเป็น `berserker_male_walk_NW_raw_v1.png`
+**2.6 ทิศ NW** → บันทึกเป็น `berserker_male_walk_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6342,10 +6419,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**1.7 ทิศ W** → บันทึกเป็น `berserker_male_walk_W_raw_v1.png`
+**2.7 ทิศ W** → บันทึกเป็น `berserker_male_walk_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6356,10 +6433,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**1.8 ทิศ SW** → บันทึกเป็น `berserker_male_walk_SW_raw_v1.png`
+**2.8 ทิศ SW** → บันทึกเป็น `berserker_male_walk_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6372,12 +6449,12 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `berserker_male_death_S_raw_v1.png`
+**3.1 ทิศ S** → บันทึกเป็น `berserker_male_death_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6388,10 +6465,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `berserker_male_death_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `berserker_male_death_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6402,10 +6479,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `berserker_male_death_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `berserker_male_death_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6416,10 +6493,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `berserker_male_death_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `berserker_male_death_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6430,10 +6507,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `berserker_male_death_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `berserker_male_death_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6444,10 +6521,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `berserker_male_death_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `berserker_male_death_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6458,10 +6535,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `berserker_male_death_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `berserker_male_death_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6472,10 +6549,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `berserker_male_death_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `berserker_male_death_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6488,12 +6565,12 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `berserker_male_hit_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `berserker_male_hit_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6504,10 +6581,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `berserker_male_hit_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `berserker_male_hit_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6518,10 +6595,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `berserker_male_hit_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `berserker_male_hit_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6532,10 +6609,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `berserker_male_hit_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `berserker_male_hit_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6546,10 +6623,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `berserker_male_hit_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `berserker_male_hit_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6560,10 +6637,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `berserker_male_hit_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `berserker_male_hit_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6574,10 +6651,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `berserker_male_hit_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `berserker_male_hit_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6588,10 +6665,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `berserker_male_hit_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `berserker_male_hit_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6604,12 +6681,12 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `berserker_male_idle_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `berserker_male_idle_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6620,10 +6697,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `berserker_male_idle_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `berserker_male_idle_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6634,10 +6711,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `berserker_male_idle_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `berserker_male_idle_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6648,10 +6725,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `berserker_male_idle_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `berserker_male_idle_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6662,10 +6739,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `berserker_male_idle_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `berserker_male_idle_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6676,10 +6753,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `berserker_male_idle_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `berserker_male_idle_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6690,10 +6767,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `berserker_male_idle_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `berserker_male_idle_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6704,10 +6781,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `berserker_male_idle_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `berserker_male_idle_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6720,12 +6797,12 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `berserker_male_normal_attack_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `berserker_male_normal_attack_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6736,10 +6813,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `berserker_male_normal_attack_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `berserker_male_normal_attack_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6750,10 +6827,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `berserker_male_normal_attack_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `berserker_male_normal_attack_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6764,10 +6841,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `berserker_male_normal_attack_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `berserker_male_normal_attack_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6778,10 +6855,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `berserker_male_normal_attack_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `berserker_male_normal_attack_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6792,10 +6869,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `berserker_male_normal_attack_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `berserker_male_normal_attack_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6806,10 +6883,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `berserker_male_normal_attack_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `berserker_male_normal_attack_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6820,10 +6897,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `berserker_male_normal_attack_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `berserker_male_normal_attack_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6836,12 +6913,12 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `berserker_male_skill_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `berserker_male_skill_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6852,10 +6929,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `berserker_male_skill_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `berserker_male_skill_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6866,10 +6943,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `berserker_male_skill_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `berserker_male_skill_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6880,10 +6957,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `berserker_male_skill_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `berserker_male_skill_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6894,10 +6971,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `berserker_male_skill_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `berserker_male_skill_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6908,10 +6985,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `berserker_male_skill_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `berserker_male_skill_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6922,10 +6999,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `berserker_male_skill_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `berserker_male_skill_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6936,10 +7013,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `berserker_male_skill_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `berserker_male_skill_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6952,12 +7029,12 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `berserker_male_buff_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `berserker_male_buff_S_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6968,10 +7045,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `berserker_male_buff_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `berserker_male_buff_SE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6982,10 +7059,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `berserker_male_buff_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `berserker_male_buff_E_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -6996,10 +7073,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `berserker_male_buff_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `berserker_male_buff_NE_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -7010,10 +7087,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `berserker_male_buff_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `berserker_male_buff_N_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -7024,10 +7101,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `berserker_male_buff_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `berserker_male_buff_NW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -7038,10 +7115,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `berserker_male_buff_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `berserker_male_buff_W_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
@@ -7052,10 +7129,10 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `berserker_male_buff_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `berserker_male_buff_SW_raw_v1.png`
 
 ```text
-Using the attached master reference of Berserker (male):
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
