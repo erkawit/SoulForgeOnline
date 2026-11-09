@@ -96,12 +96,15 @@ Keep the same design, outfit, headwear, cloak, weapon and shield shapes, and the
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -989,12 +992,15 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -1882,12 +1888,15 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -2775,12 +2784,15 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -3669,12 +3681,15 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -4563,12 +4578,15 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -5456,12 +5474,15 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -6349,12 +6370,15 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.

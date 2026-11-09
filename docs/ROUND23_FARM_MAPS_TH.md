@@ -1,5 +1,7 @@
 # Round 23 — แผนที่ฟาร์มมอนสเตอร์ใหม่ (รองรับ 100 คน/แชแนล) + prompt เจนภาพ
 
+> **กฎโทน (บังคับ):** ทุกภาพแผนที่ต้อง **ดาร์คและหลอน** — บรรทัด `MOOD:` ในทุก prompt ด้านล่างห้ามลบ
+
 ## 0. ทำไมต้องทำใหม่
 แผนที่ทุ่งตอนนี้ (เช่น `public/art/world/hollow/field-bottom.webp`) มีปัญหา 3 อย่าง:
 1. **เล็ก:** ทุ่งกว้าง 140 × 140 ม. มีจุดล่าแค่ 10 จุด ถ้าคน 100 คนอยู่แชแนลเดียวกัน จะได้พื้นที่คนละราว 14 × 14 ม. ซึ่งแน่นเกินไป
@@ -32,7 +34,8 @@ The playable area is a single wide diamond (isometric square) filling the canvas
 Layout: one large open central plaza (about one sixth of the width), 3–4 smaller clearings, wide dirt main roads (clearly lighter than the ground) connecting them, and 30 open grassy hunting pockets spread evenly across the whole area. Keep at least 60% of the area OPEN walkable ground.
 Obstacles only as clusters at the edges and between pockets: [THEME].
 A clearly visible gate/archway at the [GATE SIDE] corner where players enter.
-No characters, no monsters, no text, no UI, no labels, no grid. Even lighting, readable from far away, crisp edges.
+No characters, no monsters, no text, no UI, no labels, no grid. Readable from far away, crisp edges.
+MOOD: grimdark and HAUNTED - cold moonlit night, drifting low fog in the hollows, desaturated dead colors, deep shadows, sparse flickering torch or candle light in warm orange, ghostly pale-teal glows, dead trees, graves and bones, ruined gothic stone. Eerie and lonely, like a cursed land. Keep roads and open ground clearly readable.
 Landscape 1536x1024.
 ```
 `[THEME]` และ `[GATE SIDE]` ของแต่ละทุ่ง:
@@ -59,6 +62,7 @@ Landscape 1536x1024.
 Seamless tileable ground texture for a dark-fantasy isometric game, viewed straight from above, [MATERIAL].
 Muted grimdark palette, painted (not photo), medium detail that still reads at small scale, no large single features, no shadows from off-tile objects, no text.
 Must tile perfectly on all four edges. Square 1024x1024.
+MOOD: grimdark and haunted - dark, desaturated, dead and cursed-looking ground (ash, dried blood-brown soil, pale bone fragments, cracked stone), evenly lit with no strong highlights.
 ```
 `[MATERIAL]` ชุดที่ต้องใช้:
 1. `dead dry grass with patches of dark soil`
@@ -75,6 +79,7 @@ Must tile perfectly on all four edges. Square 1024x1024.
 Sprite sheet of [N] separate dark-fantasy isometric props for a 2.5D game, each object isolated with generous empty space around it, on a pure black background, same isometric camera angle (about 30 degrees from above), soft top-left light, painted grimdark style, no ground plane, no shadows on the background, no text.
 Objects: [LIST].
 Grid [COLS]x[ROWS], equal cells. Landscape 1536x1024.
+MOOD: grimdark and HAUNTED - weathered, decayed, cursed-looking objects (rot, rust, cracks, cobwebs, dripping candle wax, bones, faint ghostly glow where fitting), low-key lighting, muted dirty colors.
 ```
 ตัวอย่าง `[LIST]` (ใส่ `[N]`=12, grid 4×3):
 - สุสาน: `dead black tree (3 variants), broken tombstone (3 variants), stone sarcophagus, ruined chapel wall, iron fence segment, ember brazier, bone pile, stone angel statue`

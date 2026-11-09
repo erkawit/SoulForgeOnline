@@ -5,7 +5,7 @@
 
 ## A. วิธีใช้ (อ่านก่อนเจน)
 
-1. **เปิดแชทใหม่ 1 แชทต่อ 1 ตัวละคร/มอนสเตอร์** แล้ววาง **ส่วน B** เป็นข้อความแรก
+1. **เปิดแชทใหม่ 1 แชทต่อ 1 ตัวละคร/มอนสเตอร์/ชุดแผนที่** แล้ววาง **ส่วน B** เป็นข้อความแรก (ทุกงานในเกมต้อง **ดาร์คและหลอน** กฎนี้อยู่ในส่วน B และทุกแม่แบบมีบรรทัด `MOOD:` ย้ำไว้แล้ว ห้ามลบ)
 2. **ทำ Master Reference ก่อน** (C1 หรือ C4.1) → เลือกภาพที่ชอบ → บอกผมว่า `APPROVED` → ใช้ภาพนี้ **แนบทุกครั้ง** ที่เจนชีต
 3. **เจนชีตทีละ 1 ท่า × 1 ทิศ ต่อ 1 ภาพ** (C2) — ตัวละคร 1 ตัว ท่า 1 ท่า = 8 ภาพ (8 ทิศ) **ห้ามขอให้กลับภาพ (mirror)**
 4. ถ้าภาพผิด (มือสลับ, ทิศผิด, ตัวเล็ก/ใหญ่ไม่เท่าต้นแบบ, มีพื้นหรือเงา) **เจนใหม่ อย่าแก้ด้วยการกลับภาพ**
@@ -28,12 +28,15 @@
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-DARK TONE (mandatory for every character):
+DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
   - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
   - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
   - Heavy painterly brushwork with strong contrast between light and shadow.
+  - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
+  - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
+  - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
@@ -163,6 +166,7 @@ IDLE/WALK: sword pointing down-forward at the right side; rune stone raised at w
 Create the MASTER REFERENCE for the monster [NAME], family [HUMANOID/BEAST/UNDEAD/DEMON/...], rank [normal/elite], size [small/medium/large].
 Look: [describe body, limbs, head, tail/wings, material, colors]. Attack uses: [claws/bite/weapon in which hand].
 Three views side by side: S, SE, N. Same camera and light as section B. Flat #FF00FF background. Not chibi unless stated.
+MOOD: grimdark and HAUNTED horror creature - low-key lighting, deep shadows, muted dirty colors, rot, cracked bone, scars, unnatural eerie details (hollow glowing eyes, too-long limbs, ghostly wisps clinging to the body), cold sickly teal/green rim light. Frightening and unsettling but readable, no gore.
 ```
 ### C4.2 ชีตมอนสเตอร์ (1536 × 1024)
 ```text
@@ -170,12 +174,14 @@ Using the attached master reference of [NAME]: sprite sheet of [idle/walk/normal
 Grid 4 x 2 = 8 frames (idle: 3 x 2 = 6; heavy_attack: 5 x 2 = 10). Same size and feet position in every frame. Flat #FF00FF background.
 Motion: [walk: legs alternate naturally for this body type | attack: wind-up, bite/claw/strike, recover | heavy_attack: bigger wind-up, ground slam with a small impact area, recover | death: collapse and lie still on the last frame].
 Body parts (legs, tail, wings, horns) must turn with the direction; do not mirror.
+MOOD: grimdark and HAUNTED horror creature - low-key lighting, deep shadows, muted dirty colors, rot, cracked bone, scars, unnatural eerie details (hollow glowing eyes, too-long limbs, ghostly wisps clinging to the body), cold sickly teal/green rim light. Frightening and unsettling but readable, no gore.
 ```
 ### C4.3 บอส (1024 × 1024 ต่อภาพ, 2 × 2 = 4 เฟรมต่อภาพ — ท่า 8 เฟรมใช้ 2 ภาพ)
 ```text
 Using the attached boss master reference [BOSS NAME] (boss type [map_boss/dungeon_boss]): frames [1-4 / 5-8] of [ACTION/SKILL NAME], direction [DIR].
 Grid 2 x 2, equal cells 512x512. The boss is large: keep the whole body inside each cell with margin; same size in every frame. Flat #FF00FF background.
 Skill motion: [describe anticipation, impact, recovery]. Draw the warning circle / spell effects in a SEPARATE request.
+MOOD: grimdark and HAUNTED nightmare boss - huge, oppressive presence, deep shadows, muted dirty colors with one eerie glowing accent, cursed and decayed details (cracked bone, rusted chains, torn flesh-like cloth, ghostly wisps), cold sickly rim light. Terrifying but readable, no gore.
 ```
 
 ---
@@ -190,6 +196,7 @@ Layout: one large open central plaza (about one sixth of the width), 3-4 smaller
 Obstacles only in clusters at the edges and between pockets: [THEME].
 A clear gate/archway at the [top/right/bottom/left] corner with a small safe plaza.
 No characters, no monsters, no text, no UI, no labels, no grid. Even lighting, crisp edges. Landscape 1536x1024.
+MOOD: grimdark and HAUNTED - cold moonlit night, drifting low fog in the hollows, desaturated dead colors, deep shadows, sparse flickering torch or candle light in warm orange, ghostly pale-teal glows, dead trees, graves and bones, ruined gothic stone. Eerie and lonely, like a cursed land. Keep roads and open ground clearly readable.
 ```
 THEME ของแต่ละทุ่งดูได้ใน `ROUND23_FARM_MAPS_TH.md` ข้อ 3
 
@@ -197,12 +204,14 @@ THEME ของแต่ละทุ่งดูได้ใน `ROUND23_FARM_MA
 ```text
 Seamless tileable ground texture for a dark-fantasy isometric game, seen straight from above, [dead dry grass with dark soil patches | packed light-brown dirt road with pebbles | worn grey flagstone with cracks and moss | grey volcanic ash with cinders | wet dark mud with puddles | rocky ground with small stones].
 Painted, muted grimdark palette, medium detail, no large single features, no shadows from outside objects, no text. Must tile perfectly on all four edges. Square 1024x1024.
+MOOD: grimdark and haunted - dark, desaturated, dead and cursed-looking ground (ash, dried blood-brown soil, pale bone fragments, cracked stone), evenly lit with no strong highlights.
 ```
 
 ### C5.3 ของประกอบฉาก — 1536 × 1024
 ```text
 Sprite sheet of 12 separate dark-fantasy props, grid 4 x 3 equal cells, each object isolated with empty space, same 30-degree 3/4 camera and top-left light as section B, flat #FF00FF background, no ground plane, no shadows, no text.
 Objects: [e.g. dead black tree x3, broken tombstone x3, stone sarcophagus, ruined chapel wall, iron fence segment, ember brazier, bone pile, stone angel statue].
+MOOD: grimdark and HAUNTED - weathered, decayed, cursed-looking objects (rot, rust, cracks, cobwebs, dripping candle wax, bones, faint ghostly glow where fitting), low-key lighting, muted dirty colors.
 ```
 
 ---
@@ -215,6 +224,7 @@ Four loot chests for a dark-fantasy isometric game, grid 2 x 2 equal cells, same
 All four show the [WEAPON: crossed swords over a shield | ARMOR: chest armor | ACCESSORY: ring] emblem on the front, readable from above.
 Rarity per cell (top-left, top-right, bottom-left, bottom-right): [Common white | Uncommon green | Rare light blue | Epic purple] (second image: [Legendary red | God gold | Pre-Arch flame orange | Arch sparkling violet with unique crystal shards]).
 Each higher rarity is more ornate: better materials, metal trim, glow; Arch must look clearly different from Epic, not only by color.
+MOOD: grimdark and HAUNTED - old cursed chests of dark wood and tarnished metal, scratches, rust, wax seals, small skull or chain details; rarity is shown by materials and an eerie glow color, never by bright cartoon colors.
 ```
 (3 ประเภท × 2 ภาพ = 6 ภาพ ได้ครบ 24 หีบ)
 
@@ -222,12 +232,14 @@ Each higher rarity is more ornate: better materials, metal trim, glow; Arch must
 ```text
 Eight inventory icons of the same item type: [one-handed holy sword for Paladin], tiers 1 to 8 left-to-right, top-to-bottom, each more ornate than the last (tier 1 plain iron ... tier 8 legendary relic).
 One object per cell, centered, 3/4 angle, top-left light, flat #FF00FF background, no frame, no rarity border, no text.
+MOOD: grimdark and HAUNTED - dark worn materials, tarnished metal, grime, faint eerie glow on higher tiers, muted dirty colors, painterly; never shiny cartoon style.
 ```
 
 ### C6.3 ป้าย NPC — 1024 × 1024 (4 ป้าย/ภาพ, 2 × 2)
 ```text
 Four floating wooden shop signs shaped like a heater shield, carved dark wood with iron rim, each with a painted service symbol: [basket | crossed swords and anvil | hammer and anvil | chest armor] (other sets: [ring | crafting tools | treasure chest | quest scroll with exclamation mark | warp portal ring]).
 Front view, flat #FF00FF background, no text, no shadows.
+MOOD: grimdark and HAUNTED - old cracked dark wood, rusted iron, faded paint, cobwebs, a faint candle-warm glow on the symbol.
 ```
 
 ### C6.4 เอฟเฟกต์สกิล — 1536 × 1024 (8 เฟรม 4 × 2)
@@ -235,6 +247,7 @@ Front view, flat #FF00FF background, no text, no shadows.
 Spell effect animation only (no character): [describe: e.g. teal rune pillar erupting from the ground, 3 m tall, golden runes orbiting].
 Grid 4 x 2 = 8 frames: 1-2 appear, 3-5 peak, 6-8 fade. Same 30-degree camera. Pure flat BLACK background (the game blends it additively). No text.
 Main color [class accent].
+MOOD: dark and HAUNTED magic - eerie, smoky, ghostly shapes and wisps, cold sickly glows mixed with the class color, no cute sparkles or hearts.
 ```
 
 ---
