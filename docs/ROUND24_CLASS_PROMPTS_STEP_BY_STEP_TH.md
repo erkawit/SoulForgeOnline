@@ -2,7 +2,7 @@
 
 ## ลำดับการทำ
 ทำทีละอาชีพตามเลขไฟล์ `01` → `08` แต่ละอาชีพใช้ **1 แชทใหม่** (ChatGPT หรือ Gemini)
-1. เปิดไฟล์ของอาชีพนั้น ทำ **ขั้น 0** (วางข้อความ + แนบภาพต้นแบบ) รอ AI ตอบยืนยัน
+1. ถ้าไฟล์มี **ขั้น M** ทำก่อน (สร้างต้นแบบใหม่ ส่งให้ผมอนุมัติ) แล้วทำ **ขั้น 0** (วางข้อความ + แนบภาพต้นแบบ) รอ AI ตอบยืนยัน
 2. ไล่ **ขั้น 1 → 7** คัดลอกทีละกล่อง 1 กล่อง = 1 ภาพ = 1 ท่า × 1 ทิศ
 3. บันทึกภาพตามชื่อที่เขียนไว้เหนือแต่ละกล่อง ลงโฟลเดอร์ `output\sprites-v4\<อาชีพ>\`
 4. ครบแต่ละท่า (8 ภาพ) บอกผมได้เลย ผมจะต่อเข้าเกมและส่งภาพให้ดูก่อน
@@ -48,24 +48,58 @@
 - อาวุธงอ/บิด/เปลี่ยนแบบ: `Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
 - จำนวนช่องผิด: `Wrong grid. Redo with exactly <จำนวน> equal cells.`
 
-## หมายเหตุเรื่องหน้าตา
-คำอธิบายในไฟล์เหล่านี้เขียน**ตามภาพที่ใช้อยู่ในเกมตอนนี้** เพื่อให้ภาพใหม่เข้ากับของเดิม
-ต่างจากกฎ v4.1.0 สองจุด: HighPriest ถือลูกแสง (ไม่ใช่คัมภีร์) และ Berserker เป็นนักรบผมแดงเปลือยท่อนบน (ไม่ใช่เกราะดำ)
-ถ้าต้องการให้ตรงกฎแทน บอกผม ผมจะเปลี่ยนคำอธิบายและต้องเจนใหม่ทุกท่าของอาชีพนั้น
+## ชุดบังคับของแต่ละอาชีพ (ปรับรอบนี้)
+| อาชีพ | ผ้าคลุม | หมวก/ของสวมหัว | ต้องทำต้นแบบใหม่ (ขั้น M) |
+|---|---|---|---|
+| Paladin | ผ้าคลุมยาวสีน้ำเงิน ลายพระอาทิตย์ทอง | หมวกเหล็กเปิดหน้า มีปีกนกสองข้าง | **ใช่** (โล่มีปีกสยายด้านบน ดาบมีปีกที่โกร่ง) |
+| Berserker | ผ้าคลุมหนังขนหมาป่าสีน้ำตาลเข้ม | หมวกเหล็กดำมีเขาโค้ง | **ใช่** |
+| Assassin | ผ้าคลุมสั้นสีดำซับม่วง ชายขาด | ฮู้ด + ผ้าปิดหน้า (ของเดิม) | **ใช่** |
+| Hawkeye | ผ้าคลุมเขียว (ของเดิม) | ฮู้ด (ของเดิม) | ไม่ต้อง |
+| HighPriest | — | หมวกไมเตอร์ (หมวกบิชอป) ขาว-ทอง | **ใช่** |
+| Inquisitor | — | หมวกปีกกว้าง (ของเดิม) | ไม่ต้อง |
+| Elementalist | — | ไม่มี (ตามที่กำหนด) | ไม่ต้อง |
+| RuneMaster | — | ไม่มี (ตามที่กำหนด) | ไม่ต้อง |
 
-## ท่าที่มีอยู่แล้ว (ข้ามได้ก่อน)
-Paladin: ตาย บัฟ · Assassin: ตาย บัฟ · Berserker: ตาย บัฟ — ผมจะตรวจของเดิมก่อน ถ้าไม่ผ่านค่อยเจน
+อาชีพที่ต้องทำต้นแบบใหม่: ทำ **ขั้น M** ก่อน แล้วส่งภาพให้ผมดู ผมตอบ APPROVED แล้วค่อยเริ่มขั้น 0 โดยแนบไฟล์ `_master_ref_v2.png`
+ชีตเก่าของอาชีพเหล่านี้ (รวมท่าตาย/บัฟที่เคยบอกให้ข้าม) **ใช้ไม่ได้แล้ว ต้องเจนใหม่ทุกท่า** เพราะชุดเปลี่ยน
+
+คำอธิบายหน้าตายังตามภาพในเกมเป็นหลัก: HighPriest ถือลูกแสง (ไม่ใช่คัมภีร์) และ Berserker เปลือยท่อนบน
 
 
 ---
 
 # 1. Paladin — พาลาดิน · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Paladin_male_master_ref.png` · พื้นหลัง **#FF00FF**
+ภาพต้นแบบ: `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png` · พื้นหลัง **#FF00FF**
 
 บันทึกไฟล์ที่: `output\sprites-v4\paladin\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+
+อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
+
+1. เปิดแชทใหม่ แนบ `Paladin_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
+2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
+3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
+
+```text
+You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
+
+The attached image is the CURRENT design of Paladin (male). Keep the same face, hair, body proportions, color palette and art style.
+CHANGES TO MAKE: Add an open-face silver helmet with a pair of white-and-silver bird wings on BOTH sides (face still visible). Add a long deep-blue cape with gold trim and a golden sun on the back. Add small gold wing engravings to the pauldrons. Change the shield: keep the deep blue kite shield with the golden sun, and add a pair of spread silver-and-gold wings rising from its TOP edge. Change the sword: keep the straight longsword, and replace the crossguard with a WINGED crossguard (two small metal wings spread sideways between the blade and the grip).
+
+FINAL LOOK: Chibi holy knight with short brown hair and blue eyes (same face as the reference). Open-face polished silver helmet with a pair of white-and-silver bird wings spreading from BOTH sides of the helmet. Polished silver plate armor with gold trim and small gold wing engravings on the pauldrons, deep blue tabard with a golden sun emblem, brown leather belt. Long deep-blue cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in deep blue with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
+HAND RULE: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction.
+Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
+
+Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Paladin_male_master_ref_v2.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -96,8 +130,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Paladin (male).
-LOOK: Chibi holy knight with short messy brown hair and blue eyes, polished silver plate armor with gold trim, deep blue tabard with a golden sun emblem, brown leather belt, blue cape on the back. Kite shield in deep blue with a golden sun and gold rim.
-HAND RULE: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction.
+LOOK: Chibi holy knight with short brown hair and blue eyes (same face as the reference). Open-face polished silver helmet with a pair of white-and-silver bird wings spreading from BOTH sides of the helmet. Polished silver plate armor with gold trim and small gold wing engravings on the pauldrons, deep blue tabard with a golden sun emblem, brown leather belt. Long deep-blue cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in deep blue with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
+HAND RULE: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction.
 DEFAULT POSE: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
 ```
@@ -113,7 +147,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -127,7 +161,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -141,7 +175,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -155,7 +189,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -169,7 +203,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -183,7 +217,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -197,7 +231,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -211,7 +245,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -222,8 +256,6 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 ## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-> ⚠️ อาชีพนี้มีชีตท่านี้อยู่แล้ว (ชุดเก่า) — **ข้ามไปก่อน** ให้ผมตรวจของเดิมว่าใช้ได้ไหม ถ้าไม่ผ่านค่อยกลับมาเจนขั้นนี้
-
 **2.1 ทิศ S** → บันทึกเป็น `paladin_male_death_S_raw_v1.png`
 
 ```text
@@ -231,7 +263,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -245,7 +277,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -259,7 +291,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -273,7 +305,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -287,7 +319,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -301,7 +333,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -315,7 +347,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -329,7 +361,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -347,7 +379,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -361,7 +393,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -375,7 +407,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -389,7 +421,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -403,7 +435,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -417,7 +449,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -431,7 +463,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -445,7 +477,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -463,7 +495,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -477,7 +509,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -491,7 +523,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -505,7 +537,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -519,7 +551,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -533,7 +565,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -547,7 +579,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -561,7 +593,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -579,7 +611,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -593,7 +625,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -607,7 +639,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -621,7 +653,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -635,7 +667,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -649,7 +681,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -663,7 +695,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -677,7 +709,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -695,7 +727,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -709,7 +741,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -723,7 +755,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -737,7 +769,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -751,7 +783,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -765,7 +797,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -779,7 +811,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -793,7 +825,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -804,8 +836,6 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 
 ## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-> ⚠️ อาชีพนี้มีชีตท่านี้อยู่แล้ว (ชุดเก่า) — **ข้ามไปก่อน** ให้ผมตรวจของเดิมว่าใช้ได้ไหม ถ้าไม่ผ่านค่อยกลับมาเจนขั้นนี้
-
 **7.1 ทิศ S** → บันทึกเป็น `paladin_male_buff_S_raw_v1.png`
 
 ```text
@@ -813,7 +843,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -827,7 +857,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -841,7 +871,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -855,7 +885,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -869,7 +899,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -883,7 +913,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -897,7 +927,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -911,7 +941,7 @@ Using the attached master reference of Paladin (male):
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
-Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
 Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
@@ -932,7 +962,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 
 บันทึกไฟล์ที่: `output\sprites-v4\hawkeye\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Hawkeye_male_master_ref.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -1795,7 +1825,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 
 บันทึกไฟล์ที่: `output\sprites-v4\runemaster\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `RuneMaster_male_master_ref.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -2658,7 +2688,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 
 บันทึกไฟล์ที่: `output\sprites-v4\elementalist\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Elementalist_male_master_ref.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -3518,11 +3548,36 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 
 # 5. Assassin — แอสแซสซิน · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Assassin_male_master_ref.png` · พื้นหลัง **#00FF00**
+ภาพต้นแบบ: `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png` · พื้นหลัง **#00FF00**
 
 บันทึกไฟล์ที่: `output\sprites-v4\assassin\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+
+อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
+
+1. เปิดแชทใหม่ แนบ `Assassin_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
+2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
+3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
+
+```text
+You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
+
+The attached image is the CURRENT design of Assassin (male). Keep the same face, hair, body proportions, color palette and art style.
+CHANGES TO MAKE: Turn the hood into part of a proper short ragged black cloak with dark purple lining, from the shoulders to mid-thigh, torn and split at the hem, flowing behind the body. Keep the hood, mask, armor and both daggers exactly the same.
+
+FINAL LOOK: Chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
+HAND RULE: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present.
+Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
+
+Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (crouched ready stance, knees bent, both daggers held low at the sides.):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
+Flat solid #00FF00 background, no floor, no shadow, no text, no labels, no frames.
+```
+
+- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Assassin_male_master_ref_v2.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -3554,7 +3609,7 @@ WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object tha
 This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Assassin (male).
-LOOK: Chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible, black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, ragged dark cloth tails, black boots.
+LOOK: Chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
 HAND RULE: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present.
 DEFAULT POSE: crouched ready stance, knees bent, both daggers held low at the sides.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -3679,8 +3734,6 @@ Motion: walking loop in place (the character does not travel across the cell): f
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
 ## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
-
-> ⚠️ อาชีพนี้มีชีตท่านี้อยู่แล้ว (ชุดเก่า) — **ข้ามไปก่อน** ให้ผมตรวจของเดิมว่าใช้ได้ไหม ถ้าไม่ผ่านค่อยกลับมาเจนขั้นนี้
 
 **2.1 ทิศ S** → บันทึกเป็น `assassin_male_death_S_raw_v1.png`
 
@@ -4262,8 +4315,6 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 
 ## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-> ⚠️ อาชีพนี้มีชีตท่านี้อยู่แล้ว (ชุดเก่า) — **ข้ามไปก่อน** ให้ผมตรวจของเดิมว่าใช้ได้ไหม ถ้าไม่ผ่านค่อยกลับมาเจนขั้นนี้
-
 **7.1 ทิศ S** → บันทึกเป็น `assassin_male_buff_S_raw_v1.png`
 
 ```text
@@ -4386,11 +4437,36 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 
 # 6. HighPriest — ไฮพรีสต์ (PRIEST) · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\HighPriest_male_master_ref.png` · พื้นหลัง **#FF00FF**
+ภาพต้นแบบ: `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png` · พื้นหลัง **#FF00FF**
 
 บันทึกไฟล์ที่: `output\sprites-v4\highpriest\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+
+อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
+
+1. เปิดแชทใหม่ แนบ `HighPriest_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
+2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
+3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
+
+```text
+You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
+
+The attached image is the CURRENT design of HighPriest (male). Keep the same face, hair, body proportions, color palette and art style.
+CHANGES TO MAKE: Add a tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons hanging at the back; some blond hair still visible below it. Keep the robes, the sceptre and the light orb exactly the same.
+
+FINAL LOOK: Chibi young priest with soft blond hair and grey eyes (same face as the reference). Tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
+HAND RULE: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap.
+Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
+
+Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `HighPriest_male_master_ref_v2.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -4421,7 +4497,7 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: HighPriest (male).
-LOOK: Chibi young priest with soft blond hair and grey eyes, long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
+LOOK: Chibi young priest with soft blond hair and grey eyes (same face as the reference). Tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
 HAND RULE: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap.
 DEFAULT POSE: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -5253,7 +5329,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 
 บันทึกไฟล์ที่: `output\sprites-v4\inquisitor\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Inquisitor_male_master_ref.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -6112,11 +6188,36 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 
 # 8. Berserker — เบอร์เซิร์กเกอร์ · prompt ทีละขั้น (ชาย)
 
-ภาพต้นแบบ: `output\sprites-v4\master-refs\Berserker_male_master_ref.png` · พื้นหลัง **#FF00FF**
+ภาพต้นแบบ: `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png` · พื้นหลัง **#FF00FF**
 
 บันทึกไฟล์ที่: `output\sprites-v4\berserker\`
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบภาพต้นแบบไปด้วย)
+## ขั้น M — ออกแบบต้นแบบใหม่ (ทำครั้งเดียว ก่อนขั้น 0)
+
+อาชีพนี้เปลี่ยนชุด (ผ้าคลุม/หมวก/อาวุธ) ภาพต้นแบบเดิมจึงใช้ไม่ได้แล้ว ต้องสร้างต้นแบบใหม่ก่อน
+
+1. เปิดแชทใหม่ แนบ `Berserker_male_master_ref.png` (ต้นแบบเดิม) แล้ววางข้อความด้านล่าง
+2. ถ้าไม่ชอบ ให้ตอบ `Redo` หรือบอกจุดที่ต้องแก้ เจนจนพอใจ
+3. บันทึกภาพที่เลือกเป็น `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png` แล้ว**ส่งให้ผมดูก่อน** ผมตรวจแล้วตอบว่า APPROVED จึงเริ่มขั้น 0
+
+```text
+You are designing the MASTER REFERENCE for "SoulForge", a 2.5D dark-fantasy MMORPG. Painted dark-fantasy chibi style (head about 1/3 of the height), gothic grimdark palette, fixed 3/4 top-down camera about 30 degrees, orthographic, key light from the top-left, no ground shadow.
+
+The attached image is the CURRENT design of Berserker (male). Keep the same face, hair, body proportions, color palette and art style.
+CHANGES TO MAKE: Add a black iron horned helmet with two thick curved horns and a brow guard (open face, red hair flowing out at the back). Add a heavy dark-brown wolf-fur pelt cloak over the shoulders with a ragged hem down to the knees, fastened with an iron clasp. Keep everything else, including the greatsword, exactly the same.
+
+FINAL LOOK: Chibi barbarian with long wild red hair and a full red beard (same face as the reference). Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
+HAND RULE: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt.
+Weapons and shields are rigid objects with clean, symmetric, well-defined shapes.
+
+Output: ONE image 1536x1024 landscape, three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (greatsword resting on the right shoulder, blade pointing up and back behind the head.):
+left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, so the cape/cloak and the back of the headwear are clearly visible).
+Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+```
+
+- [ ] ต้นแบบใหม่ได้ APPROVED แล้ว
+
+## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้ (แนบ `Berserker_male_master_ref_v2.png` ไปด้วย)
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
@@ -6147,7 +6248,7 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Berserker (male).
-LOOK: Chibi barbarian with long wild red hair and a full red beard, bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest, grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
+LOOK: Chibi barbarian with long wild red hair and a full red beard (same face as the reference). Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
 HAND RULE: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt.
 DEFAULT POSE: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -6272,8 +6373,6 @@ Motion: walking loop in place (the character does not travel across the cell): f
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
 ## ขั้น 2 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
-
-> ⚠️ อาชีพนี้มีชีตท่านี้อยู่แล้ว (ชุดเก่า) — **ข้ามไปก่อน** ให้ผมตรวจของเดิมว่าใช้ได้ไหม ถ้าไม่ผ่านค่อยกลับมาเจนขั้นนี้
 
 **2.1 ทิศ S** → บันทึกเป็น `berserker_male_death_S_raw_v1.png`
 
@@ -6854,8 +6953,6 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
 ## ขั้น 7 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
-
-> ⚠️ อาชีพนี้มีชีตท่านี้อยู่แล้ว (ชุดเก่า) — **ข้ามไปก่อน** ให้ผมตรวจของเดิมว่าใช้ได้ไหม ถ้าไม่ผ่านค่อยกลับมาเจนขั้นนี้
 
 **7.1 ทิศ S** → บันทึกเป็น `berserker_male_buff_S_raw_v1.png`
 

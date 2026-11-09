@@ -91,9 +91,11 @@ Motion: [PASTE THE MOTION LINE FROM C2.1]
 
 ## C3. Class blocks (วางใน C1 และใช้ HAND RULE ใน C2)
 
+> ชุดบังคับ v4.1: ผ้าคลุม = Paladin, Berserker, Assassin, Hawkeye · ของสวมหัว = ทุกอาชีพ ยกเว้น Elementalist และ RuneMaster (Hawkeye/Assassin ใช้ฮู้ด) — ดูกฎหลักข้อ 17.6
+
 **C3.1 Paladin**
 ```text
-CLASS: Paladin (holy knight). Heavy plate armor, closed helmet with small wing crests, long cape on the back, tabard with a golden sun emblem. Colors: steel silver, deep blue, gold trim. Accent glow #ffe08a.
+CLASS: Paladin (holy knight). Short brown hair, blue eyes. Open-face silver helmet with a pair of white-and-silver bird wings on BOTH sides. Silver plate armor with gold trim and gold wing engravings on the pauldrons, deep blue tabard with a golden sun emblem, long deep-blue cape with a golden sun on the back. Deep blue kite shield with a golden sun and a pair of spread wings rising from its TOP edge. Longsword with a WINGED crossguard (two small metal wings between the blade and the grip). Accent glow #ffe08a.
 HAND RULE: one-handed sword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap.
 IDLE: shield held naturally at the left side, face of the shield upright (not flat to the ground), tip pointing down; sword lowered forward at the right side.
 WALK: same as idle with natural arm swing; shield stays upright.
@@ -101,7 +103,7 @@ ATTACK: shield raised to a vertical guard in front, sword strikes; shield bash =
 ```
 **C3.2 Berserker**
 ```text
-CLASS: Berserker. Black iron armor, black Demon-Lord style helmet with horns, black gauntlets and boots, glowing red eyes, torn dark cloth. Accent #ff4a3a.
+CLASS: Berserker. Long wild red hair and full red beard, black iron horned helmet (two thick curved horns, open face), bare scarred muscular chest, black spiked iron pauldron and arm guards, heavy dark-brown wolf-fur pelt cloak down to the knees, fur loincloth, black boots. Huge dark-steel greatsword. Accent #ff4a3a.
 HAND RULE: one two-handed greatsword gripped with BOTH hands.
 IDLE/WALK: both hands on the hilt, the blade held horizontal (parallel to the ground) and pointing BEHIND the character; when the character turns, the blade keeps pointing to the character's back.
 ATTACK: big two-handed swings and overhead slams.
@@ -115,8 +117,8 @@ ATTACK: draw and release; bow, string, arrow and hands line up correctly.
 ```
 **C3.4 HighPriest (PRIEST)**
 ```text
-CLASS: HighPriest (holy priest). Long white-and-gold holy robes, mantle, holy symbol. Accent #ffdb86.
-HAND RULE: one-handed holy sceptre in the character's RIGHT hand; holy book (scripture) in the character's LEFT hand. Both always present.
+CLASS: HighPriest (holy priest). Soft blond hair, tall cream-white and gold mitre (bishop hat) with a gold cross, long cream-white and gold robes with heavy gold embroidery and wide sleeves. Accent #ffdb86.
+HAND RULE: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating above the open LEFT palm. Both always present.
 IDLE/WALK: sceptre upright at the right side, book held against the chest/at the waist on the left.
 ```
 **C3.5 Elementalist**
@@ -135,7 +137,7 @@ IDLE/WALK: shield at the left side, face upright; hammer lowered at the right si
 ```
 **C3.7 Assassin**
 ```text
-CLASS: Assassin. Light armor like the archer but darker and duller, hood over the head, cloth mask covering the lower face, ragged assassin cape. Colors: charcoal, dark violet. Accent #c97bff. (Use the #00FF00 green background for this class.)
+CLASS: Assassin. Black hood with dark purple lining, cloth mask over the lower face, short ragged black cloak with purple lining (shoulders to mid-thigh, torn hem), black leather and dark-metal light armor with straps, purple sash. Accent #c97bff. (Use the #00FF00 green background for this class.)
 HAND RULE: one dagger in EACH hand (left and right). Both daggers always present.
 IDLE/WALK: crouched ready stance, daggers held low, reverse grip allowed.
 ```
