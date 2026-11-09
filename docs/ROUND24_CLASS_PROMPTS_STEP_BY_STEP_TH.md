@@ -40,6 +40,19 @@
 - ChatGPT: กล่องที่เขียน `1536x1024 landscape` เลือก **Landscape**; `1024x1024 square` เลือก **Square**
 - Gemini: ใช้ข้อความในกล่องได้เลย ถ้าได้อัตราส่วนผิด ให้ตอบว่า "regenerate at exactly 1536x1024"
 
+## ถ้าภาพออกมาสว่าง/น่ารัก/เหมือนอนิเมะเกินไป (ไม่ดาร์ค)
+ตอบในแชทเดิมด้วยข้อความนี้ (ใช้ได้ทุกอาชีพ):
+```text
+Too bright and too cute. Redo the same design in a much darker grimdark style:
+- low-key lighting, most of the body in deep shadow, only top-left edges lit
+- desaturate all colors by about 40%; tarnished antique gold instead of bright gold; dull scratched gunmetal instead of shiny silver; darker, dirtier cloth
+- add wear: scratches, dents, soot, mud on boots and hem, frayed cloth edges
+- grim battle-hardened face: narrower eyes, heavy brows, no sparkle, no cute expression
+- heavy painterly brushwork, strong light-dark contrast, like Diablo / Darkest Dungeon art
+Keep the same design, outfit, headwear, cloak, weapon and shield shapes, and the same 3-view layout.
+```
+ถ้ายังสว่างอยู่ ส่งซ้ำพร้อมเพิ่มบรรทัด `Even darker. Overall image value should be mostly dark midtones.`
+
 ## ถ้าภาพผิด ให้ตอบกลับด้วยประโยคเหล่านี้ (เจนใหม่ อย่าแก้ด้วยการกลับภาพ)
 - มือสลับ: `Wrong hands. Redo: the weapon must be in the character's RIGHT hand as in the master reference.`
 - ทิศผิด: `Wrong direction. Redo facing <ทิศตามกล่อง>.`
@@ -82,8 +95,14 @@
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -108,7 +127,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 CHARACTER FOR THIS CHAT: Paladin (male), player class.
-LOOK: Chibi holy knight with short brown hair and blue eyes. Open-face polished silver helmet with a pair of white-and-silver bird wings spreading from BOTH sides of the helmet. Polished silver plate armor with gold trim and small gold wing engravings on the pauldrons, deep blue tabard with a golden sun emblem, brown leather belt. Long deep-blue cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in deep blue with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
+LOOK: Grim semi-chibi holy knight with short brown hair and blue eyes. Open-face dark steel helmet with a pair of ash-grey and dull silver bird wings spreading from BOTH sides of the helmet. Worn dark steel plate armor with gold trim and small gold wing engravings on the pauldrons, dark midnight-navy tabard with a golden sun emblem, brown leather belt. Long dark midnight-navy cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in dark midnight-navy with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
+DARK PALETTE: dull scratched gunmetal steel, dark midnight-navy cloth, tarnished antique gold, ash-grey helmet and shield wings, dark brown leather; only the sun emblem has a faint warm glow.
 HAND RULE: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction.
 DEFAULT POSE: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -119,7 +139,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Paladin (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of Paladin (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -967,8 +988,14 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -993,7 +1020,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 CHARACTER FOR THIS CHAT: Hawkeye (male), player class.
-LOOK: Chibi ranger with a dark forest-green hood pulled over brown hair, long ragged green cloak, brown leather tunic with straps and belt, leather bracers, tall brown boots, a quiver full of arrows on the back.
+LOOK: Grim semi-chibi ranger with a dark forest-green hood pulled over brown hair, long ragged green cloak, brown leather tunic with straps and belt, leather bracers, tall brown boots, a quiver full of arrows on the back.
+DARK PALETTE: dark moss green and near-black olive cloth, dark worn brown leather, dull bronze buckles, mud on boots and cloak hem.
 HAND RULE: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap.
 DEFAULT POSE: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -1004,7 +1032,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Hawkeye (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of Hawkeye (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -1852,8 +1881,14 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -1878,7 +1913,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 CHARACTER FOR THIS CHAT: RuneMaster (male), player class.
-LOOK: Adult-proportioned chibi rune swordsman with dark swept-back hair, a long dark-teal and navy coat with high collar and golden rune embroidery down the front, crossed leather straps, brown boots.
+LOOK: Grim semi-chibi rune swordsman with dark swept-back hair, a long dark-teal and navy coat with high collar and golden rune embroidery down the front, crossed leather straps, brown boots.
+DARK PALETTE: black-navy and dark slate-teal coat, tarnished gold rune embroidery, dark leather; only the runes, blade edge and rune stone glow soft teal.
 HAND RULE: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap.
 DEFAULT POSE: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -1889,7 +1925,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of RuneMaster (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of RuneMaster (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -2737,8 +2774,14 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -2764,7 +2807,8 @@ WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object tha
 This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
 
 CHARACTER FOR THIS CHAT: Elementalist (male), player class.
-LOOK: Chibi young mage with messy dark-purple hair and violet eyes, layered dark-purple tattered cloak with high collar and gold trim, dark clothes underneath, black boots. Long ornate staff topped with a large blue crystal wreathed in small orange-and-blue magic flames.
+LOOK: Grim semi-chibi young mage with messy dark-purple hair and violet eyes, layered dark-purple tattered cloak with high collar and gold trim, dark clothes underneath, black boots. Long ornate staff topped with a large blue crystal wreathed in small orange-and-blue magic flames.
+DARK PALETTE: deep plum-black and dark violet robes, tarnished gold trim, black boots; only the staff crystal glows (blue and ember orange).
 HAND RULE: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap.
 DEFAULT POSE: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -2775,7 +2819,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Elementalist (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of Elementalist (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -3623,8 +3668,14 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -3650,7 +3701,8 @@ WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object tha
 This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
 
 CHARACTER FOR THIS CHAT: Assassin (male), player class.
-LOOK: Chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
+LOOK: Grim semi-chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
+DARK PALETTE: black and charcoal, very dark violet lining, blackened dull steel daggers and buckles, faded purple sash.
 HAND RULE: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present.
 DEFAULT POSE: crouched ready stance, knees bent, both daggers held low at the sides.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -3661,7 +3713,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Assassin (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of Assassin (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (crouched ready stance, knees bent, both daggers held low at the sides):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -4509,8 +4562,14 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -4535,7 +4594,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 CHARACTER FOR THIS CHAT: HighPriest (male), player class.
-LOOK: Chibi young priest with soft blond hair and grey eyes. Tall cream-white and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
+LOOK: Grim semi-chibi young priest with soft blond hair and grey eyes. Tall aged ivory and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long aged ivory and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
+DARK PALETTE: aged ivory and bone-white robes with grey grime at the hem, tarnished antique gold embroidery, dark leather; only the light orb glows warm gold.
 HAND RULE: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap.
 DEFAULT POSE: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -4546,7 +4606,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of HighPriest (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of HighPriest (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -5394,8 +5455,14 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -5420,7 +5487,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 CHARACTER FOR THIS CHAT: Inquisitor (male), player class.
-LOOK: Chibi inquisitor with a short dark beard, wide-brimmed black hat with a red band and small gold cross, long red coat with ragged hem, silver shoulder plates and bracers, gold cross on the chest, belts with pouches, black boots.
+LOOK: Grim semi-chibi inquisitor with a short dark beard, wide-brimmed black hat with a red band and small gold cross, long red coat with ragged hem, silver shoulder plates and bracers, gold cross on the chest, belts with pouches, black boots.
+DARK PALETTE: dark oxblood-red coat, black leather, dull dark iron hammer and plates, tarnished gold cross, black hat.
 HAND RULE: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap.
 DEFAULT POSE: shield upright at the left side, hammer lowered at the right side.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -5431,7 +5499,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Inquisitor (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of Inquisitor (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield upright at the left side, hammer lowered at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -6279,8 +6348,14 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: painted dark-fantasy, gothic grimdark palette (muted, desaturated) with clear readable silhouettes.
-Player characters are CHIBI: head about 1/3 of total height, short body, but armor, weapon, helmet, cape and class symbols keep full detail.
+STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+DARK TONE (mandatory for every character):
+  - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
+  - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
+  - Wear and grime: scratches, dents, chipped edges, soot, mud on boots and hems, frayed and torn cloth edges.
+  - Serious, grim, battle-hardened faces: smaller narrow eyes with heavy brows, no big sparkling anime eyes, no blush, no cute smile.
+  - Heavy painterly brushwork with strong contrast between light and shadow.
+Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
@@ -6305,7 +6380,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 CHARACTER FOR THIS CHAT: Berserker (male), player class.
-LOOK: Chibi barbarian with long wild red hair and a full red beard. Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
+LOOK: Grim semi-chibi barbarian with long wild red hair and a full red beard. Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
+DARK PALETTE: dark rust-red hair and beard, weathered tanned skin with scars and grime, blackened iron armor and horned helmet, dark brown matted fur cloak.
 HAND RULE: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt.
 DEFAULT POSE: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -6316,7 +6392,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Berserker (male) now, exactly as described in LOOK and HAND RULE. Design it from scratch.
+Create the MASTER REFERENCE of Berserker (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
+Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (greatsword resting on the right shoulder, blade pointing up and back behind the head):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
