@@ -25,6 +25,13 @@
 `Wrong weapon direction. The weapon must point the same way the character faces (<ทิศ>), partly hidden by the body is fine. Redo.`
 ข้อยกเว้นเดียว: Berserker พาดดาบบนบ่า ใบดาบชี้ไปด้านหลัง ด้ามอยู่ด้านหน้า
 
+## กฎรูปทรงอาวุธ (ทุกอาชีพ ทุกกล่อง)
+อาวุธ โล่ และของที่ถือ (ดาบ ธนู ไม้เท้า มีด ค้อน คทา หินรูน ลูกแสง) **ต้องเหมือนภาพต้นแบบ 100%** ทุกเฟรมทุกทิศ
+ทั้งรูปทรง ความยาว ความกว้าง ความหนา สัดส่วน ความโค้ง ลวดลาย และสี **ห้ามบิด งอ ยืด หด ละลาย หรือเปลี่ยนแบบ**
+เปลี่ยนได้อย่างเดียวคือมุมมองตอนหมุน (ดูสั้นลงเมื่อชี้เข้า/ออกจากกล้อง) ดาบตรงต้องตรงเสมอ
+ถ้าอาวุธงอหรือเปลี่ยนแบบ ให้ตอบ:
+`Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
+
 ลำดับท่าเรียงตามความสำคัญ: เดิน → ตาย → โดนตี → ยืน → โจมตี → สกิล → บัฟ
 ถ้าเวลาน้อย ทำแค่ **ขั้น 1 (เดิน)** ของทุกอาชีพก่อน จะแก้อาการเดินกระตุกได้ทั้งเกม
 
@@ -38,6 +45,7 @@
 - หน้าตาเพี้ยน: แนบภาพต้นแบบอีกครั้ง + `Match the master reference exactly. Redo.`
 - มีพื้น/เงา/ตัวหนังสือ: `Remove the ground, shadow and any text. Flat background only. Redo.`
 - อาวุธชี้ผิดทาง/เหวี่ยงออกข้าง: `Wrong weapon direction. The weapon must point the same way the character faces, partly hidden by the body is fine. Redo.`
+- อาวุธงอ/บิด/เปลี่ยนแบบ: `Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
 - จำนวนช่องผิด: `Wrong grid. Redo with exactly <จำนวน> equal cells.`
 
 ## หมายเหตุเรื่องหน้าตา
@@ -85,6 +93,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Paladin (male).
 LOOK: Chibi holy knight with short messy brown hair and blue eyes, polished silver plate armor with gold trim, deep blue tabard with a golden sun emblem, brown leather belt, blue cape on the back. Kite shield in deep blue with a golden sun and gold rim.
@@ -107,6 +116,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -120,6 +130,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -133,6 +144,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -146,6 +158,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -159,6 +172,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -172,6 +186,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -185,6 +200,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -198,6 +214,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -217,6 +234,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -230,6 +248,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -243,6 +262,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -256,6 +276,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -269,6 +290,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -282,6 +304,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -295,6 +318,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -308,6 +332,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -325,6 +350,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -338,6 +364,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -351,6 +378,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -364,6 +392,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -377,6 +406,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -390,6 +420,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -403,6 +434,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -416,6 +448,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -433,6 +466,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -446,6 +480,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -459,6 +494,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -472,6 +508,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -485,6 +522,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -498,6 +536,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -511,6 +550,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -524,6 +564,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 ```
 
@@ -541,6 +582,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -554,6 +596,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -567,6 +610,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -580,6 +624,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -593,6 +638,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -606,6 +652,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -619,6 +666,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -632,6 +680,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
@@ -649,6 +698,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -662,6 +712,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -675,6 +726,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -688,6 +740,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -701,6 +754,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -714,6 +768,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -727,6 +782,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -740,6 +796,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
@@ -759,6 +816,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -772,6 +830,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -785,6 +844,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -798,6 +858,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -811,6 +872,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -824,6 +886,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -837,6 +900,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -850,6 +914,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed longsword in the character's RIGHT hand; kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
@@ -895,6 +960,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Hawkeye (male).
 LOOK: Chibi ranger with a dark forest-green hood pulled over brown hair, long ragged green cloak, brown leather tunic with straps and belt, leather bracers, tall brown boots, a quiver full of arrows on the back.
@@ -917,6 +983,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -930,6 +997,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -943,6 +1011,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -956,6 +1025,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -969,6 +1039,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -982,6 +1053,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -995,6 +1067,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1008,6 +1081,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1025,6 +1099,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1038,6 +1113,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1051,6 +1127,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1064,6 +1141,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1077,6 +1155,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1090,6 +1169,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1103,6 +1183,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1116,6 +1197,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1133,6 +1215,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1146,6 +1229,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1159,6 +1243,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1172,6 +1257,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1185,6 +1271,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1198,6 +1285,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1211,6 +1299,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1224,6 +1313,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1241,6 +1331,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1254,6 +1345,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1267,6 +1359,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1280,6 +1373,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1293,6 +1387,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1306,6 +1401,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1319,6 +1415,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1332,6 +1429,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip.
 ```
 
@@ -1349,6 +1447,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1362,6 +1461,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1375,6 +1475,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1388,6 +1489,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1401,6 +1503,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1414,6 +1517,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1427,6 +1531,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1440,6 +1545,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
@@ -1457,6 +1563,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1470,6 +1577,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1483,6 +1591,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1496,6 +1605,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1509,6 +1619,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1522,6 +1633,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1535,6 +1647,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1548,6 +1661,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
@@ -1565,6 +1679,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1578,6 +1693,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1591,6 +1707,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1604,6 +1721,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1617,6 +1735,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1630,6 +1749,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1643,6 +1763,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1656,6 +1777,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
@@ -1701,6 +1823,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: RuneMaster (male).
 LOOK: Adult-proportioned chibi rune swordsman with dark swept-back hair, a long dark-teal and navy coat with high collar and golden rune embroidery down the front, crossed leather straps, brown boots.
@@ -1723,6 +1846,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1736,6 +1860,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1749,6 +1874,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1762,6 +1888,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1775,6 +1902,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1788,6 +1916,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1801,6 +1930,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1814,6 +1944,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -1831,6 +1962,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1844,6 +1976,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1857,6 +1990,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1870,6 +2004,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1883,6 +2018,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1896,6 +2032,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1909,6 +2046,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1922,6 +2060,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -1939,6 +2078,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1952,6 +2092,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1965,6 +2106,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1978,6 +2120,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -1991,6 +2134,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2004,6 +2148,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2017,6 +2162,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2030,6 +2176,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2047,6 +2194,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2060,6 +2208,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2073,6 +2222,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2086,6 +2236,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2099,6 +2250,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2112,6 +2264,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2125,6 +2278,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2138,6 +2292,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm.
 ```
 
@@ -2155,6 +2310,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2168,6 +2324,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2181,6 +2338,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2194,6 +2352,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2207,6 +2366,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2220,6 +2380,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2233,6 +2394,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2246,6 +2408,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
@@ -2263,6 +2426,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2276,6 +2440,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2289,6 +2454,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2302,6 +2468,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2315,6 +2482,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2328,6 +2496,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2341,6 +2510,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2354,6 +2524,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
@@ -2371,6 +2542,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2384,6 +2556,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2397,6 +2570,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2410,6 +2584,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2423,6 +2598,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2436,6 +2612,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2449,6 +2626,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2462,6 +2640,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
@@ -2507,6 +2686,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Elementalist (male).
@@ -2530,6 +2710,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2543,6 +2724,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2556,6 +2738,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2569,6 +2752,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2582,6 +2766,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2595,6 +2780,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2608,6 +2794,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2621,6 +2808,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2638,6 +2826,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2651,6 +2840,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2664,6 +2854,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2677,6 +2868,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2690,6 +2882,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2703,6 +2896,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2716,6 +2910,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2729,6 +2924,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -2746,6 +2942,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2759,6 +2956,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2772,6 +2970,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2785,6 +2984,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2798,6 +2998,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2811,6 +3012,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2824,6 +3026,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2837,6 +3040,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -2854,6 +3058,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2867,6 +3072,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2880,6 +3086,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2893,6 +3100,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2906,6 +3114,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2919,6 +3128,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2932,6 +3142,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2945,6 +3156,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step.
 ```
 
@@ -2962,6 +3174,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -2975,6 +3188,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -2988,6 +3202,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -3001,6 +3216,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -3014,6 +3230,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -3027,6 +3244,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -3040,6 +3258,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -3053,6 +3272,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
@@ -3070,6 +3290,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3083,6 +3304,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3096,6 +3318,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3109,6 +3332,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3122,6 +3346,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3135,6 +3360,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3148,6 +3374,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3161,6 +3388,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
@@ -3178,6 +3406,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3191,6 +3420,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3204,6 +3434,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3217,6 +3448,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3230,6 +3462,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3243,6 +3476,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3256,6 +3490,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3269,6 +3504,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
@@ -3314,6 +3550,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Assassin (male).
@@ -3337,6 +3574,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3350,6 +3588,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3363,6 +3602,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3376,6 +3616,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3389,6 +3630,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3402,6 +3644,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3415,6 +3658,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3428,6 +3672,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3447,6 +3692,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3460,6 +3706,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3473,6 +3720,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3486,6 +3734,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3499,6 +3748,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3512,6 +3762,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3525,6 +3776,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3538,6 +3790,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -3555,6 +3808,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3568,6 +3822,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3581,6 +3836,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3594,6 +3850,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3607,6 +3864,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3620,6 +3878,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3633,6 +3892,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3646,6 +3906,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -3663,6 +3924,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3676,6 +3938,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3689,6 +3952,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3702,6 +3966,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3715,6 +3980,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3728,6 +3994,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3741,6 +4008,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3754,6 +4022,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides.
 ```
 
@@ -3771,6 +4040,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3784,6 +4054,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3797,6 +4068,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3810,6 +4082,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3823,6 +4096,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3836,6 +4110,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3849,6 +4124,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3862,6 +4138,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
@@ -3879,6 +4156,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3892,6 +4170,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3905,6 +4184,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3918,6 +4198,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3931,6 +4212,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3944,6 +4226,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3957,6 +4240,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3970,6 +4254,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
@@ -3989,6 +4274,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4002,6 +4288,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4015,6 +4302,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4028,6 +4316,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4041,6 +4330,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4054,6 +4344,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4067,6 +4358,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4080,6 +4372,7 @@ Same character size and the same feet position in every frame. Flat #00FF00 back
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
@@ -4125,6 +4418,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: HighPriest (male).
 LOOK: Chibi young priest with soft blond hair and grey eyes, long cream-white and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
@@ -4147,6 +4441,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4160,6 +4455,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4173,6 +4469,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4186,6 +4483,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4199,6 +4497,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4212,6 +4511,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4225,6 +4525,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4238,6 +4539,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4255,6 +4557,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4268,6 +4571,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4281,6 +4585,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4294,6 +4599,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4307,6 +4613,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4320,6 +4627,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4333,6 +4641,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4346,6 +4655,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -4363,6 +4673,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4376,6 +4687,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4389,6 +4701,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4402,6 +4715,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4415,6 +4729,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4428,6 +4743,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4441,6 +4757,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4454,6 +4771,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -4471,6 +4789,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4484,6 +4803,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4497,6 +4817,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4510,6 +4831,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4523,6 +4845,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4536,6 +4859,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4549,6 +4873,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4562,6 +4887,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm.
 ```
 
@@ -4579,6 +4905,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4592,6 +4919,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4605,6 +4933,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4618,6 +4947,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4631,6 +4961,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4644,6 +4975,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4657,6 +4989,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4670,6 +5003,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
@@ -4687,6 +5021,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4700,6 +5035,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4713,6 +5049,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4726,6 +5063,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4739,6 +5077,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4752,6 +5091,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4765,6 +5105,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4778,6 +5119,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
@@ -4795,6 +5137,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4808,6 +5151,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4821,6 +5165,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4834,6 +5179,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4847,6 +5193,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4860,6 +5207,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4873,6 +5221,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4886,6 +5235,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
@@ -4931,6 +5281,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Inquisitor (male).
 LOOK: Chibi inquisitor with a short dark beard, wide-brimmed black hat with a red band and small gold cross, long red coat with ragged hem, silver shoulder plates and bracers, gold cross on the chest, belts with pouches, black boots.
@@ -4953,6 +5304,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -4966,6 +5318,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -4979,6 +5332,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -4992,6 +5346,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5005,6 +5360,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5018,6 +5374,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5031,6 +5388,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5044,6 +5402,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5061,6 +5420,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5074,6 +5434,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5087,6 +5448,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5100,6 +5462,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5113,6 +5476,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5126,6 +5490,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5139,6 +5504,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5152,6 +5518,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5169,6 +5536,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5182,6 +5550,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5195,6 +5564,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5208,6 +5578,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5221,6 +5592,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5234,6 +5606,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5247,6 +5620,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5260,6 +5634,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5277,6 +5652,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5290,6 +5666,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5303,6 +5680,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5316,6 +5694,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5329,6 +5708,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5342,6 +5722,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5355,6 +5736,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5368,6 +5750,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side.
 ```
 
@@ -5385,6 +5768,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5398,6 +5782,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5411,6 +5796,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5424,6 +5810,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5437,6 +5824,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5450,6 +5838,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5463,6 +5852,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5476,6 +5866,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
@@ -5493,6 +5884,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5506,6 +5898,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5519,6 +5912,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5532,6 +5926,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5545,6 +5940,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5558,6 +5954,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5571,6 +5968,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5584,6 +5982,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
@@ -5601,6 +6000,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5614,6 +6014,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5627,6 +6028,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5640,6 +6042,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5653,6 +6056,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5666,6 +6070,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5679,6 +6084,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5692,6 +6098,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
@@ -5737,6 +6144,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
 The attached image is the MASTER REFERENCE of the character for this chat: Berserker (male).
 LOOK: Chibi barbarian with long wild red hair and a full red beard, bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest, grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
@@ -5759,6 +6167,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5772,6 +6181,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5785,6 +6195,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5798,6 +6209,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5811,6 +6223,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5824,6 +6237,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5837,6 +6251,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5850,6 +6265,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -5869,6 +6285,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5882,6 +6299,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5895,6 +6313,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5908,6 +6327,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5921,6 +6341,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5934,6 +6355,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5947,6 +6369,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5960,6 +6383,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
@@ -5977,6 +6401,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -5990,6 +6415,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -6003,6 +6429,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -6016,6 +6443,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -6029,6 +6457,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -6042,6 +6471,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -6055,6 +6485,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -6068,6 +6499,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
@@ -6085,6 +6517,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6098,6 +6531,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6111,6 +6545,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6124,6 +6559,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6137,6 +6573,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6150,6 +6587,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6163,6 +6601,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6176,6 +6615,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head.
 ```
 
@@ -6193,6 +6633,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6206,6 +6647,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6219,6 +6661,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6232,6 +6675,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6245,6 +6689,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6258,6 +6703,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6271,6 +6717,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6284,6 +6731,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
@@ -6301,6 +6749,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6314,6 +6763,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6327,6 +6777,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6340,6 +6791,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6353,6 +6805,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6366,6 +6819,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6379,6 +6833,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6392,6 +6847,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
@@ -6411,6 +6867,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
@@ -6424,6 +6881,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
@@ -6437,6 +6895,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
@@ -6450,6 +6909,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
@@ -6463,6 +6923,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
@@ -6476,6 +6937,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
@@ -6489,6 +6951,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
@@ -6502,6 +6965,7 @@ Same character size and the same feet position in every frame. Flat #FF00FF back
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned; a straight blade/shaft stays perfectly straight in every frame.
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 

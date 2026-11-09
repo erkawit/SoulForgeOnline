@@ -50,6 +50,7 @@ DIRECTIONS (image left/right):
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
+WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 ```
 
 ---
@@ -235,5 +236,6 @@ Main color [class accent].
 - [ ] 1 ไฟล์ = 1 ท่า × 1 ทิศ ชื่อไฟล์ตามข้อ A.1
 - [ ] พื้นหลังเป็นสีเดียวล้วน (#FF00FF หรือ #00FF00; VFX ใช้ดำ) ไม่มีพื้น/เงา/ตัวหนังสือ
 - [ ] มือถืออาวุธถูกข้างทุกเฟรม โดยเฉพาะทิศ W / NW / SW
+- [ ] อาวุธชี้ไปทางที่ตัวละครหัน และรูปทรงเหมือนต้นแบบ 100% (ไม่บิด ไม่งอ ไม่ยืด ไม่เปลี่ยนแบบ)
 - [ ] ครบ 8 ทิศ (ไม่มีการกลับภาพ)
 - [ ] ตัวละครไม่ล้นช่องและขนาดดูเท่ากันทุกเฟรม
