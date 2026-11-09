@@ -40,8 +40,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -69,7 +70,7 @@ WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object tha
 ```text
 Create the MASTER REFERENCE for the player class [CLASS NAME], [male/female], chibi.
 One image, three views of the same character side by side, standing in the idle pose: S (front), SE (three-quarter front), N (back).
-Each view full body, same size, feet on the same horizontal line, empty space around. Flat #FF00FF background.
+Each view full body, same size, feet on the same horizontal line, empty space around. TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard).
 [PASTE THE CLASS BLOCK FROM C3]
 ```
 
@@ -79,7 +80,7 @@ Each view full body, same size, feet on the same horizontal line, empty space ar
 Using the attached master reference of [CLASS NAME] ([male/female]):
 Make a sprite sheet of the [ACTION] animation, direction [DIR] ([paste the DIR wording from section B]).
 Grid: 4 columns x 2 rows = 8 frames, read left-to-right then top-to-bottom, equal cells 384x512. [for 10 frames: 5 columns x 2 rows]
-Same character size and same feet position in every frame. Flat #FF00FF background.
+Same character size and same feet position in every frame. TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard).
 Hands: [PASTE THE HAND RULE FROM THE CLASS BLOCK]. Do not mirror.
 Motion: [PASTE THE MOTION LINE FROM C2.1]
 ```
@@ -165,13 +166,13 @@ IDLE/WALK: sword pointing down-forward at the right side; rune stone raised at w
 ```text
 Create the MASTER REFERENCE for the monster [NAME], family [HUMANOID/BEAST/UNDEAD/DEMON/...], rank [normal/elite], size [small/medium/large].
 Look: [describe body, limbs, head, tail/wings, material, colors]. Attack uses: [claws/bite/weapon in which hand].
-Three views side by side: S, SE, N. Same camera and light as section B. Flat #FF00FF background. Not chibi unless stated.
+Three views side by side: S, SE, N. Same camera and light as section B. TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard). Not chibi unless stated.
 MOOD: grimdark and HAUNTED horror creature - low-key lighting, deep shadows, muted dirty colors, rot, cracked bone, scars, unnatural eerie details (hollow glowing eyes, too-long limbs, ghostly wisps clinging to the body), cold sickly teal/green rim light. Frightening and unsettling but readable, no gore.
 ```
 ### C4.2 ชีตมอนสเตอร์ (1536 × 1024)
 ```text
 Using the attached master reference of [NAME]: sprite sheet of [idle/walk/normal_attack/heavy_attack/death], direction [DIR].
-Grid 4 x 2 = 8 frames (idle: 3 x 2 = 6; heavy_attack: 5 x 2 = 10). Same size and feet position in every frame. Flat #FF00FF background.
+Grid 4 x 2 = 8 frames (idle: 3 x 2 = 6; heavy_attack: 5 x 2 = 10). Same size and feet position in every frame. TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard).
 Motion: [walk: legs alternate naturally for this body type | attack: wind-up, bite/claw/strike, recover | heavy_attack: bigger wind-up, ground slam with a small impact area, recover | death: collapse and lie still on the last frame].
 Body parts (legs, tail, wings, horns) must turn with the direction; do not mirror.
 MOOD: grimdark and HAUNTED horror creature - low-key lighting, deep shadows, muted dirty colors, rot, cracked bone, scars, unnatural eerie details (hollow glowing eyes, too-long limbs, ghostly wisps clinging to the body), cold sickly teal/green rim light. Frightening and unsettling but readable, no gore.
@@ -179,7 +180,7 @@ MOOD: grimdark and HAUNTED horror creature - low-key lighting, deep shadows, mut
 ### C4.3 บอส (1024 × 1024 ต่อภาพ, 2 × 2 = 4 เฟรมต่อภาพ — ท่า 8 เฟรมใช้ 2 ภาพ)
 ```text
 Using the attached boss master reference [BOSS NAME] (boss type [map_boss/dungeon_boss]): frames [1-4 / 5-8] of [ACTION/SKILL NAME], direction [DIR].
-Grid 2 x 2, equal cells 512x512. The boss is large: keep the whole body inside each cell with margin; same size in every frame. Flat #FF00FF background.
+Grid 2 x 2, equal cells 512x512. The boss is large: keep the whole body inside each cell with margin; same size in every frame. TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard).
 Skill motion: [describe anticipation, impact, recovery]. Draw the warning circle / spell effects in a SEPARATE request.
 MOOD: grimdark and HAUNTED nightmare boss - huge, oppressive presence, deep shadows, muted dirty colors with one eerie glowing accent, cursed and decayed details (cracked bone, rusted chains, torn flesh-like cloth, ghostly wisps), cold sickly rim light. Terrifying but readable, no gore.
 ```
@@ -209,7 +210,7 @@ MOOD: grimdark and haunted - dark, desaturated, dead and cursed-looking ground (
 
 ### C5.3 ของประกอบฉาก — 1536 × 1024
 ```text
-Sprite sheet of 12 separate dark-fantasy props, grid 4 x 3 equal cells, each object isolated with empty space, same 30-degree 3/4 camera and top-left light as section B, flat #FF00FF background, no ground plane, no shadows, no text.
+Sprite sheet of 12 separate dark-fantasy props, grid 4 x 3 equal cells, each object isolated with empty space, same 30-degree 3/4 camera and top-left light as section B, TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard), no ground plane, no shadows, no text.
 Objects: [e.g. dead black tree x3, broken tombstone x3, stone sarcophagus, ruined chapel wall, iron fence segment, ember brazier, bone pile, stone angel statue].
 MOOD: grimdark and HAUNTED - weathered, decayed, cursed-looking objects (rot, rust, cracks, cobwebs, dripping candle wax, bones, faint ghostly glow where fitting), low-key lighting, muted dirty colors.
 ```
@@ -220,7 +221,7 @@ MOOD: grimdark and HAUNTED - weathered, decayed, cursed-looking objects (rot, ru
 
 ### C6.1 หีบดรอป — 1024 × 1024 (หีบ 4 ใบ/ภาพ, 2 × 2)
 ```text
-Four loot chests for a dark-fantasy isometric game, grid 2 x 2 equal cells, same 30-degree 3/4 camera, flat #FF00FF background, no shadows, no text.
+Four loot chests for a dark-fantasy isometric game, grid 2 x 2 equal cells, same 30-degree 3/4 camera, TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard), no shadows, no text.
 All four show the [WEAPON: crossed swords over a shield | ARMOR: chest armor | ACCESSORY: ring] emblem on the front, readable from above.
 Rarity per cell (top-left, top-right, bottom-left, bottom-right): [Common white | Uncommon green | Rare light blue | Epic purple] (second image: [Legendary red | God gold | Pre-Arch flame orange | Arch sparkling violet with unique crystal shards]).
 Each higher rarity is more ornate: better materials, metal trim, glow; Arch must look clearly different from Epic, not only by color.
@@ -231,14 +232,14 @@ MOOD: grimdark and HAUNTED - old cursed chests of dark wood and tarnished metal,
 ### C6.2 ไอคอนไอเทม — 1536 × 1024 (8 tier, 4 × 2)
 ```text
 Eight inventory icons of the same item type: [one-handed holy sword for Paladin], tiers 1 to 8 left-to-right, top-to-bottom, each more ornate than the last (tier 1 plain iron ... tier 8 legendary relic).
-One object per cell, centered, 3/4 angle, top-left light, flat #FF00FF background, no frame, no rarity border, no text.
+One object per cell, centered, 3/4 angle, top-left light, TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard), no frame, no rarity border, no text.
 MOOD: grimdark and HAUNTED - dark worn materials, tarnished metal, grime, faint eerie glow on higher tiers, muted dirty colors, painterly; never shiny cartoon style.
 ```
 
 ### C6.3 ป้าย NPC — 1024 × 1024 (4 ป้าย/ภาพ, 2 × 2)
 ```text
 Four floating wooden shop signs shaped like a heater shield, carved dark wood with iron rim, each with a painted service symbol: [basket | crossed swords and anvil | hammer and anvil | chest armor] (other sets: [ring | crafting tools | treasure chest | quest scroll with exclamation mark | warp portal ring]).
-Front view, flat #FF00FF background, no text, no shadows.
+Front view, TRANSPARENT background (PNG with alpha, no backdrop, no checkerboard), no text, no shadows.
 MOOD: grimdark and HAUNTED - old cracked dark wood, rusted iron, faded paint, cobwebs, a faint candle-warm glow on the symbol.
 ```
 
@@ -255,7 +256,7 @@ MOOD: dark and HAUNTED magic - eerie, smoky, ghostly shapes and wisps, cold sick
 ## D. เช็กก่อนส่งให้ผม
 - [ ] ภาพต้นแบบได้ `APPROVED` แล้ว และแนบต้นแบบทุกครั้งที่เจนชีต
 - [ ] 1 ไฟล์ = 1 ท่า × 1 ทิศ ชื่อไฟล์ตามข้อ A.1
-- [ ] พื้นหลังเป็นสีเดียวล้วน (#FF00FF หรือ #00FF00; VFX ใช้ดำ) ไม่มีพื้น/เงา/ตัวหนังสือ
+- [ ] ไม่มีพื้นหลัง (โปร่งใส) — ถ้าทำไม่ได้ใช้สีล้วน #FF00FF/#00FF00 · VFX ใช้ดำ · ไม่มีพื้น/เงา/ตัวหนังสือ/ลายตารางหมากรุก
 - [ ] มือถืออาวุธถูกข้างทุกเฟรม โดยเฉพาะทิศ W / NW / SW
 - [ ] อาวุธชี้ไปทางที่ตัวละครหัน และรูปทรงเหมือนต้นแบบ 100% (ไม่บิด ไม่งอ ไม่ยืด ไม่เปลี่ยนแบบ)
 - [ ] ครบ 8 ทิศ (ไม่มีการกลับภาพ)

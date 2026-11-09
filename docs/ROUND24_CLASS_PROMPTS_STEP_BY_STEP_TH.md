@@ -33,6 +33,12 @@
 ถ้าอาวุธงอหรือเปลี่ยนแบบ ให้ตอบ:
 `Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
 
+## ทำไมได้หลายไฟล์ และเรื่องพื้นหลัง
+- **1 ไฟล์ = 1 ท่า × 1 ทิศ (8 เฟรม)** ตั้งใจแบบนี้ ถ้ารวม 8 ทิศ × 8 เฟรม = 64 ท่าในภาพเดียว 1536×1024 ตัวละครจะเหลือแค่ราว 190×128 px ต่อท่า AI จะวาดหน้าตา อาวุธ และทิศเพี้ยนจนใช้ไม่ได้
+- **ในเกมจะเป็นไฟล์เดียว:** พอส่งครบ 8 ทิศ ระบบของผมรวมเป็นชีตเดียวต่อท่าให้อัตโนมัติ (และรวมทุกท่าเป็นชุดเดียวต่ออาชีพ)
+- **พื้นหลัง:** ทุกกล่องสั่งให้ **โปร่งใส (ไม่มีพื้นหลัง)** ใน ChatGPT ใช้ได้ ส่วน Gemini ทำโปร่งใสไม่ได้ จะใช้สีม่วงชมพูล้วนแทน ระบบผมลบสีนั้นออกให้เป็นโปร่งใสเอง
+- ถ้า ChatGPT วาดลายตารางหมากรุกมาให้ (โปร่งใสปลอม) ให้ใช้ประโยคแก้ด้านล่าง
+
 ลำดับท่าเรียงตามความสำคัญ: เดิน → ตาย → โดนตี → ยืน → โจมตี → สกิล → บัฟ
 ถ้าเวลาน้อย ทำแค่ **ขั้น 1 (ต้นแบบ) + ขั้น 2 (เดิน)** ของทุกอาชีพก่อน จะแก้อาการเดินกระตุกได้ทั้งเกม
 
@@ -57,7 +63,8 @@ Keep the same design, outfit, headwear, cloak, weapon and shield shapes, and the
 - มือสลับ: `Wrong hands. Redo: the weapon must be in the character's RIGHT hand as in the master reference.`
 - ทิศผิด: `Wrong direction. Redo facing <ทิศตามกล่อง>.`
 - หน้าตาเพี้ยน: แนบไฟล์ต้นแบบที่บันทึกไว้ + `Match this master reference exactly. Redo.`
-- มีพื้น/เงา/ตัวหนังสือ: `Remove the ground, shadow and any text. Flat background only. Redo.`
+- มีพื้นหลัง/พื้น/เงา/ตัวหนังสือ: `No background. Redo with a real transparent background (PNG alpha) - no backdrop, no checkerboard, no floor, no shadow, no text.`
+- ถ้าได้ลายตารางหมากรุกขาว-เทาติดมาในภาพ (โปร่งใสปลอม): `That checkerboard is painted, not transparent. Redo with real transparency; if you cannot, use a flat solid #FF00FF background instead.`
 - อาวุธชี้ผิดทาง/เหวี่ยงออกข้าง: `Wrong weapon direction. The weapon must point the same way the character faces, partly hidden by the body is fine. Redo.`
 - อาวุธงอ/บิด/เปลี่ยนแบบ: `Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
 - จำนวนช่องผิด: `Wrong grid. Redo with exactly <จำนวน> equal cells.`
@@ -84,7 +91,7 @@ Keep the same design, outfit, headwear, cloak, weapon and shield shapes, and the
 
 # 1. Paladin — พาลาดิน · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\paladin\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png`
 
@@ -108,8 +115,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -147,7 +155,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -168,7 +176,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -182,7 +190,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -196,7 +204,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -210,7 +218,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -224,7 +232,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -238,7 +246,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -252,7 +260,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -266,7 +274,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -284,7 +292,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -298,7 +306,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -312,7 +320,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -326,7 +334,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -340,7 +348,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -354,7 +362,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -368,7 +376,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -382,7 +390,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -400,7 +408,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -414,7 +422,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -428,7 +436,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -442,7 +450,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -456,7 +464,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -470,7 +478,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -484,7 +492,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -498,7 +506,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -516,7 +524,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -530,7 +538,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -544,7 +552,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -558,7 +566,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -572,7 +580,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -586,7 +594,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -600,7 +608,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -614,7 +622,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -632,7 +640,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -646,7 +654,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -660,7 +668,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -674,7 +682,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -688,7 +696,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -702,7 +710,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -716,7 +724,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -730,7 +738,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -748,7 +756,7 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -762,7 +770,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -776,7 +784,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -790,7 +798,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -804,7 +812,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -818,7 +826,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -832,7 +840,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -846,7 +854,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -864,7 +872,7 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -878,7 +886,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -892,7 +900,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -906,7 +914,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -920,7 +928,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -934,7 +942,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -948,7 +956,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -962,7 +970,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -980,7 +988,7 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 
 # 2. Hawkeye — ฮอว์คอาย (ARCHER) · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\hawkeye\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Hawkeye_male_master_ref_v2.png`
 
@@ -1004,8 +1012,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -1043,7 +1052,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -1064,7 +1073,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1078,7 +1087,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1092,7 +1101,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1106,7 +1115,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1120,7 +1129,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1134,7 +1143,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1148,7 +1157,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1162,7 +1171,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1180,7 +1189,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1194,7 +1203,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1208,7 +1217,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1222,7 +1231,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1236,7 +1245,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1250,7 +1259,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1264,7 +1273,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1278,7 +1287,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1296,7 +1305,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1310,7 +1319,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1324,7 +1333,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1338,7 +1347,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1352,7 +1361,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1366,7 +1375,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1380,7 +1389,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1394,7 +1403,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1412,7 +1421,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1426,7 +1435,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1440,7 +1449,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1454,7 +1463,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1468,7 +1477,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1482,7 +1491,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1496,7 +1505,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1510,7 +1519,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1528,7 +1537,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1542,7 +1551,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1556,7 +1565,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1570,7 +1579,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1584,7 +1593,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1598,7 +1607,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1612,7 +1621,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1626,7 +1635,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1644,7 +1653,7 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1658,7 +1667,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1672,7 +1681,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1686,7 +1695,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1700,7 +1709,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1714,7 +1723,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1728,7 +1737,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1742,7 +1751,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1760,7 +1769,7 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1774,7 +1783,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1788,7 +1797,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1802,7 +1811,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1816,7 +1825,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1830,7 +1839,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1844,7 +1853,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1858,7 +1867,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1876,7 +1885,7 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 
 # 3. RuneMaster — รูนมาสเตอร์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\runemaster\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\RuneMaster_male_master_ref_v2.png`
 
@@ -1900,8 +1909,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -1939,7 +1949,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -1960,7 +1970,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1974,7 +1984,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -1988,7 +1998,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2002,7 +2012,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2016,7 +2026,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2030,7 +2040,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2044,7 +2054,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2058,7 +2068,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2076,7 +2086,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2090,7 +2100,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2104,7 +2114,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2118,7 +2128,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2132,7 +2142,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2146,7 +2156,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2160,7 +2170,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2174,7 +2184,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2192,7 +2202,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2206,7 +2216,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2220,7 +2230,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2234,7 +2244,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2248,7 +2258,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2262,7 +2272,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2276,7 +2286,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2290,7 +2300,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2308,7 +2318,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2322,7 +2332,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2336,7 +2346,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2350,7 +2360,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2364,7 +2374,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2378,7 +2388,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2392,7 +2402,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2406,7 +2416,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2424,7 +2434,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2438,7 +2448,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2452,7 +2462,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2466,7 +2476,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2480,7 +2490,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2494,7 +2504,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2508,7 +2518,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2522,7 +2532,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2540,7 +2550,7 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2554,7 +2564,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2568,7 +2578,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2582,7 +2592,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2596,7 +2606,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2610,7 +2620,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2624,7 +2634,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2638,7 +2648,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2656,7 +2666,7 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2670,7 +2680,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2684,7 +2694,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2698,7 +2708,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2712,7 +2722,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2726,7 +2736,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2740,7 +2750,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2754,7 +2764,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2772,7 +2782,7 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 
 # 4. Elementalist — เอเลเมนทัลลิสต์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#00FF00**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #00FF00
 
 บันทึกไฟล์ที่: `output\sprites-v4\elementalist\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Elementalist_male_master_ref_v2.png`
 
@@ -2796,8 +2806,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -2816,7 +2827,7 @@ Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapo
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
-This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
+This character uses purple: if real transparency is impossible, the fallback color in THIS chat is flat #00FF00 green, never magenta.
 
 CHARACTER FOR THIS CHAT: Elementalist (male), player class.
 LOOK: Grim semi-chibi young mage with messy dark-purple hair and violet eyes, layered dark-purple tattered cloak with high collar and gold trim, dark clothes underneath, black boots. Long ornate staff topped with a large blue crystal wreathed in small orange-and-blue magic flames.
@@ -2836,7 +2847,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #00FF00 background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -2857,7 +2868,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2871,7 +2882,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2885,7 +2896,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2899,7 +2910,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2913,7 +2924,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2927,7 +2938,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2941,7 +2952,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2955,7 +2966,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2973,7 +2984,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -2987,7 +2998,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3001,7 +3012,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3015,7 +3026,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3029,7 +3040,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3043,7 +3054,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3057,7 +3068,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3071,7 +3082,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3089,7 +3100,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3103,7 +3114,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3117,7 +3128,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3131,7 +3142,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3145,7 +3156,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3159,7 +3170,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3173,7 +3184,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3187,7 +3198,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3205,7 +3216,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3219,7 +3230,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3233,7 +3244,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3247,7 +3258,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3261,7 +3272,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3275,7 +3286,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3289,7 +3300,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3303,7 +3314,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3321,7 +3332,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3335,7 +3346,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3349,7 +3360,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3363,7 +3374,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3377,7 +3388,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3391,7 +3402,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3405,7 +3416,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3419,7 +3430,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3437,7 +3448,7 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3451,7 +3462,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3465,7 +3476,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3479,7 +3490,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3493,7 +3504,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3507,7 +3518,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3521,7 +3532,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3535,7 +3546,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3553,7 +3564,7 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3567,7 +3578,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3581,7 +3592,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3595,7 +3606,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3609,7 +3620,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3623,7 +3634,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3637,7 +3648,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3651,7 +3662,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3669,7 +3680,7 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 
 # 5. Assassin — แอสแซสซิน · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#00FF00**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #00FF00
 
 บันทึกไฟล์ที่: `output\sprites-v4\assassin\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png`
 
@@ -3693,8 +3704,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -3713,7 +3725,7 @@ Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapo
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
-This character uses purple, so in THIS chat the background is always a flat solid #00FF00 green instead of magenta.
+This character uses purple: if real transparency is impossible, the fallback color in THIS chat is flat #00FF00 green, never magenta.
 
 CHARACTER FOR THIS CHAT: Assassin (male), player class.
 LOOK: Grim semi-chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
@@ -3733,7 +3745,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (crouched ready stance, knees bent, both daggers held low at the sides):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #00FF00 background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -3754,7 +3766,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3768,7 +3780,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3782,7 +3794,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3796,7 +3808,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3810,7 +3822,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3824,7 +3836,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3838,7 +3850,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3852,7 +3864,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3870,7 +3882,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3884,7 +3896,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3898,7 +3910,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3912,7 +3924,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3926,7 +3938,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3940,7 +3952,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3954,7 +3966,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3968,7 +3980,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -3986,7 +3998,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4000,7 +4012,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4014,7 +4026,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4028,7 +4040,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4042,7 +4054,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4056,7 +4068,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4070,7 +4082,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4084,7 +4096,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4102,7 +4114,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4116,7 +4128,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4130,7 +4142,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4144,7 +4156,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4158,7 +4170,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4172,7 +4184,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4186,7 +4198,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4200,7 +4212,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4218,7 +4230,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4232,7 +4244,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4246,7 +4258,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4260,7 +4272,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4274,7 +4286,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4288,7 +4300,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4302,7 +4314,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4316,7 +4328,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4334,7 +4346,7 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4348,7 +4360,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4362,7 +4374,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4376,7 +4388,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4390,7 +4402,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4404,7 +4416,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4418,7 +4430,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4432,7 +4444,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4450,7 +4462,7 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4464,7 +4476,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4478,7 +4490,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4492,7 +4504,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4506,7 +4518,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4520,7 +4532,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4534,7 +4546,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4548,7 +4560,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #00FF00 background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4566,7 +4578,7 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 
 # 6. HighPriest — ไฮพรีสต์ (PRIEST) · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\highpriest\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png`
 
@@ -4590,8 +4602,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -4629,7 +4642,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -4650,7 +4663,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4664,7 +4677,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4678,7 +4691,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4692,7 +4705,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4706,7 +4719,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4720,7 +4733,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4734,7 +4747,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4748,7 +4761,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4766,7 +4779,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4780,7 +4793,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4794,7 +4807,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4808,7 +4821,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4822,7 +4835,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4836,7 +4849,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4850,7 +4863,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4864,7 +4877,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4882,7 +4895,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4896,7 +4909,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4910,7 +4923,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4924,7 +4937,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4938,7 +4951,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4952,7 +4965,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4966,7 +4979,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4980,7 +4993,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -4998,7 +5011,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5012,7 +5025,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5026,7 +5039,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5040,7 +5053,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5054,7 +5067,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5068,7 +5081,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5082,7 +5095,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5096,7 +5109,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5114,7 +5127,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5128,7 +5141,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5142,7 +5155,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5156,7 +5169,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5170,7 +5183,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5184,7 +5197,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5198,7 +5211,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5212,7 +5225,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5230,7 +5243,7 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5244,7 +5257,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5258,7 +5271,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5272,7 +5285,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5286,7 +5299,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5300,7 +5313,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5314,7 +5327,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5328,7 +5341,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5346,7 +5359,7 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5360,7 +5373,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5374,7 +5387,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5388,7 +5401,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5402,7 +5415,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5416,7 +5429,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5430,7 +5443,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5444,7 +5457,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5462,7 +5475,7 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 
 # 7. Inquisitor — อินควิซิเตอร์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\inquisitor\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Inquisitor_male_master_ref_v2.png`
 
@@ -5486,8 +5499,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -5525,7 +5539,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield upright at the left side, hammer lowered at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -5546,7 +5560,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5560,7 +5574,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5574,7 +5588,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5588,7 +5602,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5602,7 +5616,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5616,7 +5630,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5630,7 +5644,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5644,7 +5658,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5662,7 +5676,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5676,7 +5690,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5690,7 +5704,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5704,7 +5718,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5718,7 +5732,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5732,7 +5746,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5746,7 +5760,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5760,7 +5774,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5778,7 +5792,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5792,7 +5806,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5806,7 +5820,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5820,7 +5834,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5834,7 +5848,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5848,7 +5862,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5862,7 +5876,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5876,7 +5890,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5894,7 +5908,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5908,7 +5922,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5922,7 +5936,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5936,7 +5950,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5950,7 +5964,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5964,7 +5978,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5978,7 +5992,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -5992,7 +6006,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6010,7 +6024,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6024,7 +6038,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6038,7 +6052,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6052,7 +6066,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6066,7 +6080,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6080,7 +6094,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6094,7 +6108,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6108,7 +6122,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6126,7 +6140,7 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6140,7 +6154,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6154,7 +6168,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6168,7 +6182,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6182,7 +6196,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6196,7 +6210,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6210,7 +6224,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6224,7 +6238,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6242,7 +6256,7 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6256,7 +6270,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6270,7 +6284,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6284,7 +6298,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6298,7 +6312,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6312,7 +6326,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6326,7 +6340,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6340,7 +6354,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6358,7 +6372,7 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 
 # 8. Berserker — เบอร์เซิร์กเกอร์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · พื้นหลัง **#FF00FF**
+ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\berserker\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png`
 
@@ -6382,8 +6396,9 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
 Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
-BACKGROUND: a perfectly flat solid #FF00FF magenta background filling the whole image (no gradient, no floor, no shadow, no vignette). 
-  (If the character itself uses a lot of magenta/purple, I will ask for flat #00FF00 green instead.)
+BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
+  Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
+  (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -6421,7 +6436,7 @@ Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted d
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image 1536x1024 landscape: three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (greatsword resting on the right shoulder, blade pointing up and back behind the head):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
-Flat solid #FF00FF background, no floor, no shadow, no text, no labels, no frames.
+TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
 1. ถ้าไม่ชอบ ตอบ `Redo` หรือบอกจุดที่ต้องแก้ (เช่น `Make the wings on the helmet bigger. Keep everything else.`) จนพอใจ
@@ -6442,7 +6457,7 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6456,7 +6471,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6470,7 +6485,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6484,7 +6499,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6498,7 +6513,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6512,7 +6527,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6526,7 +6541,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6540,7 +6555,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6558,7 +6573,7 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6572,7 +6587,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6586,7 +6601,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6600,7 +6615,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6614,7 +6629,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6628,7 +6643,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6642,7 +6657,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6656,7 +6671,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6674,7 +6689,7 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6688,7 +6703,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6702,7 +6717,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6716,7 +6731,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6730,7 +6745,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6744,7 +6759,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6758,7 +6773,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6772,7 +6787,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6790,7 +6805,7 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6804,7 +6819,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6818,7 +6833,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6832,7 +6847,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6846,7 +6861,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6860,7 +6875,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6874,7 +6889,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6888,7 +6903,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6906,7 +6921,7 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6920,7 +6935,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6934,7 +6949,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6948,7 +6963,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6962,7 +6977,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6976,7 +6991,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -6990,7 +7005,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7004,7 +7019,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7022,7 +7037,7 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7036,7 +7051,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7050,7 +7065,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7064,7 +7079,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7078,7 +7093,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7092,7 +7107,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7106,7 +7121,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7120,7 +7135,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7138,7 +7153,7 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7152,7 +7167,7 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7166,7 +7181,7 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7180,7 +7195,7 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7194,7 +7209,7 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7208,7 +7223,7 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7222,7 +7237,7 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
@@ -7236,7 +7251,7 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-Same character size and the same feet position in every frame. Flat #FF00FF background, nothing else.
+Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
 Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body - never point it sideways out of the silhouette or switch sides.
