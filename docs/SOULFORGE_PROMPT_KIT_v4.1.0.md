@@ -44,6 +44,11 @@ BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alph
   Never paint a checkerboard pattern, a white or grey backdrop, a floor, a ground shadow, a vignette or any scenery to "show" transparency.
   (Only if you are unable to output real transparency, use a perfectly flat solid #FF00FF magenta instead - for purple characters #00FF00 green - with nothing else on it.)
 FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, scenery, ground plane, more than one character per cell, mirrored copies.
+OUTPUT FORMAT IS A HARD RULE (never break it):
+  - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
+  - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
 CONSISTENCY: the attached master reference is the law — same face, hair, armor pieces, colors, patterns, weapon shape and size. Never redesign.
@@ -254,6 +259,7 @@ MOOD: dark and HAUNTED magic - eerie, smoky, ghostly shapes and wisps, cold sick
 ---
 
 ## D. เช็กก่อนส่งให้ผม
+- [ ] ⛔ 1 ภาพ = 1 ท่า × 1 ทิศ · จำนวนช่องตรงตามสั่ง (ห้ามตาราง 8×8) · ขนาด 1536×1024 หรือ 1024×1024 ตรงตามสั่ง · ภาพผิดรูปแบบห้ามส่ง ให้เจนใหม่
 - [ ] ภาพต้นแบบได้ `APPROVED` แล้ว และแนบต้นแบบทุกครั้งที่เจนชีต
 - [ ] 1 ไฟล์ = 1 ท่า × 1 ทิศ ชื่อไฟล์ตามข้อ A.1
 - [ ] ไม่มีพื้นหลัง (โปร่งใส) — ถ้าทำไม่ได้ใช้สีล้วน #FF00FF/#00FF00 · VFX ใช้ดำ · ไม่มีพื้น/เงา/ตัวหนังสือ/ลายตารางหมากรุก
