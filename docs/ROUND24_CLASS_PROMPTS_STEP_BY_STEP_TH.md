@@ -4,7 +4,7 @@
 ทำทีละอาชีพตามเลขไฟล์ `01` → `08` แต่ละอาชีพใช้ **1 แชทใหม่** (ChatGPT หรือ Gemini)
 1. **ขั้น 0** แนบ `STYLE_ANCHOR.png` แล้ววางข้อความแรก รอ AI ตอบยืนยัน
    **ขั้น 1** ให้ AI สร้างภาพต้นแบบใหม่จากข้อความ เลือกจนพอใจ บันทึกไฟล์ และส่งให้ผมดู
-2. ไล่ **ขั้น 2 → 8** ในแชทเดียวกัน คัดลอกทีละกล่อง 1 กล่อง = 1 ภาพ = 1 ท่า × 1 ทิศ
+2. **ขั้น 2** ท่ายืน 8 ทิศ (ภาพล็อกทิศ) แล้วไล่ **ขั้น 3 → 9** ในแชทเดียวกัน คัดลอกทีละกล่อง 1 กล่อง = 1 ภาพ = 1 ท่า × 1 ทิศ
 3. บันทึกภาพตามชื่อที่เขียนไว้เหนือแต่ละกล่อง ลงโฟลเดอร์ `output\sprites-v4\<อาชีพ>\`
 4. ครบแต่ละท่า (8 ภาพ) บอกผมได้เลย ผมจะต่อเข้าเกมและส่งภาพให้ดูก่อน
 
@@ -67,7 +67,7 @@ Wrong format. This breaks the hard rule. Redo: ONE direction only, exactly the g
 - ถ้า ChatGPT วาดลายตารางหมากรุกมาให้ (โปร่งใสปลอม) ให้ใช้ประโยคแก้ด้านล่าง
 
 ลำดับท่าเรียงตามความสำคัญ: เดิน → ตาย → โดนตี → ยืน → โจมตี → สกิล → บัฟ
-ถ้าเวลาน้อย ทำแค่ **ขั้น 1 (ต้นแบบ) + ขั้น 2 (เดิน)** ของทุกอาชีพก่อน จะแก้อาการเดินกระตุกได้ทั้งเกม
+ถ้าเวลาน้อย ทำแค่ **ขั้น 1 (ต้นแบบ) + ขั้น 2 (ยืน 8 ทิศ) + ขั้น 3 (เดิน)** ของทุกอาชีพก่อน จะแก้อาการเดินกระตุกได้ทั้งเกม
 
 ## ตั้งค่าขนาดภาพ
 - ChatGPT: กล่องที่เขียน `1536x1024 landscape` เลือก **Landscape**; `1024x1024 square` เลือก **Square**
@@ -212,13 +212,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `paladin_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `paladin_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), lowered forward-down; the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `paladin_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, lowered forward-down; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `paladin_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `paladin_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `paladin_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), lowered forward-down; the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `paladin_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, lowered forward-down; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `paladin_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, lowered forward-down; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `paladin_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, lowered forward-down; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `paladin_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -231,11 +379,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `paladin_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `paladin_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -248,11 +397,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `paladin_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `paladin_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -265,11 +415,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `paladin_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `paladin_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -282,11 +433,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `paladin_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `paladin_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -299,11 +451,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `paladin_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `paladin_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -316,11 +469,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `paladin_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `paladin_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -333,11 +487,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `paladin_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `paladin_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -352,13 +507,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `paladin_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `paladin_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -371,11 +527,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `paladin_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `paladin_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -388,11 +545,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `paladin_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `paladin_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -405,11 +563,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `paladin_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `paladin_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -422,11 +581,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `paladin_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `paladin_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -439,11 +599,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `paladin_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `paladin_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -456,11 +617,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `paladin_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `paladin_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -473,11 +635,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `paladin_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `paladin_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -492,13 +655,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `paladin_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `paladin_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -511,11 +675,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `paladin_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `paladin_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -528,11 +693,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `paladin_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `paladin_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -545,11 +711,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `paladin_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `paladin_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -562,11 +729,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `paladin_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `paladin_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -579,11 +747,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `paladin_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `paladin_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -596,11 +765,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `paladin_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `paladin_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -613,11 +783,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `paladin_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `paladin_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -632,13 +803,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `paladin_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `paladin_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -651,11 +823,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `paladin_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `paladin_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -668,11 +841,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `paladin_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `paladin_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -685,11 +859,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `paladin_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `paladin_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -702,11 +877,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `paladin_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `paladin_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -719,11 +895,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `paladin_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `paladin_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -736,11 +913,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `paladin_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `paladin_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -753,11 +931,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `paladin_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `paladin_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -772,13 +951,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `paladin_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `paladin_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -791,11 +971,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `paladin_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `paladin_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -808,11 +989,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `paladin_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `paladin_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -825,11 +1007,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `paladin_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `paladin_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -842,11 +1025,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `paladin_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `paladin_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -859,11 +1043,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `paladin_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `paladin_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -876,11 +1061,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `paladin_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `paladin_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -893,11 +1079,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the sword back over the right shoulder while the shield comes up to a vertical guard in front, 3-5 a strong diagonal downward slash, 6-8 recover to idle.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `paladin_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `paladin_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -912,13 +1099,14 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `paladin_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `paladin_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -931,11 +1119,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `paladin_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `paladin_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -948,11 +1137,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `paladin_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `paladin_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -965,11 +1155,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `paladin_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `paladin_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -982,11 +1173,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `paladin_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `paladin_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -999,11 +1191,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `paladin_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `paladin_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1016,11 +1209,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `paladin_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `paladin_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1033,11 +1227,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms over the head, the shield still on the left arm, 4-7 two powerful downward holy strikes into the ground in front, 8-10 recover. Draw no light effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `paladin_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `paladin_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1052,13 +1247,14 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `paladin_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `paladin_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1071,11 +1267,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `paladin_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `paladin_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1088,11 +1285,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `paladin_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `paladin_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1105,11 +1303,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `paladin_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `paladin_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1122,11 +1321,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `paladin_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `paladin_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1139,11 +1339,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `paladin_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `paladin_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1156,11 +1357,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `paladin_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `paladin_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1173,11 +1375,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front and lift the shield, head bowed, 5-8 look up and stand tall in a confident guard. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `paladin_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `paladin_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1294,13 +1497,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `hawkeye_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `hawkeye_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: the LEFT hand holds the bow out in front, angled toward the camera (down in the image); when an arrow is drawn it points toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: the LEFT hand holds the bow out in front, angled down-right in the image; when an arrow is drawn it points down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `hawkeye_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: the LEFT hand holds the bow out in front, angled to the RIGHT edge of the image; when an arrow is drawn it points to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: the LEFT hand holds the bow out in front, angled up-right in the image, away from the camera; when an arrow is drawn it points up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `hawkeye_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: the LEFT hand holds the bow out in front, angled straight away from the camera (up in the image); when an arrow is drawn it points straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: the LEFT hand holds the bow out in front, angled up-left in the image, away from the camera; when an arrow is drawn it points up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `hawkeye_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: the LEFT hand holds the bow out in front, angled to the LEFT edge of the image; when an arrow is drawn it points to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: the LEFT hand holds the bow out in front, angled down-left in the image; when an arrow is drawn it points down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `hawkeye_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1313,11 +1664,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1330,11 +1682,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `hawkeye_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `hawkeye_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1347,11 +1700,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1364,11 +1718,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `hawkeye_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `hawkeye_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1381,11 +1736,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1398,11 +1754,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `hawkeye_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `hawkeye_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1415,11 +1772,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1434,13 +1792,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `hawkeye_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `hawkeye_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1453,11 +1812,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1470,11 +1830,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `hawkeye_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `hawkeye_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1487,11 +1848,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1504,11 +1866,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `hawkeye_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `hawkeye_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1521,11 +1884,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1538,11 +1902,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `hawkeye_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `hawkeye_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1555,11 +1920,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1574,13 +1940,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `hawkeye_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `hawkeye_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1593,11 +1960,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1610,11 +1978,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `hawkeye_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `hawkeye_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1627,11 +1996,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1644,11 +2014,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `hawkeye_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `hawkeye_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1661,11 +2032,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1678,11 +2050,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `hawkeye_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `hawkeye_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1695,11 +2068,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1714,13 +2088,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `hawkeye_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `hawkeye_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1733,11 +2108,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1750,11 +2126,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `hawkeye_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `hawkeye_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1767,11 +2144,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1784,11 +2162,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `hawkeye_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `hawkeye_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1801,11 +2180,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1818,11 +2198,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `hawkeye_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `hawkeye_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1835,11 +2216,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1854,13 +2236,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `hawkeye_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `hawkeye_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1873,11 +2256,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1890,11 +2274,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `hawkeye_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `hawkeye_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1907,11 +2292,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1924,11 +2310,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `hawkeye_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `hawkeye_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1941,11 +2328,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1958,11 +2346,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `hawkeye_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `hawkeye_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1975,11 +2364,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver and nocks it, 3-4 raise the bow and draw the string to the cheek, 5 release (string snaps forward, arrow gone), 6-8 lower the bow back to idle. Bow, string, arrow and hands line up correctly.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -1994,13 +2384,14 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `hawkeye_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `hawkeye_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2013,11 +2404,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2030,11 +2422,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `hawkeye_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `hawkeye_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2047,11 +2440,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2064,11 +2458,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `hawkeye_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `hawkeye_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2081,11 +2476,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2098,11 +2494,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `hawkeye_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `hawkeye_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2115,11 +2512,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward the sky, 4-7 draw fully and release, then quickly nock and release again, 8-10 lower the bow. Draw no arrows in the sky and no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2134,13 +2532,14 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `hawkeye_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `hawkeye_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2153,11 +2552,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `hawkeye_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2170,11 +2570,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `hawkeye_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `hawkeye_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2187,11 +2588,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `hawkeye_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2204,11 +2606,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `hawkeye_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `hawkeye_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2221,11 +2624,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `hawkeye_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2238,11 +2642,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `hawkeye_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `hawkeye_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2255,11 +2660,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint along it, right hand touching the hood, 5-8 lower into a sharp ready stance. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `hawkeye_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2376,13 +2782,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `runemaster_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `runemaster_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: the RIGHT hand holds the sword with its tip angled toward the camera (down in the image), down-forward; the rune stone above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `runemaster_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled down-right in the image, down-forward; the rune stone above the LEFT palm is held out down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `runemaster_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled to the RIGHT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `runemaster_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the sword with its tip angled up-right in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `runemaster_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: the RIGHT hand holds the sword with its tip angled straight away from the camera (up in the image), down-forward; the rune stone above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `runemaster_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the sword with its tip angled up-left in the image, away from the camera, down-forward; the rune stone above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `runemaster_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled to the LEFT edge of the image, down-forward; the rune stone above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `runemaster_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: the RIGHT hand holds the sword with its tip angled down-left in the image, down-forward; the rune stone above the LEFT palm is held out down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `runemaster_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2395,11 +2949,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `runemaster_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `runemaster_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2412,11 +2967,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `runemaster_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `runemaster_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2429,11 +2985,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `runemaster_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `runemaster_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2446,11 +3003,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `runemaster_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `runemaster_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2463,11 +3021,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `runemaster_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `runemaster_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2480,11 +3039,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `runemaster_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `runemaster_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2497,11 +3057,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `runemaster_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `runemaster_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2516,13 +3077,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `runemaster_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `runemaster_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2535,11 +3097,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `runemaster_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `runemaster_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2552,11 +3115,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `runemaster_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `runemaster_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2569,11 +3133,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `runemaster_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `runemaster_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2586,11 +3151,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `runemaster_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `runemaster_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2603,11 +3169,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `runemaster_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `runemaster_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2620,11 +3187,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `runemaster_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `runemaster_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2637,11 +3205,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `runemaster_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `runemaster_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2656,13 +3225,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `runemaster_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `runemaster_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2675,11 +3245,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `runemaster_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `runemaster_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2692,11 +3263,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `runemaster_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `runemaster_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2709,11 +3281,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `runemaster_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `runemaster_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2726,11 +3299,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `runemaster_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `runemaster_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2743,11 +3317,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `runemaster_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `runemaster_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2760,11 +3335,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `runemaster_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `runemaster_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2777,11 +3353,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `runemaster_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `runemaster_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2796,13 +3373,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `runemaster_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `runemaster_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2815,11 +3393,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `runemaster_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `runemaster_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2832,11 +3411,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `runemaster_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `runemaster_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2849,11 +3429,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `runemaster_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `runemaster_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2866,11 +3447,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `runemaster_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `runemaster_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2883,11 +3465,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `runemaster_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `runemaster_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2900,11 +3483,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `runemaster_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `runemaster_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2917,11 +3501,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `runemaster_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `runemaster_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2936,13 +3521,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `runemaster_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `runemaster_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2955,11 +3541,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `runemaster_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `runemaster_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2972,11 +3559,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `runemaster_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `runemaster_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -2989,11 +3577,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `runemaster_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `runemaster_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3006,11 +3595,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `runemaster_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `runemaster_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3023,11 +3613,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `runemaster_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `runemaster_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3040,11 +3631,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `runemaster_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `runemaster_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3057,11 +3649,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal slash forward, the rune stone stays above the left palm, 6-8 recover to idle.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `runemaster_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `runemaster_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3076,13 +3669,14 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `runemaster_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `runemaster_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3095,11 +3689,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `runemaster_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `runemaster_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3112,11 +3707,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `runemaster_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `runemaster_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3129,11 +3725,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `runemaster_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `runemaster_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3146,11 +3743,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `runemaster_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `runemaster_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3163,11 +3761,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `runemaster_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `runemaster_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3180,11 +3779,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `runemaster_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `runemaster_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3197,11 +3797,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left hand, 4-7 stab the sword point down into the ground in front with the right hand and push the stone downward, 8-10 pull the sword out and recover. Draw no pillars or effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `runemaster_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `runemaster_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3216,13 +3817,14 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `runemaster_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `runemaster_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3235,11 +3837,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `runemaster_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `runemaster_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3252,11 +3855,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `runemaster_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `runemaster_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3269,11 +3873,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `runemaster_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `runemaster_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3286,11 +3891,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `runemaster_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `runemaster_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3303,11 +3909,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `runemaster_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `runemaster_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3320,11 +3927,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `runemaster_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `runemaster_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3337,11 +3945,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the chest with both hands, sword hanging from the right hand, 5-8 raise the stone overhead in triumph. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `runemaster_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `runemaster_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3459,13 +4068,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `elementalist_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `elementalist_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly toward the camera (down in the image); when casting it points toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `elementalist_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-right in the image; when casting it points down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `elementalist_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the RIGHT edge of the image; when casting it points to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `elementalist_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-right in the image, away from the camera; when casting it points up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `elementalist_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly straight away from the camera (up in the image); when casting it points straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `elementalist_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly up-left in the image, away from the camera; when casting it points up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `elementalist_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly to the LEFT edge of the image; when casting it points to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `elementalist_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: the staff stays in the RIGHT hand (both hands when walking) and its crystal head leans slightly down-left in the image; when casting it points down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `elementalist_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3478,11 +4235,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `elementalist_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `elementalist_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3495,11 +4253,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `elementalist_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `elementalist_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3512,11 +4271,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `elementalist_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `elementalist_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3529,11 +4289,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `elementalist_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `elementalist_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3546,11 +4307,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `elementalist_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `elementalist_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3563,11 +4325,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `elementalist_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `elementalist_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3580,11 +4343,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `elementalist_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `elementalist_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3599,13 +4363,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `elementalist_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `elementalist_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3618,11 +4383,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `elementalist_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `elementalist_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3635,11 +4401,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `elementalist_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `elementalist_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3652,11 +4419,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `elementalist_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `elementalist_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3669,11 +4437,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `elementalist_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `elementalist_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3686,11 +4455,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `elementalist_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `elementalist_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3703,11 +4473,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `elementalist_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `elementalist_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3720,11 +4491,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `elementalist_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `elementalist_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3739,13 +4511,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `elementalist_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `elementalist_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3758,11 +4531,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `elementalist_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `elementalist_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3775,11 +4549,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `elementalist_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `elementalist_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3792,11 +4567,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `elementalist_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `elementalist_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3809,11 +4585,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `elementalist_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `elementalist_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3826,11 +4603,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `elementalist_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `elementalist_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3843,11 +4621,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `elementalist_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `elementalist_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3860,11 +4639,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `elementalist_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `elementalist_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3879,13 +4659,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `elementalist_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `elementalist_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3898,11 +4679,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `elementalist_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `elementalist_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3915,11 +4697,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `elementalist_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `elementalist_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3932,11 +4715,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `elementalist_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `elementalist_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3949,11 +4733,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `elementalist_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `elementalist_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3966,11 +4751,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `elementalist_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `elementalist_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -3983,11 +4769,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `elementalist_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `elementalist_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4000,11 +4787,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `elementalist_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `elementalist_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4019,13 +4807,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `elementalist_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `elementalist_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4038,11 +4827,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `elementalist_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `elementalist_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4055,11 +4845,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `elementalist_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `elementalist_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4072,11 +4863,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `elementalist_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `elementalist_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4089,11 +4881,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `elementalist_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `elementalist_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4106,11 +4899,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `elementalist_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `elementalist_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4123,11 +4917,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `elementalist_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `elementalist_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4140,11 +4935,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust the crystal head forward to cast, 6-8 return to idle.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `elementalist_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `elementalist_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4159,13 +4955,14 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `elementalist_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `elementalist_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4178,11 +4975,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `elementalist_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `elementalist_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4195,11 +4993,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `elementalist_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `elementalist_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4212,11 +5011,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `elementalist_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `elementalist_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4229,11 +5029,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `elementalist_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `elementalist_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4246,11 +5047,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `elementalist_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `elementalist_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4263,11 +5065,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `elementalist_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `elementalist_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4280,11 +5083,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both hands, 4-7 hold it up then swing it down to point at the ground in front, 8-10 recover. Draw no meteor or effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `elementalist_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `elementalist_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4299,13 +5103,14 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `elementalist_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `elementalist_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4318,11 +5123,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `elementalist_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `elementalist_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4335,11 +5141,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `elementalist_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `elementalist_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4352,11 +5159,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `elementalist_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `elementalist_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4369,11 +5177,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `elementalist_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `elementalist_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4386,11 +5195,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `elementalist_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `elementalist_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4403,11 +5213,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `elementalist_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `elementalist_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4420,11 +5231,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in front with both hands, eyes closed, cloak lifting, 5-8 open the eyes and step into a ready stance. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `elementalist_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `elementalist_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4542,13 +5354,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `assassin_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `assassin_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: both daggers are held low with the blades angled down and slightly toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `assassin_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: both daggers are held low with the blades angled down and slightly down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `assassin_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: both daggers are held low with the blades angled down and slightly to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `assassin_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: both daggers are held low with the blades angled down and slightly up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `assassin_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: both daggers are held low with the blades angled down and slightly straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `assassin_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: both daggers are held low with the blades angled down and slightly up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `assassin_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: both daggers are held low with the blades angled down and slightly to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `assassin_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: both daggers are held low with the blades angled down and slightly down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `assassin_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4561,11 +5521,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `assassin_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `assassin_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4578,11 +5539,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `assassin_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `assassin_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4595,11 +5557,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `assassin_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `assassin_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4612,11 +5575,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `assassin_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `assassin_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4629,11 +5593,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `assassin_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `assassin_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4646,11 +5611,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `assassin_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `assassin_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4663,11 +5629,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `assassin_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `assassin_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4682,13 +5649,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `assassin_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `assassin_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4701,11 +5669,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `assassin_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `assassin_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4718,11 +5687,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `assassin_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `assassin_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4735,11 +5705,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `assassin_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `assassin_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4752,11 +5723,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `assassin_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `assassin_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4769,11 +5741,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `assassin_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `assassin_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4786,11 +5759,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `assassin_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `assassin_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4803,11 +5777,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `assassin_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `assassin_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4822,13 +5797,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `assassin_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `assassin_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4841,11 +5817,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `assassin_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `assassin_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4858,11 +5835,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `assassin_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `assassin_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4875,11 +5853,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `assassin_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `assassin_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4892,11 +5871,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `assassin_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `assassin_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4909,11 +5889,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `assassin_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `assassin_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4926,11 +5907,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `assassin_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `assassin_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4943,11 +5925,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `assassin_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `assassin_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4962,13 +5945,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `assassin_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `assassin_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4981,11 +5965,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `assassin_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `assassin_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -4998,11 +5983,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `assassin_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `assassin_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5015,11 +6001,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `assassin_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `assassin_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5032,11 +6019,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `assassin_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `assassin_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5049,11 +6037,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `assassin_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `assassin_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5066,11 +6055,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `assassin_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `assassin_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5083,11 +6073,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: crouched ready stance, knees bent, both daggers held low at the sides. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `assassin_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `assassin_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5102,13 +6093,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `assassin_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `assassin_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5121,11 +6113,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `assassin_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `assassin_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5138,11 +6131,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `assassin_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `assassin_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5155,11 +6149,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `assassin_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `assassin_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5172,11 +6167,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `assassin_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `assassin_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5189,11 +6185,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `assassin_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `assassin_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5206,11 +6203,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `assassin_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `assassin_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5223,11 +6221,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (right then left), 6-8 return to the crouched stance.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `assassin_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `assassin_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5242,13 +6241,14 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `assassin_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `assassin_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5261,11 +6261,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `assassin_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `assassin_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5278,11 +6279,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `assassin_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `assassin_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5295,11 +6297,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `assassin_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `assassin_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5312,11 +6315,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `assassin_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `assassin_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5329,11 +6333,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `assassin_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `assassin_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5346,11 +6351,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `assassin_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `assassin_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5363,11 +6369,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree spinning slash with both daggers, 8-10 land back in the crouch. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `assassin_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `assassin_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5382,13 +6389,14 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `assassin_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `assassin_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5401,11 +6409,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `assassin_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `assassin_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5418,11 +6427,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `assassin_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `assassin_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5435,11 +6445,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `assassin_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `assassin_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5452,11 +6463,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `assassin_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `assassin_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5469,11 +6481,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `assassin_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `assassin_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5486,11 +6499,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `assassin_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `assassin_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5503,11 +6517,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both daggers in front of the chest, 5-8 sink into a low stealth crouch. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `assassin_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `assassin_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5624,13 +6639,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `highpriest_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `highpriest_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly toward the camera (down in the image); the light orb above the LEFT palm is held out toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `highpriest_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-right in the image; the light orb above the LEFT palm is held out down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `highpriest_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the RIGHT edge of the image; the light orb above the LEFT palm is held out to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `highpriest_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-right in the image, away from the camera; the light orb above the LEFT palm is held out up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `highpriest_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly straight away from the camera (up in the image); the light orb above the LEFT palm is held out straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `highpriest_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly up-left in the image, away from the camera; the light orb above the LEFT palm is held out up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `highpriest_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly to the LEFT edge of the image; the light orb above the LEFT palm is held out to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `highpriest_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: the RIGHT hand holds the sceptre upright, tilted slightly down-left in the image; the light orb above the LEFT palm is held out down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `highpriest_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5643,11 +6806,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `highpriest_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `highpriest_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5660,11 +6824,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `highpriest_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `highpriest_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5677,11 +6842,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `highpriest_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `highpriest_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5694,11 +6860,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `highpriest_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `highpriest_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5711,11 +6878,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `highpriest_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `highpriest_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5728,11 +6896,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `highpriest_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `highpriest_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5745,11 +6914,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `highpriest_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `highpriest_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5764,13 +6934,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `highpriest_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `highpriest_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5783,11 +6954,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `highpriest_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `highpriest_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5800,11 +6972,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `highpriest_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `highpriest_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5817,11 +6990,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `highpriest_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `highpriest_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5834,11 +7008,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `highpriest_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `highpriest_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5851,11 +7026,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `highpriest_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `highpriest_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5868,11 +7044,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `highpriest_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `highpriest_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5885,11 +7062,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `highpriest_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `highpriest_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5904,13 +7082,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `highpriest_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `highpriest_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5923,11 +7102,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `highpriest_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `highpriest_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5940,11 +7120,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `highpriest_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `highpriest_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5957,11 +7138,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `highpriest_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `highpriest_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5974,11 +7156,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `highpriest_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `highpriest_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -5991,11 +7174,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `highpriest_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `highpriest_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6008,11 +7192,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `highpriest_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `highpriest_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6025,11 +7210,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `highpriest_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `highpriest_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6044,13 +7230,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `highpriest_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `highpriest_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6063,11 +7250,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `highpriest_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `highpriest_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6080,11 +7268,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `highpriest_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `highpriest_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6097,11 +7286,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `highpriest_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `highpriest_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6114,11 +7304,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `highpriest_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `highpriest_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6131,11 +7322,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `highpriest_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `highpriest_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6148,11 +7340,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `highpriest_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `highpriest_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6165,11 +7358,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `highpriest_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `highpriest_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6184,13 +7378,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `highpriest_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `highpriest_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6203,11 +7398,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `highpriest_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `highpriest_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6220,11 +7416,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `highpriest_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `highpriest_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6237,11 +7434,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `highpriest_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `highpriest_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6254,11 +7452,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `highpriest_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `highpriest_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6271,11 +7470,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `highpriest_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `highpriest_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6288,11 +7488,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `highpriest_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `highpriest_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6305,11 +7506,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrust the left palm forward to send light (the orb stays in the hand), 6-8 return to idle.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `highpriest_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `highpriest_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6324,13 +7526,14 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `highpriest_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `highpriest_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6343,11 +7546,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `highpriest_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `highpriest_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6360,11 +7564,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `highpriest_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `highpriest_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6377,11 +7582,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `highpriest_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `highpriest_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6394,11 +7600,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `highpriest_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `highpriest_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6411,11 +7618,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `highpriest_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `highpriest_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6428,11 +7636,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `highpriest_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `highpriest_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6445,11 +7654,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the head, 4-7 bring both down and spread the arms wide, 8-10 return to idle. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `highpriest_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `highpriest_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6464,13 +7674,14 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `highpriest_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `highpriest_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6483,11 +7694,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `highpriest_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `highpriest_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6500,11 +7712,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `highpriest_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `highpriest_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6517,11 +7730,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `highpriest_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `highpriest_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6534,11 +7748,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `highpriest_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `highpriest_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6551,11 +7766,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `highpriest_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `highpriest_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6568,11 +7784,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `highpriest_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `highpriest_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6585,11 +7802,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head bowed in prayer, orb above the left hand, 5-8 lift the head and raise the sceptre. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `highpriest_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `highpriest_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6706,13 +7924,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `inquisitor_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `inquisitor_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled toward the camera (down in the image); the shield on the LEFT arm faces toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-right in the image; the shield on the LEFT arm faces down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `inquisitor_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the RIGHT edge of the image; the shield on the LEFT arm faces to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-right in the image, away from the camera; the shield on the LEFT arm faces up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `inquisitor_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled straight away from the camera (up in the image); the shield on the LEFT arm faces straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled up-left in the image, away from the camera; the shield on the LEFT arm faces up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `inquisitor_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled to the LEFT edge of the image; the shield on the LEFT arm faces to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
+Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: the RIGHT hand holds the hammer with its head lowered and angled down-left in the image; the shield on the LEFT arm faces down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `inquisitor_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6725,11 +8091,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6742,11 +8109,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `inquisitor_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `inquisitor_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6759,11 +8127,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6776,11 +8145,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `inquisitor_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `inquisitor_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6793,11 +8163,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6810,11 +8181,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `inquisitor_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `inquisitor_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6827,11 +8199,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6846,13 +8219,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `inquisitor_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `inquisitor_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6865,11 +8239,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6882,11 +8257,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `inquisitor_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `inquisitor_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6899,11 +8275,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6916,11 +8293,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `inquisitor_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `inquisitor_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6933,11 +8311,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6950,11 +8329,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `inquisitor_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `inquisitor_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6967,11 +8347,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -6986,13 +8367,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `inquisitor_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `inquisitor_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7005,11 +8387,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7022,11 +8405,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `inquisitor_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `inquisitor_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7039,11 +8423,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7056,11 +8441,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `inquisitor_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `inquisitor_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7073,11 +8459,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7090,11 +8477,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `inquisitor_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `inquisitor_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7107,11 +8495,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7126,13 +8515,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `inquisitor_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `inquisitor_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7145,11 +8535,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7162,11 +8553,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `inquisitor_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `inquisitor_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7179,11 +8571,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7196,11 +8589,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `inquisitor_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `inquisitor_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7213,11 +8607,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7230,11 +8625,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `inquisitor_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `inquisitor_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7247,11 +8643,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: shield upright at the left side, hammer lowered at the right side. Arms reach out so the weapon and any shield/focus stay clear of the body with visible space between them.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7266,13 +8663,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `inquisitor_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `inquisitor_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7285,11 +8683,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7302,11 +8701,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `inquisitor_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `inquisitor_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7319,11 +8719,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7336,11 +8737,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `inquisitor_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `inquisitor_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7353,11 +8755,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7370,11 +8773,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `inquisitor_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `inquisitor_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7387,11 +8791,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, shield in front, 3-5 slam it down hard in front, 6-8 recover to idle.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7406,13 +8811,14 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `inquisitor_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `inquisitor_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7425,11 +8831,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7442,11 +8849,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `inquisitor_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `inquisitor_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7459,11 +8867,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7476,11 +8885,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `inquisitor_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `inquisitor_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7493,11 +8903,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7510,11 +8921,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `inquisitor_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `inquisitor_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7527,11 +8939,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the sky, 4-7 leap slightly and smash the hammer into the ground with full force, 8-10 rise back to idle. Draw no lightning.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7546,13 +8959,14 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `inquisitor_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `inquisitor_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7565,11 +8979,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `inquisitor_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7582,11 +8997,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `inquisitor_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `inquisitor_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7599,11 +9015,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `inquisitor_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7616,11 +9033,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `inquisitor_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `inquisitor_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7633,11 +9051,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `inquisitor_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7650,11 +9069,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `inquisitor_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `inquisitor_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7667,11 +9087,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like a vow, 5-8 bang the hammer against the shield and stand ready. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `inquisitor_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7788,13 +9209,161 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 
 - [ ] ได้ต้นแบบที่พอใจ บันทึกไฟล์แล้ว
 
-## ขั้น 2 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+## ขั้น 2 — ท่ายืนเริ่มต้นครบ 8 ทิศ (ภาพอ้างอิงทิศ) · 1 ภาพต่อทิศ · 8 ภาพ
 
-**2.1 ทิศ S** → บันทึกเป็น `berserker_male_walk_S_raw_v1.png`
+> ทำต่อในแชทเดิมหลังต้นแบบผ่านแล้ว · ภาพชุดนี้คือ "ตัวล็อกทิศ" ทุกท่าในขั้นถัดไปจะอ้างอิงภาพยืนของทิศนั้น AI จึงไม่ต้องตีความทิศเอง · ถ้าภาพไหนผิด (มือสลับ ทิศผิด อาวุธชิดตัว หน้าตาเพี้ยน) **เจนใหม่จนถูกก่อน** ห้ามข้ามไปขั้น 3
+
+**2.1 ทิศ S** → บันทึกเป็น `berserker_male_stand_S_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction S (facing the camera, front view).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction S. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (toward the camera (down in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes toward the camera (down in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.2 ทิศ SE** → บันทึกเป็น `berserker_male_stand_SE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-right in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-right in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.3 ทิศ E** → บันทึกเป็น `berserker_male_stand_E_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction E (full side profile facing the RIGHT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction E. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the RIGHT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the RIGHT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.4 ทิศ NE** → บันทึกเป็น `berserker_male_stand_NE_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NE (three-quarter back view, facing away toward the upper RIGHT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NE. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-right in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-right in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.5 ทิศ N** → บันทึกเป็น `berserker_male_stand_N_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction N (back view, facing away from the camera).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction N. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (straight away from the camera (up in the image)) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes straight away from the camera (up in the image). The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.6 ทิศ NW** → บันทึกเป็น `berserker_male_stand_NW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction NW (three-quarter back view, facing away toward the upper LEFT).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction NW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (up-left in the image, away from the camera) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes up-left in the image, away from the camera. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.7 ทิศ W** → บันทึกเป็น `berserker_male_stand_W_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction W (full side profile facing the LEFT edge of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction W. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (to the LEFT edge of the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes to the LEFT edge of the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+**2.8 ทิศ SW** → บันทึกเป็น `berserker_male_stand_SW_raw_v1.png`
+
+```text
+Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
+Draw the DEFAULT STANDING POSE (one still idle frame) facing direction SW (three-quarter front, body turned toward the LEFT side of the image).
+Do NOT invent anything: follow every rule already given in this chat - STYLE ANCHOR, chibi proportions, DARK & HAUNTED tone, HANDS, WEAPON HOLD, WEAPON FOLLOWS THE BODY, WEAPON SHAPE IS FIXED, the DIRECTIONS table, OUTPUT FORMAT and NO BACKGROUND. Same design, colours, headwear, cloak, weapon and shield shapes and the same body size as the master reference.
+HARD RULE: ONE character only, facing ONLY direction SW. No other views, no turnaround, no extra figures. Image exactly 1024x1024 square.
+SPACING (hard rule): character height about 55-60% of the image, horizontally centred, feet at about 85% of the image height, at least 20% empty transparent space on all four sides; nothing cut by the edge.
+NO BACKGROUND (hard rule): fully TRANSPARENT (PNG alpha) - no colour, gradient, checkerboard, floor, shadow or fog.
+Pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
+Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
+In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
+Weapon direction: the greatsword rests on the RIGHT shoulder with the grip toward the front (down-left in the image) and the blade pointing BACKWARD, away from the facing direction; when attacking, the swing goes down-left in the image. The weapon turns with the body and keeps a clear gap from it (arm reaching out, never glued to the torso or legs) - but never swing it out sideways away from the facing direction and never switch sides.
+Weapon shape: identical to the master reference 100% - rigid, never bent, warped, stretched or redesigned.
+Back views (N, NE, NW) show the real back: cloak/cape, back of the head/headwear, the weapon seen from behind and partly hidden by the body.
+```
+
+ครบ 8 ทิศแล้ว ตอบในแชทว่า:
+```text
+These 8 standing poses are now the approved DIRECTION REFERENCES. In every later sprite sheet in this chat, the facing, body angle, size and weapon/shield placement for a direction must match the standing pose of that same direction.
+```
+
+- [ ] ครบ 8 ทิศ · ทิศ S SE E NE N NW W SW ไม่ซ้ำกัน · มือถืออาวุธถูกข้างตามตาราง · อาวุธห่างตัว · ส่งให้ผมดูได้
+
+## ขั้น 3 — เดิน (`walk`) · 8 เฟรม · 8 ภาพ
+
+**3.1 ทิศ S** → บันทึกเป็น `berserker_male_walk_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7807,11 +9376,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**2.2 ทิศ SE** → บันทึกเป็น `berserker_male_walk_SE_raw_v1.png`
+**3.2 ทิศ SE** → บันทึกเป็น `berserker_male_walk_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7824,11 +9394,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**2.3 ทิศ E** → บันทึกเป็น `berserker_male_walk_E_raw_v1.png`
+**3.3 ทิศ E** → บันทึกเป็น `berserker_male_walk_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7841,11 +9412,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**2.4 ทิศ NE** → บันทึกเป็น `berserker_male_walk_NE_raw_v1.png`
+**3.4 ทิศ NE** → บันทึกเป็น `berserker_male_walk_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7858,11 +9430,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**2.5 ทิศ N** → บันทึกเป็น `berserker_male_walk_N_raw_v1.png`
+**3.5 ทิศ N** → บันทึกเป็น `berserker_male_walk_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7875,11 +9448,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**2.6 ทิศ NW** → บันทึกเป็น `berserker_male_walk_NW_raw_v1.png`
+**3.6 ทิศ NW** → บันทึกเป็น `berserker_male_walk_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7892,11 +9466,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**2.7 ทิศ W** → บันทึกเป็น `berserker_male_walk_W_raw_v1.png`
+**3.7 ทิศ W** → บันทึกเป็น `berserker_male_walk_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7909,11 +9484,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: walking loop in place (the character does not travel across the cell): frame 1 left foot forward contact, 2 down, 3 passing, 4 up, 5 right foot forward contact, 6 down, 7 passing, 8 up. Legs clearly alternate, arms and cape counter-swing, small up-down body bob. Frame 8 must flow smoothly back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**2.8 ทิศ SW** → บันทึกเป็น `berserker_male_walk_SW_raw_v1.png`
+**3.8 ทิศ SW** → บันทึกเป็น `berserker_male_walk_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7928,13 +9504,14 @@ Motion: walking loop in place (the character does not travel across the cell): f
 
 - [ ] ครบ 8 ทิศของท่าเดิน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 3 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
+## ขั้น 4 — ตาย (`death`) · 8 เฟรม · 8 ภาพ
 
-**3.1 ทิศ S** → บันทึกเป็น `berserker_male_death_S_raw_v1.png`
+**4.1 ทิศ S** → บันทึกเป็น `berserker_male_death_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7947,11 +9524,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.2 ทิศ SE** → บันทึกเป็น `berserker_male_death_SE_raw_v1.png`
+**4.2 ทิศ SE** → บันทึกเป็น `berserker_male_death_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7964,11 +9542,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.3 ทิศ E** → บันทึกเป็น `berserker_male_death_E_raw_v1.png`
+**4.3 ทิศ E** → บันทึกเป็น `berserker_male_death_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7981,11 +9560,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.4 ทิศ NE** → บันทึกเป็น `berserker_male_death_NE_raw_v1.png`
+**4.4 ทิศ NE** → บันทึกเป็น `berserker_male_death_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -7998,11 +9578,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.5 ทิศ N** → บันทึกเป็น `berserker_male_death_N_raw_v1.png`
+**4.5 ทิศ N** → บันทึกเป็น `berserker_male_death_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8015,11 +9596,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.6 ทิศ NW** → บันทึกเป็น `berserker_male_death_NW_raw_v1.png`
+**4.6 ทิศ NW** → บันทึกเป็น `berserker_male_death_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8032,11 +9614,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.7 ทิศ W** → บันทึกเป็น `berserker_male_death_W_raw_v1.png`
+**4.7 ทิศ W** → บันทึกเป็น `berserker_male_death_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8049,11 +9632,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 fall to the ground, 7-8 lying still on the ground. The weapon falls beside the body and never disappears.
 ```
 
-**3.8 ทิศ SW** → บันทึกเป็น `berserker_male_death_SW_raw_v1.png`
+**4.8 ทิศ SW** → บันทึกเป็น `berserker_male_death_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8068,13 +9652,14 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 
 - [ ] ครบ 8 ทิศของท่าตาย · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 4 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
+## ขั้น 5 — โดนตี (`hit`) · 4 เฟรม · 8 ภาพ
 
-**4.1 ทิศ S** → บันทึกเป็น `berserker_male_hit_S_raw_v1.png`
+**5.1 ทิศ S** → บันทึกเป็น `berserker_male_hit_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8087,11 +9672,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.2 ทิศ SE** → บันทึกเป็น `berserker_male_hit_SE_raw_v1.png`
+**5.2 ทิศ SE** → บันทึกเป็น `berserker_male_hit_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8104,11 +9690,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.3 ทิศ E** → บันทึกเป็น `berserker_male_hit_E_raw_v1.png`
+**5.3 ทิศ E** → บันทึกเป็น `berserker_male_hit_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8121,11 +9708,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.4 ทิศ NE** → บันทึกเป็น `berserker_male_hit_NE_raw_v1.png`
+**5.4 ทิศ NE** → บันทึกเป็น `berserker_male_hit_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8138,11 +9726,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.5 ทิศ N** → บันทึกเป็น `berserker_male_hit_N_raw_v1.png`
+**5.5 ทิศ N** → บันทึกเป็น `berserker_male_hit_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8155,11 +9744,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.6 ทิศ NW** → บันทึกเป็น `berserker_male_hit_NW_raw_v1.png`
+**5.6 ทิศ NW** → บันทึกเป็น `berserker_male_hit_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8172,11 +9762,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.7 ทิศ W** → บันทึกเป็น `berserker_male_hit_W_raw_v1.png`
+**5.7 ทิศ W** → บันทึกเป็น `berserker_male_hit_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8189,11 +9780,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and torso snap back), 3 still recoiling, 4 recovering toward idle. Feet stay planted.
 ```
 
-**4.8 ทิศ SW** → บันทึกเป็น `berserker_male_hit_SW_raw_v1.png`
+**5.8 ทิศ SW** → บันทึกเป็น `berserker_male_hit_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
 HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8208,13 +9800,14 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 
 - [ ] ครบ 8 ทิศของท่าโดนตี · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 5 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
+## ขั้น 6 — ยืน (`idle`) · 6 เฟรม · 8 ภาพ
 
-**5.1 ทิศ S** → บันทึกเป็น `berserker_male_idle_S_raw_v1.png`
+**6.1 ทิศ S** → บันทึกเป็น `berserker_male_idle_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8227,11 +9820,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**5.2 ทิศ SE** → บันทึกเป็น `berserker_male_idle_SE_raw_v1.png`
+**6.2 ทิศ SE** → บันทึกเป็น `berserker_male_idle_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8244,11 +9838,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**5.3 ทิศ E** → บันทึกเป็น `berserker_male_idle_E_raw_v1.png`
+**6.3 ทิศ E** → บันทึกเป็น `berserker_male_idle_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8261,11 +9856,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**5.4 ทิศ NE** → บันทึกเป็น `berserker_male_idle_NE_raw_v1.png`
+**6.4 ทิศ NE** → บันทึกเป็น `berserker_male_idle_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8278,11 +9874,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**5.5 ทิศ N** → บันทึกเป็น `berserker_male_idle_N_raw_v1.png`
+**6.5 ทิศ N** → บันทึกเป็น `berserker_male_idle_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8295,11 +9892,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**5.6 ทิศ NW** → บันทึกเป็น `berserker_male_idle_NW_raw_v1.png`
+**6.6 ทิศ NW** → บันทึกเป็น `berserker_male_idle_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8312,11 +9910,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**5.7 ทิศ W** → บันทึกเป็น `berserker_male_idle_W_raw_v1.png`
+**6.7 ทิศ W** → บันทึกเป็น `berserker_male_idle_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8329,11 +9928,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightly, feet do not move. Frame 6 flows back into frame 1. Weapon pose: greatsword resting on the right shoulder, blade pointing up and back behind the head. Hands and grip stay off the chest; the blade rests on the shoulder pad only.
 ```
 
-**5.8 ทิศ SW** → บันทึกเป็น `berserker_male_idle_SW_raw_v1.png`
+**6.8 ทิศ SW** → บันทึกเป็น `berserker_male_idle_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8348,13 +9948,14 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 
 - [ ] ครบ 8 ทิศของท่ายืน · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 6 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
+## ขั้น 7 — โจมตีปกติ (`normal_attack`) · 8 เฟรม · 8 ภาพ
 
-**6.1 ทิศ S** → บันทึกเป็น `berserker_male_normal_attack_S_raw_v1.png`
+**7.1 ทิศ S** → บันทึกเป็น `berserker_male_normal_attack_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8367,11 +9968,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**6.2 ทิศ SE** → บันทึกเป็น `berserker_male_normal_attack_SE_raw_v1.png`
+**7.2 ทิศ SE** → บันทึกเป็น `berserker_male_normal_attack_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8384,11 +9986,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**6.3 ทิศ E** → บันทึกเป็น `berserker_male_normal_attack_E_raw_v1.png`
+**7.3 ทิศ E** → บันทึกเป็น `berserker_male_normal_attack_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8401,11 +10004,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**6.4 ทิศ NE** → บันทึกเป็น `berserker_male_normal_attack_NE_raw_v1.png`
+**7.4 ทิศ NE** → บันทึกเป็น `berserker_male_normal_attack_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8418,11 +10022,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**6.5 ทิศ N** → บันทึกเป็น `berserker_male_normal_attack_N_raw_v1.png`
+**7.5 ทิศ N** → บันทึกเป็น `berserker_male_normal_attack_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8435,11 +10040,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**6.6 ทิศ NW** → บันทึกเป็น `berserker_male_normal_attack_NW_raw_v1.png`
+**7.6 ทิศ NW** → บันทึกเป็น `berserker_male_normal_attack_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8452,11 +10058,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**6.7 ทิศ W** → บันทึกเป็น `berserker_male_normal_attack_W_raw_v1.png`
+**7.7 ทิศ W** → บันทึกเป็น `berserker_male_normal_attack_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8469,11 +10076,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both hands, 3-5 a huge overhead two-handed slam into the ground in front, 6-8 heave it back onto the shoulder.
 ```
 
-**6.8 ทิศ SW** → บันทึกเป็น `berserker_male_normal_attack_SW_raw_v1.png`
+**7.8 ทิศ SW** → บันทึกเป็น `berserker_male_normal_attack_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8488,13 +10096,14 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 
 - [ ] ครบ 8 ทิศของท่าโจมตีปกติ · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 7 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
+## ขั้น 8 — สกิล (`skill`) · 10 เฟรม · 8 ภาพ
 
-**7.1 ทิศ S** → บันทึกเป็น `berserker_male_skill_S_raw_v1.png`
+**8.1 ทิศ S** → บันทึกเป็น `berserker_male_skill_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8507,11 +10116,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**7.2 ทิศ SE** → บันทึกเป็น `berserker_male_skill_SE_raw_v1.png`
+**8.2 ทิศ SE** → บันทึกเป็น `berserker_male_skill_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8524,11 +10134,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**7.3 ทิศ E** → บันทึกเป็น `berserker_male_skill_E_raw_v1.png`
+**8.3 ทิศ E** → บันทึกเป็น `berserker_male_skill_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8541,11 +10152,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**7.4 ทิศ NE** → บันทึกเป็น `berserker_male_skill_NE_raw_v1.png`
+**8.4 ทิศ NE** → บันทึกเป็น `berserker_male_skill_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8558,11 +10170,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**7.5 ทิศ N** → บันทึกเป็น `berserker_male_skill_N_raw_v1.png`
+**8.5 ทิศ N** → บันทึกเป็น `berserker_male_skill_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8575,11 +10188,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**7.6 ทิศ NW** → บันทึกเป็น `berserker_male_skill_NW_raw_v1.png`
+**8.6 ทิศ NW** → บันทึกเป็น `berserker_male_skill_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8592,11 +10206,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**7.7 ทิศ W** → บันทึกเป็น `berserker_male_skill_W_raw_v1.png`
+**8.7 ทิศ W** → บันทึกเป็น `berserker_male_skill_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8609,11 +10224,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side with both hands, 4-7 a full spinning cyclone slash, 8-10 stop and put it back on the shoulder. Draw no effects.
 ```
 
-**7.8 ทิศ SW** → บันทึกเป็น `berserker_male_skill_SW_raw_v1.png`
+**8.8 ทิศ SW** → บันทึกเป็น `berserker_male_skill_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8628,13 +10244,14 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 
 - [ ] ครบ 8 ทิศของท่าสกิล · มือถืออาวุธถูกข้างทุกภาพ (ดูทิศ W / NW / SW เป็นพิเศษ) · พื้นหลังสีเดียวล้วน
 
-## ขั้น 8 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
+## ขั้น 9 — บัฟ (`buff`) · 8 เฟรม · 8 ภาพ
 
-**8.1 ทิศ S** → บันทึกเป็น `berserker_male_buff_S_raw_v1.png`
+**9.1 ทิศ S** → บันทึกเป็น `berserker_male_buff_S_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
+DIRECTION LOCK: use the approved STANDING POSE for direction S from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8647,11 +10264,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**8.2 ทิศ SE** → บันทึกเป็น `berserker_male_buff_SE_raw_v1.png`
+**9.2 ทิศ SE** → บันทึกเป็น `berserker_male_buff_SE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8664,11 +10282,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**8.3 ทิศ E** → บันทึกเป็น `berserker_male_buff_E_raw_v1.png`
+**9.3 ทิศ E** → บันทึกเป็น `berserker_male_buff_E_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction E from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8681,11 +10300,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**8.4 ทิศ NE** → บันทึกเป็น `berserker_male_buff_NE_raw_v1.png`
+**9.4 ทิศ NE** → บันทึกเป็น `berserker_male_buff_NE_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NE from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8698,11 +10318,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**8.5 ทิศ N** → บันทึกเป็น `berserker_male_buff_N_raw_v1.png`
+**9.5 ทิศ N** → บันทึกเป็น `berserker_male_buff_N_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
+DIRECTION LOCK: use the approved STANDING POSE for direction N from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8715,11 +10336,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**8.6 ทิศ NW** → บันทึกเป็น `berserker_male_buff_NW_raw_v1.png`
+**9.6 ทิศ NW** → บันทึกเป็น `berserker_male_buff_NW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
+DIRECTION LOCK: use the approved STANDING POSE for direction NW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8732,11 +10354,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**8.7 ทิศ W** → บันทึกเป็น `berserker_male_buff_W_raw_v1.png`
+**9.7 ทิศ W** → บันทึกเป็น `berserker_male_buff_W_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction W from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
@@ -8749,11 +10372,12 @@ Weapon shape: identical to the master reference 100% - rigid, never bent, warped
 Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back, 5-8 roar to the sky with fists clenched. Draw no effects.
 ```
 
-**8.8 ทิศ SW** → บันทึกเป็น `berserker_male_buff_SW_raw_v1.png`
+**9.8 ทิศ SW** → บันทึกเป็น `berserker_male_buff_SW_raw_v1.png`
 
 ```text
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
+DIRECTION LOCK: use the approved STANDING POSE for direction SW from earlier in this chat as the exact facing, body angle, size and weapon/shield placement for every frame - do not reinterpret the direction.
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
 HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
 SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
