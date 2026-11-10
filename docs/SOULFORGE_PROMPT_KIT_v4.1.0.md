@@ -53,7 +53,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -265,6 +267,7 @@ MOOD: dark and HAUNTED magic - eerie, smoky, ghostly shapes and wisps, cold sick
 ---
 
 ## D. เช็กก่อนส่งให้ผม
+- [ ] ⛔ ที่ว่างรอบทุกตัว 4 ด้าน ≥ 20% ของช่อง ระยะห่างระหว่างตัว ≥ 2 เท่าของขอบ ไม่แตะ/ไม่ซ้อน/ไม่ล้นขอบ · พื้นหลังโปร่งใสทั้งหมด
 - [ ] ⛔ 1 ภาพ = 1 ท่า × 1 ทิศ · จำนวนช่องตรงตามสั่ง (ห้ามตาราง 8×8) · ขนาด 1536×1024 หรือ 1024×1024 ตรงตามสั่ง · ภาพผิดรูปแบบห้ามส่ง ให้เจนใหม่
 - [ ] ภาพต้นแบบได้ `APPROVED` แล้ว และแนบต้นแบบทุกครั้งที่เจนชีต
 - [ ] 1 ไฟล์ = 1 ท่า × 1 ทิศ ชื่อไฟล์ตามข้อ A.1

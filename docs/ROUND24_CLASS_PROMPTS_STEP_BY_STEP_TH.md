@@ -46,11 +46,12 @@
 ## ⛔ กฎขนาดและรูปแบบไฟล์ (ห้ามละเมิด)
 - **1 ภาพ = 1 ท่า × 1 ทิศ เท่านั้น** ห้ามรวมหลายทิศหรือหลายท่าในภาพเดียว
 - **จำนวนช่องต้องตรงตามกล่องเป๊ะ** เช่น 4×2 = 8 เฟรม ห้ามมากหรือน้อยกว่า **ห้ามตาราง 8×8** (8 ทิศ × 8 เฟรมในภาพเดียว)
-- **ขนาดภาพต้องตรงตามกล่อง** 1536×1024 หรือ 1024×1024 เท่านั้น ตัวละครสูงราว 70% ของช่อง ห้ามตัวเล็กจิ๋ว
-- **ไม่มีพื้นหลัง** (โปร่งใส) ห้ามพื้นไล่สี ห้ามพื้นน้ำตาล/เทา
+- **ขนาดภาพต้องตรงตามกล่อง** 1536×1024 หรือ 1024×1024 เท่านั้น
+- **ระยะห่างทุกด้าน 2 เท่า:** ทุกตัวมีที่ว่างรอบตัว**ทั้ง 4 ด้าน** (บน ล่าง ซ้าย ขวา) อย่างน้อย 20% ของช่อง ระยะห่างระหว่างตัวที่อยู่ติดกันต้องอย่างน้อย 40% ของความกว้างช่อง (**2 เท่าของขอบ**) ห้ามดาบ โล่ ผ้าคลุม ปีก หรือผมแตะกัน ซ้อนกัน หรือล้นขอบ ตัวละครสูงราว 55–60% ของช่อง
+- **ไม่มีพื้นหลัง (โปร่งใสทั้งหมด)** ห้ามสีพื้น ห้ามไล่สี ห้ามพื้นน้ำตาล/เทา/ขาว ห้ามลายตารางหมากรุก ห้ามพื้น เงา หมอก หรือฉาก
 - ภาพที่ผิดกฎข้อใดข้อหนึ่ง **ห้ามบันทึกและห้ามส่งให้ผม** ให้สั่งเจนใหม่ด้วยประโยคนี้:
 ```text
-Wrong format. This breaks the hard rule. Redo: ONE direction only, exactly the grid I asked for (e.g. 4 columns x 2 rows = 8 frames), exactly 1536x1024, character about 70% of each cell height, transparent background. No other directions.
+Wrong format. This breaks the hard rule. Redo: ONE direction only, exactly the grid I asked for (e.g. 4 columns x 2 rows = 8 frames), exactly 1536x1024, empty space of at least 20% of the cell on all four sides of every figure and gaps between figures at least TWICE that, figures never touch or overlap, fully transparent background (no color, no gradient, no checkerboard). No other directions.
 ```
 
 ## ทำไมได้หลายไฟล์ และเรื่องพื้นหลัง
@@ -148,7 +149,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -188,6 +191,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -209,7 +213,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -224,7 +230,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -239,7 +247,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -254,7 +264,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -269,7 +281,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -284,7 +298,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -299,7 +315,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -314,7 +332,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -333,7 +353,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -348,7 +370,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -363,7 +387,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -378,7 +404,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -393,7 +421,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -408,7 +438,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -423,7 +455,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -438,7 +472,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -457,7 +493,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -472,7 +510,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -487,7 +527,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -502,7 +544,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -517,7 +561,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -532,7 +578,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -547,7 +595,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -562,7 +612,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -581,7 +633,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -596,7 +650,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -611,7 +667,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -626,7 +684,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -641,7 +701,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -656,7 +718,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -671,7 +735,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -686,7 +752,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -705,7 +773,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -720,7 +790,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -735,7 +807,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -750,7 +824,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -765,7 +841,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -780,7 +858,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -795,7 +875,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -810,7 +892,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -829,7 +913,9 @@ Motion: basic attack: frames 1-2 raise the sword back over the right shoulder wh
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -844,7 +930,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -859,7 +947,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -874,7 +964,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -889,7 +981,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -904,7 +998,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -919,7 +1015,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -934,7 +1032,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -953,7 +1053,9 @@ Motion: skill "Judgement Blade": frames 1-3 raise the sword high with both arms 
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -968,7 +1070,9 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -983,7 +1087,9 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -998,7 +1104,9 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1013,7 +1121,9 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1028,7 +1138,9 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -1043,7 +1155,9 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -1058,7 +1172,9 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 Using the approved MASTER REFERENCE of Paladin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -1114,7 +1230,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -1154,6 +1272,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -1175,7 +1294,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -1190,7 +1311,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -1205,7 +1328,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -1220,7 +1345,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1235,7 +1362,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1250,7 +1379,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -1265,7 +1396,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -1280,7 +1413,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -1299,7 +1434,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -1314,7 +1451,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -1329,7 +1468,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -1344,7 +1485,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1359,7 +1502,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1374,7 +1519,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -1389,7 +1536,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -1404,7 +1553,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -1423,7 +1574,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -1438,7 +1591,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -1453,7 +1608,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -1468,7 +1625,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1483,7 +1642,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1498,7 +1659,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -1513,7 +1676,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -1528,7 +1693,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -1547,7 +1714,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -1562,7 +1731,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -1577,7 +1748,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -1592,7 +1765,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1607,7 +1782,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1622,7 +1799,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -1637,7 +1816,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -1652,7 +1833,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -1671,7 +1854,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -1686,7 +1871,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -1701,7 +1888,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -1716,7 +1905,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1731,7 +1922,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1746,7 +1939,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -1761,7 +1956,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -1776,7 +1973,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -1795,7 +1994,9 @@ Motion: basic attack: frames 1-2 right hand pulls an arrow from the back quiver 
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -1810,7 +2011,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -1825,7 +2028,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -1840,7 +2045,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1855,7 +2062,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1870,7 +2079,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -1885,7 +2096,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -1900,7 +2113,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -1919,7 +2134,9 @@ Motion: skill "Arrow Rain": frames 1-3 nock and aim the bow steeply up toward th
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -1934,7 +2151,9 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -1949,7 +2168,9 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -1964,7 +2185,9 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -1979,7 +2202,9 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -1994,7 +2219,9 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2009,7 +2236,9 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2024,7 +2253,9 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 Using the approved MASTER REFERENCE of Hawkeye (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: wooden longbow always in the character's LEFT hand; the RIGHT hand draws arrows from the quiver and pulls the string. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -2080,7 +2311,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -2120,6 +2353,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -2141,7 +2375,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -2156,7 +2392,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -2171,7 +2409,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -2186,7 +2426,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -2201,7 +2443,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -2216,7 +2460,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2231,7 +2477,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2246,7 +2494,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -2265,7 +2515,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -2280,7 +2532,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -2295,7 +2549,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -2310,7 +2566,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -2325,7 +2583,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -2340,7 +2600,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2355,7 +2617,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2370,7 +2634,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -2389,7 +2655,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -2404,7 +2672,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -2419,7 +2689,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -2434,7 +2706,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -2449,7 +2723,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -2464,7 +2740,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2479,7 +2757,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2494,7 +2774,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -2513,7 +2795,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -2528,7 +2812,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -2543,7 +2829,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -2558,7 +2846,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -2573,7 +2863,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -2588,7 +2880,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2603,7 +2897,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2618,7 +2914,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -2637,7 +2935,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -2652,7 +2952,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -2667,7 +2969,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -2682,7 +2986,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -2697,7 +3003,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -2712,7 +3020,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2727,7 +3037,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2742,7 +3054,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -2761,7 +3075,9 @@ Motion: basic attack: frames 1-2 pull the sword back, 3-5 a quick horizontal sla
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -2776,7 +3092,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -2791,7 +3109,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -2806,7 +3126,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -2821,7 +3143,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -2836,7 +3160,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2851,7 +3177,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2866,7 +3194,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -2885,7 +3215,9 @@ Motion: skill "Rune Pillar": frames 1-3 lift the rune stone high in the left han
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -2900,7 +3232,9 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -2915,7 +3249,9 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -2930,7 +3266,9 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -2945,7 +3283,9 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -2960,7 +3300,9 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -2975,7 +3317,9 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -2990,7 +3334,9 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 Using the approved MASTER REFERENCE of RuneMaster (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: rune sword with a glowing teal blade in the character's RIGHT hand; a glowing teal rune stone floating just above the open LEFT palm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -3046,7 +3392,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -3087,6 +3435,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -3108,7 +3457,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -3123,7 +3474,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -3138,7 +3491,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -3153,7 +3508,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -3168,7 +3525,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -3183,7 +3542,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -3198,7 +3559,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -3213,7 +3576,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -3232,7 +3597,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -3247,7 +3614,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -3262,7 +3631,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -3277,7 +3648,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -3292,7 +3665,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -3307,7 +3682,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -3322,7 +3699,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -3337,7 +3716,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -3356,7 +3737,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -3371,7 +3754,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -3386,7 +3771,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -3401,7 +3788,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -3416,7 +3805,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -3431,7 +3822,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -3446,7 +3839,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -3461,7 +3856,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -3480,7 +3877,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -3495,7 +3894,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -3510,7 +3911,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -3525,7 +3928,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -3540,7 +3945,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -3555,7 +3962,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -3570,7 +3979,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -3585,7 +3996,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -3604,7 +4017,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -3619,7 +4034,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -3634,7 +4051,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -3649,7 +4068,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -3664,7 +4085,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -3679,7 +4102,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -3694,7 +4119,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -3709,7 +4136,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -3728,7 +4157,9 @@ Motion: basic attack: frames 1-2 pull the staff back with both hands, 3-5 thrust
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -3743,7 +4174,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -3758,7 +4191,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -3773,7 +4208,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -3788,7 +4225,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -3803,7 +4242,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -3818,7 +4259,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -3833,7 +4276,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -3852,7 +4297,9 @@ Motion: skill "Meteor": frames 1-3 raise the staff high above the head with both
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -3867,7 +4314,9 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -3882,7 +4331,9 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -3897,7 +4348,9 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -3912,7 +4365,9 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -3927,7 +4382,9 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -3942,7 +4399,9 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -3957,7 +4416,9 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 Using the approved MASTER REFERENCE of Elementalist (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the staff is held in the character's RIGHT hand when standing; when walking both hands hold it (LEFT hand higher, RIGHT hand lower). Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4013,7 +4474,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -4054,6 +4517,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (crouched ready stance, knees bent, both daggers held low at the sides):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -4075,7 +4539,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -4090,7 +4556,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -4105,7 +4573,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -4120,7 +4590,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -4135,7 +4607,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -4150,7 +4624,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -4165,7 +4641,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -4180,7 +4658,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4199,7 +4679,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -4214,7 +4696,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -4229,7 +4713,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -4244,7 +4730,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -4259,7 +4747,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -4274,7 +4764,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -4289,7 +4781,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -4304,7 +4798,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4323,7 +4819,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -4338,7 +4836,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -4353,7 +4853,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -4368,7 +4870,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -4383,7 +4887,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -4398,7 +4904,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -4413,7 +4921,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -4428,7 +4938,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4447,7 +4959,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -4462,7 +4976,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -4477,7 +4993,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -4492,7 +5010,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -4507,7 +5027,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -4522,7 +5044,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -4537,7 +5061,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -4552,7 +5078,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4571,7 +5099,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -4586,7 +5116,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -4601,7 +5133,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -4616,7 +5150,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -4631,7 +5167,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -4646,7 +5184,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -4661,7 +5201,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -4676,7 +5218,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4695,7 +5239,9 @@ Motion: basic attack: frames 1-2 crouch lower, 3-5 two quick crossing slashes (r
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -4710,7 +5256,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -4725,7 +5273,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -4740,7 +5290,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -4755,7 +5307,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -4770,7 +5324,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -4785,7 +5341,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -4800,7 +5358,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4819,7 +5379,9 @@ Motion: skill "Fan of Blades": frames 1-3 crouch and coil, 4-7 a full 360-degree
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -4834,7 +5396,9 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -4849,7 +5413,9 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -4864,7 +5430,9 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -4879,7 +5447,9 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -4894,7 +5464,9 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -4909,7 +5481,9 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -4924,7 +5498,9 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 Using the approved MASTER REFERENCE of Assassin (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one curved dagger in EACH hand, held in reverse grip, blades pointing down. Both daggers always present. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -4980,7 +5556,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -5020,6 +5598,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -5041,7 +5620,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -5056,7 +5637,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -5071,7 +5654,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -5086,7 +5671,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -5101,7 +5688,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -5116,7 +5705,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -5131,7 +5722,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -5146,7 +5739,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -5165,7 +5760,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -5180,7 +5777,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -5195,7 +5794,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -5210,7 +5811,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -5225,7 +5828,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -5240,7 +5845,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -5255,7 +5862,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -5270,7 +5879,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -5289,7 +5900,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -5304,7 +5917,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -5319,7 +5934,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -5334,7 +5951,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -5349,7 +5968,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -5364,7 +5985,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -5379,7 +6002,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -5394,7 +6019,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -5413,7 +6040,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -5428,7 +6057,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -5443,7 +6074,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -5458,7 +6091,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -5473,7 +6108,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -5488,7 +6125,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -5503,7 +6142,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -5518,7 +6159,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -5537,7 +6180,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -5552,7 +6197,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -5567,7 +6214,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -5582,7 +6231,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -5597,7 +6248,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -5612,7 +6265,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -5627,7 +6282,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -5642,7 +6299,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -5661,7 +6320,9 @@ Motion: basic attack: frames 1-2 draw the left hand back with the orb, 3-5 thrus
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -5676,7 +6337,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -5691,7 +6354,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -5706,7 +6371,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -5721,7 +6388,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -5736,7 +6405,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -5751,7 +6422,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -5766,7 +6439,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -5785,7 +6460,9 @@ Motion: skill "Sanctuary": frames 1-3 raise the sceptre and the orb above the he
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -5800,7 +6477,9 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -5815,7 +6494,9 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -5830,7 +6511,9 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -5845,7 +6528,9 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -5860,7 +6545,9 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -5875,7 +6562,9 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -5890,7 +6579,9 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 Using the approved MASTER REFERENCE of HighPriest (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: golden cross-shaped holy sceptre in the character's RIGHT hand; a glowing golden light orb floating just above the open LEFT palm. Both always present. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -5946,7 +6637,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -5986,6 +6679,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield upright at the left side, hammer lowered at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -6007,7 +6701,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6022,7 +6718,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -6037,7 +6735,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -6052,7 +6752,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -6067,7 +6769,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -6082,7 +6786,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -6097,7 +6803,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -6112,7 +6820,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -6131,7 +6841,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6146,7 +6858,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -6161,7 +6875,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -6176,7 +6892,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -6191,7 +6909,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -6206,7 +6926,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -6221,7 +6943,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -6236,7 +6960,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -6255,7 +6981,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6270,7 +6998,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -6285,7 +7015,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -6300,7 +7032,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -6315,7 +7049,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -6330,7 +7066,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -6345,7 +7083,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -6360,7 +7100,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -6379,7 +7121,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6394,7 +7138,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -6409,7 +7155,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -6424,7 +7172,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -6439,7 +7189,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -6454,7 +7206,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -6469,7 +7223,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -6484,7 +7240,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -6503,7 +7261,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6518,7 +7278,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -6533,7 +7295,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -6548,7 +7312,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -6563,7 +7329,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -6578,7 +7346,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -6593,7 +7363,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -6608,7 +7380,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -6627,7 +7401,9 @@ Motion: basic attack: frames 1-2 raise the hammer high over the right shoulder, 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6642,7 +7418,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -6657,7 +7435,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -6672,7 +7452,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -6687,7 +7469,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -6702,7 +7486,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -6717,7 +7503,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -6732,7 +7520,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -6751,7 +7541,9 @@ Motion: skill "Hammer of Thor": frames 1-3 raise the hammer straight up to the s
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6766,7 +7558,9 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -6781,7 +7575,9 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -6796,7 +7592,9 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -6811,7 +7609,9 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -6826,7 +7626,9 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -6841,7 +7643,9 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -6856,7 +7660,9 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 Using the approved MASTER REFERENCE of Inquisitor (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: one-handed iron war hammer in the character's RIGHT hand; red heater shield with a gold cross and silver rim on the character's LEFT arm. Never swap. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -6912,7 +7718,9 @@ FORBIDDEN: text, numbers, labels, grid lines, frames, borders, watermarks, UI, s
 OUTPUT FORMAT IS A HARD RULE (never break it):
   - ONE image = ONE action in ONE direction only. Never put several directions, several actions or a turnaround in the same image.
   - The image contains EXACTLY the number of frames and the exact grid I ask for (e.g. 4 columns x 2 rows = 8 frames) - never more cells, never fewer, never an 8x8 or any other grid.
-  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024). Each character fills its cell (about 70% of the cell height), never tiny.
+  - The image is EXACTLY the size I ask for (1536x1024 or 1024x1024).
+  - SPACING: every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+  - NO BACKGROUND: the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
   - If anything I ask would break these rules, do NOT draw - ask me instead.
 SPRITE SHEETS: exactly the grid I ask for, equal cells, ONE pose per cell, the whole body and weapon fully inside each cell with empty space around it,
   same character size and the same feet position in every cell, feet near the bottom of each cell.
@@ -6952,6 +7760,7 @@ Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-k
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (greatsword resting on the right shoulder, blade pointing up and back behind the head):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
+SPACING (hard rule): each of the three figures sits in its own third of the image with empty transparent space of at least 20% of that third on all four sides; the gap between two figures is at least TWICE that edge margin. Nothing touches, overlaps or is cut by the edge.
 TRANSPARENT background (PNG with alpha): no backdrop, no checkerboard, no floor, no shadow, no text, no labels, no frames.
 ```
 
@@ -6973,7 +7782,9 @@ This is the approved MASTER REFERENCE. From now on, every sprite sheet in this c
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -6988,7 +7799,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -7003,7 +7816,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -7018,7 +7833,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -7033,7 +7850,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -7048,7 +7867,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -7063,7 +7884,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -7078,7 +7901,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the WALK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the WALK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -7097,7 +7922,9 @@ Motion: walking loop in place (the character does not travel across the cell): f
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -7112,7 +7939,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -7127,7 +7956,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -7142,7 +7973,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -7157,7 +7990,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -7172,7 +8007,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -7187,7 +8024,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -7202,7 +8041,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the DEATH animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the DEATH animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -7221,7 +8062,9 @@ Motion: death: frames 1-2 stagger back from a fatal blow, 3-4 knees buckle, 5-6 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction S (facing the camera, front view).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -7236,7 +8079,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -7251,7 +8096,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -7266,7 +8113,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -7281,7 +8130,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction N (back view, facing away from the camera).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -7296,7 +8147,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -7311,7 +8164,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -7326,7 +8181,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the HIT animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 2 columns x 2 rows = 4 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1024x1024 square.
-HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the HIT animation - exactly 4 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -7345,7 +8202,9 @@ Motion: hit reaction: frame 1 normal, 2 flinch backward from a blow (head and to
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction S (facing the camera, front view).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -7360,7 +8219,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -7375,7 +8236,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -7390,7 +8253,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -7405,7 +8270,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction N (back view, facing away from the camera).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -7420,7 +8287,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -7435,7 +8304,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -7450,7 +8321,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the IDLE animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 3 columns x 2 rows = 6 frames, equal cells 512x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the IDLE animation - exactly 6 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -7469,7 +8342,9 @@ Motion: subtle breathing loop: chest rises and falls, cape and hair sway slightl
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -7484,7 +8359,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -7499,7 +8376,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -7514,7 +8393,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -7529,7 +8410,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -7544,7 +8427,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -7559,7 +8444,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -7574,7 +8461,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the NORMAL ATTACK animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the NORMAL ATTACK animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -7593,7 +8482,9 @@ Motion: basic attack: frames 1-2 lift the greatsword off the shoulder with both 
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction S (facing the camera, front view).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -7608,7 +8499,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -7623,7 +8516,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -7638,7 +8533,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -7653,7 +8550,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction N (back view, facing away from the camera).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -7668,7 +8567,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -7683,7 +8584,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -7698,7 +8601,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the SKILL animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 5 columns x 2 rows = 10 frames, equal cells 307x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the SKILL animation - exactly 10 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
@@ -7717,7 +8622,9 @@ Motion: skill "Carnage Cyclone": frames 1-3 swing the greatsword out to the side
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction S (facing the camera, front view).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction S and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction S the character's RIGHT hand is on the IMAGE LEFT and the LEFT hand is on the IMAGE RIGHT; forward is toward the camera (down in the image).
@@ -7732,7 +8639,9 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SE (three-quarter front, body turned toward the RIGHT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SE the character's RIGHT hand is on the IMAGE LEFT, on the near side toward the viewer and the LEFT hand is on the IMAGE RIGHT, partly behind the body; forward is down-right in the image.
@@ -7747,7 +8656,9 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction E (full side profile facing the RIGHT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction E and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction E the character's RIGHT hand is on the NEAR side, in front of the body toward the viewer and the LEFT hand is on the FAR side, partly hidden behind the body; forward is to the RIGHT edge of the image.
@@ -7762,7 +8673,9 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NE (three-quarter back view, facing away toward the upper RIGHT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NE and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NE the character's RIGHT hand is on the IMAGE RIGHT, on the near side and the LEFT hand is on the IMAGE LEFT, partly hidden behind the body; forward is up-right in the image, away from the camera.
@@ -7777,7 +8690,9 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction N (back view, facing away from the camera).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction N and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction N the character's RIGHT hand is on the IMAGE RIGHT and the LEFT hand is on the IMAGE LEFT; forward is straight away from the camera (up in the image).
@@ -7792,7 +8707,9 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction NW (three-quarter back view, facing away toward the upper LEFT).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction NW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction NW the character's RIGHT hand is on the IMAGE RIGHT, partly hidden behind the body and the LEFT hand is on the IMAGE LEFT, on the near side; forward is up-left in the image, away from the camera.
@@ -7807,7 +8724,9 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction W (full side profile facing the LEFT edge of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction W and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction W the character's RIGHT hand is on the FAR side, partly hidden behind the body and the LEFT hand is on the NEAR side, in front of the body toward the viewer; forward is to the LEFT edge of the image.
@@ -7822,7 +8741,9 @@ Motion: self-buff "Blood Howl": frames 1-4 plant the sword point-down, lean back
 Using the approved MASTER REFERENCE of Berserker (male) from earlier in this chat:
 Make a sprite sheet of the BUFF animation, direction SW (three-quarter front, body turned toward the LEFT side of the image).
 Grid: 4 columns x 2 rows = 8 frames, equal cells 384x512, read left-to-right then top-to-bottom. Image size 1536x1024 landscape.
-HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid. The character fills about 70% of each cell height.
+HARD RULE: this image shows ONLY direction SW and ONLY the BUFF animation - exactly 8 frames, nothing else. No other directions, no extra rows or columns, no 8x8 grid.
+SPACING (hard rule): every figure stands alone in its own cell with EMPTY transparent space on ALL FOUR SIDES (top, bottom, left, right) of at least 20% of the cell; so the empty gap between two neighbouring figures is at least 40% of a cell width - TWICE the edge margin. Figures (including weapon, shield, cloak, wings and hair) never touch, never overlap and are never cut by the cell or image edge. Character height about 55-60% of the cell height.
+NO BACKGROUND (hard rule): the background is fully TRANSPARENT (PNG alpha). No color, no gradient, no brown/grey/white backdrop, no checkerboard, no floor, no shadow, no fog, no scenery.
 Same character size and the same feet position in every frame. TRANSPARENT background (PNG with alpha), no backdrop, no checkerboard, no floor, no shadow.
 Hands: the greatsword rests on the RIGHT shoulder, the RIGHT hand holds the grip near the guard and the LEFT hand holds the pommel end; in attacks both hands grip the hilt. Do not mirror.
 In direction SW the character's RIGHT hand is on the IMAGE LEFT, partly hidden behind the body and the LEFT hand is on the IMAGE RIGHT, on the near side toward the viewer; forward is down-left in the image.
