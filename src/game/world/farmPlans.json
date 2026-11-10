@@ -1,0 +1,5420 @@
+{
+  "dungeon1": {
+    "fieldId": "dungeon1",
+    "nameTh": "ถ้ำมรกต",
+    "theme": "emerald cavern",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "south",
+    "entryGatePositionM": [
+      0,
+      116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "rocky",
+      "mud",
+      "flagstone"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "procedural-layout",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "dungeon2": {
+    "fieldId": "dungeon2",
+    "nameTh": "มหาวิหารพิพากษา",
+    "theme": "judgement cathedral",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "south",
+    "entryGatePositionM": [
+      0,
+      116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "flagstone",
+      "rocky",
+      "ash"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "procedural-layout",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "dungeon3": {
+    "fieldId": "dungeon3",
+    "nameTh": "ถ้ำมังกร",
+    "theme": "volcanic dragon cave",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "south",
+    "entryGatePositionM": [
+      0,
+      116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "rocky",
+      "ash",
+      "flagstone"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "procedural-layout",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild0": {
+    "fieldId": "wild0",
+    "nameTh": "สุสานเถ้าถ่าน",
+    "theme": "ash graveyard",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "north",
+    "entryGatePositionM": [
+      0,
+      -116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "ash",
+      "dead-grass",
+      "dirt-road",
+      "flagstone"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "themed",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild1": {
+    "fieldId": "wild1",
+    "nameTh": "ทุ่งกระดูกเงียบ",
+    "theme": "bone plains",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "east",
+    "entryGatePositionM": [
+      116,
+      0
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "dead-grass",
+      "dirt-road",
+      "ash",
+      "rocky"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "partial",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild2": {
+    "fieldId": "wild2",
+    "nameTh": "หนองวิญญาณ",
+    "theme": "haunted swamp",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "west",
+    "entryGatePositionM": [
+      -116,
+      0
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "mud",
+      "dead-grass",
+      "dirt-road",
+      "flagstone"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "themed",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild3": {
+    "fieldId": "wild3",
+    "nameTh": "เหมืองมรกตต้องสาป",
+    "theme": "cursed emerald mine",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "south",
+    "entryGatePositionM": [
+      0,
+      116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "rocky",
+      "dirt-road",
+      "ash",
+      "flagstone"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "themed",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild4": {
+    "fieldId": "wild4",
+    "nameTh": "สวนคำสาบาน",
+    "theme": "oath garden",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "east",
+    "entryGatePositionM": [
+      116,
+      0
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "dead-grass",
+      "dirt-road",
+      "flagstone",
+      "mud"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "themed",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild5": {
+    "fieldId": "wild5",
+    "nameTh": "บันไดแห่งคำพิพากษา",
+    "theme": "judgement terraces",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "south",
+    "entryGatePositionM": [
+      0,
+      116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "flagstone",
+      "rocky",
+      "dirt-road",
+      "dead-grass"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "partial",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild6": {
+    "fieldId": "wild6",
+    "nameTh": "คลองแสงดับ",
+    "theme": "dark canals",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "west",
+    "entryGatePositionM": [
+      -116,
+      0
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "mud",
+      "flagstone",
+      "dirt-road",
+      "dead-grass"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "partial",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild7": {
+    "fieldId": "wild7",
+    "nameTh": "ทุ่งอรุณร้าง",
+    "theme": "abandoned dawn farm",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "north",
+    "entryGatePositionM": [
+      0,
+      -116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "dead-grass",
+      "dirt-road",
+      "ash",
+      "mud"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "concept-placeholder",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild8": {
+    "fieldId": "wild8",
+    "nameTh": "ป่าหนามอสูร",
+    "theme": "demon thorn forest",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "west",
+    "entryGatePositionM": [
+      -116,
+      0
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "dead-grass",
+      "ash",
+      "rocky",
+      "dirt-road"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "concept-placeholder",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  },
+  "wild9": {
+    "fieldId": "wild9",
+    "nameTh": "ช่องเขารากมังกร",
+    "theme": "dragon-root mountain pass",
+    "renderMode": "overview-reference + tiled-splat-ground",
+    "worldSizeM": [
+      240,
+      240
+    ],
+    "maxPlayersPerChannelTarget": 100,
+    "worldCoordinateSystem": "x east-positive, y south-positive, origin center; ISO image is an artist reference, NOT an exact positional projection",
+    "entryGateSide": "south",
+    "entryGatePositionM": [
+      0,
+      116
+    ],
+    "layoutConstraints": {
+      "targetWalkableFraction": 0.6,
+      "mainRoadWidthM": [
+        8,
+        12
+      ],
+      "centralPlazaDiameterM": 40,
+      "satellitePlazaCount": 4,
+      "targetHuntingGroups": 30
+    },
+    "roads": [
+      {
+        "name": "north-south-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            0,
+            -118
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      {
+        "name": "east-west-main",
+        "widthM": 10,
+        "pointsM": [
+          [
+            -118,
+            0
+          ],
+          [
+            118,
+            0
+          ]
+        ]
+      }
+    ],
+    "plazas": [
+      {
+        "name": "central-boss",
+        "centerM": [
+          0,
+          0
+        ],
+        "diameterM": 40
+      },
+      {
+        "name": "satellite-north",
+        "centerM": [
+          0,
+          -77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-east",
+        "centerM": [
+          77,
+          0
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-south",
+        "centerM": [
+          0,
+          77
+        ],
+        "diameterM": 20
+      },
+      {
+        "name": "satellite-west",
+        "centerM": [
+          -77,
+          0
+        ],
+        "diameterM": 20
+      }
+    ],
+    "huntingGroups": [
+      {
+        "groupId": "G01",
+        "positionM": {
+          "x": 51.36,
+          "y": 16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G02",
+        "positionM": {
+          "x": 31.74,
+          "y": 43.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G03",
+        "positionM": {
+          "x": 0,
+          "y": 54
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G04",
+        "positionM": {
+          "x": -31.74,
+          "y": 43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G05",
+        "positionM": {
+          "x": -51.36,
+          "y": 16.69
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G06",
+        "positionM": {
+          "x": -51.36,
+          "y": -16.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G07",
+        "positionM": {
+          "x": -31.74,
+          "y": -43.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G08",
+        "positionM": {
+          "x": 0,
+          "y": -54
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G09",
+        "positionM": {
+          "x": 31.74,
+          "y": -43.69
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G10",
+        "positionM": {
+          "x": 51.36,
+          "y": -16.69
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 1
+      },
+      {
+        "groupId": "G11",
+        "positionM": {
+          "x": 98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G12",
+        "positionM": {
+          "x": 89.1,
+          "y": 45.4
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G13",
+        "positionM": {
+          "x": 70.71,
+          "y": 70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G14",
+        "positionM": {
+          "x": 45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G15",
+        "positionM": {
+          "x": 15.64,
+          "y": 98.77
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G16",
+        "positionM": {
+          "x": -15.64,
+          "y": 98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G17",
+        "positionM": {
+          "x": -45.4,
+          "y": 89.1
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G18",
+        "positionM": {
+          "x": -70.71,
+          "y": 70.71
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G19",
+        "positionM": {
+          "x": -89.1,
+          "y": 45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G20",
+        "positionM": {
+          "x": -98.77,
+          "y": 15.64
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G21",
+        "positionM": {
+          "x": -98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G22",
+        "positionM": {
+          "x": -89.1,
+          "y": -45.4
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G23",
+        "positionM": {
+          "x": -70.71,
+          "y": -70.71
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G24",
+        "positionM": {
+          "x": -45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G25",
+        "positionM": {
+          "x": -15.64,
+          "y": -98.77
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G26",
+        "positionM": {
+          "x": 15.64,
+          "y": -98.77
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G27",
+        "positionM": {
+          "x": 45.4,
+          "y": -89.1
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G28",
+        "positionM": {
+          "x": 70.71,
+          "y": -70.71
+        },
+        "monsterCount": 4,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G29",
+        "positionM": {
+          "x": 89.1,
+          "y": -45.4
+        },
+        "monsterCount": 5,
+        "spawnRadiusM": 6,
+        "ring": 2
+      },
+      {
+        "groupId": "G30",
+        "positionM": {
+          "x": 98.77,
+          "y": -15.64
+        },
+        "monsterCount": 6,
+        "spawnRadiusM": 6,
+        "ring": 2
+      }
+    ],
+    "totalSimultaneouslySpawnedMonsters": 150,
+    "materials": [
+      "rocky",
+      "dirt-road",
+      "flagstone",
+      "ash"
+    ],
+    "propsSheet": "props-1.png",
+    "propsAtlas": "props-1.json",
+    "overviewArtStatus": "concept-placeholder",
+    "validationNotes": [
+      "Artist overview is not metrically aligned with numerical layout; do not derive navigation coordinates directly from pixels.",
+      "Props are initial vector proxy sprites, not final hand-painted game assets.",
+      "Road width / real walkable coverage / prop collisions require in-engine validation.",
+      "Monster state remains per client until independently moved to channel-authoritative server."
+    ]
+  }
+}

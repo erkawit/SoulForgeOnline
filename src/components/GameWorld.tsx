@@ -29,6 +29,7 @@ import RuinsLayer from './RuinsLayer';
 import CitySpritesLayer from './CitySpritesLayer';
 import NatureLayer from './NatureLayer';
 import { paintedFieldUrl } from './PaintedFieldGround';
+import { farmPlan } from '@/game/world/farmLayout';
 import FrameCap from './FrameCap';
 import DamageLayer from './DamageLayer';
 import { useSettingsStore } from '@/store/useSettingsStore';
@@ -275,11 +276,20 @@ function BossSprite({ hp }: { hp: number }) {
   return <group ref={holder} />;
 }
 
+/** round 23: 240 m fields hold ~150 monsters — draw only what is near the player. The position is snapped to an 8 m
+ *  grid so the world re-renders when the player crosses a cell, not every frame. */
+const DRAW_RADIUS = 48;
+function useNearCell(): [number, number] {
+  const cell = useGameStore(s => `${Math.round(s.player.position[0] / 8)},${Math.round(s.player.position[1] / 8)}`);
+  const [cx, cz] = cell.split(',').map(Number); return [cx * 8, cz * 8];
+}
+const near = ([px, pz]: [number, number], x: number, z: number) => Math.hypot(x - px, z - pz) < DRAW_RADIUS + 6;
 function MultiplayerActors() {
  const {players,playerId,boss,loot,connected} = useMultiplayerStore();
+ const cell = useNearCell();
  if(!connected)return null;
  return <group>
- {players.filter(p=>p.id!==playerId).map(p=><RemoteHero key={p.id} p={p}/>)}
+ {players.filter(p=>p.id!==playerId&&near(cell,p.x,p.z)).map(p=><RemoteHero key={p.id} p={p}/>)}
  {boss&&<group position={[boss.x,0,boss.z]} onClick={e=>{e.stopPropagation();gameConnection.attack()}}>
    <BossSprite hp={boss.hp}/>
    <Label3D z={30} position={[0,5.6,0]} color="#ffd0dc" text={`ABYSSAL FORGE TITAN ${Math.ceil(boss.hp/boss.maxHp*100)}%`}/>
@@ -295,6 +305,7 @@ function WorldContent() {
   const cityId = useGameStore(s => s.player.cityId??'hollow');
   const city=CITIES[cityId];
   const monsters = useGameStore(s => s.monsters);
+  const cell = useNearCell();
   const drops = useGameStore(s => s.drops);
   return <>
     <color attach="background" args={[city.sky]} />
@@ -306,10 +317,10 @@ function WorldContent() {
       shadow-camera-right={28} shadow-camera-top={28} shadow-camera-bottom={-28} />
     <pointLight position={[-7, 8, -2]} intensity={35} distance={35} color="#632f9c" />
     <StarterCity />
-    {cityId === 'wild0' && !paintedFieldUrl(cityId) && <RuinsLayer />}{/* the Sorrowlands lie in Ashen Outskirts, below Hollow Reach */}
+    {cityId === 'wild0' && !paintedFieldUrl(cityId) && !farmPlan(cityId) && <RuinsLayer />}{/* the Sorrowlands lie in Ashen Outskirts, below Hollow Reach */}
     {!city.parent && <CitySpritesLayer city={cityId} />}
     <ClassActor />
-    {monsters.map(m => <Creature key={m.id} mob={m} />)}
+    {monsters.filter(m => near(cell, m.x, m.z) || m.id === useGameStore.getState().selectedMonster).map(m => <Creature key={m.id} mob={m} />)}
     {drops.map(d => <LootObject key={d.id} loot={d} />)}
     {/* round 22: painted fields already show their trees and rocks */}
     {!(city.parent && paintedFieldUrl(cityId)) && <NatureLayer city={cityId} />}

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { sorrowlandSpawns, spawnPoints } from '../src/game/spawns';
 import { advanceMonster, ELITE_SIGNATURE } from '../src/game/monsterAI';
-import { walkable } from '../src/game/content';
+import { walkable, WORLD_LIMIT } from '../src/game/content';
 import { buildHomeHtml, buildWikiHtml } from '../src/game/wiki/site';
 import { VOICE_LINES } from '../src/game/audio/engine';
 import { ZONES } from '../src/game/world/zones';
@@ -15,7 +15,7 @@ test('Sorrowlands (Ashen Outskirts, below Hollow Reach): every zone spawns a pac
   assert.ok(spawnPoints('wild0').length > s.length);
   assert.equal(new Set(spawnPoints('wild0').map(p => p.id)).size, spawnPoints('wild0').length);
   assert.ok(walkable('wild0', 0, 38) || walkable('wild0', 3, 30)); // the road south leads to Shadowtear Cave
-  assert.equal(walkable('wild0', 0, 51), false); assert.equal(walkable('dawnveil', 0, 51), false);
+  assert.equal(walkable('wild0', 0, WORLD_LIMIT.wild0!+1), false); assert.equal(walkable('dawnveil', 0, WORLD_LIMIT.dawnveil!+1), false);
 });
 
 test('elites telegraph their signature skill, then it lands with the skill multiplier', () => {

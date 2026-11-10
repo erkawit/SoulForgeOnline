@@ -95,13 +95,13 @@ const formOf = (name: string) => /Spider|Crawler|Beetle|Crab|Weaver/.test(name) 
 /** the monsters of a map at full health (ids = spawn ids, so a kill can be checked against the spawn table) */
 export function monstersFor(city: CityId, config: GameConfig): Monster[] {
   const c = CITIES[city];
-  return spawnPoints(city).map(({ id, position: [x, z], name, level, elite, boss }) => {
+  return spawnPoints(city).map(({ id, position: [x, z], name, level, elite, boss, respawnSeconds }) => {
     const maxHp = monsterStats(level, { elite, boss, dungeon: !!c.dungeon }, config).maxHp;
-    return { id, name, x, z, home: [x, z], hp: maxHp, maxHp, level, form: formOf(name), tint: c.accent, elite, boss, dungeon: c.dungeon, damageMultiplier: c.dungeon ? 3 : 1, expMultiplier: c.dungeon ? 5 : 1, respawnAt: null, lastAttack: 0 };
+    return { id, name, x, z, home: [x, z], hp: maxHp, maxHp, level, form: formOf(name), tint: c.accent, elite, boss, respawnSeconds, dungeon: c.dungeon, damageMultiplier: c.dungeon ? 3 : 1, expMultiplier: c.dungeon ? 5 : 1, respawnAt: null, lastAttack: 0 };
   });
 }
 /** respawn delay after a kill (client monster AI and server kill checks use the same numbers) */
-export const respawnMs = (m: Pick<Monster, 'boss'>) => m.boss ? 300000 : 8000;
+export const respawnMs = (m: Pick<Monster, 'boss'|'respawnSeconds'>) => (m.respawnSeconds ?? (m.boss ? 300 : 8)) * 1000;
 
 function levelUps(state: CharState, ctx: Ctx, log: string[], events: QuestEvent[], heal: boolean): number {
   let n = 0; const p = state.player;

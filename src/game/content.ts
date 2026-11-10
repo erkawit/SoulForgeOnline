@@ -1,4 +1,5 @@
 import { FIELD_HALF, FIELD_GATE_INSET, fieldScale } from './world/fieldDimensions';
+import {farmPlan} from './world/farmLayout';
 import { configureFieldNavigation, navigationSurface, SWAMP_SPAWNS, fieldImagePoint } from './world/terrainNavigation';
 import { blockedByProps } from './world/colliders';
 import { CAPITAL_SPAWN, CAPITAL_SPAWNS, CAPITAL_WALK, GATE_POS, OPPOSITE, capitalBlocked, gateArrival, type GateDir } from './world/capitalPlan';
@@ -145,7 +146,7 @@ export type Portal={to:CityId;x:number;z:number;dir:GateDir;kind:'city'|'field'|
 export function portalsOf(id:CityId):Portal[]{
  const c=CITIES[id];if(!c)return [];
  if(!c.parent)return (Object.entries(CAPITAL_GATES[id as MainCityId]) as [GateDir,CityId][]).map(([dir,to])=>{const [x,z]=GATE_POS[dir];return {to,dir,x,z,kind:CITIES[to].parent?'field':'city'};});
- const out:Portal[]=[];const at=(dir:GateDir,to:CityId,kind:Portal['kind'])=>{const [x,z]=CORNER[dir];out.push({to,dir,x:x*FIELD_GATE_D,z:z*FIELD_GATE_D,kind});};
+ const out:Portal[]=[];const at=(dir:GateDir,to:CityId,kind:Portal['kind'])=>{const [x,z]=CORNER[dir];const entry=farmPlan(id)?.entryGatePositionM;const sign=kind==='dungeon'?-1:1;out.push({to,dir,x:entry?entry[0]*sign:x*FIELD_GATE_D,z:entry?entry[1]*sign:z*FIELD_GATE_D,kind});};
  if(c.dungeon){at('bottom',c.entrance!,'field');return out;}
  const g=fieldGate(id);if(g)at(OPPOSITE[g.dir],g.city,'city');else at('bottom',c.parent,'city');
  for(const d of DUNGEON_IDS)if(CITIES[d].entrance===id)at(g?g.dir:'top',d,'dungeon');
@@ -179,4 +180,9 @@ CITIES.wild2.hunt=SWAMP_SPAWNS;
 CITIES.wild2.buildings=[[550,350],[880,460]].map(([u,v],i)=>{
  const [x,z]=fieldImagePoint(u,v);return {x,z,w:5,d:5,h:5,kind:i?'tower':'temple'};
 });
-for(const id of [...ZONE_IDS,...DUNGEON_IDS])configureFieldNavigation(id,CITIES[id].hunt,portalsOf(id).map(p=>[p.x,p.z]));
+for(const id of [...ZONE_IDS,...DUNGEON_IDS]){
+ // round 23: measured 240 m farm layouts replace the old 140 m hunting spots, water and ruins
+ const p=farmPlan(id);
+ if(p){CITIES[id].hunt=p.huntingGroups.map(g=>[g.positionM.x,g.positionM.y]);CITIES[id].water=undefined;CITIES[id].buildings=[];CITIES[id].name=p.nameTh;}
+ configureFieldNavigation(id,CITIES[id].hunt,portalsOf(id).map(p=>[p.x,p.z]));
+}

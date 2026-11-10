@@ -4,13 +4,17 @@ import { natureLayout } from './layout';
 import { setColliderProvider, type Collider } from './colliders';
 import { capitalColliders } from './capitalPlan';
 import { npcsIn, npcPosition } from '../npcs';
-import { CITIES, type CityId } from '../content';
+import { CITIES, portalsOf, type CityId } from '../content';
+import {farmPlan,gatePillars} from './farmLayout';
+import {sceneryColliders} from './farmScenery';
 import { sorrowlands } from './ruins';
 
 export function collidersFor(city: CityId): Collider[] {
   if (!CITIES[city]) return [];
   const list = [...natureLayout(city).colliders];
-  if (city === 'wild0') list.push(...sorrowlands().colliders); // Ashen Outskirts: ruined village / keep / cathedral / cave walls
+  list.push(...sceneryColliders(city));
+  if (city === 'wild0'&&!farmPlan(city)) list.push(...sorrowlands().colliders);
+  if(farmPlan(city))for(const gate of portalsOf(city))list.push(...gatePillars(gate.x,gate.z));
   if (!CITIES[city].parent) {
     list.push(...capitalColliders(city as 'hollow' | 'dawnveil' | 'thornwatch')); // painted buildings, lamps, trees, the plaza centre (capitalPlan.ts)
     for (const n of npcsIn(city)) { const [x, z] = npcPosition(n, city); list.push({ kind: 'circle', x, z, r: n.id === 'warden' ? 0.55 : 0.4 }); }

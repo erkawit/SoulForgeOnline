@@ -8,6 +8,7 @@ import { raidBossHp, expectedPlayerDps } from '../balance/raid';
 import { RANK_REWARDS, HIGH_TIERS } from '../balance/bossRewards';
 import { ZONES } from '../world/zones';
 import { CITIES } from '../content';
+import {spawnPoints} from '../spawns';
 
 export const MONSTER_TH: Record<string, { kind: string; look: string; motion: string }> = {
   'Grave Crawler': { kind: 'สัตว์ป่า', look: 'แบดเจอร์เทาขาว ตัวเตี้ยหนา กรงเล็บขุด', motion: 'เดินสี่ขา หัวต่ำ ไหล่นำ' },
@@ -78,8 +79,7 @@ export const BOSSES: BossLore[] = [
 /** where a species lives: the Sorrowlands farm grounds (with map coordinates) and every field / dungeon that lists it */
 export function spawnsOf(species: string) {
   const out: { where: string; levels: string; pos?: [number, number] }[] = [];
-  for (const z of ZONES) for (const s of z.spawns) if (s.species === species && !s.boss && !out.some(o => o.where === z.th)) out.push({ where: z.th, levels: `${z.levels[0]}–${z.levels[1]}`, pos: [s.x, s.z] });
-  for (const c of Object.values(CITIES) as { id: string; name: string; species?: string[]; levels?: number[] }[]) if (c.species?.includes(species) && !out.some(o => o.where === c.name)) out.push({ where: c.name, levels: c.levels ? `${Math.min(...c.levels)}–${Math.max(...c.levels)}` : '' });
+  for (const c of Object.values(CITIES)) {const matches=spawnPoints(c.id).filter(s=>s.name===species);if(matches.length)out.push({where:c.name,levels:`${Math.min(...matches.map(s=>s.level))}–${Math.max(...matches.map(s=>s.level))}`,pos:[...matches[0].position]});}
   return out;
 }
 export function monsterEntries() {
@@ -96,7 +96,7 @@ export function bossRaidInfo(b: BossLore) {
   const hp8 = raidBossHp(b.level, 8), hp40 = raidBossHp(b.level, 40);
   return { minutes: [DEFAULT_CONFIG.raid.minMinutes, DEFAULT_CONFIG.raid.maxMinutes], scalesFrom: hp8, at40: hp40, dps: expectedPlayerDps(b.level) };
 }
-export function zoneEntries() { return ZONES.map(z => ({ ...z, monsters: [...new Set(z.spawns.map(s => s.species))] })); }
+export function zoneEntries() { const points=spawnPoints('wild0');return ZONES.map(z => {const elite=z.spawns.find(s=>s.elite),actual=points.find(p=>p.name===elite?.species&&p.elite);return {...z,x:actual?.position[0]??z.x,z:actual?.position[1]??z.z,story:z.story+' · ตำแหน่งปัจจุบันอ้างอิงจุดล่า Round 23',monsters: [...new Set(z.spawns.map(s => s.species))]};}); }
 export function cityEntries() { return Object.values(CITIES).filter(c => !c.parent).map(c => ({ id: c.id, name: c.name, subtitle: c.subtitle, description: c.description })); }
 export function craftTable() {
   return RARITY_KEYS.map(r => ({ rarity: r, chance: craftChance(r), weapon: craftCost(r, 'weapon'), armor: craftCost(r, 'armor'), other: craftCost(r, 'helmet'), expected: expectedCraft(r, 'weapon') }));

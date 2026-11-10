@@ -8,18 +8,23 @@ const steps = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
 /** Search outward from the exact player position. A landmark can be solid (e.g. an NPC),
  * so accept a nearby approach point. Free map pins must be reachable themselves. */
 export function mapRoute(city: CityId, start: Point, end: Point, reach = 0, maxDistance = Infinity, maxNodes = Infinity): Point[] | null {
+  if(![...start,...end,reach].every(Number.isFinite)||reach<0||Number.isNaN(maxDistance))return null;
   if (!reach && !walkable(city, ...end)) return null;
   if(distance(start,end)>maxDistance+reach)return null;
+  if(distance(start,end)<=maxDistance&&lineClear(city,start,end))return [end];
   type Node = { pos: Point; cost: number; score: number; parent?: Node };
   const root: Node = {pos: start, cost: 0, score: distance(start, end)};
   const open = new Map<number, Node>([[0, root]]);
   const closed = new Set<number>();
+  // round 23: binary heap — 240 m fields make the old linear scan of the open set too slow
+  const heap:{key:number;node:Node}[]=[{key:0,node:root}];
+  const push=(entry:{key:number;node:Node})=>{heap.push(entry);let i=heap.length-1;while(i>0){const p=(i-1)>>1;if(heap[p].node.score<=entry.node.score)break;heap[i]=heap[p];i=p;}heap[i]=entry;};
+  const pop=()=>{const first=heap[0],last=heap.pop()!;if(heap.length){let i=0;while(i*2+1<heap.length){let j=i*2+1;if(j+1<heap.length&&heap[j+1].node.score<heap[j].node.score)j++;if(last.node.score<=heap[j].node.score)break;heap[i]=heap[j];i=j;}heap[i]=last;}return first;};
   let expanded = 0;
-  while (open.size) {
+  while (heap.length) {
+    const {key,node}=pop();
+    if(open.get(key)!==node)continue;
     if (++expanded > maxNodes) return null; // round 22: click-to-move gives up quickly instead of freezing a frame
-    let best = Infinity, key = 0;
-    for (const [k, n] of open) if (n.score < best) { best = n.score; key = k; }
-    const node = open.get(key)!;
     open.delete(key);
     closed.add(key);
     const remaining = distance(node.pos, end);
@@ -37,7 +42,7 @@ export function mapRoute(city: CityId, start: Point, end: Point, reach = 0, maxD
       const cost = node.cost + Math.hypot(dx, dz);
       if(cost+Math.max(0,distance(pos,end)-reach)>maxDistance)continue;
       if (cost >= (open.get(k)?.cost ?? Infinity) || !lineClear(city, node.pos, pos)) continue;
-      open.set(k, {pos, cost, score: cost + distance(pos, end), parent: node});
+      const next={pos,cost,score:cost+distance(pos,end),parent:node};open.set(k,next);push({key:k,node:next});
     }
   }
   return null;

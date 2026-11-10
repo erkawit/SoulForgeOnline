@@ -8,9 +8,9 @@ import { lineClear } from '../src/game/monsterAI';
 
 test('expanded farming fields and dungeons connect their entrances, spawns and outer districts', () => {
   for (const city of [...ZONE_IDS,...DUNGEON_IDS]) {
-    assert.equal(WORLD_LIMIT[city],70);
-    assert.ok(!walkable(city,70.1,0));
-    assert.ok(!walkable(city,0,-70.1));
+    assert.equal(WORLD_LIMIT[city],120);
+    assert.ok(!walkable(city,120.1,0));
+    assert.ok(!walkable(city,0,-120.1));
     const start=homePoint(city);
     assert.ok(walkable(city,...start),city+' arrival');
     for (const gate of portalsOf(city)) {

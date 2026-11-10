@@ -13,28 +13,28 @@ test('all expanded fields have named paths, courts and a terrain rule',()=>{
  for(const id of [...ZONE_IDS,...DUNGEON_IDS]){
   const plan=navigationPlan(id)!;
   assert.ok(plan.paths.length&&plan.plazas.length&&plan.blockedName,id);
-  assert.equal(navigationSurface(id,71,0),'blocked');
+  assert.equal(navigationSurface(id,121,0),'blocked');
   assert.equal(navigationSurface(id,NaN,0),'blocked');
   assert.ok(walkable(id,...homePoint(id)),id+' arrival');
  }
 });
 test('swamp water blocks pins, straight traversal and spawning; bridges and all dry courts connect',()=>{
- for(const pixel of [[400,420],[840,340],[550,470],[980,540],[740,510]]){
-  const p=fieldImagePoint(pixel[0],pixel[1]);
+ for(const pixel of [[-108,-108],[108,-108],[-108,108],[108,108]]){
+  const p:[number,number]=[pixel[0],pixel[1]];
   assert.equal(walkable('wild2',...p),false,`water at ${pixel}`);
   assert.equal(mapRoute('wild2',homePoint('wild2'),p),null);
  }
- for(const pixel of [[210,408],[656,536],[747,366],[409,497]]){
-  const p=fieldImagePoint(pixel[0],pixel[1]);assert.ok(walkable('wild2',...p),`bridge at ${pixel}`);
+ for(const pixel of [[0,-100],[0,100],[-100,0],[100,0]]){
+  const p:[number,number]=[pixel[0],pixel[1]];assert.ok(walkable('wild2',...p),`road at ${pixel}`);
  }
  for(const p of CITIES.wild2.hunt)assert.ok(mapRoute('wild2',homePoint('wild2'),p),`court ${p}`);
- const a=fieldImagePoint(289,386),b=fieldImagePoint(316,456),distance=Math.hypot(b[0]-a[0],b[1]-a[1]);
+ const a:[number,number]=[-118,-108],b:[number,number]=[-98,-108],distance=20;
  assert.ok(!lineClear('wild2',a,b),'cannot cut across water between two dry points');
  assert.equal(mapRoute('wild2',a,b,0,distance+.2),null,'shortcut budget cannot cover real detour');
  assert.ok(mapRoute('wild2',a,b),'the longer bridge route exists');
 });
 test('actual client movement and realm reports cannot jump across swamp water',()=>{
- const a=fieldImagePoint(289,386),b=fieldImagePoint(316,456);
+ const a:[number,number]=[-118,-108],b:[number,number]=[-98,-108];
  const before=useGameStore.getState();
  try {
   useGameStore.setState({player:{...before.player,cityId:'wild2',position:a},journal:false,pending:null,charge:null,deadUntil:0});

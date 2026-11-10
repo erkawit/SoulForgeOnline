@@ -119,7 +119,7 @@ test('the realm runs the codex: ACT codex / sellJunk, kills pay seals by the par
   assert.ok((STATE_KEYS as readonly string[]).includes('codex'));
   let asked = 0; s.partyNear = range => { asked = range; return 3; };
   s.state = { ...s.state, player: { ...s.state.player, cityId: 'wild0', position: [2, -45], level: 60 } };
-  const boss = spawnPoints('wild0').find(p => p.boss)!;
+  const boss = spawnPoints('wild0').find(p => p.boss)!; s.state.player.position=[...boss.position];
   s.budget = 1e12; const k = s.act('kill', ['wild0', boss.id], [], t + 1);
   assert.ok(k.ok, k.msg); assert.equal(asked, DEFAULT_CONFIG.codex.partyRange);
   assert.equal(s.state.drops.filter(d => d.item.definitionId === CODEX_SEAL).reduce((a, d) => a + (d.item.qty ?? 1), 0), 2, 'boss with a party of 3: two seals');

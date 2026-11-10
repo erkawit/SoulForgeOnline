@@ -7,6 +7,7 @@ import { useEffect, useMemo } from 'react';
 import { BufferGeometry, Float32BufferAttribute, SRGBColorSpace, TextureLoader, LinearFilter } from 'three';
 import { FIELD_ART, type CityId } from '@/game/content';
 import { FIELD_HALF } from '@/game/world/fieldDimensions';
+import { farmPlan } from '@/game/world/farmLayout';
 
 const IMG_W = 1280, IMG_H = 853;
 /** world (x, z) → texture (u, v) — the inverse of fieldImagePoint */
@@ -15,7 +16,8 @@ export function fieldUv(x: number, z: number): [number, number] {
   const u = (a * 232 / 70 + 500) * IMG_W / 1000, v = (b * 136 / 70 + 340) * IMG_H / 680;
   return [u / IMG_W, 1 - v / IMG_H];
 }
-export const paintedFieldUrl = (id: CityId) => { const a = FIELD_ART[id]; return a ? `/art/world/${a.city}/${a.map}.webp` : null; };
+// round 23: fields with a measured 240 m farm layout use FarmGround; the old 140 m paintings no longer line up with them
+export const paintedFieldUrl = (id: CityId) => { const a = FIELD_ART[id]; return a && !farmPlan(id) ? `/art/world/${a.city}/${a.map}.webp` : null; };
 
 export default function PaintedFieldGround({ city }: { city: CityId }) {
   const url = paintedFieldUrl(city);

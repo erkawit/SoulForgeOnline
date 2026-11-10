@@ -2,6 +2,7 @@
  * Solid props/buildings are applied afterwards by content.walkable().
  * Nothing outside the listed paths/plazas is traversable on closed plans.
  */
+import {farmPlan,farmHazards} from './farmLayout';
 export type GroundPoint = [number,number];
 export type Surface = 'blocked'|'ground'|'road'|'plaza';
 export type LandArea = {name:string; points:GroundPoint[]} | {name:string; center:GroundPoint; radius:number};
@@ -33,13 +34,14 @@ function onPath(p:WalkPath,x:number,z:number){
 }
 /** Quantisation is deliberate: the physical floor and collision use identical .5 m cells. */
 export function navigationSurface(id:string,x:number,z:number):Surface{
-  if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>70||Math.abs(z)>70)return 'blocked';
+  const half=farmPlan(id)?120:70;
+  if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>half||Math.abs(z)>half)return 'blocked';
   const plan=plans.get(id);if(!plan)return 'ground';
-  const ix=Math.floor((x+70)/NAVIGATION_CELL),iz=Math.floor((z+70)/NAVIGATION_CELL),key=ix*281+iz;
+  const ix=Math.floor((x+half)/NAVIGATION_CELL),iz=Math.floor((z+half)/NAVIGATION_CELL),key=ix*481+iz;
   const cache=cells.get(id)!;const found=cache.get(key);if(found)return found;
-  const cx=-70+(ix+.5)*NAVIGATION_CELL,cz=-70+(iz+.5)*NAVIGATION_CELL;
+  const cx=-half+(ix+.5)*NAVIGATION_CELL,cz=-half+(iz+.5)*NAVIGATION_CELL;
   const value:Surface=plan.forbidden.some(a=>insideArea(a,cx,cz))?'blocked':
-    plan.paths.some(p=>onPath(p,cx,cz))?'road':plan.plazas.some(a=>insideArea(a,cx,cz))?'plaza':plan.openGround?'ground':'blocked';
+    plan.plazas.some(a=>insideArea(a,cx,cz))?'plaza':plan.paths.some(p=>onPath(p,cx,cz))?'road':plan.openGround?'ground':'blocked';
   cache.set(key,value);return value;
 }
 // Calibration of the 1280 x 853 field paintings to the existing region-map diamond.
@@ -88,6 +90,18 @@ const BIOMES:Record<string,[string,string,number]>={
  */
 export function configureFieldNavigation(id:string,hunt:GroundPoint[],gates:GroundPoint[]){
   if(plans.has(id))return;
+  const farm=farmPlan(id);
+  if(farm){
+    const plan:NavigationPlan={id,openGround:true,blockedName:'น้ำ / เหว / แนวหิน ห้ามเดิน',blockedColor:id==='wild2'||id==='wild6'?'#173e39':'#19171d',
+      forbidden:farmHazards(id),
+      plazas:farm.plazas.map(p=>({name:p.name,center:p.centerM as GroundPoint,radius:p.diameterM/2})),
+      paths:farm.roads.map(p=>({name:p.name,points:p.pointsM as GroundPoint[],width:p.widthM}))};
+    for(const [i,g] of gates.entries()){
+      plan.paths.push({name:`gate-${i}`,points:[[0,0],g],width:10});
+      plan.plazas.push({name:`gate-court-${i}`,center:g,radius:8});
+    }
+    plans.set(id,plan);cells.set(id,new Map());return;
+  }
   let plan:NavigationPlan;
   if(id==='wild2')plan=swampPlan();
   else {

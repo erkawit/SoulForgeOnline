@@ -1,6 +1,7 @@
 // Deterministic nature layout per city / zone: trees, rocks, bushes and where grass may grow.
 // The same seed gives the same world on every client and on the server, so colliders always agree.
 import { onFieldRoad } from './fieldDimensions';
+import {farmScenery} from './farmScenery';
 import { navigationSurface } from './terrainNavigation';
 import { ZONES } from './zones';
 import { CITIES, CAPITAL_WALLS, WORLD_LIMIT, portalsOf, type CityId } from '../content';
@@ -37,7 +38,22 @@ const BIOMES: Record<string, BiomeDef> = {
 
 export function natureLayout(city: CityId): NatureLayout {
   const c = CITIES[city], capital = !c.parent, biome = capital ? city : c.biome ?? 'forest';
-  const def = BIOMES[biome] ?? BIOMES.forest, r = rng('soulforge:' + city);
+  const base = BIOMES[biome] ?? BIOMES.forest;
+  const themes:Record<string,Partial<BiomeDef>>={
+    wild1:{kinds:['dead'],leaf:['#4b4541'],rock:'#a09880'},
+    wild2:{kinds:['dead','cypress'],leaf:['#253d35'],rock:'#53635a'},
+    wild3:{kinds:['crystal','dead'],leaf:['#285746'],glow:'#479d70',rock:'#414941'},
+    wild4:{kinds:['dead','cypress'],leaf:['#384032'],glow:'#648779'},
+    wild5:{kinds:['dead'],leaf:['#45424c'],rock:'#69646d',glow:'#9990b1'},
+    wild6:{kinds:['dead'],rock:'#4a5758',glow:'#547f79'},
+    wild7:{kinds:['dead'],leaf:['#463d33'],rock:'#62594c',glow:'#76634c'},
+    wild8:{kinds:['dead'],leaf:['#482d35'],rock:'#4c3541',glow:'#9a3e50'},
+    wild9:{kinds:['dead'],leaf:['#3d3431'],rock:'#5b5049',glow:'#6d5249'},
+    dungeon1:{kinds:['crystal'],leaf:['#285746'],glow:'#479d70'},
+    dungeon2:{kinds:['dead'],leaf:['#464150'],rock:'#69616c',glow:'#8e82b0'},
+    dungeon3:{kinds:['dead','crystal'],leaf:['#442b25'],rock:'#3a2928',glow:'#b55132'},
+  };
+  const def={...base,...themes[city]},r = rng('soulforge:' + city);
   if (capital) { // the capitals are dressed by their painted kit (world/capitalPlan.ts): grass only where the map has soil
     const pieces = CAPITAL_PIECES[city as 'hollow' | 'dawnveil' | 'thornwatch'];
     const allowGrass = (x: number, z: number) => Math.abs(x) < CAPITAL_WALK - 0.8 && Math.abs(z) < CAPITAL_WALK - 0.8 && !onRoad(x, z) && !inCanal(city, x, z)
@@ -54,12 +70,13 @@ export function natureLayout(city: CityId): NatureLayout {
   const onProp = (x: number, z: number, m: number) => props.some(b => Math.abs(x - b.x) < b.hw + m && Math.abs(z - b.z) < b.hd + m);
   const free = (x: number, z: number, m: number) => !onProp(x, z, m) && !(!!c.water && Math.abs(x - c.water.x) < c.water.w / 2 + 0.8 + m) && !hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < 4 + m);
   const excluded = (x: number, z: number, m: number) =>
+    farmScenery(city).some(p=>Math.hypot(x-p.x,z-p.z)<p.radius+1+m)||
     Math.abs(x) > lim-.6 || Math.abs(z) > lim-.6 || Math.hypot(x, z) < 4 + m || onProp(x, z, m) ||
-    (city==='wild0' && ZONES.some(zone=>Math.hypot(x-zone.x,z-zone.z)<zone.radius+3+m)) ||
+    navigationSurface(city,x,z)==='blocked' ||
     c.buildings.some(b => Math.abs(x - b.x) < b.w / 2 + 1 + m && Math.abs(z - b.z) < b.d / 2 + 1 + m) ||
     walls.some(b => Math.abs(x - b.x) < b.w / 2 + 0.8 + m && Math.abs(z - b.z) < b.d / 2 + 0.8 + m) ||
     (!!c.water && Math.abs(x - c.water.x) < c.water.w / 2 + 0.8 + m) ||
-    hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < 2.4 + m) || portals.some(([px, pz]) => Math.hypot(x - px, z - pz) < 4.5 + m);
+    hunt.some(([hx, hz]) => Math.hypot(x - hx, z - hz) < 8 + m) || portals.some(([px, pz]) => Math.hypot(x - px, z - pz) < 8 + m);
   const trees: Prop[] = [], rocks: Rock[] = [], bushes: Bush[] = [], colliders: Collider[] = [];
   const place = (n: number, minGap: number, ok: (x: number, z: number) => boolean, put: (x: number, z: number) => void) => {
     let tries = 0, made = 0; const pts: [number, number][] = [];
@@ -77,7 +94,7 @@ export function natureLayout(city: CityId): NatureLayout {
   place(Math.round(def.rocks*density), 1.4, (x, z) => !excluded(x, z, 0) && !onPath(x, z), (x, z) => {
     const s = 0.3 + r() * (biome === 'grave' ? 0.4 : 0.7), tall = biome === 'grave' && r() < 0.55;
     rocks.push({ x, z, s, rot: r() * Math.PI * 2, tall });
-    if (s > 0.45 || tall) colliders.push(tall ? { kind: 'box', x, z, hw: 0.32 * s * 1.6, hd: 0.12 * s * 1.6, rot: rocks.at(-1)!.rot } : { kind: 'circle', x, z, r: s * 0.75 });
+    colliders.push(tall ? { kind: 'box', x, z, hw: 0.32 * s * 1.6, hd: 0.12 * s * 1.6, rot: rocks.at(-1)!.rot } : { kind: 'circle', x, z, r: s * 0.75 });
   });
   place(Math.round(def.bushes*density), 1.2, (x, z) => !excluded(x, z, -0.6) && !onPath(x, z), (x, z) => bushes.push({ x, z, s: 0.45 + r() * 0.45, tint: r() }));
   // outskirts of Dawnveil / Thornwatch (±50, see citySprites.ts): woods and boulders off the roads, clear of farms, camps and

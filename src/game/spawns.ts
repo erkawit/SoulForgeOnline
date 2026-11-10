@@ -1,4 +1,5 @@
 import './world/registry';
+import {farmPlan} from './world/farmLayout';
 import {CITIES, FIELD_ART, portalsOf, walkable, homePoint, type CityId} from './content';
 import {mapRoute} from './world/mapRoute';
 import {ZONES} from './world/zones';
@@ -13,6 +14,15 @@ export function spawnPoints(city:CityId):SpawnPoint[]{
  const c=CITIES[city],levels=c.monsterLevels??[1,5,10];
  const capitalSpecies = city==='dawnveil'?CITIES.wild2.species:city==='thornwatch'?CITIES.wild1.species:CITIES.wild0.species;
  const species=c.species??capitalSpecies!;
+ const farm=farmPlan(city);
+ if(farm){let index=0;return farm.huntingGroups.flatMap(g=>Array.from({length:g.monsterCount},(_,k)=>{
+   const a=k*Math.PI*2/g.monsterCount,r=3;
+   const position:[number,number]=[g.positionM.x+Math.cos(a)*r,g.positionM.y+Math.sin(a)*r];
+   const n=index++,boss=(!!c.dungeon||city==='wild0')&&n===149;
+   const legacyElite=city==='wild0'?[34,69,104,139].indexOf(n):-1;
+   const veteran=legacyElite>=0?ZONES[legacyElite].spawns.find(s=>s.elite):undefined;
+   return {id:`${city}-${g.groupId}-${k}`,index:n,position,name:veteran?.species??(city==='wild0'&&boss?'Grave Marshal':species[boss?2:n%(c.dungeon?2:3)]),level:veteran?.level??(boss?levels.at(-1)!:levels[n%levels.length]),elite:!!c.dungeon||boss||!!veteran,boss,respawnSeconds:boss?300:veteran?45:8};
+ }));}
  const town:SpawnPoint[]=c.hunt.map(([x,z],index)=>{
   const boss=!!c.dungeon&&index===c.hunt.length-1;
   return {id:`${city}-${index}`,index,position:[x,z],name:species[boss?2:index%(c.dungeon?2:3)],

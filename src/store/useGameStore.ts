@@ -308,7 +308,7 @@ export const useGameStore = create<GameState>((set, get) => {
       const monster = current.monsters.find(m => m.id === id);
       if (!monster || monster.hp <= 0) return {};
       const dead = monster.hp <= roll.damage;
-      const monsters = current.monsters.map(m => m.id === id ? { ...m, hp: Math.max(0, m.hp - roll.damage), respawnAt: dead ? Date.now() + (monster.boss?300000:8000) : null } : m);
+      const monsters = current.monsters.map(m => m.id === id ? { ...m, hp: Math.max(0, m.hp - roll.damage), respawnAt: dead ? Date.now() + eco.respawnMs(monster) : null } : m);
       let next:Acc={player:{...current.player,hp:Math.min(derived.maxHp,current.player.hp+roll.damage*derived.lifesteal)},drops:current.drops,soulShards:current.soulShards,buffs:current.buffs,
         log:addLog(current.log, `${roll.crit ? 'CRITICAL! ' : ''}${roll.damage} damage → ${monster.name}`)};
       if (dead) next=grantKill(next,monster,derived,current.equipment,current.skillLevels);
@@ -329,7 +329,7 @@ export const useGameStore = create<GameState>((set, get) => {
     if(held<160){get().attack(target.id);return;}
     const power=Math.min(1,held/CHARGE_MAX_MS),d=derivedOf(s,now),roll=rollDamage(d,monsterDefense(target),1+2*power,{boss:target.boss,rng:power>=1?()=>0:Math.random});
     set(cur=>{const m=cur.monsters.find(x=>x.id===target.id);if(!m||m.hp<=0)return {};const dead=m.hp<=roll.damage;
-      const monsters=cur.monsters.map(x=>x.id===m.id?{...x,hp:Math.max(0,x.hp-roll.damage),respawnAt:dead?now+(m.boss?300000:8000):null}:x);
+      const monsters=cur.monsters.map(x=>x.id===m.id?{...x,hp:Math.max(0,x.hp-roll.damage),respawnAt:dead?now+eco.respawnMs(m):null}:x);
       let next:Acc={player:cur.player,drops:cur.drops,soulShards:cur.soulShards,buffs:cur.buffs,log:addLog(cur.log,`ศรง้าง ×${(1+2*power).toFixed(1)} · ${roll.damage} → ${m.name}`)};if(dead)next=grantKill(next,m,d,cur.equipment,cur.skillLevels);
       return {monsters,...next,selectedMonster:dead?null:m.id,cooldowns:{...cur.cooldowns,attack:now+500},action:{kind:'attack',stamp:now,duration:650,clip:'Attack2',fx:{cls:getClass(),kind:'special'},power},attackFx:{stamp:now,skill:true},
         combat:pushCombat(cur.combat,{kind:roll.crit?'crit':'skill',value:roll.damage,x:m.x,z:m.z,on:'monster',id:m.id,delay:180})};}); },
@@ -349,7 +349,7 @@ export const useGameStore = create<GameState>((set, get) => {
     // damage over time on monsters
     let monsters=s.monsters,dots=s.dots,acc:Acc={player:s.player,drops:s.drops,soulShards:s.soulShards,log:s.log,buffs:s.buffs},combat=s.combat;
     if(dots.some(x=>x.next<=now)){
-      for(const x of dots.filter(x=>x.next<=now)){const m=monsters.find(mm=>mm.id===x.id);if(!m||m.hp<=0)continue;combat=pushCombat(combat,{kind:'skill',value:x.perTick,x:m.x,z:m.z,on:'monster',id:m.id});const hp=Math.max(0,m.hp-x.perTick);monsters=monsters.map(mm=>mm.id===m.id?{...mm,hp,respawnAt:hp===0?now+(m.boss?300000:8000):null}:mm);if(hp===0)acc=grantKill(acc,m,d,s.equipment,s.skillLevels);}
+      for(const x of dots.filter(x=>x.next<=now)){const m=monsters.find(mm=>mm.id===x.id);if(!m||m.hp<=0)continue;combat=pushCombat(combat,{kind:'skill',value:x.perTick,x:m.x,z:m.z,on:'monster',id:m.id});const hp=Math.max(0,m.hp-x.perTick);monsters=monsters.map(mm=>mm.id===m.id?{...mm,hp,respawnAt:hp===0?now+eco.respawnMs(m):null}:mm);if(hp===0)acc=grantKill(acc,m,d,s.equipment,s.skillLevels);}
       dots=dots.map(x=>x.next<=now?{...x,ticks:x.ticks-1,next:x.next+x.interval}:x).filter(x=>x.ticks>0&&monsters.some(m=>m.id===x.id&&m.hp>0));
     }
     monsters=monsters.map(m=>m.debuffUntil&&m.debuffUntil<now?{...m,slow:0,weaken:0,armorBreak:0,debuffUntil:undefined}:m);
@@ -471,7 +471,7 @@ function applyOutcome(s:GameState,def:SkillDef,out:Outcome,d:Derived,yaw:number,
   const byId=new Map<string,number>();for(const h of out.hits)byId.set(h.id,(byId.get(h.id)??0)+h.damage);
   let total=0;
   for(const [id,dmg] of byId){const m=monsters.find(x=>x.id===id);if(!m||m.hp<=0)continue;const hp=Math.max(0,m.hp-dmg);total+=Math.min(dmg,m.hp);
-    monsters=monsters.map(x=>x.id===id?{...x,hp,respawnAt:hp===0?now+(m.boss?300000:8000):null}:x);if(hp===0)acc=grantKill(acc,m,d,s.equipment,s.skillLevels);}
+    monsters=monsters.map(x=>x.id===id?{...x,hp,respawnAt:hp===0?now+eco.respawnMs(m):null}:x);if(hp===0)acc=grantKill(acc,m,d,s.equipment,s.skillLevels);}
   let combat=s.combat;for(const [id,dmg] of byId){const m=s.monsters.find(x=>x.id===id);if(m)combat=pushCombat(combat,{kind:out.hits.some(h=>h.id===id&&h.crit)?'crit':'skill',value:dmg,x:m.x,z:m.z,on:'monster',id,delay:def.castMs>0?220:450});}
   if(out.heal>0)combat=pushCombat(combat,{kind:'heal',value:Math.round(out.heal),x:s.player.position[0],z:s.player.position[1],on:'player',delay:250});
   if(out.hits.length)acc.log=addLog(acc.log,`${def.name}: ${total.toLocaleString()} damage${byId.size>1?` · ${byId.size} targets`:''}${out.hits.some(h=>h.crit)?' · CRIT':''}`);

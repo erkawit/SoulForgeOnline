@@ -32,6 +32,7 @@ export type Item = {
   qty?: number;
 };
 export type Monster = {
+  respawnSeconds?: number;
   boss?: boolean;
   dungeon?: number;
   damageMultiplier?: number;

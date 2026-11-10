@@ -1,6 +1,6 @@
 // World units shared by the renderer, collision, travel and server.
 import { navigationPlan, navigationSurface } from './terrainNavigation';
-export const FIELD_HALF = 70;
+export const FIELD_HALF = 120;
 export const FIELD_GATE_INSET = 5.5;
 export const SORROWLANDS_SCALE = FIELD_HALF / 50;
 export const fieldScale = (id: string) => id === 'wild0' ? SORROWLANDS_SCALE : FIELD_HALF / 23;

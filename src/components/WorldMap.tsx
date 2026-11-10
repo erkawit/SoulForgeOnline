@@ -13,6 +13,7 @@ import { spawnPoints } from '@/game/spawns';
 import {navigationOverlay,NAVIGATION_COLORS} from '@/game/world/navigationOverlay';
 import {navigationPlan} from '@/game/world/terrainNavigation';
 import { useGameStore, MAP_WARP, mapWarpCost } from '@/store/useGameStore';
+import { farmPlan } from '@/game/world/farmLayout';
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 
 type Category = 'building' | 'monster' | 'npc' | 'warp';
@@ -24,6 +25,8 @@ const middle: Point = [500, 340];
 function regionArt(city: CityId) {
   const a = FIELD_ART[city];
   if (!CITIES[city].parent) return `/art/atlas/${city}.webp`;
+  // round 23: the 240 m farm fields show the layout exported from their real coordinates (scripts/export-round23.mts)
+  if (farmPlan(city)) return `/art/farm/${city}/overview-runtime.webp`;
   return `/art/world/${a?.city??city}/${a?.map??'city'}.webp`;
 }
 function project(city: CityId, [x,z]: Point): Point {
