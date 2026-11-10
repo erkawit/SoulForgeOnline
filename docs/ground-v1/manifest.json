@@ -1,0 +1,1262 @@
+{
+  "version": 1,
+  "worldSizeM": [
+    240,
+    240
+  ],
+  "textureSize": [
+    4096,
+    4096
+  ],
+  "pixelsPerMetre": 17.066666666666666,
+  "coordinates": {
+    "topLeft": [
+      -120,
+      -120
+    ],
+    "bottomRight": [
+      120,
+      120
+    ],
+    "columnAxis": "+x",
+    "rowAxis": "+z",
+    "pixelCenter": "x=-120+(column+0.5)*240/width; z=-120+(row+0.5)*240/height",
+    "threePlaneUV": "u=(x+120)/240; v=(120-z)/240; TextureLoader flipY=true"
+  },
+  "mask": {
+    "size": [
+      480,
+      480
+    ],
+    "cellSizeM": 0.5,
+    "surfaceChannels": "R road; G plaza; B terrain hazard; A 255. Linear data, no sRGB.",
+    "collision": "walkable-mask.png: white body center walkable; black blocked, includes props. NearestFilter, no mipmaps."
+  },
+  "maps": [
+    {
+      "id": "wild0",
+      "name": "สุสานเถ้าถ่าน",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "ash",
+        "dead-grass",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "themed",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild1",
+      "name": "ทุ่งกระดูกเงียบ",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "dead-grass",
+        "ash",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "partial",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild2",
+      "name": "หนองวิญญาณ",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "mud",
+        "dead-grass",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "themed",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild3",
+      "name": "เหมืองมรกตต้องสาป",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "rocky",
+        "ash",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "themed",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild4",
+      "name": "สวนคำสาบาน",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "dead-grass",
+        "mud",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "themed",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild5",
+      "name": "บันไดแห่งคำพิพากษา",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "flagstone",
+        "rocky",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "partial",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild6",
+      "name": "คลองแสงดับ",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "mud",
+        "dead-grass",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "partial",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild7",
+      "name": "ทุ่งอรุณร้าง",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "dead-grass",
+        "ash",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "concept-placeholder",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild8",
+      "name": "ป่าหนามอสูร",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "dead-grass",
+        "ash",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "concept-placeholder",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wild9",
+      "name": "ช่องเขารากมังกร",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "rocky",
+        "ash",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "concept-placeholder",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dungeon1",
+      "name": "ถ้ำมรกต",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "rocky",
+        "mud",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "procedural-layout",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dungeon2",
+      "name": "มหาวิหารพิพากษา",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "flagstone",
+        "rocky",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "procedural-layout",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dungeon3",
+      "name": "ถ้ำมังกร",
+      "ground": "ground-basecolor-4096.webp",
+      "web": "ground-basecolor-4096.webp",
+      "materials": [
+        "rocky",
+        "ash",
+        "dirt-road",
+        "flagstone"
+      ],
+      "repeatMetres": 8,
+      "tiles": [],
+      "original": {
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "procedural-layout",
+        "use": "concept/minimap only; oblique painting, not a calibrated ground texture"
+      },
+      "hazards": 4,
+      "masterFileExternal": "ground-basecolor-4096.png",
+      "losslessTilesExternal": [
+        {
+          "file": "ground-r0-c0-2048.png",
+          "rectPixels": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            -120
+          ],
+          "worldMax": [
+            0,
+            0
+          ]
+        },
+        {
+          "file": "ground-r0-c1-2048.png",
+          "rectPixels": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            -120
+          ],
+          "worldMax": [
+            120,
+            0
+          ]
+        },
+        {
+          "file": "ground-r1-c0-2048.png",
+          "rectPixels": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            -120,
+            0
+          ],
+          "worldMax": [
+            0,
+            120
+          ]
+        },
+        {
+          "file": "ground-r1-c1-2048.png",
+          "rectPixels": [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          "worldMin": [
+            0,
+            0
+          ],
+          "worldMax": [
+            120,
+            120
+          ]
+        }
+      ]
+    }
+  ],
+  "package": "runtime-webp",
+  "losslessMastersIncluded": false,
+  "losslessMasterFolder": "../claude-map-ground-v1"
+}
