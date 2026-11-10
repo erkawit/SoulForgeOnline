@@ -2,7 +2,7 @@
 
 ## ลำดับการทำ
 ทำทีละอาชีพตามเลขไฟล์ `01` → `08` แต่ละอาชีพใช้ **1 แชทใหม่** (ChatGPT หรือ Gemini)
-1. **ขั้น 0** วางข้อความแรก (ไม่ต้องแนบไฟล์) รอ AI ตอบยืนยัน
+1. **ขั้น 0** แนบ `STYLE_ANCHOR.png` แล้ววางข้อความแรก รอ AI ตอบยืนยัน
    **ขั้น 1** ให้ AI สร้างภาพต้นแบบใหม่จากข้อความ เลือกจนพอใจ บันทึกไฟล์ และส่งให้ผมดู
 2. ไล่ **ขั้น 2 → 8** ในแชทเดียวกัน คัดลอกทีละกล่อง 1 กล่อง = 1 ภาพ = 1 ท่า × 1 ทิศ
 3. บันทึกภาพตามชื่อที่เขียนไว้เหนือแต่ละกล่อง ลงโฟลเดอร์ `output\sprites-v4\<อาชีพ>\`
@@ -32,6 +32,16 @@
 เปลี่ยนได้อย่างเดียวคือมุมมองตอนหมุน (ดูสั้นลงเมื่อชี้เข้า/ออกจากกล้อง) ดาบตรงต้องตรงเสมอ
 ถ้าอาวุธงอหรือเปลี่ยนแบบ ให้ตอบ:
 `Weapon shape is wrong. It must be identical to the master reference - rigid and straight, same length and design. Redo.`
+
+## ⭐ กฎสไตล์ตัวละคร (STYLE ANCHOR) — ใช้กับทุกอาชีพ
+ภาพแบบ: `output\sprites-v4\master-refs\STYLE_ANCHOR.png` (Paladin ที่คุณเลือก) **แนบภาพนี้ในขั้น 0 ทุกครั้ง** ทุกอาชีพ
+ทุกตัวละครต้องเหมือนภาพนี้ในเรื่อง:
+- **สัดส่วน:** semi-chibi แบบหนัก สูงราว 3–3.5 หัว หัวใหญ่แต่หน้าผู้ใหญ่สมจริง ไหล่กว้าง เกราะชิ้นใหญ่ ขาสั้นหนา รองเท้าใหญ่ ยืนกางขามั่นคง เหมือนหุ่นจำลองนักรบ ห้ามผอมหรือน่ารัก
+- **หน้า:** ขมวดคิ้ว ตาแคบดูเหนื่อย ใต้ตาคล้ำ ผิวซีด มีแผลเป็น ผมยุ่ง
+- **ลายเนื้อ:** วาดละเอียดทุกพื้นผิว โลหะตีขึ้นรูปมีรอยบุบและสนิม ผ้าขาดรุ่ย หนังแตก มีเส้นขอบเข้ม
+- **แสงและสี:** แสงอุ่นสลัวจากซ้ายบน เงาน้ำตาลเกือบดำ สีหม่น ได้แก่ บรอนซ์หมอง เหล็กตะกั่ว แดงเลือดแห้ง และขาวกระดาษเก่า
+- **รายละเอียดสยองศักดิ์สิทธิ์:** แถบกระดาษผนึกครั่งแดง โซ่ ไม้กางเขน/เครื่องรางของอาชีพ ตะเกียงแขวน ใบหน้าวิญญาณสลักบนอุปกรณ์
+อาชีพอื่นใช้ภาพนี้เป็น **แบบสไตล์เท่านั้น** ห้ามลอกชุด สี หรืออาวุธ (ใน prompt สั่งไว้แล้ว)
 
 ## ⛔ กฎขนาดและรูปแบบไฟล์ (ห้ามละเมิด)
 - **1 ภาพ = 1 ท่า × 1 ทิศ เท่านั้น** ห้ามรวมหลายทิศหรือหลายท่าในภาพเดียว
@@ -82,7 +92,7 @@ Keep the same design, outfit, headwear, cloak, weapon and shield shapes, and the
 ## ชุดบังคับของแต่ละอาชีพ (ปรับรอบนี้)
 | อาชีพ | ผ้าคลุม | หมวก/ของสวมหัว | เปลี่ยนจากแบบเดิม |
 |---|---|---|---|
-| Paladin | ผ้าคลุมยาวสีน้ำเงิน ลายพระอาทิตย์ทอง | หมวกเหล็กเปิดหน้า มีปีกนกสองข้าง | **ใช่** (โล่มีปีกสยายด้านบน ดาบมีปีกที่โกร่ง) |
+| Paladin | ผ้าคลุมยาวสีแดงเลือดหมู ขาดรุ่ย ลายกางเขน | หมวกเหล็กเปิดหน้า มีปีกนกสองข้าง | **ใช่** (โล่มีปีกสยายด้านบน ดาบมีปีกที่โกร่ง) |
 | Berserker | ผ้าคลุมหนังขนหมาป่าสีน้ำตาลเข้ม | หมวกเหล็กดำมีเขาโค้ง | **ใช่** |
 | Assassin | ผ้าคลุมสั้นสีดำซับม่วง ชายขาด | ฮู้ด + ผ้าปิดหน้า (ของเดิม) | **ใช่** |
 | Hawkeye | ผ้าคลุมเขียว (ของเดิม) | ฮู้ด (ของเดิม) | ไม่เปลี่ยน |
@@ -91,7 +101,7 @@ Keep the same design, outfit, headwear, cloak, weapon and shield shapes, and the
 | Elementalist | — | ไม่มี (ตามที่กำหนด) | ไม่เปลี่ยน |
 | RuneMaster | — | ไม่มี (ตามที่กำหนด) | ไม่เปลี่ยน |
 
-ทุกอาชีพสร้างต้นแบบใหม่จากข้อความในขั้น 1 **ไม่ต้องแนบไฟล์ต้นแบบเดิม** (ไฟล์ใน `master-refs` ที่ไม่มี `_v2` เป็นของเก่า ไม่ต้องใช้แล้ว)
+ทุกอาชีพสร้างต้นแบบใหม่ในขั้น 1 (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) **ไม่ต้องแนบไฟล์ต้นแบบเดิม** (ไฟล์ใน `master-refs` ที่ไม่มี `_v2` เป็นของเก่า ไม่ต้องใช้แล้ว)
 ชีตเก่าในเกมจะถูกแทนด้วยชุดใหม่ทั้งหมด จึงต้องเจนครบทุกท่าของทุกอาชีพ
 
 คำอธิบายหน้าตายังตามภาพในเกมเป็นหลัก: HighPriest ถือลูกแสง (ไม่ใช่คัมภีร์) และ Berserker เปลือยท่อนบน
@@ -101,18 +111,25 @@ Keep the same design, outfit, headwear, cloak, weapon and shield shapes, and the
 
 # 1. Paladin — พาลาดิน · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\paladin\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Paladin_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -122,7 +139,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -152,9 +168,11 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. It is also this same character (Paladin) - keep its design and add the items listed in LOOK.
+
 CHARACTER FOR THIS CHAT: Paladin (male), player class.
-LOOK: Grim semi-chibi holy knight with short brown hair and blue eyes. Open-face dark steel helmet with a pair of ash-grey and dull silver bird wings spreading from BOTH sides of the helmet. Worn dark steel plate armor with gold trim and small gold wing engravings on the pauldrons, dark midnight-navy tabard with a golden sun emblem, brown leather belt. Long dark midnight-navy cape with gold trim and a golden sun on the back, from the shoulders to the ankles. Kite shield in dark midnight-navy with a golden sun and gold rim, with a pair of spread silver-and-gold wings rising from the TOP edge of the shield. Longsword with a WINGED CROSSGUARD: two small metal wings spread sideways between the blade and the grip.
-DARK PALETTE: dull scratched gunmetal steel, dark midnight-navy cloth, tarnished antique gold, ash-grey helmet and shield wings, dark brown leather; only the sun emblem has a faint warm glow.
+LOOK: Grim heavy semi-chibi holy knight (crusader paladin). Messy shoulder-length ash-blond hair, pale ashen skin, stern frowning face with narrow tired eyes, dark shadows under the eyes and a red scar across the left eye. Open-face hammered dark-steel helmet with tarnished bronze trim and a pair of ash-grey, dull-silver bird wings spreading from BOTH sides (the face and the front of the hair stay visible). Heavy hammered gunmetal plate armor with tarnished bronze trim, huge rounded pauldrons with bronze crosses and ash-grey wing engravings, chainmail at the neck with a bronze chain and cross pendant. Torn bone-white parchment tabard with a dried-blood red cross, torn parchment strips with red wax seals hanging from the chest, dark leather belt with pouches and a small bronze lantern hanging at the hip. Long tattered oxblood-red cape with a pale cross on it, ragged hem. Heater/kite shield of hammered steel with tarnished bronze rim, a bronze cross, a carved ghostly saint face, red wax seals with parchment strips, and a pair of spread ash-grey wings rising from the TOP edge of the shield. Heavy straight broad longsword with a pitted dark-steel blade and a tarnished bronze WINGED crossguard (two small metal wings spread sideways between the blade and the grip), leather-wrapped grip.
+DARK PALETTE: hammered gunmetal steel, tarnished bronze, oxblood-red cape, bone-white aged parchment with dried-blood red crosses, dark leather; ash-grey wings; no bright colors, only a faint warm glint on the bronze.
 HAND RULE: longsword with the winged crossguard in the character's RIGHT hand; winged kite shield on the character's LEFT arm. Never swap them in any direction.
 DEFAULT POSE: shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side.
 Do not draw anything yet. Reply only with a short confirmation that you understand the character and the rules.
@@ -165,8 +183,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Paladin (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of Paladin (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Base it on the attached STYLE ANCHOR image (same character) and add the winged helmet, the shield wings and the winged crossguard.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield held upright at the left side (face of the shield vertical, never flat), sword lowered forward-down at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -1059,18 +1077,25 @@ Motion: self-buff "Sacred Vow": frames 1-4 plant the sword point-down in front a
 
 # 2. Hawkeye — ฮอว์คอาย (ARCHER) · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\hawkeye\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Hawkeye_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -1080,7 +1105,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -1110,6 +1134,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. Do NOT copy its design, armor, colors or weapons - this chat is for a different character.
+
 CHARACTER FOR THIS CHAT: Hawkeye (male), player class.
 LOOK: Grim semi-chibi ranger with a dark forest-green hood pulled over brown hair, long ragged green cloak, brown leather tunic with straps and belt, leather bracers, tall brown boots, a quiver full of arrows on the back.
 DARK PALETTE: dark moss green and near-black olive cloth, dark worn brown leather, dull bronze buckles, mud on boots and cloak hem.
@@ -1123,8 +1149,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Hawkeye (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of Hawkeye (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch in the exact style of the STYLE ANCHOR image.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (bow held low in the left hand tilted about 45 degrees downward toward the front, right hand relaxed near the hip):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -2017,18 +2043,25 @@ Motion: self-buff "Eagle Eye": frames 1-4 lift the bow to eye level and squint a
 
 # 3. RuneMaster — รูนมาสเตอร์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\runemaster\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\RuneMaster_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -2038,7 +2071,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -2068,6 +2100,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. Do NOT copy its design, armor, colors or weapons - this chat is for a different character.
+
 CHARACTER FOR THIS CHAT: RuneMaster (male), player class.
 LOOK: Grim semi-chibi rune swordsman with dark swept-back hair, a long dark-teal and navy coat with high collar and golden rune embroidery down the front, crossed leather straps, brown boots.
 DARK PALETTE: black-navy and dark slate-teal coat, tarnished gold rune embroidery, dark leather; only the runes, blade edge and rune stone glow soft teal.
@@ -2081,8 +2115,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of RuneMaster (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of RuneMaster (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch in the exact style of the STYLE ANCHOR image.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sword pointing down-forward at the right side, left hand raised at waist-to-chest height with the rune stone hovering above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -2975,18 +3009,25 @@ Motion: self-buff "Pillar of Valor": frames 1-4 bring the rune stone to the ches
 
 # 4. Elementalist — เอเลเมนทัลลิสต์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #00FF00
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #00FF00
 
 บันทึกไฟล์ที่: `output\sprites-v4\elementalist\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Elementalist_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -2996,7 +3037,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -3027,6 +3067,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 This character uses purple: if real transparency is impossible, the fallback color in THIS chat is flat #00FF00 green, never magenta.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. Do NOT copy its design, armor, colors or weapons - this chat is for a different character.
+
 CHARACTER FOR THIS CHAT: Elementalist (male), player class.
 LOOK: Grim semi-chibi young mage with messy dark-purple hair and violet eyes, layered dark-purple tattered cloak with high collar and gold trim, dark clothes underneath, black boots. Long ornate staff topped with a large blue crystal wreathed in small orange-and-blue magic flames.
 DARK PALETTE: deep plum-black and dark violet robes, tarnished gold trim, black boots; only the staff crystal glows (blue and ember orange).
@@ -3040,8 +3082,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Elementalist (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of Elementalist (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch in the exact style of the STYLE ANCHOR image.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (idle: staff perfectly vertical in the right hand, crystal pointing up, bottom tip on the ground. Walk: staff held across the body with both hands, tilted 45 degrees; the robe hem swings so the boot tips show on each step):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -3934,18 +3976,25 @@ Motion: self-buff "Elemental Attunement": frames 1-4 hold the staff vertical in 
 
 # 5. Assassin — แอสแซสซิน · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #00FF00
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #00FF00
 
 บันทึกไฟล์ที่: `output\sprites-v4\assassin\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Assassin_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -3955,7 +4004,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -3986,6 +4034,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 This character uses purple: if real transparency is impossible, the fallback color in THIS chat is flat #00FF00 green, never magenta.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. Do NOT copy its design, armor, colors or weapons - this chat is for a different character.
+
 CHARACTER FOR THIS CHAT: Assassin (male), player class.
 LOOK: Grim semi-chibi assassin in a black hood with dark purple lining, black cloth mask over the lower face with only violet eyes visible. Short ragged black cloak with dark purple lining attached to the hood, from the shoulders to mid-thigh, torn and split at the hem. Black leather and dark-metal light armor with many straps and buckles, purple sash at the waist, black boots.
 DARK PALETTE: black and charcoal, very dark violet lining, blackened dull steel daggers and buckles, faded purple sash.
@@ -3999,8 +4049,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Assassin (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of Assassin (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch in the exact style of the STYLE ANCHOR image.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (crouched ready stance, knees bent, both daggers held low at the sides):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -4893,18 +4943,25 @@ Motion: self-buff "Shadow Veil": frames 1-4 pull the hood lower and cross both d
 
 # 6. HighPriest — ไฮพรีสต์ (PRIEST) · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\highpriest\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\HighPriest_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -4914,7 +4971,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -4944,6 +5000,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. Do NOT copy its design, armor, colors or weapons - this chat is for a different character.
+
 CHARACTER FOR THIS CHAT: HighPriest (male), player class.
 LOOK: Grim semi-chibi young priest with soft blond hair and grey eyes. Tall aged ivory and gold mitre (bishop hat) with a gold cross emblem on the front and two short ribbons at the back. Long aged ivory and gold robes with heavy gold embroidery and wide sleeves, dark trousers and brown boots.
 DARK PALETTE: aged ivory and bone-white robes with grey grime at the hem, tarnished antique gold embroidery, dark leather; only the light orb glows warm gold.
@@ -4957,8 +5015,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of HighPriest (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of HighPriest (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch in the exact style of the STYLE ANCHOR image.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (sceptre held upright at the right side, left hand raised at waist height with the light orb above the palm):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -5851,18 +5909,25 @@ Motion: self-buff "Blessing": frames 1-4 hold the sceptre in front with the head
 
 # 7. Inquisitor — อินควิซิเตอร์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\inquisitor\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Inquisitor_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -5872,7 +5937,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -5902,6 +5966,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. Do NOT copy its design, armor, colors or weapons - this chat is for a different character.
+
 CHARACTER FOR THIS CHAT: Inquisitor (male), player class.
 LOOK: Grim semi-chibi inquisitor with a short dark beard, wide-brimmed black hat with a red band and small gold cross, long red coat with ragged hem, silver shoulder plates and bracers, gold cross on the chest, belts with pouches, black boots.
 DARK PALETTE: dark oxblood-red coat, black leather, dull dark iron hammer and plates, tarnished gold cross, black hat.
@@ -5915,8 +5981,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Inquisitor (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of Inquisitor (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch in the exact style of the STYLE ANCHOR image.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (shield upright at the left side, hammer lowered at the right side):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).
@@ -6809,18 +6875,25 @@ Motion: self-buff: frames 1-4 hold the hammer upright in front of the face like 
 
 # 8. Berserker — เบอร์เซิร์กเกอร์ · prompt ทีละขั้น (ชาย)
 
-ต้นแบบ: สร้างใหม่จากข้อความใน**ขั้น 1** (ไม่ต้องแนบไฟล์) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
+ต้นแบบ: สร้างใหม่ใน**ขั้น 1** (แนบแค่ `STYLE_ANCHOR.png` ในขั้น 0) · **ไม่มีพื้นหลัง (โปร่งใส)** — สำรอง #FF00FF
 
 บันทึกไฟล์ที่: `output\sprites-v4\berserker\` · ต้นแบบบันทึกที่ `output\sprites-v4\master-refs\Berserker_male_master_ref_v2.png`
 
-> **ไม่ต้องแนบไฟล์ใด ๆ** ทำทุกขั้นใน **แชทเดียวกัน** ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
+> ทำทุกขั้นใน **แชทเดียวกัน** · ไฟล์เดียวที่ต้องแนบคือ **`master-refs\STYLE_ANCHOR.png`** ในขั้น 0 (ภาพแบบสไตล์/โทนของทั้งเกม) ต้นแบบที่ AI สร้างในขั้น 1 จะอยู่ในแชทนั้น ทุกกล่องหลังจากนั้นอ้างถึงภาพนี้เอง
 
-## ขั้น 0 — เปิดแชทใหม่ แล้ววางข้อความนี้
+## ขั้น 0 — เปิดแชทใหม่ แนบ `STYLE_ANCHOR.png` แล้ววางข้อความนี้
 
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -6830,7 +6903,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
@@ -6860,6 +6932,8 @@ WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
 
+The attached image is the STYLE ANCHOR of the whole game: match its proportions, face style, rendering, lighting, palette and grimdark tone exactly. Do NOT copy its design, armor, colors or weapons - this chat is for a different character.
+
 CHARACTER FOR THIS CHAT: Berserker (male), player class.
 LOOK: Grim semi-chibi barbarian with long wild red hair and a full red beard. Black iron horned helmet with two thick curved horns and a brow guard, open face, the red hair flowing out at the back. Bare muscular chest with scars, black spiked iron pauldron and arm guards, black leather straps across the chest. Heavy cloak made of a dark-brown wolf-fur pelt over the shoulders, ragged hem down to the knees, fastened with an iron clasp. Grey-white fur loincloth over dark trousers, heavy black boots. Huge dark-steel greatsword with a long grip.
 DARK PALETTE: dark rust-red hair and beard, weathered tanned skin with scars and grime, blackened iron armor and horned helmet, dark brown matted fur cloak.
@@ -6873,8 +6947,8 @@ Do not draw anything yet. Reply only with a short confirmation that you understa
 ## ขั้น 1 — สร้างภาพต้นแบบ (Master Reference) · 1 ภาพ
 
 ```text
-Create the MASTER REFERENCE of Berserker (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch.
-Follow the DARK TONE rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
+Create the MASTER REFERENCE of Berserker (male) now, exactly as described in LOOK, DARK PALETTE and HAND RULE. Design it from scratch in the exact style of the STYLE ANCHOR image.
+Match the STYLE ANCHOR image and follow the DARK & HAUNTED rules strictly: low-key lighting with deep shadows, muted dirty colors, tarnished gold, worn scratched metal, grime, a grim serious face with narrow eyes. It must look like grimdark dark-fantasy game art, not a bright cute anime or gacha character.
 Weapons, shields and headwear are rigid objects with clean, well-defined shapes; this design will be copied 100% in every later image.
 ONE image, exactly 1536x1024 landscape, exactly THREE figures (no more): three views of the same character side by side, full body, same size, feet on the same horizontal line, standing in the idle pose (greatsword resting on the right shoulder, blade pointing up and back behind the head):
 left = S (facing the camera), middle = SW (three-quarter front, body turned toward the LEFT side of the image), right = N (back view, cloak/cape and the back of the headwear clearly visible).

@@ -5,7 +5,7 @@
 
 ## A. วิธีใช้ (อ่านก่อนเจน)
 
-1. **เปิดแชทใหม่ 1 แชทต่อ 1 ตัวละคร/มอนสเตอร์/ชุดแผนที่** แล้ววาง **ส่วน B** เป็นข้อความแรก (ทุกงานในเกมต้อง **ดาร์คและหลอน** กฎนี้อยู่ในส่วน B และทุกแม่แบบมีบรรทัด `MOOD:` ย้ำไว้แล้ว ห้ามลบ)
+1. **เปิดแชทใหม่ 1 แชทต่อ 1 ตัวละคร/มอนสเตอร์/ชุดแผนที่** แนบ `master-refs\STYLE_ANCHOR.png` (ภาพแบบสไตล์ของทั้งเกม) แล้ววาง **ส่วน B** เป็นข้อความแรก (ทุกงานในเกมต้อง **ดาร์คและหลอน** กฎนี้อยู่ในส่วน B และทุกแม่แบบมีบรรทัด `MOOD:` ย้ำไว้แล้ว ห้ามลบ)
 2. **ทำ Master Reference ก่อน** (C1 หรือ C4.1) → เลือกภาพที่ชอบ → บอกผมว่า `APPROVED` → ใช้ภาพนี้ **แนบทุกครั้ง** ที่เจนชีต
 3. **เจนชีตทีละ 1 ท่า × 1 ทิศ ต่อ 1 ภาพ** (C2) — ตัวละคร 1 ตัว ท่า 1 ท่า = 8 ภาพ (8 ทิศ) **ห้ามขอให้กลับภาพ (mirror)**
 4. ถ้าภาพผิด (มือสลับ, ทิศผิด, ตัวเล็ก/ใหญ่ไม่เท่าต้นแบบ, มีพื้นหรือเงา) **เจนใหม่ อย่าแก้ด้วยการกลับภาพ**
@@ -27,7 +27,14 @@
 ```text
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
-STYLE: DARK FANTASY / GRIMDARK painted game art, in the mood of Diablo and Darkest Dungeon - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
+  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+  - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
+  - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
+  - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
+  - Palette: desaturated and dirty - tarnished bronze and antique gold, dark gunmetal steel, oxblood / dried-blood red cloth, bone-white aged parchment, dark leather browns. Never saturated, never bright.
+  - Macabre relic details: torn parchment strips with red wax seals, chains, small crosses or class relics, a hanging lantern or charm, ghostly faces or motifs carved into gear - age, decay and sacrifice in every piece.
 DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monsters, bosses, NPCs, items, maps):
   - Low-key lighting: most of the figure sits in dark midtones and deep, almost black shadows; only the top-left lit edges and a few focal points (face, emblem, magic glow) are bright.
   - Muted, desaturated, dirty colors: tarnished antique gold (never bright yellow gold), dull scratched gunmetal steel (never shiny chrome), dark faded cloth, worn leather.
@@ -37,7 +44,6 @@ DARK & HAUNTED TONE (mandatory for EVERY image in this game - characters, monste
   - HAUNTED, eerie undertone: a cold, sickly pale-teal or ghostly-green rim light on the shadow side; pale, slightly ashen skin; shadowed hollow eye areas; a quiet sense of dread.
   - Small macabre details that fit the class or creature: bone charms, skull motifs, chains, wax seals and dripping candle wax, stitched scars, cracked runes, torn prayer cloth, faint ghostly wisps clinging to cloth edges (on the figure only, never on the background).
   - Heroes are grim survivors in a cursed world - dark and haunted, but still heroic and readable, never gory.
-Proportions: stylized semi-chibi, about 3 heads tall (big head, short body), but the mood stays dark and mature; armor, weapon, helmet, cloak and class symbols keep full detail.
 CAMERA: fixed 3/4 top-down view, about 30 degrees above the horizon, orthographic (no perspective distortion). Same camera in every image.
 LIGHT: key light from the TOP-LEFT of the image, warm; faint cool rim light on the right. NO cast shadow on the ground.
 BACKGROUND: NO BACKGROUND. Output a PNG with a real TRANSPARENT background (alpha channel): only the character/object is visible, everything else is empty transparency.
