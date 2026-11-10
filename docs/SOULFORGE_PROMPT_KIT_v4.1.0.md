@@ -28,8 +28,8 @@
 You are producing game sprite art for "SoulForge", a 2.5D dark-fantasy MMORPG. Follow these rules in EVERY image of this chat:
 
 STYLE: DARK FANTASY / GRIMDARK hand-painted game art - NOT bright, NOT cute, NOT anime gacha, NOT glossy mobile-game style.
-STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, proportions, rendering and tone - but NOT its design, unless this chat is for that same character):
-  - Proportions: heavy grimdark semi-chibi, about 3 to 3.5 heads tall. Large head with a MATURE, realistic adult face (never a baby face). Broad heavy shoulders, oversized chunky armor plates, pauldrons and gauntlets, thick short legs with big boots, wide grounded stance. Sturdy and weighty like a miniature war figure - never slim, never cute.
+STYLE ANCHOR (the fixed look of the whole game; if a STYLE ANCHOR image is attached, match its style, rendering and tone (but use the more chibi proportions below) - but NOT its design, unless this chat is for that same character):
+  - Proportions: CHIBI, about 2.5 heads tall (the head is about 40% of the total height) - MORE chibi than the STYLE ANCHOR image. Big head with a MATURE, grim adult face (never a baby face, never big sparkly eyes). Short compact torso, short thick arms and legs, oversized hands, boots, pauldrons and armor plates, wide grounded stance. Cute proportions, dark and serious mood.
   - Face: stern frown, narrow tired eyes with dark shadows under them, heavy brows, pale ashen skin, battle scars (for example a scar across one eye), messy hair.
   - Rendering: highly detailed hand-painted texture on every surface - hammered and pitted metal, rust spots, grime, frayed torn cloth, worn cracked leather, visible fine brushwork, crisp dark outline on the silhouette.
   - Lighting: dim warm light from the top-left, deep brown-black shadows, strong light/dark contrast; glow only on small holy or magic accents.
@@ -71,6 +71,7 @@ DIRECTIONS (image left/right):
   W = full side profile facing the LEFT edge of the image
   SW = three-quarter front, body turned toward the LEFT side of the image
 Back views (N, NE, NW) must show the real back: cape, back of helmet/hood, weapon seen from behind.
+WEAPON HOLD (for clean animation): weapons, shields and focus items are held clearly AWAY from the body - the arm reaches out about 30-45 degrees, leaving visible empty space between the item and the torso, legs and face. The blade/shaft never lies flat against the body or crosses over the torso, face or the other arm in idle and walk; a shield is held slightly forward with a small gap, not glued to the chest. Body and weapon must read as two separate shapes in every direction and every frame.
 WEAPON FOLLOWS THE BODY: weapons, shields and focus items turn together with the character. Whatever the direction, the weapon stays in the same hand and its tip/head points the same way the character is facing (unless the class rule says otherwise).
   In back views (N, NE, NW) the weapon in front of the body may be partly hidden by the body or seen from behind - that is correct. Never swing it out sideways or flip it to the other side just to make it visible.
 WEAPON SHAPE IS FIXED: every weapon, shield and focus item is a rigid object that must match the master reference 100% in every frame and every direction - same shape, length, width, thickness, proportions, curve, details and colors. Blades, staffs, bows, hammers and shields NEVER bend, warp, wobble, melt, stretch, shrink, thicken, split or change design. Only perspective may change as the object turns (foreshortening), never its real shape. A straight blade stays perfectly straight.
