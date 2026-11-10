@@ -163,7 +163,7 @@ export default function GameHUD() {
   const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'menu_03_inventory', character: 'menu_12_character_helm', skills: 'menu_04_skill_book', quests: 'menu_22_quest_scrolls', codex: 'menu_11_codex_book', wardrobe: 'menu_09_avatar_armor', monsters: 'menu_32_boss_battle_locked', auto: 'icon_refresh', online: 'menu_28_community_friends', cloud: 'icon_crystal_orb', settings: 'icon_menu_settings_gear' };
   const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
 
-  return <div className={`hud-root h2 pointer-events-none${layout === 'mobile' ? ` touch ${orientation}` : ''}`}>
+  return <div className={`hud-root h2 pointer-events-none ${layout === 'mobile' ? `touch ${orientation}` : ''}`}>
     <div className="h2-vignette" />
     {/* PC / Mobile component sets (UX spec): frame, orbs, hotbar or touch wheel */}
     {layout === 'pc' ? <PCHUDLayout hp={hp} maxHp={maxHp} mp={mp} maxMp={maxMp} now={now} onAuto={() => toggle('auto')} />

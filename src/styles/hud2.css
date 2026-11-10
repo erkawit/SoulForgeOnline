@@ -1,6 +1,8 @@
 /* SoulForge HUD round 2 — darker frame (Diablo-like, not Diablo). Mirrors the preview's ui.css round-2 block. */
 .h2 { --g: #d9b45c; --g2: #f2d58a; --line: rgba(190, 150, 80, .22); --line2: rgba(206, 164, 86, .45); --mute: #9c937f; --teal: #62d7cb; --pan: linear-gradient(180deg, rgba(20, 16, 22, .96), rgba(8, 6, 10, .97));
   position: absolute; inset: 0; z-index: 10; font-family: "Noto Sans Thai", system-ui, sans-serif; color: #e9e2d3; }
+/* the HUD layer itself never eats clicks meant for the world (click-to-move); only its panels and buttons do */
+.hud-root { pointer-events: none; }
 .h2 .pointer-events-auto, .h2-tip, .h2-modal { pointer-events: auto; }
 .h2-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 46%, transparent 55%, rgba(0, 0, 0, .55) 100%), linear-gradient(180deg, rgba(0, 0, 0, .45), transparent 14%, transparent 78%, rgba(0, 0, 0, .7)); }
 .h2-frame { position: absolute; left: 14px; top: 14px; width: 300px; display: grid; grid-template-columns: 64px 1fr; gap: 10px; padding: 8px 12px 8px 8px; border: 1px solid var(--line2); border-radius: 4px; background: linear-gradient(100deg, rgba(40, 14, 18, .92), rgba(10, 8, 12, .95) 60%); box-shadow: 0 14px 40px rgba(0, 0, 0, .75); }
