@@ -7,6 +7,7 @@
 //   · action cluster bottom-right: big attack button, skills on an arc around it — portrait shows 4 + a page chip for
 //     5–6, landscape has the room for all 6 at once. Cooldown sweep, MP warning and a short vibration on press
 //   · quick row above the joystick: HP potion, MP potion, AUTO, next target, menu
+import { lockOrientation } from '@/game/ui/orientation';
 import { skillIconStyle } from '@/game/skills/icons';
 import { useRef, useState, type PointerEvent as RPointerEvent } from 'react';
 import { Swords } from 'lucide-react';
@@ -67,6 +68,13 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
   const hpCount = ['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((a, id) => a + countOf(inventory, id), 0);
   const mpCount = ['potion-mp-m', 'potion-mp-s'].reduce((a, id) => a + countOf(inventory, id), 0);
   const k = (v: number, m: number) => Math.max(0, Math.min(1, v / Math.max(1, m)));
+  // portrait ⇄ landscape: lock where the browser allows it, otherwise ask the player to turn the phone
+  const [rotHint, setRotHint] = useState('');
+  const rotate = async () => {
+    const want = o === 'portrait' ? 'landscape' : 'portrait';
+    const r = await lockOrientation(want);
+    if (r === 'unsupported') { setRotHint(`หมุนเครื่องเป็น${want === 'landscape' ? 'แนวนอน' : 'แนวตั้ง'} (ปิดล็อกการหมุนจอก่อน) — เกมจะจัดปุ่มให้เอง`); setTimeout(() => setRotHint(''), 3500); }
+  };
   const tap = (fn: () => void) => (e: RPointerEvent) => { e.preventDefault(); e.stopPropagation(); buzz(); fn(); };
   return <>
     <section className={`h3-mframe tc-frame pointer-events-auto ${k(hp, maxHp) < .3 ? 'low' : ''}`} onClick={onStatus} aria-label="สถานะตัวละคร">
@@ -83,7 +91,9 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
       <button className={`tq auto ${auto.enabled ? 'on' : ''}`} onPointerDown={tap(() => useGameStore.getState().setAuto(!auto.enabled))} aria-pressed={auto.enabled} aria-label="ล่าอัตโนมัติ"><b>AUTO</b><small>{auto.enabled ? 'เปิด' : 'ปิด'}</small></button>
       <button className={`tq ${target ? 'on' : ''}`} onPointerDown={tap(nextTarget)} aria-label="เปลี่ยนเป้าหมาย"><span className="ico tgt" /><small>เป้า</small></button>
       <button className={`tq ${menuOpen ? 'on' : ''}`} onClick={onMenu} aria-label="เมนู" aria-expanded={menuOpen}><span className="ico menu" /><small>เมนู</small></button>
+      <button className="tq rot" onClick={() => void rotate()} aria-label={o === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'}><b>{o === 'portrait' ? '▭' : '▯'}</b><small>{o === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</small></button>
     </div>
+    {rotHint && <div className="tc-rot-hint" role="status">{rotHint}</div>}
     <div className="tc-act pointer-events-auto" style={{ ['--cc' as string]: CLASS_COLOR[cls] ?? '#c89b3c' }}>
       <button className="basic" onPointerDown={e => { e.preventDefault(); buzz(8); basicDown(); }} onPointerUp={basicUp} onPointerCancel={basicUp} aria-label="โจมตี"><Swords size={32} /><span>โจมตี</span></button>
       {shown.map((s, j) => <button key={s.i} className={`sk ${s.off ? 'off' : ''} ${s.nomp ? 'nomp' : ''}`} style={at(ARC[o][j])} title={s.title} aria-label={s.name}

@@ -4,7 +4,7 @@
   "description": "Dark-fantasy chibi MMORPG \u2014 closed beta",
   "start_url": "/play",
   "display": "fullscreen",
-  "orientation": "landscape",
+  "orientation": "any",
   "background_color": "#07060a",
   "theme_color": "#07060a",
   "icons": [
