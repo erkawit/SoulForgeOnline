@@ -5,6 +5,7 @@ import {
   IcosahedronGeometry, Material, Mesh, MeshBasicMaterial, NormalBlending, Object3D, PlaneGeometry, Points, PointsMaterial,
   RingGeometry, ShaderMaterial, SphereGeometry, Sprite, SpriteMaterial, Texture, TextureLoader, SRGBColorSpace, TorusGeometry, Vector3, Color,
 } from 'three';
+import { artUrl } from '../artVersion';
 
 type FxBase = 'Warrior' | 'Mage' | 'Priest' | 'Archer' | 'Enchanter';
 export type FxClass = 'Berserker' | FxBase | 'Paladin' | 'Hawkeye' | 'RuneMaster' | 'Elementalist' | 'Assassin' | 'HighPriest' | 'Inquisitor';
@@ -348,7 +349,7 @@ function arrow(color: string, scale = 1) {
  *  for effects that stay for seconds (pillars, storms). mode 'ground' lies flat on the ground. */
 const fxLoader = new TextureLoader(); const fxSheets = new Map<string, Texture>();
 function paintedAnim(fx: Fx, key: string, at: Vector3, size: number, a: number, b: number, opts: { plan?: 'once' | 'hold'; mode?: 'billboard' | 'ground'; lift?: number; foot?: boolean; opacity?: number; live?: boolean } = {}) {
-  let base = fxSheets.get(key); if (!base) { base = fxLoader.load(`/art/fx/class/${key}.webp`); base.colorSpace = SRGBColorSpace; fxSheets.set(key, base); }
+  let base = fxSheets.get(key); if (!base) { base = fxLoader.load(artUrl(`/art/fx/class/${key}.webp`)); base.colorSpace = SRGBColorSpace; fxSheets.set(key, base); }
   const tex = base.clone(); tex.needsUpdate = true; tex.repeat.set(1 / 3, 1 / 2);
   const span = (b - a) * fx.duration, plan = opts.plan ?? 'once', op = opts.opacity ?? 1;
   const frameAt = (k: number, el: number) => {

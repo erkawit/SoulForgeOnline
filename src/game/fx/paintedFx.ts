@@ -9,6 +9,7 @@ import { AdditiveBlending, DoubleSide, Group, Mesh, MeshBasicMaterial, NormalBle
 import FX8 from './fx8.json';
 import type { FxHandle } from './skillFx';
 
+import { artUrl } from '../artVersion';
 export type PaintedLayer = {
   sheet: string; mode: 'ground' | 'billboard' | 'dir8'; cw: number; ch: number; cols: number; frames: number; fps: number;
   /** width in metres */ size: number; /** [forward, up] metres from the caster (ground layers: forward only) */ offset?: [number, number];
@@ -32,7 +33,7 @@ export function layerFrame(l: PaintedLayer, t: number, until: number): number | 
 
 const loader = new TextureLoader(); const cache = new Map<string, Texture>();
 function sheetTex(sheet: string) {
-  let t = cache.get(sheet); if (!t) { t = loader.load(`/art/fx/${sheet}.webp`); t.colorSpace = SRGBColorSpace; cache.set(sheet, t); }
+  let t = cache.get(sheet); if (!t) { t = loader.load(artUrl(`/art/fx/${sheet}.webp`)); t.colorSpace = SRGBColorSpace; cache.set(sheet, t); }
   const c = t.clone(); c.needsUpdate = true; return c;
 }
 export function spawnPaintedFx(scene: Object3D, fx: PaintedFx, o: { origin: Vector3; yaw: number; camera: () => Camera | null; durationSec?: number }): FxHandle {

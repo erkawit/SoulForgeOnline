@@ -14,6 +14,7 @@ import { animFor, ANIM_ALIAS, SPRITE_ANIMS, type SpriteAnim } from './anims';
 import { BREATH_ANIMS, BREATH_PERIOD } from './breath';
 import { placeLayers, rigFrame, weaponSheet, type LayeredRig } from './layered';
 import { HERO_RIGS } from './rigs';
+import { artUrl } from '../artVersion';
 // layered heroes register their body sheets as ordinary 8-way flipbooks
 // round 20: a class's own painted sheet (sprites/classAnims.ts, registered by the catalog) wins over the layered rig
 for (const [key, { rig, ids }] of Object.entries(HERO_RIGS)) { SPRITE_ANIMS[key] = rig.anim; for (const id of ids) ANIM_ALIAS[id] ??= key; }
@@ -64,7 +65,7 @@ const animTexCache = new Map<string, Texture>(); const animGeoCache = new Map<st
 /** flipbook atlas: no mipmaps so neighbouring cells never bleed into each other */
 function animTexture(key: string) {
   const hit = animTexCache.get(key); if (hit) return hit;
-  const t: Texture = loader.load(ANIM_BASE() + key + '.webp'); t.colorSpace = SRGBColorSpace; t.generateMipmaps = false; t.minFilter = LinearFilter; t.anisotropy = 1;
+  const t: Texture = loader.load(artUrl(ANIM_BASE() + key + '.webp')); t.colorSpace = SRGBColorSpace; t.generateMipmaps = false; t.minFilter = LinearFilter; t.anisotropy = 1;
   animTexCache.set(key, t); return t;
 }
 const ANIM_BASE = () => BASE.replace(/sprites\/$/, 'anim/');
