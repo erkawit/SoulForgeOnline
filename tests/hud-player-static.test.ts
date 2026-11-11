@@ -21,5 +21,5 @@ test('a Rune Master never keeps another class on the hotbar (R / T / X showed As
   const { classExtraHotbar, classHotbar, EXTRA_SLOTS } = await import('../src/store/useGameStore');
   assert.deepEqual(classExtraHotbar('RuneMaster', ['s-fan-of-blades', 's-cripple', 's-death-lotus']), EXTRA_SLOTS.RuneMaster);
   assert.deepEqual(classExtraHotbar('RuneMaster', ['r2-ruin-pillar', null, 'nope']), ['r2-ruin-pillar', EXTRA_SLOTS.RuneMaster[1], EXTRA_SLOTS.RuneMaster[2]]);
-  assert.equal(classHotbar('RuneMaster', { skill: 's-twin-fang' }).skill.startsWith('r2-'), true);
+  assert.equal((classHotbar('RuneMaster', { skill: 's-twin-fang' }).skill ?? '').startsWith('r2-'), true);
 });
