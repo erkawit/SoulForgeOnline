@@ -57,7 +57,10 @@ export type Monster = {
   slow?: number; weaken?: number; armorBreak?: number; debuffUntil?: number;
 };
 export type Loot = { id: string; x: number; z: number; item: Item };
+/** guild shown over a character: name above the character name, emblem (image url) above the guild name */
+export type GuildTag = { name: string; emblem?: string | null };
 export type Player = {
+  guild?: GuildTag | null;
   promotionId?: PromotionId;
   classId?: ClassId;
   /** appearance from the character screen (compact-cast male / female sheet) */

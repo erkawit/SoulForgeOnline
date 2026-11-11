@@ -266,7 +266,7 @@ function RemoteHero({ p }: { p: Remote }) {
     last.current = [p.x, p.z]; root.current.position.lerp(tmpRemote.set(p.x, groundY(useGameStore.getState().player.cityId ?? 'hollow'), p.z), 1 - Math.exp(-14 * dt));
     const want = moving.current > 0 ? 'Run' : 'Idle'; if (want !== clip) setClip(want); });
   return <group ref={root} position={[p.x, 0, p.z]}><AnimatedCharacter job={cls} clip={clip} gender={p.gender === 'f' ? 'f' : 'm'} />
-    <Label3D z={30} position={[0, 2.05, 0]} color="#9fe9ff" text={p.name ?? `Player ${p.id.slice(0, 6)}`} sub={p.title ? `「${p.title}」` : null} subColor="#e9c46a"/></group>;
+    <Label3D z={30} position={[0, 2.05, 0]} color="#9fe9ff" text={p.name ?? `Player ${p.id.slice(0, 6)}`} above={p.guild?.name ?? null} emblem={p.guild?.emblem ?? null}/></group>;
 }
 const tmpRemote = new Vector3();
 function BossSprite({ hp }: { hp: number }) {

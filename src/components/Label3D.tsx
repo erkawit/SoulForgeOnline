@@ -9,8 +9,10 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { Group, Vector3 } from 'three';
 
 const v = new Vector3();
-export default function Label3D({ position = [0, 0, 0], text, sub, className = 'actor-label', color, subColor, z = 20 }: {
+/** nameplate over a character, top to bottom: (future ranks / decorations) · guild emblem · guild name · character name */
+export default function Label3D({ position = [0, 0, 0], text, sub, className = 'actor-label', color, subColor, z = 20, above, emblem }: {
   position?: [number, number, number]; text: string; sub?: string | null; className?: string; color?: string; subColor?: string; z?: number;
+  /** guild name, drawn above the name */ above?: string | null; /** guild emblem image url, drawn above the guild name */ emblem?: string | null;
 }) {
   const anchor = useRef<Group>(null), el = useRef<HTMLDivElement | null>(null), inner = useRef<HTMLSpanElement | null>(null);
   const { gl, camera, size } = useThree();
@@ -23,9 +25,12 @@ export default function Label3D({ position = [0, 0, 0], text, sub, className = '
   }, [gl, z]);
   useEffect(() => {
     const s = inner.current; if (!s) return;
-    s.className = className; s.style.color = color ?? ''; s.replaceChildren(document.createTextNode(text));
+    s.className = className; s.style.color = color ?? ''; s.replaceChildren();
+    if (emblem) { const im = document.createElement('img'); im.src = emblem; im.alt = ''; Object.assign(im.style, { display: 'block', width: '22px', height: '22px', margin: '0 auto 1px', objectFit: 'contain' }); s.appendChild(im); }
+    if (above) { const g = document.createElement('small'); Object.assign(g.style, { display: 'block', fontSize: '.78em', opacity: '.9', color: '#e9c46a' }); g.textContent = `<${above}>`; s.appendChild(g); }
+    s.appendChild(document.createTextNode(text));
     if (sub) { const sm = document.createElement('small'), st: CSSProperties = { display: 'block', opacity: .85, fontSize: '.8em' }; Object.assign(sm.style, st); if (subColor) sm.style.color = subColor; sm.textContent = sub; s.appendChild(sm); }
-  }, [text, sub, className, color, subColor]);
+  }, [text, sub, className, color, subColor, above, emblem]);
   useFrame(() => {
     const d = el.current, a = anchor.current; if (!d || !a) return;
     a.getWorldPosition(v); v.project(camera);

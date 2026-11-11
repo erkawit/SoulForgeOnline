@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-export type Remote={id:string;x:number;z:number;hp:number;maxHp:number;mp?:number;maxMp?:number;level:number;classId?:string;name?:string;gender?:string;title?:string};
+export type Remote={id:string;x:number;z:number;hp:number;maxHp:number;mp?:number;maxMp?:number;level:number;classId?:string;name?:string;gender?:string;title?:string;guild?:{name:string;emblem?:string|null}|null};
 export type Boss={id:string;x:number;z:number;hp:number;maxHp:number;phase:string}|null;
 export type GroundLoot={id:string;x:number;z:number;rarity:string;itemDefinitionId:string};
 export type PartyMemberView={id:string;name:string;classId:string;online:boolean;graceLeft:number;hp?:number;maxHp?:number;mp?:number;maxMp?:number;level?:number;x?:number;z?:number};
