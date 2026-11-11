@@ -8,12 +8,15 @@ import { useConfigStore } from '@/store/useConfigStore';
 import { availablePoints, canLearn } from '@/game/skills/engine';
 import { skillIconStyle } from '@/game/skills/icons';
 import { describeSkill } from '@/game/skills/describe';
+import { useScreenScale } from './hud/common';
 
-const MAIN = [['skill', 'Space'], ['buff', 'Q'], ['special', 'E']] as const;
-const EXTRA = ['R', 'T', 'X'];
+const MAIN_PC = [['skill', 'Space'], ['buff', 'Q'], ['special', 'E']] as const, EXTRA_PC = ['R', 'T', 'X'];
+// phones number the skill buttons 1–6 instead of keyboard keys
+const MAIN_TOUCH = [['skill', '1'], ['buff', '2'], ['special', '3']] as const, EXTRA_TOUCH = ['4', '5', '6'];
 
 export default function SkillTreePanel() {
   const lib = useConfigStore(s => s.skills);
+  const mobile = useScreenScale() === 'mobile'; const MAIN = mobile ? MAIN_TOUCH : MAIN_PC, EXTRA = mobile ? EXTRA_TOUCH : EXTRA_PC;
   const cls = useGameStore(s => s.player.classId ?? 'Berserker'), level = useGameStore(s => s.player.level);
   const levels = useGameStore(s => s.skillLevels), hotbar = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar);
   const promoted = useGameStore(s => s.player.promotionId === 'Reaver');

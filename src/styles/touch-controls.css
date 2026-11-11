@@ -110,7 +110,7 @@
 .h2.touch .h2-menu.mobile button .rot-ico { display: grid; place-items: center; width: 40px; height: 40px; font: 700 22px/1 system-ui; color: #e9cf91; }
 .h2.touch.landscape .h2-menu.mobile { width: 300px; grid-template-columns: repeat(4, 1fr) !important; }
 /* every window fills the screen on a phone, in either orientation, and its content scrolls with the finger */
-.h2.touch .h2-win, .h2.touch .h2-win.wide { position: fixed !important; inset: 0 !important; width: 100% !important; max-width: none !important; height: 100dvh !important; max-height: none !important;
+.h2.touch .h2-win, .h2.touch .h2-win.wide { position: fixed !important; inset: 0 !important; transform: none !important; margin: 0 !important; width: 100% !important; max-width: none !important; height: 100dvh !important; max-height: none !important;
   border-radius: 0 !important; z-index: 80; padding: calc(6px + var(--st)) calc(6px + var(--sr)) calc(6px + var(--sb)) calc(6px + var(--sl)); box-sizing: border-box; }
 .h2.touch .h2-win .body { flex: 1; min-height: 0; overflow-y: auto; touch-action: pan-y; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 .h2.touch .h2-win header .sf-close { width: 40px; height: 40px; }

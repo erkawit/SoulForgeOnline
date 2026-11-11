@@ -29,6 +29,8 @@ import { QUESTS, activeQuests, npcMarker, questProgressText } from '@/game/quest
 import { FOCUS_TH, LOOT_GRADES, LOOT_GRADES_TH, isSupportClass, skillRoles, type AutoFocus } from '@/game/auto';
 import { FOOD_ITEMS } from '@/game/items';
 import { audio } from '@/game/audio/engine';
+import { skillIconStyle } from '@/game/skills/icons';
+import { describeSkill } from '@/game/skills/describe';
 import SettingsPanel from './SettingsPanel';
 import { useScreenScale, useOrientation } from './hud/common';
 import { ChannelButton } from './ChannelSwitch';
@@ -66,6 +68,7 @@ function AutoPanel() {
   const defs = useConfigStore(s => s.skills.defs); const set = useGameStore.getState().patchAuto;
   useEffect(() => { useGameStore.getState().tip('auto-open'); }, []);
   const ids = [hot.skill, hot.buff, hot.special, ...extra];
+  const levels = useGameStore(s => s.skillLevels); const [info, setInfo] = useState<number | null>(null); const mobile = useScreenScale() === 'mobile';
   // plain render helpers, NOT components: a component declared here would be a new type every render and React would
   // remount the slider on every change (dragging stopped after one step; only tapping the track worked)
   const Sw = ({ on, onClick }: { on: boolean; onClick: () => void }) => <button className={`h2-switch ${on ? 'on' : ''}`} onClick={onClick} aria-pressed={on} />;
@@ -93,9 +96,20 @@ function AutoPanel() {
       <div className="h2-row"><span>ช่วยเพื่อนเมื่อเลือดต่ำกว่า</span>{Range({ k: "healAllyPct", min: 20, max: 90 })}</div>
       <div className="h2-row"><span>รักษาบัฟยาวให้ทุกคน</span>{Sw({ on: a.keepBuffs, onClick: () => set({ keepBuffs: !a.keepBuffs }) })}</div></>}
     <div className="h2-sub">สกิลที่ให้ AUTO ใช้</div>
-    {ids.map((id, i) => { const d = defs.find(x => x.id === id); if (!d) return null; const on = a.skills[i + 1] !== false;
-      return <div key={i} className="h2-row"><span><b>{KEYS[i + 1]}</b> {d.name} <small>{skillRoles(d).map(r => ({ damage: 'โจมตี', heal: 'ฮีล', buff: 'บัฟ', shield: 'โล่', debuff: 'ดีบัฟ' } as Record<string, string>)[r]).join(' · ')}</small></span>
-        {Sw({ on: on, onClick: () => { const sk = [...a.skills]; sk[i + 1] = !on; set({ skills: sk }); } })}</div>; })}
+    <small className="h2-note">แตะไอคอนเพื่อดูว่าสกิลทำงานอย่างไรที่ขั้นปัจจุบัน</small>
+    {ids.map((id, i) => { const d = defs.find(x => x.id === id); if (!d) return null; const on = a.skills[i + 1] !== false, rank = levels[d.id] ?? 0, open = info === i;
+      return <div key={i} className="h2-autosk">
+        <div className="h2-row"><span className="h2-sk-name"><button className={`h2-sk-ico ${open ? 'on' : ''}`} aria-label={`ข้อมูลสกิล ${d.name}`} aria-expanded={open} onClick={() => setInfo(open ? null : i)}>
+            <i className="forge-skill-icon" style={skillIconStyle(d.id)} /><b>{mobile ? i + 1 : KEYS[i + 1]}</b></button>
+          <span>{d.name} <small>ขั้น {rank}/{d.maxLevel} · {skillRoles(d).map(r => ({ damage: 'โจมตี', heal: 'ฮีล', buff: 'บัฟ', shield: 'โล่', debuff: 'ดีบัฟ' } as Record<string, string>)[r]).join(' · ')}</small></span></span>
+          {Sw({ on: on, onClick: () => { const sk = [...a.skills]; sk[i + 1] = !on; set({ skills: sk }); } })}</div>
+        {open && <div className="h2-sk-info">
+          <small>{d.th} · {d.kind === 'passive' ? 'ติดตัว' : `MP ${d.mpCost} · คูลดาวน์ ${d.cooldownSec} วิ${d.castMs ? ` · ร่าย ${d.castMs / 1000} วิ` : ''}`}</small>
+          <p>{d.description}</p>
+          <dl><dt>ขั้นปัจจุบัน ({rank})</dt><dd>{rank > 0 ? describeSkill(d, rank) : 'ยังไม่ได้เรียน'}</dd>
+            {rank > 0 && rank < d.maxLevel && <><dt>ขั้นถัดไป ({rank + 1})</dt><dd>{describeSkill(d, rank + 1)}</dd></>}</dl>
+        </div>}
+      </div>; })}
   </div>;
 }
 function TipCard() {

@@ -154,3 +154,17 @@
 .h2.touch .h2-auto > .sf-btn { width: 100%; min-height: 48px; font-size: 16px; }
 .h2.touch .h2-auto .h2-grades button { min-height: 42px; font-size: 13px; }
 .h2.touch.portrait .h2-auto .h2-grades { grid-template-columns: repeat(2, 1fr); }
+/* round 25: AUTO skill list — icon + tap for how the skill works at its current rank */
+.h2-autosk{border-bottom:1px solid #2c261e}
+.h2-autosk .h2-row{border:0}
+.h2-sk-name{display:flex;align-items:center;gap:8px;min-width:0}
+.h2-sk-name>span{min-width:0}.h2-sk-name small{display:block}
+.h2-sk-ico{position:relative;flex:none;padding:0;border:0;background:none;cursor:pointer;border-radius:4px}
+.h2-sk-ico .forge-skill-icon{width:40px;height:40px;border-radius:4px}
+.h2-sk-ico.on .forge-skill-icon{border-color:#ffe2a4;box-shadow:0 0 8px #e0b76599}
+.h2-sk-ico b{position:absolute;left:-3px;top:-5px;min-width:16px;height:16px;border-radius:8px;background:#1b1610;border:1px solid #c7a56b;font:700 10px/14px system-ui;color:#ffe2a4;text-align:center;padding:0 3px}
+.h2-sk-info{margin:0 0 8px 48px;padding:8px 10px;background:#0b0a0dd9;border:1px solid #5a4a32;border-radius:4px;font-size:12px;color:#d9ccb2}
+.h2-sk-info>small{color:#a99b80}.h2-sk-info p{margin:4px 0}
+.h2-sk-info dl{margin:0;display:grid;gap:2px}.h2-sk-info dt{color:#e0b765;font-weight:600}.h2-sk-info dd{margin:0 0 4px}
+.h2.touch .h2-sk-ico .forge-skill-icon{width:44px;height:44px}
+.h2.touch .h2-sk-info{margin-left:0;font-size:13px}
