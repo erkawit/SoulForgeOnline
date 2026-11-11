@@ -4,13 +4,13 @@ import type { SpriteAnim } from './anims';
 import type { SpriteFrame } from './frames';
 export const CLASS_ANIMS: Record<string, SpriteAnim> = {
  "m-Paladin": {
-  "cw": 388,
-  "ch": 247,
-  "cols": 10,
+  "cw": 341,
+  "ch": 217,
+  "cols": 12,
   "n": 208,
   "fx": 0.5,
   "fy": 0.0243,
-  "bodyPx": 200,
+  "bodyPx": 175.71,
   "clips": {
    "idle": [
     0,
@@ -64,13 +64,13 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "dirs": 8
  },
  "m-RuneMaster": {
-  "cw": 490,
-  "ch": 233,
-  "cols": 8,
+  "cw": 429,
+  "ch": 204,
+  "cols": 9,
   "n": 176,
   "fx": 0.5,
   "fy": 0.0258,
-  "bodyPx": 200,
+  "bodyPx": 175.11,
   "clips": {
    "idle": [
     0,
@@ -92,13 +92,13 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "dirs": 8
  },
  "m-Elementalist": {
-  "cw": 416,
-  "ch": 252,
-  "cols": 9,
+  "cw": 374,
+  "ch": 227,
+  "cols": 10,
   "n": 176,
   "fx": 0.5,
   "fy": 0.0238,
-  "bodyPx": 200,
+  "bodyPx": 180.16,
   "clips": {
    "idle": [
     0,
@@ -148,13 +148,13 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "dirs": 8
  },
  "m-HighPriest": {
-  "cw": 476,
-  "ch": 232,
-  "cols": 8,
+  "cw": 419,
+  "ch": 204,
+  "cols": 9,
   "n": 176,
   "fx": 0.5,
   "fy": 0.0259,
-  "bodyPx": 200,
+  "bodyPx": 175.86,
   "clips": {
    "idle": [
     0,
@@ -176,13 +176,13 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "dirs": 8
  },
  "m-Inquisitor": {
-  "cw": 336,
-  "ch": 281,
+  "cw": 326,
+  "ch": 273,
   "cols": 12,
   "n": 176,
   "fx": 0.5,
   "fy": 0.0214,
-  "bodyPx": 200,
+  "bodyPx": 194.31,
   "clips": {
    "idle": [
     0,
@@ -204,13 +204,13 @@ export const CLASS_ANIMS: Record<string, SpriteAnim> = {
   "dirs": 8
  },
  "m-Berserker": {
-  "cw": 426,
-  "ch": 251,
-  "cols": 9,
+  "cw": 330,
+  "ch": 195,
+  "cols": 12,
   "n": 248,
   "fx": 0.5,
   "fy": 0.0239,
-  "bodyPx": 200,
+  "bodyPx": 155.38,
   "clips": {
    "idle": [
     0,
@@ -247,8 +247,8 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "fx": 0.4197,
   "fy": 0.0243,
   "px": [
-   193,
-   247
+   170,
+   217
   ]
  },
  "m-Hawkeye": {
@@ -267,8 +267,8 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "fx": 0.6068,
   "fy": 0.0258,
   "px": [
-   206,
-   233
+   180,
+   204
   ]
  },
  "m-Elementalist": {
@@ -277,8 +277,8 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "fx": 0.5,
   "fy": 0.0238,
   "px": [
-   136,
-   252
+   122,
+   227
   ]
  },
  "m-Assassin": {
@@ -297,8 +297,8 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "fx": 0.5101,
   "fy": 0.0259,
   "px": [
-   149,
-   232
+   131,
+   204
   ]
  },
  "m-Inquisitor": {
@@ -307,8 +307,8 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "fx": 0.546,
   "fy": 0.0214,
   "px": [
-   174,
-   281
+   169,
+   273
   ]
  },
  "m-Berserker": {
@@ -317,8 +317,8 @@ export const CLASS_FRAMES: Record<string, SpriteFrame> = {
   "fx": 0.4781,
   "fy": 0.0239,
   "px": [
-   228,
-   251
+   177,
+   195
   ]
  }
 };

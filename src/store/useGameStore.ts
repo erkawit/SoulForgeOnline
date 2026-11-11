@@ -164,6 +164,19 @@ export const EXTRA_SLOTS: Record<ClassId, (string | null)[]> = {
 };
 
 
+/** slots 4–6 may only hold this class's own active skills: a save (or a guest session in the same browser) of another
+ *  class left e.g. Assassin skills on a Rune Master's R / T / X — each foreign or unknown id falls back to the class default */
+export function classExtraHotbar(cls: ClassId, saved: unknown): (string | null)[] {
+  const defs = skillLib().defs, base = EXTRA_SLOTS[cls] ?? [null, null, null];
+  const list = Array.isArray(saved) && saved.length === 3 ? saved : base;
+  return list.map((id, i) => { const d = typeof id === 'string' ? defs.find(x => x.id === id) : undefined; return d && d.cls === cls && d.kind === 'active' && !d.evolvesFrom ? id as string : base[i] ?? null; });
+}
+/** slots 1–3 (skill / buff / special) likewise: a foreign or unknown id falls back to the class default */
+export function classHotbar(cls: ClassId, saved: unknown): Hotbar {
+  const defs = skillLib().defs, base = DEFAULT_HOTBAR[cls], src = (saved && typeof saved === 'object' ? saved : {}) as Record<string, unknown>;
+  const ok = (id: unknown) => typeof id === 'string' && defs.some(d => d.id === id && d.cls === cls && d.kind === 'active' && !d.evolvesFrom);
+  return { skill: ok(src.skill) ? src.skill as string : base.skill, buff: ok(src.buff) ? src.buff as string : base.buff, special: ok(src.special) ? src.special as string : base.special } as Hotbar;
+}
 function addLog(log: string[], line: string) { return [line, ...log].slice(0, 6); }
 export const expRequired = eco.expRequired;
 const MOTION_ACTION:Record<SkillDef['motion'],ActionId>={Attack:'attack',Skill:'skill',Buff:'buff',Special:'special'};
@@ -407,7 +420,7 @@ export const useGameStore = create<GameState>((set, get) => {
     const cls:ClassId=locked??(isClass(data.player.classId)?data.player.classId:'Berserker'); // round 20: the save's own class
     const lib=skillLib(),now=Date.now();
     const levels=Object.fromEntries(Object.entries(data.skills?.levels??{}).filter(([id,l])=>lib.defs.find(d=>d.id===id)?.cls===cls&&Number.isInteger(l)&&l>0));
-    const skills=Object.keys(levels).length?{skillLevels:levels,hotbar:{...DEFAULT_HOTBAR[cls],...(data.skills?.hotbar??{})} as Hotbar}:freshSkills(cls);
+    const skills=Object.keys(levels).length?{skillLevels:levels,hotbar:classHotbar(cls,data.skills?.hotbar)}:freshSkills(cls);
     const modern=(data.economyVersion??0)>=2;
     set({deadUntil:0,pending:null,selectedMonster:null,buffUntil:0,guardUntil:0,shield:{hp:0,until:0},dots:[],cooldowns:{},action:{kind:'idle',stamp:0,duration:0},monsters:cityMonsters(city),drops:[],
       player: {...data.player,name:locked?get().player.name:data.player.name,classId:cls,stats:classBase(cls),promotionId:validPromotion(cls,data.player.level,data.player.promotionId),cityId:city,position:safePosition(city,data.player.position),hp:Math.max(1,data.player.hp)},
@@ -415,7 +428,7 @@ export const useGameStore = create<GameState>((set, get) => {
       ...skills, buffs:(data.buffs??[]).filter(b=>b&&b.until>now), starterKits:Array.isArray(data.starterKits)?data.starterKits.filter(isClass):[], codex:cleanCodex(data.codex), wardrobe:cleanWardrobe(data.wardrobe),
       soulShards: data.soulShards, log: ['Save loaded successfully.'],
       quests:data.quests&&typeof data.quests==='object'?data.quests as QuestLog:{}, seenTips:Array.isArray(data.tips)?data.tips.filter(x=>typeof x==='string'):[],
-      auto:{...defaultAuto(cls),...(data.auto??{}),enabled:false} as AutoSettings, extraHotbar:Array.isArray(data.extraHotbar)&&data.extraHotbar.length===3?data.extraHotbar:[...EXTRA_SLOTS[cls]],
+      auto:{...defaultAuto(cls),...(data.auto??{}),enabled:false} as AutoSettings, extraHotbar:classExtraHotbar(cls,data.extraHotbar),
       bagPos:data.bagPos&&typeof data.bagPos==='object'?Object.fromEntries(Object.entries(data.bagPos).filter(([,v])=>v&&Number.isInteger(v.x)&&Number.isInteger(v.y))):{} });
     // items of the retired classes become Berserker gear (same tier, options and enhancement)
     const c=charOf(get()),m=eco.migrateCharState(c,lib);if(m!==c)set({player:m.player,inventory:m.inventory,equipment:m.equipment,drops:m.drops,skillLevels:m.skillLevels,hotbar:m.hotbar,log:['Save loaded · ไอเทมอาชีพเดิมถูกแปลงเป็นของ Berserker แล้ว']});
@@ -524,10 +537,10 @@ export function applyServerState(c: eco.CharState, opts: { first?: boolean; mess
   const levels = Object.fromEntries(Object.entries(c.skillLevels ?? {}).filter(([id, l]) => lib.defs.find(d => d.id === id)?.cls === cls && Number.isInteger(l) && l > 0));
   const player = { ...c.player, hp: s.player.hp, mp: s.player.mp, position: moved ? c.player.position : s.player.position };
   const next = { player, inventory: c.inventory, equipment: { ...EMPTY_GEAR, ...c.equipment }, soulShards: c.soulShards, skillLevels: Object.keys(levels).length ? levels : freshSkills(cls).skillLevels,
-    hotbar: { ...DEFAULT_HOTBAR[cls], ...c.hotbar } as Hotbar, buffs: c.buffs, starterKits: c.starterKits, quests: c.quests, drops: c.drops, codex: c.codex ?? {}, wardrobe: c.wardrobe ?? { owned: [], worn: {} } };
+    hotbar: classHotbar(cls, c.hotbar), buffs: c.buffs, starterKits: c.starterKits, quests: c.quests, drops: c.drops, codex: c.codex ?? {}, wardrobe: c.wardrobe ?? { owned: [], worn: {} } };
   const d = derivedOf({ ...next, player }), healed = opts.first || c.player.level > s.player.level;
   useGameStore.setState({ ...next, player: { ...player, hp: healed ? d.maxHp : Math.min(player.hp, d.maxHp), mp: healed ? d.maxMp : Math.min(player.mp, d.maxMp) },
     lockedClass: cls, ...(moved ? { monsters: cityMonsters(city), dots: [], selectedMonster: null, pending: null, npc: null, action: { kind: 'idle' as ActionId, stamp: 0, duration: 0 } } : {}),
-    ...(opts.first ? { deadUntil: 0, cooldowns: {}, journal: false, extraHotbar: s.extraHotbar, auto: { ...defaultAuto(cls), ...s.auto, enabled: false } } : {}),
+    ...(opts.first ? { deadUntil: 0, cooldowns: {}, journal: false, extraHotbar: classExtraHotbar(cls, s.extraHotbar), auto: { ...defaultAuto(cls), ...s.auto, enabled: false } } : {}),
     ...(opts.message ? { log: addLog(s.log, opts.message) } : {}) });
 }

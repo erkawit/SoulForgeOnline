@@ -16,3 +16,10 @@ test('actors stand on the field floor (0.115 m) in fields and on 0 in capitals',
   assert.equal(groundY('hollow'), 0);
   assert.ok(groundY('wild0') >= 0.115 && groundY('wild0') < 0.2);
 });
+
+test('a Rune Master never keeps another class on the hotbar (R / T / X showed Assassin skills)', async () => {
+  const { classExtraHotbar, classHotbar, EXTRA_SLOTS } = await import('../src/store/useGameStore');
+  assert.deepEqual(classExtraHotbar('RuneMaster', ['s-fan-of-blades', 's-cripple', 's-death-lotus']), EXTRA_SLOTS.RuneMaster);
+  assert.deepEqual(classExtraHotbar('RuneMaster', ['r2-ruin-pillar', null, 'nope']), ['r2-ruin-pillar', EXTRA_SLOTS.RuneMaster[1], EXTRA_SLOTS.RuneMaster[2]]);
+  assert.equal(classHotbar('RuneMaster', { skill: 's-twin-fang' }).skill.startsWith('r2-'), true);
+});
