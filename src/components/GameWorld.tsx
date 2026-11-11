@@ -279,6 +279,17 @@ function BossSprite({ hp }: { hp: number }) {
 /** round 23: 240 m fields hold ~150 monsters — draw only what is near the player. The position is snapped to an 8 m
  *  grid so the world re-renders when the player crosses a cell, not every frame. */
 const DRAW_RADIUS = 48;
+/** the monsters near the player. Only this layer follows the 4-per-second world tick — the rest of the world (city,
+ *  props, nature, the hero) no longer re-renders on every tick, which caused the periodic hitches */
+function MonsterLayer() {
+  const cell = useNearCell();
+  const monsters = useGameStore(s => s.monsters), selected = useGameStore(s => s.selectedMonster);
+  return <>{monsters.filter(m => near(cell, m.x, m.z) || m.id === selected).map(m => <Creature key={m.id} mob={m} />)}</>;
+}
+function DropLayer() {
+  const drops = useGameStore(s => s.drops);
+  return <>{drops.map(d => <LootObject key={d.id} loot={d} />)}</>;
+}
 function useNearCell(): [number, number] {
   const cell = useGameStore(s => `${Math.round(s.player.position[0] / 8)},${Math.round(s.player.position[1] / 8)}`);
   const [cx, cz] = cell.split(',').map(Number); return [cx * 8, cz * 8];
@@ -304,9 +315,6 @@ function MultiplayerActors() {
 function WorldContent() {
   const cityId = useGameStore(s => s.player.cityId??'hollow');
   const city=CITIES[cityId];
-  const monsters = useGameStore(s => s.monsters);
-  const cell = useNearCell();
-  const drops = useGameStore(s => s.drops);
   return <>
     <color attach="background" args={[city.sky]} />
     <fog attach="fog" args={[city.sky, 123, 198]} />
@@ -320,8 +328,8 @@ function WorldContent() {
     {cityId === 'wild0' && !paintedFieldUrl(cityId) && !farmPlan(cityId) && <RuinsLayer />}{/* the Sorrowlands lie in Ashen Outskirts, below Hollow Reach */}
     {!city.parent && <CitySpritesLayer city={cityId} />}
     <ClassActor />
-    {monsters.filter(m => near(cell, m.x, m.z) || m.id === useGameStore.getState().selectedMonster).map(m => <Creature key={m.id} mob={m} />)}
-    {drops.map(d => <LootObject key={d.id} loot={d} />)}
+    <MonsterLayer />
+    <DropLayer />
     {/* round 22: painted fields already show their trees and rocks */}
     {!(city.parent && paintedFieldUrl(cityId)) && <NatureLayer city={cityId} />}
     <SkillFxLayer />
