@@ -4,6 +4,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { isInviteFormat, normalizeInvite } from '@/game/balance/invite';
+import { secretKey } from '@/lib/server/envKey';
 
 // Best-effort per-instance limiter: 8 attempts / 10 minutes / IP. Put Vercel Firewall or Cloudflare in front for real abuse protection.
 const attempts = new Map<string, number[]>();
@@ -20,7 +21,7 @@ const MESSAGES: Record<string, string> = {
 };
 
 export async function POST(req: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL, secret = process.env.SUPABASE_SECRET_KEY;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL, secret = secretKey();
   if (!url || !secret) return fail('ระบบสมัครยังไม่ได้ตั้งค่า (SUPABASE_SECRET_KEY)', 503);
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
   if (limited(ip)) return fail('ลองหลายครั้งเกินไป กรุณารอ 10 นาที', 429);

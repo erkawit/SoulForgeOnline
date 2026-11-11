@@ -3,6 +3,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { isInviteFormat, normalizeInvite } from '@/game/balance/invite';
+import { secretKey } from '@/lib/server/envKey';
 
 // 12 checks / 10 minutes / IP so codes cannot be brute-forced through this endpoint (best effort per instance)
 const attempts = new Map<string, number[]>();
@@ -16,7 +17,7 @@ const MESSAGES: Record<string, string> = {
   BETA_FULL: 'ช่วงทดสอบเต็มแล้ว (ครบจำนวนผู้ทดสอบ)',
 };
 export async function POST(req: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL, secret = process.env.SUPABASE_SECRET_KEY;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL, secret = secretKey();
   if (!url || !secret) return NextResponse.json({ error: 'ระบบสมัครยังไม่ได้ตั้งค่า (SUPABASE_SECRET_KEY)' }, { status: 503 });
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
   if (limited(ip)) return NextResponse.json({ error: 'ตรวจโค้ดหลายครั้งเกินไป กรุณารอ 10 นาที' }, { status: 429 });
