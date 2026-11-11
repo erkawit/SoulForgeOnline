@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {CITIES,CITY_IDS,ZONE_IDS,DUNGEON_IDS,walkable} from '../src/game/content';
 import {spawnPoints} from '../src/game/spawns';
 import {cityMonsters} from '../src/store/useGameStore';
-import {advanceMonster} from '../src/game/monsterAI';
+import {advanceMonster,RESPAWN_SPREAD} from '../src/game/monsterAI';
 
 test('map markers match actual monster homes and remain outside the sanctuary',()=>{
  for(const id of [...CITY_IDS,...ZONE_IDS,...DUNGEON_IDS]){
@@ -16,7 +16,7 @@ test('map markers match actual monster homes and remain outside the sanctuary',(
    assert.equal(m.boss,p.boss);assert.equal(m.elite,p.elite);
    const dead={...m,x:0,z:7,hp:0,respawnAt:9000};
    const revived=advanceMonster(dead,[0,0],id,9000,0).monster;
-   assert.deepEqual([revived.x,revived.z],p.position);assert.equal(revived.hp,m.maxHp);
+   assert.ok(Math.hypot(revived.x-p.position[0],revived.z-p.position[1])<=RESPAWN_SPREAD+1e-9,'respawns inside its area');assert.ok(walkable(id,revived.x,revived.z));assert.equal(revived.hp,m.maxHp);
   }
  }
 });

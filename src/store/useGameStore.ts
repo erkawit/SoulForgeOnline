@@ -184,7 +184,8 @@ export function derivedOf(s:Pick<GameState,'player'|'equipment'|'buffs'|'skillLe
 const classBase=(cls:ClassId)=>({...cfg().classes[cls].base});
 const freshSkills=(cls:ClassId)=>eco.freshSkills(skillLib(),cls);
 const monsterDefense=(m:Monster)=>m.level*3*(1-Math.min(.8,(m.armorBreak??0)/100));
-type Acc={player:Player;drops:Loot[];soulShards:number;log:string[];buffs:ActiveBuff[]};
+/** inventory: set when a kill put stackable loot straight into the bag (economy grantKill) */
+type Acc={player:Player;drops:Loot[];soulShards:number;log:string[];buffs:ActiveBuff[];inventory?:(Item|null)[]};
 
 const plainCtx=():eco.Ctx=>({config:cfg(),skills:skillLib(),rng:Math.random,now:Date.now(),uuid:()=>crypto.randomUUID()});
 /** Rewards for a kill (economy core grantKill). Online the realm pays it: the kill is queued as a claim instead. */
@@ -192,10 +193,10 @@ function grantKill(state:Acc,m:Monster,_d:Derived,equipment:Record<GearSlot,Item
  audio.play(MONSTER_SFX[tierOf(m)].die,{vol:.6,rate:monsterPitch(m.name),at:{x:m.x,z:m.z}});
  if(authority.online()){killClaims.push({city:state.player.cityId??'hollow',id:m.id});return state;}
  const cur=useGameStore.getState();
- const r=eco.grantKill({player:state.player,inventory:cur.inventory,equipment,soulShards:state.soulShards,skillLevels,hotbar:cur.hotbar,buffs:state.buffs,starterKits:cur.starterKits,quests:cur.quests,drops:state.drops,codex:cur.codex,wardrobe:cur.wardrobe},m,plainCtx());
+ const r=eco.grantKill({player:state.player,inventory:state.inventory??cur.inventory,equipment,soulShards:state.soulShards,skillLevels,hotbar:cur.hotbar,buffs:state.buffs,starterKits:cur.starterKits,quests:cur.quests,drops:state.drops,codex:cur.codex,wardrobe:cur.wardrobe},m,plainCtx());
  killQueue.push(...r.events);for(let i=0;i<(r.levelUps??0);i++)audio.play('level_up',{vol:.8});
  let log=state.log;for(const l of r.log)log=addLog(log,l);
- return {player:r.state.player,drops:r.state.drops,soulShards:r.state.soulShards,log,buffs:r.state.buffs};
+ return {player:r.state.player,drops:r.state.drops,soulShards:r.state.soulShards,log,buffs:r.state.buffs,...(r.state.inventory!==(state.inventory??cur.inventory)?{inventory:r.state.inventory}:state.inventory?{inventory:state.inventory}:{})};
 }
 type Pending={ok:true;pending:true};
 const PENDING_MSG='กำลังส่งคำขอไปยังเซิร์ฟเวอร์…';
@@ -375,7 +376,7 @@ export const useGameStore = create<GameState>((set, get) => {
     if(taken>0&&now-rageHitAt>=RAGE.hitIcdMs){rage=Math.min(RAGE.max,rage+RAGE.whenHit*(1+d.rageGain));rageAt=now;rageHitAt=now;}
     else if(rage>0&&now-rageAt>RAGE.decayDelayMs)rage=Math.max(0,rage-RAGE.decayPerSec*.25);
     const channel=s.channel&&now>=s.channel.until?null:s.channel;
-    return { monsters, dots, drops:acc.drops, soulShards:acc.soulShards, buffs, shield, player, log:acc.log, combat, rage, rageAt, rageHitAt, channel, ...(fainted ? {
+    return { monsters, dots, drops:acc.drops, soulShards:acc.soulShards, ...(acc.inventory?{inventory:acc.inventory}:{}), buffs, shield, player, log:acc.log, combat, rage, rageAt, rageHitAt, channel, ...(fainted ? {
       deadUntil:now+2400,pending:null,dots:[],channel:null,action:{kind:'death' as ActionId,stamp:now,duration:2400},log:addLog(acc.log,'Defeated. Return to the sanctuary when ready.'), selectedMonster:null
     } : {}) };
   }),

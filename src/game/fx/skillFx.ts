@@ -151,8 +151,10 @@ function flare(fx: Fx, at: Vector3, color: string, size: number, a: number, b: n
   return s;
 }
 /** a crescent slash: flat arc ribbon that sweeps open, then fades */
-function crescent(fx: Fx, at: Vector3, yaw: number, color: string, radius: number, arc: number, a: number, b: number, tilt = 0, height = 1.0, dark = true) {
-  const holder = new Group(); holder.position.copy(at).setY(at.y + height); holder.rotation.set(0, yaw, 0); fx.object.add(holder);
+/** a sweeping slash arc in front of the caster (`yaw` = facing). `mirror` sweeps the other way (the backhand of a combo),
+ *  still in front — the ring's centre angle points to local -Z, so the holder turns half a circle to put it at +Z (forward) */
+function crescent(fx: Fx, at: Vector3, yaw: number, color: string, radius: number, arc: number, a: number, b: number, tilt = 0, height = 1.0, dark = true, mirror = false) {
+  const holder = new Group(); holder.position.copy(at).setY(at.y + height); holder.rotation.set(0, yaw + Math.PI, 0); if (mirror) holder.scale.x = -1; fx.object.add(holder);
   const inner = new Group(); inner.rotation.set(-Math.PI / 2 + tilt, 0, 0); holder.add(inner);
   const make = (mat: MeshBasicMaterial, w: number) => { const mesh = new Mesh(new RingGeometry(radius * (1 - w), radius, 48, 1, -arc / 2 + Math.PI / 2, arc), mat); inner.add(mesh); return mesh; };
   if (dark) { const d = darkMat(0); const dm = make(d, 0.4); dm.position.z = -0.02; fx.add(dm, d, t => { const k = ph(t, a, b); dm.visible = k > 0 && k < 1; d.opacity = 0.5 * bell(k); dm.rotation.z = (1 - ease(k)) * arc * 0.6; }, inner); }
@@ -207,7 +209,7 @@ const DESIGNS_BASE: Record<FxBase, Record<FxKind, (x: Ctx) => void>> = {
   Warrior: {
     attack: ({ fx, o, yaw, tgt, c, c2, combo }) => {   // 3-hit chain: right→left, left→right, overhead finisher
       const step = combo % 3, fin = step === 2;
-      crescent(fx, o, yaw + (step === 1 ? Math.PI : 0), c, fin ? 1.8 : 1.5, fin ? 2.0 : 2.4, 0.38, 0.75, fin ? Math.PI / 2 - 0.15 : step === 1 ? -0.35 : 0.35, fin ? 1.2 : 1.0);
+      crescent(fx, o, yaw, c, fin ? 1.8 : 1.5, fin ? 2.0 : 2.4, 0.38, 0.75, fin ? Math.PI / 2 - 0.15 : step === 1 ? -0.35 : 0.35, fin ? 1.2 : 1.0, true, step === 1);
       sparks(fx, tgt.clone().setY(1), c2, fin ? 22 : 10, fin ? 3.4 : 2.4, 0.5, 0.85); if (fin) { groundRing(fx, tgt, c, 0.3, 1.8, 0.55, 0.85, 0.2); smoke(fx, tgt, 5, 0.8, 0.55, 1, 0.4); }
     },
     skill: ({ fx, o, yaw, c, c2 }) => {   // Crescent Cleave — 360° shock wave
@@ -414,13 +416,18 @@ export function spawnCustomSkillFx(scene: Object3D, skillId: string | undefined,
   def[1](fx, o, tgt, spec.yaw); scene.add(fx.object); fx.update(0); return fx;
 }
 /** Rune Master basic attack: the slash, then a crescent of rune light flies to the target */
+const _camRight = new Vector3();
 function runeSwordWave(x: Ctx) {
   const { fx, o, yaw, tgt, c, combo } = x, step = combo % 3, fin = step === 2;
-  crescent(fx, o, yaw + (step === 1 ? Math.PI : 0), c, 1.3, 2.2, 0.3, 0.55, step === 1 ? -0.35 : 0.35, 1.0);
+  crescent(fx, o, yaw, c, 1.3, 2.2, 0.3, 0.55, step === 1 ? -0.35 : 0.35, 1.0, true, step === 1);
   // the painted rune wave travels from the blade to the target (a billboard: it reads the same from every camera angle)
   const from = o.clone().addScaledVector(x.fwd, 0.8).setY(0.2), to = tgt.clone().setY(0.2), wave = new Group(); fx.object.add(wave);
   paintedAnim(fx, 'sword-wave', new Vector3(), fin ? 2.6 : 2, 0.36, 0.74, { lift: 1, opacity: 1 });
-  const sp = fx.object.children[fx.object.children.length - 1]; fx.object.remove(sp); wave.add(sp);
+  const sp = fx.object.children[fx.object.children.length - 1] as Sprite; fx.object.remove(sp); wave.add(sp);
+  // the painted crescent flies to the right in its sheet: mirror it when the target is to the left on screen, so the
+  // wave always leads with its curved edge toward the target
+  (sp.material as SpriteMaterial).side = DoubleSide; const dir = to.clone().sub(from);
+  sp.onBeforeRender = (_r, _s, cam) => { const right = _camRight.set(1, 0, 0).applyQuaternion(cam.quaternion); const sx = Math.abs(sp.scale.x); sp.scale.x = dir.dot(right) < 0 ? -sx : sx; };
   fx.add(new Group(), [], t => { const k = ph(t, 0.36, 0.74); wave.position.copy(from).lerp(to, ease(k)); });
   impact(fx, tgt, c, 0.72, fin ? 1.2 : 0.8);
 }

@@ -23,9 +23,19 @@ export const ELITE_SIGNATURE:Record<string,{name:string;radius:number;windup:num
  'Tide Wraith':{name:'Drowning Tide · กระแสน้ำจมดิ่ง',radius:5,windup:1500,mult:1.8,self:true},
  'Root Reaper':{name:'Thorn Harvest · เก็บเกี่ยวหนาม',radius:4,windup:1100,mult:2.0,self:true},
 };
+export const RESPAWN_SPREAD=4;
+function respawnSpot(city:CityId,home:[number,number]):[number,number]{
+ for(let i=0;i<8;i++){const a=Math.random()*Math.PI*2,d=Math.sqrt(Math.random())*RESPAWN_SPREAD,x=home[0]+Math.cos(a)*d,z=home[1]+Math.sin(a)*d;if(walkable(city,x,z)&&!inTown(city,x,z))return [x,z];}
+ return home;
+}
 export function advanceMonster(m:Monster,player:[number,number],city:CityId,now:number,_defense:number,config:GameConfig=DEFAULT_CONFIG):{monster:Monster;damage:number}{
  const home=m.home??[m.x,m.z],base={...m,home};
- if(m.hp<=0)return {monster:m.respawnAt&&now>=m.respawnAt?{...base,x:home[0],z:home[1],hp:m.maxHp,respawnAt:null,lastAttack:now,telegraph:undefined}:base,damage:0};
+ if(m.hp<=0){
+  if(!(m.respawnAt&&now>=m.respawnAt))return {monster:base,damage:0};
+  // round 24: comes back somewhere in its area (within RESPAWN_SPREAD m of home), not on the exact same spot
+  const spot=respawnSpot(city,home);
+  return {monster:{...base,x:spot[0],z:spot[1],hp:m.maxHp,respawnAt:null,lastAttack:now,telegraph:undefined},damage:0};
+ }
  const distance=Math.hypot(player[0]-m.x,player[1]-m.z),safe=nearPortal(city,player[0],player[1],5.5)||inTown(city,player[0],player[1]); // by a waygate / in town
  if(safe||Math.hypot(player[0]-home[0],player[1]-home[1])>13){return {monster:step({...base,telegraph:undefined},home,city,.3),damage:0};}
  if(m.telegraph){

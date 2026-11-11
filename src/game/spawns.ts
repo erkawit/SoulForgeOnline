@@ -9,6 +9,14 @@ export type SpawnPoint = {
  elite:boolean; boss:boolean; respawnSeconds:number;
 };
 
+/** a stable pseudo-random walkable point inside a disc (uniform by area); falls back to the centre */
+function hash(str:string){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return ()=>{h=Math.imul(h^(h>>>15),2246822507);h=Math.imul(h^(h>>>13),3266489909);h^=h>>>16;return (h>>>0)/4294967296;};}
+export function scatter(city:CityId,seed:string,c:[number,number],radius:number):[number,number]{
+ const r=hash(`${city}:${seed}`);
+ for(let i=0;i<24;i++){const a=r()*Math.PI*2,d=Math.sqrt(r())*radius,p:[number,number]=[+(c[0]+Math.cos(a)*d).toFixed(2),+(c[1]+Math.sin(a)*d).toFixed(2)];if(walkable(city,p[0],p[1]))return p;}
+ return c;
+}
+
 // Shared by the map and combat: each marker is one actual monster home.
 export function spawnPoints(city:CityId):SpawnPoint[]{
  const c=CITIES[city],levels=c.monsterLevels??[1,5,10];
@@ -16,8 +24,9 @@ export function spawnPoints(city:CityId):SpawnPoint[]{
  const species=c.species??capitalSpecies!;
  const farm=farmPlan(city);
  if(farm){let index=0;return farm.huntingGroups.flatMap(g=>Array.from({length:g.monsterCount},(_,k)=>{
-   const a=k*Math.PI*2/g.monsterCount,r=3;
-   const position:[number,number]=[g.positionM.x+Math.cos(a)*r,g.positionM.y+Math.sin(a)*r];
+   // round 24: scattered at random inside the group's spawn area (not on a ring) — seeded per monster, so the
+   // client, the realm and the map markers all agree on the same spots
+   const position=scatter(city,`${g.groupId}-${k}`,[g.positionM.x,g.positionM.y],Math.max(4,g.spawnRadiusM??6));
    const n=index++,boss=(!!c.dungeon||city==='wild0')&&n===149;
    const legacyElite=city==='wild0'?[34,69,104,139].indexOf(n):-1;
    const veteran=legacyElite>=0?ZONES[legacyElite].spawns.find(s=>s.elite):undefined;

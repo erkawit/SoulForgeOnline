@@ -24,6 +24,8 @@ export default function AutoPilot() {
       if (!lastOn) anchor = [...s.player.position]; lastOn = true;
       if (now < s.autoPauseUntil) { anchor = [...s.player.position]; return; }
       const [px, pz] = s.player.position, d = derivedOf(s, now);
+      // auto-loot: anything within reach is picked up every tick, even mid-fight (picking up is instant)
+      if (s.auto.loot) for (const x of s.drops) if (Math.hypot(x.x - px, x.z - pz) < LOOT_REACH) s.pickup(x.id);
       const alive = s.monsters.filter(m => m.hp > 0), sel = alive.find(m => m.id === s.selectedMonster);
       const lib = skillLib().defs, ids = [s.hotbar.skill, s.hotbar.buff, s.hotbar.special, ...s.extraHotbar];
       // round 13: a slot plays its Reaver evolution once learned; a skill is ready only with enough Rage and outside a channel
@@ -37,7 +39,7 @@ export default function AutoPilot() {
         allies: [{ id: 'me', hpPct: s.player.hp / d.maxHp, dist: 0, alive: true, buffs: s.buffs.flatMap(b => [b.id, b.id.slice(0, b.id.lastIndexOf('-'))]), self: true }],
         slots, hpPotions: ['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((a, id) => a + countOf(s.inventory, id), 0), mpPotions: ['potion-mp-m', 'potion-mp-s'].reduce((a, id) => a + countOf(s.inventory, id), 0),
         foodCount: FOOD_ITEMS.reduce((a, f) => a + countOf(s.inventory, f.id), 0), foodActive: s.buffs.some(b => b.id.startsWith('food-') && b.until > now), potionReady: true,
-        lootNear: s.drops.some(x => Math.hypot(x.x - px, x.z - pz) < 4), cls: 'Berserker',
+        lootNear: s.drops.some(x => Math.hypot(x.x - px, x.z - pz) < LOOT_WALK), cls: 'Berserker',
       };
       for (const a of decideAuto(view, s.auto)) if (run(a)) break;
     }, 200);
@@ -45,13 +47,22 @@ export default function AutoPilot() {
   }, []);
   return null;
 }
+/** pickup reach (economy pickup allows 4 m) and how far auto walks for loot between fights */
+const LOOT_REACH = 3.6, LOOT_WALK = 12;
 function run(a: AutoAction): boolean {
   const s = useGameStore.getState(), [px, pz] = s.player.position;
   switch (a.type) {
     case 'potion': return s.usePotion(a.kind);
     case 'food': return s.eatFood();
     case 'skill': { const before = s.cooldowns; s.castSlot(a.slot); return useGameStore.getState().cooldowns !== before; }
-    case 'loot': { const near = s.drops.filter(x => Math.hypot(x.x - px, x.z - pz) < 4); near.forEach(x => s.pickup(x.id)); return near.length > 0; }
+    case 'loot': {
+      // between fights: walk to the nearest loot within LOOT_WALK m (the click-to-move route), pick it up on arrival
+      const near = s.drops.map(x => ({ x, d: Math.hypot(x.x - px, x.z - pz) })).filter(o => o.d < LOOT_WALK).sort((a, b) => a.d - b.d)[0];
+      if (!near) return false;
+      if (near.d < LOOT_REACH) { s.pickup(near.x.id); return true; }
+      window.dispatchEvent(new CustomEvent('sf-map-route', { detail: { city: s.player.cityId ?? 'hollow', points: [[near.x.x, near.x.z]] } }));
+      return true;
+    }
     case 'attack': case 'seek': {
       const cur = s.monsters.find(m => m.id === s.selectedMonster && m.hp > 0); if (cur) return true;
       const r = s.auto.radius, pick = s.monsters.filter(m => m.hp > 0 && !m.boss && Math.hypot(m.x - anchor[0], m.z - anchor[1]) < r && Math.hypot(m.x, m.z) > 6)
