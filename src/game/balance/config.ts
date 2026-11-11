@@ -113,10 +113,10 @@ export const DEFAULT_CONFIG: GameConfig = {
   combat: { monsterDamageMultiplier: 1, bossDamageMultiplier: 1, bossHpMultiplier: 1, eliteDamageMultiplier: 1.25, pvpDamageMultiplier: 0.6, critBase: 0.05, critCap: 0.6, critDamageBase: 1.5 },
   drops: {
     tables: {
-      field: { chance: 0.38, rolls: 1, weights: rarity([5500, 2800, 1100, 450, 120, 25, 4, 1]) },
-      elite: { chance: 0.7, rolls: 1, weights: rarity([3000, 3000, 2200, 1100, 450, 120, 25, 5]) },
+      field: { chance: 0.15, rolls: 1, weights: rarity([5500, 2800, 1100, 450, 120, 25, 4, 1]) },
+      elite: { chance: 0.45, rolls: 1, weights: rarity([3000, 3000, 2200, 1100, 450, 120, 25, 5]) },
       boss:  { chance: 1, rolls: 3, weights: rarity([0, 0, 4000, 3000, 1800, 800, 300, 100]) },
-      farm:  { chance: 0.25, rolls: 1, weights: rarity([6500, 2700, 700, 100, 0, 0, 0, 0]) },
+      farm:  { chance: 0.1, rolls: 1, weights: rarity([6500, 2700, 700, 100, 0, 0, 0, 0]) },
     },
     levelGate: rarity([1, 1, 5, 15, 30, 45, 65, 85]),
     levelBonus: rarity([0, 0, 0.5, 0.8, 1, 1.2, 1.4, 1.6]),

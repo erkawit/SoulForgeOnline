@@ -59,6 +59,8 @@ export const BAG_SIZE = 24;
 export const MAIN_CITIES: CityId[] = ['hollow', 'dawnveil', 'thornwatch'];
 export const expRequired = (level: number) => level * 95;
 const STACK = ['consumable', 'material', 'crystal'];
+/** ground loot cap per character (older pieces vanish) — every piece is a mesh + label in the world */
+export const MAX_GROUND_LOOT = 24;
 const stacks = (i: Item | null) => !!i && STACK.includes(i.family ?? '');
 const fail = (msg: string): Fail => ({ ok: false, msg });
 const done = (state: CharState, log: string[] = [], events: QuestEvent[] = [], extra: Partial<Ok> = {}): Ok => ({ ok: true, state, log, events, ...extra });
@@ -124,9 +126,9 @@ export function grantKill(s: CharState, m: Monster, ctx: Ctx): Ok {
   const loot = [...(m.boss ? bossDrops(m).map(i => ({ ...i, id: ctx.uuid() })) : []), ...rollLoot(m, classOf(s), ctx.config, rng).map(i => ({ ...i, id: ctx.uuid() }))];
   // crafting materials: ore from everything (more in the Sorrowlands), shards / cores from elites, food now and then
   const zone = state.player.cityId === 'wild0' ? zoneAt(m.x, m.z) : null, mat = (id: string, q: number) => ({ ...newItem(id, ctx), qty: q });
-  if (rng() < .8) loot.push(mat('material-ore', Math.max(1, Math.round((1 + rng() * 1.5) * (m.elite ? 3 : 1) * (zone ? 1.5 : 1)))));
+  if (rng() < .35) loot.push(mat('material-ore', Math.max(1, Math.round((1 + rng() * 1.5) * (m.elite ? 3 : 1) * (zone ? 1.5 : 1)))));
   if (m.elite && rng() < .6) loot.push(mat('material-3', 1)); if (m.elite && rng() < .15) loot.push(mat('material-4', 1));
-  if (rng() < .05) loot.push(mat(FOOD_ITEMS[Math.floor(rng() * FOOD_ITEMS.length)].id, 1));
+  if (rng() < .03) loot.push(mat(FOOD_ITEMS[Math.floor(rng() * FOOD_ITEMS.length)].id, 1));
   // the monster codex (round 11): this species' loot, and Codex Seals from elites and bosses — more with a party nearby
   const cx = ctx.config.codex;
   if (cx.enabled) {
@@ -141,9 +143,20 @@ export function grantKill(s: CharState, m: Monster, ctx: Ctx): Ok {
     else if (m.elite && rng() < (party >= 2 ? cx.sealChance.party : cx.sealChance.solo)) loot.push(mat(CODEX_SEAL, 1));
   }
   events.push({ type: 'kill', species: m.name, elite: !!m.elite && !m.boss, boss: !!m.boss, zone: zone?.id ?? null });
-  let drops = s.drops;
-  for (const item of loot) { drops = [...drops, { id: ctx.uuid(), x: m.x + (rng() - .5), z: m.z + (rng() - .5), item }]; if (!m.boss) log.push(`${item.rarity.toUpperCase()} DROP · ${item.name}`); }
-  state.drops = drops;
+  // stackable loot (ore, codex materials, seals, food) goes straight into the bag — only gear lies on the ground, so the
+  // field no longer fills up with loot meshes; a full bag still drops it on the ground
+  let drops = s.drops; const inventory = [...s.inventory]; let bagged = false;
+  for (const item of loot) {
+    if (stacks(item)) {
+      const at = inventory.findIndex(i => stacks(i) && i!.definitionId === item.definitionId), free = at < 0 ? inventory.indexOf(null) : -1;
+      if (at >= 0) { inventory[at] = { ...inventory[at]!, qty: (inventory[at]!.qty ?? 1) + (item.qty ?? 1) }; bagged = true; continue; }
+      if (free >= 0) { inventory[free] = item; bagged = true; continue; }
+    }
+    drops = [...drops, { id: ctx.uuid(), x: m.x + (rng() - .5), z: m.z + (rng() - .5), item }]; if (!m.boss) log.push(`${item.rarity.toUpperCase()} DROP · ${item.name}`);
+  }
+  if (bagged) state.inventory = inventory;
+  // at most MAX_GROUND_LOOT pieces on the ground: the oldest vanish first
+  state.drops = drops.length > MAX_GROUND_LOOT ? drops.slice(drops.length - MAX_GROUND_LOOT) : drops;
   if (rng() < .42) { state.soulShards = s.soulShards + 1; log.push('+1 Soul Shard'); }
   const ups = levelUps(state, ctx, log, events, true);
   return done(state, log, events, { levelUps: ups, dropped: loot });
