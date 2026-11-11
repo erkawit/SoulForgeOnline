@@ -153,16 +153,25 @@ function AuthForms() {
   </>;
 }
 
+/** "remember this account": the last e-mail / username is kept in this browser (never the password — the browser's own
+ *  password manager handles that through autoComplete). The signed-in session itself is kept by Supabase. */
+const REMEMBER_KEY = 'soulforge_last_login_v1';
+export function readRemembered(): string { try { return window.localStorage.getItem(REMEMBER_KEY) ?? ''; } catch { return ''; } }
+export function writeRemembered(v: string | null) { try { if (v) window.localStorage.setItem(REMEMBER_KEY, v); else window.localStorage.removeItem(REMEMBER_KEY); } catch { /* storage blocked */ } }
+
 function LoginForm() {
   const supabase = getSupabaseBrowser()!; const [email, setEmail] = useState(''); const [password, setPassword] = useState(''); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
+  const [remember, setRemember] = useState(true);
+  useEffect(() => { const last = readRemembered(); if (last) setEmail(last); }, []);
   async function submit(e: FormEvent) {
     e.preventDefault(); setBusy(true); setMsg('');
     const { error } = await supabase.auth.signInWithPassword({ email: loginEmail(email), password });
-    if (error) setMsg('อีเมล/ชื่อผู้ใช้ หรือรหัสผ่านไม่ถูกต้อง'); setBusy(false);
+    if (error) setMsg('อีเมล/ชื่อผู้ใช้ หรือรหัสผ่านไม่ถูกต้อง'); else writeRemembered(remember ? email.trim() : null); setBusy(false);
   }
   return <form className="sf-form" onSubmit={submit}>
     <label className="sf-field"><span>อีเมล (แอดมินใช้ชื่อผู้ใช้ได้)</span><input id="login-email" autoComplete="username" inputMode="email" required value={email} onChange={e => setEmail(e.target.value)} /></label>
     <label className="sf-field"><span>รหัสผ่าน</span><input id="login-password" type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)} /></label>
+    <label className="sf-check"><input id="login-remember" type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} /> จดจำบัญชีนี้ในเบราว์เซอร์นี้ (ไม่เก็บรหัสผ่าน)</label>
     <button className="sf-btn" disabled={busy}>{busy ? 'กำลังเข้าสู่ระบบ…' : 'เข้าสู่โลก SoulForge'}</button>
     {GOOGLE_LOGIN && <button type="button" className="sf-btn ghost" disabled={busy} onClick={google}>เข้าสู่ระบบด้วย Google</button>}
     {msg && <p className="sf-error" role="alert">{msg}</p>}
@@ -206,6 +215,7 @@ function RegisterForm() {
       if (!r.ok) { if (r.status === 400 && /โค้ด/.test(data.error ?? '')) setVerified(null); throw new Error(data.error ?? 'สมัครไม่สำเร็จ'); }
       const { error } = await supabase.auth.signInWithPassword({ email: f.email.trim(), password: f.password });
       if (error) throw new Error('สมัครสำเร็จแล้ว กรุณาเข้าสู่ระบบ');
+      writeRemembered(f.email.trim());
     } catch (err) { setMsg(err instanceof Error ? err.message : 'สมัครไม่สำเร็จ'); } finally { setBusy(false); }
   }
   if (!verified) return <form className="sf-form" onSubmit={check}>
