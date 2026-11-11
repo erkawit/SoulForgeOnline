@@ -75,6 +75,9 @@ export const isCity=(x:unknown):x is CityId=>Object.prototype.hasOwnProperty.cal
 /** The three capitals are walled squares (world/capitalPlan.ts, after mmorpg-world-assets/cities/<city>/maps/city.png) that open
  *  through a waygate in each corner onto their hunting fields (CAPITAL_GATES). Walkable square = ±limit; Ashen Outskirts
  *  (wild0, below Hollow Reach's south gate) carries the Sorrowlands ruins out to the shared field boundary. */
+/** height of the walkable floor: field grounds (farm tiles, painted fields, navigation ground) lie at 0.115 m, capitals at 0 —
+ *  actors stand on it so their feet are not cut off by the floor */
+export const groundY=(id:string)=>CITIES[id as CityId]?.parent?0.12:0;
 export const WORLD_LIMIT:Partial<Record<CityId,number>>={
  hollow:CAPITAL_WALK,dawnveil:CAPITAL_WALK,thornwatch:CAPITAL_WALK,
  ...Object.fromEntries([...ZONE_IDS,...DUNGEON_IDS].map(id=>[id,FIELD_HALF])),

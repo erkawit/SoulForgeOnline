@@ -4,6 +4,7 @@ import WorldMap from './WorldMap';
 // and the Party (P) and World Map (M) windows plus the Codex guide link (G → /guide in a new tab).
 import { useEffect, useRef, useState } from 'react';
 import { useGameStore, CHARGE_MAX_MS } from '@/store/useGameStore';
+import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { useMultiplayerStore, type PartyMemberView } from '@/store/useMultiplayerStore';
 import { gameConnection } from '@/lib/multiplayer/socket';
 import { skillLib } from '@/store/useConfigStore';
@@ -61,7 +62,7 @@ function ChannelPicker() {
 
 function PartyWindow() {
   const party = useMultiplayerStore(s => s.party), me = useMultiplayerStore(s => s.playerId), connected = useMultiplayerStore(s => s.connected), players = useMultiplayerStore(s => s.players), invite = useMultiplayerStore(s => s.partyInvite);
-  const self = useGameStore(s => s.player);
+  const self = usePlayerStatic();
   const members: PartyMemberView[] = party?.members ?? [{ id: me ?? 'me', name: self.name, classId: self.classId ?? 'Berserker', online: true, graceLeft: 0, level: self.level }];
   return <>
     <div className="sf-cards">{members.map(m => <div key={m.id} className="sf-card" style={{ ['--cc' as string]: CLASS_COLOR[m.classId] }}>

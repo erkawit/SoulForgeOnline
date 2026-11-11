@@ -5,6 +5,7 @@
 import ItemDetails, { ItemArt } from '../ItemDetails';
 import { useMemo } from 'react';
 import { useGameStore, derivedOf } from '@/store/useGameStore';
+import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { useConfigStore } from '@/store/useConfigStore';
 import { ATTRIBUTE_HELP } from '@/game/balance/stats';
 import { buildStatus, formatStat, diffStatus, formatStatDelta } from '@/game/ui/statusSchema';
@@ -16,7 +17,7 @@ import { CLASS_COLOR, CLASS_TH, portrait } from './common';
 import { useSelectedItem, setSelectedItem } from './selection';
 
 function useStatus() {
-  const player = useGameStore(s => s.player), equipment = useGameStore(s => s.equipment), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels), inventory = useGameStore(s => s.inventory);
+  const player = usePlayerStatic(), equipment = useGameStore(s => s.equipment), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels), inventory = useGameStore(s => s.inventory);
   const config = useConfigStore(s => s.config); const cls = (player.classId ?? 'Berserker') as ClassId; const selId = useSelectedItem();
   const cats = useMemo(() => buildStatus(derivedOf({ player, equipment, buffs, skillLevels }), config.classes[cls].base), [player, equipment, buffs, skillLevels, config, cls]);
   const it = inventory.find(x => x?.id === selId) ?? null;

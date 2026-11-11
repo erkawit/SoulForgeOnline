@@ -22,7 +22,8 @@ export function applyClip(actor: SpriteActor, clip: string, duration?: number) {
   else actor.playFor(clip, duration);
 }
 
-export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, duration, glow, speedRef, gender, scale, costume, lite, promotion, weapon, hair, hairColor, fashion, weaponSkin }: {
+export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, duration, glow, speedRef, gender, scale, costume, lite, promotion, weapon, hair, hairColor, fashion, weaponSkin, xray }: {
+  /** the local player: silhouette through walls and props */ xray?: boolean;
   job: ClassId; clip?: CharacterClip; replay?: number; duration?: number; glow?: string; speedRef?: { current: number }; gender?: Gender; scale?: number;
   /** costume sprite set (e.g. 'thai'): same clips, different painted outfit */ costume?: string | null;
   /** login / class select: idle + one cast flipbook only, played slower */ lite?: boolean;
@@ -37,6 +38,7 @@ export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, dura
   useEffect(() => () => actor.dispose(), [actor]);
   const holder = useAttached(actor.root);
   useEffect(() => { if (glow) actor.setGlow(glow); }, [actor, glow]);
+  useEffect(() => { actor.setXray(!!xray); }, [actor, xray]);
   const wKind = weaponKindOf(weapon) ?? (promotion === 'Reaver' ? 'greataxe' : 'greatsword'), wTier = weapon?.tier ?? 0;
   useEffect(() => { actor.setWeapon(wKind, wTier, weaponSkin); }, [actor, wKind, wTier, weaponSkin]);
   useEffect(() => { actor.setOverlays((fashion ?? []).map(f => ({ ...f, art: typeof f.art === 'string' ? f.art : f.art?.[g] }))); }, [actor, fashion, g]);

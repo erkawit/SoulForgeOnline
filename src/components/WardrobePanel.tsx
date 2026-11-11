@@ -8,6 +8,7 @@
 // owned or in the shop — puts it on the stage only; "สวม" wears an owned piece for real, "ซื้อ" opens the Cash Shop.
 import { useEffect, useMemo, useState } from 'react';
 import { useGameStore } from '@/store/useGameStore';
+import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { FASHION_SLOTS, FASHION_SLOT_TH, FASHION_SLOT_ICON, fashionIcon, mergeFashion, FASHION, type FashionItem, type FashionSlot, type Wardrobe } from '@/game/fashion';
 import FashionPreview from './FashionPreview';
 
@@ -30,7 +31,7 @@ export function FashionCard({ f, g, on, status, onClick }: { f: FashionItem; g: 
 type Tab = 'wardrobe' | 'shop';
 export default function WardrobePanel() {
   const w = useGameStore(s => s.wardrobe), wear = useGameStore(s => s.wearFashion), takeOff = useGameStore(s => s.takeOffFashion);
-  const player = useGameStore(s => s.player), weapon = useGameStore(s => s.equipment.weapon);
+  const player = usePlayerStatic(), weapon = useGameStore(s => s.equipment.weapon);
   const list = useFashionCatalog(), by = useMemo(() => Object.fromEntries(list.map(f => [f.id, f])) as Record<string, FashionItem>, [list]);
   const g: 'm' | 'f' = player.gender === 'f' ? 'f' : 'm';
   const [tab, setTab] = useState<Tab>('wardrobe'), [slot, setSlot] = useState<FashionSlot | 'all'>('all'), [msg, setMsg] = useState<string | null>(null);

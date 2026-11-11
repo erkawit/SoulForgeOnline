@@ -34,7 +34,7 @@ import FrameCap from './FrameCap';
 import DamageLayer from './DamageLayer';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { touchMove } from '@/store/touchInput';
-import { CLASSES,CITIES,CLASS_IDS,walkable,type CityId } from '@/game/content';
+import { CLASSES,CITIES,CLASS_IDS,walkable,groundY,type CityId } from '@/game/content';
 import { mapRoute, nearestWalkable } from '@/game/world/mapRoute';
 import { lineClear } from '@/game/monsterAI';
 
@@ -263,7 +263,7 @@ function RemoteHero({ p }: { p: Remote }) {
   const [clip, setClip] = useState<CharacterClip>('Idle');
   useFrame((_, dt) => { if (!root.current) return; const dx = p.x - last.current[0], dz = p.z - last.current[1]; const d = Math.hypot(dx, dz);
     if (d > .002 && d < 3) { root.current.rotation.y = Math.atan2(dx, dz); moving.current = .25; } else moving.current = Math.max(0, moving.current - dt);
-    last.current = [p.x, p.z]; root.current.position.lerp(tmpRemote.set(p.x, 0, p.z), 1 - Math.exp(-14 * dt));
+    last.current = [p.x, p.z]; root.current.position.lerp(tmpRemote.set(p.x, groundY(useGameStore.getState().player.cityId ?? 'hollow'), p.z), 1 - Math.exp(-14 * dt));
     const want = moving.current > 0 ? 'Run' : 'Idle'; if (want !== clip) setClip(want); });
   return <group ref={root} position={[p.x, 0, p.z]}><AnimatedCharacter job={cls} clip={clip} gender={p.gender === 'f' ? 'f' : 'm'} />
     <Label3D z={30} position={[0, 2.05, 0]} color="#9fe9ff" text={p.name ?? `Player ${p.id.slice(0, 6)}`} sub={p.title ? `「${p.title}」` : null} subColor="#e9c46a"/></group>;

@@ -6,12 +6,13 @@
 // plus target / world-boss bars, one-time tips, the boss damage dashboard and the windows behind the menus.
 import '@/styles/hud2.css';
 import { spawnPoints } from '@/game/spawns';
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { useConfigStore } from '@/store/useConfigStore';
 import SkillTreePanel from './SkillTreePanel';
 import NpcDialog from './NpcDialog';
 import BuffStrip from './BuffStrip';
 import { countOf, derivedOf, expRequired, useGameStore } from '@/store/useGameStore';
+import { usePlayerStatic, usePlayerCell } from '@/store/usePlayerStatic';
 import CloudSave from './CloudSave';
 import { CITIES, WORLD_LIMIT, portalsOf, type MainCityId } from '@/game/content';
 import OnlinePanel from './OnlinePanel';
@@ -112,25 +113,75 @@ function BossDashboard() {
       <td>SoulGod {fmt(p.soulGod)}{p.guaranteed ? ` · ${p.guaranteed}` : ''}{p.highTier ? <><br /><b className="hi">★ {p.highTier}!</b></> : null}</td></tr>)}</tbody></table></section></div>;
 }
 
+/** minimap: the only HUD part that follows the player and the monsters every frame */
+function Minimap({ cityId }: { cityId: string }) {
+  const [px, pz] = usePlayerCell(.25);
+  const level = useGameStore(s => s.player.level), quests = useGameStore(s => s.quests);
+  const monsters = useGameStore(s => s.monsters), drops = useGameStore(s => s.drops);
+  const connected = useMultiplayerStore(s => s.connected), players = useMultiplayerStore(s => s.players), playerId = useMultiplayerStore(s => s.playerId), boss = useMultiplayerStore(s => s.boss);
+  return <section className="h2-mm pointer-events-auto"><svg viewBox={`${px - 28} ${pz - 28} 56 56`} aria-label="แผนที่ย่อ — คลิกเพื่อเปิดแผนที่โลก" role="button" tabIndex={0} style={{ cursor: 'pointer' }}
+      onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))} onKeyDown={e => { if (e.key === 'Enter') window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' })); }}>
+      <MinimapStatic cityId={cityId} level={level} quests={quests} />
+      {monsters.filter(m => m.hp > 0).map(m => <circle key={m.id} cx={m.x} cy={m.z} r=".8" fill="#e37c6c" />)}
+      {connected && players.filter(p => p.id !== playerId).map(p => <circle key={p.id} cx={p.x} cy={p.z} r=".8" fill="#6dc8db" />)}
+      {drops.map(d => <circle key={d.id} cx={d.x} cy={d.z} r=".6" fill="#cb8ff2" />)}
+      {connected && boss && <circle cx={boss.x} cy={boss.z} r="1.8" fill="#ef6357" />}
+      <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span><span className="h2-coords" aria-label="พิกัด">X {px.toFixed(0)} · Y {pz.toFixed(0)}</span></section>;
+}
+
+/** the fixed layer of the minimap (ground, buildings, gates, NPCs, elite spawns) — drawn once per field */
+const MinimapStatic = memo(function MinimapStatic({ cityId, level, quests }: { cityId: string; level: number; quests: ReturnType<typeof useGameStore.getState>['quests'] }) {
+  const city = CITIES[cityId as keyof typeof CITIES];
+  return <>
+      <rect x={-100} y={-100} width={200} height={200} fill="#0b0a0d" />
+      {city.parent ? <rect x={-(WORLD_LIMIT[city.id] ?? 23)} y={-(WORLD_LIMIT[city.id] ?? 23)} width={2 * (WORLD_LIMIT[city.id] ?? 23)} height={2 * (WORLD_LIMIT[city.id] ?? 23)} fill="#17151a" />
+        : <><rect x={-CAPITAL_HALF} y={-CAPITAL_HALF} width={2 * CAPITAL_HALF} height={2 * CAPITAL_HALF} fill={city.id === 'dawnveil' ? '#2f6f74' : '#1d1f25'} stroke="#000" strokeWidth="1.4" />
+          {city.id === 'dawnveil' && <rect x={-CANAL_IN} y={-CANAL_IN} width={2 * CANAL_IN} height={2 * CANAL_IN} fill="#1d1f25" />}
+          <path d={`M${-GATE_D} ${-GATE_D}L${GATE_D} ${GATE_D}M${-GATE_D} ${GATE_D}L${GATE_D} ${-GATE_D}M0 ${-24 * CITY_SCALE}V${24 * CITY_SCALE}M${-24 * CITY_SCALE} 0H${24 * CITY_SCALE}`} stroke="#4a443f" strokeWidth="5.4" strokeLinecap="round" /><circle r={13.6 * CITY_SCALE} fill="none" stroke="#4a443f" strokeWidth="5" /><circle r={PLAZA_R} fill="#4a443f" />
+          {CAPITAL_PIECES[city.id as MainCityId].filter(p => p.role || p.piece === 'tree').map((p, i) => <circle key={'b' + i} cx={p.x} cy={p.z} r={p.r} fill={p.role ? city.roof : '#2e4a30'} stroke={city.accent} strokeWidth=".3" />)}</>}
+      {city.id === 'wild0' && ZONES.map(z => <circle key={z.id} cx={z.x} cy={z.z} r={z.radius} fill="rgba(160,60,50,.16)" stroke="rgba(224,90,70,.45)" strokeWidth=".5" />)}
+      {city.buildings.map((b, i) => <rect key={i} x={b.x - b.w / 2} y={b.z - b.d / 2} width={b.w} height={b.d} fill={city.roof} stroke={city.accent} strokeWidth={.3} />)}
+      {portalsOf(city.id).map(p => <circle key={'g' + p.dir} cx={p.x} cy={p.z} r={GATE_TRIGGER} fill="none" stroke={p.kind === 'dungeon' ? '#c98aff' : '#62e6d2'} strokeWidth=".6" />)}
+      {npcsIn(city.id).map(n => { const [x, z] = npcPosition(n, city.id), mk = npcMarker(n.id, level, quests); return <text key={n.id} x={x} y={z + 1} fontSize="2.6" textAnchor="middle" fill={mk && mk !== '…' ? '#ffd36e' : n.color}>{mk && mk !== '…' ? mk : n.icon}</text>; })}
+      {spawnPoints(city.id).filter(p => p.elite).map(p => <circle key={p.id} cx={p.position[0]} cy={p.position[1]} r={p.boss ? 1.8 : 1.3} fill="none" stroke={p.boss ? '#ff9a3c' : '#ffd36e'} strokeWidth=".4" />)}
+  </>;
+});
+
+/** target frame: follows only the selected monster's own fields */
+function TargetFrame() {
+  const t = useGameStore(s => { const m = s.monsters.find(x => x.id === s.selectedMonster); return m ? `${m.hp}|${m.maxHp}|${m.name}|${m.level}|${m.elite ? 1 : 0}|${m.boss ? 1 : 0}|${m.telegraph?.kind ?? ''}` : ''; });
+  if (!t) return null;
+  const [hp, maxHp, name, level, elite, boss, tele] = t.split('|');
+  if (+hp <= 0) return null;
+  return <div className="h2-target"><b className={elite === '1' ? 'elite' : ''}>{boss === '1' ? '☠ ' : elite === '1' ? '★ ' : ''}{name} <small>Lv.{level}{elite === '1' && boss !== '1' ? ' · ELITE' : ''}{tele === 'skill' ? ' · กำลังร่าย!' : ''}</small></b><Bar value={+hp} max={+maxHp} kind="hp" /></div>;
+}
+
+/** zone name + coordinates: re-renders only when the whole-metre position changes */
+function ZoneLabel({ cityName, cityId }: { cityName: string; cityId: string }) {
+  const [px, pz] = usePlayerCell(1);
+  const zone = cityId === 'wild0' ? zoneAt(px, pz) : null;
+  return <div className="h2-zone">{zone ? zone.th : cityName}<small>{px.toFixed(0)}, {pz.toFixed(0)}</small><ChannelButton /></div>;
+}
+
 export default function GameHUD() {
-  const network = useMultiplayerStore();
+  const network = { connected: useMultiplayerStore(s => s.connected), boss: useMultiplayerStore(s => s.boss) };
   const deadUntil = useGameStore(s => s.deadUntil), pending = useGameStore(s => s.pending), charge = useGameStore(s => s.charge);
   const [now, setNow] = useState(Date.now());
   useEffect(() => { const t = setInterval(() => setNow(Date.now()), 200); return () => clearInterval(t); }, []);
   const [panel, setPanel] = useState<Panel>(null);
   const layout = useScreenScale(), orientation = useOrientation(); const [menuOpen, setMenuOpen] = useState(false);
-  const player = useGameStore(s => s.player), monsters = useGameStore(s => s.monsters), drops = useGameStore(s => s.drops), equipment = useGameStore(s => s.equipment);
+  const player = usePlayerStatic(), equipment = useGameStore(s => s.equipment);
   const log = useGameStore(s => s.log), selectedMonster = useGameStore(s => s.selectedMonster), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
   const hotbar = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar), cooldowns = useGameStore(s => s.cooldowns), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
-  const inventory = useGameStore(s => s.inventory), quests = useGameStore(s => s.quests);
+  const inventory = useGameStore(s => s.inventory);
   const skillDefs = useConfigStore(s => s.skills.defs);
-  const selected = monsters.find(m => m.id === selectedMonster);
   const cls = player.classId ?? 'Berserker', color = CLASS_COLOR[cls];
   const city = CITIES[player.cityId ?? 'hollow'];
   const derived = useMemo(() => derivedOf({ player, equipment, buffs, skillLevels }), [player, equipment, buffs, skillLevels]);
   // HP / MP are simulated here (online too: the realm owns money, items and levels, not the fight)
   const hp = player.hp, maxHp = derived.maxHp, mp = player.mp, maxMp = derived.maxMp;
-  const zone = city.id === 'wild0' ? zoneAt(player.position[0], player.position[1]) : null; // the Sorrowlands ruins of Ashen Outskirts
+  const zoneId = useGameStore(s => (s.player.cityId ?? 'hollow') === 'wild0' ? zoneAt(s.player.position[0], s.player.position[1])?.id ?? null : null); // the Sorrowlands ruins of Ashen Outskirts
+  const zone = zoneId ? ZONES.find(z => z.id === zoneId) ?? null : null;
   const toggle = (p: Panel) => { audio.play('ui_click', { vol: .35 }); setPanel(v => v === p ? null : p); };
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
@@ -155,7 +206,6 @@ export default function GameHUD() {
     const st = useGameStore.getState(); const t = st.monsters.find(m => m.id === st.selectedMonster && m.hp > 0) ?? st.monsters.filter(m => m.hp > 0).sort((a, b) => Math.hypot(a.x - st.player.position[0], a.z - st.player.position[1]) - Math.hypot(b.x - st.player.position[0], b.z - st.player.position[1]))[0];
     if (t) { st.selectMonster(t.id); st.attack(t.id); }
   };
-  const [px, pz] = player.position;
   const hpCount = ['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((a, id) => a + countOf(inventory, id), 0), mpCount = ['potion-mp-m', 'potion-mp-s'].reduce((a, id) => a + countOf(inventory, id), 0);
   const foodCount = FOOD_ITEMS.reduce((a, f) => a + countOf(inventory, f.id), 0), fed = buffs.some(b => b.id.startsWith('food-') && b.until > now);
   const menu: [Exclude<Panel, null>, string, string, string][] = [['inventory', '🎒', 'I', 'กระเป๋า · อุปกรณ์'], ['character', '♜', 'C', 'ตัวละคร'], ['skills', '✺', 'K', 'สกิล'], ['quests', '❡', 'J', 'เควส'], ['codex', '✦', 'L', 'สมุดสะสม'], ['wardrobe', '👘', 'U', 'ตู้เสื้อผ้า'], ['monsters', '☠', 'N', 'สมุดมอนสเตอร์'],
@@ -173,29 +223,12 @@ export default function GameHUD() {
     {/* top-centre: target / world boss */}
     {network.connected && network.boss ? <div className="h2-boss"><div className="t"><b>☠ ABYSSAL FORGE TITAN · {network.boss.phase === 'enraged' ? 'คลั่ง!' : 'Raid'}</b><span>{(network.boss.hp / network.boss.maxHp * 100).toFixed(1)}%</span></div>
       <div className="h2-bar hp boss"><i style={{ transform: `scaleX(${Math.max(0, network.boss.hp / network.boss.maxHp)})` }} /></div><small>เลือดปรับตามจำนวนผู้ท้าชิง · ออกแบบให้ใช้เวลา 15–30 นาที · หลบวงสีส้ม</small></div>
-      : selected && selected.hp > 0 && <div className="h2-target"><b className={selected.elite ? 'elite' : ''}>{selected.boss ? '☠ ' : selected.elite ? '★ ' : ''}{selected.name} <small>Lv.{selected.level}{selected.elite && !selected.boss ? ' · ELITE' : ''}{selected.telegraph?.kind === 'skill' ? ' · กำลังร่าย!' : ''}</small></b><Bar value={selected.hp} max={selected.maxHp} kind="hp" /></div>}
+      : <TargetFrame />}
     {banner && (() => { const z = ZONES.find(x => x.id === banner)!; return <div className="h2-banner"><h1>{z.name.toUpperCase()}</h1><p>{z.th}</p></div>; })()}
     {/* top-right: minimap + menus */}
-    <section className="h2-mm pointer-events-auto"><svg viewBox={`${px - 28} ${pz - 28} 56 56`} aria-label="แผนที่ย่อ — คลิกเพื่อเปิดแผนที่โลก" role="button" tabIndex={0} style={{ cursor: 'pointer' }}
-      onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))} onKeyDown={e => { if (e.key === 'Enter') window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' })); }}>
-      <rect x={-100} y={-100} width={200} height={200} fill="#0b0a0d" />
-      {city.parent ? <rect x={-(WORLD_LIMIT[city.id] ?? 23)} y={-(WORLD_LIMIT[city.id] ?? 23)} width={2 * (WORLD_LIMIT[city.id] ?? 23)} height={2 * (WORLD_LIMIT[city.id] ?? 23)} fill="#17151a" />
-        : <><rect x={-CAPITAL_HALF} y={-CAPITAL_HALF} width={2 * CAPITAL_HALF} height={2 * CAPITAL_HALF} fill={city.id === 'dawnveil' ? '#2f6f74' : '#1d1f25'} stroke="#000" strokeWidth="1.4" />
-          {city.id === 'dawnveil' && <rect x={-CANAL_IN} y={-CANAL_IN} width={2 * CANAL_IN} height={2 * CANAL_IN} fill="#1d1f25" />}
-          <path d={`M${-GATE_D} ${-GATE_D}L${GATE_D} ${GATE_D}M${-GATE_D} ${GATE_D}L${GATE_D} ${-GATE_D}M0 ${-24 * CITY_SCALE}V${24 * CITY_SCALE}M${-24 * CITY_SCALE} 0H${24 * CITY_SCALE}`} stroke="#4a443f" strokeWidth="5.4" strokeLinecap="round" /><circle r={13.6 * CITY_SCALE} fill="none" stroke="#4a443f" strokeWidth="5" /><circle r={PLAZA_R} fill="#4a443f" />
-          {CAPITAL_PIECES[city.id as MainCityId].filter(p => p.role || p.piece === 'tree').map((p, i) => <circle key={'b' + i} cx={p.x} cy={p.z} r={p.r} fill={p.role ? city.roof : '#2e4a30'} stroke={city.accent} strokeWidth=".3" />)}</>}
-      {city.id === 'wild0' && ZONES.map(z => <circle key={z.id} cx={z.x} cy={z.z} r={z.radius} fill="rgba(160,60,50,.16)" stroke="rgba(224,90,70,.45)" strokeWidth=".5" />)}
-      {city.buildings.map((b, i) => <rect key={i} x={b.x - b.w / 2} y={b.z - b.d / 2} width={b.w} height={b.d} fill={city.roof} stroke={city.accent} strokeWidth={.3} />)}
-      {portalsOf(city.id).map(p => <circle key={'g' + p.dir} cx={p.x} cy={p.z} r={GATE_TRIGGER} fill="none" stroke={p.kind === 'dungeon' ? '#c98aff' : '#62e6d2'} strokeWidth=".6" />)}
-      {npcsIn(city.id).map(n => { const [x, z] = npcPosition(n, city.id), mk = npcMarker(n.id, player.level, quests); return <text key={n.id} x={x} y={z + 1} fontSize="2.6" textAnchor="middle" fill={mk && mk !== '…' ? '#ffd36e' : n.color}>{mk && mk !== '…' ? mk : n.icon}</text>; })}
-      {spawnPoints(city.id).filter(p => p.elite).map(p => <circle key={p.id} cx={p.position[0]} cy={p.position[1]} r={p.boss ? 1.8 : 1.3} fill="none" stroke={p.boss ? '#ff9a3c' : '#ffd36e'} strokeWidth=".4" />)}
-      {monsters.filter(m => m.hp > 0).map(m => <circle key={m.id} cx={m.x} cy={m.z} r=".8" fill="#e37c6c" />)}
-      {network.connected && network.players.filter(p => p.id !== network.playerId).map(p => <circle key={p.id} cx={p.x} cy={p.z} r=".8" fill="#6dc8db" />)}
-      {drops.map(d => <circle key={d.id} cx={d.x} cy={d.z} r=".6" fill="#cb8ff2" />)}
-      {network.connected && network.boss && <circle cx={network.boss.x} cy={network.boss.z} r="1.8" fill="#ef6357" />}
-      <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span><span className="h2-coords" aria-label="พิกัด">X {px.toFixed(0)} · Y {pz.toFixed(0)}</span></section>
+    <Minimap cityId={city.id} />
     <button type="button" className={`sf-gear pointer-events-auto ${panel === 'settings' ? 'on' : ''}`} title="ตั้งค่า (O)" aria-label="ตั้งค่า" onClick={() => toggle('settings')}><img src="/art/ui-kit/icon_menu_settings_gear.webp" alt="" /></button>
-    <div className="h2-zone">{zone ? zone.th : city.name}<small>{px.toFixed(0)}, {pz.toFixed(0)}</small><ChannelButton /></div>
+    <ZoneLabel cityName={city.name} cityId={city.id} />
     <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{key && <small>{key}</small>}</button>)}
       <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/ui-kit/map_waypoint_node_swords.webp" alt="" /><small>M</small></button>
       <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" /><small>P</small></button>

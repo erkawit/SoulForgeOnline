@@ -6,6 +6,7 @@
 import { useMemo, useRef, useState } from 'react';
 import ItemDetails, { ItemArt } from '../ItemDetails';
 import { useGameStore, derivedOf } from '@/store/useGameStore';
+import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { canEquip } from '@/game/items';
 import { EQUIP_LAYOUT, type SlotInfo } from '@/game/ui/equipSlots';
 import { GRID_W, GRID_H, layoutBag, fits, firstFit, moveItem, freeCells, itemSize } from '@/game/ui/bagGrid';
@@ -26,7 +27,7 @@ function useBag() {
 const act = (it: Item) => { const s = useGameStore.getState(), i = s.inventory.findIndex(x => x?.id === it.id); if (i < 0) { const slot = (Object.entries(s.equipment) as [GearSlot, Item | null][]).find(([, v]) => v?.id === it.id)?.[0]; if (slot) s.unequip(slot); return; } if (it.slot) s.equip(i); else s.useItem(i); };
 
 export function PCInventoryPanel() {
-  const equipment = useGameStore(s => s.equipment), player = useGameStore(s => s.player), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
+  const equipment = useGameStore(s => s.equipment), player = usePlayerStatic(), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
   const cls = (player.classId ?? 'Berserker') as ClassId, d = useMemo(() => derivedOf({ player, equipment, buffs, skillLevels }), [player, equipment, buffs, skillLevels]);
   const { items, placed, overflow, bagPos } = useBag(); const byId = new Map(items.map(i => [i.id, i]));
   const [category,setCategory]=useState('all'),[query,setQuery]=useState('');
@@ -93,7 +94,7 @@ export function PCInventoryPanel() {
 }
 
 export function MobileInventoryDrawer() {
-  const equipment = useGameStore(s => s.equipment), player = useGameStore(s => s.player), cls = (player.classId ?? 'Berserker') as ClassId;
+  const equipment = useGameStore(s => s.equipment), player = usePlayerStatic(), cls = (player.classId ?? 'Berserker') as ClassId;
   const { items } = useBag(); const [sel, setSelLocal] = useState<string | null>(null); const setSel = (v: string | null) => { setSelLocal(v); setSelectedItem(v); }; const last = useRef({ id: '', t: 0 });
   const all = [...items, ...Object.values(equipment).filter((x): x is Item => !!x)], it = all.find(i => i.id === sel) ?? null, worn = !!it && !items.includes(it);
   const tap = (x: Item) => { const t = performance.now(); if (last.current.id === x.id && t - last.current.t < 350) { last.current = { id: '', t: 0 }; act(x); setSel(null); return; } last.current = { id: x.id, t }; setSel(x.id); };

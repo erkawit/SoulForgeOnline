@@ -4,6 +4,7 @@
 import { skillIconStyle } from '@/game/skills/icons';
 import { Swords } from 'lucide-react';
 import { useGameStore, countOf, expRequired } from '@/store/useGameStore';
+import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { FOCUS_TH, isSupportClass } from '@/game/auto';
 import { FOOD_ITEMS } from '@/game/items';
@@ -14,7 +15,7 @@ function Bar({ value, max, kind }: { value: number; max: number; kind: 'hp' | 'm
   return <div className={`h2-bar ${kind}`}><i style={{ transform: `scaleX(${Math.max(0, Math.min(1, value / Math.max(1, max)))})` }} />{kind !== 'xp' && <span>{fmt(value)} / {fmt(max)}</span>}</div>;
 }
 export default function PCHUDLayout({ hp, maxHp, mp, maxMp, now, onAuto }: { hp: number; maxHp: number; mp: number; maxMp: number; now: number; onAuto: () => void }) {
-  const player = useGameStore(s => s.player), inventory = useGameStore(s => s.inventory), buffs = useGameStore(s => s.buffs), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
+  const player = usePlayerStatic(), inventory = useGameStore(s => s.inventory), buffs = useGameStore(s => s.buffs), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
   const online = useMultiplayerStore(s => s.online);
   const cls = player.classId ?? 'Berserker', color = CLASS_COLOR[cls], slots = useSkillSlots(now, mp);
   const hpCount = ['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((a, id) => a + countOf(inventory, id), 0), mpCount = ['potion-mp-m', 'potion-mp-s'].reduce((a, id) => a + countOf(inventory, id), 0);

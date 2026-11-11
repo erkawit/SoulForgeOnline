@@ -3,11 +3,12 @@ import {useState} from 'react';
 import {PROMOTIONS,PROMOTION_IDS,canPromote,classLook} from '@/game/advancement';
 import {CLASS_IDS,type ClassId} from '@/game/content';
 import {useGameStore} from '@/store/useGameStore';
+import { usePlayerStatic } from '@/store/usePlayerStatic';
 import {useMultiplayerStore} from '@/store/useMultiplayerStore';
 import {stageUnlocked} from '@/game/quests';
 export default function AdvancementPanel(){
- const player=useGameStore(s=>s.player),stage=useGameStore(s=>stageUnlocked(s.quests)),dead=useGameStore(s=>s.deadUntil),pending=useGameStore(s=>s.pending),online=useMultiplayerStore(s=>s.online);
- const base=player.classId??'Berserker',[view,setView]=useState<ClassId>(base),current=classLook(base,player.promotionId),safe=Math.hypot(...player.position)<6;
+ const player=usePlayerStatic(),stage=useGameStore(s=>stageUnlocked(s.quests)),dead=useGameStore(s=>s.deadUntil),pending=useGameStore(s=>s.pending),online=useMultiplayerStore(s=>s.online);
+ const base=player.classId??'Berserker',[view,setView]=useState<ClassId>(base),current=classLook(base,player.promotionId),safe=useGameStore(s=>Math.hypot(...s.player.position)<6);
  return <section className="advancement-panel"><h2>Class advancement · {current.name} · Class {current.stage}</h2>
  <p>Lv.10 เลือกหนึ่งสาย → Lv.60 พัฒนาสายเดิม · ยังไม่เปิด Class 4</p>
  <p>เปลี่ยนคลาสที่วง Sanctuary เท่านั้น เมื่อเลือกสายแล้วจะเปลี่ยนข้ามสายหรืออาชีพหลักไม่ได้ในรุ่นนี้</p>

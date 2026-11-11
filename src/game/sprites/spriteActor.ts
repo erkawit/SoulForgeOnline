@@ -5,7 +5,7 @@
 // squash & stretch — and key-pose frames from the motion sheets (anticipate → impact → recover, draw → release …)
 // cross-fade on top, so nothing ever snaps or stands rigid. Same public API as the old GLB `Unit`.
 import {
-  CanvasTexture, Color, LinearFilter, DoubleSide, Group, Mesh, MeshBasicMaterial, PlaneGeometry, Quaternion, ShaderMaterial, SRGBColorSpace, Texture,
+  CanvasTexture, Color, LinearFilter, DoubleSide, GreaterDepth, Group, Mesh, MeshBasicMaterial, PlaneGeometry, Quaternion, ShaderMaterial, SRGBColorSpace, Texture,
   TextureLoader, UniformsLib, UniformsUtils, Vector2, Vector3, Vector4, type Camera,
 } from 'three';
 import { SPRITE_FRAMES, type SpriteFrame } from './frames';
@@ -133,6 +133,16 @@ void main(){
     #endif
     gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor * 0.45 );
   #endif
+}`;
+/** x-ray: only where the sprite is hidden behind a wall, tree or rock — a dim class-coloured silhouette, so the player
+ *  never disappears behind scenery (drawn with depthFunc GREATER, after everything else) */
+const XRAY_FRAG = /* glsl */`
+uniform sampler2D map; uniform vec4 uCell, uGlow; uniform float uOpacity;
+varying vec2 vUv;
+void main(){
+  vec4 t = texture2D(map, uCell.xy + clamp(vUv, .002, .998)*uCell.zw); if(t.a < .35) discard;
+  float lum = dot(t.rgb, vec3(.3,.59,.11));
+  gl_FragColor = vec4(mix(vec3(.55,.6,.75), uGlow.rgb, .55)*(.55+lum*.6), .42*uOpacity);
 }`;
 type U = Record<string, { value: any }>;
 function makeMaterial(map: Texture) {
@@ -328,6 +338,9 @@ export class SpriteActor {
     return name === 'Hit' ? HIT : name === 'Channel' || name === 'Guard' ? { dur: 1, loop: true, keys: [{ t: 0, lean: -0.04, glow: 0.25 }] } : GENERIC;
   }
   get flipbook() { return !!this.anim; }
+  private xrayMesh: Mesh | null = null; private xrayOn = false;
+  /** show a silhouette of this actor through anything that hides it (the local player) */
+  setXray(on: boolean) { this.xrayOn = on; if (this.xrayMesh) this.xrayMesh.visible = on; }
   private pushLayer(frame: string, alpha: number) {
     const an = this.anim;
     // a still with a baked breathing loop (sprite-gen Breathe) samples its atlas cell by cell, same canvas as the still
@@ -410,7 +423,15 @@ export class SpriteActor {
     if (this.hitT >= 0) { this.hitT += d; const h = Math.max(0, 1 - this.hitT / 0.32); offX -= 0.08 * h * h; sq -= 0.05 * h; lean -= 0.09 * h; if (this.hitT > 0.32) this.hitT = -1; }
     // death: topple away from the facing direction, sink a little
     // flipbook frames already carry the motion: no body deform at all, only root moves (hover / bob / hit / dash)
-    if (this.anim) { rotZ = 0; lean *= 0.25; offY *= kind === 'flyer' ? 0.6 : 0.35; stride = 0; breath = 0; arm = 0; sq *= 0.3; }
+    if (this.anim) { rotZ = 0; lean *= 0.25; offY *= kind === 'flyer' ? 0.6 : 0.35; stride = 0; breath = 0; arm = 0; sq *= 0.3;
+      // 8-way class sheets: the painted walk frames barely move the legs, so add a step bounce locked to the
+      // flipbook (two steps per cycle: down on each foot plant) plus a slight side-to-side weight shift
+      const a = this.anim.anim, wc = a.clips[this.animClip];
+      if (a.dirs && wc && (this.animClip === 'walk' || this.animClip === 'run') && kind !== 'flyer' && !this.shot) {
+        const p = (this.animF % wc[1]) / wc[1] * Math.PI * 4;
+        offY = this.runW * (0.025 + 0.045 * Math.abs(Math.sin(p / 2 + Math.PI / 2)));
+        rotZ = this.runW * Math.sin(p / 2) * 0.03; sq = this.runW * Math.cos(p) * 0.025; lean = this.runW * 0.04;
+      } }
     else { breath *= 0.6; } // painted key poses: calmer breathing than before (less "flowing")
     let death = 0;
     if (this.deathT >= 0) { this.deathT += d; death = ease(Math.min(1, this.deathT / 0.55)); frame = def.base; }
@@ -468,6 +489,18 @@ export class SpriteActor {
       hm.position.copy(top.mesh.position); hm.position.z += 0.012; hm.rotation.copy(top.mesh.rotation); hm.scale.copy(top.mesh.scale);
       hm.visible = top.mesh.visible && !this.hideHair;
     }
+    if (this.xrayOn) {
+      if (!this.xrayMesh) {
+        const m = new ShaderMaterial({ uniforms: UniformsUtils.clone(top.mat.uniforms), vertexShader: VERT, fragmentShader: XRAY_FRAG, transparent: true, depthWrite: false, depthFunc: GreaterDepth, side: DoubleSide, toneMapped: false });
+        this.xrayMesh = new Mesh(top.mesh.geometry, m); this.xrayMesh.frustumCulled = false; this.xrayMesh.renderOrder = 50; this.pivot.add(this.xrayMesh);
+      }
+      const xm = this.xrayMesh, xu = (xm.material as ShaderMaterial).uniforms, tu = top.mat.uniforms;
+      for (const k in tu) { if (!xu[k]) continue; const v = tu[k].value; if (k !== 'map' && v && typeof v.copy === 'function') xu[k].value.copy(v); else xu[k].value = v; }
+      if (this.glowColor) (xu.uGlow.value as Vector4).set(this.glowColor.r, this.glowColor.g, this.glowColor.b, 1);
+      if (xm.geometry !== top.mesh.geometry) xm.geometry = top.mesh.geometry;
+      xm.position.copy(top.mesh.position); xm.rotation.copy(top.mesh.rotation); xm.scale.copy(top.mesh.scale);
+      xm.visible = top.mesh.visible && !this.dead;
+    }
     if (this.layers.length > 1 && top.alpha >= 1) { for (const l of this.layers.slice(0, -1)) { this.pivot.remove(l.mesh); l.mat.dispose(); } this.layers = [top]; }
     if (this.shadow) { (this.shadow.material as MeshBasicMaterial).opacity = this.opacity * (1 - death * 0.4) * (kind === 'flyer' ? 0.6 : 1); this.shadow.scale.x = Math.abs(this.shadow.scale.x) * 1; }
   }
@@ -501,7 +534,7 @@ export class SpriteActor {
     const rows = Math.ceil(a.n / a.cols), col = idx % a.cols, row = Math.floor(idx / a.cols);
     this.cell.set(col / a.cols, 1 - (row + 1) / rows, 1 / a.cols, 1 / rows);
   }
-  dispose() { for (const l of this.layers) l.mat.dispose(); if (this.handsMesh) (this.handsMesh.material as ShaderMaterial).dispose(); if (this.hair3dMesh) (this.hair3dMesh.material as ShaderMaterial).dispose(); if (this.weapon3dMesh) (this.weapon3dMesh.material as ShaderMaterial).dispose(); this.swapLayerMesh(this.hairMesh, null, 0, 0, 1, 0); this.swapLayerMesh(this.weaponMesh, null, 0, 0, 1, 0); this.root.removeFromParent(); }
+  dispose() { for (const l of this.layers) l.mat.dispose(); if (this.xrayMesh) (this.xrayMesh.material as ShaderMaterial).dispose(); if (this.handsMesh) (this.handsMesh.material as ShaderMaterial).dispose(); if (this.hair3dMesh) (this.hair3dMesh.material as ShaderMaterial).dispose(); if (this.weapon3dMesh) (this.weapon3dMesh.material as ShaderMaterial).dispose(); this.swapLayerMesh(this.hairMesh, null, 0, 0, 1, 0); this.swapLayerMesh(this.weaponMesh, null, 0, 0, 1, 0); this.root.removeFromParent(); }
 }
 const GENERIC: SpriteClip = { dur: 0.6, keys: [{ t: 0 }, { t: 0.3, lean: -0.08, sq: 0.03 }, { t: 0.45, lean: 0.14, dx: 0.12, sq: -0.04 }, { t: 1 }] };
 const HIT: SpriteClip = { dur: 0.32, keys: [{ t: 0 }, { t: 1 }] };

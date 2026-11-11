@@ -11,6 +11,7 @@ import { skillIconStyle } from '@/game/skills/icons';
 import { useRef, useState, type PointerEvent as RPointerEvent } from 'react';
 import { Swords } from 'lucide-react';
 import { useGameStore, countOf, expRequired } from '@/store/useGameStore';
+import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { touchMove } from '@/store/touchInput';
 import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, useOrientation, ForgeGauge } from './common';
 
@@ -60,7 +61,7 @@ function nextTarget() {
 }
 
 export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, onMenu, onStatus }: { hp: number; maxHp: number; mp: number; maxMp: number; now: number; menuOpen: boolean; onMenu: () => void; onStatus: () => void }) {
-  const player = useGameStore(s => s.player), inventory = useGameStore(s => s.inventory), auto = useGameStore(s => s.auto), target = useGameStore(s => s.selectedMonster);
+  const player = usePlayerStatic(), inventory = useGameStore(s => s.inventory), auto = useGameStore(s => s.auto), target = useGameStore(s => s.selectedMonster);
   const o = useOrientation(); const [page, setPage] = useState(0); const cls = player.classId ?? 'Berserker';
   const slots = useSkillSlots(now, mp), shown = o === 'landscape' ? slots.slice(0, 6) : page ? slots.slice(4, 6) : slots.slice(0, 4);
   const hpCount = ['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((a, id) => a + countOf(inventory, id), 0);
