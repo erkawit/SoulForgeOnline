@@ -531,7 +531,7 @@ export class SpriteActor {
     else if (name === 'idle' && c[1] > 2) { const k = Math.floor(this.animT * fps) % (c[1] * 2 - 2); idx = c[0] + (k < c[1] ? k : c[1] * 2 - 2 - k); } // ping-pong: no jump at the loop
     else idx = c[0] + Math.floor(this.animF) % c[1];
     if (this.rig) this.placeRig(this.dead && dc ? 'death' : name, idx - (this.dead && dc ? dc[0] : c[0]));
-    if (a.dirs) idx += this.dirRow * c[1]; // 8-way: each clip is 8 runs of `count` frames, one per facing
+    if (a.dirs) idx += this.dirRow * (this.dead && dc ? dc[1] : c[1]); // 8-way: each clip is 8 runs of `count` frames, one per facing
     const rows = Math.ceil(a.n / a.cols), col = idx % a.cols, row = Math.floor(idx / a.cols);
     this.cell.set(col / a.cols, 1 - (row + 1) / rows, 1 / a.cols, 1 / rows);
   }

@@ -14,7 +14,7 @@ export function collidersFor(city: CityId): Collider[] {
   const list = [...natureLayout(city).colliders];
   list.push(...sceneryColliders(city));
   if (city === 'wild0'&&!farmPlan(city)) list.push(...sorrowlands().colliders);
-  if(farmPlan(city))for(const gate of portalsOf(city))list.push(...gatePillars(gate.x,gate.z));
+  for(const gate of portalsOf(city))list.push(...gatePillars(gate.x,gate.z)); // round 24: every gate has its two pillars
   if (!CITIES[city].parent) {
     list.push(...capitalColliders(city as 'hollow' | 'dawnveil' | 'thornwatch')); // painted buildings, lamps, trees, the plaza centre (capitalPlan.ts)
     for (const n of npcsIn(city)) { const [x, z] = npcPosition(n, city); list.push({ kind: 'circle', x, z, r: n.id === 'warden' ? 0.55 : 0.4 }); }

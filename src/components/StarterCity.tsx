@@ -9,7 +9,6 @@ import {farmPlan} from '@/game/world/farmLayout';
 import {navigationPlan} from '@/game/world/terrainNavigation';
 import {useEffect,useMemo,useRef} from 'react';
 import {useFrame} from '@react-three/fiber';
-import {spawnPoints} from '@/game/spawns';
 import {Instances,Instance,Sparkles,useTexture,Billboard} from '@react-three/drei';
 import {CITIES,FIELD_ART,WORLD_LIMIT,portalsOf,type Building,type CityId} from '@/game/content';
 import {onFieldRoad} from '@/game/world/fieldDimensions';
@@ -75,18 +74,16 @@ export function Waygates({city,interactive=true}:{city:CityId;interactive?:boole
  const color=GATE_COLOR[CITIES[city].parent??city]??'#b685ff';
  return <>{gates.map(g=>{const t=CITIES[g.to],lv=t.levels?`Lv ${t.levels[0]}${t.levels[1]>t.levels[0]?'–'+t.levels[1]:''}`:'เมืองหลวง',col=g.kind==='dungeon'?'#c98aff':color;
   return <group key={g.dir+g.to} position={[g.x,0,g.z]} rotation={[0,Math.atan2(-g.x,-g.z),0]}>
-   <mesh position={[0,1.5,0]}><torusGeometry args={[1.2,.07,10,48]}/><meshBasicMaterial color={col} transparent opacity={.75}/></mesh>
-   <mesh position={[0,1.5,0]}><circleGeometry args={[1.15,40]}/><meshBasicMaterial color={col} transparent opacity={.14} depthWrite={false} side={2}/></mesh>
-   {farmPlan(city)&&<>
-    {/* round 23: the painted warp gate stands over the ring, with two solid pillars (their colliders are in registry) */}
+   {/* round 24: every gate (capitals, fields, dungeons) is the painted warp gate with two solid pillars — no extra rings
+       (their colliders are in registry) */}
+   {<>
     <Billboard position={[0,4.1,0]}><mesh><planeGeometry args={[8.5,8.5]}/><meshBasicMaterial map={gateTexture} transparent alphaTest={.05} side={2}/></mesh></Billboard>
     {[-1,1].map(s=><group key={s} position={[s*3.2,0,0]}>
       <mesh position={[0,1.4,0]} castShadow><cylinderGeometry args={[.45,.65,2.8,6]}/><meshStandardMaterial color="#3c3544"/></mesh>
       <mesh position={[0,3,0]}><octahedronGeometry args={[.4]}/><meshStandardMaterial color={col} emissive={col} emissiveIntensity={1}/></mesh>
     </group>)}
    </>}
-   <mesh rotation={[-Math.PI/2,0,0]} position={[0,.14,0]}><ringGeometry args={[1.5,GATE_TRIGGER,48]}/><meshBasicMaterial color={col} transparent opacity={.3} depthWrite={false}/></mesh>
-   <Label3D z={12} position={[0,farmPlan(city)?8.8:3.6,0]} className="portal-label" text={`${g.kind==='dungeon'?'ดันเจี้ยน · ':g.kind==='city'?'กลับ · ':''}${t.name}`} sub={`${FIELD_ART[g.to]?.th?FIELD_ART[g.to]!.th+' · ':''}${lv}`}/>
+   <Label3D z={12} position={[0,8.8,0]} className="portal-label" text={`${g.kind==='dungeon'?'ดันเจี้ยน · ':g.kind==='city'?'กลับ · ':''}${t.name}`} sub={`${FIELD_ART[g.to]?.th?FIELD_ART[g.to]!.th+' · ':''}${lv}`}/>
   </group>;})}</>;
 }
 const GATE_COLOR:Record<string,string>={hollow:'#62e6d2',dawnveil:'#7fe8ff',thornwatch:'#7f9cff'};
@@ -102,7 +99,7 @@ export default function StarterCity(){
   <mesh rotation={[-Math.PI/2,0,0]} receiveShadow><planeGeometry args={[lim*2+40,lim*2+40]}/><meshStandardMaterial color={c.ground} roughness={1}/></mesh>
   {/* round 22: a field with a painting is drawn by its painting (paths, trees, ruins included); the rest keep the built terrain */}
   {/* round 23: measured 240 m farm layout — tiled material ground + solid scenery islands */}
-  {farmPlan(c.id)?<><FarmGround id={c.id}/><FarmScenery id={c.id}/></>:painted?<PaintedFieldGround city={c.id}/>:<>{navigationPlan(c.id)&&<NavigationGround city={c}/>}{c.biome&&<WildTerrain city={c}/>}</>}  {spawnPoints(c.id).map(p=><mesh key={p.id} position={[p.position[0],.13,p.position[1]]} rotation={[-Math.PI/2,0,0]}><ringGeometry args={[.9,1.02,32]}/><meshBasicMaterial color={p.boss?'#e5ba66':p.elite?'#be84e8':'#e37c6c'} transparent opacity={.5} depthWrite={false}/></mesh>)}
+  {farmPlan(c.id)?<><FarmGround id={c.id}/><FarmScenery id={c.id}/></>:painted?<PaintedFieldGround city={c.id}/>:<>{navigationPlan(c.id)&&<NavigationGround city={c}/>}{c.biome&&<WildTerrain city={c}/>}</>}  
   {!painted&&!navigationPlan(c.id)&&<Instances key={c.id} limit={Math.max(1,tiles.length)} receiveShadow><boxGeometry args={[1.94,.1,1.94]}/><meshStandardMaterial roughness={.9}/>{tiles.map((t,i)=><Instance key={i} position={[t.x,c.water&&Math.abs(t.x-c.water.x)<c.water.w/2+.1?.18:.015,t.z]} color={i%4===0?c.stone:c.ground}/>)}</Instances>}
   {!painted&&c.water&&<mesh rotation={[-Math.PI/2,0,0]} position={[c.water.x,.08,0]}><planeGeometry args={[c.water.w,lim*2]}/><meshStandardMaterial color="#3b808e" metalness={.65} roughness={.15} transparent opacity={.8}/></mesh>}
   {!painted&&c.buildings.map((b,i)=><Structure key={i} b={b} stone={c.stone} roof={c.roof} accent={c.accent}/>)}

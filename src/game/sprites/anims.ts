@@ -7,10 +7,10 @@ export type SpriteAnim = { cw: number; ch: number; cols: number; n: number; fx: 
 export const SPRITE_ANIMS: Record<string, SpriteAnim> = {
  'abyssal-forge-titan':{cw:579,ch:370,cols:7,n:69,fx:0.4997,fy:0.148,bodyPx:240.0,clips:{idle:[0,10],walk:[10,11],run:[21,10],skill:[31,10],attack:[41,10],special:[51,10],ultimate:[61,8]}},
  'ancient-treant':{cw:211,ch:213,cols:10,n:31,fx:0.4804,fy:0.0335,bodyPx:200.0,clips:{idle:[0,6],walk:[6,9],run:[15,8],attack:[23,8]}},
- 'ash-hound':{cw:234,ch:150,cols:10,n:27,fx:0.499,fy:0.0337,bodyPx:140.0,clips:{idle:[0,6],walk:[6,7],run:[13,7],attack:[20,7]}},
+ 'ash-hound':{cw:212,ch:158,cols:19,n:144,fx:0.5,fy:0.038,bodyPx:140.0,clips:{"idle":[0,1],"walk":[8,6],"attack":[56,6],"death":[104,5]},dirs:8}, // round 24: ChatGPT 8-way sheets (scripts/sprites/build_monster_8dir.py)
  'astral-wraith':{cw:242,ch:227,cols:10,n:29,fx:0.4999,fy:0.0857,bodyPx:200.0,clips:{idle:[0,6],walk:[6,8],run:[14,7],attack:[21,8]}},
  'bark-guardian':{cw:198,ch:148,cols:10,n:30,fx:0.5165,fy:0.0303,bodyPx:140.0,clips:{idle:[0,6],walk:[6,8],run:[14,8],attack:[22,8]}},
- 'bone-sentinel':{cw:224,ch:183,cols:10,n:25,fx:0.4992,fy:0.075,bodyPx:140.0,clips:{idle:[0,6],walk:[6,6],run:[12,6],attack:[18,7]}},
+ 'bone-sentinel':{cw:229,ch:160,cols:17,n:144,fx:0.5,fy:0.0375,bodyPx:140.0,clips:{"idle":[0,1],"walk":[8,6],"attack":[56,6],"death":[104,5]},dirs:8}, // round 24: ChatGPT 8-way sheets (scripts/sprites/build_monster_8dir.py)
  'briar-wolf':{cw:243,ch:157,cols:10,n:30,fx:0.5399,fy:0.0583,bodyPx:140.0,clips:{idle:[0,6],walk:[6,8],run:[14,8],attack:[22,8]}},
  'cinder-beetle':{cw:234,ch:195,cols:10,n:28,fx:0.504,fy:0.025,bodyPx:140.0,clips:{idle:[0,5],walk:[5,8],run:[13,7],attack:[20,8]}},
  'crown-colossus':{cw:208,ch:222,cols:10,n:29,fx:0.4987,fy:0.0823,bodyPx:200.0,clips:{idle:[0,5],walk:[5,8],run:[13,8],attack:[21,8]}},
@@ -18,7 +18,7 @@ export const SPRITE_ANIMS: Record<string, SpriteAnim> = {
  'eclipse-drake':{cw:297,ch:247,cols:10,n:28,fx:0.4996,fy:0.1112,bodyPx:200.0,clips:{idle:[0,5],walk:[5,8],run:[13,8],attack:[21,7]}},
  'fen-maw-otter':{cw:312,ch:218,cols:10,n:28,fx:0.5007,fy:0.0596,bodyPx:140.0,clips:{idle:[0,6],walk:[6,7],run:[13,7],attack:[20,8]}},
  'frost-wraith':{cw:244,ch:218,cols:10,n:26,fx:0.4977,fy:0.0564,bodyPx:200.0,clips:{idle:[0,5],walk:[5,7],run:[12,7],attack:[19,7]}},
- 'grave-crawler':{cw:244,ch:189,cols:10,n:30,fx:0.5088,fy:0.1045,bodyPx:140.0,clips:{idle:[0,6],walk:[6,8],run:[14,8],attack:[22,8]}},
+ 'grave-crawler':{cw:249,ch:157,cols:16,n:144,fx:0.5,fy:0.0382,bodyPx:140.0,clips:{"idle":[0,1],"walk":[8,6],"attack":[56,6],"death":[104,5]},dirs:8}, // round 24: ChatGPT 8-way sheets (scripts/sprites/build_monster_8dir.py)
  'halo-seraph':{cw:211,ch:209,cols:10,n:30,fx:0.5194,fy:0.0197,bodyPx:200.0,clips:{idle:[0,6],walk:[6,8],run:[14,8],attack:[22,8]}},
  'ironhide-rhino':{cw:271,ch:151,cols:10,n:29,fx:0.5063,fy:0.0469,bodyPx:140.0,clips:{idle:[0,6],walk:[6,8],run:[14,7],attack:[21,8]}},
  'moon-moth':{cw:311,ch:246,cols:10,n:30,fx:0.4988,fy:0.1026,bodyPx:200.0,clips:{idle:[0,6],walk:[6,9],run:[15,8],attack:[23,7]}},
