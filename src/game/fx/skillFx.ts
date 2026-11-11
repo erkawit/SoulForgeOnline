@@ -116,6 +116,27 @@ function runeCircle(fx: Fx, at: Vector3, color: string, radius: number, a: numbe
   fx.add(shade, d, t => { const k = ph(t, a, b); shade.scale.setScalar(radius); d.opacity = 0.55 * Math.min(1, k * 5) * Math.min(1, (1 - k) * 4); shade.visible = k > 0 && k < 1; });
   fx.add(mesh, m, (t, el) => { const k = ph(t, a, b); mesh.scale.setScalar(radius * (0.6 + 0.4 * ease(Math.min(1, k * 3)))); mesh.rotation.z = el * spin; m.opacity = opacity * Math.min(1, k * 4) * Math.min(1, (1 - k) * 4); mesh.visible = k > 0 && k < 1; });
 }
+/** round 24: soft aura waves rolling out from a pillar to the edge of its area — the edge glows faintly so the player can
+ *  read the damage / buff radius, but nothing is a hard ring: ripples, a wobbling rim and a mist fade out with the effect */
+const AURA_FRAG = /* glsl */`
+uniform vec3 uColor; uniform float uTime, uOpacity, uWaves; varying vec2 vUv;
+void main(){
+  vec2 p = vUv * 2. - 1.; float d = length(p); if (d > 1.06) discard;
+  float ang = atan(p.y, p.x), wob = (.025 * sin(ang * 7. + uTime * 1.7) + .02 * sin(ang * 3. - uTime * 1.1)) * smoothstep(.0, .45, d);
+  float dd = d + wob, w = 0.;
+  for (int i = 0; i < 4; i++) { if (float(i) >= uWaves) break; float r = fract(uTime * .42 + float(i) / uWaves);
+    w += exp(-pow((dd - r) * 9., 2.)) * (1. - r) * smoothstep(0., .15, r); }
+  float rim = exp(-pow((dd - .97) * 16., 2.)) * .55, mist = (1. - smoothstep(.0, 1., dd)) * .16;
+  float a = (w * .85 + rim + mist) * uOpacity * (1. - smoothstep(1., 1.06, d));
+  gl_FragColor = vec4(uColor * a, a);
+}`;
+function auraWaves(fx: Fx, at: Vector3, color: string, radius: number, a: number, b: number, opacity = 0.75, waves = 3) {
+  const m = new ShaderMaterial({ uniforms: { uColor: { value: new Color(color) }, uTime: { value: 0 }, uOpacity: { value: 0 }, uWaves: { value: waves } },
+    vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }',
+    fragmentShader: AURA_FRAG, transparent: true, depthWrite: false, blending: AdditiveBlending, side: DoubleSide });
+  const mesh = new Mesh(new PlaneGeometry(2, 2), m); mesh.rotation.x = -Math.PI / 2; mesh.position.copy(at).setY(at.y + 0.06); mesh.scale.setScalar(radius);
+  fx.add(mesh, m, (t, el) => { const k = ph(t, a, b); m.uniforms.uTime.value = el; m.uniforms.uOpacity.value = opacity * Math.min(1, k * 6) * Math.min(1, (1 - k) * 5); mesh.visible = k > 0 && k < 1; });
+}
 function pillar(fx: Fx, at: Vector3, color: string, radius: number, height: number, a: number, b: number, opacity = 0.55) {
   const m = fresnelMat(color, 0, 1.6, height); const geo = new CylinderGeometry(radius, radius * 1.15, height, 40, 8, true); geo.translate(0, height / 2, 0);
   const mesh = new Mesh(geo, m); mesh.position.copy(at);
@@ -377,12 +398,12 @@ type SkillFxSpec = { origin: Vector3; yaw: number; target: Vector3 | null; follo
 /** effects built for one skill: [duration s, builder] */
 const SKILL_FX: Record<string, [number, (fx: Fx, o: Vector3, tgt: Vector3, yaw: number) => void]> = {
   // ---- Rune Master (painted pillars from the ChatGPT sheets + a procedural ground ring)
-  'r2-venom-burst': [1.3, (fx, o, tgt) => { paintedAnim(fx, 'venom-burst', tgt, 4.2, 0.1, 1, { foot: true }); groundRing(fx, tgt, '#5cff8a', 0.4, 3, 0.18, 0.5, 0.2); }],
-  'r2-valor-pillar': [15, (fx, o) => { const at = o.clone().add(new Vector3(0.9, 0, 0.6)); paintedAnim(fx, 'pillar-valor', at, 3.4, 0, 1, { plan: 'hold', foot: true }); runeCircle(fx, at, '#ffd36a', 1.6, 0, 1, 'sun', 0.6, 0.7); }],
-  'r2-binding-pillar': [3.2, (fx, o, tgt) => { paintedAnim(fx, 'pillar-binding', tgt, 4.6, 0, 1, { plan: 'hold', foot: true }); runeCircle(fx, tgt, '#b685ff', 3, 0, 1, 'hex', 0.8, 0.6); }],
-  'r2-renewal-pillar': [10, (fx, o) => { const at = o.clone().add(new Vector3(-0.9, 0, 0.6)); paintedAnim(fx, 'pillar-renewal', at, 3.4, 0, 1, { plan: 'hold', foot: true }); runeCircle(fx, at, '#6dffa8', 1.6, 0, 1, 'circle', 0.6, 0.7); }],
-  'r2-hex-pillar': [10, (fx, o, tgt) => { paintedAnim(fx, 'pillar-hexes', tgt, 3.6, 0, 1, { plan: 'hold', foot: true }); runeCircle(fx, tgt, '#ff4d6a', 3.5, 0, 1, 'cross', 0.5, 0.5); }],
-  'r2-ruin-pillar': [5.2, (fx, o, tgt) => { paintedAnim(fx, 'rune-circle', tgt, 7.4, 0, 1, { plan: 'hold', mode: 'ground', opacity: 0.85 }); paintedAnim(fx, 'pillar-ruin', tgt, 5.2, 0, 1, { plan: 'hold', foot: true });
+  'r2-venom-burst': [1.3, (fx, o, tgt) => { paintedAnim(fx, 'venom-burst', tgt, 4.2, 0.1, 1, { foot: true }); auraWaves(fx, tgt, '#5cff8a', 2.8, 0.05, 0.75, 0.7, 2); }],
+  'r2-valor-pillar': [15, (fx, o) => { const at = o.clone().add(new Vector3(0.9, 0, 0.6)); paintedAnim(fx, 'pillar-valor', at, 3.4, 0, 1, { plan: 'hold', foot: true }); auraWaves(fx, at, '#ffd36a', 8, 0, 1, 0.35, 2); }],  // buff reaches the party within 8 m
+  'r2-binding-pillar': [3.2, (fx, o, tgt) => { paintedAnim(fx, 'pillar-binding', tgt, 4.6, 0, 1, { plan: 'hold', foot: true }); auraWaves(fx, tgt, '#b685ff', 3, 0, 1); }],
+  'r2-renewal-pillar': [10, (fx, o) => { const at = o.clone().add(new Vector3(-0.9, 0, 0.6)); paintedAnim(fx, 'pillar-renewal', at, 3.4, 0, 1, { plan: 'hold', foot: true }); auraWaves(fx, at, '#6dffa8', 8, 0, 1, 0.35, 2); }],
+  'r2-hex-pillar': [10, (fx, o, tgt) => { paintedAnim(fx, 'pillar-hexes', tgt, 3.6, 0, 1, { plan: 'hold', foot: true }); auraWaves(fx, tgt, '#ff4d6a', 3.5, 0, 1); }],
+  'r2-ruin-pillar': [5.2, (fx, o, tgt) => { paintedAnim(fx, 'rune-circle', tgt, 7.4, 0, 1, { plan: 'hold', mode: 'ground', opacity: 0.85 }); paintedAnim(fx, 'pillar-ruin', tgt, 5.2, 0, 1, { plan: 'hold', foot: true }); auraWaves(fx, tgt, '#62dfdf', 3.6, 0, 1, 0.8, 4);
     for (let i = 0; i < 10; i++) { const a = Math.random() * 6.28, r = 0.8 + Math.random() * 2.6, t0 = 0.06 + i * 0.09; impact(fx, tgt.clone().add(new Vector3(Math.cos(a) * r, 0, Math.sin(a) * r)), '#62dfdf', t0, 0.6); } }],
   // ---- Berserker / Reaver (painted ChatGPT sheets; `o` follows the caster while the effect lives)
   'b-rending-rush': [0.95, (fx, o, tgt) => { paintedAnim(fx, 'b-rending-rush', tgt, 3.6, 0, 1, { lift: 1 }); }],

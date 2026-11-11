@@ -66,19 +66,21 @@ function AutoPanel() {
   const defs = useConfigStore(s => s.skills.defs); const set = useGameStore.getState().patchAuto;
   useEffect(() => { useGameStore.getState().tip('auto-open'); }, []);
   const ids = [hot.skill, hot.buff, hot.special, ...extra];
+  // plain render helpers, NOT components: a component declared here would be a new type every render and React would
+  // remount the slider on every change (dragging stopped after one step; only tapping the track worked)
   const Sw = ({ on, onClick }: { on: boolean; onClick: () => void }) => <button className={`h2-switch ${on ? 'on' : ''}`} onClick={onClick} aria-pressed={on} />;
   const Range = ({ k, min, max, unit = '%' }: { k: 'hpPotionPct' | 'mpPotionPct' | 'healAllyPct' | 'radius'; min: number; max: number; unit?: string }) =>
     <span className="h2-range"><input type="range" min={min} max={max} value={a[k]} onChange={e => set({ [k]: +e.target.value })} /><b>{a[k]}{unit}</b></span>;
   return <div className="h2-auto">
     <button className={`sf-btn ${a.enabled ? '' : 'ghost'}`} onClick={() => useGameStore.getState().setAuto(!a.enabled)}>{a.enabled ? '■ หยุด AUTO' : '▶ เริ่ม AUTO'}</button> <small className="h2-note">Z เปิด/ปิด · ขยับเองแล้วพัก 3 วินาที</small>
     <div className="h2-sub">ยาและอาหาร</div>
-    <div className="h2-row"><span>ดื่มยา HP <small>มี {['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((x, id) => x + countOf(inv, id), 0)} ขวด</small></span><Sw on={a.hpPotion} onClick={() => set({ hpPotion: !a.hpPotion })} /></div>
-    <div className="h2-row"><span>เมื่อ HP ต่ำกว่า</span><Range k="hpPotionPct" min={10} max={90} /></div>
-    <div className="h2-row"><span>ดื่มยา MP <small>มี {['potion-mp-m', 'potion-mp-s'].reduce((x, id) => x + countOf(inv, id), 0)} ขวด</small></span><Sw on={a.mpPotion} onClick={() => set({ mpPotion: !a.mpPotion })} /></div>
-    <div className="h2-row"><span>เมื่อ MP ต่ำกว่า</span><Range k="mpPotionPct" min={5} max={80} /></div>
-    <div className="h2-row"><span>กินอาหารบัฟ <small>{FOOD_ITEMS.map(f => f.th).join(' / ')}</small></span><Sw on={a.food} onClick={() => set({ food: !a.food })} /></div>
+    <div className="h2-row"><span>ดื่มยา HP <small>มี {['potion-hp-l', 'potion-hp-m', 'potion-hp-s'].reduce((x, id) => x + countOf(inv, id), 0)} ขวด</small></span>{Sw({ on: a.hpPotion, onClick: () => set({ hpPotion: !a.hpPotion }) })}</div>
+    <div className="h2-row"><span>เมื่อ HP ต่ำกว่า</span>{Range({ k: "hpPotionPct", min: 10, max: 90 })}</div>
+    <div className="h2-row"><span>ดื่มยา MP <small>มี {['potion-mp-m', 'potion-mp-s'].reduce((x, id) => x + countOf(inv, id), 0)} ขวด</small></span>{Sw({ on: a.mpPotion, onClick: () => set({ mpPotion: !a.mpPotion }) })}</div>
+    <div className="h2-row"><span>เมื่อ MP ต่ำกว่า</span>{Range({ k: "mpPotionPct", min: 5, max: 80 })}</div>
+    <div className="h2-row"><span>กินอาหารบัฟ <small>{FOOD_ITEMS.map(f => f.th).join(' / ')}</small></span>{Sw({ on: a.food, onClick: () => set({ food: !a.food }) })}</div>
     <div className="h2-sub">เก็บของ</div>
-    <div className="h2-row"><span>เก็บของอัตโนมัติ <small>เดินผ่านก็เก็บ · AUTO เดินไปเก็บเองในระยะ 12 ม.</small></span><Sw on={a.loot} onClick={() => set({ loot: !a.loot })} /></div>
+    <div className="h2-row"><span>เก็บของอัตโนมัติ <small>เดินผ่านก็เก็บ · AUTO เดินไปเก็บเองในระยะ 12 ม.</small></span>{Sw({ on: a.loot, onClick: () => set({ loot: !a.loot }) })}</div>
     {a.loot && <>
       <div className="h2-row col"><span>อุปกรณ์ระดับที่จะเก็บ <small>วัตถุดิบ ยา อาหาร เก็บเสมอ</small></span>
         <div className="h2-grades">{LOOT_GRADES.map(g => { const on = (a.lootRarities ?? LOOT_GRADES).includes(g);
@@ -86,14 +88,14 @@ function AutoPanel() {
             onClick={() => { const cur = new Set<string>(a.lootRarities ?? LOOT_GRADES); if (on) cur.delete(g); else cur.add(g); set({ lootRarities: LOOT_GRADES.filter(x => cur.has(x)) }); }}>{on ? '✓ ' : ''}{LOOT_GRADES_TH[g]}</button>; })}</div></div>
       <div className="h2-row"><span>เก็บอุปกรณ์ตั้งแต่</span><span className="h2-range"><input type="range" min={0} max={10} value={a.lootMinEnhance ?? 0} onChange={e => set({ lootMinEnhance: +e.target.value })} /><b>{(a.lootMinEnhance ?? 0) ? `+${a.lootMinEnhance}` : 'ทุก +'}</b></span></div>
     </>}
-    <div className="h2-row"><span>รัศมีล่า</span><Range k="radius" min={6} max={30} unit=" ม." /></div>
+    <div className="h2-row"><span>รัศมีล่า</span>{Range({ k: "radius", min: 6, max: 30, unit: " ม." })}</div>
     {isSupportClass(cls) && <><div className="h2-sub">รูปแบบการเล่น ({CLASS_TH[cls]})</div><div className="h2-focus">{(['attack', 'support', 'hybrid'] as AutoFocus[]).map(f => <button key={f} className={a.focus === f ? 'on' : ''} onClick={() => set({ focus: f })}><b>{FOCUS_TH[f].name}</b>{FOCUS_TH[f].desc}</button>)}</div>
-      <div className="h2-row"><span>ช่วยเพื่อนเมื่อเลือดต่ำกว่า</span><Range k="healAllyPct" min={20} max={90} /></div>
-      <div className="h2-row"><span>รักษาบัฟยาวให้ทุกคน</span><Sw on={a.keepBuffs} onClick={() => set({ keepBuffs: !a.keepBuffs })} /></div></>}
+      <div className="h2-row"><span>ช่วยเพื่อนเมื่อเลือดต่ำกว่า</span>{Range({ k: "healAllyPct", min: 20, max: 90 })}</div>
+      <div className="h2-row"><span>รักษาบัฟยาวให้ทุกคน</span>{Sw({ on: a.keepBuffs, onClick: () => set({ keepBuffs: !a.keepBuffs }) })}</div></>}
     <div className="h2-sub">สกิลที่ให้ AUTO ใช้</div>
     {ids.map((id, i) => { const d = defs.find(x => x.id === id); if (!d) return null; const on = a.skills[i + 1] !== false;
       return <div key={i} className="h2-row"><span><b>{KEYS[i + 1]}</b> {d.name} <small>{skillRoles(d).map(r => ({ damage: 'โจมตี', heal: 'ฮีล', buff: 'บัฟ', shield: 'โล่', debuff: 'ดีบัฟ' } as Record<string, string>)[r]).join(' · ')}</small></span>
-        <Sw on={on} onClick={() => { const sk = [...a.skills]; sk[i + 1] = !on; set({ skills: sk }); }} /></div>; })}
+        {Sw({ on: on, onClick: () => { const sk = [...a.skills]; sk[i + 1] = !on; set({ skills: sk }); } })}</div>; })}
   </div>;
 }
 function TipCard() {
@@ -218,6 +220,7 @@ export default function GameHUD() {
   const foodCount = FOOD_ITEMS.reduce((a, f) => a + countOf(inventory, f.id), 0), fed = buffs.some(b => b.id.startsWith('food-') && b.until > now);
   const menu: [Exclude<Panel, null>, string, string, string][] = [['inventory', '🎒', 'I', 'กระเป๋า · อุปกรณ์'], ['character', '♜', 'C', 'ตัวละคร'], ['skills', '✺', 'K', 'สกิล'], ['quests', '❡', 'J', 'เควส'], ['codex', '✦', 'L', 'สมุดสะสม'], ['wardrobe', '👘', 'U', 'ตู้เสื้อผ้า'], ['monsters', '☠', 'N', 'สมุดมอนสเตอร์'],
     ['auto', '⟳', 'Z', 'AUTO'], ['online', '⚑', '', 'ออนไลน์ / ปาร์ตี้'], ['cloud', '☁', '', 'เซฟคลาวด์'], ['settings', '⚙', 'O', 'ตั้งค่า']];
+  const SHORT: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า', character: 'ตัวละคร', skills: 'สกิล', quests: 'เควส', codex: 'สะสม', wardrobe: 'ตู้ชุด', monsters: 'มอนสเตอร์', auto: 'ออโต้', online: 'ออนไลน์', cloud: 'เซฟคลาวด์', settings: 'ตั้งค่า' };
   const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'menu_03_inventory', character: 'menu_12_character_helm', skills: 'menu_04_skill_book', quests: 'menu_22_quest_scrolls', codex: 'menu_11_codex_book', wardrobe: 'menu_09_avatar_armor', monsters: 'menu_32_boss_battle_locked', auto: 'icon_refresh', online: 'menu_28_community_friends', cloud: 'icon_crystal_orb', settings: 'icon_menu_settings_gear' };
   const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
 
@@ -237,10 +240,11 @@ export default function GameHUD() {
     <Minimap cityId={city.id} />
     <button type="button" className={`sf-gear pointer-events-auto ${panel === 'settings' ? 'on' : ''}`} title="ตั้งค่า (O)" aria-label="ตั้งค่า" onClick={() => toggle('settings')}><img src="/art/ui-kit/icon_menu_settings_gear.webp" alt="" /></button>
     <ZoneLabel cityName={city.name} cityId={city.id} />
-    <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{key && <small>{key}</small>}</button>)}
-      <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/ui-kit/map_waypoint_node_swords.webp" alt="" /><small>M</small></button>
-      <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" /><small>P</small></button>
-      <button title="Wiki · ข้อมูลเกม (เปิดแท็บใหม่)" aria-label="Wiki" onClick={() => window.open('/wiki', '_blank', 'noopener')}><img className="sf-menu-ico" src="/art/ui-kit/menu_23_daily_request.webp" alt="" /><small>W</small></button></nav>
+    <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{layout === 'mobile' ? <span className="nm">{SHORT[id]}</span> : key && <small>{key}</small>}</button>)}
+      <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/ui-kit/map_waypoint_node_swords.webp" alt="" />{layout === 'mobile' ? <span className="nm">แผนที่</span> : <small>M</small>}</button>
+      <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" />{layout === 'mobile' ? <span className="nm">ปาร์ตี้</span> : <small>P</small>}</button>
+      <button title="Wiki · ข้อมูลเกม (เปิดแท็บใหม่)" aria-label="Wiki" onClick={() => window.open('/wiki', '_blank', 'noopener')}><img className="sf-menu-ico" src="/art/ui-kit/menu_23_daily_request.webp" alt="" />{layout === 'mobile' ? <span className="nm">วิกิ</span> : <small>W</small>}</button>
+      {layout === 'mobile' && <button title="หมุนจอ" aria-label={orientation === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'} onClick={() => window.dispatchEvent(new Event('sf-rotate'))}><span className="rot-ico" aria-hidden>{orientation === 'portrait' ? '▭' : '▯'}</span><span className="nm">{orientation === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</span></button>}</nav>
     {/* windows */}
     {panel && layout === 'mobile' && (panel === 'inventory' || panel === 'character') ? <div className="h3-drawer pointer-events-auto" role="dialog" aria-label="กระเป๋าและสเตตัส">
       <header><span className="dtabs"><button className={panel === 'inventory' ? 'on' : ''} onClick={() => setPanel('inventory')}>🎒 อุปกรณ์ & กระเป๋า</button><button className={panel === 'character' ? 'on' : ''} onClick={() => setPanel('character')}>♜ สเตตัส</button></span>

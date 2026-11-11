@@ -9,7 +9,7 @@
 //   · quick row above the joystick: HP potion, MP potion, AUTO, next target, menu
 import { lockOrientation } from '@/game/ui/orientation';
 import { skillIconStyle } from '@/game/skills/icons';
-import { useRef, useState, type PointerEvent as RPointerEvent } from 'react';
+import { useEffect, useRef, useState, type PointerEvent as RPointerEvent } from 'react';
 import { Swords } from 'lucide-react';
 import { useGameStore, countOf, expRequired } from '@/store/useGameStore';
 import { usePlayerStatic } from '@/store/usePlayerStatic';
@@ -70,6 +70,7 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
   const k = (v: number, m: number) => Math.max(0, Math.min(1, v / Math.max(1, m)));
   // portrait ⇄ landscape: lock where the browser allows it, otherwise ask the player to turn the phone
   const [rotHint, setRotHint] = useState('');
+  useEffect(() => { const h = () => void rotate(); window.addEventListener('sf-rotate', h); return () => window.removeEventListener('sf-rotate', h); });
   const rotate = async () => {
     const want = o === 'portrait' ? 'landscape' : 'portrait';
     const r = await lockOrientation(want);
@@ -92,13 +93,12 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
       <button className={`tq ${target ? 'on' : ''}`} onPointerDown={tap(nextTarget)} aria-label="เปลี่ยนเป้าหมาย"><span className="ico tgt" /><small>เป้า</small></button>
       <button className={`tq ${menuOpen ? 'on' : ''}`} onClick={onMenu} aria-label="เมนู" aria-expanded={menuOpen}><span className="ico menu" /><small>เมนู</small></button>
     </div>
-    <button className="tc-rot pointer-events-auto" onClick={() => void rotate()} aria-label={o === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'}><b>{o === 'portrait' ? '▭' : '▯'}</b>{o === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</button>
     {rotHint && <div className="tc-rot-hint" role="status">{rotHint}</div>}
     <div className="tc-act pointer-events-auto" style={{ ['--cc' as string]: CLASS_COLOR[cls] ?? '#c89b3c' }}>
       <button className="basic" onPointerDown={e => { e.preventDefault(); buzz(8); basicDown(); }} onPointerUp={basicUp} onPointerCancel={basicUp} aria-label="โจมตี"><Swords size={32} /><span>โจมตี</span></button>
       {shown.map((s, j) => <button key={s.i} className={`sk ${s.off ? 'off' : ''} ${s.nomp ? 'nomp' : ''}`} style={at(ARC[o][j])} title={s.title} aria-label={s.name}
         onPointerDown={tap(() => castSlot(s.i))}>
-        <span className="g">{s.glyph}</span><i className="ic" aria-hidden style={skillIconStyle(s.shows)} /><b className="k">{KEYS[s.i]}</b>
+        <span className="g">{s.glyph}</span><i className="ic" aria-hidden style={skillIconStyle(s.shows)} /><b className="k">{s.i}</b>
         {s.left > 0 && <span className="cd" style={{ ['--p' as string]: `${Math.min(100, s.left / s.total * 100)}%` }}><b>{Math.ceil(s.left / 1000)}</b></span>}</button>)}
       {o === 'portrait' && <button className="page" style={at(PAGE_CHIP)} onPointerDown={tap(() => setPage(p => p ^ 1))} aria-label="สลับหน้าสกิล"><b>{page ? '1–4' : '5–6'}</b></button>}
     </div>

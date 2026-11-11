@@ -58,3 +58,18 @@
 .atlas-pop-x{position:absolute;right:6px;top:4px;background:none;border:0;color:#cdbb92;font-size:20px;cursor:pointer}
 .atlas-pop-note{color:#d9a48a}
 .atlas-coords{position:absolute;left:12px;top:64px;font:600 12px/1.4 system-ui;color:#f2e0b4;background:#0b0a0dcc;padding:4px 8px;border:1px solid #5a4a32;pointer-events:none}
+
+/* round 24: the panels stretch to their grid rows (the global .atlas-layout align-items:start made the sidebar grow
+   to its full content height, so the list never scrolled on a phone) */
+.sf-atlas .atlas-layout { align-items: stretch; }
+.sf-atlas .atlas-sidebar { overflow: hidden; }
+.sf-atlas .atlas-list { touch-action: pan-y; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.sf-atlas .atlas-detail { flex: none; max-height: 34%; overflow-y: auto; }
+@media(max-width:650px) and (orientation:portrait){
+  .sf-atlas .atlas-layout { grid-template-rows: minmax(0,1.1fr) minmax(0,1fr); }
+  .atlas-tools { bottom: 8px !important; left: 6px; right: 6px; gap: 4px; }
+  .atlas-tools button { width: 32px; height: 32px; font-size: 16px; }
+  .atlas-walk-legend { display: none; }
+  .atlas-coords { top: 56px; font-size: 11px; }
+  .atlas-pop { min-width: 0; width: calc(100% - 20px); bottom: 50px; }
+}

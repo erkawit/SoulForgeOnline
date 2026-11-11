@@ -100,8 +100,20 @@
 .tc-quick .tq small { font-size: 10.5px; } .tc-quick .tq b { font-size: 12px; } .tc-quick .tq .q { font-size: 11px; }
 .tc-act .sk .k { font-size: 9.5px; } .tc-act .basic span { font-size: 11px; } .tc-act .page b { font-size: 12px; }
 /* portrait ⇄ landscape toggle (MobileHUDLayout) */
-.tc-rot { position: absolute; right: calc(10px + var(--sr)); top: calc(206px + var(--st, 0px)); z-index: 8; display: flex; align-items: center; gap: 5px;
-  padding: 5px 9px; border: 1px solid #8c754f; border-radius: 8px; background: #1a1720e0; color: #f2e3bf; font-size: 11px; }
-.tc-rot b { font: 700 15px/1 system-ui; }
 .tc-rot-hint { position: absolute; left: 50%; top: 38%; transform: translateX(-50%); max-width: min(86vw, 360px); padding: 10px 14px; border: 1px solid #a68b58;
   border-radius: 10px; background: #15131ce8; color: #f0dfbe; font-size: 12px; line-height: 1.5; text-align: center; z-index: 30; pointer-events: none; }
+
+/* round 24: menu items show their names (no hot-key letters on touch); "หมุนจอ" lives in the menu */
+.h2.touch .h2-menu.mobile button { aspect-ratio: auto !important; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 6px 2px 5px; min-height: 70px; }
+.h2.touch .h2-menu.mobile button .sf-menu-ico { position: static !important; inset: auto !important; width: 40px !important; height: 40px !important; }
+.h2.touch .h2-menu.mobile button .nm { font-size: 11px; line-height: 1.15; color: #f0dfb8; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.h2.touch .h2-menu.mobile button .rot-ico { display: grid; place-items: center; width: 40px; height: 40px; font: 700 22px/1 system-ui; color: #e9cf91; }
+.h2.touch.landscape .h2-menu.mobile { width: 300px; grid-template-columns: repeat(4, 1fr) !important; }
+/* every window fills the screen on a phone, in either orientation, and its content scrolls with the finger */
+.h2.touch .h2-win, .h2.touch .h2-win.wide { position: fixed !important; inset: 0 !important; width: 100% !important; max-width: none !important; height: 100dvh !important; max-height: none !important;
+  border-radius: 0 !important; z-index: 80; padding: calc(6px + var(--st)) calc(6px + var(--sr)) calc(6px + var(--sb)) calc(6px + var(--sl)); box-sizing: border-box; }
+.h2.touch .h2-win .body { flex: 1; min-height: 0; overflow-y: auto; touch-action: pan-y; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.h2.touch .h2-win header .sf-close { width: 40px; height: 40px; }
+@media (pointer: coarse), (max-width: 767px) {
+  .sf-win:not(.sf-atlas) { inset: 0; transform: none; width: 100%; max-width: none; height: 100dvh; max-height: none; border-radius: 0; z-index: 90; box-sizing: border-box; touch-action: pan-y; overscroll-behavior: contain; }
+}
