@@ -26,7 +26,7 @@ import { ZONES, zoneAt } from '@/game/world/zones';
 import { NPCS, npcsIn, npcPosition } from '@/game/npcs';
 import { CAPITAL_HALF, CAPITAL_PIECES, CANAL_IN, CITY_SCALE, GATE_D, GATE_TRIGGER, PLAZA_R } from '@/game/world/capitalPlan';
 import { QUESTS, activeQuests, npcMarker, questProgressText } from '@/game/quests';
-import { FOCUS_TH, isSupportClass, skillRoles, type AutoFocus } from '@/game/auto';
+import { FOCUS_TH, LOOT_GRADES, LOOT_GRADES_TH, isSupportClass, skillRoles, type AutoFocus } from '@/game/auto';
 import { FOOD_ITEMS } from '@/game/items';
 import { audio } from '@/game/audio/engine';
 import SettingsPanel from './SettingsPanel';
@@ -77,7 +77,15 @@ function AutoPanel() {
     <div className="h2-row"><span>ดื่มยา MP <small>มี {['potion-mp-m', 'potion-mp-s'].reduce((x, id) => x + countOf(inv, id), 0)} ขวด</small></span><Sw on={a.mpPotion} onClick={() => set({ mpPotion: !a.mpPotion })} /></div>
     <div className="h2-row"><span>เมื่อ MP ต่ำกว่า</span><Range k="mpPotionPct" min={5} max={80} /></div>
     <div className="h2-row"><span>กินอาหารบัฟ <small>{FOOD_ITEMS.map(f => f.th).join(' / ')}</small></span><Sw on={a.food} onClick={() => set({ food: !a.food })} /></div>
-    <div className="h2-row"><span>เก็บของ</span><Sw on={a.loot} onClick={() => set({ loot: !a.loot })} /></div>
+    <div className="h2-sub">เก็บของ</div>
+    <div className="h2-row"><span>เก็บของอัตโนมัติ <small>เดินผ่านก็เก็บ · AUTO เดินไปเก็บเองในระยะ 12 ม.</small></span><Sw on={a.loot} onClick={() => set({ loot: !a.loot })} /></div>
+    {a.loot && <>
+      <div className="h2-row col"><span>อุปกรณ์ระดับที่จะเก็บ <small>วัตถุดิบ ยา อาหาร เก็บเสมอ</small></span>
+        <div className="h2-grades">{LOOT_GRADES.map(g => { const on = (a.lootRarities ?? LOOT_GRADES).includes(g);
+          return <button key={g} className={`g-${g.toLowerCase()} ${on ? 'on' : ''}`} aria-pressed={on}
+            onClick={() => { const cur = new Set<string>(a.lootRarities ?? LOOT_GRADES); if (on) cur.delete(g); else cur.add(g); set({ lootRarities: LOOT_GRADES.filter(x => cur.has(x)) }); }}>{on ? '✓ ' : ''}{LOOT_GRADES_TH[g]}</button>; })}</div></div>
+      <div className="h2-row"><span>เก็บอุปกรณ์ตั้งแต่</span><span className="h2-range"><input type="range" min={0} max={10} value={a.lootMinEnhance ?? 0} onChange={e => set({ lootMinEnhance: +e.target.value })} /><b>{(a.lootMinEnhance ?? 0) ? `+${a.lootMinEnhance}` : 'ทุก +'}</b></span></div>
+    </>}
     <div className="h2-row"><span>รัศมีล่า</span><Range k="radius" min={6} max={30} unit=" ม." /></div>
     {isSupportClass(cls) && <><div className="h2-sub">รูปแบบการเล่น ({CLASS_TH[cls]})</div><div className="h2-focus">{(['attack', 'support', 'hybrid'] as AutoFocus[]).map(f => <button key={f} className={a.focus === f ? 'on' : ''} onClick={() => set({ focus: f })}><b>{FOCUS_TH[f].name}</b>{FOCUS_TH[f].desc}</button>)}</div>
       <div className="h2-row"><span>ช่วยเพื่อนเมื่อเลือดต่ำกว่า</span><Range k="healAllyPct" min={20} max={90} /></div>

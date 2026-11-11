@@ -139,3 +139,18 @@
 .codex-row button small { color: inherit; opacity: .8; font-size: 11px; }
 .codex-pips { display: flex; gap: 4px; margin-top: 4px; } .codex-pips i { width: 14px; height: 5px; border-radius: 2px; background: #2a2533; } .codex-pips i.on { background: #e9c46a; }
 .codex-done { color: #e9c46a; }
+/* round 24: AUTO loot filter — grade chips */
+.h2-row.col { flex-direction: column; align-items: stretch; }
+.h2-grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; }
+.h2-grades button { min-height: 34px; border: 1px solid var(--line); border-radius: 6px; background: #0d0b10; color: var(--mute); font-size: 12px; cursor: pointer; }
+.h2-grades button.on { color: #f3e6c4; border-color: currentColor; background: #1b1620; }
+.h2-grades .g-uncommon.on { color: #7fd47f; } .h2-grades .g-rare.on { color: #6fb3ff; } .h2-grades .g-epic.on { color: #c58bff; }
+.h2-grades .g-legendary.on { color: #ffb347; } .h2-grades .g-god.on { color: #ff6b6b; } .h2-grades .g-pre-arch.on, .h2-grades .g-arch.on { color: #5ef2e0; }
+/* touch: bigger rows, switches and sliders in the AUTO window so a thumb can hit them */
+.h2.touch .h2-auto .h2-row { min-height: 46px; padding: 8px 2px; font-size: 14px; }
+.h2.touch .h2-auto .h2-switch { transform: scale(1.3); transform-origin: right center; margin-right: 6px; }
+.h2.touch .h2-auto .h2-range { flex: 1 1 55%; display: flex; align-items: center; gap: 8px; }
+.h2.touch .h2-auto .h2-range input { flex: 1; height: 28px; }
+.h2.touch .h2-auto > .sf-btn { width: 100%; min-height: 48px; font-size: 16px; }
+.h2.touch .h2-auto .h2-grades button { min-height: 42px; font-size: 13px; }
+.h2.touch.portrait .h2-auto .h2-grades { grid-template-columns: repeat(2, 1fr); }

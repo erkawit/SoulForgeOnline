@@ -10,12 +10,24 @@ export type AutoSettings = {
   /** hotbar skill slots 1–6 (index 0 = basic attack is always on) */
   skills: boolean[];
   focus: AutoFocus; healAllyPct: number; keepBuffs: boolean; loot: boolean;
+  /** which gear grades to pick up (materials, potions and food are always picked up) */
+  lootRarities?: string[];
+  /** pick up gear only from this + level (0 = any) */
+  lootMinEnhance?: number;
 };
+export const LOOT_GRADES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'God', 'Pre-arch', 'Arch'] as const;
+export const LOOT_GRADES_TH: Record<string, string> = { Common: 'ธรรมดา', Uncommon: 'ดี', Rare: 'หายาก', Epic: 'ยอดเยี่ยม', Legendary: 'ตำนาน', God: 'เทพ', 'Pre-arch': 'กึ่งอาร์ค', Arch: 'อาร์ค' };
+/** does the loot filter take this item? stackables always; gear by grade and + level */
+export function wantsLoot(a: Pick<AutoSettings, 'lootRarities' | 'lootMinEnhance'>, item: { rarity?: string; enhance?: number; stackable?: boolean; slot?: string | null }): boolean {
+  if (item.stackable || !item.slot) return true;
+  const grades: readonly string[] = a.lootRarities ?? LOOT_GRADES; if (!grades.includes(item.rarity ?? 'Common')) return false;
+  return (item.enhance ?? 0) >= (a.lootMinEnhance ?? 0);
+}
 export const SUPPORT_CLASSES = [] as const;
 export const isSupportClass = (cls: string) => (SUPPORT_CLASSES as readonly string[]).includes(cls);
 export function defaultAuto(cls: string): AutoSettings {
   return { enabled: false, radius: 14, hpPotion: true, hpPotionPct: 45, mpPotion: true, mpPotionPct: 25, food: true, skills: [true, true, true, true, true, true, true],
-    focus: isSupportClass(cls) ? 'hybrid' : 'attack', healAllyPct: 60, keepBuffs: true, loot: true };
+    focus: isSupportClass(cls) ? 'hybrid' : 'attack', healAllyPct: 60, keepBuffs: true, loot: true, lootRarities: [...LOOT_GRADES], lootMinEnhance: 0 };
 }
 export const FOCUS_TH: Record<AutoFocus, { name: string; desc: string }> = {
   attack: { name: 'เน้นโจมตี', desc: 'ใช้สกิลโจมตีเต็มที่ ฮีล/บัฟเฉพาะตัวเองเมื่อจำเป็น' },
