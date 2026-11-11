@@ -91,8 +91,8 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
       <button className={`tq auto ${auto.enabled ? 'on' : ''}`} onPointerDown={tap(() => useGameStore.getState().setAuto(!auto.enabled))} aria-pressed={auto.enabled} aria-label="ล่าอัตโนมัติ"><b>AUTO</b><small>{auto.enabled ? 'เปิด' : 'ปิด'}</small></button>
       <button className={`tq ${target ? 'on' : ''}`} onPointerDown={tap(nextTarget)} aria-label="เปลี่ยนเป้าหมาย"><span className="ico tgt" /><small>เป้า</small></button>
       <button className={`tq ${menuOpen ? 'on' : ''}`} onClick={onMenu} aria-label="เมนู" aria-expanded={menuOpen}><span className="ico menu" /><small>เมนู</small></button>
-      <button className="tq rot" onClick={() => void rotate()} aria-label={o === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'}><b>{o === 'portrait' ? '▭' : '▯'}</b><small>{o === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</small></button>
     </div>
+    <button className="tc-rot pointer-events-auto" onClick={() => void rotate()} aria-label={o === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'}><b>{o === 'portrait' ? '▭' : '▯'}</b>{o === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</button>
     {rotHint && <div className="tc-rot-hint" role="status">{rotHint}</div>}
     <div className="tc-act pointer-events-auto" style={{ ['--cc' as string]: CLASS_COLOR[cls] ?? '#c89b3c' }}>
       <button className="basic" onPointerDown={e => { e.preventDefault(); buzz(8); basicDown(); }} onPointerUp={basicUp} onPointerCancel={basicUp} aria-label="โจมตี"><Swords size={32} /><span>โจมตี</span></button>

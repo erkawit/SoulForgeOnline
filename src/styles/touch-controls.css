@@ -100,6 +100,8 @@
 .tc-quick .tq small { font-size: 10.5px; } .tc-quick .tq b { font-size: 12px; } .tc-quick .tq .q { font-size: 11px; }
 .tc-act .sk .k { font-size: 9.5px; } .tc-act .basic span { font-size: 11px; } .tc-act .page b { font-size: 12px; }
 /* portrait ⇄ landscape toggle (MobileHUDLayout) */
-.tc-quick .tq.rot b { font: 700 18px/1 system-ui; }
+.tc-rot { position: absolute; right: calc(10px + var(--sr)); top: calc(206px + var(--st, 0px)); z-index: 8; display: flex; align-items: center; gap: 5px;
+  padding: 5px 9px; border: 1px solid #8c754f; border-radius: 8px; background: #1a1720e0; color: #f2e3bf; font-size: 11px; }
+.tc-rot b { font: 700 15px/1 system-ui; }
 .tc-rot-hint { position: absolute; left: 50%; top: 38%; transform: translateX(-50%); max-width: min(86vw, 360px); padding: 10px 14px; border: 1px solid #a68b58;
   border-radius: 10px; background: #15131ce8; color: #f0dfbe; font-size: 12px; line-height: 1.5; text-align: center; z-index: 30; pointer-events: none; }
