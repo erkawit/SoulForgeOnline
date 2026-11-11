@@ -6,8 +6,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import type { Group } from 'three';
 import AnimatedCharacter from './AnimatedCharacter';
-import Hero3D from './Hero3D';
-import { HERO_3D } from '@/game/hero3d';
 import { CLASS_ANIMS } from '@/game/sprites/classAnims';
 import { Suspense } from 'react';
 import type { CharacterClip } from '@/game/characterModels';
@@ -46,9 +44,8 @@ export default function FashionPreview({ look, glow = '#d9b45c' }: { look: Previ
       <mesh position={[0, -.06, 0]}><cylinderGeometry args={[.62, .7, .12, 12]} /><meshBasicMaterial color="#17131c" /></mesh>
       <mesh position={[0, .005, 0]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[.44, .58, 48]} /><meshBasicMaterial color={glow} transparent opacity={.75} /></mesh>
       <Turntable yaw={dir * STEP}>
-        {HERO_3D ? <Suspense fallback={null}><Hero3D gender={look.gender} outfit={costume === 'thai' ? 'thai' : null} hair={look.hair} hairColor={look.hairColor} hideHair={fashion.some(f => f.hidesHair)} clip={clip} replay={stamp} weaponTier={look.weapon?.tier ?? 0} weaponSkin={weaponSkin} /></Suspense>
-          : <AnimatedCharacter job={look.job} gender={look.gender} promotion={look.promotion} costume={costume} weapon={look.weapon} weaponSkin={weaponSkin}
-          fashion={fashion} hair={look.hair} hairColor={look.hairColor} clip={clip} replay={stamp} glow={glow} />}
+        <AnimatedCharacter job={look.job} gender={look.gender} promotion={look.promotion} costume={costume} weapon={look.weapon} weaponSkin={weaponSkin}
+          fashion={fashion} hair={look.hair} hairColor={look.hairColor} clip={clip} replay={stamp} glow={glow} />
       </Turntable>
     </Canvas>
     <div className="fp-turn" onPointerDown={e => e.stopPropagation()}>

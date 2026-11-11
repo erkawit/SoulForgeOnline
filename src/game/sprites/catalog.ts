@@ -94,14 +94,11 @@ function proceduralHero(cls: string): ActorDef['clips'] {
 /** `costume` = an equipped fashion outfit (currently 'thai': reference/thai-fashion-and-grip) */
 /** round 12: `promotion` = the class-advancement look (Reaver, Archmage …) when that look has art; a costume still wins */
 /** round 20: a new class wears its own 8-direction sheet when one exists for that gender, else the Berserker frames */
-export const ART_CLASS = (cls: string, g: Gender = 'm') => (['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'].includes(cls) && !CLASS_ANIMS[`${g}-${cls}`] ? 'Berserker' : cls);
-export function heroId(cls: string, g: Gender = 'm', costume?: string | null, promotion?: string | null) {
-  if (!costume && CLASS_ANIMS[`${g}-${cls}`]) return `hero:${g}:${cls}`;
-  cls = ART_CLASS(cls, g);
-  if (costume) return `hero:${g}:${cls}:${costume}`;
-  // round 13: the Berserker (no promotion yet) wears its own painted look until the Codex 8-way frames ship
-  const look = promotion ?? (cls === 'Berserker' ? 'Berserker' : null);
-  return look && lookFrame(g, look) ? `hero:${g}:${cls}::${look}` : `hero:${g}:${cls}`;
+/** the eight painted male class sheets are the only hero art in use: every hero — either gender, any outfit or
+ *  promotion — wears its class sheet (an unknown class falls back to the Berserker) */
+export const ART_CLASS = (cls: string, _g: Gender = 'm') => (CLASS_ANIMS[`m-${cls}`] ? cls : 'Berserker');
+export function heroId(cls: string, _g: Gender = 'm', _costume?: string | null, _promotion?: string | null) {
+  return `hero:m:${ART_CLASS(cls)}`;
 }
 
 // ---------------------------------------------------------------- monsters / NPCs

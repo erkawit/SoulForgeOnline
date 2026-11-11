@@ -9,8 +9,6 @@ import { type ClassId } from '@/game/content';
 import { type PromotionId } from '@/game/advancement';
 import type { CharacterClip } from '@/game/characterModels';
 import AnimatedCharacter from '../AnimatedCharacter';
-import Hero3D from '../Hero3D';
-import { HERO_3D } from '@/game/hero3d';
 import { CLASS_GLOW, type Gender } from '@/game/sprites/catalog';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import FrameCap from '../FrameCap';
@@ -42,7 +40,7 @@ function Hero({ p, i, selected, solo, onPick }: { p: Pick; i: number; selected: 
     {/* invisible hit box over the whole figure for mouse / touch */}
     <mesh position={[0, .8, 0]} onPointerOver={e => { e.stopPropagation(); setHover(true); }} onPointerOut={() => setHover(false)}
       onClick={e => { e.stopPropagation(); onPick(i); }}><boxGeometry args={[.9, 1.7, .4]} /><meshBasicMaterial transparent opacity={0} depthWrite={false} /></mesh>
-    <group>{HERO_3D ? <Suspense fallback={null}><Hero3D gender={p.g} outfit={p.costume} hair={p.hair} hairColor={p.hairColor} clip={clip} replay={stamp} weaponTier={0} /></Suspense> : <AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite />}</group>
+    <group><AnimatedCharacter job={p.cls} clip={clip} replay={stamp} gender={p.g} promotion={p.promotion} costume={p.costume} hair={p.hair} hairColor={p.hairColor} lite /></group>
   </group>;
 }
 function Rig({ solo }: { solo: boolean }) {

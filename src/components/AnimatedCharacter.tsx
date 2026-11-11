@@ -34,7 +34,7 @@ export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, dura
 }) {
   const own = useGameStore(s => s.player.gender);
   const g: Gender = gender ?? (own === 'f' ? 'f' : 'm');
-  const actor = useMemo(() => new SpriteActor(heroId(job, g, costume, promotion), { scale, ...(lite && g === 'm' && !costume ? { anim: liteAnim(job) ?? undefined, pace: 0.7 } : {}) }), [job, g, scale, costume, lite, promotion]);
+  const actor = useMemo(() => new SpriteActor(heroId(job, g, costume, promotion), { scale, ...(lite ? { anim: liteAnim(job) ?? undefined, pace: 0.7 } : {}) }), [job, g, scale, costume, lite, promotion]);
   useEffect(() => () => actor.dispose(), [actor]);
   const holder = useAttached(actor.root);
   useEffect(() => { if (glow) actor.setGlow(glow); }, [actor, glow]);

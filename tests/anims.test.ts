@@ -16,5 +16,5 @@ test('flipbooks: every atlas exists, matches its cell grid, and every clip stays
     for (const [name, [s, n]] of Object.entries(a.clips)) assert.ok(s >= 0 && n > 0 && s + n <= a.n, `${id}.${name}`);
   }
   for (const [id, to] of Object.entries(ANIM_ALIAS)) assert.equal(animFor(id)?.key, to);
-  assert.equal(animFor('hero:m:Warrior')?.key, 'm-Warrior'); assert.equal(animFor('hero:f:Warrior')?.key, 'f-Warrior'); assert.equal(SPRITE_ANIMS['m-Mage'].dirs, 8); assert.equal(animFor('hero:m:Warrior:thai'), null);
+  assert.equal(animFor('hero:m:Paladin')?.key, 'm-Paladin'); assert.equal(SPRITE_ANIMS['m-RuneMaster'].dirs, 8); assert.equal(animFor('hero:m:Warrior'), null, 'the legacy Warrior sheet is retired');
 });

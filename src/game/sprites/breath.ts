@@ -3,11 +3,6 @@
 // still's own canvas, `cols` per row, one breath per loop. SpriteActor plays it on the base pose instead of the shader breath.
 export type BreathAnim = { n: number; cols: number };
 export const BREATH_ANIMS: Record<string, BreathAnim> = {
- 'f-Priest':{n:8,cols:4},
- 'f-Archer':{n:8,cols:4},
- 'f-Enchanter':{n:8,cols:4},
- 'costume-thai-f':{n:8,cols:4},
- 'costume-thai-m':{n:8,cols:4},
  'npc-elder-corvin':{n:8,cols:4},
  'npc-mira-ashvale':{n:8,cols:4},
  'npc-brannoc-ironhand':{n:8,cols:4},

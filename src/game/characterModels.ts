@@ -2,7 +2,6 @@ import type {ClassId,ActionId} from './content';
 /** chibi-dark v2: two basic-attack swings, a looping cast/draw channel and a shield guard per class */
 export const CHARACTER_CLIPS=['Idle','Walk','Run','Attack','Attack2','Channel','Guard','Skill','Buff','Special','Hit','Death'] as const;
 export type CharacterClip=typeof CHARACTER_CLIPS[number];
-export const characterModelUrl=(job:ClassId)=>`/models/characters/${job.toLowerCase()}.glb`;
 /** Ground speed (m/s) each locomotion clip covers at 1x playback; feet stay planted when playback = speed / this. */
 export const CLIP_GROUND_SPEED={Walk:2.393,Run:3.0} as const; // chibi-dark v2 rigs (stride × scale / clip length), from the GLB extras
 /** Switch Walk -> Run above RUN_ENTER, back below RUN_EXIT (hysteresis stops flicker at the boundary). */

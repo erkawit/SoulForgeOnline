@@ -21,17 +21,6 @@ export const SPRITE_ANIMS: Record<string, SpriteAnim> = {
  'grave-crawler':{cw:244,ch:189,cols:10,n:30,fx:0.5088,fy:0.1045,bodyPx:140.0,clips:{idle:[0,6],walk:[6,8],run:[14,8],attack:[22,8]}},
  'halo-seraph':{cw:211,ch:209,cols:10,n:30,fx:0.5194,fy:0.0197,bodyPx:200.0,clips:{idle:[0,6],walk:[6,8],run:[14,8],attack:[22,8]}},
  'ironhide-rhino':{cw:271,ch:151,cols:10,n:29,fx:0.5063,fy:0.0469,bodyPx:140.0,clips:{idle:[0,6],walk:[6,8],run:[14,7],attack:[21,8]}},
- 'm-Archer-lite':{cw:185,ch:171,cols:8,n:8,fx:0.5,fy:0.0175,bodyPx:161.0,clips:{idle:[0,3],cast:[3,5]}},
- 'm-Archer':{cw:185,ch:171,cols:10,n:24,fx:0.5,fy:0.0175,bodyPx:161.0,clips:{idle:[0,3],run:[5,5],attack:[10,5],skill:[15,4],death:[19,5]}},
- 'm-Enchanter-lite':{cw:222,ch:211,cols:8,n:8,fx:0.4977,fy:0.0142,bodyPx:198.0,clips:{idle:[0,4],cast:[4,4]}},
- 'm-Enchanter':{cw:222,ch:211,cols:10,n:16,fx:0.4977,fy:0.0142,bodyPx:198.0,clips:{idle:[0,4],skill:[4,4],attack:[8,4],special:[12,4]}},
- 'm-Mage-lite':{cw:148,ch:187,cols:8,n:17,fx:0.5,fy:0.0963,bodyPx:130.0,clips:{idle:[0,7],cast:[7,10]},facesLeft:true},
- 'm-Priest-lite':{cw:179,ch:185,cols:8,n:9,fx:0.5,fy:0.1243,bodyPx:144.0,clips:{idle:[0,5],cast:[5,4]},facesLeft:true},
- 'm-Priest':{cw:179,ch:185,cols:10,n:23,fx:0.5,fy:0.1243,bodyPx:144.0,clips:{idle:[0,5],walk:[5,5],run:[10,5],attack:[15,4],death:[19,4]},facesLeft:true},
- 'm-Warrior':{cw:189,ch:224,cols:10,n:60,fx:0.4991,fy:0.0589,bodyPx:144.0,clips:{idle:[0,6],walk:[6,6],run:[12,6],dash:[18,6],attack:[24,6],buff:[30,6],attack2:[36,6],armor:[42,6],guard:[48,6],special:[54,6]},facesLeft:true},
- 'f-Warrior':{cw:153,ch:162,cols:10,n:60,fx:0.4986,fy:0.0425,bodyPx:144.0,clips:{idle:[0,6],walk:[6,6],run:[12,6],dash:[18,6],attack:[24,6],buff:[30,6],attack2:[36,6],armor:[42,6],guard:[48,6],special:[54,6]},facesLeft:true},
- 'm-Mage':{cw:164,ch:165,cols:24,n:224,fx:0.4964,fy:0.0365,bodyPx:130.0,clips:{idle:[0,4],attack:[32,4],skill:[64,4],walk:[96,4],buff:[128,4],special:[160,4],attack2:[192,4]},dirs:8},
- 'f-Mage':{cw:170,ch:169,cols:24,n:256,fx:0.4993,fy:0.0343,bodyPx:130.0,clips:{idle:[0,4],attack:[32,4],attack2:[64,4],walk:[96,4],buff:[128,4],special:[160,4],run:[192,4],skill:[224,4]},dirs:8},
  'moon-moth':{cw:311,ch:246,cols:10,n:30,fx:0.4988,fy:0.1026,bodyPx:200.0,clips:{idle:[0,6],walk:[6,9],run:[15,8],attack:[23,7]}},
  'oathscar-aurochs':{cw:223,ch:153,cols:10,n:30,fx:0.5034,fy:0.0536,bodyPx:140.0,clips:{idle:[0,6],walk:[6,8],run:[14,8],attack:[22,8]}},
  'prism-sentinel':{cw:236,ch:217,cols:10,n:28,fx:0.502,fy:0.0387,bodyPx:200.0,clips:{idle:[0,6],walk:[6,8],run:[14,7],attack:[21,7]}},
@@ -51,9 +40,6 @@ import { NPC_ANIMS } from './npcAnims';
 Object.assign(SPRITE_ANIMS, NPC_ANIMS); // round 17: town NPCs
 export const ANIM_ALIAS: Record<string, string> = {
   'crypt-crawler': 'grave-crawler',
-  // heroes with free-texture sheets (round 12: the 10-action Warrior sheets for both genders, the 8-way Mage sheets);
-  // the other female heroes, costumes and promotion looks keep the painted key poses until their sheets exist
-  'hero:m:Warrior': 'm-Warrior', 'hero:f:Warrior': 'f-Warrior', 'hero:m:Mage': 'm-Mage', 'hero:f:Mage': 'f-Mage', 'hero:m:Priest': 'm-Priest', 'hero:m:Archer': 'm-Archer', 'hero:m:Enchanter': 'm-Enchanter',
 };
 /** login / class-select: idle + one cast only (m-<Class>-lite) */
 /** (round 12: Warrior and Mage use their full new sheets everywhere, so they have no lite version) */

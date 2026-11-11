@@ -62,5 +62,7 @@ test('fashion: Thai set is wearable by the Berserker, weapon skins carry a sheet
   const w = overlays({ owned: ['wings-thai-garuda', 'skin-thai-garuda-greataxe'], worn: { wings: 'wings-thai-garuda', weapon: 'skin-thai-garuda-greataxe' } });
   assert.deepEqual(w.map(f => f.id), ['wings-thai-garuda'], 'a weapon skin is not an overlay, it replaces the weapon picture');
   const { actorDef, heroId } = await import('../src/game/sprites/catalog');
-  assert.ok(actorDef(heroId('Berserker', 'm', 'thai')).base.startsWith('costume-thai'), 'the Thai outfit shows its painted look until the 8-way sheet ships');
+  // every hero wears its painted male class sheet: gender, outfit and promotion do not swap the body art
+  assert.equal(heroId('Berserker', 'm', 'thai'), 'hero:m:Berserker'); assert.equal(heroId('Paladin', 'f'), 'hero:m:Paladin'); assert.equal(heroId('Warrior', 'f'), 'hero:m:Berserker');
+  void actorDef;
 });
