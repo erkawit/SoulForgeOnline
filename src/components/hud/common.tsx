@@ -26,6 +26,9 @@ export const portrait = (cls: string, g?: string, kind: 'face' | 'full' = 'face'
   return ['Berserker','Reaver'].includes(cls) ? `/art/sprites/${g === 'f' ? 'f' : 'm'}-look-${cls}.webp` : `/art/portraits/${g === 'f' ? 'f-' : ''}${cls.toLowerCase()}-${kind}.png`;
 };
 
+/** round 25: the class crest (a painted class emblem) for the HUD corner — reads better at 60 px than a face crop */
+export const crest = (cls: string) => artUrl(`/art/portraits/crest-${(cls === 'Reaver' ? 'Berserker' : cls || 'Berserker').toLowerCase()}.webp`);
+
 /** spec screen-scale checker: < 768 px (or a phone held sideways) → Mobile component set */
 export function useScreenScale(): Layout {
   const [l, setL] = useState<Layout>('pc'); const mode = useSettingsStore(s => s.controls);

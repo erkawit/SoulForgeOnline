@@ -14,7 +14,7 @@ import BuffStrip from './BuffStrip';
 import { countOf, derivedOf, expRequired, useGameStore } from '@/store/useGameStore';
 import { usePlayerStatic, usePlayerCell } from '@/store/usePlayerStatic';
 import CloudSave from './CloudSave';
-import { CITIES, WORLD_LIMIT, portalsOf, type MainCityId } from '@/game/content';
+import { CITIES, WORLD_LIMIT, portalsOf, type CityId, type MainCityId } from '@/game/content';
 import OnlinePanel from './OnlinePanel';
 import CollectionPanel from './CollectionPanel';
 import WardrobePanel from './WardrobePanel';
@@ -185,6 +185,18 @@ function TargetFrame() {
 }
 
 /** zone name + coordinates: re-renders only when the whole-metre position changes */
+/** round 25: standing at a waygate shows a button that warps at once (and F does the same) — the walk-in trigger lives
+ *  in the 3D scene's frame loop; this one works from the HUD, so a gate never leaves the player stuck */
+const GATE_PROMPT_M = 4.5;
+function GatePrompt({ cityId }: { cityId: CityId }) {
+  const [x, z] = usePlayerCell(.5); const dead = useGameStore(s => !!s.deadUntil);
+  const g = dead ? undefined : portalsOf(cityId).map(p => ({ p, d: Math.hypot(p.x - x, p.z - z) })).filter(o => o.d < GATE_PROMPT_M).sort((a, b) => a.d - b.d)[0]?.p;
+  useEffect(() => { if (!g) return; const k = (e: KeyboardEvent) => { if (e.key.toLowerCase() === 'f' && !(e.target instanceof HTMLInputElement)) useGameStore.getState().travel(g.to, { gate: true }); };
+    window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k); }, [g]);
+  if (!g) return null;
+  return <button type="button" className="h2-gate pointer-events-auto" onClick={() => useGameStore.getState().travel(g.to, { gate: true })}>
+    <img src="/art/ui-kit/icon_portal_swirl.webp" alt="" /><span>{g.kind === 'dungeon' ? 'เข้าดันเจี้ยน' : 'วาร์ปไป'} <b>{CITIES[g.to].name}</b></span><kbd>F</kbd></button>;
+}
 function ZoneLabel({ cityName, cityId }: { cityName: string; cityId: string }) {
   const [px, pz] = usePlayerCell(1);
   const zone = cityId === 'wild0' ? zoneAt(px, pz) : null;
@@ -273,6 +285,7 @@ export default function GameHUD() {
     {pc && !panel && <MenuButton className="pc-corner" open={menuOpen} onClick={() => setMenuOpen(v => !v)} />}
     {pc && menuOpen && <PCMenu groups={pcGroups} system={[{ id: 'settings', label: 'ตั้งค่า', key: 'O', art: 'icon_menu_settings_gear', on: panel === 'settings', run: () => setPanel('settings') }, ...exitItems()]} onClose={closeMenu} />}
     <ZoneLabel cityName={city.name} cityId={city.id} />
+    <GatePrompt cityId={city.id as CityId} />
     {!pc && <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{layout === 'mobile' ? <span className="nm">{SHORT[id]}</span> : key && <small>{key}</small>}</button>)}
       <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/ui-kit/map_waypoint_node_swords.webp" alt="" />{layout === 'mobile' ? <span className="nm">แผนที่</span> : <small>M</small>}</button>
       <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" />{layout === 'mobile' ? <span className="nm">ปาร์ตี้</span> : <small>P</small>}</button>

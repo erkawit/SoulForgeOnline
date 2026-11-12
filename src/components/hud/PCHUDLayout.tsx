@@ -9,7 +9,7 @@ import { useMultiplayerStore } from '@/store/useMultiplayerStore';
 import { FOCUS_TH, isSupportClass } from '@/game/auto';
 import { FOOD_ITEMS } from '@/game/items';
 import { levelTitle } from '@/game/ui/layout';
-import { CLASS_COLOR, CLASS_TH, KEYS, SkullOrb, basicDown, basicUp, castSlot, portrait, useSkillSlots, fmt, ForgeGauge } from './common';
+import { CLASS_COLOR, CLASS_TH, KEYS, SkullOrb, basicDown, basicUp, castSlot, crest, useSkillSlots, fmt } from './common';
 
 function Bar({ value, max, kind }: { value: number; max: number; kind: 'hp' | 'mp' | 'xp' }) {
   return <div className={`h2-bar ${kind}`}><i style={{ transform: `scaleX(${Math.max(0, Math.min(1, value / Math.max(1, max)))})` }} />{kind !== 'xp' && <span>{fmt(value)} / {fmt(max)}</span>}</div>;
@@ -23,12 +23,12 @@ export default function PCHUDLayout({ hp, maxHp, mp, maxMp, now, onAuto }: { hp:
   const g = useGameStore.getState;
   return <>
     <section className="h2-frame pointer-events-auto" style={{ ['--cc' as string]: color }}>
-      <div className="pt" style={{ backgroundImage: `url(${portrait(cls, player.gender)})` }}><span>{player.level}</span></div>
+      <div className="pt" style={{ backgroundImage: `url(${crest(cls)})` }} title={cls}><span>{player.level}</span></div>
       <div><div className="nm">{player.name} <small>{CLASS_TH[cls]} · {levelTitle(player.level)}</small></div><Bar value={hp} max={maxHp} kind="hp" /><Bar value={mp} max={maxMp} kind="mp" /><Bar value={player.exp} max={expRequired(player.level)} kind="xp" /></div>
     </section>
     <div className="h3-dock pointer-events-auto" style={{ ['--cc' as string]: color }}>
       <SkullOrb value={hp} max={maxHp} kind="hp" />
-      <div className="mid"><ForgeGauge /><div className="row">
+      <div className="mid"><div className="row">
         <div className="bar">
           <button className="slot basic" title="โจมตีธรรมดา (1)" onPointerDown={e => { e.preventDefault(); basicDown(); }} onPointerUp={basicUp} onPointerLeave={basicUp}><Swords size={26} /><b className="k">{KEYS[0]}</b><span className="al">โจมตี</span></button>
           {slots.map(s => <button key={s.i} className={`slot ${s.off ? 'off' : ''} ${s.nomp ? 'nomp' : ''} ${s.autoOff ? 'autooff' : ''}`} title={s.title} onPointerDown={e => { e.preventDefault(); castSlot(s.i); }}>

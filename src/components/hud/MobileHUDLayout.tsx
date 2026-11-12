@@ -14,7 +14,7 @@ import { Swords } from 'lucide-react';
 import { useGameStore, countOf, expRequired } from '@/store/useGameStore';
 import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { touchMove } from '@/store/touchInput';
-import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, useOrientation, ForgeGauge } from './common';
+import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, useOrientation } from './common';
 
 /** [radius px, angle°] from the attack button's centre (0° = right, 90° = up) */
 const ARC: Record<'portrait' | 'landscape', [number, number][]> = {
@@ -82,7 +82,7 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
       <span className="lv">{player.level}</span>
       <div className="col"><div className="nm">{player.name}</div>
         <div className="mbar hp"><i style={{ transform: `scaleX(${k(hp, maxHp)})` }} /><span>{fmt(hp)}/{fmt(maxHp)}</span></div>
-        <div className="mbar mp"><i style={{ transform: `scaleX(${k(mp, maxMp)})` }} /><span>{fmt(mp)}/{fmt(maxMp)}</span></div><ForgeGauge mini /></div>
+        <div className="mbar mp"><i style={{ transform: `scaleX(${k(mp, maxMp)})` }} /><span>{fmt(mp)}/{fmt(maxMp)}</span></div></div>
     </section>
     <div className="h3-mxp"><i style={{ transform: `scaleX(${Math.min(1, player.exp / expRequired(player.level))})` }} /></div>
     <FloatingStick />

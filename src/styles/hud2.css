@@ -168,3 +168,11 @@
 .h2-sk-info dl{margin:0;display:grid;gap:2px}.h2-sk-info dt{color:#e0b765;font-weight:600}.h2-sk-info dd{margin:0 0 4px}
 .h2.touch .h2-sk-ico .forge-skill-icon{width:44px;height:44px}
 .h2.touch .h2-sk-info{margin-left:0;font-size:13px}
+/* round 25: at a waygate — the warp button (bottom centre, above the skill bar) */
+.h2-gate{position:absolute;left:50%;bottom:150px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;cursor:pointer;
+  border:1px solid #b48a4a;border-radius:6px;background:linear-gradient(180deg,#1d1814f2,#0c0a09f2);color:#f1e2bf;font:600 15px "Noto Sans Thai",system-ui;box-shadow:0 0 18px #62e6d255,0 4px 14px #000a;animation:h2-gate-in .2s ease-out}
+.h2-gate img{width:36px;height:36px}.h2-gate b{color:#8ff0df}
+.h2-gate kbd{min-width:24px;padding:2px 6px;border:1px solid #6b5636;border-bottom-width:3px;border-radius:4px;background:#15110d;font:700 12px Cinzel,system-ui;color:#ecd7a6;text-align:center}
+.h2-gate:hover{border-color:#f0cd84;filter:brightness(1.12)}
+@keyframes h2-gate-in{from{opacity:0;transform:translate(-50%,8px)}}
+.h2.touch .h2-gate{bottom:auto;top:38%;font-size:16px;padding:12px 18px 12px 12px}.h2.touch .h2-gate kbd{display:none}
