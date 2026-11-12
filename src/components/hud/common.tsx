@@ -11,6 +11,7 @@ import { gameConnection, titanInReach } from '@/lib/multiplayer/socket';
 import { scaled } from '@/game/skills/engine';
 import { ForgeFire } from '@/game/ui/forgeFire';
 import { evolvedSkill } from '@/game/skills/defaults';
+import { artUrl } from '@/game/artVersion';
 
 export const CLASS_COLOR: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff' };
 export const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เซิร์กเกอร์', Reaver: 'รีเวอร์' };
@@ -21,7 +22,7 @@ export const fmt = (n: number) => Math.round(n).toLocaleString();
 const NEW_PORTRAIT = ['Paladin','Hawkeye','RuneMaster','Elementalist','Assassin','HighPriest','Inquisitor','Berserker'];
 export const portrait = (cls: string, g?: string, kind: 'face' | 'full' = 'face') => {
   const c = cls === 'Reaver' ? 'Berserker' : cls;
-  if (g !== 'f' && NEW_PORTRAIT.includes(c)) return `/art/portraits/${c.toLowerCase()}-${kind}.png`; // Round 20 class art (male)
+  if (g !== 'f' && NEW_PORTRAIT.includes(c)) return artUrl(`/art/portraits/${c.toLowerCase()}-${kind}.png`); // Round 20 class art (male)
   return ['Berserker','Reaver'].includes(cls) ? `/art/sprites/${g === 'f' ? 'f' : 'm'}-look-${cls}.webp` : `/art/portraits/${g === 'f' ? 'f-' : ''}${cls.toLowerCase()}-${kind}.png`;
 };
 

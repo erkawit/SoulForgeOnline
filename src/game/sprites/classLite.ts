@@ -2,24 +2,24 @@
 import type { SpriteAnim } from './anims';
 export const CLASS_LITE: Record<string, SpriteAnim> = {
  "m-Paladin-lite": {
-  "cw": 233,
-  "ch": 148,
+  "cw": 105,
+  "ch": 124,
   "cols": 8,
-  "n": 16,
-  "fx": 0.5901,
-  "fy": 0.0243,
-  "bodyPx": 120,
+  "n": 13,
+  "fx": 0.5333,
+  "fy": 0.121,
+  "bodyPx": 78,
   "clips": {
    "idle": [
     0,
-    4
+    1
    ],
    "attack": [
-    4,
+    1,
     6
    ],
    "skill": [
-    10,
+    7,
     6
    ]
   }

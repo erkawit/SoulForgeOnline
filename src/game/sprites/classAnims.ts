@@ -4,33 +4,61 @@ import type { SpriteAnim } from './anims';
 import type { SpriteFrame } from './frames';
 export const CLASS_ANIMS: Record<string, SpriteAnim> = {
  "m-Paladin": {
-  "cw": 341,
-  "ch": 217,
-  "cols": 12,
-  "n": 208,
-  "fx": 0.5,
-  "fy": 0.0243,
-  "bodyPx": 175.71,
+  "cw": 170,
+  "ch": 203,
+  "cols": 24,
+  "n": 472,
+  "fx": 0.5353,
+  "fy": 0.1133,
+  "bodyPx": 130.0,
   "clips": {
    "idle": [
     0,
-    4
+    1
    ],
    "walk": [
-    32,
-    6
+    8,
+    8
    ],
    "attack": [
-    80,
+    72,
+    8
+   ],
+   "death": [
+    136,
+    6
+   ],
+   "sk:p-shield-bash": [
+    184,
+    6
+   ],
+   "sk:p-sacred-vow": [
+    232,
+    6
+   ],
+   "sk:p-judgement-blade": [
+    280,
+    6
+   ],
+   "sk:p-holy-cleave": [
+    328,
+    6
+   ],
+   "sk:p-bulwark": [
+    376,
+    6
+   ],
+   "sk:p-dawn-crusade": [
+    424,
     6
    ],
    "skill": [
-    128,
+    280,
     6
    ],
    "buff": [
-    176,
-    4
+    232,
+    6
    ]
   },
   "dirs": 8

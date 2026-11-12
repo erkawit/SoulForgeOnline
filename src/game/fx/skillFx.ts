@@ -406,6 +406,13 @@ const SKILL_FX: Record<string, [number, (fx: Fx, o: Vector3, tgt: Vector3, yaw: 
   'r2-ruin-pillar': [5.2, (fx, o, tgt) => { paintedAnim(fx, 'rune-circle', tgt, 7.4, 0, 1, { plan: 'hold', mode: 'ground', opacity: 0.85 }); paintedAnim(fx, 'pillar-ruin', tgt, 5.2, 0, 1, { plan: 'hold', foot: true }); auraWaves(fx, tgt, '#62dfdf', 3.6, 0, 1, 0.8, 4);
     for (let i = 0; i < 10; i++) { const a = Math.random() * 6.28, r = 0.8 + Math.random() * 2.6, t0 = 0.06 + i * 0.09; impact(fx, tgt.clone().add(new Vector3(Math.cos(a) * r, 0, Math.sin(a) * r)), '#62dfdf', t0, 0.6); } }],
   // ---- Berserker / Reaver (painted ChatGPT sheets; `o` follows the caster while the effect lives)
+  // ---- Paladin (round 25: approved-v8 effect sheets, warm holy gold)
+  'p-shield-bash': [0.8, (fx, o, tgt) => { paintedAnim(fx, 'p-shield-bash', o.clone().lerp(tgt, 0.55), 2.8, 0, 1, { foot: true }); }],
+  'p-sacred-vow': [1.4, (fx, o) => { paintedAnim(fx, 'p-sacred-vow', o, 3.6, 0, 1, { foot: true, live: true }); }],
+  'p-judgement-blade': [1.2, (fx, o, tgt) => { paintedAnim(fx, 'p-judgement-blade', tgt, 5.6, 0, 1, { foot: true }); }],
+  'p-holy-cleave': [0.9, (fx, o) => { paintedAnim(fx, 'p-holy-cleave', o, 5.2, 0, 1, { foot: true, live: true }); }],
+  'p-bulwark': [2.6, (fx, o) => { paintedAnim(fx, 'p-bulwark', o, 3.8, 0, 1, { plan: 'hold', foot: true, live: true, opacity: 0.85 }); }],
+  'p-dawn-crusade': [1.8, (fx, o, tgt) => { paintedAnim(fx, 'p-dawn-crusade', tgt, 6.6, 0.1, 1, { foot: true }); }],
   'b-rending-rush': [0.95, (fx, o, tgt) => { paintedAnim(fx, 'b-rending-rush', tgt, 3.6, 0, 1, { lift: 1 }); }],
   'b-blood-howl': [1.2, (fx, o) => { paintedAnim(fx, 'b-blood-howl', o, 4.2, 0, 1, { foot: true, live: true }); groundRing(fx, o, '#ff5a3c', 0.4, 2.6, 0.1, 0.6, 0.15); }],
   'b-carnage-cyclone': [2.4, (fx, o) => { paintedAnim(fx, 'b-carnage-cyclone', o, 5, 0, 1, { plan: 'hold', foot: true, live: true }); }],

@@ -1,4 +1,5 @@
 'use client';
+import { artUrl } from '@/game/artVersion';
 import WorldMap from './WorldMap';
 // In-game overlay added for the playable beta: cast bar + Archer charge gauge, party frames with class portraits,
 // and the Party (P) and World Map (M) windows plus the Codex guide link (G → /guide in a new tab).
@@ -14,7 +15,7 @@ import { npcsIn, npcPosition } from '@/game/npcs';
 
 const CLASS_COLOR: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff' };
 const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เซิร์กเกอร์', Reaver: 'รีเวอร์' };
-const portrait = (cls: string, kind: 'face' | 'full' = 'face') => `/art/portraits/${cls.toLowerCase()}-${kind}.png`;
+const portrait = (cls: string, kind: 'face' | 'full' = 'face') => artUrl(`/art/portraits/${cls.toLowerCase()}-${kind}.png`);
 type Win = 'party' | 'map' | null; // settings live in the HUD window (SettingsPanel)
 
 /** Cast bar (skills with a cast time) and the Archer's draw gauge, animated every frame without React re-renders. */

@@ -28,7 +28,7 @@ function BaseClassActor(){
   const next=!s.deadUntil&&active&&s.action.clip&&!(moving&&!s.charge&&!s.pending&&!s.channel)?s.action.clip:base; // a spin (Whirlwind) keeps spinning while you walk
   if(current.current!==next){current.current=next;setClip(next);}
  });
- return <group ref={root}><AnimatedCharacter job={job} costume={costume} promotion={promotion} weapon={weapon} fashion={fashion} weaponSkin={weaponSkin} hair={hair} hairColor={hairColor} clip={clip} replay={action.stamp} duration={clip==='Death'?undefined:action.duration/1000} glow={glow} speedRef={speed} xray/><mesh rotation={[-Math.PI/2,0,0]} position={[0,.025,0]}><ringGeometry args={[.55,.575,40]}/><meshBasicMaterial color={glow}/></mesh><Label3D position={[0,2.05,0]} text={name||job} above={guild?.name??null} emblem={guild?.emblem??null}/></group>;
+ return <group ref={root}><AnimatedCharacter job={job} costume={costume} promotion={promotion} weapon={weapon} fashion={fashion} weaponSkin={weaponSkin} hair={hair} hairColor={hairColor} clip={clip} replay={action.stamp} skill={action.skillId} duration={clip==='Death'?undefined:action.duration/1000} glow={glow} speedRef={speed} xray/><mesh rotation={[-Math.PI/2,0,0]} position={[0,.025,0]}><ringGeometry args={[.55,.575,40]}/><meshBasicMaterial color={glow}/></mesh><Label3D position={[0,2.05,0]} text={name||job} above={guild?.name??null} emblem={guild?.emblem??null}/></group>;
 }
 export default function ClassActor(){const job=useGameStore(s=>s.player.classId??'Berserker');// round 12: promoted characters show their painted advancement look (sprite) instead of the old procedural model
  return <ModelBoundary key={job}><Suspense fallback={<LegacyClassActor/>}><BaseClassActor/></Suspense></ModelBoundary>;}

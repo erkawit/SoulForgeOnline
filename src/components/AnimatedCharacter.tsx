@@ -22,8 +22,9 @@ export function applyClip(actor: SpriteActor, clip: string, duration?: number) {
   else actor.playFor(clip, duration);
 }
 
-export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, duration, glow, speedRef, gender, scale, costume, lite, promotion, weapon, hair, hairColor, fashion, weaponSkin, xray }: {
+export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, duration, glow, speedRef, gender, scale, costume, lite, promotion, weapon, hair, hairColor, fashion, weaponSkin, xray, skill }: {
   /** the local player: silhouette through walls and props */ xray?: boolean;
+  /** round 25: the skill being cast — a sheet with its own clip (sk:<id>) plays that instead of the generic one */ skill?: string;
   job: ClassId; clip?: CharacterClip; replay?: number; duration?: number; glow?: string; speedRef?: { current: number }; gender?: Gender; scale?: number;
   /** costume sprite set (e.g. 'thai'): same clips, different painted outfit */ costume?: string | null;
   /** login / class select: idle + one cast flipbook only, played slower */ lite?: boolean;
@@ -44,7 +45,7 @@ export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, dura
   useEffect(() => { actor.setOverlays((fashion ?? []).map(f => ({ ...f, art: typeof f.art === 'string' ? f.art : f.art?.[g] }))); }, [actor, fashion, g]);
   useEffect(() => { if (hair) actor.setHair(hair); }, [actor, hair]);
   useEffect(() => { if (hairColor) actor.setHairColor(hairColor); }, [actor, hairColor, hair]);
-  useEffect(() => { applyClip(actor, clip, duration); }, [actor, clip, replay, duration]);
+  useEffect(() => { actor.skillHint = skill ?? null; applyClip(actor, clip, duration); }, [actor, clip, replay, duration, skill]);
   useFrame(({ camera }, dt) => {
     spriteView.camera = camera;
     if (speedRef) actor.locoSpeed = Math.max(0.7, Math.min(2.4, speedRef.current / 3));

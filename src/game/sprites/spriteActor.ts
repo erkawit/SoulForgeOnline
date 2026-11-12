@@ -506,11 +506,14 @@ export class SpriteActor {
     if (this.shadow) { (this.shadow.material as MeshBasicMaterial).opacity = this.opacity * (1 - death * 0.4) * (kind === 'flyer' ? 0.6 : 1); this.shadow.scale.x = Math.abs(this.shadow.scale.x) * 1; }
   }
   private cell = new Vector4(0, 0, 1, 1);
+  /** round 25: the skill of the current cast; a sheet with "sk:<id>" plays that clip for Skill / Buff / Special shots */
+  skillHint: string | null = null;
   /** pick the flipbook clip (shot → attack/skill…, moving → walk/run, else idle) and the current cell */
   private stepFlipbook(d: number) {
     const a = this.anim!.anim; let name = 'idle', fps = IDLE_FPS, idx = 0;
     const shot = this.shot && !this.dead && this.shotU >= 0 ? this.shot : null;
-    if (shot) name = (SHOT_CLIPS[shot.name] ?? ['attack']).find(c => a.clips[c]) ?? 'idle';
+    if (shot) name = (shot.name !== 'Hit' && shot.name !== 'Talk' && this.skillHint && a.clips['sk:' + this.skillHint] ? 'sk:' + this.skillHint : null)
+      ?? (SHOT_CLIPS[shot.name] ?? ['attack']).find(c => a.clips[c]) ?? 'idle';
     else if (!this.dead && this.runW > 0.5) {
       // walk ↔ run with a dead band (1.15 … 1.4) so a speed hovering near the switch point never flickers between them
       const wasRun = this.animClip === 'run', wantRun = wasRun ? this.locoSpeed > 1.15 : this.locoSpeed > 1.4;
