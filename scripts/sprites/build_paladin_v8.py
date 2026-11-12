@@ -28,8 +28,15 @@ LIMIT = 4096
 
 
 def clean(a):
-    """ChatGPT haze: weak alpha survives only right next to the solid body"""
-    al = a[..., 3].astype(np.float32); strong = al >= STRONG
+    """ChatGPT haze: weak alpha survives only right next to the solid body.
+    Some sheets come back with a translucent white veil over the WHOLE canvas (shield-bash SE: alpha 150-175 everywhere,
+    which read as a white square in the game). That veil is measured (5th percentile of alpha) and taken out first:
+    alpha is rescaled so the veil level becomes 0, and the solid threshold moves above it."""
+    al = a[..., 3].astype(np.float32); veil = float(np.percentile(al, 5))
+    if veil > 40:
+        al = np.clip((al - veil - 8) / (255 - veil - 8), 0, 1) * 255
+        a = a.copy(); a[..., 3] = al.astype(np.uint8)
+    strong = al >= STRONG
     if not strong.any(): return a
     fall = np.clip(1 - (distance_transform_edt(~strong) - KEEP) / FADE, 0, 1)
     na = np.where(strong, al, al * fall); na[(na < FLOOR) & ~strong] = 0
