@@ -42,6 +42,7 @@ import { PCStatusPanel, MobileStatusPanel } from './hud/StatusPanels';
 import '@/styles/hud3.css';
 import '@/styles/uikit.css';
 import '@/styles/touch-controls.css';
+import '@/styles/hud-kit-touch.css';
 import '@/styles/pc-menu.css';
 
 type Panel = 'inventory' | 'character' | 'skills' | 'quests' | 'codex' | 'wardrobe' | 'monsters' | 'auto' | 'settings' | 'cloud' | 'online' | null;

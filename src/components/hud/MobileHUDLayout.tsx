@@ -14,7 +14,7 @@ import { Swords } from 'lucide-react';
 import { useGameStore, countOf, expRequired } from '@/store/useGameStore';
 import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { touchMove } from '@/store/touchInput';
-import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, useOrientation } from './common';
+import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, useOrientation, crest } from './common';
 
 /** [radius px, angle°] from the attack button's centre (0° = right, 90° = up) */
 const ARC: Record<'portrait' | 'landscape', [number, number][]> = {
@@ -79,7 +79,7 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
   const tap = (fn: () => void) => (e: RPointerEvent) => { e.preventDefault(); e.stopPropagation(); buzz(); fn(); };
   return <>
     <section className={`h3-mframe tc-frame pointer-events-auto ${k(hp, maxHp) < .3 ? 'low' : ''}`} onClick={onStatus} aria-label="สถานะตัวละคร">
-      <span className="lv">{player.level}</span>
+      <span className="kit-pt" style={{ backgroundImage: `url(${crest(cls)})` }} title={cls}><span className="lv">{player.level}</span></span>
       <div className="col"><div className="nm">{player.name}</div>
         <div className="mbar hp"><i style={{ transform: `scaleX(${k(hp, maxHp)})` }} /><span>{fmt(hp)}/{fmt(maxHp)}</span></div>
         <div className="mbar mp"><i style={{ transform: `scaleX(${k(mp, maxMp)})` }} /><span>{fmt(mp)}/{fmt(maxMp)}</span></div></div>
@@ -89,13 +89,13 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
     <div className="tc-quick pointer-events-auto">
       <button className={`tq ${hpCount ? '' : 'empty'}`} onPointerDown={tap(() => useGameStore.getState().usePotion('hp'))} aria-label="ยา HP"><span className="ico hp" /><b className="q">{hpCount}</b></button>
       <button className={`tq ${mpCount ? '' : 'empty'}`} onPointerDown={tap(() => useGameStore.getState().usePotion('mp'))} aria-label="ยา MP"><span className="ico mp" /><b className="q">{mpCount}</b></button>
-      <button className={`tq auto ${auto.enabled ? 'on' : ''}`} onPointerDown={tap(() => useGameStore.getState().setAuto(!auto.enabled))} aria-pressed={auto.enabled} aria-label="ล่าอัตโนมัติ"><b>AUTO</b><small>{auto.enabled ? 'เปิด' : 'ปิด'}</small></button>
+      <button className={`tq auto ${auto.enabled ? 'on' : ''}`} onPointerDown={tap(() => useGameStore.getState().setAuto(!auto.enabled))} aria-pressed={auto.enabled} aria-label="ล่าอัตโนมัติ"><b className="atx">AUTO</b><small>{auto.enabled ? 'เปิด' : 'ปิด'}</small></button>
       <button className={`tq ${target ? 'on' : ''}`} onPointerDown={tap(nextTarget)} aria-label="เปลี่ยนเป้าหมาย"><span className="ico tgt" /><small>เป้า</small></button>
       <button className={`tq ${menuOpen ? 'on' : ''}`} onClick={onMenu} aria-label="เมนู" aria-expanded={menuOpen}><span className="ico menu" /><small>เมนู</small></button>
     </div>
     {rotHint && <div className="tc-rot-hint" role="status">{rotHint}</div>}
     <div className="tc-act pointer-events-auto" style={{ ['--cc' as string]: CLASS_COLOR[cls] ?? '#c89b3c' }}>
-      <button className="basic" onPointerDown={e => { e.preventDefault(); buzz(8); basicDown(); }} onPointerUp={basicUp} onPointerCancel={basicUp} aria-label="โจมตี"><Swords size={32} /><span>โจมตี</span></button>
+      <button className="basic" onPointerDown={e => { e.preventDefault(); buzz(8); basicDown(); }} onPointerUp={basicUp} onPointerCancel={basicUp} aria-label="โจมตี"><Swords size={32} className="sw" /><span>โจมตี</span></button>
       {shown.map((s, j) => <button key={s.i} className={`sk ${s.off ? 'off' : ''} ${s.nomp ? 'nomp' : ''}`} style={at(ARC[o][j])} title={s.title} aria-label={s.name}
         onPointerDown={tap(() => castSlot(s.i))}>
         <span className="g">{s.glyph}</span><i className="ic" aria-hidden style={skillIconStyle(s.shows)} /><b className="k">{s.i}</b>

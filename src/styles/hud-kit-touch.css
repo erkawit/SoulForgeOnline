@@ -1,0 +1,50 @@
+/* Round 25 — the phone HUD dressed in the painted UI kit (src/asset/ui atlases → public/art/ui-kit):
+   class crest in the diamond portrait frame, framed HP / MP bars, the cross emblem attack button, skill buttons in the
+   round gothic frame, quick buttons in the small slot frame, AUTO as its own painted button, and the arcane wheel under
+   the joystick. Layout and sizes stay as touch-controls.css sets them; only the look changes. */
+.h2.touch .tc-frame { display: flex; align-items: center; gap: 4px; padding: 4px 8px 4px 2px !important; border: 0 !important; box-shadow: none !important;
+  background: linear-gradient(90deg, rgba(8, 7, 9, .82), rgba(8, 7, 9, .55) 70%, transparent) !important; border-radius: 0 !important; }
+.h2.touch .tc-frame::before, .h2.touch .tc-frame::after { display: none !important; }
+.h2.touch .tc-frame .kit-pt { position: relative; flex: none; width: 58px; height: 64px; background-size: 0 0; background-repeat: no-repeat; }
+/* the crest sits inside the diamond (the element's own background is only the image source) */
+.h2.touch .tc-frame .kit-pt::before { content: ""; position: absolute; z-index: 1; inset: 13px 12px; background-image: inherit; background-size: cover; background-position: center; background-color: #0b0908;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.h2.touch .tc-frame .kit-pt::after { content: ""; position: absolute; z-index: 0; inset: 0; background: url(/art/ui-kit/hud_portrait_diamond_frame.webp) center / 100% 100% no-repeat; pointer-events: none; }
+.h2.touch .tc-frame .kit-pt .lv { position: absolute; left: 50%; bottom: -3px; transform: translateX(-50%); z-index: 2; width: auto !important; height: 16px !important; min-width: 22px; padding: 0 5px;
+  border: 1px solid #c9a35c; border-radius: 8px !important; background: #140f0a !important; font: 700 11px/14px Cinzel, serif !important; color: #ffe2a4; box-shadow: 0 1px 3px #000; display: block; text-align: center; }
+.h2.touch .tc-frame .col { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.h2.touch .tc-frame .nm { font: 700 13px Cinzel, "Noto Sans Thai", serif; color: #f6e2b4; text-shadow: 0 1px 2px #000; }
+/* bars: the painted empty frame, the red / blue painted fill inside */
+.h2.touch .tc-frame .mbar { position: relative; height: 14px !important; border: 0 !important; border-radius: 0 !important; background: #070606 !important; overflow: visible !important; margin: 0 6px; }
+.h2.touch .tc-frame .mbar::before { content: ""; position: absolute; inset: -4px -9px; z-index: 0; pointer-events: none; background: url(/art/ui-kit/hud_status_bar_empty_frame.webp) center / 100% 100% no-repeat; }
+.h2.touch .tc-frame .mbar i { position: absolute; z-index: 1; inset: 2px 3px; transform-origin: 0 50%; border-radius: 0 !important; }
+.h2.touch .tc-frame .mbar.hp i { background: url(/art/ui-kit/hud_hp_bar_red_fill.webp) 0 0 / 100% 100% no-repeat !important; }
+.h2.touch .tc-frame .mbar.mp i { background: url(/art/ui-kit/hud_mp_bar_blue_fill.webp) 0 0 / 100% 100% no-repeat !important; }
+.h2.touch .tc-frame .mbar span { position: relative; z-index: 3; display: block; text-align: center; font: 700 10.5px/14px system-ui !important; color: #fff; text-shadow: 0 0 3px #000, 0 1px 2px #000; }
+.h2.touch .tc-frame.low .kit-pt::after { filter: drop-shadow(0 0 6px #ff3b2b); }
+.h2.touch .h3-mxp { height: 3px; background: #0c0a08; } .h2.touch .h3-mxp i { background: url(/art/ui-kit/hud_exp_bar_gold_fill.webp) 0 0 / 100% 100% !important; }
+
+/* attack: the cross emblem button */
+.h2.touch .tc-act .basic { border: 0 !important; box-shadow: 0 6px 16px rgba(0, 0, 0, .55) !important; background: url(/art/ui-kit/hud_main_attack_emblem_button.webp) center / 108% 108% no-repeat !important; }
+.h2.touch .tc-act .basic .sw { opacity: 0; }
+.h2.touch .tc-act .basic span { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); padding: 1px 8px; border-radius: 8px; background: rgba(10, 8, 6, .8); color: #f2dca8; font-size: 10.5px; }
+.h2.touch .tc-act .basic:active { filter: brightness(1.25); }
+/* skills: icon inside the round gothic frame */
+.h2.touch .tc-act .sk { border: 0 !important; background: transparent !important; box-shadow: 0 3px 8px rgba(0, 0, 0, .6) !important; overflow: visible !important; }
+.h2.touch .tc-act .sk::after { content: ""; position: absolute; inset: -12% -11% -15%; z-index: 0; pointer-events: none; background: url(/art/ui-kit/hud_portrait_circle_frame.webp) center / 100% 100% no-repeat; }
+.h2.touch .tc-act .sk .ic { inset: 7% !important; z-index: 1; }
+.h2.touch .tc-act .sk .k { z-index: 2; bottom: -6px; padding: 0 5px; border-radius: 7px; background: #140f0a; border: 1px solid #a4834a; line-height: 12px; }
+.h2.touch .tc-act .sk .cd { inset: 8% !important; border-radius: 50%; z-index: 2; }
+.h2.touch .tc-act .page { border: 0 !important; background: url(/art/ui-kit/slot_buff_mini_frame.webp) center / 100% 100% no-repeat !important; border-radius: 4px !important; }
+/* quick buttons: the small slot frame; AUTO is the painted AUTO plate (red = on) */
+.h2.touch .tc-quick .tq { border: 0 !important; border-radius: 4px !important; background: url(/art/ui-kit/slot_buff_mini_frame.webp) center / 100% 100% no-repeat, rgba(10, 8, 7, .55) !important; box-shadow: 0 3px 8px rgba(0, 0, 0, .5) !important; }
+.h2.touch .tc-quick .tq.on { filter: drop-shadow(0 0 8px rgba(98, 215, 203, .7)); }
+.h2.touch .tc-quick .tq .ico.hp { background: url(/art/ui-kit/item_potion_hp_small.webp) center / 70% no-repeat !important; }
+.h2.touch .tc-quick .tq .ico.mp { background: url(/art/ui-kit/item_potion_mp_small.webp) center / 70% no-repeat !important; }
+.h2.touch .tc-quick .tq.auto { background: url(/art/ui-kit/btn_auto_off.webp) center / 100% auto no-repeat !important; box-shadow: none !important; }
+.h2.touch .tc-quick .tq.auto.on { background-image: url(/art/ui-kit/btn_auto_on.webp) !important; filter: none; }
+.h2.touch .tc-quick .tq.auto .atx { opacity: 0; } .h2.touch .tc-quick .tq.auto small { position: absolute; bottom: -12px; color: #e6d3a8; }
+/* joystick: the arcane wheel, a gem-cut knob */
+.h2.touch .tc-stick { border: 0 !important; box-shadow: none !important; background: url(/art/ui-kit/crafting_zodiac_arcane_wheel.webp) center / 100% 100% no-repeat !important; }
+.h2.touch .tc-stick i { border: 0 !important; background: url(/art/ui-kit/hud_quickslot_diamond_top.webp) center / 100% 100% no-repeat !important; box-shadow: 0 4px 10px rgba(0, 0, 0, .6) !important; }
+.h2.touch .tc-quick .tq.auto { width: calc(var(--tq) * 1.3) !important; background-size: contain !important; }
