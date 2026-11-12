@@ -15,6 +15,7 @@ import HeroLineup from './HeroLineup';
 import type { ClassId } from '@/game/content';
 import SettingsPanel from '../SettingsPanel';
 import { loginEmail } from '@/lib/loginName';
+import { setActiveCharacter } from '@/game/eventLog';
 import { GUEST_RETURN, GUEST_SAVE, MAX_SLOTS, accountSave, adoptGuestSave, characterSave, guestSlotKey, readSaveSummary, setSaveKey, type SaveSummary } from '@/game/saveSlot';
 import { portrait } from '../hud/common';
 
@@ -80,7 +81,7 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
   }, [supabase, session, onProfile, made]);
 
   if (!closed || guest) {
-    if (guestIn) { setSaveKey(guestKey); return <>{children}</>; }
+    if (guestIn) { setSaveKey(guestKey); setActiveCharacter(null); return <>{children}</>; }
     if (guestCreate) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
       try { window.localStorage.removeItem(guestKey); } catch { /* storage unavailable */ }
       useGameStore.getState().applyProfile(name, cls, gender); setGuestIn(true); return null; }} />;
@@ -111,7 +112,7 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
     useGameStore.getState().applyProfile(name, cls, gender); setEntered({ id, slot: list.length + 1, name, class_id: cls, gender }); return null; }} />;
   if (!entered) return <Shell><AccountCharacters chars={list} email={session.user.email ?? ''} summaryOf={c => readSaveSummary(keyOf(c))}
     onEnter={enter} onCreate={canAdd ? () => { setPicked(null); setCreating(true); } : undefined} onLogout={() => void supabase.auth.signOut()} /></Shell>;
-  setSaveKey(keyOf(entered));
+  setSaveKey(keyOf(entered)); setActiveCharacter(entered.id === 'legacy' ? null : { id: entered.id, userId: uid, name: entered.name });
   return <>{children}</>;
 }
 

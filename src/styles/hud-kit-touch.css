@@ -70,3 +70,9 @@
 .dw-btn:not(:disabled):hover { border-color: #e8c27e; filter: brightness(1.12); }
 .dw-btn.scroll:not(:disabled) { border-color: #d6a548; box-shadow: inset 0 0 0 1px #000, 0 0 14px rgba(214, 165, 72, .35); }
 .dw-btn:disabled { opacity: .5; cursor: default; }
+
+/* round 25: class icons (01_Class_Icons sheet) are complete diamond emblems — shown whole, no extra frame or clipping */
+.h2.touch .tc-frame .kit-pt::after { display: none; }
+.h2.touch .tc-frame .kit-pt::before { inset: 0; clip-path: none; background-color: transparent; background-size: contain; background-repeat: no-repeat; filter: drop-shadow(0 2px 4px #000); }
+.h2-frame .pt { border: 0 !important; box-shadow: none !important; background-color: transparent !important; background-size: contain !important; background-repeat: no-repeat !important; filter: drop-shadow(0 2px 4px #000); }
+.h2-frame .pt::before, .h2-frame .pt::after { display: none !important; }

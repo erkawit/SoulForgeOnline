@@ -38,6 +38,8 @@ import { ChannelButton, ChannelDialog } from './ChannelSwitch';
 import PCHUDLayout from './hud/PCHUDLayout';
 import MobileHUDLayout from './hud/MobileHUDLayout';
 import PCMenu, { MenuButton, exitItems, type MenuGroup } from './hud/PCMenu';
+import ChatBox from './hud/ChatBox';
+import '@/styles/chat.css';
 import { PCInventoryPanel, MobileInventoryDrawer } from './hud/InventoryPanels';
 import { PCStatusPanel, MobileStatusPanel } from './hud/StatusPanels';
 import '@/styles/hud3.css';
@@ -235,7 +237,7 @@ export default function GameHUD() {
   const layout = useScreenScale(), orientation = useOrientation(); const [menuOpen, setMenuOpen] = useState(false);
   const panelRef = useRef<Panel>(null); panelRef.current = panel; const pc = layout === 'pc'; const [chOpen, setChOpen] = useState(false);
   const player = usePlayerStatic(), equipment = useGameStore(s => s.equipment);
-  const log = useGameStore(s => s.log), selectedMonster = useGameStore(s => s.selectedMonster), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
+  const selectedMonster = useGameStore(s => s.selectedMonster), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
   const hotbar = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar), cooldowns = useGameStore(s => s.cooldowns), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
   const inventory = useGameStore(s => s.inventory);
   const skillDefs = useConfigStore(s => s.skills.defs);
@@ -325,7 +327,8 @@ export default function GameHUD() {
       <header><img className="sf-win-ico" src={`/art/ui-kit/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2>{pc && <MenuButton open={menuOpen} onClick={() => setMenuOpen(v => !v)} />}<button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
       {panel === 'inventory' && <PCInventoryPanel />}{panel === 'character' && <PCStatusPanel />}{panel === 'skills' && <SkillsPanel />}{panel === 'quests' && <QuestsPanel />}{panel === 'codex' && <CollectionPanel />}{panel === 'wardrobe' && <WardrobePanel />}{panel === 'monsters' && <MonsterListPanel />}
       {panel === 'auto' && <AutoPanel />}{panel === 'settings' && <SettingsPanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}</div></div>}
-    <div className={`h2-log ${layout === 'mobile' ? 'hidden' : ''}`}>{log.slice(0, 5).map((l, i) => <div key={`${l}-${i}`} style={{ opacity: 1 - i * .16 }}>› {l}</div>)}</div>
+    {/* round 25: chat (the game log now lives in its system tab) */}
+    <ChatBox mobile={layout === 'mobile'} />
     {(pending || charge) && <div className="h2-cast">{charge ? `ง้างสายธนู ×${(1 + 2 * Math.min(1, (now - charge.start) / 1600)).toFixed(1)}` : `ร่าย ${skillDefs.find(d => d.id === pending?.skillId)?.name ?? ''}`}<i style={{ transform: `scaleX(${charge ? Math.min(1, (now - charge.start) / 1600) : pending ? Math.min(1, 1 - (pending.at - now) / Math.max(1, (skillDefs.find(d => d.id === pending.skillId)?.castMs ?? 1))) : 0})` }} /></div>}
     <TipCard /><BossDashboard /><NpcDialog />
     {deadUntil > 0 && <DeathWindow until={deadUntil} now={now} />}

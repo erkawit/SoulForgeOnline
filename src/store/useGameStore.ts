@@ -1,3 +1,4 @@
+import { emitLoot, lootDiff } from '@/game/eventLog';
 import {isColKey} from '@/game/collection';
 import {spawnPoints} from '@/game/spawns';
 import {monsterExp,monsterSoulGod,bossDrops} from '@/game/rewards';
@@ -214,6 +215,8 @@ function grantKill(state:Acc,m:Monster,_d:Derived,equipment:Record<GearSlot,Item
  const cur=useGameStore.getState();
  const r=eco.grantKill({player:state.player,inventory:state.inventory??cur.inventory,equipment,soulShards:state.soulShards,skillLevels,hotbar:cur.hotbar,buffs:state.buffs,starterKits:cur.starterKits,quests:cur.quests,drops:state.drops,codex:cur.codex,wardrobe:cur.wardrobe},m,plainCtx());
  killQueue.push(...r.events);for(let i=0;i<(r.levelUps??0);i++)audio.play('level_up',{vol:.8});
+ // round 25: what the kill gave goes to the chat's system tab and the character's loot history
+ for(const l of lootDiff({drops:state.drops,inventory:state.inventory??cur.inventory},{drops:r.state.drops,inventory:r.state.inventory}))emitLoot({...l,monster:m.name,city:state.player.cityId??undefined,at:Date.now()});
  let log=state.log;for(const l of r.log)log=addLog(log,l);
  return {player:r.state.player,drops:r.state.drops,soulShards:r.state.soulShards,log,buffs:r.state.buffs,...(r.state.inventory!==(state.inventory??cur.inventory)?{inventory:r.state.inventory}:state.inventory?{inventory:state.inventory}:{})};
 }

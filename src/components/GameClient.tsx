@@ -15,6 +15,7 @@ import AutoPilot from './AutoPilot';
 import UiScale from './UiScale';
 import { GUEST_RETURN, isGuestKey, saveKey, type ExitTo } from '@/game/saveSlot';
 import { getSupabaseBrowser } from '@/lib/supabase';
+import { startChat } from '@/game/chat';
 
 const GameWorld = dynamic(() => import('./GameWorld'), { ssr: false,
   loading: () => <div className="world-loading">SUMMONING THE ECLIPSE...</div> });
@@ -29,6 +30,7 @@ export default function GameClient() {
 function GameRoot() {
   // dev only: the store on window for test scripts
   useEffect(() => { if (process.env.NODE_ENV !== 'production') (window as unknown as { __game?: typeof useGameStore }).__game = useGameStore; }, []);
+  useEffect(() => startChat(), []);
   useEffect(() => { audio.playMusic('field'); const t = setTimeout(() => useGameStore.getState().tip('start'), 1500); return () => { clearTimeout(t); audio.playMusic('title'); }; }, []);
   useEffect(() => {
     try {
