@@ -36,7 +36,7 @@ export const CAPITAL_HALF = 29.5 * CITY_SCALE, CAPITAL_WALK = 28 * CITY_SCALE, G
 export const PLAZA_R = 7.2 * 1.6, ROAD_W = 1.6;
 export const GATE_POS: Record<GateDir, [number, number]> = { top: [-GATE_D, -GATE_D], bottom: [GATE_D, GATE_D], left: [-GATE_D, GATE_D], right: [GATE_D, -GATE_D] };
 /** stepping this close to a waygate point warps */
-export const GATE_TRIGGER = 2.2;
+export const GATE_TRIGGER = 2.8; // round 25: covers the whole gap between the two gate pillars (inner edges at 2.55 m)
 
 type Cal = { u: number; v: number; hw: number; hh: number };
 /** plaza centre and half-distance between opposite waygates, in map units (0…1 of the map width / height) */

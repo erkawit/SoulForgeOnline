@@ -14,6 +14,8 @@ import {CITIES,FIELD_ART,WORLD_LIMIT,portalsOf,type Building,type CityId} from '
 import {onFieldRoad} from '@/game/world/fieldDimensions';
 import {GATE_TRIGGER} from '@/game/world/capitalPlan';
 import {useGameStore} from '@/store/useGameStore';
+import {mapRoute} from '@/game/world/mapRoute';
+import {AdditiveBlending,CanvasTexture,type MeshBasicMaterial} from 'three';
 function Box({p,s,c}:{p:[number,number,number];s:[number,number,number];c:string}){return <mesh position={p} castShadow receiveShadow><boxGeometry args={s}/><meshStandardMaterial color={c} roughness={.82} metalness={.1}/></mesh>;}
 function Structure({b,stone,roof,accent}:{b:Building;stone:string;roof:string;accent:string}){
  const isTower = b.kind === 'tower';
@@ -77,7 +79,14 @@ export function Waygates({city,interactive=true}:{city:CityId;interactive?:boole
    {/* round 24: every gate (capitals, fields, dungeons) is the painted warp gate with two solid pillars — no extra rings
        (their colliders are in registry) */}
    {<>
-    <Billboard position={[0,4.1,0]}><mesh><planeGeometry args={[8.5,8.5]}/><meshBasicMaterial map={gateTexture} transparent alphaTest={.05} side={2}/></mesh></Billboard>
+    {/* round 25: clicking / tapping the painted gate walks into it (the click used to land on the ground far behind the
+        tall picture, so the hero stopped short of the warp) */}
+    <Billboard position={[0,4.1,0]}><mesh raycast={()=>null}><planeGeometry args={[8.5,8.5]}/><meshBasicMaterial map={gateTexture} transparent alphaTest={.05} side={2}/></mesh>
+      {interactive&&<mesh position={[0,-.9,.02]} onClick={e=>{e.stopPropagation();walkInto(city,g.x,g.z);}}
+        onPointerOver={()=>{document.body.style.cursor='pointer';}} onPointerOut={()=>{document.body.style.cursor='';}}>
+        <planeGeometry args={[4.6,6.2]}/><meshBasicMaterial transparent opacity={0} depthWrite={false} colorWrite={false}/></mesh>}</Billboard>
+    {/* where to step: a soft pulsing pool of light on the ground (no hard ring) */}
+    <GatePool color={col}/>
     {[-1,1].map(s=><group key={s} position={[s*3.2,0,0]}>
       <mesh position={[0,1.4,0]} castShadow><cylinderGeometry args={[.45,.65,2.8,6]}/><meshStandardMaterial color="#3c3544"/></mesh>
       <mesh position={[0,3,0]}><octahedronGeometry args={[.4]}/><meshStandardMaterial color={col} emissive={col} emissiveIntensity={1}/></mesh>
@@ -85,6 +94,22 @@ export function Waygates({city,interactive=true}:{city:CityId;interactive?:boole
    </>}
    <Label3D z={12} position={[0,8.8,0]} className="portal-label" text={`${g.kind==='dungeon'?'ดันเจี้ยน · ':g.kind==='city'?'กลับ · ':''}${t.name}`} sub={`${FIELD_ART[g.to]?.th?FIELD_ART[g.to]!.th+' · ':''}${lv}`}/>
   </group>;})}</>;
+}
+/** walk the hero onto a gate's centre (the warp fires on arrival) */
+function walkInto(city:CityId,x:number,z:number){
+ const s=useGameStore.getState();if(s.deadUntil||(s.player.cityId??'hollow')!==city)return;
+ const pts=mapRoute(city,s.player.position,[x,z],0.6)??[[x,z]];
+ window.dispatchEvent(new CustomEvent('sf-map-route',{detail:{city,points:pts}}));
+}
+let poolTex:CanvasTexture|null=null;
+function poolTexture(){if(poolTex)return poolTex;const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d')!;
+ const r=g.createRadialGradient(64,64,4,64,64,63);r.addColorStop(0,'rgba(255,255,255,.95)');r.addColorStop(.45,'rgba(255,255,255,.35)');r.addColorStop(1,'rgba(255,255,255,0)');
+ g.fillStyle=r;g.fillRect(0,0,128,128);poolTex=new CanvasTexture(c);return poolTex;}
+function GatePool({color}:{color:string}){
+ const m=useRef<MeshBasicMaterial>(null);
+ useFrame(({clock})=>{if(m.current)m.current.opacity=.32+Math.sin(clock.elapsedTime*2.2)*.12;});
+ return <mesh rotation={[-Math.PI/2,0,0]} position={[0,.07,0]}><circleGeometry args={[GATE_TRIGGER,40]}/>
+  <meshBasicMaterial ref={m} map={poolTexture()} color={color} transparent opacity={.35} depthWrite={false} blending={AdditiveBlending}/></mesh>;
 }
 const GATE_COLOR:Record<string,string>={hollow:'#62e6d2',dawnveil:'#7fe8ff',thornwatch:'#7f9cff'};
 export default function StarterCity(){
