@@ -39,6 +39,7 @@ import PCHUDLayout from './hud/PCHUDLayout';
 import MobileHUDLayout from './hud/MobileHUDLayout';
 import PCMenu, { MenuButton, exitItems, type MenuGroup } from './hud/PCMenu';
 import ChatBox from './hud/ChatBox';
+import { farmPlan, farmHazards } from '@/game/world/farmLayout';
 import Marketplace from './Marketplace';
 import { Enhance, Forge } from './NpcDialog';
 import GuildPanel from './hud/GuildPanel';
@@ -183,6 +184,12 @@ const MinimapStatic = memo(function MinimapStatic({ cityId, level, quests }: { c
           {city.id === 'dawnveil' && <rect x={-CANAL_IN} y={-CANAL_IN} width={2 * CANAL_IN} height={2 * CANAL_IN} fill="#1d1f25" />}
           <path d={`M${-GATE_D} ${-GATE_D}L${GATE_D} ${GATE_D}M${-GATE_D} ${GATE_D}L${GATE_D} ${-GATE_D}M0 ${-24 * CITY_SCALE}V${24 * CITY_SCALE}M${-24 * CITY_SCALE} 0H${24 * CITY_SCALE}`} stroke="#4a443f" strokeWidth="5.4" strokeLinecap="round" /><circle r={13.6 * CITY_SCALE} fill="none" stroke="#4a443f" strokeWidth="5" /><circle r={PLAZA_R} fill="#4a443f" />
           {CAPITAL_PIECES[city.id as MainCityId].filter(p => p.role || p.piece === 'tree').map((p, i) => <circle key={'b' + i} cx={p.x} cy={p.z} r={p.r} fill={p.role ? city.roof : '#2e4a30'} stroke={city.accent} strokeWidth=".3" />)}</>}
+      {/* round 26: each field's own roads, plazas and gate avenues */}
+      {(() => { const fp = farmPlan(city.id); if (!fp) return null; const pt = (q: number[][]) => q.map((v, i) => `${i ? 'L' : 'M'}${v[0]} ${v[1]}`).join('');
+        return <g opacity=".9">{portalsOf(city.id).map(g => <path key={'av' + g.dir} d={`M0 0L${g.x} ${g.z}`} stroke="#3e372d" strokeWidth={10} strokeLinecap="round" />)}
+          {fp.roads.map(r => <path key={r.name} d={pt(r.pointsM)} fill="none" stroke="#3e372d" strokeWidth={r.widthM} strokeLinecap="round" strokeLinejoin="round" />)}
+          {fp.plazas.map(q => <circle key={q.name} cx={q.centerM[0]} cy={q.centerM[1]} r={q.diameterM / 2} fill="#2c2a2c" stroke="#5a4f3e" strokeWidth=".8" />)}
+          {farmHazards(city.id).map(h => <circle key={h.name} cx={h.center[0]} cy={h.center[1]} r={h.radius} fill="#050507" />)}</g>; })()}
       {city.id === 'wild0' && ZONES.map(z => <circle key={z.id} cx={z.x} cy={z.z} r={z.radius} fill="rgba(160,60,50,.16)" stroke="rgba(224,90,70,.45)" strokeWidth=".5" />)}
       {city.buildings.map((b, i) => <rect key={i} x={b.x - b.w / 2} y={b.z - b.d / 2} width={b.w} height={b.d} fill={city.roof} stroke={city.accent} strokeWidth={.3} />)}
       {portalsOf(city.id).map(p => <circle key={'g' + p.dir} cx={p.x} cy={p.z} r={GATE_TRIGGER} fill="none" stroke={p.kind === 'dungeon' ? '#c98aff' : '#62e6d2'} strokeWidth=".6" />)}
