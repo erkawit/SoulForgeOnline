@@ -19,6 +19,7 @@ import { RARITY_COLOR } from '@/lib/types';
 import type { Item, Loot, Monster } from '@/lib/types';
 import { lootTexture, LOOT_CARD_ASPECT } from '@/game/fx/lootIcon';
 import { ITEM_BY_ID } from '@/game/items';
+import LootChest from './LootChest';
 
 import ClassActor from './ClassActor';
 import StarterCity from './StarterCity';
@@ -247,11 +248,10 @@ export function LootCard({ item, gender = 'm' }: { item: Item; gender?: 'm' | 'f
 function DevExpose() { const t = useThree(); useEffect(() => { if (process.env.NODE_ENV !== 'production') (window as unknown as Record<string, unknown>).__sfThree = t; }, [t]); return null; }
 
 function LootObject({ loot }: { loot: Loot }) {
-  const gender = useGameStore(s => s.player.gender === 'f' ? 'f' : 'm');
   const pickup = (e: ThreeEvent<MouseEvent>) => { e.stopPropagation(); useGameStore.getState().pickup(loot.id); };
   return <group position={[loot.x, 0, loot.z]} onClick={pickup}>
-    <LootCard item={loot.item} gender={gender} />
-    <Label3D z={30} position={[0, 1.55, 0]} className="actor-label loot-label" color={RARITY_COLOR[loot.item.rarity]} text={loot.item.name}/>
+    <LootChest item={loot.item} />
+    <Label3D z={30} position={[0, 1.75, 0]} className="actor-label loot-label" color={RARITY_COLOR[loot.item.rarity]} text={loot.item.name}/>
   </group>;
 }
 
@@ -305,7 +305,7 @@ function MultiplayerActors() {
    <Label3D z={30} position={[0,5.6,0]} color="#ffd0dc" text={`ABYSSAL FORGE TITAN ${Math.ceil(boss.hp/boss.maxHp*100)}%`}/>
  </group>}
  {loot.map(l=><group key={l.id} position={[l.x,0,l.z]} onClick={e=>{e.stopPropagation();gameConnection.pickup(l.id)}}>
-   <LootCard item={{ id: l.id, definitionId: l.itemDefinitionId, name: ITEM_BY_ID[l.itemDefinitionId]?.name ?? l.itemDefinitionId, rarity: l.rarity as Item['rarity'] } as Item}/>
+   <LootChest item={{ rarity: l.rarity as Item['rarity'] }}/>
    <Label3D z={30} position={[0,1.45,0]} className="actor-label loot-label" color={RARITY_COLOR[l.rarity as Item['rarity']] ?? '#fff3ad'} text={ITEM_BY_ID[l.itemDefinitionId]?.name ?? l.itemDefinitionId}/>
  </group>)}
  </group>;

@@ -7,7 +7,7 @@ import { RARITY_COLOR, type Rarity } from '@/lib/types';
 
 const TAG: Record<ChatChannel, string> = { near: 'ใกล้', world: 'โลก', party: 'ปาร์ตี้', guild: 'กิลด์', whisper: 'กระซิบ', system: 'ระบบ' };
 const HINT: Partial<Record<ChatChannel, string>> = {
-  party: 'ปาร์ตี้ออนไลน์จะเปิดพร้อมเซิร์ฟเวอร์ Realm', guild: 'ระบบกิลด์ยังไม่เปิด',
+  party: 'แชทปาร์ตี้เปิดพร้อมเซิร์ฟเวอร์ Realm', guild: 'คุยกับสมาชิกกิลด์ · ยังไม่มีกิลด์? เปิดเมนู กิลด์',
   system: 'ไอเทมดรอป · ดาเมจที่ทำ · ดาเมจที่ได้รับ', whisper: 'คลิกชื่อผู้เล่นเพื่อกระซิบ หรือพิมพ์ /w ชื่อ ข้อความ' };
 const time = (t: number) => new Date(t).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
 
@@ -38,12 +38,12 @@ export default function ChatBox({ mobile }: { mobile: boolean }) {
     window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k);
   }, [mobile]);
   useEffect(() => { setErr(null); }, [tab]);
-  // PC: bottom-left beside the skill dock when the screen is wide enough, otherwise lifted just above it
+  // PC: bottom-left beside the potion row when the screen is wide enough, otherwise lifted just above it
   const box = useRef<HTMLElement>(null), [lift, setLift] = useState(0);
   useEffect(() => {
     if (mobile) return;
     const fit = () => {
-      const el = box.current, d = document.querySelector('.h3-dock')?.getBoundingClientRect(); if (!el || !d) return;
+      const el = box.current, d = document.querySelector('.pc-belt')?.getBoundingClientRect(); if (!el || !d) return;
       const s = parseFloat(getComputedStyle(el).zoom) || 1, right = el.getBoundingClientRect().right;
       setLift(d.left < right + 8 ? Math.ceil((window.innerHeight - d.top + 8) / s) : 0);
     };
@@ -73,7 +73,7 @@ export default function ChatBox({ mobile }: { mobile: boolean }) {
     {tab !== 'system' && <form className="cb-in" onSubmit={e => { e.preventDefault(); void send(); }}>
       {tab === 'whisper' && <input className="to" value={whisperTo} onChange={e => setWhisperTo(e.target.value)} placeholder="ถึง…" maxLength={16} aria-label="ชื่อผู้รับ" />}
       <input ref={input} value={text} onChange={e => { setText(e.target.value); if (err) setErr(null); }} maxLength={200} enterKeyHint="send"
-        placeholder={tab === 'party' || tab === 'guild' ? HINT[tab] : `พิมพ์ใน ${TAG[tab]}…`} aria-label="ข้อความ"
+        placeholder={tab === 'party' ? HINT[tab] : `พิมพ์ใน ${TAG[tab]}…`} aria-label="ข้อความ"
         onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); e.currentTarget.blur(); } }} />
       <button type="submit" disabled={busy || !text.trim()}>ส่ง</button>
     </form>}

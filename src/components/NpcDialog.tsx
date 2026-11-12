@@ -133,14 +133,14 @@ function useServerResult(setRes: (r: { ok: boolean; m: string }) => void) {
   useEffect(() => { if (r) setRes({ ok: r.ok, m: r.msg }); }, [r?.seq]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 /** Brannoc: enhancement + crafting (SoulGod + materials; Legendary+ may fail into a crystal, 3 crystals = guaranteed craft) */
-function Forge() {
-  const [tab, setTab] = useState<'enhance' | 'craft'>('enhance');
+export function Forge({ start = 'enhance' }: { start?: 'enhance' | 'craft' } = {}) {
+  const [tab, setTab] = useState<'enhance' | 'craft'>(start);
   return <><div className="npc-actions"><button className={`action-button ${tab === 'craft' ? '' : 'ghost'}`} onClick={() => { setTab('craft'); useGameStore.getState().tip('craft-open'); }}>⚒ คราฟอุปกรณ์</button>
     <button className={`action-button ${tab === 'enhance' ? '' : 'ghost'}`} onClick={() => { setTab('enhance'); useGameStore.getState().tip('enhance-open'); }}>ตีบวก</button></div>{tab === 'craft' ? <CraftPanel gear={category => <Craft key={category} category={category}/>} /> : <Enhance />}</>;
 }
 export function Craft({ category }: { category: string }) {
   const s = useGameStore(); const config = useConfigStore(c => c.config);
-  const [rarity, setRarity] = useState<Rarity>('Rare'), cls: ClassId = 'Berserker', [kind, setKind] = useState<WeaponKind>('greatsword'), [slot, setSlot] = useState<CraftSlot>(category === 'armor' ? 'armor' : category === 'accessories' ? 'ring' : 'weapon'); const [res, setRes] = useState<{ ok: boolean; m: string } | null>(null);
+  const [rarity, setRarity] = useState<Rarity>('Rare'), cls: ClassId = s.player.classId ?? 'Berserker', [kind, setKind] = useState<WeaponKind>('greatsword'), [slot, setSlot] = useState<CraftSlot>(category === 'armor' ? 'armor' : category === 'accessories' ? 'ring' : 'weapon'); const [res, setRes] = useState<{ ok: boolean; m: string } | null>(null);
   const cost = craftCost(rarity, slot, config), ch = craftChance(rarity, config); useServerResult(setRes);
   const preview = useMemo(() => makeGear(craftDefId(rarity, cls, slot, kind), cls, () => 0.5), [rarity, cls, slot, kind]);
   useEffect(() => { useGameStore.getState().tip('craft-open'); }, []);

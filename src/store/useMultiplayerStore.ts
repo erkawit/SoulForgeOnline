@@ -11,7 +11,10 @@ export type PartyInvite={from:string;name:string;classId:string;until:number}|nu
 export type ActResult={op:string;ok:boolean;msg:string;seq:number}|null;
 import type {Listing,Mail} from '@/game/economy/market';
 /** the realm's market windows (round 10): the last page the player asked for, the live market tax, unclaimed mail */
-export type MarketView={view:'browse'|'mine'|'mail';listings:Listing[];mail:Mail[];tax:number;page:number;error:string|null;at:number};
+/** round 26: a finished trade (my sale or my purchase) and an item's sale prices over the last week */
+export type MarketTrade=Listing&{side:'sold'|'bought';closedAt:number};
+export type MarketPrices={def:string;enhance:number;week:number|null;yesterday:number|null;last:number|null;sold7d:number};
+export type MarketView={view:'browse'|'mine'|'mail'|'history'|'prices';listings:Listing[];mail:Mail[];trades:MarketTrade[];prices:MarketPrices|null;tax:number;page:number;error:string|null;at:number};
 /** round 13: city channels — the one this character is in, and [channel, players] of its city when asked */
 export type ChannelView={current:number;list:[number,number][];at:number;/** round 16: players per channel (realm REALM_CHANNEL_CAP) */cap?:number};
 type NetState={channel:ChannelView;market:MarketView|null;mailCount:number;actResult:ActResult;connected:boolean;online:boolean;playerId:string|null;players:Remote[];boss:Boss;loot:GroundLoot[];status:string;party:PartyView;partyInvite:PartyInvite;reconnecting:boolean;bossResult:BossResult;setOnline:(b:boolean)=>void;setState:(p:Partial<NetState>)=>void};

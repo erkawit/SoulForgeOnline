@@ -48,7 +48,7 @@ class GameConnection {
    if(m.type==='BOSS_STRIKE'&&m.target===useMultiplayerStore.getState().playerId)applyServerHit({damage:Number(m.damage)||0,hp:Number(m.hp),evaded:!!m.evaded,stacks:Number(m.stacks)||0});
    if(m.type==='BOSS_RESULT')useMultiplayerStore.getState().setState({bossResult:{boss:m.boss,minutes:m.minutes,players:m.players,ranked:m.ranked}});
    if(m.type==='NOTICE')useMultiplayerStore.getState().setState({status:m.message});
-   if(m.type==='MARKET_VIEW'){const prev=useMultiplayerStore.getState().market;useMultiplayerStore.getState().setState({market:{view:m.view,listings:m.listings??(m.view==='mail'?prev?.listings??[]:[]),mail:m.mail??prev?.mail??[],tax:Number(m.tax)||0,page:m.page??0,error:m.error??null,at:Date.now()},...(m.view==='mail'?{mailCount:(m.mail??[]).length}:{})});}
+   if(m.type==='MARKET_VIEW'){const prev=useMultiplayerStore.getState().market;const keep=m.view==='mail'||m.view==='prices'||m.view==='history';useMultiplayerStore.getState().setState({market:{view:keep?prev?.view??m.view:m.view,listings:m.listings??(keep?prev?.listings??[]:[]),mail:m.mail??prev?.mail??[],trades:m.trades??prev?.trades??[],prices:m.prices?{def:m.def,enhance:m.enhance,...m.prices}:prev?.prices??null,tax:Number(m.tax)||0,page:m.page??prev?.page??0,error:m.error??null,at:Date.now()},...(m.view==='mail'?{mailCount:(m.mail??[]).length}:{})});}
    if(m.type==='MAIL'){useMultiplayerStore.getState().setState({mailCount:m.count,...(m.note?{status:`📬 ${m.note}`}:{})});if(m.note)useGameStore.setState(s=>({log:[`📬 ${m.note}`,...s.log].slice(0,6)}));}
   };
   // dropped connection: retry quietly inside the server's 120 s party grace (1,2,4,8,15,15… s) — the party seat is kept
@@ -72,7 +72,7 @@ class GameConnection {
  attack(targetId='abyssal-forge-titan',skillId:'basic'|'soul_burst'='basic'){this.sendPos(true);this.send({type:'ATTACK',targetId,skillId});}
  pickup(lootId:string){this.send({type:'PICKUP',lootId});}
  /** ask the realm for a market page, my listings or my mail (answer: MARKET_VIEW) */
- market(view:'browse'|'mine'|'mail',opts:{text?:string;rarity?:string;page?:number}={}){this.send({type:'MARKET',view,...opts,page:opts.page??0});}
+ market(view:'browse'|'mine'|'mail'|'history'|'prices',opts:{text?:string;rarity?:string;page?:number;cat?:string;sort?:'new'|'price'|'priceDesc';enhMin?:number;def?:string;enhance?:number}={}){this.send({type:'MARKET',view,...opts,page:opts.page??0});}
  /** Enchanter → any player within range, no party required (server validates class, range, cooldown, MP). */
  buff(targetId:string,buff:'might'|'ward'|'haste'|'focus'){this.send({type:'BUFF',targetId,buff});}
  /** round 13: city channels — ask for the list / move to another channel (the realm allows one move per 10 s) */

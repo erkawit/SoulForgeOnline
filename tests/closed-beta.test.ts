@@ -22,8 +22,8 @@ test('store: class bases, skills, casting, npc services, snapshot roundtrip', ()
   const pot = S().inventory.findIndex(i => i?.definitionId === 'potion-hp-s'); assert.equal(S().inventory[pot]!.qty, 3);
   useGameStore.setState(s => ({ player: { ...s.player, hp: 10 } })); S().equip(pot); assert.ok(S().player.hp > 100); assert.equal(S().inventory[pot]!.qty, 2);
   for(let i=0;i<3;i++) assert.equal(S().buyCatalog('soul-stone-weapon'),null);
-  // enhance only at the merchant
-  useGameStore.setState(s => ({ player: { ...s.player, position: [0, 0] } })); assert.equal(S().enhance({ slot: 'weapon' }, false).ok, false); at('merchant');
+  // round 26: enhancing opens from the menu anywhere (not only at the merchant)
+  useGameStore.setState(s => ({ player: { ...s.player, position: [0, 0] } }));
   for (let i = 0; i < 3; i++) assert.equal(S().enhance({ slot: 'weapon' }, false).ok, true);
   assert.equal(S().equipment.weapon!.enhance, 3); assert.match(S().equipment.weapon!.name, /^\+3 /);
   // combat: put a monster next to the player and cast the cleave

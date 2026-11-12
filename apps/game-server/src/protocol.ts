@@ -10,7 +10,8 @@ export const Intent = z.discriminatedUnion('type', [
  z.object({type:z.literal('PICKUP'),lootId:z.string().uuid()}),
  z.object({type:z.literal('PING')}),
  // round 10: read the market (browse / my listings / my mail); changes go through ACT market* ops
- z.object({type:z.literal('MARKET'),view:z.enum(['browse','mine','mail']),text:z.string().max(40).optional(),rarity:z.string().max(12).optional(),page:z.number().int().min(0).max(50).default(0)}),
+ z.object({type:z.literal('MARKET'),view:z.enum(['browse','mine','mail','history','prices']),text:z.string().max(40).optional(),rarity:z.string().max(12).optional(),page:z.number().int().min(0).max(50).default(0),
+  cat:z.enum(['','weapon','armor','accessory','material','consumable']).optional(),sort:z.enum(['new','price','priceDesc']).optional(),enhMin:z.number().int().min(0).max(15).optional(),def:z.string().max(80).optional(),enhance:z.number().int().min(0).max(15).optional()}),
  // Enchanter inscription on ANY player in range — no party needed (closed beta rule)
  z.object({type:z.literal('BUFF'),targetId:z.string().uuid(),buff:z.enum(['might','ward','haste','focus'])}),
  // parties are server-owned (party.ts): invite / answer / leave / kick

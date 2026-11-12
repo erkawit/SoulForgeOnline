@@ -9,7 +9,7 @@ import { requestExit } from '@/game/saveSlot';
 type Tab = 'audio' | 'graphics' | 'display' | 'keys' | 'account';
 const TABS: [Tab, string][] = [['audio', 'เสียง'], ['graphics', 'กราฟิก'], ['display', 'การแสดงผล'], ['keys', 'ปุ่ม']];
 const KEYMAP: [string, string][] = [['W A S D', 'เดิน / วิ่ง'], ['1', 'โจมตีธรรมดา'], ['Space Q E R T X', 'สกิล 1–6'], ['7 8', 'ยา HP / MP'], ['9', 'อาหารบัฟ'], ['Z', 'เปิด / ปิด AUTO'],
-  ['Esc', 'เมนู · ปิดหน้าต่าง'], ['I', 'กระเป๋า'], ['C', 'ตัวละคร'], ['K', 'สกิล'], ['J', 'เควส'], ['L', 'สมุดสะสม'], ['U', 'ตู้ชุด'], ['N', 'มอนสเตอร์'], ['M', 'แผนที่'], ['P', 'ปาร์ตี้'], ['O', 'ตั้งค่า']];
+  ['Esc', 'เมนู · ปิดหน้าต่าง'], ['I', 'กระเป๋า'], ['C', 'ตัวละคร'], ['K', 'สกิล'], ['J', 'เควส'], ['L', 'สมุดสะสม'], ['U', 'ตู้ชุด'], ['N', 'มอนสเตอร์'], ['M', 'แผนที่'], ['P', 'ปาร์ตี้'], ['Y', 'ตลาดกลาง'], ['G', 'อัพเกรดไอเทม'], ['B', 'สร้างไอเทม'], ['V', 'กิลด์'], ['H', 'ดันเจี้ยน'], ['Enter', 'พิมพ์แชท'], ['O', 'ตั้งค่า']];
 export function saveAudio(p: Partial<AudioSettings>) { audio.configure(p); try { localStorage.setItem('sf-audio', JSON.stringify(audio.settings)); } catch { /* private mode */ } }
 /** low = for older phones / laptops on battery: everything that costs GPU time turned down at once */
 const PRESET: Record<Quality, { renderScale: number; fpsCap: FpsCap; shadows: boolean }> = {

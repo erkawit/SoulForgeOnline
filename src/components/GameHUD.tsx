@@ -39,7 +39,13 @@ import PCHUDLayout from './hud/PCHUDLayout';
 import MobileHUDLayout from './hud/MobileHUDLayout';
 import PCMenu, { MenuButton, exitItems, type MenuGroup } from './hud/PCMenu';
 import ChatBox from './hud/ChatBox';
+import Marketplace from './Marketplace';
+import { Enhance, Forge } from './NpcDialog';
+import GuildPanel from './hud/GuildPanel';
+import DungeonPanel from './hud/DungeonPanel';
+import '@/styles/menus26.css';
 import '@/styles/chat.css';
+import '@/styles/pc-hud.css';
 import { PCInventoryPanel, MobileInventoryDrawer } from './hud/InventoryPanels';
 import { PCStatusPanel, MobileStatusPanel } from './hud/StatusPanels';
 import '@/styles/hud3.css';
@@ -48,9 +54,9 @@ import '@/styles/touch-controls.css';
 import '@/styles/hud-kit-touch.css';
 import '@/styles/pc-menu.css';
 
-type Panel = 'inventory' | 'character' | 'skills' | 'quests' | 'codex' | 'wardrobe' | 'monsters' | 'auto' | 'settings' | 'cloud' | 'online' | null;
+type Panel = 'inventory' | 'character' | 'skills' | 'quests' | 'codex' | 'wardrobe' | 'monsters' | 'auto' | 'settings' | 'cloud' | 'online' | 'market' | 'upgrade' | 'craft' | 'guild' | 'dungeon' | null;
 /** round 25 (PC): these open as full-screen pages; the rest dock on the right like a side panel */
-const PC_PAGE: Panel[] = ['inventory', 'codex', 'wardrobe', 'quests', 'monsters', 'settings'];
+const PC_PAGE: Panel[] = ['inventory', 'codex', 'wardrobe', 'quests', 'monsters', 'settings', 'market', 'upgrade', 'craft', 'guild', 'dungeon'];
 const KEYS = ['1', 'Space', 'Q', 'E', 'R', 'T', 'X'];
 const CLASS_COLOR: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff' };
 const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เซิร์กเกอร์', Reaver: 'รีเวอร์' };
@@ -255,7 +261,7 @@ export default function GameHUD() {
       if (e.target instanceof HTMLElement && (e.target.closest('input,textarea,select') || e.target.isContentEditable)) return;
       if (e.repeat) return; const k = e.key.toLowerCase(), g = useGameStore.getState();
       if (g.journal) { if (k === 'escape') g.setJournal(false); return; }
-      const map: Record<string, Panel> = { i: 'inventory', c: 'character', k: 'skills', j: 'quests', l: 'codex', u: 'wardrobe', n: 'monsters', o: 'settings' };
+      const map: Record<string, Panel> = { i: 'inventory', c: 'character', k: 'skills', j: 'quests', l: 'codex', u: 'wardrobe', n: 'monsters', o: 'settings', y: 'market', g: 'upgrade', b: 'craft', v: 'guild', h: 'dungeon' };
       if (map[k]) setPanel(p => p === map[k] ? null : map[k]);
       // round 25: Esc closes the open window; with none open it opens / closes the menu
       if (k === 'escape') { if (panelRef.current) setPanel(null); else setMenuOpen(v => !v); }
@@ -278,17 +284,18 @@ export default function GameHUD() {
   const foodCount = FOOD_ITEMS.reduce((a, f) => a + countOf(inventory, f.id), 0), fed = buffs.some(b => b.id.startsWith('food-') && b.until > now);
   const menu: [Exclude<Panel, null>, string, string, string][] = [['inventory', '🎒', 'I', 'กระเป๋า · อุปกรณ์'], ['character', '♜', 'C', 'ตัวละคร'], ['skills', '✺', 'K', 'สกิล'], ['quests', '❡', 'J', 'เควส'], ['codex', '✦', 'L', 'สมุดสะสม'], ['wardrobe', '👘', 'U', 'ตู้เสื้อผ้า'], ['monsters', '☠', 'N', 'สมุดมอนสเตอร์'],
     ['auto', '⟳', 'Z', 'AUTO'], ['online', '⚑', '', 'ออนไลน์ / ปาร์ตี้'], ['cloud', '☁', '', 'เซฟคลาวด์'], ['settings', '⚙', 'O', 'ตั้งค่า']];
-  const SHORT: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า', character: 'ตัวละคร', skills: 'สกิล', quests: 'เควส', codex: 'สะสม', wardrobe: 'ตู้ชุด', monsters: 'มอนสเตอร์', auto: 'ออโต้', online: 'ออนไลน์', cloud: 'เซฟคลาวด์', settings: 'ตั้งค่า' };
-  const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'menu_03_inventory', character: 'menu_12_character_helm', skills: 'menu_04_skill_book', quests: 'menu_22_quest_scrolls', codex: 'menu_11_codex_book', wardrobe: 'menu_09_avatar_armor', monsters: 'menu_32_boss_battle_locked', auto: 'icon_refresh', online: 'menu_28_community_friends', cloud: 'icon_crystal_orb', settings: 'icon_menu_settings_gear' };
-  const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
+  const SHORT: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า', character: 'ตัวละคร', skills: 'สกิล', quests: 'เควส', codex: 'สะสม', wardrobe: 'ตู้ชุด', monsters: 'มอนสเตอร์', auto: 'ออโต้', online: 'ออนไลน์', cloud: 'เซฟคลาวด์', settings: 'ตั้งค่า', market: 'ตลาด', upgrade: 'อัพเกรด', craft: 'สร้าง', guild: 'กิลด์', dungeon: 'ดันเจี้ยน' };
+  const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'menu_03_inventory', character: 'menu_12_character_helm', skills: 'menu_04_skill_book', quests: 'menu_22_quest_scrolls', codex: 'menu_11_codex_book', wardrobe: 'menu_09_avatar_armor', monsters: 'menu_32_boss_battle_locked', auto: 'icon_refresh', online: 'menu_28_community_friends', cloud: 'icon_crystal_orb', settings: 'icon_menu_settings_gear', market: 'menu_19_market_scale', upgrade: 'menu_13_skill_upgrade', craft: 'menu_21_craft_anvil_hammer', guild: 'menu_27_guild_shield_royal', dungeon: 'menu_31_dungeon_arch' };
+  const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm', market: 'ตลาดกลาง · Exchange', upgrade: 'อัพเกรดไอเทม · ตีบวก', craft: 'สร้างไอเทม · คราฟ', guild: 'กิลด์', dungeon: 'ดันเจี้ยน' };
 
   const openWin = (id: Exclude<Panel, null>) => () => { audio.play('ui_click', { vol: .35 }); setPanel(id); };
   const ev = (detail: string) => () => window.dispatchEvent(new CustomEvent('sf-open-win', { detail }));
   const it = (id: Exclude<Panel, null>, label: string, key?: string) => ({ id, label, key, art: MENU_ART[id], on: panel === id, run: openWin(id) });
   const pcGroups: MenuGroup[] = [
     { title: 'ตัวละคร', items: [it('inventory', 'กระเป๋า', 'I'), it('character', 'ตัวละคร', 'C'), it('skills', 'สกิล', 'K'), it('wardrobe', 'ตู้ชุด', 'U')] },
-    { title: 'การผจญภัย', items: [it('quests', 'เควส', 'J'), { id: 'map', label: 'แผนที่', key: 'M', art: 'map_waypoint_node_swords', run: ev('map') }, it('monsters', 'มอนสเตอร์', 'N'), it('codex', 'สมุดสะสม', 'L')] },
-    { title: 'สังคม', items: [it('online', 'ออนไลน์'), { id: 'party', label: 'ปาร์ตี้', key: 'P', art: 'menu_27_guild_shield_royal', run: ev('party') }, { id: 'wiki', label: 'วิกิ', art: 'menu_23_daily_request', run: () => window.open('/wiki', '_blank', 'noopener') }] },
+    { title: 'การผจญภัย', items: [it('quests', 'เควส', 'J'), { id: 'map', label: 'แผนที่', key: 'M', art: 'map_waypoint_node_swords', run: ev('map') }, it('dungeon', 'ดันเจี้ยน', 'H'), it('monsters', 'มอนสเตอร์', 'N'), it('codex', 'สมุดสะสม', 'L')] },
+    { title: 'ไอเทม', items: [it('market', 'ตลาดกลาง', 'Y'), it('upgrade', 'อัพเกรด', 'G'), it('craft', 'สร้างไอเทม', 'B')] },
+    { title: 'สังคม', items: [it('guild', 'กิลด์', 'V'), it('online', 'ออนไลน์'), { id: 'party', label: 'ปาร์ตี้', key: 'P', art: 'menu_28_community_friends', run: ev('party') }, { id: 'wiki', label: 'วิกิ', art: 'menu_23_daily_request', run: () => window.open('/wiki', '_blank', 'noopener') }] },
     { title: 'ระบบ', items: [it('auto', 'ออโต้', 'Z'), it('cloud', 'เซฟคลาวด์')] },
   ];
 
@@ -326,7 +333,9 @@ export default function GameHUD() {
     : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' || panel === 'wardrobe' || panel === 'codex' ? 'wide' : ''} ${pc ? (PC_PAGE.includes(panel) ? 'pc-page' : 'pc-dock') : ''}`} data-panel={panel}>
       <header><img className="sf-win-ico" src={`/art/ui-kit/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2>{pc && <MenuButton open={menuOpen} onClick={() => setMenuOpen(v => !v)} />}<button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
       {panel === 'inventory' && <PCInventoryPanel />}{panel === 'character' && <PCStatusPanel />}{panel === 'skills' && <SkillsPanel />}{panel === 'quests' && <QuestsPanel />}{panel === 'codex' && <CollectionPanel />}{panel === 'wardrobe' && <WardrobePanel />}{panel === 'monsters' && <MonsterListPanel />}
-      {panel === 'auto' && <AutoPanel />}{panel === 'settings' && <SettingsPanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}</div></div>}
+      {panel === 'auto' && <AutoPanel />}{panel === 'settings' && <SettingsPanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}
+      {panel === 'market' && <Marketplace />}{panel === 'upgrade' && <div className="npc-dialog-embed"><Enhance /></div>}{panel === 'craft' && <div className="npc-dialog-embed"><Forge start="craft" /></div>}
+      {panel === 'guild' && <GuildPanel />}{panel === 'dungeon' && <DungeonPanel onClose={() => setPanel(null)} />}</div></div>}
     {/* round 25: chat (the game log now lives in its system tab) */}
     <ChatBox mobile={layout === 'mobile'} />
     {(pending || charge) && <div className="h2-cast">{charge ? `ง้างสายธนู ×${(1 + 2 * Math.min(1, (now - charge.start) / 1600)).toFixed(1)}` : `ร่าย ${skillDefs.find(d => d.id === pending?.skillId)?.name ?? ''}`}<i style={{ transform: `scaleX(${charge ? Math.min(1, (now - charge.start) / 1600) : pending ? Math.min(1, 1 - (pending.at - now) / Math.max(1, (skillDefs.find(d => d.id === pending.skillId)?.castMs ?? 1))) : 0})` }} /></div>}

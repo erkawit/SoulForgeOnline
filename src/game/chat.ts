@@ -46,6 +46,10 @@ export const useChatStore = create<ChatState>((set, get) => ({
 }));
 const sys = (text: string, kind: LineKind = 'info', rarity?: string) => useChatStore.getState().add({ ch: 'system', kind, text, rarity });
 
+// ---------- the character's guild (round 26: guild chat) ----------
+let myGuild: string | null = null;
+export const setMyGuild = (id: string | null) => { myGuild = id; };
+
 // ---------- sending ----------
 const ERR: Record<string, string> = { CHAT_FLOOD: 'พิมพ์เร็วเกินไป รอสักครู่', WHISPER_TARGET: 'ไม่พบผู้เล่นชื่อนี้' };
 const cityNow = () => useGameStore.getState().player.cityId ?? 'hollow';
@@ -58,7 +62,8 @@ export async function sendChat(ch: ChatChannel, raw: string, whisperTo?: string)
   if (w) { ch = 'whisper'; to = w[1]; text = w[2].trim(); useChatStore.getState().setWhisperTo(to); }
   if (!text) return null;
   if (ch === 'system') return 'ช่องระบบใช้แสดงข้อมูลเท่านั้น';
-  if (ch === 'party' || ch === 'guild') return ch === 'party' ? 'ระบบปาร์ตี้ออนไลน์ยังไม่เปิด' : 'ระบบกิลด์ยังไม่เปิด';
+  if (ch === 'party') return 'แชทปาร์ตี้เปิดพร้อมเซิร์ฟเวอร์ Realm';
+  if (ch === 'guild' && !myGuild) return 'ยังไม่มีกิลด์ — เปิดเมนู กิลด์ เพื่อสร้างหรือเข้าร่วม';
   if (ch === 'whisper' && !to) return 'ใส่ชื่อผู้รับก่อน หรือพิมพ์ /w ชื่อ ข้อความ';
   const me = activeCharacter(), sb = getSupabaseBrowser(), name = useGameStore.getState().player.name;
   if (!me || !sb) { // guest: on this screen only
@@ -72,7 +77,7 @@ export async function sendChat(ch: ChatChannel, raw: string, whisperTo?: string)
     if (error || !data) return 'ไม่พบผู้เล่นชื่อนี้';
     target = String(data);
   }
-  const { data, error } = await sb.from('chat_messages').insert({ channel: ch, char_id: me.id, sender_name: me.name, city_id: ch === 'near' ? cityNow() : null, target_char: target, body: text })
+  const { data, error } = await sb.from('chat_messages').insert({ channel: ch, char_id: me.id, sender_name: me.name, city_id: ch === 'near' ? cityNow() : null, target_char: target, group_id: ch === 'guild' ? myGuild : null, body: text })
     .select('id, created_at, target_name').single();
   if (error) return ERR[Object.keys(ERR).find(k => error.message.includes(k)) ?? ''] ?? 'ส่งข้อความไม่สำเร็จ';
   useChatStore.getState().add({ key: `db${data.id}`, ch, kind: 'chat', from: me.name, to: data.target_name ?? to, text, mine: true, at: Date.parse(data.created_at) || Date.now() });
@@ -80,11 +85,12 @@ export async function sendChat(ch: ChatChannel, raw: string, whisperTo?: string)
 }
 
 // ---------- receiving ----------
-type Row = { id: number; channel: ChatChannel; char_id: string; sender_name: string; city_id: string | null; target_char: string | null; target_name: string | null; body: string; created_at: string };
+type Row = { id: number; channel: ChatChannel; char_id: string; sender_name: string; city_id: string | null; target_char: string | null; target_name: string | null; group_id?: string | null; body: string; created_at: string };
 function addRow(r: Row) {
   const me = activeCharacter(); if (!me) return;
   if (r.channel === 'near' && r.city_id !== cityNow()) return; // near = the same map only
   if (r.channel === 'whisper' && r.char_id !== me.id && r.target_char !== me.id) return; // another character of this account
+  if (r.channel === 'guild' && (r as Row & { group_id?: string | null }).group_id !== myGuild) return; // the account's other character's guild
   useChatStore.getState().add({ key: `db${r.id}`, ch: r.channel, kind: 'chat', from: r.sender_name, to: r.target_name ?? undefined, text: r.body, mine: r.char_id === me.id, at: Date.parse(r.created_at) || Date.now() });
 }
 
@@ -148,8 +154,9 @@ export function startChat(): () => void {
   // chat: the last hour of near / world / whispers, then live rows
   let rt: RealtimeChannel | null = null;
   if (sb && me) {
-    void sb.from('chat_messages').select('id, channel, char_id, sender_name, city_id, target_char, target_name, body, created_at')
-      .in('channel', ['near', 'world', 'whisper']).gte('created_at', new Date(Date.now() - 3600_000).toISOString())
+    void sb.rpc('guild_of', { p_char: me.id }).then(({ data }) => { if (!stopped) setMyGuild((data as string | null) ?? null); });
+    void sb.from('chat_messages').select('id, channel, char_id, sender_name, city_id, target_char, target_name, group_id, body, created_at')
+      .in('channel', ['near', 'world', 'whisper', 'guild']).gte('created_at', new Date(Date.now() - 3600_000).toISOString())
       .order('created_at', { ascending: false }).limit(80)
       .then(({ data }) => { if (!stopped) for (const r of (data ?? []).reverse()) addRow(r as Row); });
     rt = sb.channel('sf-chat').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, p => addRow(p.new as Row)).subscribe();

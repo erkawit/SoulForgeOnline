@@ -11,6 +11,7 @@ import { TALK_RANGE, npcPosition, npcsIn, type Npc } from '@/game/npcs';
 import { CITIES, type CityId, type MainCityId } from '@/game/content';
 import { buildingOf, type Role } from '@/game/world/capitalPlan';
 import { useGameStore } from '@/store/useGameStore';
+import { approach } from '@/game/npcApproach';
 
 class Quiet extends Component<{ children: ReactNode; fallback: ReactNode }, { failed: boolean }> { state = { failed: false }; static getDerivedStateFromError() { return { failed: true }; } render() { return this.state.failed ? this.props.fallback : this.props.children; } }
 
@@ -51,8 +52,6 @@ function NpcActor({ npc, city }: { npc: Npc; city: CityId }) {
   </group>;
 }
 
-/** Shared by the actors and the walker: the NPC the player clicked and is walking toward. */
-const approach: { current: Npc | null } = { current: null };
 
 function Walker() {
   useFrame((_, dt) => {

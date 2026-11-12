@@ -90,7 +90,7 @@ export default function PlayOverlay() {
       if (e.target instanceof HTMLElement && (e.target.closest('input,textarea,select') || e.target.isContentEditable)) return;
       const k = e.key.toLowerCase();
       if (k === 'p') setWin(w => w === 'party' ? null : 'party'); if (k === 'm') setWin(w => w === 'map' ? null : 'map');
-      if (k === 'g') window.open('/wiki', '_blank', 'noopener'); if (e.key === 'Escape') setWin(null);
+      if (e.key === 'Escape') setWin(null); // round 26: G opens the upgrade window now (wiki stays in the menu)
     };
     // the main menu (GameHUD) opens these windows too — the separate button row was removed from the game screen
     const open = (e: Event) => { const w = (e as CustomEvent<string>).detail; if (w === 'party' || w === 'map') setWin(v => v === w ? null : w); };

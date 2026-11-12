@@ -15,7 +15,6 @@ import { MemoryMarket, SupabaseMarket, type MarketRepo } from './market.js';
 import * as mkt from '@/game/economy/market';
 import { codexTitles } from '@/game/economy/codex';
 import { nextTax } from '@/game/balance/market';
-import { nearNpc } from '@/game/npcs';
 import type * as eco from '@/game/economy/core';
 import { migrateCharState } from '@/game/economy/core';
 import { DEFAULT_CONFIG, mergeConfig } from '@/game/balance/config';
@@ -220,7 +219,9 @@ wss.on('connection', (socket, request) => {
         try {
           if (view === 'mail') send(socket, { type: 'MARKET_VIEW', view, mail: await market.mail(a.id), tax: marketTax });
           else if (view === 'mine') send(socket, { type: 'MARKET_VIEW', view, listings: await market.mine(a.id), tax: marketTax });
-          else send(socket, { type: 'MARKET_VIEW', view, page: q.page, listings: await market.browse({ text: q.text, rarity: (q.rarity ?? '') as never, page: q.page }, Date.now()), tax: marketTax });
+          else if (view === 'history') send(socket, { type: 'MARKET_VIEW', view, trades: await market.history(a.id), tax: marketTax });
+          else if (view === 'prices') send(socket, { type: 'MARKET_VIEW', view, def: q.def ?? '', enhance: q.enhance ?? 0, prices: await market.prices(q.def ?? '', q.enhance ?? 0, Date.now()), tax: marketTax });
+          else send(socket, { type: 'MARKET_VIEW', view, page: q.page, listings: await market.browse({ text: q.text, rarity: (q.rarity ?? '') as never, page: q.page, cat: q.cat ?? '', sort: q.sort ?? 'new', enhMin: q.enhMin ?? 0 }, Date.now()), tax: marketTax });
         } catch (err) { console.error('market view', err); send(socket, { type: 'MARKET_VIEW', view, error: 'โหลดตลาดไม่ได้ ลองใหม่อีกครั้ง', tax: marketTax }); }
       })(); return;
     }
@@ -288,8 +289,7 @@ const marketMsg = (e: unknown) => { const m = e instanceof Error ? e.message : S
  *  new character together with the market row in one transaction at the stored revision */
 async function marketAct(s: CharacterSession, op: string, args: unknown[], now: number): Promise<{ ok: boolean; msg?: string; changed: boolean; extra?: Record<string, unknown> }> {
   const ctx = s.ctx([], now), str = (i: number) => typeof args[i] === 'string' ? args[i] as string : '';
-  // trading happens at the market broker (Silas Vane, in every capital); mail can be opened anywhere
-  if (op !== 'mailClaim' && !nearNpc(s.city, s.position, 'market', 6)) return { ok: false, msg: 'ต้องอยู่ใกล้นายหน้าตลาด Silas Vane', changed: false };
+  // round 26: the exchange opens from the menu anywhere (Night Crows / Vampir style); Silas Vane still offers it in town
   await persist(s); if (s.dirty) return { ok: false, msg: 'กำลังบันทึกตัวละคร ลองอีกครั้ง', changed: false };
   try {
     let r: eco.Ok, rev: number, extra: Record<string, unknown> = {};

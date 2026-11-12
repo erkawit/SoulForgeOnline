@@ -18,7 +18,23 @@ function hydrate(item: unknown): Mail['item'] {
   if (typeof it.definitionId !== 'string' || !ITEM_BY_ID[it.definitionId]) return null;
   const made = makeItem(it.definitionId), q = Math.max(1, Math.min(999, Math.floor(Number(it.qty) || 1))); return made.slot ? made : { ...made, qty: q };
 }
-export type Browse = { text?: string; rarity?: Rarity | ''; page: number };
+/** round 26: category / sort / enhancement filters (Night Crows-style exchange) */
+export type MarketCat = '' | 'weapon' | 'armor' | 'accessory' | 'material' | 'consumable';
+export type Browse = { text?: string; rarity?: Rarity | ''; page: number; cat?: MarketCat; sort?: 'new' | 'price' | 'priceDesc'; enhMin?: number };
+export type PriceStats = { week: number | null; yesterday: number | null; last: number | null; sold7d: number };
+export type Trade = Listing & { side: 'sold' | 'bought'; closedAt: number };
+const ARMOR = ['armor', 'helmet', 'gloves', 'boots', 'offhand'];
+/** which category an item belongs to */
+export function catOf(item: { slot?: string | null; family?: string }): MarketCat {
+  if (item.slot === 'weapon') return 'weapon'; if (item.slot && ARMOR.includes(item.slot)) return 'armor'; if (item.slot === 'ring') return 'accessory';
+  if (item.family === 'consumable') return 'consumable'; return 'material';
+}
+const avg = (xs: number[]) => xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : null;
+/** unit prices of sales: weekly average, yesterday's average (the previous 24 h), the last sale */
+export function priceStats(sales: { price: number; qty: number; closedAt: number }[], now: number): PriceStats {
+  const unit = (x: { price: number; qty: number }) => x.price / Math.max(1, x.qty), wk = sales.filter(x => x.closedAt > now - 7 * 86_400_000).sort((a, b) => b.closedAt - a.closedAt);
+  return { week: avg(wk.map(unit)), yesterday: avg(wk.filter(x => x.closedAt > now - 86_400_000).map(unit)), last: wk.length ? Math.round(unit(wk[0])) : null, sold7d: wk.length };
+}
 export const PAGE = 40;
 export interface MarketRepo {
   listInfo(user: string, def: string, enhance: number, now: number): Promise<ListInfo>;
@@ -26,6 +42,10 @@ export interface MarketRepo {
   browse(q: Browse, now: number): Promise<Listing[]>;
   mine(user: string): Promise<Listing[]>;
   mail(user: string): Promise<Mail[]>;
+  /** round 26: my last sales and purchases, newest first */
+  history(user: string): Promise<Trade[]>;
+  /** round 26: sale prices of one item (and enhancement) over the last week */
+  prices(def: string, enhance: number, now: number): Promise<PriceStats>;
   /** each resolves to the character's new revision; RevisionConflict when `rev` is stale, Error(message) when refused */
   list(user: string, rev: number, state: CharState, l: Listing): Promise<number>;
   buy(user: string, rev: number, state: CharState, listingId: string, price: number, sellerGets: number, burned: number, now: number): Promise<number>;
@@ -55,8 +75,15 @@ export class MemoryMarket implements MarketRepo {
   }
   async get(id: string) { const l = this.listings.get(id); return l ? structuredClone(l) : null; }
   async browse(q: Browse, now: number) { const t = (q.text ?? '').toLowerCase();
-    return [...this.listings.values()].filter(l => l.status === 'active' && l.expiresAt > now && (!q.rarity || l.rarity === q.rarity) && (!t || l.item.name.toLowerCase().includes(t)))
-      .sort((a, b) => b.createdAt - a.createdAt).slice(q.page * PAGE, q.page * PAGE + PAGE).map(l => structuredClone(l)); }
+    const order = q.sort === 'price' ? (a: Listing, b: Listing) => a.price - b.price : q.sort === 'priceDesc' ? (a: Listing, b: Listing) => b.price - a.price : (a: Listing, b: Listing) => b.createdAt - a.createdAt;
+    return [...this.listings.values()].filter(l => l.status === 'active' && l.expiresAt > now && (!q.rarity || l.rarity === q.rarity) && (!t || l.item.name.toLowerCase().includes(t))
+      && (!q.cat || catOf(l.item) === q.cat) && (l.enhance >= (q.enhMin ?? 0)))
+      .sort(order).slice(q.page * PAGE, q.page * PAGE + PAGE).map(l => structuredClone(l)); }
+  async history(user: string) {
+    return [...this.listings.values()].filter(l => l.status === 'sold' && (l.seller === user || l.buyer === user)).sort((a, b) => (b.closedAt ?? 0) - (a.closedAt ?? 0)).slice(0, 50)
+      .map(({ buyer: _b, closedAt, ...l }) => ({ ...structuredClone(l), side: (l.seller === user ? 'sold' : 'bought') as Trade['side'], closedAt: closedAt ?? 0 })); }
+  async prices(def: string, enhance: number, now: number) {
+    return priceStats([...this.listings.values()].filter(l => l.status === 'sold' && l.definitionId === def && l.enhance === enhance).map(l => ({ price: l.price, qty: l.qty, closedAt: l.closedAt ?? 0 })), now); }
   async mine(user: string) { return [...this.listings.values()].filter(l => l.seller === user && l.status === 'active').map(l => structuredClone(l)); }
   async mail(user: string) { return [...this.mails.values()].filter(m => m.user === user && !m.claimedAt).sort((a, b) => a.createdAt - b.createdAt).map(({ user: _u, claimedAt: _c, ...m }) => structuredClone(m)); }
   async list(user: string, rev: number, state: CharState, l: Listing) {
@@ -104,8 +131,25 @@ export class SupabaseMarket implements MarketRepo {
   async browse(q: Browse) {
     let req = this.db.from('realm_listings').select('*').eq('status', 'active').gt('expires_at', new Date().toISOString());
     if (q.rarity) req = req.eq('rarity', q.rarity); if (q.text) req = req.ilike('item->>name', `%${q.text.replace(/[%_\\]/g, '')}%`);
-    const { data, error } = await req.order('created_at', { ascending: false }).range(q.page * PAGE, q.page * PAGE + PAGE - 1); if (error) throw new Error(error.message);
+    if (q.enhMin) req = req.gte('enhance', q.enhMin);
+    if (q.cat === 'weapon' || q.cat === 'accessory') req = req.eq('item->>slot', q.cat === 'weapon' ? 'weapon' : 'ring');
+    else if (q.cat === 'armor') req = req.in('item->>slot', ARMOR);
+    else if (q.cat === 'consumable') req = req.eq('item->>family', 'consumable');
+    else if (q.cat === 'material') req = req.is('item->>slot', null).neq('item->>family', 'consumable');
+    req = q.sort === 'price' ? req.order('price', { ascending: true }) : q.sort === 'priceDesc' ? req.order('price', { ascending: false }) : req.order('created_at', { ascending: false });
+    const { data, error } = await req.range(q.page * PAGE, q.page * PAGE + PAGE - 1); if (error) throw new Error(error.message);
     return (data as Row[]).map(fromRow);
+  }
+  async history(user: string) {
+    const { data, error } = await this.db.from('realm_listings').select('*').eq('status', 'sold').or(`seller_id.eq.${user},buyer_id.eq.${user}`).order('closed_at', { ascending: false }).limit(50);
+    if (error) throw new Error(error.message);
+    return (data as (Row & { buyer_id: string | null; closed_at: string | null })[]).map(r => ({ ...fromRow(r), side: (r.seller_id === user ? 'sold' : 'bought') as Trade['side'], closedAt: Date.parse(r.closed_at ?? r.created_at) }));
+  }
+  async prices(def: string, enhance: number, now: number) {
+    const { data, error } = await this.db.from('realm_listings').select('price, qty, closed_at').eq('status', 'sold').eq('definition_id', def).eq('enhance', enhance)
+      .gt('closed_at', new Date(now - 7 * 86_400_000).toISOString()).order('closed_at', { ascending: false }).limit(500);
+    if (error) throw new Error(error.message);
+    return priceStats((data as { price: number; qty: number; closed_at: string }[]).map(r => ({ price: Number(r.price), qty: r.qty, closedAt: Date.parse(r.closed_at) })), now);
   }
   async mine(user: string) { const { data, error } = await this.db.from('realm_listings').select('*').eq('seller_id', user).eq('status', 'active'); if (error) throw new Error(error.message); return (data as Row[]).map(fromRow); }
   async mail(user: string) {

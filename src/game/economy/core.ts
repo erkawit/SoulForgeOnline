@@ -272,7 +272,7 @@ export function brewPotion(s: CharState, id: string, qty: number, ctx: Ctx): Res
 }
 export type EnhanceRef = { inventory?: number; slot?: GearSlot };
 export function enhance(s: CharState, ref: EnhanceRef, protection: boolean, ctx: Ctx): Ok & { result: string; success: boolean } | Fail {
-  if (!near(s, 'enhance')) return fail('ตีบวกได้ที่ Brannoc Ironhand (NPC Merchant) ในเมืองเท่านั้น');
+  // round 26: enhancing and crafting open from the menu anywhere (gacha-MMO style); Brannoc still offers them in town
   const item = ref.slot ? s.equipment[ref.slot] : ref.inventory !== undefined ? s.inventory[ref.inventory] : null;
   if (!item || !item.slot) return fail('เลือกอุปกรณ์ที่จะตีบวก');
   if (item.slot === 'costume') return fail('ชุดแฟชั่นไม่สามารถตีบวกได้');
@@ -291,7 +291,6 @@ export function forged(defId: string, cls: ClassId, ctx: Ctx): Item {
   return { ...makeGear(defId, cls, ctx.rng), id: ctx.uuid(), classLock: cls };
 }
 export function craft(s: CharState, rarity: Rarity, cls: ClassId, slot: CraftSlot, ctx: Ctx): Ok & { success: boolean; crystal?: string } | Fail {
-  if (!near(s, 'enhance')) return fail('คราฟได้ที่ Brannoc Ironhand (โรงตีเหล็ก) ในเมืองเท่านั้น');
   const block = craftBlocker(rarity, slot, { soulGod: s.player.gold, count: id => countOf(s.inventory, id) }, ctx.config); if (block) return fail(block);
   const cost = craftCost(rarity, slot, ctx.config); let inventory: (Item | null)[] | null = s.inventory;
   for (const m of cost.materials) inventory = takeFrom(inventory!, m.id, m.qty); if (!inventory) return fail('วัตถุดิบไม่พอ');
@@ -302,7 +301,6 @@ export function craft(s: CharState, rarity: Rarity, cls: ClassId, slot: CraftSlo
   return { ...done({ ...s, inventory, player: { ...s.player, gold: s.player.gold - cost.soulGod } }, [`คราฟ ${rarity}: ${message}`], [{ type: 'craft', rarity }], { msg: message }), success: r.success, crystal: r.success ? undefined : r.crystal ?? undefined };
 }
 export function crystalCraft(s: CharState, tier: CrystalTier, cls: ClassId, slot: CraftSlot, ctx: Ctx, kind: WeaponKind = 'greatsword'): Result {
-  if (!near(s, 'enhance')) return fail('คราฟได้ที่ Brannoc Ironhand เท่านั้น');
   const r = crystalRoll(tier, cls, slot, countOf(s.inventory, crystalId(tier)), ctx.config, kind); if (!r.ok) return fail(r.reason);
   let inventory = takeFrom(s.inventory, crystalId(tier), r.spend)!; const free = inventory.indexOf(null); if (free < 0) return fail('กระเป๋าเต็ม');
   const it = forged(r.defId, cls, ctx); inventory = [...inventory]; inventory[free] = it;
