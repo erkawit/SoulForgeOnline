@@ -1,0 +1,105 @@
+/* Round 25 — PC (≥ 768 px, keyboard · mouse) menu and windows.
+   The menu is hidden until the corner button (or Esc) opens it as a drawer on the right. Windows open either docked on
+   the right edge (character, skills, AUTO, cloud, online) or as full-screen pages (bag, collection, wardrobe, quests,
+   monsters, settings) with the title bar across the top. Phones keep their own layout (touch-controls.css). */
+:root { --pc-ink: #0c0b0f; --pc-panel: rgba(13, 12, 16, .96); --pc-line: #3a3127; --pc-gold: #c99a52; --pc-gold2: #f0d394; --pc-mute: #9d917b; }
+
+/* ---------- the three-bar menu button ---------- */
+.pc-menu-btn { appearance: none; flex: none; width: 40px; height: 40px; padding: 0 9px; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer;
+  border: 1px solid #a9844a; border-radius: 6px; background: radial-gradient(circle at 50% 35%, #2a221d, #0b0908 75%);
+  box-shadow: inset 0 0 0 1px #000, inset 0 0 8px #000d, 0 0 0 2px #1d160c, 0 2px 6px #000b; transition: border-color .15s, filter .15s; }
+.pc-menu-btn i { display: block; width: 100%; height: 2px; border-radius: 1px; background: linear-gradient(90deg, #b88b47, #f4d79a, #b88b47); box-shadow: 0 1px 1px #000; transition: transform .2s, opacity .2s; }
+.pc-menu-btn:hover, .pc-menu-btn.on { border-color: #f0cd84; filter: brightness(1.15); }
+.pc-menu-btn.on i:nth-child(1) { transform: translateY(7px) rotate(45deg); } .pc-menu-btn.on i:nth-child(2) { opacity: 0; } .pc-menu-btn.on i:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.pc-menu-btn:focus-visible { outline: 2px solid #f5d38d; outline-offset: 3px; }
+.h2.pc .pc-corner { position: absolute; top: 8px; right: 8px; z-index: 25; }
+
+/* ---------- the drawer ---------- */
+.pc-menu-veil { position: fixed; inset: 0; z-index: 94; background: linear-gradient(90deg, transparent 30%, rgba(0, 0, 0, .55)); }
+.pc-menu { position: fixed; top: 0; right: 0; bottom: 0; z-index: 95; width: min(400px, 92vw); display: flex; flex-direction: column;
+  background: linear-gradient(180deg, rgba(20, 17, 20, .97), rgba(9, 8, 11, .98)); border-left: 1px solid var(--pc-line);
+  box-shadow: -18px 0 40px rgba(0, 0, 0, .55), inset 1px 0 0 rgba(201, 154, 82, .25); animation: pc-slide .18s ease-out; font-family: "Noto Sans Thai", system-ui, sans-serif; }
+@keyframes pc-slide { from { transform: translateX(24px); opacity: 0; } }
+.pc-menu header { display: flex; align-items: center; gap: 10px; padding: 14px 16px 12px 20px; border-bottom: 1px solid var(--pc-line); }
+.pc-menu header h2 { flex: 1; margin: 0; font: 700 17px Cinzel, "Noto Sans Thai", serif; letter-spacing: .12em; color: var(--pc-gold2); text-shadow: 0 1px 2px #000; }
+.pc-menu-body { flex: 1; min-height: 0; overflow-y: auto; padding: 6px 14px 12px; scrollbar-width: thin; scrollbar-color: #6b5430 transparent; }
+.pc-menu section h3 { display: flex; align-items: center; gap: 8px; margin: 12px 4px 8px; font: 600 12px "Noto Sans Thai", system-ui; letter-spacing: .08em; color: var(--pc-gold); }
+.pc-menu section h3::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201, 154, 82, .45), transparent); }
+.pc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.pc-tile { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 2px 7px; min-height: 84px; cursor: pointer;
+  border: 1px solid transparent; border-radius: 6px; background: rgba(255, 255, 255, .02); color: #e6dac2; font: 500 12.5px/1.2 "Noto Sans Thai", system-ui; transition: background .15s, border-color .15s; }
+.pc-tile img { width: 46px; height: 46px; object-fit: contain; filter: drop-shadow(0 2px 3px #000); transition: transform .15s; }
+.pc-tile span { text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-tile kbd { position: absolute; top: 4px; left: 5px; min-width: 15px; padding: 0 3px; border: 1px solid #5d4a2e; border-radius: 3px; background: #120f0c; font: 700 9.5px/14px Cinzel, system-ui; color: var(--pc-mute); }
+.pc-tile:hover { background: rgba(201, 154, 82, .1); border-color: rgba(201, 154, 82, .35); } .pc-tile:hover img { transform: scale(1.08); }
+.pc-tile.on { border-color: var(--pc-gold); background: rgba(201, 154, 82, .14); color: var(--pc-gold2); }
+.pc-tile:focus-visible { outline: 2px solid #f5d38d; outline-offset: 1px; }
+.pc-menu footer.sys { padding: 10px 14px 14px; border-top: 1px solid var(--pc-line); grid-template-columns: repeat(3, minmax(0, 1fr)); background: rgba(0, 0, 0, .25); }
+.pc-menu footer.sys .pc-tile { min-height: 76px; } .pc-menu footer.sys .pc-tile img { width: 38px; height: 38px; }
+
+/* ---------- windows on PC: docked panel / full-screen page (no painted frame, flat panels) ---------- */
+html body .h2.pc .h2-win.pc-dock, html body .h2.pc .h2-win.pc-page {
+  position: fixed; left: auto; top: 0; right: 0; bottom: auto; transform: none; margin: 0; max-height: none; border-radius: 0;
+  /* keep the UI-size zoom (UiScale.tsx): small PC windows shrink the content instead of cutting it; sizes are divided back */
+  zoom: var(--ui-s); height: calc(100dvh / var(--ui-s));
+  background: var(--pc-panel) !important; border: 0 !important; box-shadow: -18px 0 40px rgba(0, 0, 0, .5), inset 1px 0 0 rgba(201, 154, 82, .3) !important; overflow: hidden; }
+html body .h2.pc .h2-win.pc-dock { width: calc(clamp(380px, 46vw, 560px) / var(--ui-s)); z-index: 60; animation: pc-slide .18s ease-out; }
+html body .h2.pc .h2-win.pc-page { left: 0; width: calc(100vw / var(--ui-s)); z-index: 70; box-shadow: none !important;
+  background: radial-gradient(ellipse at 70% 0%, rgba(120, 32, 26, .18), transparent 55%), radial-gradient(ellipse at 10% 100%, rgba(40, 60, 90, .16), transparent 60%), linear-gradient(180deg, #121016, #08070a) !important; }
+html body .h2.pc .h2-win.pc-dock::before, html body .h2.pc .h2-win.pc-page::before { display: none; }
+html body .h2.pc .h2-win.pc-dock header, html body .h2.pc .h2-win.pc-page header {
+  flex: none; justify-content: flex-start; gap: 10px; padding: 12px 16px 12px 20px !important; border-bottom: 1px solid var(--pc-line) !important; background: rgba(0, 0, 0, .25) !important; }
+html body .h2.pc .h2-win.pc-dock header h2, html body .h2.pc .h2-win.pc-page header h2 { flex: 1; text-align: left; font-size: 18px !important; letter-spacing: .06em; }
+html body .h2.pc .h2-win.pc-dock header .sf-close, html body .h2.pc .h2-win.pc-page header .sf-close { position: relative !important; right: auto; top: auto; width: 40px !important; height: 40px !important; }
+html body .h2.pc .h2-win.pc-dock header .sf-win-ico, html body .h2.pc .h2-win.pc-page header .sf-win-ico { width: 30px; height: 30px; }
+html body .h2.pc .h2-win.pc-dock .body, html body .h2.pc .h2-win.pc-page .body { flex: 1; min-height: 0; overflow: auto; padding: 14px 18px; font-size: 14px; }
+/* page: the title bar spans the screen, the content gets a comfortable reading width */
+html body .h2.pc .h2-win.pc-page header { padding: 12px 24px !important; }
+html body .h2.pc .h2-win.pc-page .body { padding: 18px max(24px, calc((100vw / var(--ui-s) - 1320px) / 2)); }
+/* the HUD under a page is covered; hide the parts that would peek over it */
+.h2.pc.paged .h2-tip, .h2.pc.paged .h2-cast, .h2.pc.paged .h2-banner { display: none; }
+
+/* ---------- settings: categories on the left, one setting per row, options as boxed choices (PC page + login) ---------- */
+@media (min-width: 768px) {
+  .pc-page .sf-settings, .sf-gate-modal .sf-settings { display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 22px; align-content: start; }
+  .pc-page .sf-settings > *, .sf-gate-modal .sf-settings > * { grid-column: 2; }
+  .pc-page .sf-settings > .npc-chips, .sf-gate-modal .sf-settings > .npc-chips { grid-column: 1; grid-row: 1 / span 40; align-self: start; display: flex; flex-direction: column; gap: 2px; margin: 0;
+    border-right: 1px solid var(--pc-line); padding-right: 12px; position: sticky; top: 0; }
+  .pc-page .sf-settings > .npc-chips button, .sf-gate-modal .sf-settings > .npc-chips button { position: relative; text-align: left; padding: 12px 14px 12px 26px; border: 0; border-radius: 0; background: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .05); color: #b9ad95; font: 500 15px "Noto Sans Thai", system-ui; }
+  .pc-page .sf-settings > .npc-chips button.on, .sf-gate-modal .sf-settings > .npc-chips button.on { color: var(--pc-gold2); background: linear-gradient(90deg, rgba(201, 154, 82, .16), transparent); }
+  .pc-page .sf-settings > .npc-chips button.on::before, .sf-gate-modal .sf-settings > .npc-chips button.on::before { content: "✦"; position: absolute; left: 8px; color: #e0503c; font-size: 12px; top: 50%; translate: 0 -50%; }
+  .pc-page .sf-settings .h2-row, .sf-gate-modal .sf-settings .h2-row { min-height: 64px; padding: 10px 6px 10px 4px; border-bottom: 1px solid rgba(255, 255, 255, .06); font-size: 15px; color: #e7dcc5; gap: 24px; }
+  .pc-page .sf-settings .h2-row > span:first-child, .sf-gate-modal .sf-settings .h2-row > span:first-child { flex: 1 1 200px; min-width: 180px; display: flex; flex-direction: column; gap: 2px; }
+  .pc-page .sf-settings .h2-row > :not(:first-child), .sf-gate-modal .sf-settings .h2-row > :not(:first-child) { flex: 0 1 auto; }
+  .pc-page .sf-settings .h2-row > span:first-child::before, .sf-gate-modal .sf-settings .h2-row > span:first-child::before { content: none; }
+  .pc-page .sf-settings .h2-row small, .sf-gate-modal .sf-settings .h2-row small { margin: 0; font-size: 12.5px; }
+  .pc-page .sf-settings .h2-seg, .sf-gate-modal .sf-settings .h2-seg { display: inline-grid; grid-auto-flow: column; grid-auto-columns: minmax(84px, 128px); gap: 6px; border: 0; overflow: visible; }
+  .pc-page .sf-settings .h2-seg button, .sf-gate-modal .sf-settings .h2-seg button { min-height: 44px; padding: 0 14px; border: 1px solid #2f2922; border-radius: 2px; background: rgba(255, 255, 255, .025); color: #a99d86; font-size: 14.5px; }
+  .pc-page .sf-settings .h2-seg button:hover, .sf-gate-modal .sf-settings .h2-seg button:hover { color: #efe2c6; border-color: #5d4c34; }
+  .pc-page .sf-settings .h2-seg button.on, .sf-gate-modal .sf-settings .h2-seg button.on { border-color: var(--pc-gold); color: #fff1d2; background: linear-gradient(180deg, rgba(201, 154, 82, .14), rgba(201, 154, 82, .04)); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .6), 0 0 10px rgba(201, 154, 82, .18); }
+  .pc-page .sf-settings .h2-range, .sf-gate-modal .sf-settings .h2-range { display: inline-flex; align-items: center; gap: 12px; }
+  .pc-page .sf-settings .h2-range input, .sf-gate-modal .sf-settings .h2-range input { width: clamp(200px, 26vw, 420px); accent-color: var(--pc-gold); }
+  .pc-page .sf-settings .h2-range b, .sf-gate-modal .sf-settings .h2-range b { min-width: 64px; padding: 9px 0; text-align: center; border: 1px solid #2f2922; background: rgba(0, 0, 0, .3); color: #f2e3c4; font-size: 15px; }
+  .pc-page .sf-settings .sf-settings-foot, .sf-gate-modal .sf-settings .sf-settings-foot { margin-top: 16px; display: flex; align-items: center; gap: 14px; }
+  .pc-page .sf-settings .action-button, .sf-gate-modal .sf-settings .action-button { min-width: 150px; }
+  /* login page: the settings window grows into a proper options screen */
+  .sf-gate-modal .sf-gate-win { width: min(980px, calc(100vw - 48px)) !important; max-width: none !important; max-height: min(720px, calc(100dvh - 48px)) !important; }
+  .sf-gate-modal .sf-gate-win .body { overflow-y: auto; }
+}
+.sf-keys { display: grid; } .sf-kbds { display: inline-flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+.sf-kbds kbd { min-width: 28px; padding: 4px 8px; border: 1px solid #5d4a2e; border-bottom-width: 3px; border-radius: 4px; background: #15110d; font: 700 12px/1.2 Cinzel, system-ui; color: #ecd7a6; text-align: center; }
+
+/* ---------- character card on the character screens (login) ---------- */
+.sf-charcard { display: flex; align-items: center; gap: 14px; padding: 10px 14px; margin: 4px 0 10px; border: 1px solid #5a4630; border-radius: 6px; background: linear-gradient(90deg, rgba(201, 154, 82, .12), rgba(0, 0, 0, .2)); }
+.sf-charcard .pt { flex: none; width: 64px; height: 64px; border-radius: 50%; border: 2px solid #b48a4a; background: #0b0908 center 12% / cover no-repeat; box-shadow: 0 0 0 2px #1d160c, 0 2px 8px #000; }
+.sf-charcard b { display: block; font-size: 18px; color: #fbe6b8; } .sf-charcard small { color: #c3b392; font-size: 13px; }
+/* the generic window-header button style (hud2.css) must not shrink the menu button */
+.h2 .h2-win header .pc-menu-btn { width: 40px; height: 40px; display: flex; align-items: stretch; place-items: initial; align-items: stretch; padding: 0 9px; border: 1px solid #a9844a; border-radius: 6px; background: radial-gradient(circle at 50% 35%, #2a221d, #0b0908 75%); }
+/* a docked panel is narrow: its content lays out by the panel's width, not the screen's */
+html body .h2.pc .h2-win.pc-dock .body { container-type: inline-size; }
+@container (max-width: 540px) {
+  .sk-body { grid-template-columns: minmax(0, 1fr) !important; min-height: 0; }
+  .sk-body > * { min-width: 0; }
+  .sk-list { max-height: 38vh; }
+}

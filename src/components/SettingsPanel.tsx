@@ -4,9 +4,12 @@
 import { useState } from 'react';
 import { audio, type AudioSettings } from '@/game/audio/engine';
 import { useSettingsStore, type FpsCap, type Quality } from '@/store/useSettingsStore';
+import { requestExit } from '@/game/saveSlot';
 
-type Tab = 'audio' | 'graphics' | 'display' | 'keys';
+type Tab = 'audio' | 'graphics' | 'display' | 'keys' | 'account';
 const TABS: [Tab, string][] = [['audio', 'เสียง'], ['graphics', 'กราฟิก'], ['display', 'การแสดงผล'], ['keys', 'ปุ่ม']];
+const KEYMAP: [string, string][] = [['W A S D', 'เดิน / วิ่ง'], ['1', 'โจมตีธรรมดา'], ['Space Q E R T X', 'สกิล 1–6'], ['7 8', 'ยา HP / MP'], ['9', 'อาหารบัฟ'], ['Z', 'เปิด / ปิด AUTO'],
+  ['Esc', 'เมนู · ปิดหน้าต่าง'], ['I', 'กระเป๋า'], ['C', 'ตัวละคร'], ['K', 'สกิล'], ['J', 'เควส'], ['L', 'สมุดสะสม'], ['U', 'ตู้ชุด'], ['N', 'มอนสเตอร์'], ['M', 'แผนที่'], ['P', 'ปาร์ตี้'], ['O', 'ตั้งค่า']];
 export function saveAudio(p: Partial<AudioSettings>) { audio.configure(p); try { localStorage.setItem('sf-audio', JSON.stringify(audio.settings)); } catch { /* private mode */ } }
 /** low = for older phones / laptops on battery: everything that costs GPU time turned down at once */
 const PRESET: Record<Quality, { renderScale: number; fpsCap: FpsCap; shadows: boolean }> = {
@@ -29,8 +32,9 @@ export default function SettingsPanel({ inGame = true }: { inGame?: boolean }) {
   const put = (p: Partial<AudioSettings>) => { saveAudio(p); setAu({ ...audio.settings }); };
   const vol = (k: keyof Omit<AudioSettings, 'muted'>, t: string, note?: string) => <div className="h2-row"><span>{t}{note && <small>{note}</small>}</span>
     <Range label={t} value={au[k]} min={0} max={1} step={0.05} onChange={v => put({ [k]: v })} show={String(Math.round(au[k] * 100))} /></div>;
+  const tabs: [Tab, string][] = inGame ? [...TABS, ['account', 'บัญชี']] : TABS;
   return <div className="sf-settings">
-    <div className="npc-chips" role="tablist">{TABS.map(([t, th]) => <button type="button" key={t} role="tab" aria-selected={tab === t} className={tab === t ? 'on' : ''} onClick={() => setTab(t)}>{th}</button>)}</div>
+    <div className="npc-chips" role="tablist">{tabs.map(([t, th]) => <button type="button" key={t} role="tab" aria-selected={tab === t} className={tab === t ? 'on' : ''} onClick={() => setTab(t)}>{th}</button>)}</div>
     {tab === 'audio' && <>
       {vol('master', 'เสียงรวม')}{vol('music', 'ดนตรี')}{vol('sfx', 'เอฟเฟกต์', 'โจมตี สกิล มอนสเตอร์ ปุ่ม')}{vol('voice', 'เสียงพูดตัวละคร')}
       <div className="h2-row"><span>ปิดเสียงทั้งหมด</span><Sw label="ปิดเสียงทั้งหมด" on={au.muted} onClick={() => put({ muted: !au.muted })} /></div>
@@ -56,8 +60,12 @@ export default function SettingsPanel({ inGame = true }: { inGame?: boolean }) {
         <Range label="แรงลม" value={st.wind} min={0} max={1.2} step={0.05} onChange={v => st.set({ wind: v })} show={String(Math.round(st.wind * 100))} /></div>
       <div className="h2-row"><span>ทิศลม</span><Range label="ทิศลม" value={st.windDir} min={0} max={360} step={5} onChange={v => st.set({ windDir: v })} show={`${st.windDir}°`} /></div>
     </>}
-    {tab === 'keys' && <p className="h2-note">WASD วิ่ง · 1 โจมตี · Space Q E R T X สกิล · 7 8 ยา · 9 อาหาร · Z AUTO · I กระเป๋า · C ตัวละคร · K สกิล · J เควส · L สมุดสะสม · U ตู้เสื้อผ้า · N มอนสเตอร์ · M แผนที่ · P ปาร์ตี้ · O ตั้งค่า · Esc ปิดหน้าต่าง</p>}
-    <div className="sf-settings-foot"><button type="button" className="action-button ghost" onClick={() => { st.reset(); put({ master: 0.8, music: 0.55, sfx: 0.8, voice: 1, muted: false }); }}>คืนค่าเริ่มต้น</button>
-      {!inGame && <small>การตั้งค่าจะใช้ต่อในเกมบนเครื่องนี้</small>}</div>
+    {tab === 'account' && <>
+      <div className="h2-row"><span>กลับหน้าเลือกตัวละคร<small>บันทึกความคืบหน้าแล้วออกจากโลก</small></span><button type="button" className="action-button" onClick={() => requestExit('select')}>เลือกตัวละคร</button></div>
+      <div className="h2-row"><span>ออกจากระบบ<small>ใช้เมื่อต้องการสลับไปบัญชีอื่น</small></span><button type="button" className="action-button ghost" onClick={() => requestExit('logout')}>ออกจากระบบ</button></div>
+    </>}
+    {tab === 'keys' && <div className="sf-keys">{KEYMAP.map(([k, t]) => <div key={t} className="h2-row"><span>{t}</span><span className="sf-kbds">{k.split(' ').map(x => <kbd key={x}>{x}</kbd>)}</span></div>)}</div>}
+    {tab !== 'account' && <div className="sf-settings-foot"><button type="button" className="action-button ghost" onClick={() => { st.reset(); put({ master: 0.8, music: 0.55, sfx: 0.8, voice: 1, muted: false }); }}>คืนค่าเริ่มต้น</button>
+      {!inGame && <small>การตั้งค่าจะใช้ต่อในเกมบนเครื่องนี้</small>}</div>}
   </div>;
 }

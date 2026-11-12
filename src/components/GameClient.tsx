@@ -13,6 +13,8 @@ import { audio } from '@/game/audio/engine';
 import { isClass } from '@/game/content';
 import AutoPilot from './AutoPilot';
 import UiScale from './UiScale';
+import { GUEST_RETURN, GUEST_SAVE, saveKey, type ExitTo } from '@/game/saveSlot';
+import { getSupabaseBrowser } from '@/lib/supabase';
 
 const GameWorld = dynamic(() => import('./GameWorld'), { ssr: false,
   loading: () => <div className="world-loading">SUMMONING THE ECLIPSE...</div> });
@@ -30,20 +32,31 @@ function GameRoot() {
   useEffect(() => { audio.playMusic('field'); const t = setTimeout(() => useGameStore.getState().tip('start'), 1500); return () => { clearTimeout(t); audio.playMusic('title'); }; }, []);
   useEffect(() => {
     try {
-      const cache = window.localStorage.getItem('soulforge_guest_v1');
+      const cache = window.localStorage.getItem(saveKey());
       if (cache) useGameStore.getState().hydrate(JSON.parse(cache));
     } catch { /* local storage unavailable */ }
     let dirty = false;
-    const save = () => {
-      if (!dirty || useMultiplayerStore.getState().online) return;
-      try { window.localStorage.setItem('soulforge_guest_v1', JSON.stringify(createSnapshot())); dirty = false; }
+    const key = saveKey(); // fixed for this session in the world; leaving it reloads the page
+    const save = (force = false) => {
+      if ((!dirty && !force) || useMultiplayerStore.getState().online) return;
+      try { window.localStorage.setItem(key, JSON.stringify(createSnapshot())); dirty = false; }
       catch { /* storage unavailable or quota exceeded */ }
     };
     const unsubscribe = useGameStore.subscribe(() => { dirty = true; });
     const timer = setInterval(save, 900);
-    window.addEventListener('pagehide', save);
+    const onHide = () => save();
+    window.addEventListener('pagehide', onHide);
     const worldTick = setInterval(() => useGameStore.getState().tick(), 250);
-    return () => { save(); clearInterval(timer); unsubscribe(); clearInterval(worldTick); window.removeEventListener('pagehide', save); };
+    // round 25: back to the character screen / log out — save, sign out when asked, then reload so nothing of this
+    // character stays in memory (the next account or a new character starts clean)
+    const exit = async (e: Event) => {
+      const to = (e as CustomEvent<ExitTo>).detail; save(true); clearInterval(timer); clearInterval(worldTick);
+      try { if (to === 'select' && key === GUEST_SAVE) window.sessionStorage.setItem(GUEST_RETURN, '1'); } catch { /* storage blocked */ }
+      if (to === 'logout') { try { await getSupabaseBrowser()?.auth.signOut(); } catch { /* offline: the reload still leaves the world */ } }
+      window.location.reload();
+    };
+    window.addEventListener('sf-exit', exit);
+    return () => { save(); clearInterval(timer); unsubscribe(); clearInterval(worldTick); window.removeEventListener('pagehide', onHide); window.removeEventListener('sf-exit', exit); };
   }, []);
   return <main className="game-root"><div className="world-surface"><GameWorld /></div><GameHUD /><PlayOverlay /><AutoPilot /><UiScale /></main>;
 }

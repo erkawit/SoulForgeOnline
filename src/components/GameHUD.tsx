@@ -6,7 +6,7 @@
 // plus target / world-boss bars, one-time tips, the boss damage dashboard and the windows behind the menus.
 import '@/styles/hud2.css';
 import { spawnPoints } from '@/game/spawns';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useConfigStore } from '@/store/useConfigStore';
 import SkillTreePanel from './SkillTreePanel';
 import NpcDialog from './NpcDialog';
@@ -36,13 +36,17 @@ import { useScreenScale, useOrientation } from './hud/common';
 import { ChannelButton } from './ChannelSwitch';
 import PCHUDLayout from './hud/PCHUDLayout';
 import MobileHUDLayout from './hud/MobileHUDLayout';
+import PCMenu, { MenuButton, exitItems, type MenuGroup } from './hud/PCMenu';
 import { PCInventoryPanel, MobileInventoryDrawer } from './hud/InventoryPanels';
 import { PCStatusPanel, MobileStatusPanel } from './hud/StatusPanels';
 import '@/styles/hud3.css';
 import '@/styles/uikit.css';
 import '@/styles/touch-controls.css';
+import '@/styles/pc-menu.css';
 
 type Panel = 'inventory' | 'character' | 'skills' | 'quests' | 'codex' | 'wardrobe' | 'monsters' | 'auto' | 'settings' | 'cloud' | 'online' | null;
+/** round 25 (PC): these open as full-screen pages; the rest dock on the right like a side panel */
+const PC_PAGE: Panel[] = ['inventory', 'codex', 'wardrobe', 'quests', 'monsters', 'settings'];
 const KEYS = ['1', 'Space', 'Q', 'E', 'R', 'T', 'X'];
 const CLASS_COLOR: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff' };
 const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เซิร์กเกอร์', Reaver: 'รีเวอร์' };
@@ -194,6 +198,7 @@ export default function GameHUD() {
   useEffect(() => { const t = setInterval(() => setNow(Date.now()), 200); return () => clearInterval(t); }, []);
   const [panel, setPanel] = useState<Panel>(null);
   const layout = useScreenScale(), orientation = useOrientation(); const [menuOpen, setMenuOpen] = useState(false);
+  const panelRef = useRef<Panel>(null); panelRef.current = panel; const pc = layout === 'pc';
   const player = usePlayerStatic(), equipment = useGameStore(s => s.equipment);
   const log = useGameStore(s => s.log), selectedMonster = useGameStore(s => s.selectedMonster), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
   const hotbar = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar), cooldowns = useGameStore(s => s.cooldowns), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
@@ -206,6 +211,7 @@ export default function GameHUD() {
   const hp = player.hp, maxHp = derived.maxHp, mp = player.mp, maxMp = derived.maxMp;
   const zoneId = useGameStore(s => (s.player.cityId ?? 'hollow') === 'wild0' ? zoneAt(s.player.position[0], s.player.position[1])?.id ?? null : null); // the Sorrowlands ruins of Ashen Outskirts
   const zone = zoneId ? ZONES.find(z => z.id === zoneId) ?? null : null;
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
   const toggle = (p: Panel) => { audio.play('ui_click', { vol: .35 }); setPanel(v => v === p ? null : p); };
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
@@ -214,7 +220,8 @@ export default function GameHUD() {
       if (g.journal) { if (k === 'escape') g.setJournal(false); return; }
       const map: Record<string, Panel> = { i: 'inventory', c: 'character', k: 'skills', j: 'quests', l: 'codex', u: 'wardrobe', n: 'monsters', o: 'settings' };
       if (map[k]) setPanel(p => p === map[k] ? null : map[k]);
-      if (k === 'escape') setPanel(null);
+      // round 25: Esc closes the open window; with none open it opens / closes the menu
+      if (k === 'escape') { if (panelRef.current) setPanel(null); else setMenuOpen(v => !v); }
       { const slot = { r: 4, t: 5, x: 6 }[k as 'r' | 't' | 'x']; if (slot) g.castSlot(slot);
         if (k === '7') g.usePotion('hp'); if (k === '8') g.usePotion('mp'); if (k === '9') g.eatFood(); }
     };
@@ -238,7 +245,17 @@ export default function GameHUD() {
   const MENU_ART: Record<Exclude<Panel, null>, string> = { inventory: 'menu_03_inventory', character: 'menu_12_character_helm', skills: 'menu_04_skill_book', quests: 'menu_22_quest_scrolls', codex: 'menu_11_codex_book', wardrobe: 'menu_09_avatar_armor', monsters: 'menu_32_boss_battle_locked', auto: 'icon_refresh', online: 'menu_28_community_friends', cloud: 'icon_crystal_orb', settings: 'icon_menu_settings_gear' };
   const title: Record<Exclude<Panel, null>, string> = { inventory: 'กระเป๋า · อุปกรณ์', character: 'ข้อมูลตัวละคร', skills: 'ต้นไม้สกิล', quests: 'สมุดเควส', codex: 'สมุดสะสม · Collection', wardrobe: 'ตู้เสื้อผ้า · Cash Shop', monsters: 'สมุดมอนสเตอร์', auto: 'ตั้งค่า AUTO', settings: 'ตั้งค่า', cloud: 'Cloud Save', online: 'Online Realm' };
 
-  return <div className={`hud-root h2 pointer-events-none ${layout === 'mobile' ? `touch ${orientation}` : ''}`}>
+  const openWin = (id: Exclude<Panel, null>) => () => { audio.play('ui_click', { vol: .35 }); setPanel(id); };
+  const ev = (detail: string) => () => window.dispatchEvent(new CustomEvent('sf-open-win', { detail }));
+  const it = (id: Exclude<Panel, null>, label: string, key?: string) => ({ id, label, key, art: MENU_ART[id], on: panel === id, run: openWin(id) });
+  const pcGroups: MenuGroup[] = [
+    { title: 'ตัวละคร', items: [it('inventory', 'กระเป๋า', 'I'), it('character', 'ตัวละคร', 'C'), it('skills', 'สกิล', 'K'), it('wardrobe', 'ตู้ชุด', 'U')] },
+    { title: 'การผจญภัย', items: [it('quests', 'เควส', 'J'), { id: 'map', label: 'แผนที่', key: 'M', art: 'map_waypoint_node_swords', run: ev('map') }, it('monsters', 'มอนสเตอร์', 'N'), it('codex', 'สมุดสะสม', 'L')] },
+    { title: 'สังคม', items: [it('online', 'ออนไลน์'), { id: 'party', label: 'ปาร์ตี้', key: 'P', art: 'menu_27_guild_shield_royal', run: ev('party') }, { id: 'wiki', label: 'วิกิ', art: 'menu_23_daily_request', run: () => window.open('/wiki', '_blank', 'noopener') }] },
+    { title: 'ระบบ', items: [it('auto', 'ออโต้', 'Z'), it('cloud', 'เซฟคลาวด์')] },
+  ];
+
+  return <div className={`hud-root h2 pointer-events-none ${layout === 'mobile' ? `touch ${orientation}` : 'pc'} ${pc && panel && PC_PAGE.includes(panel) ? 'paged' : ''}`}>
     <div className="h2-vignette" />
     {/* PC / Mobile component sets (UX spec): frame, orbs, hotbar or touch wheel */}
     {layout === 'pc' ? <PCHUDLayout hp={hp} maxHp={maxHp} mp={mp} maxMp={maxMp} now={now} onAuto={() => toggle('auto')} />
@@ -252,19 +269,23 @@ export default function GameHUD() {
     {banner && (() => { const z = ZONES.find(x => x.id === banner)!; return <div className="h2-banner"><h1>{z.name.toUpperCase()}</h1><p>{z.th}</p></div>; })()}
     {/* top-right: minimap + menus */}
     <Minimap cityId={city.id} />
-    <button type="button" className={`sf-gear pointer-events-auto ${panel === 'settings' ? 'on' : ''}`} title="ตั้งค่า (O)" aria-label="ตั้งค่า" onClick={() => toggle('settings')}><img src="/art/ui-kit/icon_menu_settings_gear.webp" alt="" /></button>
+    {/* round 25: on PC the corner button opens the menu drawer (the settings live inside it); phones keep their menu button */}
+    {pc && !panel && <MenuButton className="pc-corner" open={menuOpen} onClick={() => setMenuOpen(v => !v)} />}
+    {pc && menuOpen && <PCMenu groups={pcGroups} system={[{ id: 'settings', label: 'ตั้งค่า', key: 'O', art: 'icon_menu_settings_gear', on: panel === 'settings', run: () => setPanel('settings') }, ...exitItems()]} onClose={closeMenu} />}
     <ZoneLabel cityName={city.name} cityId={city.id} />
-    <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{layout === 'mobile' ? <span className="nm">{SHORT[id]}</span> : key && <small>{key}</small>}</button>)}
+    {!pc && <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{layout === 'mobile' ? <span className="nm">{SHORT[id]}</span> : key && <small>{key}</small>}</button>)}
       <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/ui-kit/map_waypoint_node_swords.webp" alt="" />{layout === 'mobile' ? <span className="nm">แผนที่</span> : <small>M</small>}</button>
       <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" />{layout === 'mobile' ? <span className="nm">ปาร์ตี้</span> : <small>P</small>}</button>
       <button title="Wiki · ข้อมูลเกม (เปิดแท็บใหม่)" aria-label="Wiki" onClick={() => window.open('/wiki', '_blank', 'noopener')}><img className="sf-menu-ico" src="/art/ui-kit/menu_23_daily_request.webp" alt="" />{layout === 'mobile' ? <span className="nm">วิกิ</span> : <small>W</small>}</button>
-      {layout === 'mobile' && <button title="หมุนจอ" aria-label={orientation === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'} onClick={() => window.dispatchEvent(new Event('sf-rotate'))}><span className="rot-ico" aria-hidden>{orientation === 'portrait' ? '▭' : '▯'}</span><span className="nm">{orientation === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</span></button>}</nav>
+      {layout === 'mobile' && <button title="หมุนจอ" aria-label={orientation === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'} onClick={() => window.dispatchEvent(new Event('sf-rotate'))}><span className="rot-ico" aria-hidden>{orientation === 'portrait' ? '▭' : '▯'}</span><span className="nm">{orientation === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</span></button>}
+      {exitItems().map(m => <button key={m.id} title={m.label} aria-label={m.label} onClick={m.run}><img className="sf-menu-ico" src={`/art/ui-kit/${m.art}.webp`} alt="" /><span className="nm">{m.label}</span></button>)}</nav>}
     {/* windows */}
     {panel && layout === 'mobile' && (panel === 'inventory' || panel === 'character') ? <div className="h3-drawer pointer-events-auto" role="dialog" aria-label="กระเป๋าและสเตตัส">
       <header><span className="dtabs"><button className={panel === 'inventory' ? 'on' : ''} onClick={() => setPanel('inventory')}>🎒 อุปกรณ์ & กระเป๋า</button><button className={panel === 'character' ? 'on' : ''} onClick={() => setPanel('character')}>♜ สเตตัส</button></span>
         <button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header>
       <div className="body">{panel === 'inventory' ? <MobileInventoryDrawer /> : <MobileStatusPanel />}</div></div>
-    : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' || panel === 'wardrobe' || panel === 'codex' ? 'wide' : ''}`}><header><img className="sf-win-ico" src={`/art/ui-kit/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2><button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
+    : panel && <div className={`h2-win pointer-events-auto ${panel === 'inventory' || panel === 'wardrobe' || panel === 'codex' ? 'wide' : ''} ${pc ? (PC_PAGE.includes(panel) ? 'pc-page' : 'pc-dock') : ''}`} data-panel={panel}>
+      <header><img className="sf-win-ico" src={`/art/ui-kit/${MENU_ART[panel]}.webp`} alt="" /><h2>{title[panel]}</h2>{pc && <MenuButton open={menuOpen} onClick={() => setMenuOpen(v => !v)} />}<button className="sf-close" onClick={() => setPanel(null)} aria-label="ปิด" title="ปิด (Esc)" /></header><div className="body">
       {panel === 'inventory' && <PCInventoryPanel />}{panel === 'character' && <PCStatusPanel />}{panel === 'skills' && <SkillsPanel />}{panel === 'quests' && <QuestsPanel />}{panel === 'codex' && <CollectionPanel />}{panel === 'wardrobe' && <WardrobePanel />}{panel === 'monsters' && <MonsterListPanel />}
       {panel === 'auto' && <AutoPanel />}{panel === 'settings' && <SettingsPanel />}{panel === 'cloud' && <CloudSave />}{panel === 'online' && <OnlinePanel />}</div></div>}
     <div className={`h2-log ${layout === 'mobile' ? 'hidden' : ''}`}>{log.slice(0, 5).map((l, i) => <div key={`${l}-${i}`} style={{ opacity: 1 - i * .16 }}>› {l}</div>)}</div>
