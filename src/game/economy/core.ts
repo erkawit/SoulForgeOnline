@@ -55,7 +55,33 @@ export type Ok = { ok: true; state: CharState; log: string[]; events: QuestEvent
 export type Fail = { ok: false; msg: string };
 export type Result = Ok | Fail;
 
-export const BAG_SIZE = 24;
+/** round 25: a new character's bag has 200 slots; +10 slots per 100,000 SoulGod, up to 300 */
+export const BAG_START = 200, BAG_MAX = 300, BAG_STEP = 10, BAG_STEP_COST = 100_000;
+/** kept for old callers (save import): the starting bag */
+export const BAG_SIZE = BAG_START;
+export const bagSlotsOf = (s: { player: { bagSlots?: number } }) => Math.min(BAG_MAX, Math.max(BAG_START, s.player.bagSlots ?? BAG_START));
+/** a bag array of exactly `slots` cells (older saves had 24; extra items beyond the size are kept, never dropped) */
+export function sizedBag(inv: (Item | null)[], slots: number): (Item | null)[] {
+  const out = inv.slice(); while (out.length < slots) out.push(null); return out;
+}
+/** round 25: carrying weight — gear by piece, stacks by count; over the limit the hero can't pick up more loot */
+export function itemWeight(it: Item | null): number {
+  if (!it) return 0; const n = it.qty ?? 1;
+  switch (it.slot) {
+    case 'weapon': return 8; case 'armor': return 12; case 'costume': return 2; case 'helmet': return 4; case 'gloves': return 2; case 'boots': return 3;
+    case 'ring': return 0.5; case 'offhand': return 6;
+  }
+  if (it.family === 'consumable') return 0.2 * n; if (it.family === 'material' || it.family === 'crystal') return 0.5 * n; if (it.family === 'trophy') return 1 * n;
+  return 1 * n;
+}
+export const bagWeight = (inv: (Item | null)[]) => Math.round(inv.reduce((a, i) => a + itemWeight(i), 0) * 10) / 10;
+export const weightLimit = (level: number) => 400 + level * 10;
+export function expandBag(s: CharState): Result {
+  const now = bagSlotsOf(s); if (now >= BAG_MAX) return fail(`กระเป๋าขยายเต็มแล้ว (${BAG_MAX} ช่อง)`);
+  if (s.player.gold < BAG_STEP_COST) return fail(`SoulGod ไม่พอ — ต้องใช้ ${BAG_STEP_COST.toLocaleString()} SG`);
+  const slots = now + BAG_STEP;
+  return done({ ...s, inventory: sizedBag(s.inventory, slots), player: { ...s.player, gold: s.player.gold - BAG_STEP_COST, bagSlots: slots } }, [`ขยายกระเป๋าเป็น ${slots} ช่อง (−${BAG_STEP_COST.toLocaleString()} SG)`]);
+}
 export const MAIN_CITIES: CityId[] = ['hollow', 'dawnveil', 'thornwatch'];
 export const expRequired = (level: number) => level * 95;
 const STACK = ['consumable', 'material', 'crystal'];
@@ -164,6 +190,7 @@ export function grantKill(s: CharState, m: Monster, ctx: Ctx): Ok {
 export function pickup(s: CharState, dropId: string, reach = 4): Result {
   const drop = s.drops.find(d => d.id === dropId); if (!drop) return fail('Loot unavailable');
   if (Math.hypot(drop.x - s.player.position[0], drop.z - s.player.position[1]) > reach) return fail('Move closer to collect loot.');
+  if (bagWeight(s.inventory) + itemWeight(drop.item) > weightLimit(s.player.level)) return fail('น้ำหนักเกิน — เก็บของเพิ่มไม่ได้ ขายหรือทิ้งของบางชิ้นก่อน');
   const inventory = [...s.inventory], at = stacks(drop.item) ? inventory.findIndex(i => stacks(i) && i!.definitionId === drop.item.definitionId) : -1;
   if (at >= 0) inventory[at] = { ...inventory[at]!, qty: (inventory[at]!.qty ?? 1) + (drop.item.qty ?? 1) };
   else { const index = inventory.indexOf(null); if (index < 0) return fail('Inventory full.'); inventory[index] = drop.item; }
@@ -218,6 +245,7 @@ export function useItem(s: CharState, index: number, ctx: Ctx): Ok & { kind: 'fo
   const food = FOOD_ITEMS.find(f => f.id === item.definitionId);
   if (food) return { ...done({ ...s, inventory, buffs: [...s.buffs.filter(b => !b.id.startsWith('food-')), { id: food.id, source: food.th, ...food.buff, until: ctx.now + food.minutes * 60000 }] }, [`กิน ${food.th} · บัฟ ${food.minutes} นาที`]), kind: 'food' };
   const shop = SHOP_ITEMS.find(x => x.id === item.definitionId); if (!shop) return fail('Not usable');
+  if (shop.effect.revive) return fail('ใช้ได้เมื่อตัวละครล้มเท่านั้น');
   const d = derive(s, ctx), e = shop.effect, player = { ...s.player };
   if (e.hp) player.hp = Math.min(d.maxHp, player.hp + e.hp); if (e.hpPct) player.hp = Math.min(d.maxHp, player.hp + d.maxHp * e.hpPct / 100);
   if (e.mp) player.mp = Math.min(d.maxMp, player.mp + e.mp); if (e.mpPct) player.mp = Math.min(d.maxMp, player.mp + d.maxMp * e.mpPct / 100);
@@ -413,7 +441,7 @@ export function migrateCharState(s: CharState, lib: SkillLibrary): CharState {
     hotbar: hotbarOk && Object.keys(skillLevels).length ? s.hotbar : fresh.hotbar };
 }
 export function freshCharacter(name: string, cls: ClassId, gender: 'm' | 'f', ctx: Ctx, starter: { player: Player; gear: Item }): CharState {
-  const inventory: (Item | null)[] = Array.from({ length: BAG_SIZE }, (_, i) => i === 0 ? { ...starter.gear, id: ctx.uuid() } : null);
+  const inventory: (Item | null)[] = Array.from({ length: BAG_START }, (_, i) => i === 0 ? { ...starter.gear, id: ctx.uuid() } : null);
   return { player: { ...starter.player, name, classId: cls, gender, cityId: 'hollow', position: homePoint('hollow'), stats: { ...ctx.config.classes[cls].base }, gold: ctx.config.economy.startingSoulGod },
     inventory, equipment: { ...EMPTY_GEAR }, soulShards: 0, ...freshSkills(ctx.skills, cls), buffs: [], starterKits: [], quests: {}, drops: [], codex: {}, wardrobe: { owned: [], worn: {} } };
 }

@@ -80,7 +80,7 @@ export const STARTER_KITS: Record<string, string[]> = {
   // round 22: every class gets its own weapon + the shared armour set
   ...Object.fromEntries(['Paladin', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'].map(c => [c, [`weapon-${c}-0`, 'heavy-armor-0', 'heavy-helmet-0', 'heavy-gloves-0', 'heavy-boots-0']])),
 };
-export type ShopItem = { id: string; name: string; th: string; price: number; effect: { hp?: number; mp?: number; hpPct?: number; mpPct?: number; returnHome?: boolean; protect?: boolean } };
+export type ShopItem = { id: string; name: string; th: string; price: number; effect: { hp?: number; mp?: number; hpPct?: number; mpPct?: number; returnHome?: boolean; protect?: boolean; revive?: boolean } };
 export const SHOP_ITEMS: ShopItem[] = [
   { id: 'potion-hp-s', name: 'Small Healing Draught', th: 'ยาฟื้น HP เล็ก', price: 30, effect: { hp: 120 } },
   { id: 'potion-hp-m', name: 'Healing Draught', th: 'ยาฟื้น HP', price: 120, effect: { hpPct: 35 } },
@@ -88,7 +88,10 @@ export const SHOP_ITEMS: ShopItem[] = [
   { id: 'potion-mp-s', name: 'Small Mana Tonic', th: 'ยาฟื้น MP เล็ก', price: 30, effect: { mp: 80 } },
   { id: 'potion-mp-m', name: 'Mana Tonic', th: 'ยาฟื้น MP', price: 120, effect: { mpPct: 40 } },
   { id: 'scroll-return', name: 'Return Scroll', th: 'คัมภีร์กลับเมือง', price: 80, effect: { returnHome: true } },
+  // round 25: revive where you fell (50 % HP / MP) — priced well above potions so dying still costs something
+  { id: 'scroll-revive', name: 'Scroll of Resurrection', th: 'ม้วนคัมภีร์ชุบชีวิต', price: 2500, effect: { revive: true } },
 ];
+export const REVIVE_SCROLL = 'scroll-revive';
 export const PROTECTION_SCROLL: ShopItem = { id: 'scroll-protect', name: 'Enhancement Protection Scroll', th: 'คัมภีร์ป้องกันการตีบวก', price: 25000, effect: { protect: true } };
 
 export const GUIDE_TOPICS: { id: string; title: string; body: string[] }[] = [

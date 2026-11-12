@@ -11,7 +11,8 @@ import { useConfigStore } from '@/store/useConfigStore';
 import SkillTreePanel from './SkillTreePanel';
 import NpcDialog from './NpcDialog';
 import BuffStrip from './BuffStrip';
-import { countOf, derivedOf, expRequired, useGameStore } from '@/store/useGameStore';
+import { DEATH_WAIT, countOf, derivedOf, expRequired, useGameStore } from '@/store/useGameStore';
+import { REVIVE_SCROLL } from '@/game/npcs';
 import { usePlayerStatic, usePlayerCell } from '@/store/usePlayerStatic';
 import CloudSave from './CloudSave';
 import { CITIES, WORLD_LIMIT, portalsOf, type CityId, type MainCityId } from '@/game/content';
@@ -33,7 +34,7 @@ import { skillIconStyle } from '@/game/skills/icons';
 import { describeSkill } from '@/game/skills/describe';
 import SettingsPanel from './SettingsPanel';
 import { useScreenScale, useOrientation } from './hud/common';
-import { ChannelButton } from './ChannelSwitch';
+import { ChannelButton, ChannelDialog } from './ChannelSwitch';
 import PCHUDLayout from './hud/PCHUDLayout';
 import MobileHUDLayout from './hud/MobileHUDLayout';
 import PCMenu, { MenuButton, exitItems, type MenuGroup } from './hud/PCMenu';
@@ -148,14 +149,20 @@ function Minimap({ cityId }: { cityId: string }) {
   const level = useGameStore(s => s.player.level), quests = useGameStore(s => s.quests);
   const monsters = useGameStore(s => s.monsters), drops = useGameStore(s => s.drops);
   const connected = useMultiplayerStore(s => s.connected), players = useMultiplayerStore(s => s.players), playerId = useMultiplayerStore(s => s.playerId), boss = useMultiplayerStore(s => s.boss);
-  return <section className="h2-mm pointer-events-auto"><svg viewBox={`${px - 28} ${pz - 28} 56 56`} aria-label="แผนที่ย่อ — คลิกเพื่อเปิดแผนที่โลก" role="button" tabIndex={0} style={{ cursor: 'pointer' }}
+  // round 25: the + / − knobs painted on the minimap ring zoom it (they were only part of the picture before)
+  const [zoom, setZoom] = useState(() => { try { return Number(window.localStorage.getItem('sf_mm_zoom')) || 1; } catch { return 1; } });
+  const zoomBy = (f: number) => setZoom(z => { const n = Math.min(2.5, Math.max(0.5, Math.round(z * f * 100) / 100)); try { window.localStorage.setItem('sf_mm_zoom', String(n)); } catch { /* storage blocked */ } return n; });
+  const half = 28 / zoom;
+  return <section className="h2-mm pointer-events-auto"><svg viewBox={`${px - half} ${pz - half} ${half * 2} ${half * 2}`} aria-label="แผนที่ย่อ — คลิกเพื่อเปิดแผนที่โลก" role="button" tabIndex={0} style={{ cursor: 'pointer' }}
       onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))} onKeyDown={e => { if (e.key === 'Enter') window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' })); }}>
       <MinimapStatic cityId={cityId} level={level} quests={quests} />
       {monsters.filter(m => m.hp > 0).map(m => <circle key={m.id} cx={m.x} cy={m.z} r=".8" fill="#e37c6c" />)}
       {connected && players.filter(p => p.id !== playerId).map(p => <circle key={p.id} cx={p.x} cy={p.z} r=".8" fill="#6dc8db" />)}
       {drops.map(d => <circle key={d.id} cx={d.x} cy={d.z} r=".6" fill="#cb8ff2" />)}
       {connected && boss && <circle cx={boss.x} cy={boss.z} r="1.8" fill="#ef6357" />}
-      <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span><span className="h2-coords" aria-label="พิกัด">X {px.toFixed(0)} · Y {pz.toFixed(0)}</span></section>;
+      <circle cx={px} cy={pz} r="1.3" fill="#ffe4a1" stroke="#000" strokeWidth=".3" /></svg><div className="ring" /><span className="n">N</span><span className="h2-coords" aria-label="พิกัด">X {px.toFixed(0)} · Y {pz.toFixed(0)}</span>
+      <button type="button" className="mm-zoom in" aria-label="ขยายแผนที่ย่อ" title="ขยาย" disabled={zoom >= 2.5} onClick={e => { e.stopPropagation(); zoomBy(1.4); }} />
+      <button type="button" className="mm-zoom out" aria-label="ย่อแผนที่ย่อ" title="ย่อ" disabled={zoom <= 0.5} onClick={e => { e.stopPropagation(); zoomBy(1 / 1.4); }} /></section>;
 }
 
 /** the fixed layer of the minimap (ground, buildings, gates, NPCs, elite spawns) — drawn once per field */
@@ -186,6 +193,21 @@ function TargetFrame() {
 }
 
 /** zone name + coordinates: re-renders only when the whole-metre position changes */
+/** round 25: defeated — a game-framed window: a Scroll of Resurrection revives on the spot at once; otherwise a 5 s
+ *  countdown, then "ฟื้นที่ <nearest capital>" */
+function DeathWindow({ until, now }: { until: number; now: number }) {
+  const scrolls = useGameStore(s => s.inventory.reduce((n, i) => n + (i?.definitionId === REVIVE_SCROLL ? i.qty ?? 1 : 0), 0));
+  const cityId = useGameStore(s => s.player.cityId ?? 'hollow'), home = CITIES[cityId].parent ?? cityId;
+  const left = Math.max(0, until - now), k = 1 - left / DEATH_WAIT;
+  return <div className="death-overlay kit pointer-events-auto" role="dialog" aria-label="ตัวละครล้ม"><section className="dw">
+    <h2>พ่ายแพ้</h2><p>วิญญาณของเจ้ายังคงอยู่ — เลือกวิธีกลับสู่การต่อสู้</p>
+    <div className="dw-bar" aria-hidden><i style={{ transform: `scaleX(${Math.min(1, k)})` }} /><span>{left > 0 ? `เกิดใหม่ได้ใน ${Math.ceil(left / 1000)} วินาที` : 'พร้อมเกิดใหม่'}</span></div>
+    <button type="button" className="dw-btn scroll" disabled={!scrolls} onClick={() => useGameStore.getState().reviveWithScroll()}>
+      <img src="/art/icons/items/scroll-revive.webp" alt="" /><span><b>ใช้ม้วนคัมภีร์ชุบชีวิต</b><small>{scrolls ? `ฟื้น ณ จุดที่ล้ม · HP/MP 50% · มี ${scrolls} ม้วน` : 'ไม่มีม้วนคัมภีร์ — ซื้อได้ที่ร้านค้าทั่วไป'}</small></span></button>
+    <button type="button" className="dw-btn" disabled={left > 0} onClick={() => useGameStore.getState().respawn()}>
+      <img src="/art/ui-kit/icon_portal_swirl.webp" alt="" /><span><b>{left > 0 ? `รอ ${Math.ceil(left / 1000)} วินาที…` : `เกิดที่ ${CITIES[home].name}`}</b><small>เมืองที่ใกล้ที่สุด · HP/MP เต็ม</small></span></button>
+  </section></div>;
+}
 /** round 25: standing at a waygate shows a button that warps at once (and F does the same) — the walk-in trigger lives
  *  in the 3D scene's frame loop; this one works from the HUD, so a gate never leaves the player stuck */
 const GATE_PROMPT_M = 4.5;
@@ -211,7 +233,7 @@ export default function GameHUD() {
   useEffect(() => { const t = setInterval(() => setNow(Date.now()), 200); return () => clearInterval(t); }, []);
   const [panel, setPanel] = useState<Panel>(null);
   const layout = useScreenScale(), orientation = useOrientation(); const [menuOpen, setMenuOpen] = useState(false);
-  const panelRef = useRef<Panel>(null); panelRef.current = panel; const pc = layout === 'pc';
+  const panelRef = useRef<Panel>(null); panelRef.current = panel; const pc = layout === 'pc'; const [chOpen, setChOpen] = useState(false);
   const player = usePlayerStatic(), equipment = useGameStore(s => s.equipment);
   const log = useGameStore(s => s.log), selectedMonster = useGameStore(s => s.selectedMonster), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
   const hotbar = useGameStore(s => s.hotbar), extra = useGameStore(s => s.extraHotbar), cooldowns = useGameStore(s => s.cooldowns), auto = useGameStore(s => s.auto), pauseUntil = useGameStore(s => s.autoPauseUntil);
@@ -284,15 +306,16 @@ export default function GameHUD() {
     <Minimap cityId={city.id} />
     {/* round 25: on PC the corner button opens the menu drawer (the settings live inside it); phones keep their menu button */}
     {pc && !panel && <MenuButton className="pc-corner" open={menuOpen} onClick={() => setMenuOpen(v => !v)} />}
-    {pc && menuOpen && <PCMenu groups={pcGroups} system={[{ id: 'settings', label: 'ตั้งค่า', key: 'O', art: 'icon_menu_settings_gear', on: panel === 'settings', run: () => setPanel('settings') }, ...exitItems()]} onClose={closeMenu} />}
+    {/* round 25: phones open the same menu drawer (tiles without hot keys); the channel switch lives in it */}
+    {menuOpen && <PCMenu groups={pcGroups} noKeys={!pc} onClose={closeMenu} system={[
+      { id: 'settings', label: 'ตั้งค่า', key: 'O', art: 'icon_menu_settings_gear', on: panel === 'settings', run: () => setPanel('settings') },
+      { id: 'channel', label: 'แชแนล', art: 'icon_portal_swirl', run: () => setChOpen(true) },
+      ...(pc ? [] : [{ id: 'rotate', label: orientation === 'portrait' ? 'แนวนอน' : 'แนวตั้ง', glyph: orientation === 'portrait' ? '▭' : '▯', art: '', run: () => window.dispatchEvent(new Event('sf-rotate')) }]),
+      ...exitItems()]} />}
+    {chOpen && <ChannelDialog onClose={() => setChOpen(false)} />}
     <ZoneLabel cityName={city.name} cityId={city.id} />
     <GatePrompt cityId={city.id as CityId} />
-    {!pc && <nav className={`h2-menu pointer-events-auto ${layout === 'mobile' ? 'mobile' : ''} ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>{menu.map(([id, ico, key, t]) => <button key={id} title={`${t}${key ? ` (${key})` : ''}`} aria-label={t} className={panel === id ? 'on' : ''} onClick={() => toggle(id)}><img className="sf-menu-ico" src={`/art/ui-kit/${MENU_ART[id]}.webp`} alt="" data-glyph={ico} />{layout === 'mobile' ? <span className="nm">{SHORT[id]}</span> : key && <small>{key}</small>}</button>)}
-      <button title="แผนที่โลก (M)" aria-label="แผนที่โลก" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'map' }))}><img className="sf-menu-ico" src="/art/ui-kit/map_waypoint_node_swords.webp" alt="" />{layout === 'mobile' ? <span className="nm">แผนที่</span> : <small>M</small>}</button>
-      <button title="ปาร์ตี้ · แชแนล (P)" aria-label="ปาร์ตี้" onClick={() => window.dispatchEvent(new CustomEvent('sf-open-win', { detail: 'party' }))}><img className="sf-menu-ico" src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" />{layout === 'mobile' ? <span className="nm">ปาร์ตี้</span> : <small>P</small>}</button>
-      <button title="Wiki · ข้อมูลเกม (เปิดแท็บใหม่)" aria-label="Wiki" onClick={() => window.open('/wiki', '_blank', 'noopener')}><img className="sf-menu-ico" src="/art/ui-kit/menu_23_daily_request.webp" alt="" />{layout === 'mobile' ? <span className="nm">วิกิ</span> : <small>W</small>}</button>
-      {layout === 'mobile' && <button title="หมุนจอ" aria-label={orientation === 'portrait' ? 'สลับเป็นแนวนอน' : 'สลับเป็นแนวตั้ง'} onClick={() => window.dispatchEvent(new Event('sf-rotate'))}><span className="rot-ico" aria-hidden>{orientation === 'portrait' ? '▭' : '▯'}</span><span className="nm">{orientation === 'portrait' ? 'แนวนอน' : 'แนวตั้ง'}</span></button>}
-      {exitItems().map(m => <button key={m.id} title={m.label} aria-label={m.label} onClick={m.run}><img className="sf-menu-ico" src={`/art/ui-kit/${m.art}.webp`} alt="" /><span className="nm">{m.label}</span></button>)}</nav>}
+
     {/* windows */}
     {panel && layout === 'mobile' && (panel === 'inventory' || panel === 'character') ? <div className="h3-drawer pointer-events-auto" role="dialog" aria-label="กระเป๋าและสเตตัส">
       <header><span className="dtabs"><button className={panel === 'inventory' ? 'on' : ''} onClick={() => setPanel('inventory')}>🎒 อุปกรณ์ & กระเป๋า</button><button className={panel === 'character' ? 'on' : ''} onClick={() => setPanel('character')}>♜ สเตตัส</button></span>
@@ -305,6 +328,6 @@ export default function GameHUD() {
     <div className={`h2-log ${layout === 'mobile' ? 'hidden' : ''}`}>{log.slice(0, 5).map((l, i) => <div key={`${l}-${i}`} style={{ opacity: 1 - i * .16 }}>› {l}</div>)}</div>
     {(pending || charge) && <div className="h2-cast">{charge ? `ง้างสายธนู ×${(1 + 2 * Math.min(1, (now - charge.start) / 1600)).toFixed(1)}` : `ร่าย ${skillDefs.find(d => d.id === pending?.skillId)?.name ?? ''}`}<i style={{ transform: `scaleX(${charge ? Math.min(1, (now - charge.start) / 1600) : pending ? Math.min(1, 1 - (pending.at - now) / Math.max(1, (skillDefs.find(d => d.id === pending.skillId)?.castMs ?? 1))) : 0})` }} /></div>}
     <TipCard /><BossDashboard /><NpcDialog />
-    {deadUntil > 0 && <div className="death-overlay"><div><h2>วิญญาณของเจ้ายังคงอยู่</h2><p>กลับสู่วิหาร</p><button disabled={now < deadUntil} onClick={() => useGameStore.getState().respawn()}>{now < deadUntil ? 'กำลังล้ม…' : 'ฟื้นคืนชีพ'}</button></div></div>}
+    {deadUntil > 0 && <DeathWindow until={deadUntil} now={now} />}
   </div>;
 }

@@ -21,7 +21,11 @@ function BaseClassActor(){
  useFrame((_,delta)=>{if(!root.current)return;const s=useGameStore.getState(),p=s.player.position;const distance=last.current?Math.hypot(p[0]-last.current[0],p[1]-last.current[1]):0;
   const step=distance<2&&delta>0?distance/Math.min(delta,.1):0;speed.current+=(step-speed.current)*(1-Math.exp(-10*Math.min(delta,.05))); // smoothed m/s
   if(last.current&&distance>.001&&distance<2)facing.current=Math.atan2(p[0]-last.current[0],p[1]-last.current[1]);last.current=[...p];root.current.position.set(p[0],groundY(s.player.cityId??'hollow'),p[1]);
-  const target=s.monsters.find(m=>m.id===s.selectedMonster&&m.hp>0);if(target)facing.current=Math.atan2(target.x-p[0],target.z-p[1]);
+  let target=s.monsters.find(m=>m.id===s.selectedMonster&&m.hp>0);
+  // round 25: an attack / skill without a picked target hits the nearest monster (SkillFxLayer aims there) — face it too,
+  // so the swing and the effect point the same way
+  const a=s.action;if(!target&&(a.kind==='attack'||a.kind==='skill'||a.kind==='special')&&Date.now()-a.stamp<Math.max(400,a.duration)){let best=9;for(const m of s.monsters){if(m.hp<=0)continue;const d=Math.hypot(m.x-p[0],m.z-p[1]);if(d<best){best=d;target=m;}}}
+  if(target)facing.current=Math.atan2(target.x-p[0],target.z-p[1]);
   root.current.rotation.y+=(MathUtils.euclideanModulo(facing.current-root.current.rotation.y+Math.PI,Math.PI*2)-Math.PI)*(1-Math.exp(-14*Math.min(delta,.05))); // Facing belongs to game, never root-motion clips.
   const active=Date.now()-s.action.stamp<s.action.duration;if(distance>.001&&distance<2)movedAt.current=performance.now();const moving=performance.now()-movedAt.current<120,base=characterClip(s.action.kind,active,!!s.deadUntil,moving,speed.current,current.current==='Run');
   // combo swings, cast/draw channels and shield guard come from the store's action.clip

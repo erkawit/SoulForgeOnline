@@ -71,7 +71,7 @@ for(const c of COSTUMES)ITEM_DEFINITIONS.push({id:c.id,name:c.name,rarity:'God',
 for(const l of LOOT)ITEM_DEFINITIONS.push({id:l.id,name:l.en,rarity:'Common',slot:null,family:'material',tier:0,npcValue:l.sell,description:`${l.th} · ของดรอปจาก ${l.monsters.join(', ')} · ลงสมุดสะสมเพื่อรับค่าสถานะถาวร หรือขาย / ซื้อขายในตลาด`,bonuses:{},atlas:'loot',column:l.index%6,columns:6,row:Math.floor(l.index/6)});
 ITEM_DEFINITIONS.push({id:CODEX_SEAL,name:'Codex Seal',rarity:'Rare',slot:null,family:'material',tier:2,npcValue:5,description:'ตราสมุดสะสม · ใช้ลงสมุดขั้น IV–V · ดรอปจาก Elite (มีโอกาสสูงขึ้นเมื่อมีเพื่อนในปาร์ตี้อยู่ใกล้) และบอสทุกตัว',bonuses:{},atlas:'materials',column:1,columns:4,row:0});
 /** round 12: painted single icons (public/art/icons/items/<id>.webp) for shop goods and crafting materials */
-export const ITEM_ICONS=new Set(['potion-hp-s','potion-hp-m','potion-hp-l','potion-mp-s','potion-mp-m','scroll-return','scroll-protect','material-ore','material-3','material-4','material-6','codex-seal']);
+export const ITEM_ICONS=new Set(['potion-hp-s','potion-hp-m','potion-hp-l','potion-mp-s','potion-mp-m','scroll-return','scroll-protect','scroll-revive','material-ore','material-3','material-4','material-6','codex-seal']);
 export const ITEM_BY_ID=Object.fromEntries(ITEM_DEFINITIONS.map(x=>[x.id,x]));
 export function makeItem(id:string):Item {const d=ITEM_BY_ID[id];if(!d)throw new Error('Unknown item definition');return {id:crypto.randomUUID(),definitionId:d.id,name:d.name,rarity:d.rarity,slot:d.slot,family:d.family,tier:d.tier,bonuses:{...d.bonuses},description:d.description,npcValue:d.npcValue};}
 /** Round 22: weapons are class-locked (the Reaver uses the Berserker's); armour, rings and costumes are shared */

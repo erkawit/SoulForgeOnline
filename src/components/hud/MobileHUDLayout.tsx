@@ -18,10 +18,9 @@ import { KEYS, CLASS_COLOR, basicDown, basicUp, castSlot, fmt, useSkillSlots, us
 
 /** [radius px, angle°] from the attack button's centre (0° = right, 90° = up) */
 const ARC: Record<'portrait' | 'landscape', [number, number][]> = {
-  portrait: [[108, 180], [108, 148], [108, 116], [108, 84]],
-  landscape: [[100, 180], [100, 150], [100, 120], [100, 90], [166, 166], [166, 132]],
+  portrait: [[120, 180], [120, 150], [120, 120], [120, 90]], // round 25: wider arc — the framed buttons no longer touch
+  landscape: [[108, 180], [108, 150], [108, 120], [108, 90], [176, 166], [176, 136]],
 };
-const PAGE_CHIP: [number, number] = [168, 95];
 const at = ([r, a]: [number, number]) => ({ ['--x' as string]: `${Math.cos(a * Math.PI / 180) * r}px`, ['--y' as string]: `${-Math.sin(a * Math.PI / 180) * r}px` });
 const buzz = (ms = 12) => { try { navigator.vibrate?.(ms); } catch { /* not supported (iOS) */ } };
 
@@ -91,6 +90,8 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
       <button className={`tq ${mpCount ? '' : 'empty'}`} onPointerDown={tap(() => useGameStore.getState().usePotion('mp'))} aria-label="ยา MP"><span className="ico mp" /><b className="q">{mpCount}</b></button>
       <button className={`tq auto ${auto.enabled ? 'on' : ''}`} onPointerDown={tap(() => useGameStore.getState().setAuto(!auto.enabled))} aria-pressed={auto.enabled} aria-label="ล่าอัตโนมัติ"><b className="atx">AUTO</b><small>{auto.enabled ? 'เปิด' : 'ปิด'}</small></button>
       <button className={`tq ${target ? 'on' : ''}`} onPointerDown={tap(nextTarget)} aria-label="เปลี่ยนเป้าหมาย"><span className="ico tgt" /><small>เป้า</small></button>
+      {/* round 25: the skill-page switch sits in this row at the same size as the other buttons */}
+      {o === 'portrait' && <button className="tq page" onPointerDown={tap(() => setPage(p => p ^ 1))} aria-label="สลับหน้าสกิล"><b>{page ? '1–4' : '5–6'}</b><small>สกิล</small></button>}
       <button className={`tq ${menuOpen ? 'on' : ''}`} onClick={onMenu} aria-label="เมนู" aria-expanded={menuOpen}><span className="ico menu" /><small>เมนู</small></button>
     </div>
     {rotHint && <div className="tc-rot-hint" role="status">{rotHint}</div>}
@@ -100,7 +101,7 @@ export default function MobileHUDLayout({ hp, maxHp, mp, maxMp, now, menuOpen, o
         onPointerDown={tap(() => castSlot(s.i))}>
         <span className="g">{s.glyph}</span><i className="ic" aria-hidden style={skillIconStyle(s.shows)} /><b className="k">{s.i}</b>
         {s.left > 0 && <span className="cd" style={{ ['--p' as string]: `${Math.min(100, s.left / s.total * 100)}%` }}><b>{Math.ceil(s.left / 1000)}</b></span>}</button>)}
-      {o === 'portrait' && <button className="page" style={at(PAGE_CHIP)} onPointerDown={tap(() => setPage(p => p ^ 1))} aria-label="สลับหน้าสกิล"><b>{page ? '1–4' : '5–6'}</b></button>}
+
     </div>
   </>;
 }

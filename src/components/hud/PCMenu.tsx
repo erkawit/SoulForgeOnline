@@ -5,7 +5,7 @@
 import { useEffect } from 'react';
 import { requestExit } from '@/game/saveSlot';
 
-export type MenuItem = { id: string; label: string; key?: string; art: string; on?: boolean; run: () => void };
+export type MenuItem = { id: string; label: string; key?: string; art: string; glyph?: string; on?: boolean; run: () => void };
 export type MenuGroup = { title: string; items: MenuItem[] };
 
 export function MenuButton({ open, onClick, className = '' }: { open: boolean; onClick: () => void; className?: string }) {
@@ -13,17 +13,17 @@ export function MenuButton({ open, onClick, className = '' }: { open: boolean; o
     aria-label={open ? 'ปิดเมนู' : 'เปิดเมนู'} aria-expanded={open} title="เมนู (Esc)"><i /><i /><i /></button>;
 }
 
-export default function PCMenu({ groups, system, onClose }: { groups: MenuGroup[]; system: MenuItem[]; onClose: () => void }) {
+export default function PCMenu({ groups, system, onClose, noKeys = false }: { groups: MenuGroup[]; system: MenuItem[]; onClose: () => void; noKeys?: boolean }) {
   useEffect(() => { const k = (e: KeyboardEvent) => { if (e.key === 'Escape') { e.stopImmediatePropagation(); onClose(); } };
     window.addEventListener('keydown', k, true); return () => window.removeEventListener('keydown', k, true); }, [onClose]);
-  const tile = (m: MenuItem) => <button key={m.id} type="button" className={`pc-tile ${m.on ? 'on' : ''}`} onClick={() => { onClose(); m.run(); }} title={m.key ? `${m.label} (${m.key})` : m.label}>
-    <img src={`/art/ui-kit/${m.art}.webp`} alt="" /><span>{m.label}</span>{m.key && <kbd>{m.key}</kbd>}</button>;
+  const tile = (m: MenuItem) => <button key={m.id} type="button" className={`pc-tile ${m.on ? 'on' : ''}`} onClick={() => { onClose(); m.run(); }} title={m.key && !noKeys ? `${m.label} (${m.key})` : m.label}>
+    {m.glyph ? <i className="glyph" aria-hidden>{m.glyph}</i> : <img src={`/art/ui-kit/${m.art}.webp`} alt="" />}<span>{m.label}</span>{m.key && !noKeys && <kbd>{m.key}</kbd>}</button>;
   return <>
     <div className="pc-menu-veil pointer-events-auto" onClick={onClose} />
-    <aside className="pc-menu pointer-events-auto" role="dialog" aria-label="เมนู">
+    <aside className={`pc-menu pointer-events-auto${noKeys ? ' touch' : ''}`} role="dialog" aria-label="เมนู">
       <header><h2>เมนู</h2><button type="button" className="sf-close" onClick={onClose} aria-label="ปิด" title="ปิด (Esc)" /></header>
       <div className="pc-menu-body">{groups.map(g => <section key={g.title}><h3>{g.title}</h3><div className="pc-grid">{g.items.map(tile)}</div></section>)}</div>
-      <footer className="pc-grid sys">{system.map(tile)}</footer>
+      <footer className="pc-grid sys" style={{ gridTemplateColumns: `repeat(${Math.min(4, system.length)}, minmax(0, 1fr))` }}>{system.map(tile)}</footer>
     </aside>
   </>;
 }

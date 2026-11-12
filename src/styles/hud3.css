@@ -205,3 +205,11 @@
 .h3-dock .slot, .h3-wheel .sk { position: relative; }
 .h3-dock .slot .ic, .h3-wheel .sk .ic { position: absolute; inset: 3px; border-radius: inherit; background-repeat: no-repeat; pointer-events: none; }
 .h3-dock .slot .k, .h3-dock .slot .n, .h3-dock .slot .mpc, .h3-dock .slot .cd, .h3-wheel .sk .k, .h3-wheel .sk .cd { z-index: 1; }
+/* round 25: 200–300 slot bag — the grid scrolls; size, weight and the +10 slots purchase above it */
+.bgrid-scroll { max-height: min(56vh, calc(var(--cell) * 10.2)); overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: #6b5430 transparent; }
+.bagmeta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 12px; color: var(--mute, #a99b80); }
+.bagmeta b { color: #f2e3bf; }
+.bagmeta .wt { position: relative; padding-bottom: 4px; } .bagmeta .wt i { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; transform-origin: 0 50%; background: #7fd18b; }
+.bagmeta .wt.warn i { background: #e0b44a; } .bagmeta .wt.over { color: #ff8a7a; } .bagmeta .wt.over i { background: #e0453a; }
+.bagmeta .bagx { margin-left: auto; padding: 5px 10px; border: 1px solid #8a6a3c; border-radius: 4px; background: linear-gradient(180deg, #2a2118, #120e0b); color: #f2dca8; font-size: 12px; cursor: pointer; }
+.bagmeta .bagx:disabled { opacity: .5; cursor: default; } .bagmeta .bagx.full { border-style: dashed; cursor: default; }

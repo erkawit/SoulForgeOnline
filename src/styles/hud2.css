@@ -176,3 +176,8 @@
 .h2-gate:hover{border-color:#f0cd84;filter:brightness(1.12)}
 @keyframes h2-gate-in{from{opacity:0;transform:translate(-50%,8px)}}
 .h2.touch .h2-gate{bottom:auto;top:38%;font-size:16px;padding:12px 18px 12px 12px}.h2.touch .h2-gate kbd{display:none}
+/* round 25: invisible hit areas over the + / − knobs painted on the minimap ring */
+.h2-mm .mm-zoom{position:absolute;z-index:4;top:64%;width:32%;height:32%;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.h2-mm .mm-zoom.in{left:-27%}.h2-mm .mm-zoom.out{right:-27%}
+.h2-mm .mm-zoom:active{background:radial-gradient(circle,rgba(255,226,164,.35),transparent 70%)}
+.h2-mm .mm-zoom:focus-visible{outline:2px solid #f5d38d}

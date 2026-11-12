@@ -42,7 +42,7 @@ test('reducers never mutate their input, and refused operations leave nothing be
   const ok = eco.buyShop(rich(s), 'potion-hp-s', 3, ctx()); assert.equal(ok.ok, true); assert.equal(JSON.stringify(s), frozen);
   for (const bad of [-1, 0, 1.5, 100, NaN]) assert.equal(eco.buyShop(rich(s), 'potion-hp-s', bad, ctx()).ok, false, `qty ${bad}`);
   assert.equal(eco.buyShop(rich(s), 'not-an-item', 1, ctx()).ok, false);
-  assert.equal(eco.swapInventory(s, -1, 2).ok, false); assert.equal(eco.swapInventory(s, 0, 24).ok, false);
+  assert.equal(eco.swapInventory(s, -1, 2).ok, false); assert.equal(eco.swapInventory(s, 0, s.inventory.length).ok, false);
 });
 
 test('NPC services need the NPC: shop, forge, starter kit, skills reset, blessing', () => {

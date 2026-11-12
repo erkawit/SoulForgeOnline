@@ -16,7 +16,7 @@ export function ShopPanel() {
   const serverResult = useMultiplayerStore(s => s.actResult);
   useEffect(() => { if (serverResult && ['buyShop','buyCatalog'].includes(serverResult.op)) setMessage(serverResult.msg); }, [serverResult]);
   const items = [
-    ...SHOP_ITEMS.map(i => ({id:i.id,name:i.th,description:i.effect.hp ? `ฟื้น HP ${i.effect.hp}` : i.effect.hpPct ? `ฟื้น HP ${i.effect.hpPct}%` : i.effect.mp ? `ฟื้น MP ${i.effect.mp}` : i.effect.mpPct ? `ฟื้น MP ${i.effect.mpPct}%` : 'กลับเมือง',price:i.price,category:'potions',shop:true})),
+    ...SHOP_ITEMS.map(i => ({id:i.id,name:i.th,description:i.effect.hp ? `ฟื้น HP ${i.effect.hp}` : i.effect.hpPct ? `ฟื้น HP ${i.effect.hpPct}%` : i.effect.mp ? `ฟื้น MP ${i.effect.mp}` : i.effect.mpPct ? `ฟื้น MP ${i.effect.mpPct}%` : i.effect.revive ? 'ฟื้นคืนชีพ ณ จุดที่ล้ม (HP/MP 50%)' : 'กลับเมือง',price:i.price,category:'potions',shop:true})),
     ...SOUL_STONES.map(i => ({...i,description:'ใช้ 1 ก้อนต่อการตีบวก',category:'materials',shop:false})),
     ...FOOD_ITEMS.map(i => ({id:i.id,name:i.th,description:`บัฟ ${i.minutes} นาที`,price:i.price,category:'food',shop:false})),
   ].filter(i => tab === 'all' || i.category === tab);

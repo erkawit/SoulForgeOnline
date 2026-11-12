@@ -174,6 +174,7 @@ export class CharacterSession {
       case 'travel': { const to = str(0); if (!isCity(to)) return { ok: false, msg: 'unknown map', changed: false };
         const t = eco.travel(s, to, a[1] === true, ctx, { checkPosition: true }); if (t.ok) { this.lastKill.clear(); this.moveBudget = this.live().limits.dashBudget; } r = t; break; }
       case 'pickup': r = eco.pickup(s, str(0)); break;
+      case 'expandBag': r = eco.expandBag(s); break;
       case 'codex': r = cdx.registerCodex(s, str(0), ctx); break;
       case 'collect': r = cdx.registerCollection(s, str(0), num(1)); break;
       case 'sellJunk': r = cdx.sellJunk(s, ctx); break;

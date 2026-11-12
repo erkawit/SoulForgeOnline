@@ -8,7 +8,7 @@ const noop: unknown = new Proxy(function () {}, { get: (_t, k) => (k === 'canvas
 // every slash of a basic-attack combo must sit in front of the caster (toward the target), never behind it
 test('basic-attack slashes appear on the facing side for every combo step', async () => {
   const { spawnSkillFx } = await import('../src/game/fx/skillFx');
-  for (const cls of ['RuneMaster', 'Berserker'] as const) for (const combo of [0, 1, 2]) for (const yaw of [0, Math.PI / 2, -Math.PI * 0.75]) {
+  for (const cls of ['RuneMaster', 'Berserker', 'Paladin', 'Assassin', 'Inquisitor', 'HighPriest', 'Hawkeye', 'Elementalist'] as const) for (const combo of [0, 1, 2]) for (const yaw of [0, Math.PI / 2, -Math.PI * 0.75]) {
     const scene = new Scene(), fwd = new Vector3(Math.sin(yaw), 0, Math.cos(yaw));
     const fx = spawnSkillFx(scene, { cls, kind: 'attack', origin: new Vector3(), yaw, target: fwd.clone().multiplyScalar(4), combo } as never);
     fx.update(0.25); scene.updateMatrixWorld(true);

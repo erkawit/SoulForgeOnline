@@ -9,7 +9,8 @@ import { useGameStore, derivedOf } from '@/store/useGameStore';
 import { usePlayerStatic } from '@/store/usePlayerStatic';
 import { canEquip } from '@/game/items';
 import { EQUIP_LAYOUT, type SlotInfo } from '@/game/ui/equipSlots';
-import { GRID_W, GRID_H, layoutBag, fits, firstFit, moveItem, freeCells, itemSize } from '@/game/ui/bagGrid';
+import { GRID_W, layoutBag, fits, firstFit, moveItem, freeCells, itemSize, rowsFor } from '@/game/ui/bagGrid';
+import { BAG_MAX, BAG_STEP, BAG_STEP_COST, bagSlotsOf, bagWeight, weightLimit } from '@/game/economy/core';
 import { TIER_OF, tierColor } from '@/game/ui/layout';
 import type { GearSlot, Item } from '@/lib/types';
 import { CLASS_COLOR, CLASS_TH, fmt, portrait } from './common';
@@ -19,17 +20,28 @@ import type { ClassId } from '@/game/content';
 const ok = (it: Item, cls: ClassId) => !it.slot || ((!it.classLock || it.classLock === cls) && canEquip(it, cls));
 function Tier({ it }: { it: Item }) { const t = TIER_OF[it.rarity]; return t ? <b className={`tb ${t.code === 'T8' ? 't8' : ''}`} style={{ ['--tc' as string]: t.color }}>{t.code}</b> : null; }
 function useBag() {
-  const inventory = useGameStore(s => s.inventory), bagPos = useGameStore(s => s.bagPos);
-  const items = useMemo(() => inventory.filter((x): x is Item => !!x), [inventory]);
-  const lay = useMemo(() => layoutBag(items, bagPos), [items, bagPos]);
-  return { inventory, items, bagPos, ...lay };
+  const inventory = useGameStore(s => s.inventory), bagPos = useGameStore(s => s.bagPos), slots = useGameStore(s => bagSlotsOf(s)), level = useGameStore(s => s.player.level);
+  const items = useMemo(() => inventory.filter((x): x is Item => !!x), [inventory]), rows = rowsFor(slots);
+  const lay = useMemo(() => layoutBag(items, bagPos, rows), [items, bagPos, rows]);
+  const weight = useMemo(() => bagWeight(inventory), [inventory]);
+  return { inventory, items, bagPos, slots, rows, weight, limit: weightLimit(level), ...lay };
+}
+/** round 25: bag size + weight line with the +10 slots purchase */
+function BagMeta({ slots, used, weight, limit, gold }: { slots: number; used: number; weight: number; limit: number; gold: number }) {
+  const over = weight > limit, can = slots < BAG_MAX;
+  return <div className="bagmeta">
+    <span>ช่อง <b>{used}</b>/{slots}</span>
+    <span className={`wt ${over ? 'over' : weight > limit * .85 ? 'warn' : ''}`} title="น้ำหนักเกินจะเก็บของเพิ่มไม่ได้">น้ำหนัก <b>{weight}</b>/{limit}<i style={{ transform: `scaleX(${Math.min(1, weight / limit)})` }} /></span>
+    {can ? <button type="button" className="bagx" disabled={gold < BAG_STEP_COST} onClick={() => useGameStore.getState().expandBag()} title={`ขยายสูงสุด ${BAG_MAX} ช่อง`}>+{BAG_STEP} ช่อง · {BAG_STEP_COST.toLocaleString()} SG</button>
+      : <span className="bagx full">ขยายเต็ม {BAG_MAX} ช่อง</span>}
+  </div>;
 }
 const act = (it: Item) => { const s = useGameStore.getState(), i = s.inventory.findIndex(x => x?.id === it.id); if (i < 0) { const slot = (Object.entries(s.equipment) as [GearSlot, Item | null][]).find(([, v]) => v?.id === it.id)?.[0]; if (slot) s.unequip(slot); return; } if (it.slot) s.equip(i); else s.useItem(i); };
 
 export function PCInventoryPanel() {
   const equipment = useGameStore(s => s.equipment), player = usePlayerStatic(), buffs = useGameStore(s => s.buffs), skillLevels = useGameStore(s => s.skillLevels);
   const cls = (player.classId ?? 'Berserker') as ClassId, d = useMemo(() => derivedOf({ player, equipment, buffs, skillLevels }), [player, equipment, buffs, skillLevels]);
-  const { items, placed, overflow, bagPos } = useBag(); const byId = new Map(items.map(i => [i.id, i]));
+  const { items, placed, overflow, bagPos, slots, rows, weight, limit } = useBag(); const byId = new Map(items.map(i => [i.id, i]));
   const [category,setCategory]=useState('all'),[query,setQuery]=useState('');
   const matches=(it:Item)=>it.name.toLowerCase().includes(query.toLowerCase())&&(category==='all'||category==='weapon'&&it.slot==='weapon'||category==='armor'&&['armor','helmet','gloves','boots'].includes(it.slot??'')||category==='accessory'&&it.slot==='ring'||category==='consumable'&&it.family==='consumable'||category==='material'&&['material','crystal'].includes(it.family??''));
   const grid = useRef<HTMLDivElement>(null);
@@ -40,7 +52,7 @@ export function PCInventoryPanel() {
   const cell = () => (grid.current?.getBoundingClientRect().width ?? 640) / GRID_W;
   const target = (x: number, y: number, dr: NonNullable<typeof drag>) => {
     const it = find(dr.id); if (!it || !grid.current) return null; const r = grid.current.getBoundingClientRect(), c = cell();
-    if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) { const gx = Math.round((x - dr.ox - r.left) / c), gy = Math.round((y - dr.oy - r.top) / c); const others = layoutBag(items.filter(i => i.id !== it.id), bagPos).placed; return { kind: 'grid' as const, gx, gy, it, ok: fits(others, it, gx, gy) }; }
+    if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) { const gx = Math.round((x - dr.ox - r.left) / c), gy = Math.round((y - dr.oy - r.top) / c); const others = layoutBag(items.filter(i => i.id !== it.id), bagPos, rows).placed; return { kind: 'grid' as const, gx, gy, it, ok: fits(others, it, gx, gy, rows) }; }
     const slot = (document.elementFromPoint(x, y) as HTMLElement | null)?.closest<HTMLElement>('[data-gear]'); if (slot) return { kind: 'slot' as const, gear: slot.dataset.gear!, it, ok: dr.from === 'bag' && it.slot === slot.dataset.gear && ok(it, cls) };
     return null;
   };
@@ -56,8 +68,8 @@ export function PCInventoryPanel() {
       if (!cur.moved) { const t = performance.now(); if (last.current.id === id && t - last.current.t < 320) { act(it); setSel(null); } else { last.current = { id, t }; setSel(id); } return; }
       const t = target(ev.clientX, ev.clientY, cur); if (!t || !t.ok) return;
       if (t.kind === 'slot') { const i = s.inventory.findIndex(x => x?.id === id); if (i >= 0) s.equip(i); return; }
-      if (from === 'slot') { s.unequip(it.slot as GearSlot); const others = layoutBag(items, bagPos).placed; const p = fits(others, it, t.gx, t.gy) ? { x: t.gx, y: t.gy } : firstFit(others, it); if (p) s.setBagPos({ ...bagPos, [id]: p }); return; }
-      const next = moveItem(items, bagPos, id, t.gx, t.gy); if (next) s.setBagPos(next);
+      if (from === 'slot') { s.unequip(it.slot as GearSlot); const others = layoutBag(items, bagPos, rows).placed; const p = fits(others, it, t.gx, t.gy, rows) ? { x: t.gx, y: t.gy } : firstFit(others, it, rows); if (p) s.setBagPos({ ...bagPos, [id]: p }); return; }
+      const next = moveItem(items, bagPos, id, t.gx, t.gy, rows); if (next) s.setBagPos(next);
     };
     addEventListener('pointermove', mv); addEventListener('pointerup', up);
   };
@@ -78,14 +90,15 @@ export function PCInventoryPanel() {
       <div className="eqcol">{EQUIP_LAYOUT.filter(x => x.side === 'right').map(x => slotEl(x))}</div>
     </div>
     <div className="bagside">
-      <div className="baghead"><span>กระเป๋า {GRID_W}×{GRID_H}</span><span>ช่องว่าง <b>{freeCells(placed)}</b>/100 · {items.length}/24 ชิ้น</span><span className="sg">SoulGod <b>{fmt(player.gold)}</b></span></div>
+      <div className="baghead"><span>กระเป๋า · ช่องว่าง <b>{freeCells(placed, rows)}</b></span><span className="sg">SoulGod <b>{fmt(player.gold)}</b></span></div>
+      <BagMeta slots={slots} used={items.length} weight={weight} limit={limit} gold={player.gold} />
       <div className="forge-bag-tools"><select aria-label="หมวดไอเทม" value={category} onChange={e=>setCategory(e.target.value)}>{[['all','ทั้งหมด'],['weapon','อาวุธ'],['armor','ชุดเกราะ'],['accessory','เครื่องประดับ'],['consumable','ของใช้'],['material','วัตถุดิบ']].map(([id,label])=><option key={id} value={id}>{label}</option>)}</select><input aria-label="ค้นหาไอเทม" placeholder="ค้นหาไอเทม…" value={query} onChange={e=>setQuery(e.target.value)}/><button className="sf-btn ghost" onClick={()=>{setCategory('all');setQuery('');}}>ล้างตัวกรอง</button></div>
-      <div className="bgrid" ref={grid} style={{ ['--gw' as string]: GRID_W, ['--gh' as string]: GRID_H }}>
+      <div className="bgrid-scroll"><div className="bgrid" ref={grid} style={{ ['--gw' as string]: GRID_W, ['--gh' as string]: rows }}>
         {placed.filter(p=>matches(byId.get(p.id)!)).map(p => { const it = byId.get(p.id)!; return <div key={p.id} className={`gi ${ok(it, cls) ? '' : 'cant'} ${sel === it.id ? 'selc' : ''} ${it.rarity === 'Arch' ? 't8' : ''} ${drag?.id === it.id && drag.moved ? 'dragging' : ''}`}
           style={{ ['--x' as string]: p.x, ['--y' as string]: p.y, ['--w' as string]: p.w, ['--h' as string]: p.h, ['--tc' as string]: tierColor(it.rarity) }} onPointerDown={e => down(e, it.id, 'bag')} onContextMenu={e => { e.preventDefault(); act(it); }}>
           <ItemDetails item={it} inventory><span className="gart"><ItemArt item={it} /></span></ItemDetails>{it.qty && it.qty > 1 ? <b className="q">{it.qty}</b> : null}{it.enhance ? <b className="e">+{it.enhance}</b> : null}{it.classLock && it.classLock !== cls ? <b className="lock">🔒</b> : null}<Tier it={it} /></div>; })}
         {hl && <div className={`ghl ${hl.ok ? '' : 'bad'}`} style={{ ['--x' as string]: hl.x, ['--y' as string]: hl.y, ['--w' as string]: hl.w, ['--h' as string]: hl.h }} />}
-      </div>
+      </div></div>
       {overflow.length > 0 && <div className="overflow">ล้นตาราง {overflow.length} ชิ้น — จัดช่องให้ว่างแล้วจะลงตารางเอง</div>}
       <div className="pact hint">ชี้เมาส์ / แตะค้าง 3 วินาทีเพื่อดูรายละเอียด · ลากเพื่อจัดช่อง · ลากไปช่องอุปกรณ์เพื่อสวม · ลากของที่สวมกลับลงตารางเพื่อถอด · ดับเบิลคลิก / คลิกขวา = สวม / ใช้</div>
     </div>
@@ -95,15 +108,16 @@ export function PCInventoryPanel() {
 
 export function MobileInventoryDrawer() {
   const equipment = useGameStore(s => s.equipment), player = usePlayerStatic(), cls = (player.classId ?? 'Berserker') as ClassId;
-  const { items } = useBag(); const [sel, setSelLocal] = useState<string | null>(null); const setSel = (v: string | null) => { setSelLocal(v); setSelectedItem(v); }; const last = useRef({ id: '', t: 0 });
+  const { items, slots, weight, limit } = useBag(); const [sel, setSelLocal] = useState<string | null>(null); const setSel = (v: string | null) => { setSelLocal(v); setSelectedItem(v); }; const last = useRef({ id: '', t: 0 });
   const all = [...items, ...Object.values(equipment).filter((x): x is Item => !!x)], it = all.find(i => i.id === sel) ?? null, worn = !!it && !items.includes(it);
   const tap = (x: Item) => { const t = performance.now(); if (last.current.id === x.id && t - last.current.t < 350) { last.current = { id: '', t: 0 }; act(x); setSel(null); return; } last.current = { id: x.id, t }; setSel(x.id); };
   const label = it && (worn ? 'ถอด' : it.slot ? (it.slot === 'costume' ? 'สวมชุด' : 'สวมใส่') : it.family === 'consumable' ? 'ใช้' : '');
   return <div className="h3 minv">
     <div className="meq">{EQUIP_LAYOUT.map(si => { const e = si.gear ? equipment[si.gear] : null;
       return <button key={si.id} className={`mslot ${si.gear ? '' : 'locked'} ${e ? 'has' : ''} ${e && sel === e.id ? 'selc' : ''}`} style={{ ['--tc' as string]: e ? tierColor(e.rarity) : 'transparent' }} onClick={() => e && tap(e)} disabled={!si.gear}>{e ? <><ItemArt item={e} /><Tier it={e} /></> : si.gear ? null : '🔒'}<small>{si.th}</small></button>; })}</div>
-    <div className="mbaghead"><span>กระเป๋า {items.length}/24</span><span>SoulGod <b>{fmt(player.gold)}</b></span></div>
-    <div className="mgrid">{Array.from({ length: Math.max(25, Math.ceil(items.length / 5) * 5) }, (_, i) => { const x = items[i]; if (!x) return <div key={i} className="mcell empty" />;
+    <div className="mbaghead"><span>กระเป๋า {items.length}/{slots}</span><span>SoulGod <b>{fmt(player.gold)}</b></span></div>
+    <BagMeta slots={slots} used={items.length} weight={weight} limit={limit} gold={player.gold} />
+    <div className="mgrid">{Array.from({ length: Math.max(slots, Math.ceil(items.length / 5) * 5) }, (_, i) => { const x = items[i]; if (!x) return <div key={i} className="mcell empty" />;
       return <div role="button" tabIndex={0} onKeyDown={e=>{if(e.key==='Enter')tap(x);}} key={x.id} className={`mcell ${ok(x, cls) ? '' : 'cant'} ${sel === x.id ? 'selc' : ''} ${x.rarity === 'Arch' ? 't8' : ''}`} data-tap style={{ ['--tc' as string]: tierColor(x.rarity) }} onClick={() => tap(x)}><ItemDetails item={x} inventory><ItemArt item={x} /></ItemDetails>{x.qty && x.qty > 1 ? <b className="q">{x.qty}</b> : null}{x.enhance ? <b className="e">+{x.enhance}</b> : null}<Tier it={x} /></div>; })}</div>
     {it ? <div className="mact"><div><b style={{ color: tierColor(it.rarity) }}>{it.enhance ? `+${it.enhance} ` : ''}{it.name}</b><small>{TIER_OF[it.rarity]?.code} · {it.rarity}{it.qty ? ` · ×${it.qty}` : ''}</small></div>
       {label && <button className="sf-btn" onClick={() => { act(it); setSel(null); }}>{label}</button>}<ItemDetails item={it} inventory={!worn}><span className="sf-btn ghost">ข้อมูล</span></ItemDetails></div>

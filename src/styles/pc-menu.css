@@ -111,3 +111,9 @@ button.sf-charcard.on { border-color: #e7c27a; background: linear-gradient(90deg
 button.sf-charcard.add { border-style: dashed; background: rgba(0, 0, 0, .2); }
 button.sf-charcard.add .pt { display: grid; place-items: center; font: 300 36px/1 system-ui; color: #e7c27a; background: #0b0908; }
 @media (min-width: 768px) { .sf-chars { grid-template-columns: 1fr 1fr; } }
+/* round 25: the same drawer on phones — full height, wider tiles, no hot keys; the channel button leaves the HUD */
+.pc-tile .glyph { display: grid; place-items: center; width: 46px; height: 46px; font: 400 34px/1 system-ui; color: #f0d394; font-style: normal; }
+.pc-menu.touch { width: min(420px, 100vw); padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+.pc-menu.touch .pc-tile { min-height: 88px; font-size: 13px; } .pc-menu.touch .pc-tile img { width: 48px; height: 48px; }
+.pc-menu.touch header .sf-close { width: 40px; height: 40px; }
+.h2.touch .sf-ch-btn { display: none !important; }

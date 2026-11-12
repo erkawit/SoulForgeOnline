@@ -69,6 +69,8 @@ export type Player = {
   hair?: string;
   hairColor?: string;
   cityId?: CityId;
+  /** round 25: bag size (200 at start, +10 per purchase up to 300) */
+  bagSlots?: number;
   name: string;
   level: number;
   exp: number;

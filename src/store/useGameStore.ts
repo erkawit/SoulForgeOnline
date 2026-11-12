@@ -14,7 +14,9 @@ import { newbieBuff, refreshNewbie } from '@/game/balance/buffs';
 import { resolveEnhance } from '@/game/balance/enhance';
 import { CLASS_EXTRA, DEFAULT_HOTBAR, evolvedSkill } from '@/game/skills/defaults';
 import { learn, needsTarget, resetCost, resolveSkill, starterLevels, type FxRef, type Hotbar, type Outcome, type SkillDef, type SkillLevels } from '@/game/skills/engine';
-import { NPC_BY_ID, SHOP_ITEMS, STARTER_KITS, nearNpc, type NpcService } from '@/game/npcs';
+import { NPC_BY_ID, SHOP_ITEMS, STARTER_KITS, REVIVE_SCROLL, nearNpc, type NpcService } from '@/game/npcs';
+/** round 25: how long you lie defeated before the respawn button appears (a revive scroll works at once) */
+export const DEATH_WAIT = 5000;
 import { starterGear, starterPlayer } from '@/lib/seed';
 import '@/game/world/registry'; // registers tree/rock/NPC colliders so walkable() blocks them
 import type { DamageKind } from '@/game/fx/damageText';
@@ -97,6 +99,10 @@ type GameState = {
   cast: (kind:'skill'|'buff'|'special')=>void;
   preview: (kind:ActionId)=>void;
   respawn: ()=>void;
+  /** round 25: use a Scroll of Resurrection while dead — back on your feet where you fell */
+  reviveWithScroll: ()=>void;
+  /** round 25: +10 bag slots for 100,000 SoulGod (up to 300) */
+  expandBag: ()=>void;
   monsters: Monster[];
   drops: Loot[];
   inventory: (Item | null)[];
@@ -151,7 +157,7 @@ type GameState = {
   usePotion: (kind: 'hp' | 'mp') => boolean;
   eatFood: () => boolean;
 };
-/** stacks in the 24-slot bag (consumables, food, materials, crystals) — the helpers live in the economy core */
+/** stacks in the bag (consumables, food, materials, crystals) — the helpers live in the economy core */
 export const countOf = eco.countOf;
 /** kills recorded inside pure reducers; flushed into quest events right after the store updates */
 const killQueue: QuestEvent[] = [];
@@ -259,7 +265,15 @@ export const useGameStore = create<GameState>((set, get) => {
     commit(r,{monsters:cityMonsters(id),dots:[],selectedMonster:null,pending:null,npc:null,action:{kind:'idle',stamp:0,duration:0},journal:false,
       log:addLog(s.log,`Arrived at ${CITIES[id].name}${r.fee?` · ค่าเดินทาง ${r.fee} SG`:''}. Ground loot in the previous zone was left behind.`)});},
   preview:kind=>{if(get().deadUntil)return;set({selectedMonster:null,action:{kind,stamp:Date.now(),duration:kind==='death'?2400:kind==='walk'?3200:1800}});},
-  respawn:()=>{const s=get();if(!s.deadUntil||Date.now()<s.deadUntil)return;const d=derivedOf(s);authority.send('respawn',[]);set({deadUntil:0,dots:[],rage:0,channel:null,player:{...s.player,hp:d.maxHp,mp:d.maxMp,position:respawnPoint(s.player.cityId??'hollow',s.player.name)},action:{kind:'idle',stamp:Date.now(),duration:0},log:addLog(s.log,'Revived at the sanctuary.')});},
+  // round 25: the respawn button appears after DEATH_WAIT and brings you back in the nearest capital (a field / dungeon's
+  // own city; in a capital, its sanctuary)
+  respawn:()=>{const s=get();if(!s.deadUntil||Date.now()<s.deadUntil)return;const d=derivedOf(s);authority.send('respawn',[]);
+    const here=s.player.cityId??'hollow',home=(CITIES[here].parent??here) as CityId,moved=home!==here;
+    set({deadUntil:0,dots:[],rage:0,channel:null,...(moved?{monsters:cityMonsters(home),drops:[],selectedMonster:null}:{}),player:{...s.player,hp:d.maxHp,mp:d.maxMp,cityId:home,position:respawnPoint(home,s.player.name)},action:{kind:'idle',stamp:Date.now(),duration:0},log:addLog(s.log,moved?`ฟื้นคืนชีพที่ ${CITIES[home].name}`:'Revived at the sanctuary.')});},
+  expandBag:()=>{const s=get();const r=act('expandBag',[],()=>eco.expandBag(charOf(s)));if(isPending(r))return;if(!r.ok){set({log:addLog(s.log,r.msg)});return;}commit(r,{});},
+  reviveWithScroll:()=>{const s=get();if(!s.deadUntil)return;const i=s.inventory.findIndex(x=>x?.definitionId===REVIVE_SCROLL);if(i<0)return;
+    const d=derivedOf(s),inventory=[...s.inventory],it=inventory[i]!,q=(it.qty??1)-1;inventory[i]=q>0?{...it,qty:q}:null;authority.send('revive',[]);
+    set({inventory,deadUntil:0,dots:[],rage:0,channel:null,player:{...s.player,hp:Math.max(1,Math.round(d.maxHp*.5)),mp:Math.round(d.maxMp*.5)},action:{kind:'idle',stamp:Date.now(),duration:0},log:addLog(s.log,'ใช้ม้วนคัมภีร์ชุบชีวิต · ฟื้นคืนชีพ ณ จุดที่ล้ม (HP / MP 50%)')});},
   cast:kind=>{const s=get(),now=Date.now();if(s.deadUntil||s.pending)return;
     if(s.channel&&now<s.channel.until){set({log:addLog(s.log,'กำลังใช้ท่าไม้ตายอยู่')});return;}
     // a Reaver plays the evolved version of the skill bound to the slot
@@ -287,7 +301,7 @@ export const useGameStore = create<GameState>((set, get) => {
     const out=resolveSkill(def,level,{caster:d,x:px,z:pz,yaw,targetId:target?.id??null,targets,maxHp:d.maxHp,now,hp:s.player.hp});
     set(cur=>({...base,...applyOutcome({...cur,...base},def,out,d,yaw,now)}));
   },
-  inventory: Array.from({ length: 24 }, (_, i) => i === 0 ? starterGear : null),
+  inventory: Array.from({ length: eco.BAG_START }, (_, i) => i === 0 ? starterGear : null),
   equipment: {...EMPTY_GEAR}, soulShards: 0,
   selectedMonster: null, attackFx: null,
   log: ['Enter the Hollow Reach. The hunt begins.'],
@@ -390,7 +404,7 @@ export const useGameStore = create<GameState>((set, get) => {
     else if(rage>0&&now-rageAt>RAGE.decayDelayMs)rage=Math.max(0,rage-RAGE.decayPerSec*.25);
     const channel=s.channel&&now>=s.channel.until?null:s.channel;
     return { monsters, dots, drops:acc.drops, soulShards:acc.soulShards, ...(acc.inventory?{inventory:acc.inventory}:{}), buffs, shield, player, log:acc.log, combat, rage, rageAt, rageHitAt, channel, ...(fainted ? {
-      deadUntil:now+2400,pending:null,dots:[],channel:null,action:{kind:'death' as ActionId,stamp:now,duration:2400},log:addLog(acc.log,'Defeated. Return to the sanctuary when ready.'), selectedMonster:null
+      deadUntil:now+DEATH_WAIT,pending:null,dots:[],channel:null,action:{kind:'death' as ActionId,stamp:now,duration:2400},log:addLog(acc.log,'Defeated. Return to the sanctuary when ready.'), selectedMonster:null
     } : {}) };
   }),
   pickup: (id, reach) => { const s=get(); const r=act('pickup',[id],()=>eco.pickup(charOf(s),id,reach)); if(isPending(r))return;
@@ -414,7 +428,7 @@ export const useGameStore = create<GameState>((set, get) => {
   sellNPC:(id,confirmed)=>{const s=get();if(!confirmed)return false;const r=act('sell',[id],c=>eco.sellNpc(charOf(s),id,c));if(isPending(r)||!r.ok)return false;commit(r);return true;},
   forge: () => { const s=get(); const r=act('forge',[],()=>eco.forgeSoul(charOf(s))); if(isPending(r))return; if(!r.ok){set({log:addLog(s.log,r.msg)});return;} commit(r); },
   hydrate: data => {
-    if (data?.version !== 1 || !data.player || !Array.isArray(data.inventory) || data.inventory.length !== 24) return;
+    if (data?.version !== 1 || !data.player || !Array.isArray(data.inventory) || data.inventory.length < 24 || data.inventory.length > eco.BAG_MAX) return;
     const city=isCity(data.player.cityId)?data.player.cityId:'hollow';
     const locked=get().lockedClass;
     const cls:ClassId=locked??(isClass(data.player.classId)?data.player.classId:'Berserker'); // round 20: the save's own class
@@ -424,7 +438,7 @@ export const useGameStore = create<GameState>((set, get) => {
     const modern=(data.economyVersion??0)>=2;
     set({deadUntil:0,pending:null,selectedMonster:null,buffUntil:0,guardUntil:0,shield:{hp:0,until:0},dots:[],cooldowns:{},action:{kind:'idle',stamp:0,duration:0},monsters:cityMonsters(city),drops:[],
       player: {...data.player,name:locked?get().player.name:data.player.name,classId:cls,stats:classBase(cls),promotionId:validPromotion(cls,data.player.level,data.player.promotionId),cityId:city,position:safePosition(city,data.player.position),hp:Math.max(1,data.player.hp)},
-      inventory: data.inventory.map(i=>migrateItem(i,modern)), equipment: {...EMPTY_GEAR,...Object.fromEntries(Object.entries(data.equipment??{}).map(([k,v])=>[k,migrateItem(v,modern)]))},
+      inventory: eco.sizedBag(data.inventory.map(i=>migrateItem(i,modern)),eco.bagSlotsOf(data)), equipment: {...EMPTY_GEAR,...Object.fromEntries(Object.entries(data.equipment??{}).map(([k,v])=>[k,migrateItem(v,modern)]))},
       ...skills, buffs:(data.buffs??[]).filter(b=>b&&b.until>now), starterKits:Array.isArray(data.starterKits)?data.starterKits.filter(isClass):[], codex:cleanCodex(data.codex), wardrobe:cleanWardrobe(data.wardrobe),
       soulShards: data.soulShards, log: ['Save loaded successfully.'],
       quests:data.quests&&typeof data.quests==='object'?data.quests as QuestLog:{}, seenTips:Array.isArray(data.tips)?data.tips.filter(x=>typeof x==='string'):[],
@@ -524,7 +538,7 @@ export function applyServerHit(hit: { damage: number; hp: number; evaded?: boole
   const combat = pushCombat(s.combat, hit.evaded ? { kind: 'evade', value: 'EVADE', x: px, z: pz, on: 'player' } : { kind: 'taken', value: Math.round(hit.damage), x: px, z: pz, on: 'player' });
   if (!hit.evaded) audio.play('mon_attack', { vol: .6 });
   if (hp > 0) { useGameStore.setState({ combat, player: { ...s.player, hp }, ...(hit.stacks && hit.stacks >= 5 ? { log: addLog(s.log, `ทุบเกราะ ×${hit.stacks} — สลับแทงก์!`) } : {}) }); return; }
-  useGameStore.setState({ combat, player: { ...s.player, hp: 0 }, deadUntil: now + 2400, pending: null, dots: [], selectedMonster: null,
+  useGameStore.setState({ combat, player: { ...s.player, hp: 0 }, deadUntil: now + DEATH_WAIT, pending: null, dots: [], selectedMonster: null,
     action: { kind: 'death' as ActionId, stamp: now, duration: 2400 }, log: addLog(s.log, 'Defeated by the Abyssal Forge Titan. Return to the sanctuary when ready.') });
 }
 

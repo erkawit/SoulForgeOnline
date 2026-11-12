@@ -9,7 +9,7 @@
 export type ActOp =
   | 'swap' | 'equip' | 'unequip' | 'sell' | 'buyShop' | 'buyCatalog' | 'use' | 'enhance' | 'craft' | 'crystalCraft'
   | 'brewPotion' | 'starter' | 'blessing' | 'forge' | 'learn' | 'resetSkills' | 'hotbar' | 'promote' | 'acceptQuest' | 'turnIn'
-  | 'travel' | 'pickup' | 'event' | 'kill' | 'respawn'
+  | 'travel' | 'pickup' | 'event' | 'kill' | 'respawn' | 'expandBag' | 'revive'
   // round 10: the player market and the mailbox — run by the realm only (database transaction), never applied locally
   | 'marketList' | 'marketBuy' | 'marketCancel' | 'mailClaim'
   // round 11: the monster codex and the shop's sell-junk button (deterministic: run locally too)
