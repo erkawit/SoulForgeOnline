@@ -55,7 +55,8 @@ export function spawnPaintedFx(scene: Object3D, fx: PaintedFx, o: { origin: Vect
     update(dt: number) {
       t += dt; const cam = o.camera();
       for (const p of parts) {
-        const f = layerFrame(p.l, t, until); p.mesh.visible = f !== null; if (f === null) continue;
+        // round 25: a sheet still loading has no picture — drawing it then showed a plain square, so wait for the image
+        const f = layerFrame(p.l, t, until); p.mesh.visible = f !== null && !!p.tex.image; if (f === null) continue;
         let idx = f;
         if (p.l.mode !== 'ground' && cam) { p.mesh.quaternion.copy(cam.quaternion); }
         if (p.l.mode === 'dir8' && cam) idx = dirRow(o.yaw, Math.atan2(cam.position.x - o.origin.x, cam.position.z - o.origin.z)) * p.l.frames + f;

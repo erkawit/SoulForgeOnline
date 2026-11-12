@@ -110,7 +110,7 @@ type GameState = {
   attack: (id: string, skill?: boolean) => AttackResult;
   castNearest: () => void;
   tick: () => void;
-  pickup: (id: string) => void;
+  pickup: (id: string, reach?: number) => void;
   swapInventory: (from: number, to: number) => void;
   equip: (index: number) => void;
   unequip: (slot: GearSlot) => void;
@@ -393,8 +393,8 @@ export const useGameStore = create<GameState>((set, get) => {
       deadUntil:now+2400,pending:null,dots:[],channel:null,action:{kind:'death' as ActionId,stamp:now,duration:2400},log:addLog(acc.log,'Defeated. Return to the sanctuary when ready.'), selectedMonster:null
     } : {}) };
   }),
-  pickup: id => { const s=get(); const r=act('pickup',[id],()=>eco.pickup(charOf(s),id)); if(isPending(r))return;
-    if(!r.ok){set({log:addLog(s.log,r.msg)});return;} commit(r); },
+  pickup: (id, reach) => { const s=get(); const r=act('pickup',[id],()=>eco.pickup(charOf(s),id,reach)); if(isPending(r))return;
+    if(!r.ok){if(!reach)set({log:addLog(s.log,r.msg)});return;} commit(r); },
   swapInventory: (from, to) => { const s=get(); const r=act('swap',[from,to],()=>eco.swapInventory(charOf(s),from,to)); if(!isPending(r)&&r.ok)commit(r); },
   equip: index => {
     const s=get(),item = s.inventory[index];

@@ -21,7 +21,8 @@ export default function AutoPilot() {
     const t = setInterval(() => {
       const s = useGameStore.getState(), now = Date.now();
       // the hero always picks up what it walks over (AUTO on or off) — loot matching the filter in the AUTO settings
-      if (s.auto.loot && !s.deadUntil) { const [qx, qz] = s.player.position; for (const x of s.drops) if (Math.hypot(x.x - qx, x.z - qz) < LOOT_REACH && wantsLoot(s.auto, x.item)) s.pickup(x.id); }
+      // round 25: a magnet — loot within LOOT_MAGNET goes straight into the bag (kills by a skill or from range left it behind)
+      if (s.auto.loot && !s.deadUntil) { const [qx, qz] = s.player.position; for (const x of s.drops) if (Math.hypot(x.x - qx, x.z - qz) < LOOT_MAGNET && wantsLoot(s.auto, x.item)) s.pickup(x.id, LOOT_MAGNET); }
       if (!s.auto.enabled || s.deadUntil || s.journal) { lastOn = s.auto.enabled; return; }
       if (!lastOn) anchor = [...s.player.position]; lastOn = true;
       if (now < s.autoPauseUntil) { anchor = [...s.player.position]; return; }
@@ -48,7 +49,7 @@ export default function AutoPilot() {
   return null;
 }
 /** pickup reach (economy pickup allows 4 m) and how far auto walks for loot between fights */
-const LOOT_REACH = 3.6, LOOT_WALK = 12;
+const LOOT_REACH = 3.6, LOOT_WALK = 12, LOOT_MAGNET = 9;
 function run(a: AutoAction): boolean {
   const s = useGameStore.getState(), [px, pz] = s.player.position;
   switch (a.type) {

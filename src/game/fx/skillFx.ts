@@ -386,12 +386,12 @@ function paintedAnim(fx: Fx, key: string, at: Vector3, size: number, a: number, 
   if (opts.mode === 'ground') {
     const m = new MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, blending: AdditiveBlending, side: DoubleSide, opacity: 0 });
     const mesh = new Mesh(new PlaneGeometry(size, size), m); mesh.rotation.x = -Math.PI / 2; mesh.position.copy(at).setY(at.y + 0.06);
-    fx.add(mesh, m, (t, el) => { const k = ph(t, a, b); mesh.visible = k > 0 && k < 1; setFrame(frameAt(k, el)); m.opacity = op; if (opts.live) mesh.position.set(at.x, at.y + 0.06, at.z); });
+    fx.add(mesh, m, (t, el) => { const k = ph(t, a, b); mesh.visible = k > 0 && k < 1 && !!tex.image; setFrame(frameAt(k, el)); m.opacity = op; if (opts.live) mesh.position.set(at.x, at.y + 0.06, at.z); });
     return;
   }
   const m = new SpriteMaterial({ map: tex, transparent: true, depthWrite: false, blending: AdditiveBlending, opacity: 0 }); const sp = new Sprite(m);
   if (opts.foot) sp.center.set(0.5, 0.08); sp.scale.set(size, size, 1); sp.position.copy(at).setY(at.y + (opts.lift ?? 0));
-  fx.add(sp, m, (t, el) => { const k = ph(t, a, b); sp.visible = k > 0 && k < 1; setFrame(frameAt(k, el)); m.opacity = op; if (opts.live) sp.position.copy(at).setY(at.y + (opts.lift ?? 0)); });
+  fx.add(sp, m, (t, el) => { const k = ph(t, a, b); sp.visible = k > 0 && k < 1 && !!tex.image; setFrame(frameAt(k, el)); m.opacity = op; if (opts.live) sp.position.copy(at).setY(at.y + (opts.lift ?? 0)); });
 }
 /** follow: the caster's live position, for effects that travel with a moving caster (Whirlwind) */
 type SkillFxSpec = { origin: Vector3; yaw: number; target: Vector3 | null; follow?: () => Vector3 | null };

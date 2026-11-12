@@ -4,13 +4,13 @@ import type { SpriteAnim } from './anims';
 import type { SpriteFrame } from './frames';
 export const CLASS_ANIMS: Record<string, SpriteAnim> = {
  "m-Paladin": {
-  "cw": 170,
-  "ch": 203,
+  "cw": 169,
+  "ch": 200,
   "cols": 24,
   "n": 472,
-  "fx": 0.5353,
-  "fy": 0.1133,
-  "bodyPx": 130.0,
+  "fx": 0.5325,
+  "fy": 0.115,
+  "bodyPx": 128.0,
   "clips": {
    "idle": [
     0,

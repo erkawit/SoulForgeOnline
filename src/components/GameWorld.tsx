@@ -227,7 +227,8 @@ function Creature({ mob }: { mob: Monster }) {
 }
 
 /** Round 16: ground loot = the item's own framed icon card (game/fx/lootIcon.ts), floating a little above the ground and
- *  spinning on its vertical axis, with a soft light column and a ground glow in the rarity colour. */
+ *  spinning on its vertical axis, with a ground glow in the rarity colour (round 25: no light column, no point light —
+ *  each light made three.js rebuild every material when loot appeared or was picked up). */
 export function LootCard({ item, gender = 'm' }: { item: Item; gender?: 'm' | 'f' }) {
   const spin = useRef<Group>(null), seed = useMemo(() => Math.random() * 6.28, []);
   const tex = useMemo(() => lootTexture(item, gender), [item.definitionId, item.rarity, item.slot, gender]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -238,9 +239,7 @@ export function LootCard({ item, gender = 'm' }: { item: Item; gender?: 'm' | 'f
       <mesh><planeGeometry args={[w, h]} /><meshBasicMaterial map={tex} transparent alphaTest={0.02} toneMapped={false} fog={false} /></mesh>
       <mesh rotation={[0, Math.PI, 0]}><planeGeometry args={[w, h]} /><meshBasicMaterial map={tex} transparent alphaTest={0.02} toneMapped={false} fog={false} /></mesh>
     </group>
-    <mesh position={[0, 1.9, 0]}><cylinderGeometry args={[0.04, 0.2, 3.6, 10, 1, true]} /><meshBasicMaterial color={c} transparent opacity={0.16} depthWrite={false} side={2} /></mesh>
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]}><circleGeometry args={[0.5, 32]} /><meshBasicMaterial color={c} transparent opacity={0.28} depthWrite={false} /></mesh>
-    <pointLight color={c} intensity={1} distance={2.6} position={[0, 0.8, 0]} />
   </>;
 }
 

@@ -2,13 +2,13 @@
 import type { SpriteAnim } from './anims';
 export const CLASS_LITE: Record<string, SpriteAnim> = {
  "m-Paladin-lite": {
-  "cw": 105,
-  "ch": 124,
+  "cw": 104,
+  "ch": 123,
   "cols": 8,
   "n": 13,
-  "fx": 0.5333,
-  "fy": 0.121,
-  "bodyPx": 78,
+  "fx": 0.5288,
+  "fy": 0.122,
+  "bodyPx": 77,
   "clips": {
    "idle": [
     0,
