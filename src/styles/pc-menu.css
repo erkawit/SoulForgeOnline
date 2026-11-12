@@ -103,3 +103,11 @@ html body .h2.pc .h2-win.pc-dock .body { container-type: inline-size; }
   .sk-body > * { min-width: 0; }
   .sk-list { max-height: 38vh; }
 }
+/* round 25: up to 4 characters to pick from */
+.sf-chars { display: grid; gap: 8px; margin: 4px 0 10px; max-height: 46dvh; overflow-y: auto; }
+button.sf-charcard { width: 100%; margin: 0; cursor: pointer; text-align: left; font: inherit; color: inherit; transition: border-color .15s, background .15s; }
+button.sf-charcard:hover { border-color: #9c7a45; }
+button.sf-charcard.on { border-color: #e7c27a; background: linear-gradient(90deg, rgba(201, 154, 82, .3), rgba(0, 0, 0, .2)); box-shadow: 0 0 12px rgba(231, 194, 122, .25); }
+button.sf-charcard.add { border-style: dashed; background: rgba(0, 0, 0, .2); }
+button.sf-charcard.add .pt { display: grid; place-items: center; font: 300 36px/1 system-ui; color: #e7c27a; background: #0b0908; }
+@media (min-width: 768px) { .sf-chars { grid-template-columns: 1fr 1fr; } }

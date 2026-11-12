@@ -13,7 +13,7 @@ import { audio } from '@/game/audio/engine';
 import { isClass } from '@/game/content';
 import AutoPilot from './AutoPilot';
 import UiScale from './UiScale';
-import { GUEST_RETURN, GUEST_SAVE, saveKey, type ExitTo } from '@/game/saveSlot';
+import { GUEST_RETURN, isGuestKey, saveKey, type ExitTo } from '@/game/saveSlot';
 import { getSupabaseBrowser } from '@/lib/supabase';
 
 const GameWorld = dynamic(() => import('./GameWorld'), { ssr: false,
@@ -51,7 +51,7 @@ function GameRoot() {
     // character stays in memory (the next account or a new character starts clean)
     const exit = async (e: Event) => {
       const to = (e as CustomEvent<ExitTo>).detail; save(true); clearInterval(timer); clearInterval(worldTick);
-      try { if (to === 'select' && key === GUEST_SAVE) window.sessionStorage.setItem(GUEST_RETURN, '1'); } catch { /* storage blocked */ }
+      try { if (to === 'select' && isGuestKey(key)) window.sessionStorage.setItem(GUEST_RETURN, '1'); } catch { /* storage blocked */ }
       if (to === 'logout') { try { await getSupabaseBrowser()?.auth.signOut(); } catch { /* offline: the reload still leaves the world */ } }
       window.location.reload();
     };

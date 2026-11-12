@@ -15,12 +15,12 @@ import HeroLineup from './HeroLineup';
 import type { ClassId } from '@/game/content';
 import SettingsPanel from '../SettingsPanel';
 import { loginEmail } from '@/lib/loginName';
-import { GUEST_RETURN, GUEST_SAVE, accountSave, adoptGuestSave, readSaveSummary, setSaveKey, type SaveSummary } from '@/game/saveSlot';
+import { GUEST_RETURN, GUEST_SAVE, MAX_SLOTS, accountSave, adoptGuestSave, characterSave, guestSlotKey, readSaveSummary, setSaveKey, type SaveSummary } from '@/game/saveSlot';
 import { portrait } from '../hud/common';
 
 /** display_name / class_id stay null until the character is created (account-first sign-up, migration 0006) */
 export type BetaProfile = { user_id: string; display_name: string | null; class_id: ClassKey | null; gender?: 'm' | 'f' | null; banned: boolean; ban_reason: string | null };
-const CREATE_ERRORS: Record<string, string> = { NAME_TAKEN: 'ชื่อนี้มีคนใช้แล้ว', NAME_INVALID: 'ชื่อ 3–16 ตัว ใช้ไทย อังกฤษ ตัวเลข หรือ _ (ห้ามชื่อสงวน)', CHARACTER_EXISTS: 'บัญชีนี้มีตัวละครแล้ว', CLASS_INVALID: 'อาชีพไม่ถูกต้อง', GENDER_INVALID: 'รูปลักษณ์ไม่ถูกต้อง', BANNED: 'บัญชีถูกระงับ' };
+const CREATE_ERRORS: Record<string, string> = { SLOTS_FULL: 'ช่องตัวละครเต็มแล้ว', NAME_TAKEN: 'ชื่อนี้มีคนใช้แล้ว', NAME_INVALID: 'ชื่อ 3–16 ตัว ใช้ไทย อังกฤษ ตัวเลข หรือ _ (ห้ามชื่อสงวน)', CHARACTER_EXISTS: 'บัญชีนี้มีตัวละครแล้ว', CLASS_INVALID: 'อาชีพไม่ถูกต้อง', GENDER_INVALID: 'รูปลักษณ์ไม่ถูกต้อง', BANNED: 'บัญชีถูกระงับ' };
 
 /** Formats as the player types: abcd1234 → ABCD-1234 … */
 export function formatInviteInput(v: string) {
@@ -38,32 +38,32 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
   const [guestIn, setGuestIn] = useState(false); const [guestCreate, setGuestCreate] = useState(false);
   // round 22: the class clicked in the entry lineup is the one the create screen shows (no switching there)
   const [picked, setPicked] = useState<ClassId | null>(null);
-  const enterGuest = () => setGuestIn(true);
-  // round 22: the Guest button plays straight away without an account — the saved guest character, or a new one of the
-  // class picked in the lineup (Paladin when none) — kept in this browser only, never on the server
+  // round 25: four guest slots in this browser; the chosen one is the save the world reads and writes
+  const [guestKey, setGuestKey] = useState(GUEST_SAVE);
+  // round 22: the Guest button plays straight away without an account — kept in this browser only, never on the server
   const [guest, setGuest] = useState(false);
   // round 23: log in first, choose the class after — the hero lineup is its own step, shown only when a new character
   // is about to be made ('quick' = Guest straight into the game, 'create' = the create screen after the pick)
   const [pickStep, setPickStep] = useState<null | 'quick' | 'create'>(null);
-  const playGuest = () => {
-    let saved = false; try { saved = !!window.localStorage.getItem('soulforge_guest_v1'); } catch { /* storage blocked */ }
-    setGuest(true); if (saved) setGuestIn(true); else setPickStep('quick');
-  };
+  // read after mount: the server never sees localStorage, so reading it during render broke hydration
+  const [guestSlots, setGuestSlots] = useState<GuestSlot[]>([]);
+  const readGuestSlots = () => setGuestSlots(Array.from({ length: MAX_SLOTS }, (_, i) => ({ key: guestSlotKey(i + 1), summary: readSaveSummary(guestSlotKey(i + 1)) })));
+  const freeGuestKey = () => guestSlots.find(g => !g.summary)?.key ?? null;
+  const playGuest = () => { setGuest(true); if (!guestSlots.some(g => g.summary)) { setGuestKey(GUEST_SAVE); setPickStep('quick'); } };
   const confirmPick = (cls: ClassId) => {
     setPicked(cls);
     if (pickStep === 'quick') { useGameStore.getState().applyProfile(`Guest${Math.floor(1000 + Math.random() * 9000)}`, cls, 'm'); setGuestIn(true); }
     else setGuestCreate(true);
     setPickStep(null);
   };
-  // round 20: test mode can create a character (any class) — it replaces the one saved in this browser
-  // read after mount: the server never sees localStorage, so reading it during render broke hydration
-  const [hasGuestSave, setHasGuestSave] = useState(false);
-  const [guestSummary, setGuestSummary] = useState<SaveSummary | null>(null);
-  useEffect(() => { try { setHasGuestSave(!!window.localStorage.getItem(GUEST_SAVE)); } catch { /* storage blocked */ } setGuestSummary(readSaveSummary(GUEST_SAVE));
+  useEffect(() => { readGuestSlots();
     // round 25: "เลือกตัวละคร" in the game reloads the page — a guest comes back to the guest character screen
     try { if (window.sessionStorage.getItem(GUEST_RETURN)) { window.sessionStorage.removeItem(GUEST_RETURN); setGuest(true); } } catch { /* storage blocked */ } }, []);
-  // round 25: a signed-in account first sees its character screen (enter / log out), never straight into the world
-  const [entered, setEntered] = useState(false);
+  // round 25: a signed-in account first sees its character screen (pick / create / log out), never straight into the world
+  const [entered, setEntered] = useState<Character | null>(null);
+  const [creating, setCreating] = useState(false);
+  // the account's characters (player_characters, migration 0014); null = that table is not there yet → one character
+  const [chars, setChars] = useState<Character[] | null | undefined>(undefined);
   useEffect(() => { void useConfigStore.getState().load(); }, []);
   useEffect(() => {
     if (!supabase) { setReady(true); return; }
@@ -72,35 +72,52 @@ export default function AuthGate({ children, onProfile }: { children: ReactNode;
     return () => data.subscription.unsubscribe();
   }, [supabase]);
   useEffect(() => {
-    if (!supabase || !session) { setProfile(undefined); return; }
+    if (!supabase || !session) { setProfile(undefined); setChars(undefined); return; }
     void supabase.from('player_profiles').select('user_id,display_name,class_id,gender,banned,ban_reason').eq('user_id', session.user.id).maybeSingle()
       .then(({ data }) => { setProfile((data as BetaProfile | null) ?? null); if (data && !data.banned && data.class_id) onProfile?.(data as BetaProfile); });
+    void supabase.from('player_characters').select('id,slot,name,class_id,gender').eq('user_id', session.user.id).order('slot')
+      .then(({ data, error }) => setChars(error ? null : (data as Character[])));
   }, [supabase, session, onProfile, made]);
 
   if (!closed || guest) {
-    if (guestIn) { setSaveKey(GUEST_SAVE); return <>{children}</>; }
+    if (guestIn) { setSaveKey(guestKey); return <>{children}</>; }
     if (guestCreate) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
-      try { window.localStorage.removeItem('soulforge_guest_v1'); } catch { /* storage unavailable */ }
+      try { window.localStorage.removeItem(guestKey); } catch { /* storage unavailable */ }
       useGameStore.getState().applyProfile(name, cls, gender); setGuestIn(true); return null; }} />;
-    if (pickStep) return <ClassPick quick={pickStep === 'quick'} onBack={() => { setPickStep(null); if (closed) setGuest(false); }} onConfirm={confirmPick} />;
-    return <Shell><GuestEntry onEnter={enterGuest} onCreate={() => setPickStep('create')} hasSave={hasGuestSave} summary={guestSummary} onLogin={closed ? () => setGuest(false) : undefined} />{!hasGuestSave && <GuestButton onGuest={playGuest} />}</Shell>;
+    if (pickStep) return <ClassPick quick={pickStep === 'quick'} onBack={() => { setPickStep(null); if (closed && !guestSlots.some(g => g.summary)) setGuest(false); }} onConfirm={confirmPick} />;
+    const free = freeGuestKey();
+    return <Shell><GuestEntry slots={guestSlots} onEnter={k => { setGuestKey(k); setGuestIn(true); }} onCreate={free ? () => { setGuestKey(free); setPickStep('create'); } : undefined}
+      onLogin={closed ? () => setGuest(false) : undefined} />{!guestSlots.some(g => g.summary) && <GuestButton onGuest={playGuest} />}</Shell>;
   }
   if (!supabase) return <Shell><h2 className="sf-h2">ยังไม่ได้เชื่อมเซิร์ฟเวอร์</h2><p className="sf-muted">ตั้งค่า NEXT_PUBLIC_SUPABASE_URL และ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ก่อนเปิดโหมดทดสอบปิด</p><GuestButton onGuest={playGuest} /></Shell>;
-  if (!ready || (session && profile === undefined)) return <Shell><p className="sf-muted">กำลังตรวจสอบสิทธิ์…</p></Shell>;
+  if (!ready || (session && (profile === undefined || chars === undefined))) return <Shell><p className="sf-muted">กำลังตรวจสอบสิทธิ์…</p></Shell>;
   if (!session) return <Shell><AuthForms /><GuestButton onGuest={playGuest} /></Shell>;
   if (profile === null) return <Shell><RedeemForm token={session.access_token} onDone={() => setSession({ ...session })} /></Shell>;
-  if (profile && !profile.banned && !profile.class_id && !picked) return <ClassPick onConfirm={c => setPicked(c)} onBack={() => void supabase.auth.signOut()} backLabel="ออกจากระบบ" />;
-  if (profile && !profile.banned && !profile.class_id) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
-    const { error } = await supabase.rpc('create_character', { p_name: name, p_class: cls, p_gender: gender });
-    if (error) return CREATE_ERRORS[Object.keys(CREATE_ERRORS).find(k => error.message.includes(k)) ?? ''] ?? 'สร้างตัวละครไม่สำเร็จ';
-    setMade(m => m + 1); setEntered(true); return null; }} />;
   if (profile?.banned) return <Shell><h2 className="sf-h2">บัญชีถูกระงับ</h2><p className="sf-muted">{profile.ban_reason ?? 'ติดต่อทีมงาน'}</p><button className="sf-btn ghost" onClick={() => void supabase.auth.signOut()}>ออกจากระบบ</button></Shell>;
-  const key = accountSave(session.user.id);
-  if (!entered) return <Shell><AccountCharacter profile={profile!} email={session.user.email ?? ''} summary={readSaveSummary(key)}
-    onEnter={() => { adoptGuestSave(key, profile?.display_name ?? null); setEntered(true); }} onLogout={() => void supabase.auth.signOut()} /></Shell>;
-  setSaveKey(key);
+  const uid = session.user.id, list: Character[] = chars ?? (profile?.class_id ? [{ id: 'legacy', slot: 1, name: profile.display_name ?? 'Adventurer', class_id: profile.class_id, gender: profile.gender ?? 'm' }] : []);
+  const keyOf = (c: Character) => c.id === 'legacy' ? accountSave(uid) : characterSave(uid, c.id);
+  const enter = async (c: Character) => {
+    if (c.id !== 'legacy') { const { error } = await supabase.rpc('select_character', { p_id: c.id }); if (error) return 'เข้าเกมไม่สำเร็จ ลองใหม่อีกครั้ง'; }
+    // saves from before multi-character (one per account / the guest slot) move onto the same-named character once
+    adoptGuestSave(keyOf(c), c.name, [accountSave(uid), GUEST_SAVE]);
+    useGameStore.getState().applyProfile(c.name, isClassId(c.class_id) ? c.class_id : 'Berserker', c.gender === 'f' ? 'f' : 'm'); setEntered(c); return null;
+  };
+  const canAdd = chars !== null && list.length < MAX_SLOTS;
+  if ((creating || !list.length) && !picked) return <ClassPick onConfirm={c => setPicked(c)} onBack={() => { if (list.length) setCreating(false); else void supabase.auth.signOut(); }} backLabel={list.length ? '← ย้อนกลับ' : 'ออกจากระบบ'} />;
+  if (creating || !list.length) return <CharacterCreate only={picked} onCreate={async (name, cls, gender) => {
+    const { data, error } = await supabase.rpc('create_character', { p_name: name, p_class: cls, p_gender: gender });
+    if (error) return CREATE_ERRORS[Object.keys(CREATE_ERRORS).find(k => error.message.includes(k)) ?? ''] ?? 'สร้างตัวละครไม่สำเร็จ';
+    const id = typeof data === 'string' ? data : 'legacy'; setCreating(false); setPicked(null); setMade(m => m + 1);
+    useGameStore.getState().applyProfile(name, cls, gender); setEntered({ id, slot: list.length + 1, name, class_id: cls, gender }); return null; }} />;
+  if (!entered) return <Shell><AccountCharacters chars={list} email={session.user.email ?? ''} summaryOf={c => readSaveSummary(keyOf(c))}
+    onEnter={enter} onCreate={canAdd ? () => { setPicked(null); setCreating(true); } : undefined} onLogout={() => void supabase.auth.signOut()} /></Shell>;
+  setSaveKey(keyOf(entered));
   return <>{children}</>;
 }
+
+type Character = { id: string; slot: number; name: string; class_id: string; gender: string };
+type GuestSlot = { key: string; summary: SaveSummary | null };
+const isClassId = (c: string): c is ClassId => ['Paladin', 'Berserker', 'Hawkeye', 'RuneMaster', 'Elementalist', 'Assassin', 'HighPriest', 'Inquisitor'].includes(c);
 
 // round 19: the login page is a game window — the same painted frame, title bar, buttons and close button as the HUD
 // windows (.h2 .h2-win), not a separately drawn card — with the settings gear (sound / graphics) in the corner
@@ -135,29 +152,35 @@ function ClassPick({ quick, onConfirm, onBack, backLabel = '← ย้อนก�
   </Shell>;
 }
 
-function CharCard({ name, cls, level, gender }: { name: string; cls: string; level?: number; gender?: string | null }) {
-  return <div className="sf-charcard"><span className="pt" style={{ backgroundImage: `url(${portrait(cls || 'Berserker', gender ?? 'm')})` }} />
-    <span><b>{name}</b><small>{cls}{level ? ` · Lv.${level}` : ''}</small></span></div>;
+function CharCard({ name, cls, level, gender, on, onClick }: { name: string; cls: string; level?: number; gender?: string | null; on?: boolean; onClick?: () => void }) {
+  return <button type="button" role="option" aria-selected={!!on} className={`sf-charcard${on ? ' on' : ''}`} onClick={onClick}><span className="pt" style={{ backgroundImage: `url(${portrait(cls || 'Berserker', gender ?? 'm')})` }} />
+    <span><b>{name}</b><small>{cls}{level ? ` · Lv.${level}` : ''}</small></span></button>;
 }
-/** round 25: the account's character screen — shown after logging in and after "เลือกตัวละคร" in the game */
-function AccountCharacter({ profile, email, summary, onEnter, onLogout }: { profile: BetaProfile; email: string; summary: SaveSummary | null; onEnter: () => void; onLogout: () => void }) {
+/** round 25: the account's character screen — up to 4 characters, shown after logging in and after "เลือกตัวละคร" */
+function AccountCharacters({ chars, email, summaryOf, onEnter, onCreate, onLogout }: { chars: Character[]; email: string; summaryOf: (c: Character) => SaveSummary | null;
+  onEnter: (c: Character) => Promise<string | null>; onCreate?: () => void; onLogout: () => void }) {
+  const [sel, setSel] = useState(0); const [busy, setBusy] = useState(false); const [msg, setMsg] = useState('');
+  const c = chars[Math.min(sel, chars.length - 1)];
   return <div className="sf-guest">
     <h2 className="sf-h2">เลือกตัวละคร</h2>
-    <p className="sf-muted">บัญชี {email}</p>
-    <CharCard name={profile.display_name ?? 'Adventurer'} cls={profile.class_id ?? ''} level={summary?.level} gender={profile.gender} />
-    <button className="sf-btn sf-guest-go" autoFocus onClick={onEnter}>เข้าเกม</button>
+    <p className="sf-muted">บัญชี {email} · {chars.length}/{MAX_SLOTS} ตัวละคร</p>
+    <div className="sf-chars" role="listbox" aria-label="ตัวละคร">{chars.map((x, i) => <CharCard key={x.id} name={x.name} cls={x.class_id} level={summaryOf(x)?.level} gender={x.gender} on={i === sel} onClick={() => setSel(i)} />)}
+      {onCreate && <button type="button" className="sf-charcard add" onClick={onCreate}><span className="pt">+</span><span><b>สร้างตัวละครใหม่</b><small>ว่าง {MAX_SLOTS - chars.length} ช่อง</small></span></button>}</div>
+    <button className="sf-btn sf-guest-go" autoFocus disabled={busy || !c} onClick={async () => { setBusy(true); setMsg(''); const e = await onEnter(c); if (e) { setMsg(e); setBusy(false); } }}>{busy ? 'กำลังเข้าเกม…' : `เข้าเกม · ${c?.name ?? ''}`}</button>
+    {msg && <p className="sf-error" role="alert">{msg}</p>}
     <button type="button" className="sf-btn ghost" onClick={onLogout}>ออกจากระบบ · สลับบัญชี</button>
   </div>;
 }
 
-function GuestEntry({ onEnter, onCreate, hasSave, summary, onLogin }: { onEnter: () => void; onCreate: () => void; hasSave: boolean; summary: SaveSummary | null; onLogin?: () => void }) {
+function GuestEntry({ slots, onEnter, onCreate, onLogin }: { slots: GuestSlot[]; onEnter: (key: string) => void; onCreate?: () => void; onLogin?: () => void }) {
+  const have = slots.filter(s => s.summary); const [sel, setSel] = useState(0); const c = have[Math.min(sel, have.length - 1)];
   return <div className="sf-guest">
-    <h2 className="sf-h2">{hasSave ? 'เลือกตัวละคร' : 'เข้าสู่ดินแดนต้องสาป'}</h2>
-    <p className="sf-muted">โหมดทดลองเล่น — ยังไม่ได้เชื่อมเซิร์ฟเวอร์ ตัวละครจะถูกบันทึกในเบราว์เซอร์นี้</p>
-    {hasSave && summary && <CharCard name={summary.name} cls={summary.classId} level={summary.level} />}
-    {hasSave && <button className="sf-btn sf-guest-go" autoFocus onClick={onEnter}>เข้าเกม (ตัวละครเดิม)</button>}
-    <button className={`sf-btn sf-guest-go${hasSave ? ' ghost' : ''}`} autoFocus={!hasSave} onClick={onCreate}>สร้างตัวละครใหม่</button>
-    {hasSave && <p className="sf-muted">สร้างตัวละครใหม่จะแทนที่ตัวละครเดิมในเบราว์เซอร์นี้</p>}
+    <h2 className="sf-h2">{have.length ? 'เลือกตัวละคร' : 'เข้าสู่ดินแดนต้องสาป'}</h2>
+    <p className="sf-muted">โหมดทดลองเล่น — ยังไม่ได้เชื่อมเซิร์ฟเวอร์ ตัวละครจะถูกบันทึกในเบราว์เซอร์นี้ ({have.length}/{MAX_SLOTS})</p>
+    {have.length > 0 && <div className="sf-chars" role="listbox" aria-label="ตัวละคร">{have.map((s, i) => <CharCard key={s.key} name={s.summary!.name} cls={s.summary!.classId} level={s.summary!.level} on={i === sel} onClick={() => setSel(i)} />)}</div>}
+    {c && <button className="sf-btn sf-guest-go" autoFocus onClick={() => onEnter(c.key)}>เข้าเกม · {c.summary!.name}</button>}
+    {onCreate ? <button className={`sf-btn sf-guest-go${have.length ? ' ghost' : ''}`} autoFocus={!have.length} onClick={onCreate}>สร้างตัวละครใหม่</button>
+      : <p className="sf-muted">ช่องตัวละครเต็มแล้ว ({MAX_SLOTS} ตัว)</p>}
     {onLogin && <button type="button" className="sf-btn ghost" onClick={onLogin}>← เข้าสู่ระบบด้วยบัญชี</button>}
     <a className="sf-guest-back" href="/">← กลับหน้าเว็บไซต์</a>
   </div>;
