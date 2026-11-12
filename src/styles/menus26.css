@@ -25,7 +25,7 @@
 .gd-head img { width: 54px; height: 54px; object-fit: contain; } .gd-head div { flex: 1; } .gd-head h3 { margin: 0; font-size: 17px; color: #f3d48a; } .gd-head small { color: #8f846f; }
 .gd-notice p { margin: 0; padding: 8px; border-radius: 6px; background: rgba(0, 0, 0, .35); white-space: pre-wrap; }
 .gd-notice form, .gd-create form { display: flex; gap: 6px; align-items: flex-start; }
-.gd textarea, .gd input { flex: 1; min-width: 0; padding: 6px 10px; border: 1px solid #4b3d26; border-radius: 6px; background: rgba(0, 0, 0, .55); color: #f3ead6; font: 13px inherit; resize: vertical; }
+.gd textarea, .gd input { flex: 1; min-width: 0; padding: 6px 10px; border: 1px solid #4b3d26; border-radius: 6px; background: rgba(0, 0, 0, .55); color: #f3ead6; font-size: 13px; resize: vertical; }
 .gd input { height: 32px; }
 .gd .mk-list.solo .gd-row { grid-template-columns: 90px minmax(0, 1fr) 120px auto; cursor: default; }
 .gd-role { padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; text-align: center; background: rgba(80, 70, 50, .5); color: #cbbd9e; }

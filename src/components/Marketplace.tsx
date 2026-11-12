@@ -88,11 +88,11 @@ export default function Marketplace() {
   };
 
   return <div className="mk">{dialog}
-    <header className="mk-head">
+    <div className="mk-head">
       <nav className="mk-tabs" role="tablist">{TABS.map(([t, l]) => <button key={t} role="tab" aria-selected={tab === t} className={tab === t ? 'on' : ''}
         onClick={() => { setTab(t); setPage(0); setPick(null); }}>{l}{t === 'mail' && mailCount ? <i>{mailCount}</i> : null}</button>)}</nav>
       <div className="mk-wallet"><Coin /><b>{gold.toLocaleString()}</b><small>ภาษีขาย {pct(tax)} · ค่าลงขาย {pct(config.market.listingFeePct)}</small></div>
-    </header>
+    </div>
     {!online && <p className="mk-closed">ตลาดกลางเปิดเมื่อเชื่อมต่อเซิร์ฟเวอร์ Realm (เมนู → ออนไลน์) — ทุกการซื้อขายทำบนเซิร์ฟเวอร์ ไอเทมจึงอยู่ที่เดียวเสมอ ปลอมหรือปั๊มไม่ได้</p>}
     {lastMsg && <p className={`mk-msg ${lastMsg.ok ? 'ok' : 'bad'}`} role="status">{lastMsg.msg}</p>}
     {market?.error && <p className="mk-msg bad">{market.error}</p>}

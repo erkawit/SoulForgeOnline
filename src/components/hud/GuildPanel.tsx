@@ -41,8 +41,8 @@ export default function GuildPanel() {
   return <div className="gd">{dialog}
     {msg && <p className={`mk-msg ${msg.ok ? 'ok' : 'bad'}`} role="status">{msg.t}</p>}
     {mine && g ? <>
-      <header className="gd-head"><img src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" /><div><h3>{g.name}</h3><small>หัวหน้า {g.leader_name} · สมาชิก {g.members}/{g.max_members}</small></div>
-        <button className="mk-btn ghost" disabled={busy} onClick={async () => { if (await confirm(myRole === 'leader' && g.members > 1 ? `ออกจากกิลด์ ${g.name}?\nตำแหน่งหัวหน้าจะส่งต่อให้รองหัวหน้า/สมาชิกที่อยู่นานที่สุด` : myRole === 'leader' ? `ยุบกิลด์ ${g.name}?` : `ออกจากกิลด์ ${g.name}?`)) void run('leave_guild', {}, 'ออกจากกิลด์แล้ว'); }}>ออกจากกิลด์</button></header>
+      <div className="gd-head"><img src="/art/ui-kit/menu_27_guild_shield_royal.webp" alt="" /><div><h3>{g.name}</h3><small>หัวหน้า {g.leader_name} · สมาชิก {g.members}/{g.max_members}</small></div>
+        <button className="mk-btn ghost" disabled={busy} onClick={async () => { if (await confirm(myRole === 'leader' && g.members > 1 ? `ออกจากกิลด์ ${g.name}?\nตำแหน่งหัวหน้าจะส่งต่อให้รองหัวหน้า/สมาชิกที่อยู่นานที่สุด` : myRole === 'leader' ? `ยุบกิลด์ ${g.name}?` : `ออกจากกิลด์ ${g.name}?`)) void run('leave_guild', {}, 'ออกจากกิลด์แล้ว'); }}>ออกจากกิลด์</button></div>
       <section className="gd-notice"><h4>ประกาศกิลด์</h4>
         {myRole === 'member' ? <p>{g.notice || 'ยังไม่มีประกาศ'}</p> : <form onSubmit={e => { e.preventDefault(); void run('set_guild_notice', { p_notice: notice }, 'บันทึกประกาศแล้ว'); }}>
           <textarea value={notice} maxLength={200} rows={2} onChange={e => setNotice(e.target.value)} placeholder="เช่น ลงดันเจี้ยน 2 ทุ่ม" /><button className="mk-btn" disabled={busy}>บันทึก</button></form>}</section>

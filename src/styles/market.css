@@ -2,9 +2,9 @@
 .mk { display: flex; flex-direction: column; gap: 8px; min-height: 0; color: #e6dcc6; font-size: 13px; }
 .mk-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .mk-tabs { display: flex; gap: 2px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid rgba(176, 138, 72, .45); }
-.mk-tabs button { position: relative; flex: none; padding: 8px 16px 7px; border: 0; border-radius: 6px 6px 0 0; cursor: pointer; color: #a99c82; font: 600 13px inherit;
-  background: url(/art/ui-kit/tab_header_inactive_dark.webp) center / 100% 100%; }
-.mk-tabs button.on { color: #1a1206; background: url(/art/ui-kit/tab_header_active_glow.webp) center / 100% 100%, linear-gradient(180deg, #f3d48a, #b98a3e); }
+.h2-win .mk-tabs button { width: auto; height: auto; display: inline-block; place-items: initial; position: relative; flex: none; padding: 8px 16px 7px; border: 0; border-radius: 6px 6px 0 0; cursor: pointer; color: #a99c82; font-weight: 600; font-size: 13px;
+  background: linear-gradient(180deg, #2a2118, #15110c); }
+.mk-tabs button.on { color: #1a1206; background: linear-gradient(180deg, #f3d48a, #b98a3e); }
 .mk-tabs button i { margin-left: 5px; padding: 0 5px; border-radius: 8px; background: #c0392b; color: #fff; font: 700 10px/16px sans-serif; font-style: normal; }
 .mk-wallet { display: flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid #5a4728; border-radius: 6px; background: rgba(0, 0, 0, .4); }
 .mk-wallet b { color: #f3d48a; font-size: 15px; } .mk-wallet small { color: #8f846f; font-size: 11px; }
@@ -17,14 +17,14 @@
 .mk-body.two { grid-template-columns: minmax(0, 1fr) 300px; }
 .mk-cats { display: flex; flex-direction: column; gap: 4px; }
 .mk-cats button { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid #3c3122; border-radius: 6px; cursor: pointer; text-align: left;
-  background: rgba(16, 13, 10, .7); color: #cbbd9e; font: 600 12.5px inherit; }
+  background: rgba(16, 13, 10, .7); color: #cbbd9e; font-weight: 600; font-size: 12.5px; }
 .mk-cats button img { width: 26px; height: 26px; object-fit: contain; }
 .mk-cats button.on { border-color: #d6a756; color: #f3d48a; background: linear-gradient(90deg, rgba(214, 167, 86, .25), rgba(16, 13, 10, .7)); }
 .mk-main { display: flex; flex-direction: column; gap: 8px; min-width: 0; min-height: 0; }
 .mk-filters { display: flex; gap: 6px; flex-wrap: wrap; }
-.mk-filters input, .mk-filters select, .mk-field input { height: 32px; padding: 0 10px; border: 1px solid #4b3d26; border-radius: 6px; background: rgba(0, 0, 0, .55); color: #f3ead6; font: 13px inherit; }
+.mk-filters input, .mk-filters select, .mk-field input { height: 32px; padding: 0 10px; border: 1px solid #4b3d26; border-radius: 6px; background: rgba(0, 0, 0, .55); color: #f3ead6; font-size: 13px; }
 .mk-filters input { flex: 1; min-width: 140px; }
-.mk-btn { height: 32px; padding: 0 14px; border: 1px solid #8a6a32; border-radius: 6px; cursor: pointer; color: #f3d48a; font: 700 13px inherit;
+.mk-btn { height: 32px; padding: 0 14px; border: 1px solid #8a6a32; border-radius: 6px; cursor: pointer; color: #f3d48a; font-weight: 700; font-size: 13px;
   background: linear-gradient(180deg, #4a3618, #2a1d0c); }
 .mk-btn:disabled { opacity: .45; cursor: default; } .mk-btn:not(:disabled):hover { filter: brightness(1.15); }
 .mk-btn.ghost { background: rgba(20, 16, 12, .7); color: #cbbd9e; border-color: #4b3d26; }

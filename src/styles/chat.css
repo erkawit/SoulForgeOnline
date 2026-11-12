@@ -7,7 +7,7 @@
 .h2 .cb header { display: flex; align-items: center; gap: 6px; border-bottom: 1px solid rgba(176, 138, 72, .35); padding: 3px 4px 0; }
 .h2 .cb nav { display: flex; gap: 2px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .h2 .cb nav button { position: relative; flex: none; padding: 3px 8px 4px; border: 0; border-radius: 4px 4px 0 0; background: transparent;
-  color: #a99c82; font: 600 12px/1.2 inherit; cursor: pointer; white-space: nowrap; }
+  color: #a99c82; font-weight: 600; font-size: 12px; line-height: 1.2; cursor: pointer; white-space: nowrap; }
 .h2 .cb nav button:hover { color: #f1e2bd; }
 .h2 .cb nav button.on { color: #1a1206; background: linear-gradient(180deg, #f3d48a, #b98a3e); }
 .h2 .cb nav button i { position: absolute; top: -3px; right: -2px; min-width: 14px; height: 14px; padding: 0 3px; border-radius: 7px;
@@ -27,11 +27,11 @@
 .h2 .cb-empty { margin: 8px 0; color: #7d725f; font-style: italic; }
 .h2 .cb-in { display: flex; gap: 4px; padding: 4px; border-top: 1px solid rgba(176, 138, 72, .3); }
 .h2 .cb-in input { flex: 1; min-width: 0; height: 26px; padding: 0 8px; border: 1px solid #4b3d26; border-radius: 4px; outline: none;
-  background: rgba(0, 0, 0, .55); color: #f3ead6; font: 12.5px inherit; }
+  background: rgba(0, 0, 0, .55); color: #f3ead6; font-size: 12.5px; }
 .h2 .cb-in input:focus { border-color: #d6a756; }
 .h2 .cb-in input.to { flex: 0 0 92px; color: #e7a2ff; }
 .h2 .cb-in button { height: 26px; padding: 0 12px; border: 1px solid #8a6a32; border-radius: 4px; cursor: pointer;
-  background: linear-gradient(180deg, #4a3618, #2a1d0c); color: #f3d48a; font: 700 12px inherit; }
+  background: linear-gradient(180deg, #4a3618, #2a1d0c); color: #f3d48a; font-weight: 700; font-size: 12px; }
 .h2 .cb-in button:disabled { opacity: .45; cursor: default; }
 .h2 .cb-err { margin: 0; padding: 0 8px 4px; color: #ff9b8a; font-size: 11.5px; }
 
