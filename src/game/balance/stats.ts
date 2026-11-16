@@ -33,6 +33,9 @@ export function gearTotals(gear: GearLike[], cfg: GameConfig = DEFAULT_CONFIG) {
   return { attrs, special, atk, def };
 }
 
+/** Nov 2026 calm walk (was 3.6 m/s + AGI, capped at 8): heroes walk, they never sprint, so the painted walk cycle
+ *  stays readable. The server's move check (apps/game-server session.ts) uses the same derived speed. */
+const WALK_BASE = 2.6, WALK_CAP = 5.2, WALK_AGI = 0.72;
 export function deriveCharacter(cls: ClassKey, level: number, gear: GearLike[], buffs: ActiveBuff[] = [], now = Date.now(), cfg: GameConfig = DEFAULT_CONFIG): Derived {
   const c = cfg.classes[cls], v = cfg.attributeValue, g = gearTotals(gear, cfg);
   const attrs = Object.fromEntries(ATTRIBUTES.map(a => [a, c.base[a] + g.attrs[a]])) as AttributeBlock;
@@ -57,7 +60,7 @@ export function deriveCharacter(cls: ClassKey, level: number, gear: GearLike[], 
     maxHp: Math.round(maxHp), maxMp: Math.round(maxMp), attack: Math.round(attack), defense: Math.round(defense),
     crit: Math.min(cfg.combat.critCap, cfg.combat.critBase + attrs.agi * v.agiCrit + (s.critRate + best('critRate')) / 100),
     critDamage: cfg.combat.critDamageBase + attrs.dex * v.dexCritDmg + s.critDmg / 100,
-    speed: Math.min(8, 3.6 + attrs.agi * v.agiSpeed) * (1 + (s.moveSpeed + best('moveSpeed')) / 100),
+    speed: Math.min(WALK_CAP, WALK_BASE + attrs.agi * v.agiSpeed * WALK_AGI) * (1 + (s.moveSpeed + best('moveSpeed')) / 100),
     attackSpeed: 1 + attrs.agi * v.agiAtkSpeed + (s.atkSpeed + best('atkSpeed')) / 100,
     evade: Math.min(0.35, attrs.agi * v.agiEvade), hit: Math.min(1, 0.9 + attrs.dex * v.dexHit),
     healPower: (1 + attrs.wis * v.wisHeal + s.healPower / 100) * c.healingMultiplier,

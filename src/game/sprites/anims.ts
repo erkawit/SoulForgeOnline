@@ -3,7 +3,10 @@
 // fx/fy: foot pivot inside a cell (0..1 from left / bottom); bodyPx: idle body height in px (maps to SPRITE_FRAMES[id].h).
 // clips: [first frame, frame count] — one per sheet row.
 /** dirs: 8 = an 8-way sheet — each clip is 8 runs of `count` frames in the order S, SW, W, NW, N, NE, E, SE (round 12) */
-export type SpriteAnim = { cw: number; ch: number; cols: number; n: number; fx: number; fy: number; bodyPx: number; clips: Record<string, [number, number]>; facesLeft?: boolean; dirs?: number };
+export type SpriteAnim = { cw: number; ch: number; cols: number; n: number; fx: number; fy: number; bodyPx: number; clips: Record<string, [number, number]>; facesLeft?: boolean; dirs?: number;
+  /** metres the body travels in one full walk cycle (two steps); the walk plays at groundSpeed / strideM cycles a second
+   *  so the feet stay planted. Default WALK_STRIDE × the actor's height. */
+  strideM?: number };
 export const SPRITE_ANIMS: Record<string, SpriteAnim> = {
  'abyssal-forge-titan':{cw:579,ch:370,cols:7,n:69,fx:0.4997,fy:0.148,bodyPx:240.0,clips:{idle:[0,10],walk:[10,11],run:[21,10],skill:[31,10],attack:[41,10],special:[51,10],ultimate:[61,8]}},
  'ancient-treant':{cw:211,ch:213,cols:10,n:31,fx:0.4804,fy:0.0335,bodyPx:200.0,clips:{idle:[0,6],walk:[6,9],run:[15,8],attack:[23,8]}},

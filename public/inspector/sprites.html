@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>SoulForge · ตรวจสไปรต์ (ซ้าย / ขวา)</title>
+<style>
+:root{--bg:#121216;--panel:#1b1b21;--panel2:#23232b;--line:#33333d;--txt:#e9e6df;--mut:#9a968c;--gold:#d6b46a;--red:#ff5d5d;--amb:#ffb648;--grn:#5fd38a;--blu:#6fb7ff}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font:14px/1.45 "Noto Sans Thai","Sarabun",system-ui,sans-serif}
+button,select,input,textarea{font:inherit;color:inherit}
+header{display:flex;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);background:#16161b;flex-wrap:wrap}
+header h1{font-size:16px;margin:0 8px 0 0;color:var(--gold);letter-spacing:.3px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab,.chip,.btn{border:1px solid var(--line);background:var(--panel2);padding:5px 10px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.tab.on,.chip.on{background:#3a3220;border-color:var(--gold);color:#ffe7ae}
+.btn:hover,.tab:hover,.chip:hover{border-color:#5a5a68}
+.btn.pri{background:#3a3220;border-color:var(--gold)}
+input[type=search],input[type=text],input[type=number],select,textarea{background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:5px 8px}
+.grow{flex:1}
+main{display:grid;grid-template-columns:290px 1fr;height:calc(100% - 52px)}
+aside{border-right:1px solid var(--line);overflow:auto;background:var(--panel)}
+.grp{padding:8px 12px 4px;color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.6px;position:sticky;top:0;background:var(--panel);z-index:1}
+.item{display:flex;gap:8px;align-items:center;padding:7px 12px;cursor:pointer;border-left:3px solid transparent}
+.item:hover{background:var(--panel2)}
+.item.on{background:#26231c;border-left-color:var(--gold)}
+.dot{width:10px;height:10px;border-radius:50%;background:#555;flex:none}
+.dot.e{background:var(--red)}.dot.w{background:var(--amb)}.dot.ok{background:var(--grn)}
+.item .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .ct{font-size:11px;color:var(--mut)}
+.tag{font-size:10px;padding:1px 6px;border-radius:9px;background:#2c2c36;color:#cfcac0}
+.tag.boss{background:#4a1f25;color:#ffb3b3}.tag.elite{background:#43361a;color:#ffd98a}.tag.class{background:#1f3046;color:#a9d2ff}.tag.npc{background:#21382a;color:#a7e9be}.tag.test{background:#3d2347;color:#e4b4ff}
+section.view{overflow:auto;padding:14px 18px 40px}
+.info{display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;margin-bottom:10px}
+.info h2{margin:0;font-size:20px}
+.mut{color:var(--mut)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.clips .chip{position:relative}
+.chip .x{color:var(--red);font-weight:700}
+.chip.miss{opacity:.55;border-style:dashed}
+.stages{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px}
+.stage .cap{display:flex;justify-content:space-between;color:var(--mut);font-size:12px;margin-bottom:4px}
+canvas.st{display:block;border-radius:6px;cursor:crosshair}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 10px}
+.fr{flex:none;border:1px solid var(--line);border-radius:6px;padding:2px;cursor:pointer;background:var(--panel);text-align:center;font-size:11px;color:var(--mut)}
+.fr.on{border-color:var(--gold);color:#ffe7ae}
+.fr.e{box-shadow:inset 0 -3px 0 var(--red)}.fr.w{box-shadow:inset 0 -3px 0 var(--amb)}
+.fr canvas{display:block}
+.cols{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.card h3{margin:0 0 8px;font-size:14px;color:var(--gold)}
+.iss{list-style:none;margin:0;padding:0;max-height:330px;overflow:auto}
+.iss li{padding:5px 0;border-bottom:1px dashed #2c2c34;display:flex;gap:8px}
+.iss li b{flex:none;width:58px;font-size:11px;text-transform:uppercase}
+.iss li.e b{color:var(--red)}.iss li.w b{color:var(--amb)}.iss li.i b{color:var(--blu)}
+.iss li a{color:var(--blu);cursor:pointer}
+label.ck{display:inline-flex;gap:5px;align-items:center;cursor:pointer;user-select:none}
+.rev{display:grid;grid-template-columns:110px auto 1fr;gap:6px 8px;align-items:center}
+.rev .s button{padding:3px 8px}
+.rev .s .ok.on{background:#1d3b28;border-color:var(--grn)}.rev .s .bad.on{background:#45201f;border-color:var(--red)}
+.small{font-size:12px}
+.legend span{display:inline-flex;align-items:center;gap:4px;margin-right:10px}
+.sw{width:12px;height:3px;display:inline-block}
+dialog{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:12px;max-width:640px;width:92%}
+dialog::backdrop{background:#0008}
+.grid2{display:grid;grid-template-columns:150px 1fr;gap:8px;align-items:center}
+.prog{height:4px;background:#2a2a32;border-radius:3px;overflow:hidden;width:160px}.prog i{display:block;height:100%;background:var(--gold);width:0}
+@media (max-width:900px){main{grid-template-columns:1fr}aside{max-height:36vh}.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>SoulForge · ตรวจสไปรต์ซ้าย/ขวา</h1>
+  <div class="tabs" id="tabs"></div>
+  <input type="search" id="q" placeholder="ค้นหาชื่อ…" style="width:160px">
+  <span class="grow"></span>
+  <button class="btn" id="scanAll">ตรวจทั้งหมด</button><div class="prog" id="prog"><i></i></div>
+  <button class="btn" id="upload">+ ทดสอบชีตใหม่</button>
+  <button class="btn" id="export">ส่งออกรายงาน</button>
+</header>
+<main>
+  <aside id="list"></aside>
+  <section class="view" id="view"><p class="mut">กำลังโหลด manifest…</p></section>
+</main>
+
+<dialog id="dlg">
+  <form method="dialog" id="upForm">
+    <h3 style="margin-top:0;color:var(--gold)">ทดสอบชีตใหม่ (ยังไม่ต้องเอาเข้าเกม)</h3>
+    <p class="small mut">รูปแบบที่แนะนำ: 1 แถว = 1 ท่า, ทุกเฟรมหันขวา, ช่องเท่ากันทุกช่อง, พื้นหลังโปร่งใส</p>
+    <div class="grid2">
+      <span>ไฟล์รูป (png/webp)</span><input type="file" id="upFile" accept="image/*" required>
+      <span>ชื่อ</span><input type="text" id="upName" value="ทดสอบ">
+      <span>ประเภท</span><select id="upRole"><option value="class">อาชีพ</option><option value="monster">มอนสเตอร์ทั่วไป</option><option value="elite">Elite</option><option value="boss">บอส</option><option value="npc">NPC</option></select>
+      <span>ท่า : จำนวนเฟรม<br><small class="mut">เรียงตามแถวบนลงล่าง</small></span><input type="text" id="upClips" value="idle:6, walk:8, attack:6, skill:8, death:6, hurt:3">
+      <span>จำนวนคอลัมน์</span><input type="number" id="upCols" value="8" min="1">
+      <span>ภาพต้นฉบับหันไปทาง</span><select id="upFace"><option value="right">ขวา</option><option value="left">ซ้าย</option></select>
+      <span>จุดเท้า X (0–1)</span><input type="number" id="upFx" value="0.5" step="0.01">
+    </div>
+    <div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn" value="cancel" formnovalidate>ยกเลิก</button><button class="btn pri" value="ok">โหลดเข้าหน้าตรวจ</button></div>
+  </form>
+</dialog>
+
+<dialog id="rep"><h3 style="margin-top:0;color:var(--gold)">รายงานผลตรวจ (JSON)</h3>
+<p class="small mut">รวมจุดผิดพลาดอัตโนมัติ ผลตรวจด้วยตา จุดปล่อยสกิล และทิศต้นฉบับที่แก้ไว้ — คัดลอกไปเก็บ หรือส่งให้คนแก้ภาพ/โค้ด</p>
+<textarea readonly style="width:100%;height:300px;font:12px monospace"></textarea>
+<div class="row" style="justify-content:flex-end"><button class="btn" id="repCopy">คัดลอก</button><button class="btn" onclick="this.closest('dialog').close()">ปิด</button></div></dialog>
+<script>
+'use strict';
+// ------------------------------------------------------------------ constants
+const ROLE_TH = { class: 'อาชีพ', monster: 'มอนสเตอร์', elite: 'Elite', boss: 'บอส', npc: 'NPC', test: 'ทดสอบ' };
+const ROLE_ORDER = ['class', 'monster', 'elite', 'boss', 'npc', 'test'];
+/** poses each role must have (Nov 2026: idle, a calm walk, attack, skill — painted facing right, mirrored for left) */
+const REQUIRED = {
+  class:   ['idle', 'walk', 'attack', 'skill'],
+  monster: ['idle', 'walk', 'attack', 'skill'],
+  elite:   ['idle', 'walk', 'attack', 'skill'],
+  boss:    ['idle', 'walk', 'attack', 'skill'],
+  npc:     ['idle', 'talk'],
+};
+const CLIP_TH = { idle: 'ยืน', walk: 'เดิน', run: 'วิ่ง', attack: 'โจมตี', skill: 'สกิล', special: 'สกิลพิเศษ', buff: 'บัฟ', death: 'ตาย', hurt: 'ชะงัก', talk: 'คุย', Attack: 'โจมตี', Skill: 'สกิล', Special: 'สกิลพิเศษ', Buff: 'บัฟ', Channel: 'ร่าย', Guard: 'กัน', Attack2: 'โจมตี 2' };
+const MIN_FRAMES = { walk: 4, attack: 3, skill: 3, death: 3, hurt: 2, idle: 1, talk: 1 };
+const FPS = { idle: 5, walk: 8, run: 10, talk: 3.2, death: 8, hurt: 10 };
+const DIR8 = ['S', 'SW', 'W', 'NW', 'N', 'NE', 'E', 'SE'];
+const DIR8_TH = { S: 'หน้า (S)', SW: 'หน้าซ้าย (SW)', W: 'ซ้าย (W)', NW: 'หลังซ้าย (NW)', N: 'หลัง (N)', NE: 'หลังขวา (NE)', E: 'ขวา (E)', SE: 'หน้าขวา (SE)' };
+const canon = (c) => c.startsWith('sk:') ? 'skill' : ({ special: 'skill', ultimate: 'skill', run: 'walk', Attack: 'attack', Attack2: 'attack', Skill: 'skill', Special: 'skill' })[c] ?? c;
+
+// ------------------------------------------------------------------ persisted settings
+const store = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem('sfi.' + k)) ?? d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('sfi.' + k, JSON.stringify(v)); } catch {} },
+};
+let review = store.get('review', {});     // actorId → clip → {s:'ok'|'bad', n:''}
+let castPts = store.get('cast', {});      // actorId → clip → {x, y, f}  (x,y in body heights from the feet, facing right)
+let facing = store.get('facing', {});     // sheetKey → 'left'|'right' (which way the painted source faces)
+let dirCfg = store.get('dirs', { right: 6, left: 'mirror' }); // 8-way sheets: row used for RIGHT, and LEFT = mirror | row
+let ui = Object.assign({ tab: 'all', zoom: 1, bg: 'dark', cell: false, pivot: true, box: true, onion: false, ground: true }, store.get('ui', {}));
+const saveUi = () => store.set('ui', ui);
+
+// ------------------------------------------------------------------ state
+let M = null; const actors = []; let cur = null, clip = 'idle', frameI = 0, playing = true, lastT = 0, acc = 0;
+const imgs = new Map(), analysis = new Map(), results = new Map();
+
+function loadImg(url) {
+  if (imgs.has(url)) return imgs.get(url);
+  const p = new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = url; });
+  imgs.set(url, p); return p;
+}
+
+// ------------------------------------------------------------------ frames model
+/** which way the painted source of this actor faces */
+function sourceFacing(a) {
+  const key = a.sheet ?? a.base ?? a.id; if (facing[key]) return facing[key];
+  const sh = a.sheet && M.sheets[a.sheet]; if (sh) return sh.facesLeft ? 'left' : 'right';
+  return a.facesLeft ? 'left' : 'right';
+}
+/** every clip the actor can show, in a stable order */
+function clipList(a) {
+  const sh = a.sheet && M.sheets[a.sheet];
+  const have = sh ? Object.keys(sh.clips) : ['idle', ...Object.keys(a.stillClips ?? {})];
+  const req = REQUIRED[a.role === 'test' ? a.testRole : a.role] ?? [];
+  const out = [...have];
+  for (const r of req) if (!have.some(c => canon(c) === r)) out.push(r);
+  return out;
+}
+function hasClip(a, c) {
+  const sh = a.sheet && M.sheets[a.sheet];
+  if (sh) return !!sh.clips[c];
+  return c === 'idle' || !!(a.stillClips && a.stillClips[c]);
+}
+/** frames of a clip as drawable cells, for one screen side */
+function frames(a, c, side) {
+  const sh = a.sheet && M.sheets[a.sheet];
+  const src = sourceFacing(a);
+  if (sh) {
+    const cl = sh.clips[c]; if (!cl) return [];
+    let rowIdx = 0, flip = src !== side;
+    if (sh.dirs === 8) {
+      const rightRow = dirCfg.right;
+      if (side === 'right') { rowIdx = rightRow; flip = false; }
+      else if (dirCfg.left === 'mirror') { rowIdx = rightRow; flip = true; }
+      else { rowIdx = +dirCfg.left; flip = false; }
+    }
+    const rows = Math.ceil(sh.n / sh.cols), out = [];
+    for (let i = 0; i < cl[1]; i++) {
+      const idx = cl[0] + (sh.dirs === 8 ? rowIdx * cl[1] : 0) + i;
+      out.push({ url: sh.url, sx: (idx % sh.cols) * sh.cw, sy: Math.floor(idx / sh.cols) * sh.ch, sw: sh.cw, sh: sh.ch, fx: sh.fx, fy: sh.fy, body: sh.bodyPx, flip, idx, rows });
+    }
+    return out;
+  }
+  // still + shader-rig actor: key poses only
+  const kf = a.stillClips?.[c]?.frames ?? [], ids = c === 'idle' || !kf.length ? [a.base] : kf;
+  const base = M.stills[a.base];
+  return ids.filter(id => M.stills[id]).map((id, i) => { const s = M.stills[id];
+    return { url: s.url, sx: 0, sy: 0, sw: s.px[0], sh: s.px[1], fx: s.fx, fy: s.fy, body: base ? base.px[1] * (s.h / base.h) * (s.px[1] / s.px[1]) : s.px[1], worldH: s.h, baseH: base?.h ?? s.h, flip: src !== side, idx: i, still: true }; });
+}
+
+// ------------------------------------------------------------------ pixel analysis (one cell)
+const scratch = document.createElement('canvas'), sctx = scratch.getContext('2d', { willReadFrequently: true });
+async function analyse(fr) {
+  const key = fr.url + '|' + fr.sx + '|' + fr.sy + '|' + fr.sw + '|' + fr.sh;
+  if (analysis.has(key)) return analysis.get(key);
+  const im = await loadImg(fr.url); if (!im) { const r = { missing: true }; analysis.set(key, r); return r; }
+  scratch.width = fr.sw; scratch.height = fr.sh; sctx.clearRect(0, 0, fr.sw, fr.sh);
+  sctx.drawImage(im, fr.sx, fr.sy, fr.sw, fr.sh, 0, 0, fr.sw, fr.sh);
+  const d = sctx.getImageData(0, 0, fr.sw, fr.sh).data, W = fr.sw, H = fr.sh;
+  let n = 0, minX = W, maxX = -1, minY = H, maxY = -1, green = 0, edge = { l: 0, r: 0, t: 0, b: 0 }, hash = 0, semi = 0;
+  const colAt = new Float64Array(W); let footSum = 0, footN = 0;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const i = (y * W + x) * 4, al = d[i + 3];
+    if ((x + y * 7) % 13 === 0) hash = (hash * 31 + (al >> 3) + (d[i] >> 4)) | 0;
+    if (al > 12 && al < 200) semi++;
+    if (al < 60) continue;
+    n++; if (x < minX) minX = x; if (x > maxX) maxX = x; if (y < minY) minY = y; if (y > maxY) maxY = y;
+    if (d[i + 1] > 150 && d[i] < 110 && d[i + 2] < 110 && al > 200) green++;
+    if (x < 2) edge.l++; if (x >= W - 2) edge.r++; if (y < 2) edge.t++; if (y >= H - 2) edge.b++;
+  }
+  // foot centre: mean x of opaque pixels in the lowest 12% of the body
+  if (n) { const y0 = maxY - Math.max(2, (maxY - minY) * 0.12);
+    for (let y = Math.floor(y0); y <= maxY; y++) for (let x = 0; x < W; x++) if (d[(y * W + x) * 4 + 3] > 100) { footSum += x; footN++; } }
+  const corners = [[1, 1], [W - 2, 1], [1, H - 2], [W - 2, H - 2]].filter(([x, y]) => d[(y * W + x) * 4 + 3] > 200).length;
+  const r = { n, frac: n / (W * H), box: n ? [minX, minY, maxX, maxY] : null, green: n ? green / n : 0, edge, corners, hash, semi: n ? semi / n : 0,
+    footX: footN ? footSum / footN : null, bottom: n ? maxY : null };
+  analysis.set(key, r); return r;
+}
+
+/** all automatic checks of one actor → list of {lv:'e'|'w'|'i', clip, f, msg} */
+async function check(a) {
+  const out = []; const role = a.role === 'test' ? a.testRole : a.role;
+  const push = (lv, c, f, msg) => out.push({ lv, clip: c, f, msg });
+  if (a.missing) { push('e', null, null, 'ไม่มีภาพของตัวนี้เลย (เกมไม่มีสไปรต์)'); return out; }
+  const sh = a.sheet && M.sheets[a.sheet];
+  if (a.fallback) push('w', null, null, `ไม่มีภาพของตัวเอง ใช้ภาพของ “${a.id}” แทน — ผู้เล่นจะเห็นมอนสเตอร์หน้าตาซ้ำกัน`);
+  if (sh) {
+    if (!sh.exists) push('e', null, null, `ไม่พบไฟล์ ${sh.url}`);
+    const rows = Math.ceil(sh.n / sh.cols), ew = sh.cols * sh.cw, eh = rows * sh.ch;
+    if (sh.size && (sh.size[0] < ew || sh.size[1] < eh)) push('e', null, null, `ขนาดไฟล์ ${sh.size.join('×')} เล็กกว่าที่ตาราง ${sh.cols}×${rows} ช่อง (${ew}×${eh}) ต้องการ — เฟรมท้าย ๆ จะว่าง/ผิดช่อง`);
+    else if (sh.size && (sh.size[0] !== ew || sh.size[1] !== eh)) push('i', null, null, `ขนาดไฟล์ ${sh.size.join('×')} ไม่ตรงกับตาราง (${ew}×${eh}) — เช็กว่าตัดช่องตรงหรือไม่`);
+    if (sh.dirs === 8) push('i', null, null, `ชีต 8 ทิศ: หน้านี้แสดงเฉพาะแถว “${DIR8_TH[DIR8[dirCfg.right]]}” เป็นขวา และ${dirCfg.left === 'mirror' ? 'กลับด้านเป็นซ้าย' : 'แถว ' + DIR8_TH[DIR8[dirCfg.left]] + ' เป็นซ้าย'}`);
+    if (!sh.dirs && !facing[a.sheet] && !sh.facesLeft) push('i', null, null, 'ชีตทิศเดียวที่ยังไม่ได้ระบุว่าวาดหันทางไหน (เกมถือว่าหันขวา) — ดูช่อง “ขวา” ว่าหันขวาจริงไหม ถ้าไม่ใช่ให้กดสลับทิศต้นฉบับ');
+  } else push('w', null, null, 'ไม่มีชีตแอนิเมชัน: เกมขยับภาพนิ่งด้วยเชเดอร์แทน (ท่าโจมตี/สกิล/ตายจะไม่มีเฟรมวาดจริง)');
+  for (const r of REQUIRED[role] ?? []) {
+    const ok = sh ? Object.keys(sh.clips).some(c => canon(c) === r) : (r === 'idle' || Object.keys(a.stillClips ?? {}).some(c => canon(c) === r));
+    if (!ok) push(r === 'hurt' || r === 'talk' ? 'w' : 'e', r, null, `ไม่มีท่า “${CLIP_TH[r] ?? r}”` + (r === 'hurt' ? ' (ตอนนี้เกมใช้แค่กะพริบขาว + กระตุกตัว)' : r === 'death' ? ' (ตอนนี้เกมใช้การหมุนล้มด้วยโค้ด)' : ''));
+  }
+  for (const c of clipList(a)) {
+    if (!hasClip(a, c)) continue;
+    const fr = frames(a, c, 'right'); if (!fr.length) continue;
+    const kind = canon(c), min = MIN_FRAMES[kind] ?? 1;
+    if (sh && fr.length < min) push('w', c, null, `มีแค่ ${fr.length} เฟรม (ควรอย่างน้อย ${min}) — จะดูกระตุก`);
+    const an = []; for (const f of fr) an.push(await analyse(f));
+    const scale = (f) => f.body ? 220 / f.body : 1; // tolerance measured in "220 px body" units
+    an.forEach((r, i) => {
+      const f = fr[i];
+      if (r.missing) { push('e', c, i, 'โหลดรูปไม่ได้'); return; }
+      if (r.n < 40) { push('e', c, i, 'เฟรมว่าง (ไม่มีภาพ)'); return; }
+      if (r.green > 0.04) push('e', c, i, `พื้นหลังเขียวค้าง ${(r.green * 100).toFixed(0)}% ของภาพ`);
+      if (!f.still && (r.corners >= 2 || r.frac > 0.75)) push('e', c, i, 'พื้นหลังยังไม่ถูกลบ (มุมเซลล์ทึบ)');
+      const e = r.edge, sides = [['l', 'ซ้าย'], ['r', 'ขวา'], ['t', 'บน'], ['b', 'ล่าง']].filter(([k]) => e[k] > 3).map(([, t]) => t);
+      if (sides.length && !f.still) push(kind === 'skill' || kind === 'attack' ? 'w' : 'e', c, i, `ภาพชนขอบเซลล์ด้าน${sides.join('/')} — อาจถูกตัดหรือไปทับช่องข้าง ๆ`);
+      if (kind !== 'death' && !f.still) {
+        const pivotY = f.sh * (1 - f.fy), dy = (r.bottom - pivotY) * scale(f);
+        if (dy < -10) push('w', c, i, `เท้าลอยเหนือพื้น ${Math.round(-dy)} px`);
+        if (dy > 10) push('w', c, i, `เท้าจมลงพื้น ${Math.round(dy)} px`);
+        const dx = (r.footX - f.sw * f.fx) * scale(f);
+        if (Math.abs(dx) > 34 && (kind === 'idle' || kind === 'walk')) push('w', c, i, `ตัวไม่อยู่ตรงจุดเท้า เยื้อง${dx > 0 ? 'ขวา' : 'ซ้าย'} ${Math.round(Math.abs(dx))} px — ตอนกลับด้านซ้าย/ขวาตัวจะกระโดด`);
+      }
+      if (r.semi > 0.35) push('i', c, i, 'ขอบโปร่งแสงเยอะ (อาจเป็นเงา/หมอกติดมา)');
+    });
+    if ((kind === 'idle' || kind === 'walk') && an.length > 1 && an.every(r => r.n)) {
+      const fx = an.map((r, i) => (r.footX - fr[i].sw * fr[i].fx) * scale(fr[i]));
+      const spread = Math.max(...fx) - Math.min(...fx);
+      if (spread > 22) push('w', c, null, `ตัวส่ายซ้าย-ขวาระหว่างเฟรม ${Math.round(spread)} px (ควรไม่เกิน ~20) — เดินแล้วสั่น`);
+      for (let i = 1; i < an.length; i++) {
+        const h0 = an[i - 1].box[3] - an[i - 1].box[1], h1 = an[i].box[3] - an[i].box[1];
+        if (Math.abs(h1 - h0) / Math.max(h0, h1) > 0.16) push('w', c, i, `ความสูงตัวกระโดด ${Math.round(Math.abs(h1 - h0) / Math.max(h0, h1) * 100)}% จากเฟรมก่อน — ขนาดตัวไม่คงที่`);
+      }
+    }
+    for (let i = 1; i < an.length; i++) if (an[i].hash === an[i - 1].hash && an[i].n === an[i - 1].n) push('i', c, i, 'เฟรมซ้ำกับเฟรมก่อนหน้า');
+    if (sh && (kind === 'skill' || kind === 'attack') && (role === 'class' || role === 'boss') && !castPts[a.id]?.[c])
+      push('i', c, null, 'ยังไม่ได้กำหนดจุดปล่อยสกิล — คลิกบนช่อง “ขวา” เพื่อวาง');
+  }
+  // the size the game shows: compare idle body height with the class average
+  return out;
+}
+function summary(list) { return { e: list.filter(x => x.lv === 'e').length, w: list.filter(x => x.lv === 'w').length }; }
+async function checkAndStore(a) { const r = await check(a); results.set(a.id + '|' + a.role, r); return r; }
+
+// ------------------------------------------------------------------ list
+const tabsEl = document.getElementById('tabs'), listEl = document.getElementById('list'), viewEl = document.getElementById('view');
+function renderTabs() {
+  const counts = actors.reduce((m, a) => (m[a.role] = (m[a.role] ?? 0) + 1, m), {});
+  tabsEl.innerHTML = '';
+  for (const t of ['all', ...ROLE_ORDER.filter(r => counts[r])]) {
+    const b = document.createElement('button'); b.className = 'tab' + (ui.tab === t ? ' on' : '');
+    b.textContent = (t === 'all' ? 'ทั้งหมด' : ROLE_TH[t]) + ' ' + (t === 'all' ? actors.length : counts[t]);
+    b.onclick = () => { ui.tab = t; saveUi(); renderTabs(); renderList(); }; tabsEl.appendChild(b);
+  }
+}
+function revState(a) { const r = review[a.id]; if (!r) return null; const v = Object.values(r); if (v.some(x => x.s === 'bad')) return 'bad'; return v.length ? 'ok' : null; }
+function renderList() {
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  listEl.innerHTML = '';
+  for (const role of ROLE_ORDER) {
+    if (ui.tab !== 'all' && ui.tab !== role) continue;
+    const xs = actors.filter(a => a.role === role && (!q || a.name.toLowerCase().includes(q) || a.id.includes(q))); if (!xs.length) continue;
+    const g = document.createElement('div'); g.className = 'grp'; g.textContent = ROLE_TH[role] + ' (' + xs.length + ')'; listEl.appendChild(g);
+    for (const a of xs) {
+      const r = results.get(a.id + '|' + a.role), s = r && summary(r), rv = revState(a);
+      const el = document.createElement('div'); el.className = 'item' + (cur === a ? ' on' : '');
+      el.innerHTML = `<span class="dot ${!s ? '' : s.e ? 'e' : s.w ? 'w' : 'ok'}"></span><span class="nm">${esc(a.name)}</span>${rv === 'bad' ? '<span class="tag boss">แก้</span>' : rv === 'ok' ? '<span class="tag npc">ผ่าน</span>' : ''}<span class="ct">${s ? (s.e ? s.e + 'E ' : '') + (s.w ? s.w + 'W' : '') : ''}</span>`;
+      el.onclick = () => select(a); listEl.appendChild(el);
+    }
+  }
+}
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+
+// ------------------------------------------------------------------ view
+let cvL, cvR, strip, issEl;
+async function select(a, keepClip = false) {
+  cur = a; const cl = clipList(a);
+  if (!keepClip || !cl.includes(clip)) clip = cl.find(c => hasClip(a, c)) ?? cl[0];
+  frameI = 0; renderList(); renderView();
+  await checkAndStore(a); renderList(); renderIssues(); renderStrip();
+}
+function renderView() {
+  const a = cur; if (!a) return;
+  const sh = a.sheet && M.sheets[a.sheet];
+  const role = a.role === 'test' ? a.testRole : a.role;
+  viewEl.innerHTML = `
+  <div class="info">
+    <h2>${esc(a.name)}</h2><span class="tag ${role}">${ROLE_TH[role]}</span>
+    <span class="mut small">${sh ? `ชีต <b>${esc(a.sheet)}</b> · ช่อง ${sh.cw}×${sh.ch} · ${sh.cols} คอลัมน์ · ${sh.n} เฟรม · ${sh.dirs === 8 ? '<b style="color:var(--amb)">8 ทิศ</b>' : 'ทิศเดียว'}` : a.base ? `ภาพนิ่ง <b>${esc(a.base)}</b> + เชเดอร์` : 'ไม่มีภาพ'}
+      ${a.levels ? ' · เลเวล ' + a.levels.join('–') : ''}${a.alsoElite ? ' · มีร่าง Elite ด้วย' : ''}</span>
+  </div>
+  <div class="row clips" id="clips"></div>
+  <div class="row">
+    <button class="btn" id="play">${playing ? '❚❚ หยุด' : '▶ เล่น'}</button>
+    <button class="btn" id="prev">◀ เฟรม</button><button class="btn" id="next">เฟรม ▶</button>
+    <span class="mut small" id="fi"></span>
+    <span class="grow"></span>
+    <label class="small">ซูม <input type="range" id="zoom" min="0.5" max="2.5" step="0.1" value="${ui.zoom}"></label>
+    <select id="bg"><option value="dark">พื้นมืด</option><option value="grass">พื้นหญ้า</option><option value="stone">พื้นหิน</option><option value="check">ตาราง</option><option value="light">พื้นสว่าง</option></select>
+  </div>
+  <div class="row small">
+    <label class="ck"><input type="checkbox" id="o-pivot" ${ui.pivot ? 'checked' : ''}> จุดเท้า</label>
+    <label class="ck"><input type="checkbox" id="o-box" ${ui.box ? 'checked' : ''}> กรอบภาพจริง</label>
+    <label class="ck"><input type="checkbox" id="o-cell" ${ui.cell ? 'checked' : ''}> กรอบเซลล์</label>
+    <label class="ck"><input type="checkbox" id="o-onion" ${ui.onion ? 'checked' : ''}> ซ้อนเฟรมก่อนหน้า</label>
+    <span class="grow"></span>
+    ${sh?.dirs === 8 ? `<span>แถวที่ใช้เป็น “ขวา”</span><select id="dirR">${DIR8.map((d, i) => `<option value="${i}" ${i === dirCfg.right ? 'selected' : ''}>${DIR8_TH[d]}</option>`).join('')}</select>
+      <span>“ซ้าย”</span><select id="dirL"><option value="mirror" ${dirCfg.left === 'mirror' ? 'selected' : ''}>กลับด้านจากขวา</option>${DIR8.map((d, i) => `<option value="${i}" ${String(i) === String(dirCfg.left) ? 'selected' : ''}>แถว ${DIR8_TH[d]}</option>`).join('')}</select>`
+      : `<span>ภาพต้นฉบับหัน</span><button class="btn" id="flipSrc">${sourceFacing(a) === 'right' ? 'ขวา →' : '← ซ้าย'}</button>`}
+  </div>
+  <div class="stages">
+    <div class="stage"><div class="cap"><span>← หันซ้าย</span><span id="capL"></span></div><canvas class="st" id="cvL" width="380" height="380"></canvas></div>
+    <div class="stage"><div class="cap"><span>หันขวา →</span><span class="mut">คลิกเพื่อวางจุดปล่อยสกิล</span></div><canvas class="st" id="cvR" width="380" height="380"></canvas></div>
+  </div>
+  <div class="small legend mut"><span><i class="sw" style="background:#58d0ff"></i>เส้นพื้น/จุดเท้า</span><span><i class="sw" style="background:#ffd36b"></i>กรอบภาพจริง</span><span><i class="sw" style="background:#ff6bd6"></i>จุดปล่อยสกิล</span><span><i class="sw" style="background:#666"></i>กรอบเซลล์</span></div>
+  <div class="strip" id="strip"></div>
+  <div class="cols">
+    <div class="card"><h3>จุดที่ตรวจเจออัตโนมัติ</h3><ul class="iss" id="iss"><li class="mut">กำลังตรวจ…</li></ul></div>
+    <div class="card"><h3>ตรวจด้วยตา (บันทึกในเบราว์เซอร์นี้)</h3><div class="rev" id="rev"></div>
+      <p class="small mut" style="margin:10px 0 0">เช็กลิสต์: หันถูกทางทั้งซ้าย/ขวา · เท้าติดพื้นทุกเฟรม · อาวุธ/มือไม่สลับข้างจนแปลก · เอฟเฟกต์สกิลออกจากมือ/อาวุธ · ท่าตายจบนิ่ง · ท่าชะงักกลับมายืนได้เนียน</p></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>จุดปล่อยสกิล / จังหวะโดน</h3><div id="castInfo" class="small"></div></div>
+  <div class="card" style="margin-top:14px" id="promptCard"><h3>Prompt สร้างภาพท่านี้ (หันขวา)</h3><div id="promptBody" class="small mut">ไม่มี prompt สำหรับตัวนี้</div></div>`;
+  cvL = document.getElementById('cvL'); cvR = document.getElementById('cvR'); strip = document.getElementById('strip'); issEl = document.getElementById('iss');
+  document.getElementById('bg').value = ui.bg;
+  const clipsEl = document.getElementById('clips');
+  for (const c of clipList(a)) {
+    const b = document.createElement('button'), have = hasClip(a, c), n = have ? frames(a, c, 'right').length : 0;
+    b.className = 'chip' + (c === clip ? ' on' : '') + (have ? '' : ' miss');
+    b.innerHTML = `${esc(CLIP_TH[c] ?? (c.startsWith('sk:') ? 'สกิล ' + c.slice(3) : c))} <span class="mut small">${have ? n : '<span class="x">ไม่มี</span>'}</span>`;
+    b.onclick = () => { clip = c; frameI = 0; renderView(); renderIssues(); renderStrip(); }; clipsEl.appendChild(b);
+  }
+  document.getElementById('play').onclick = () => { playing = !playing; renderView(); renderIssues(); renderStrip(); };
+  document.getElementById('prev').onclick = () => { playing = false; step(-1); };
+  document.getElementById('next').onclick = () => { playing = false; step(1); };
+  document.getElementById('zoom').oninput = (e) => { ui.zoom = +e.target.value; saveUi(); };
+  document.getElementById('bg').onchange = (e) => { ui.bg = e.target.value; saveUi(); };
+  for (const k of ['pivot', 'box', 'cell', 'onion']) document.getElementById('o-' + k).onchange = (e) => { ui[k] = e.target.checked; saveUi(); };
+  const dR = document.getElementById('dirR'), dL = document.getElementById('dirL'), fs = document.getElementById('flipSrc');
+  if (dR) dR.onchange = (e) => { dirCfg.right = +e.target.value; store.set('dirs', dirCfg); rescanCurrent(); };
+  if (dL) dL.onchange = (e) => { dirCfg.left = e.target.value === 'mirror' ? 'mirror' : +e.target.value; store.set('dirs', dirCfg); rescanCurrent(); };
+  if (fs) fs.onclick = () => { const k = a.sheet ?? a.base ?? a.id; facing[k] = sourceFacing(a) === 'right' ? 'left' : 'right'; store.set('facing', facing); rescanCurrent(); };
+  cvR.onclick = (e) => setCast(e);
+  cvR.oncontextmenu = (e) => { e.preventDefault(); if (castPts[a.id]) { delete castPts[a.id][clip]; store.set('cast', castPts); renderCast(); } };
+  renderReview(); renderCast(); renderPrompt();
+}
+async function rescanCurrent() { analysis.clear(); const a = cur; renderView(); await checkAndStore(a); renderList(); renderIssues(); renderStrip(); }
+function step(d) { const n = frames(cur, clip, 'right').length || 1; frameI = (frameI + d + n) % n; }
+
+function renderIssues() {
+  if (!issEl || !cur) return; const r = results.get(cur.id + '|' + cur.role); if (!r) return;
+  const order = { e: 0, w: 1, i: 2 }; const xs = [...r].sort((x, y) => order[x.lv] - order[y.lv]);
+  issEl.innerHTML = xs.length ? '' : '<li class="mut">ไม่พบปัญหาที่ตรวจอัตโนมัติได้ — ยังต้องดูด้วยตาอีกที</li>';
+  for (const x of xs) {
+    const li = document.createElement('li'); li.className = x.lv;
+    li.innerHTML = `<b>${x.lv === 'e' ? 'ผิดพลาด' : x.lv === 'w' ? 'เตือน' : 'ข้อมูล'}</b><span>${x.clip ? `<a>${esc(CLIP_TH[x.clip] ?? x.clip)}${x.f != null ? ' · เฟรม ' + (x.f + 1) : ''}</a> — ` : ''}${esc(x.msg)}</span>`;
+    const link = li.querySelector('a'); if (link) link.onclick = () => { if (hasClip(cur, x.clip)) { clip = x.clip; frameI = x.f ?? 0; playing = x.f == null; renderView(); renderIssues(); renderStrip(); } };
+    issEl.appendChild(li);
+  }
+}
+async function renderStrip() {
+  if (!strip || !cur) return; strip.innerHTML = '';
+  const fr = frames(cur, clip, 'right'); const r = results.get(cur.id + '|' + cur.role) ?? [];
+  if (!fr.length) { strip.innerHTML = `<span class="mut small">ยังไม่มีท่า “${esc(CLIP_TH[clip] ?? clip)}” ในชีตนี้</span>`; return; }
+  for (let i = 0; i < fr.length; i++) {
+    const f = fr[i], im = await loadImg(f.url); const lv = r.filter(x => x.clip === clip && x.f === i);
+    const d = document.createElement('div'); d.className = 'fr' + (i === frameI ? ' on' : '') + (lv.some(x => x.lv === 'e') ? ' e' : lv.some(x => x.lv === 'w') ? ' w' : '');
+    const c = document.createElement('canvas'), H = 72, W = Math.round(H * f.sw / f.sh); c.width = W; c.height = H;
+    const g = c.getContext('2d'); g.fillStyle = '#0d0d10'; g.fillRect(0, 0, W, H); if (im) g.drawImage(im, f.sx, f.sy, f.sw, f.sh, 0, 0, W, H);
+    d.appendChild(c); d.append(String(i + 1)); d.title = lv.map(x => x.msg).join('\n');
+    d.onclick = () => { playing = false; frameI = i; [...strip.children].forEach((e, k) => e.classList.toggle('on', k === i)); };
+    strip.appendChild(d);
+  }
+}
+function renderReview() {
+  const el = document.getElementById('rev'); if (!el) return; el.innerHTML = '';
+  const rv = review[cur.id] ??= {};
+  for (const c of clipList(cur)) {
+    const st = rv[c] ?? {};
+    const name = document.createElement('span'); name.textContent = CLIP_TH[c] ?? c;
+    const s = document.createElement('span'); s.className = 's';
+    s.innerHTML = `<button class="btn ok ${st.s === 'ok' ? 'on' : ''}">ผ่าน</button> <button class="btn bad ${st.s === 'bad' ? 'on' : ''}">ต้องแก้</button>`;
+    const note = document.createElement('input'); note.type = 'text'; note.placeholder = 'หมายเหตุ เช่น หันผิดทางเฟรม 3'; note.value = st.n ?? '';
+    const save = () => { const v = { s: st.s, n: note.value }; if (!v.s && !v.n) delete rv[c]; else rv[c] = v; store.set('review', review); renderList(); };
+    s.children[0].onclick = () => { st.s = st.s === 'ok' ? undefined : 'ok'; save(); renderReview(); };
+    s.children[1].onclick = () => { st.s = st.s === 'bad' ? undefined : 'bad'; save(); renderReview(); };
+    note.onchange = save;
+    el.append(name, s, note);
+  }
+}
+// ------------------------------------------------------------------ skill origin (cast point)
+let layoutR = null; // last drawn layout of the right canvas: {gx, gy, s, body}
+function setCast(e) {
+  if (!layoutR || !cur) return; const rect = cvR.getBoundingClientRect();
+  const x = (e.clientX - rect.left) * (cvR.width / rect.width), y = (e.clientY - rect.top) * (cvR.height / rect.height);
+  const bodyPx = layoutR.body * layoutR.s;
+  (castPts[cur.id] ??= {})[clip] = { x: +((x - layoutR.gx) / bodyPx).toFixed(3), y: +((layoutR.gy - y) / bodyPx).toFixed(3), f: frameI };
+  store.set('cast', castPts); renderCast();
+  checkAndStore(cur).then(() => { renderIssues(); renderList(); });
+}
+function renderCast() {
+  const el = document.getElementById('castInfo'); if (!el) return;
+  const p = castPts[cur.id]?.[clip];
+  el.innerHTML = p ? `ท่า <b>${esc(CLIP_TH[clip] ?? clip)}</b>: ปล่อยที่ x = <b>${p.x}</b>, y = <b>${p.y}</b> (หน่วย = ความสูงตัว, วัดจากเท้า, ตอนหันขวา) · ปล่อยที่เฟรม <b>${p.f + 1}</b>
+    <br><span class="mut">ตอนหันซ้าย เกมต้องใช้ x = ${-p.x} (กลับเครื่องหมาย) · คลิกขวาที่ช่อง “ขวา” เพื่อลบ · กด “ส่งออกรายงาน” เพื่อเอาตัวเลขไปใส่ในเกม</span>`
+    : `<span class="mut">ยังไม่ได้วาง — เลือกเฟรมที่อาวุธ/มือปล่อยพลัง แล้วคลิกตรงจุดนั้นบนช่อง “หันขวา” (ตอนนี้เกมปล่อยทุกสกิลจากจุดตายตัว: หน้า 0.45 สูง 1.05 หน่วยโลก)</span>`;
+}
+
+// ------------------------------------------------------------------ prompts (docs/prompts, scripts/sprites/monster_prompts.mjs)
+let PROMPTS = {};
+fetch('prompts.json').then(r => r.ok ? r.json() : {}).then(p => { PROMPTS = p; if (cur) renderPrompt(); }).catch(() => {});
+function renderPrompt() {
+  const el = document.getElementById('promptBody'); if (!el || !cur) return;
+  const set = PROMPTS[cur.id] ?? PROMPTS[cur.sheet] ?? PROMPTS[cur.base], c = set?.clips[canon(clip)];
+  if (!c) { el.innerHTML = '<span class="mut">ไม่มี prompt สำหรับตัว/ท่านี้</span>'; return; }
+  el.innerHTML = `<p style="margin:0 0 6px">${c.frames} เฟรม · ช่อง ${set.cell}×${set.cell} px · แนบภาพปัจจุบันของตัวนี้เป็นภาพอ้างอิง</p><textarea readonly style="width:100%;height:150px;font:12px monospace">${esc(c.prompt)}</textarea><div class="row"><button class="btn" id="cpPrompt">คัดลอก prompt</button></div>`;
+  document.getElementById('cpPrompt').onclick = async (e) => { const t = el.querySelector('textarea'); try { await navigator.clipboard.writeText(t.value); e.target.textContent = 'คัดลอกแล้ว ✓'; } catch { t.select(); e.target.textContent = 'กด Ctrl+C'; } };
+}
+
+// ------------------------------------------------------------------ drawing
+const BG = { dark: ['#1d1d24', '#26262f'], grass: ['#3f5a2e', '#4a6936'], stone: ['#55524c', '#625f58'], light: ['#d9d5cb', '#e8e4da'], check: null };
+function drawBg(g, W, H) {
+  if (ui.bg === 'check') { for (let y = 0; y < H; y += 16) for (let x = 0; x < W; x += 16) { g.fillStyle = ((x + y) / 16) % 2 ? '#3a3a42' : '#2c2c33'; g.fillRect(x, y, 16, 16); } return; }
+  const [a, b] = BG[ui.bg]; const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, a); gr.addColorStop(1, b); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+}
+async function drawSide(cv, side, t) {
+  const g = cv.getContext('2d'), W = cv.width, H = cv.height; drawBg(g, W, H);
+  const a = cur; const fr = frames(a, clip, side);
+  const gx = W / 2, gy = H * 0.8;
+  if (ui.pivot) { g.strokeStyle = '#58d0ff88'; g.lineWidth = 1; g.beginPath(); g.moveTo(0, gy + .5); g.lineTo(W, gy + .5); g.stroke(); }
+  if (!fr.length) { g.fillStyle = '#ff8d8d'; g.font = '15px sans-serif'; g.textAlign = 'center'; g.fillText(`ยังไม่มีท่า “${CLIP_TH[clip] ?? clip}”`, W / 2, H / 2); return null; }
+  const i = Math.min(frameI, fr.length - 1), f = fr[i];
+  // fit: idle body ≈ 46% of the stage height, times zoom; stills keep their world size relative to the base pose
+  const body = f.still ? f.sh * (fr[0].baseH / f.worldH) : f.body;
+  const s = (H * 0.46 / body) * ui.zoom;
+  const drawCell = async (fx, alpha) => {
+    const im = await loadImg(fx.url); if (!im) return;
+    const sc = fx.still ? (H * 0.46 * ui.zoom * (fx.worldH / fx.baseH)) / fx.sh : s;
+    const w = fx.sw * sc, h = fx.sh * sc, px = fx.fx * w, py = (1 - fx.fy) * h;
+    g.save(); g.globalAlpha = alpha; g.translate(gx, gy); if (fx.flip) g.scale(-1, 1);
+    g.imageSmoothingQuality = 'high'; g.drawImage(im, fx.sx, fx.sy, fx.sw, fx.sh, -px, -py, w, h);
+    if (alpha === 1 && ui.cell) { g.strokeStyle = '#777'; g.setLineDash([4, 4]); g.strokeRect(-px, -py, w, h); g.setLineDash([]); }
+    if (alpha === 1 && ui.box) { const r = await analyse(fx); if (r.box) { g.strokeStyle = '#ffd36b'; g.lineWidth = 1 / 1; g.strokeRect(-px + r.box[0] * sc, -py + r.box[1] * sc, (r.box[2] - r.box[0]) * sc, (r.box[3] - r.box[1]) * sc); } }
+    g.restore();
+  };
+  if (ui.onion && fr.length > 1) await drawCell(fr[(i - 1 + fr.length) % fr.length], 0.28);
+  await drawCell(f, 1);
+  if (ui.pivot) { g.strokeStyle = '#58d0ff'; g.lineWidth = 2; g.beginPath(); g.moveTo(gx - 8, gy); g.lineTo(gx + 8, gy); g.moveTo(gx, gy - 8); g.lineTo(gx, gy + 8); g.stroke(); }
+  const p = castPts[a.id]?.[clip];
+  if (p) { const bodyPx = body * s, x = gx + (side === 'right' ? p.x : -p.x) * bodyPx, y = gy - p.y * bodyPx, on = i === p.f;
+    g.strokeStyle = '#ff6bd6'; g.fillStyle = on ? '#ff6bd6' : '#ff6bd655'; g.lineWidth = 2; g.beginPath(); g.arc(x, y, on ? 9 : 6, 0, Math.PI * 2); g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x + (side === 'right' ? 40 : -40), y); g.stroke(); }
+  return { gx, gy, s, body };
+}
+let drawing = false;
+async function tick(now) {
+  requestAnimationFrame(tick);
+  if (!cur || !cvR || drawing) return;
+  drawing = true; try { await frameStep(now); } finally { drawing = false; }
+}
+async function frameStep(now) {
+  const fr = frames(cur, clip, 'right'); const n = fr.length || 1;
+  if (playing && n > 1) {
+    const kind = canon(clip), fps = FPS[kind] ?? 12; acc += Math.min(0.1, (now - lastT) / 1000);
+    if (acc >= 1 / fps) { acc = 0; frameI = frameI + 1; if (frameI >= n) frameI = kind === 'death' ? n - 1 : 0;
+      if (kind === 'death' && frameI === n - 1) { if (!cur._holdT) cur._holdT = now; if (now - cur._holdT > 1200) { frameI = 0; cur._holdT = 0; } } }
+  }
+  lastT = now;
+  const fi = document.getElementById('fi'); if (fi) fi.textContent = fr.length ? `เฟรม ${Math.min(frameI, n - 1) + 1} / ${n}` : '';
+  if (strip) [...strip.children].forEach((e, k) => e.classList?.toggle('on', k === frameI));
+  await drawSide(cvL, 'left'); layoutR = await drawSide(cvR, 'right');
+}
+
+// ------------------------------------------------------------------ scan all / export / upload
+document.getElementById('scanAll').onclick = async () => {
+  const bar = document.querySelector('#prog i'); let k = 0;
+  for (const a of actors) { await checkAndStore(a); bar.style.width = (++k / actors.length * 100) + '%'; if (k % 4 === 0) renderList(); }
+  renderList(); if (cur) { renderIssues(); renderStrip(); }
+};
+document.getElementById('export').onclick = async () => {
+  const rows = [];
+  for (const a of actors.filter(x => x.role !== 'test')) {
+    const r = results.get(a.id + '|' + a.role) ?? await checkAndStore(a);
+    rows.push({ id: a.id, name: a.name, role: a.role, sheet: a.sheet, sourceFacing: sourceFacing(a), issues: r, review: review[a.id] ?? {}, castPoints: castPts[a.id] ?? {} });
+  }
+  showReport(JSON.stringify({ exported: new Date().toISOString(), dirConfig: dirCfg, facingOverrides: facing, actors: rows }, null, 1));
+};
+function showReport(text) {
+  const d = document.getElementById('rep'); d.querySelector('textarea').value = text; d.showModal();
+}
+const dlg = document.getElementById('dlg');
+document.getElementById('upload').onclick = () => dlg.showModal();
+dlg.addEventListener('close', async () => {
+  if (dlg.returnValue !== 'ok') return;
+  const file = document.getElementById('upFile').files[0]; if (!file) return;
+  const url = URL.createObjectURL(file), im = await loadImg(url); if (!im) { viewEl.insertAdjacentHTML('afterbegin', '<p style="color:var(--red)">เปิดรูปที่เลือกไม่ได้</p>'); return; }
+  const spec = document.getElementById('upClips').value.split(',').map(s => s.trim()).filter(Boolean).map(s => { const [k, v] = s.split(':'); return [k.trim(), +v]; });
+  const cols = Math.max(1, +document.getElementById('upCols').value || Math.max(...spec.map(x => x[1])));
+  const rows = spec.length, cw = Math.floor(im.width / cols), ch = Math.floor(im.height / rows);
+  const clips = {}; spec.forEach(([k, n], r) => clips[k] = [r * cols, Math.min(n, cols)]);
+  const key = 'test-' + Date.now();
+  // foot pivot: lowest opaque row of the first idle frame
+  const sheet = { cw, ch, cols, n: rows * cols, fx: +document.getElementById('upFx').value || 0.5, fy: 0.02, bodyPx: ch * 0.85, clips, url, size: [im.width, im.height], exists: true, facesLeft: document.getElementById('upFace').value === 'left' };
+  M.sheets[key] = sheet;
+  const r0 = await analyse({ url, sx: 0, sy: 0, sw: cw, sh: ch });
+  if (r0.box) { sheet.fy = +(1 - (r0.box[3] + 1) / ch).toFixed(4); sheet.bodyPx = r0.box[3] - r0.box[1]; }
+  const a = { id: key, role: 'test', testRole: document.getElementById('upRole').value, name: document.getElementById('upName').value || file.name, sheet: key, base: null, stillClips: {} };
+  actors.push(a); renderTabs(); select(a);
+});
+document.getElementById('q').oninput = renderList;
+document.getElementById('repCopy').onclick = async (e) => { const t = document.querySelector('#rep textarea'); try { await navigator.clipboard.writeText(t.value); e.target.textContent = 'คัดลอกแล้ว ✓'; } catch { t.select(); e.target.textContent = 'กด Ctrl+C'; } };
+document.addEventListener('keydown', (e) => {
+  if (e.target.matches('input,textarea,select')) return;
+  if (e.key === ' ') { e.preventDefault(); playing = !playing; const b = document.getElementById('play'); if (b) b.textContent = playing ? '❚❚ หยุด' : '▶ เล่น'; }
+  if (e.key === 'ArrowRight') { playing = false; step(1); } if (e.key === 'ArrowLeft') { playing = false; step(-1); }
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { const xs = [...listEl.querySelectorAll('.item')]; const i = xs.findIndex(x => x.classList.contains('on')); const n = xs[i + (e.key === 'ArrowDown' ? 1 : -1)]; if (n) { e.preventDefault(); n.click(); n.scrollIntoView({ block: 'nearest' }); } }
+});
+
+// ------------------------------------------------------------------ boot
+fetch('manifest.json').then(r => r.json()).then(m => {
+  M = m;
+  // de-duplicate (a species can appear as monster and elite) and keep a stable, readable order
+  const seen = new Set();
+  for (const a of m.actors) { const k = a.id + '|' + a.role + '|' + a.name; if (seen.has(k)) continue; seen.add(k); actors.push(a); }
+  renderTabs(); renderList();
+  const first = actors.find(a => ui.tab === 'all' || a.role === ui.tab) ?? actors[0]; if (first) select(first);
+  requestAnimationFrame((t) => { lastT = t; tick(t); });
+}).catch(e => { viewEl.innerHTML = `<p style="color:var(--red)">โหลด manifest.json ไม่ได้: ${esc(e.message)}<br>รัน <code>node --experimental-transform-types scripts/sprites/build_inspector_manifest.mjs</code> ก่อน</p>`; });
+</script>
+</body>
+</html>

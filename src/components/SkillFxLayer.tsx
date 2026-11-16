@@ -5,6 +5,7 @@ import {Vector3} from 'three';
 import {useGameStore} from '@/store/useGameStore';
 import {FX_DURATION,prerollFx,spawnChannelFx,spawnCustomSkillFx,spawnSkillFx,type FxHandle,type FxKind} from '@/game/fx/skillFx';
 import {paintedFor,spawnPaintedFx} from '@/game/fx/paintedFx';
+import {sideYaw} from '@/game/sprites/facing';
 
 const KINDS:readonly string[]=['attack','skill','buff','special'];
 /** fraction of each effect before it visibly connects — a skill released after a cast bar skips its wind-up */
@@ -25,16 +26,19 @@ export default function SkillFxLayer(){
     const alive=s.monsters.filter(m=>m.hp>0);let target=alive.find(m=>m.id===s.selectedMonster);
     if(!target&&a.kind!=='buff'){let best=9;for(const m of alive){const d=Math.hypot(m.x-px,m.z-pz);if(d<best){best=d;target=m;}}}
     if(target&&a.kind!=='buff')yaw.current=Math.atan2(target.x-px,target.z-pz);
+    // Nov 2026 left / right only: slashes, arcs and casts leave from the side the hero faces on screen (sideYaw = the same
+    // rule spriteActor mirrors the body by); projectiles still fly to the real target
+    const side=sideYaw(yaw.current);
     const cls=a.fx?.cls??s.player.classId??'Berserker',kind=(a.fx?.kind??a.kind) as FxKind,origin=new Vector3(px,0,pz);
     if(a.clip==='Channel'&&a.channel){
-     channel.current=spawnChannelFx(scene,{cls,origin,yaw:yaw.current,durationSec:a.duration/1000});live.current.push(channel.current);
+     channel.current=spawnChannelFx(scene,{cls,origin,yaw:side,durationSec:a.duration/1000});live.current.push(channel.current);
     }else if(a.clip!=='Channel'||a.skillId){ // round 20: a channelled spin (Whirlwind) plays its own effect
      // round 13: a painted (Codex) effect for this skill / combo step wins over the procedural one
      // round 20: the Berserker's painted basic swings belong to the Berserker only; a skill with its own effect uses it
      const painted=paintedFor(a.skillId??(a.kind==='attack'&&a.combo!=null&&cls==='Berserker'?`basic-${a.combo%3}`:undefined));
-     const custom=painted?null:spawnCustomSkillFx(scene,a.skillId,{origin,yaw:yaw.current,target:target?new Vector3(target.x,0,target.z):null,follow:()=>{const p=useGameStore.getState().player.position;return new Vector3(p[0],0,p[1]);}});
-     const fx=custom?custom:painted?spawnPaintedFx(scene,painted,{origin,yaw:yaw.current,camera:()=>camera,durationSec:a.duration/1000})
-      :spawnSkillFx(scene,{cls,kind,origin,yaw:yaw.current,target:target&&a.kind!=='buff'?new Vector3(target.x,0,target.z):null,combo:a.combo,power:a.power});
+     const custom=painted?null:spawnCustomSkillFx(scene,a.skillId,{origin,yaw:side,target:target?new Vector3(target.x,0,target.z):null,follow:()=>{const p=useGameStore.getState().player.position;return new Vector3(p[0],0,p[1]);}});
+     const fx=custom?custom:painted?spawnPaintedFx(scene,painted,{origin,yaw:side,camera:()=>camera,durationSec:a.duration/1000})
+      :spawnSkillFx(scene,{cls,kind,origin,yaw:side,target:target&&a.kind!=='buff'?new Vector3(target.x,0,target.z):null,combo:a.combo,power:a.power});
      // released casts and charged shots start at their release so the hit lands right after the bar / draw
      if(!custom&&(a.released||a.power!=null))prerollFx(fx,painted?painted.hitAt*.8:RELEASE_AT[kind]*FX_DURATION[kind]);
      live.current.push(fx);

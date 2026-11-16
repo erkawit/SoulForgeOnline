@@ -48,7 +48,7 @@ export default function AnimatedCharacter({ job, clip = 'Idle', replay = 0, dura
   useEffect(() => { actor.skillHint = skill ?? null; applyClip(actor, clip, duration); }, [actor, clip, replay, duration, skill]);
   useFrame(({ camera }, dt) => {
     spriteView.camera = camera;
-    if (speedRef) actor.locoSpeed = Math.max(0.7, Math.min(2.4, speedRef.current / 3));
+    if (speedRef) { actor.locoSpeed = Math.max(0.7, Math.min(2.4, speedRef.current / 3)); actor.groundSpeed = speedRef.current; } // m/s: times the walk to the feet
     actor.update(dt);
   });
   return <group ref={holder} />;

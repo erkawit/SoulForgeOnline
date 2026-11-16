@@ -184,7 +184,7 @@ function FollowCamera({ painted }: { painted: boolean }) {
       <OrthographicCamera makeDefault position={[60, 60, 60]} zoom={46} near={0.1} far={420} />
       <OrbitControls ref={controls} enablePan={false} enableDamping dampingFactor={0.09}
         minZoom={28} maxZoom={painted ? 60 : 96} minPolarAngle={ISO_POLAR} maxPolarAngle={ISO_POLAR}
-        minAzimuthAngle={painted ? Math.PI / 4 : -Infinity} maxAzimuthAngle={painted ? Math.PI / 4 : Infinity}
+        minAzimuthAngle={Math.PI / 4} maxAzimuthAngle={Math.PI / 4} /* Nov 2026: yaw locked everywhere — sprites show only left / right (sprites/facing.ts) */
         mouseButtons={{ LEFT: 0, MIDDLE: 1, RIGHT: 2 }} />
     </>
   );
@@ -195,8 +195,17 @@ function Creature({ mob }: { mob: Monster }) {
   const root = useRef<Group>(null);
   const rigged = hasMonsterModel(mob.name);
   const visible = useDeathLinger(mob);
+  // Nov 2026: the world tick moves monsters 4× a second; glide between ticks at a steady pace instead of hopping
+  const glide = useRef({ from: [mob.x, mob.z] as [number, number], to: [mob.x, mob.z] as [number, number], at: 0, dur: 0.25, now: [mob.x, mob.z] as [number, number] });
   useFrame((state) => {
-    if (root.current && !rigged) root.current.children[0].position.y = Math.sin(state.clock.elapsedTime * 1.9 + mob.x) * 0.17;
+    const g = glide.current, t = state.clock.elapsedTime;
+    if (mob.x !== g.to[0] || mob.z !== g.to[1]) {
+      const jump = Math.hypot(mob.x - g.now[0], mob.z - g.now[1]) > 3; // respawn / warp: no slide across the map
+      g.dur = Math.min(0.5, Math.max(0.1, t - g.at)); g.at = t; g.from = jump ? [mob.x, mob.z] : [g.now[0], g.now[1]]; g.to = [mob.x, mob.z];
+    }
+    const k = Math.min(1, (t - g.at) / g.dur);
+    g.now = [g.from[0] + (g.to[0] - g.from[0]) * k, g.from[1] + (g.to[1] - g.from[1]) * k];
+    if (root.current) { root.current.position.set(g.now[0], 0.17, g.now[1]); if (!rigged) root.current.children[0].position.y = Math.sin(t * 1.9 + mob.x) * 0.17; }
   });
   if (!visible) return null;
   const alive = mob.hp > 0, bar = mob.boss ? 4.3 : 2.69;
@@ -204,13 +213,8 @@ function Creature({ mob }: { mob: Monster }) {
     e.stopPropagation(); clickTarget.set = false;
     useGameStore.getState().selectMonster(mob.id);
   };
-  return <group ref={root} position={[mob.x, 0.17, mob.z]} onClick={handleClick}>
+  return <><group ref={root} position={[glide.current.now[0], 0.17, glide.current.now[1]]} onClick={handleClick}>
     <MonsterModel mob={mob}/>
-    {mob.telegraph&&<group position={[mob.telegraph.target[0]-mob.x,.1,mob.telegraph.target[1]-mob.z]}>
-      <mesh rotation={[-Math.PI/2,0,0]}><ringGeometry args={[mob.telegraph.radius-.09,mob.telegraph.radius,48]}/><meshBasicMaterial color={mob.telegraph.kind==='bolt'?'#b98cff':'#ff8a51'} transparent opacity={.9} side={2}/></mesh>
-      {mob.telegraph.kind==='skill'&&<mesh rotation={[-Math.PI/2,0,0]} position={[0,.01,0]}><circleGeometry args={[mob.telegraph.radius,48]}/><meshBasicMaterial color="#ffae3a" transparent opacity={.28} depthWrite={false}/></mesh>}
-      <Label3D position={[0,.3,0]} text={`${mob.telegraph.kind==='skill'?`★ ${mob.telegraph.name ?? 'SKILL'}`:mob.telegraph.kind.toUpperCase()} · หลบ!`}/>
-    </group>}
     {alive&&<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.06, 0]}>
       <ringGeometry args={[0.82, 0.92, 40]} />
       <meshBasicMaterial color={selected ? '#ff8b77' : '#9c59d8'} side={2} transparent opacity={selected ? 1 : 0.42} />
@@ -224,7 +228,14 @@ function Creature({ mob }: { mob: Monster }) {
       <planeGeometry args={[1.65 * mob.hp / mob.maxHp, 0.085]} />
       <meshBasicMaterial color="#f07e89" depthTest={false} />
     </mesh></>}
-  </group>;
+  </group>
+    {/* the warning ring stays exactly on the ground it marks (world position), whatever the body is doing */}
+    {mob.telegraph&&<group position={[mob.telegraph.target[0],.27,mob.telegraph.target[1]]}>
+      <mesh rotation={[-Math.PI/2,0,0]}><ringGeometry args={[mob.telegraph.radius-.09,mob.telegraph.radius,48]}/><meshBasicMaterial color={mob.telegraph.kind==='bolt'?'#b98cff':'#ff8a51'} transparent opacity={.9} side={2}/></mesh>
+      {mob.telegraph.kind==='skill'&&<mesh rotation={[-Math.PI/2,0,0]} position={[0,.01,0]}><circleGeometry args={[mob.telegraph.radius,48]}/><meshBasicMaterial color="#ffae3a" transparent opacity={.28} depthWrite={false}/></mesh>}
+      <Label3D position={[0,.3,0]} text={`${mob.telegraph.kind==='skill'?`★ ${mob.telegraph.name ?? 'SKILL'}`:mob.telegraph.kind.toUpperCase()} · หลบ!`}/>
+    </group>}
+  </>;
 }
 
 /** Round 16: ground loot = the item's own framed icon card (game/fx/lootIcon.ts), floating a little above the ground and

@@ -15,6 +15,7 @@ import { BREATH_ANIMS, BREATH_PERIOD } from './breath';
 import { placeLayers, rigFrame, weaponSheet, type LayeredRig } from './layered';
 import { HERO_RIGS } from './rigs';
 import { artUrl } from '../artVersion';
+import { TWO_DIR_ROW } from './facing';
 // layered heroes register their body sheets as ordinary 8-way flipbooks
 // round 20: a class's own painted sheet (sprites/classAnims.ts, registered by the catalog) wins over the layered rig
 for (const [key, { rig, ids }] of Object.entries(HERO_RIGS)) { SPRITE_ANIMS[key] = rig.anim; for (const id of ids) ANIM_ALIAS[id] ??= key; }
@@ -163,20 +164,22 @@ type Layer = { mesh: Mesh; mat: ShaderMaterial; frame: string; alpha: number; br
 const ease = (x: number) => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
 const damp = (k: number, dt: number) => 1 - Math.exp(-k * dt);
 const _q = new Quaternion(), _q2 = new Quaternion(), _v = new Vector3(), _v2 = new Vector3(), _right = new Vector3(), _fwd = new Vector3();
-/** 8-way sheets list their rows S, SW, W, NW, N, NE, E, SE; screen sectors count from S toward E */
-const SECTOR_ROW = [0, 7, 6, 5, 4, 3, 2, 1];
 
 /** anim: use this flipbook instead of the actor's own (e.g. 'm-Warrior-lite' on the login screen) · pace: playback speed (1 = normal) */
 export type SpriteActorOpts = { scale?: number; tint?: string; shadow?: boolean; glow?: string; anim?: string; pace?: number };
 export class SpriteActor {
   readonly isSprite = true;
   root = new Group(); /** faces the camera; root itself keeps the game's yaw */ pivot = new Group();
-  def: ActorDef; height: number; dead = false; loco = 'Idle'; locoSpeed = 1; timeScale = 1; hitStop = 0;
+  def: ActorDef; height: number; dead = false; loco = 'Idle'; locoSpeed = 1;
+  /** metres per second the actor is moving over the ground (set each frame by its owner); -1 = unknown */
+  groundSpeed = -1; timeScale = 1; hitStop = 0;
   private layers: Layer[] = []; private shadow: Mesh | null = null; private scale: number;
   private t = Math.random() * 10; private shot: { name: string; def: SpriteClip; t: number; dur: number; loop: boolean; hold: boolean } | null = null;
   private runW = 0; private phase = 0; private flip = 1; private flipTarget = 1; private flipLock = 0;
   /** 8-way flipbooks: the sheet row for where the actor faces on screen (0 = S, toward the camera) */
-  private dirRow = 0; private dirAngle = 0;
+  /** 8-way sheets: the one row shown (facing.ts TWO_DIR_ROW); side = screen side faced (+1 right, -1 left); mirror = the
+   *  pivot's x mirror for 8-way sheets (eased like flip); sideSnap = turn at once (start of an attack / skill) */
+  private dirRow = TWO_DIR_ROW; private side: 1 | -1 = 1; private mirror = 1; private sideSnap = false;
   private cloth = new Vector2(); private clothV = new Vector2(); private hair = new Vector2(); private hairV = new Vector2();
   private lastPos = new Vector3(); private hasLast = false; private vel = 0; private speedSmooth = 0;
   private flashT = 0; private flashMax = 0.16; private flashColor = new Color('#ff3b30'); private opacity = 1;
@@ -377,20 +380,25 @@ export class SpriteActor {
     if (cam) {
       cam.getWorldQuaternion(_q); this.root.getWorldQuaternion(_q2); this.pivot.quaternion.copy(_q2.invert().multiply(_q));
       _right.set(1, 0, 0).applyQuaternion(_q); const fx = Math.sin(yaw) * _right.x + Math.cos(yaw) * _right.z;
+      // Left / right only (facing.ts): the side comes from where the yaw points on screen. Walking straight up / down the
+      // screen keeps the last side (dead band); an attack or skill turns at once and never waits for the band, so the
+      // body always faces the side its slash / effect goes (skillFx and paintedFx snap to the same side).
+      const acting = !!this.shot && !this.dead && this.shot.name !== 'Hit' && this.shot.name !== 'Talk';
+      const side = !acting && Math.abs(fx) < 0.18 ? this.side : fx >= 0 ? 1 : -1; // same tie rule as facing.screenSide
+      this.flipLock -= d;
+      if (side !== this.side && (this.flipLock <= 0 || acting)) { this.side = side; this.flipLock = 0.18; if (acting) this.sideSnap = true; }
       if (this.anim?.anim.dirs) {
-        // directional sheet: pick the painted row for the screen-space facing (hysteresis so it never flickers on a sector edge)
-        _fwd.set(0, 0, -1).applyQuaternion(_q); _fwd.y = 0; _fwd.normalize(); const rx = _right.x, rz = _right.z, rl = Math.hypot(rx, rz) || 1;
-        const sx = (Math.sin(yaw) * rx + Math.cos(yaw) * rz) / rl, sz = Math.sin(yaw) * _fwd.x + Math.cos(yaw) * _fwd.z;
-        const a = Math.atan2(sx, -sz), diff = Math.atan2(Math.sin(a - this.dirAngle), Math.cos(a - this.dirAngle));
-        if (Math.abs(diff) > Math.PI / 8 + 0.12) { const sector = ((Math.round(a / (Math.PI / 4)) % 8) + 8) % 8; this.dirAngle = sector * Math.PI / 4; this.dirRow = SECTOR_ROW[sector]; }
-        this.flipTarget = 1;
+        // 8-way sheet: keep only its "screen right" row and mirror the whole pivot (body + hair / weapon layers + overlays)
+        this.dirRow = TWO_DIR_ROW; this.flipTarget = 1;
       } else {
-      this.flipLock -= d; const want = Math.abs(fx) < 0.18 ? this.flipTarget : (fx >= 0 ? 1 : -1) * ((this.anim ? this.anim.anim.facesLeft : def.facesLeft) ? -1 : 1);
-      if (want !== this.flipTarget && this.flipLock <= 0) { this.flipTarget = want; this.flipLock = 0.18; }
+        this.flipTarget = this.side * ((this.anim ? this.anim.anim.facesLeft : def.facesLeft) ? -1 : 1);
       }
     }
-    // a turn reads as a quick squash through the edge instead of an instant mirror
+    // a turn reads as a quick squash through the edge instead of an instant mirror — except at the start of an attack
+    if (this.sideSnap) { this.flip = this.flipTarget; this.mirror = this.anim?.anim.dirs ? this.side : 1; this.sideSnap = false; }
     this.flip += (this.flipTarget - this.flip) * damp(22, d); const flipMag = Math.max(0.12, Math.abs(this.flip));
+    this.mirror += ((this.anim?.anim.dirs ? this.side : 1) - this.mirror) * damp(22, d);
+    const mirrorMag = Math.max(0.12, Math.abs(this.mirror)); this.pivot.scale.set(this.scale * (this.mirror >= 0 ? mirrorMag : -mirrorMag), this.scale, this.scale);
     // ---------------- velocity (world) -> screen-space x speed for cloth/hair springs
     this.root.getWorldPosition(_v);
     if (this.hasLast && d > 0) { _v2.subVectors(_v, this.lastPos); const sp = _v2.length() / Math.max(1e-4, dt); this.speedSmooth += ((sp < 30 ? sp : 0) - this.speedSmooth) * damp(10, d); if (cam) this.vel = sp < 30 ? _v2.dot(_right) / Math.max(1e-4, dt) : 0; }
@@ -515,9 +523,12 @@ export class SpriteActor {
     if (shot) name = (shot.name !== 'Hit' && shot.name !== 'Talk' && this.skillHint && a.clips['sk:' + this.skillHint] ? 'sk:' + this.skillHint : null)
       ?? (SHOT_CLIPS[shot.name] ?? ['attack']).find(c => a.clips[c]) ?? 'idle';
     else if (!this.dead && this.runW > 0.5) {
-      // walk ↔ run with a dead band (1.15 … 1.4) so a speed hovering near the switch point never flickers between them
-      const wasRun = this.animClip === 'run', wantRun = wasRun ? this.locoSpeed > 1.15 : this.locoSpeed > 1.4;
-      name = wantRun && a.clips.run ? 'run' : a.clips.walk ? 'walk' : 'run'; fps = (name === 'run' ? RUN_FPS : WALK_FPS) * Math.min(1.6, Math.max(0.7, this.locoSpeed));
+      // Nov 2026: always the walk (a calm step, never the run clip while a walk exists), timed to the ground speed so the
+      // feet do not skate: one cycle per strideM metres. Without a known speed, the old rate scaled by locoSpeed.
+      name = a.clips.walk ? 'walk' : 'run';
+      const n = (a.clips[name] ?? [0, 1])[1], stride = a.strideM ?? WALK_STRIDE * this.height / (this.def.headRatio ?? 0.94);
+      fps = this.groundSpeed >= 0 ? Math.min(WALK_FPS_MAX, Math.max(WALK_FPS_MIN, n * this.groundSpeed / stride))
+        : (name === 'run' ? RUN_FPS : WALK_FPS) * Math.min(1.6, Math.max(0.7, this.locoSpeed));
     }
     const c = a.clips[name] ?? a.clips.idle ?? [0, 1];
     if (name !== this.animClip) {
@@ -549,4 +560,7 @@ const SHOT_CLIPS: Record<string, string[]> = {
 };
 /** flipbook playback rates — painted sheets have few frames, so slower reads as smoother (was 8 / 10 / 12) */
 const IDLE_FPS = 5, WALK_FPS = 8, RUN_FPS = 10, TALK_FPS = 3.2;
+/** walk cycle length in actor heights (measured on the painted class walks: 0.95 … 1.5 h, most ≈ 1.15 h) and the
+ *  playback limits, so a very slow drift does not freeze the legs and a speed buff never turns the walk into a blur */
+const WALK_STRIDE = 1.15, WALK_FPS_MIN = 4, WALK_FPS_MAX = 13;
 const FALLBACK: Record<string, string> = { Attack2: 'Attack', Skill: 'Attack', Special: 'Skill', Buff: 'Channel', Guard: 'Channel' };

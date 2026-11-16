@@ -26,7 +26,11 @@ function BaseClassActor(){
   // so the swing and the effect point the same way
   const a=s.action;if(!target&&(a.kind==='attack'||a.kind==='skill'||a.kind==='special')&&Date.now()-a.stamp<Math.max(400,a.duration)){let best=9;for(const m of s.monsters){if(m.hp<=0)continue;const d=Math.hypot(m.x-p[0],m.z-p[1]);if(d<best){best=d;target=m;}}}
   if(target)facing.current=Math.atan2(target.x-p[0],target.z-p[1]);
-  root.current.rotation.y+=(MathUtils.euclideanModulo(facing.current-root.current.rotation.y+Math.PI,Math.PI*2)-Math.PI)*(1-Math.exp(-14*Math.min(delta,.05))); // Facing belongs to game, never root-motion clips.
+  // Nov 2026 (left / right only): an attack or skill on a target turns at once, so the body, the swing and the effect
+  // all start on the target's side of the screen; walking still eases round
+  const striking=!!target&&(a.kind==='attack'||a.kind==='skill'||a.kind==='special')&&Date.now()-a.stamp<Math.max(400,a.duration);
+  if(striking)root.current.rotation.y=facing.current;
+  else root.current.rotation.y+=(MathUtils.euclideanModulo(facing.current-root.current.rotation.y+Math.PI,Math.PI*2)-Math.PI)*(1-Math.exp(-14*Math.min(delta,.05))); // Facing belongs to game, never root-motion clips.
   const active=Date.now()-s.action.stamp<s.action.duration;if(distance>.001&&distance<2)movedAt.current=performance.now();const moving=performance.now()-movedAt.current<120,base=characterClip(s.action.kind,active,!!s.deadUntil,moving,speed.current,current.current==='Run');
   // combo swings, cast/draw channels and shield guard come from the store's action.clip
   const next=!s.deadUntil&&active&&s.action.clip&&!(moving&&!s.charge&&!s.pending&&!s.channel)?s.action.clip:base; // a spin (Whirlwind) keeps spinning while you walk
