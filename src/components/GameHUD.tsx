@@ -57,7 +57,9 @@ import '@/styles/pc-menu.css';
 
 type Panel = 'inventory' | 'character' | 'skills' | 'quests' | 'codex' | 'wardrobe' | 'monsters' | 'auto' | 'settings' | 'cloud' | 'online' | 'market' | 'upgrade' | 'craft' | 'guild' | 'dungeon' | null;
 /** round 25 (PC): these open as full-screen pages; the rest dock on the right like a side panel */
-const PC_PAGE: Panel[] = ['inventory', 'codex', 'wardrobe', 'quests', 'monsters', 'settings', 'market', 'upgrade', 'craft', 'guild', 'dungeon'];
+const PC_PAGE: Panel[] = ['inventory', 'codex', 'wardrobe', 'quests', 'monsters', 'settings', 'market', 'upgrade', 'craft', 'guild', 'dungeon',
+  // Nov 2026: every PC menu opens full screen (no half-width dock leaving the map showing beside it)
+  'character', 'skills', 'auto', 'cloud', 'online'];
 const KEYS = ['1', 'Space', 'Q', 'E', 'R', 'T', 'X'];
 const CLASS_COLOR: Record<string, string> = { Berserker: '#ff4a3a', Reaver: '#c03cff' };
 const CLASS_TH: Record<string, string> = { Berserker: 'เบอร์เซิร์กเกอร์', Reaver: 'รีเวอร์' };

@@ -55,7 +55,20 @@ html body .h2.pc .h2-win.pc-dock header .sf-win-ico, html body .h2.pc .h2-win.pc
 html body .h2.pc .h2-win.pc-dock .body, html body .h2.pc .h2-win.pc-page .body { flex: 1; min-height: 0; overflow: auto; padding: 14px 18px; font-size: 14px; }
 /* page: the title bar spans the screen, the content gets a comfortable reading width */
 html body .h2.pc .h2-win.pc-page header { padding: 12px 24px !important; }
-html body .h2.pc .h2-win.pc-page .body { padding: 18px max(24px, calc((100vw / var(--ui-s) - 1320px) / 2)); }
+/* Nov 2026: pages use the whole screen — no 1320 px reading column leaving empty bands left and right */
+html body .h2.pc .h2-win.pc-page .body { padding: 18px 24px; display: flex; flex-direction: column; }
+html body .h2.pc .h2-win.pc-page .body > * { max-width: none; }
+
+/* inventory page: the bag fills everything right of the paper doll and the cells grow with it
+   (a 10-wide grid over the free width ≈ twice the old 5.2vh cell on a laptop, capped so huge screens stay sane) */
+html body .h2.pc .h2-win.pc-page .pcinv { flex: 1 1 auto; min-height: 0; width: 100%; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: stretch; }
+html body .h2.pc .h2-win.pc-page .pcinv .eqdoll { align-self: start; }
+html body .h2.pc .h2-win.pc-page .pcinv .bagside { container-type: inline-size; grid-template-rows: auto auto auto minmax(0, 1fr) auto auto; align-content: stretch; min-height: 0; }
+html body .h2.pc .h2-win.pc-page .pcinv .bgrid-scroll { --cell: clamp(56px, calc((100cqi - 14px) / 10), 132px); max-height: none; min-height: 0; overflow-y: auto; }
+html body .h2.pc .h2-win.pc-page .pcinv .bgrid .gi .q,
+html body .h2.pc .h2-win.pc-page .pcinv .bgrid .gi .e { font-size: calc(var(--cell) * .24); }
+html body .h2.pc .h2-win.pc-page .pcinv .bgrid .gi .tb { font-size: calc(var(--cell) * .2); }
+html body .h2.pc .h2-win.pc-page .pcinv .bgrid .gi .lock { font-size: calc(var(--cell) * .2); }
 /* the HUD under a page is covered; hide the parts that would peek over it */
 .h2.pc.paged .h2-tip, .h2.pc.paged .h2-cast, .h2.pc.paged .h2-banner { display: none; }
 
