@@ -56,7 +56,7 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
-Creature: skeletal hooded high priest in rotting sea-green robes and chains, holding a glowing green lantern, ghostly green flames.
+Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
 ONE horizontal row of 6 frames, 512x512 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
@@ -65,7 +65,7 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
-Creature: skeletal hooded high priest in rotting sea-green robes and chains, holding a glowing green lantern, ghostly green flames.
+Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
 ONE horizontal row of 8 frames, 512x512 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
@@ -74,8 +74,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
-Creature: skeletal hooded high priest in rotting sea-green robes and chains, holding a glowing green lantern, ghostly green flames.
-ONE horizontal row of 8 frames, 512x512 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — swings the chained lantern forward, green ghost fire bursts; the strike and any slash or splash point to the RIGHT.
+Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
+ONE horizontal row of 8 frames, 512x512 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — sweeps the scythe from back to front in a wide arc toward the right, leaving a ghostly green slash trail; the lantern stays in the left hand; the strike and any slash or splash point to the RIGHT.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -83,8 +83,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
-Creature: skeletal hooded high priest in rotting sea-green robes and chains, holding a glowing green lantern, ghostly green flames.
-ONE horizontal row of 10 frames, 512x512 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the lantern, a huge vortex of drowned green souls swirls up in front of it; every effect goes to the RIGHT, nothing behind the body.
+Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
+ONE horizontal row of 10 frames, 512x512 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the lantern in the left hand while the right hand plants the scythe, a huge vortex of drowned green souls swirls up in front of him on the right side; every effect goes to the RIGHT, nothing behind the body.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
