@@ -458,7 +458,7 @@ function renderPrompt() {
   const el = document.getElementById('promptBody'); if (!el || !cur) return;
   const set = PROMPTS[cur.id] ?? PROMPTS[cur.sheet] ?? PROMPTS[cur.base], c = set?.clips[canon(clip)];
   if (!c) { el.innerHTML = '<span class="mut">ไม่มี prompt สำหรับตัว/ท่านี้</span>'; return; }
-  el.innerHTML = `<p style="margin:0 0 6px">${c.frames} เฟรม · ช่อง ${set.cell} px · ตัวสูง ~${set.body} px · แนบภาพปัจจุบันของตัวนี้เป็นภาพอ้างอิง</p><textarea readonly style="width:100%;height:150px;font:12px monospace">${esc(c.prompt)}</textarea><div class="row"><button class="btn" id="cpPrompt">คัดลอก prompt</button></div>`;
+  el.innerHTML = `<p style="margin:0 0 6px">${c.frames} เฟรม · ช่อง ${set.cell} px · ตัวสูง ~${set.body} px · แนบภาพปัจจุบันของตัวนี้เป็นภาพอ้างอิง</p><textarea readonly style="width:100%;height:320px;font:12px monospace">${esc(c.prompt)}</textarea><div class="row"><button class="btn" id="cpPrompt">คัดลอก prompt</button></div>`;
   document.getElementById('cpPrompt').onclick = async (e) => { const t = el.querySelector('textarea'); try { await navigator.clipboard.writeText(t.value); e.target.textContent = 'คัดลอกแล้ว ✓'; } catch { t.select(); e.target.textContent = 'กด Ctrl+C'; } };
 }
 
