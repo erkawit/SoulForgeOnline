@@ -6,9 +6,9 @@
 
 | ประเภท | ขนาดช่อง | ยืน | เดิน | โจมตี | สกิล |
 |---|---|---|---|---|---|
-| monster | 256×256 | 4 | 6 | 6 | 6 |
-| elite | 320×320 | 4 | 6 | 6 | 6 |
-| boss | 512×512 | 6 | 8 | 8 | 10 |
+| monster | 384×384 | 4 | 6 | 6 | 6 |
+| elite | 448×448 | 4 | 6 | 6 | 6 |
+| boss | 640×640 | 6 | 8 | 8 | 10 |
 
 ## บอส
 
@@ -19,7 +19,8 @@
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: towering minotaur-like undead warlord: dark horned bull head, black iron armor with skull ornaments, torn crimson cape, giant cleaver axe.
-ONE horizontal row of 6 frames, 512x512 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 6 frames, 640x640 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -28,7 +29,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: towering minotaur-like undead warlord: dark horned bull head, black iron armor with skull ornaments, torn crimson cape, giant cleaver axe.
-ONE horizontal row of 8 frames, 512x512 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 8 frames, 640x640 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -37,7 +39,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: towering minotaur-like undead warlord: dark horned bull head, black iron armor with skull ornaments, torn crimson cape, giant cleaver axe.
-ONE horizontal row of 8 frames, 512x512 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — two-handed overhead cleaver chop; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 8 frames, 640x640 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — two-handed overhead cleaver chop; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -46,7 +49,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: towering minotaur-like undead warlord: dark horned bull head, black iron armor with skull ornaments, torn crimson cape, giant cleaver axe.
-ONE horizontal row of 10 frames, 512x512 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the cleaver and slams it into the ground, a cracking red shockwave and flying grave stones; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 10 frames, 640x640 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the cleaver and slams it into the ground, a cracking red shockwave and flying grave stones; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -57,7 +61,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
-ONE horizontal row of 6 frames, 512x512 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 6 frames, 640x640 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -66,7 +71,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
-ONE horizontal row of 8 frames, 512x512 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 8 frames, 640x640 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -75,7 +81,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
-ONE horizontal row of 8 frames, 512x512 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — sweeps the scythe from back to front in a wide arc toward the right, leaving a ghostly green slash trail; the lantern stays in the left hand; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 8 frames, 640x640 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — sweeps the scythe from back to front in a wide arc toward the right, leaving a ghostly green slash trail; the lantern stays in the left hand; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -84,7 +91,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: skeletal hooded high priest in rotting sea-green robes and chains, ghostly green flames; a long curved reaper SCYTHE with a rusted iron blade held in his RIGHT hand (the hand nearer the viewer, blade pointing forward to the right) and a glowing green soul-lantern on a chain held in his LEFT hand (the far hand), both items visible in every frame.
-ONE horizontal row of 10 frames, 512x512 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the lantern in the left hand while the right hand plants the scythe, a huge vortex of drowned green souls swirls up in front of him on the right side; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 10 frames, 640x640 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the lantern in the left hand while the right hand plants the scythe, a huge vortex of drowned green souls swirls up in front of him on the right side; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -95,7 +103,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal violet-black dragon with root-like horns and spines, glowing purple veins, folded leathery wings.
-ONE horizontal row of 6 frames, 512x512 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 6 frames, 640x640 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -104,7 +113,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal violet-black dragon with root-like horns and spines, glowing purple veins, folded leathery wings.
-ONE horizontal row of 8 frames, 512x512 px cells: walking in place toward the right: slow prowling walk on four legs, wings folded against the body, tail swaying, no flying, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 8 frames, 640x640 px cells: walking in place toward the right: slow prowling walk on four legs, wings folded against the body, tail swaying, no flying, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -113,7 +123,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal violet-black dragon with root-like horns and spines, glowing purple veins, folded leathery wings.
-ONE horizontal row of 8 frames, 512x512 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — massive bite and claw rake forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 8 frames, 640x640 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — massive bite and claw rake forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -122,7 +133,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal violet-black dragon with root-like horns and spines, glowing purple veins, folded leathery wings.
-ONE horizontal row of 10 frames, 512x512 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — roars and breathes a torrent of violet root-fire forward, roots burst from the ground; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 10 frames, 640x640 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — roars and breathes a torrent of violet root-fire forward, roots burst from the ground; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -133,7 +145,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking titan of black iron and magma, glowing red heart-core in the chest, molten cracks, massive forge-hammer arms.
-ONE horizontal row of 6 frames, 512x512 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 6 frames, 640x640 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -142,7 +155,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking titan of black iron and magma, glowing red heart-core in the chest, molten cracks, massive forge-hammer arms.
-ONE horizontal row of 8 frames, 512x512 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 8 frames, 640x640 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -151,7 +165,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking titan of black iron and magma, glowing red heart-core in the chest, molten cracks, massive forge-hammer arms.
-ONE horizontal row of 8 frames, 512x512 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — giant hammer-arm smash forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 8 frames, 640x640 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — giant hammer-arm smash forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -160,7 +175,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking titan of black iron and magma, glowing red heart-core in the chest, molten cracks, massive forge-hammer arms.
-ONE horizontal row of 10 frames, 512x512 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — slams both arms down, a ring of magma bursts outward and lava geysers erupt forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 10 frames, 640x640 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — slams both arms down, a ring of magma bursts outward and lava geysers erupt forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -173,7 +189,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive brown aurochs bull with shaggy shoulders, wide curved horns and glowing scar runes on the flank.
-ONE horizontal row of 4 frames, 320x320 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 448x448 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -182,7 +199,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive brown aurochs bull with shaggy shoulders, wide curved horns and glowing scar runes on the flank.
-ONE horizontal row of 6 frames, 320x320 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 448x448 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -191,7 +209,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive brown aurochs bull with shaggy shoulders, wide curved horns and glowing scar runes on the flank.
-ONE horizontal row of 6 frames, 320x320 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — horn thrust forward with a heavy head swing; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 448x448 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — horn thrust forward with a heavy head swing; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -200,7 +219,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive brown aurochs bull with shaggy shoulders, wide curved horns and glowing scar runes on the flank.
-ONE horizontal row of 6 frames, 320x320 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stamps the ground, runes flare red and a quaking shockwave ring spreads forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 448x448 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stamps the ground, runes flare red and a quaking shockwave ring spreads forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -211,7 +231,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hooded sea-green wraith of tattered robes and seaweed, glowing teal eyes, holding a coral-and-driftwood staff.
-ONE horizontal row of 4 frames, 320x320 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 448x448 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -220,7 +241,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hooded sea-green wraith of tattered robes and seaweed, glowing teal eyes, holding a coral-and-driftwood staff.
-ONE horizontal row of 6 frames, 320x320 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 448x448 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -229,7 +251,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hooded sea-green wraith of tattered robes and seaweed, glowing teal eyes, holding a coral-and-driftwood staff.
-ONE horizontal row of 6 frames, 320x320 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — swipes the staff forward releasing a splash of dark water; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 448x448 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — swipes the staff forward releasing a splash of dark water; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -238,7 +261,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hooded sea-green wraith of tattered robes and seaweed, glowing teal eyes, holding a coral-and-driftwood staff.
-ONE horizontal row of 6 frames, 320x320 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the staff, a swirling whirlpool of teal water erupts in front of it; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 448x448 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the staff, a swirling whirlpool of teal water erupts in front of it; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -249,7 +273,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark thorny root creature on six spindly root legs, purple glowing core, two scythe-like root claws.
-ONE horizontal row of 4 frames, 320x320 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 448x448 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -258,7 +283,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark thorny root creature on six spindly root legs, purple glowing core, two scythe-like root claws.
-ONE horizontal row of 6 frames, 320x320 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 448x448 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -267,7 +293,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark thorny root creature on six spindly root legs, purple glowing core, two scythe-like root claws.
-ONE horizontal row of 6 frames, 320x320 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — slashes forward with both root scythes; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 448x448 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — slashes forward with both root scythes; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -276,7 +303,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark thorny root creature on six spindly root legs, purple glowing core, two scythe-like root claws.
-ONE horizontal row of 6 frames, 320x320 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stabs its legs into the ground, purple thorn roots burst up in a line in front of it; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 448x448 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stabs its legs into the ground, purple thorn roots burst up in a line in front of it; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -289,7 +317,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: stocky badger with grey-black fur and a pale stripe down the back, short legs, long claws, snarling.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -298,7 +327,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: stocky badger with grey-black fur and a pale stripe down the back, short legs, long claws, snarling.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -307,7 +337,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: stocky badger with grey-black fur and a pale stripe down the back, short legs, long claws, snarling.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — lunges forward and rakes with both front claws; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — lunges forward and rakes with both front claws; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -316,7 +347,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: stocky badger with grey-black fur and a pale stripe down the back, short legs, long claws, snarling.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — rears up and slams down, a burst of grave dust and bone shards; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — rears up and slams down, a burst of grave dust and bone shards; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -327,7 +359,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: lean grey wolf-hound with ash-streaked fur, bristling mane, bared fangs, smoky embers in the fur.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -336,7 +369,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: lean grey wolf-hound with ash-streaked fur, bristling mane, bared fangs, smoky embers in the fur.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -345,7 +379,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: lean grey wolf-hound with ash-streaked fur, bristling mane, bared fangs, smoky embers in the fur.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — snapping bite forward with a quick head lunge; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — snapping bite forward with a quick head lunge; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -354,7 +389,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: lean grey wolf-hound with ash-streaked fur, bristling mane, bared fangs, smoky embers in the fur.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — howls, then leaps forward trailing a short cone of glowing ash; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — howls, then leaps forward trailing a short cone of glowing ash; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -365,7 +401,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking dark wild boar with coarse black bristles, scarred hide and long pale tusks.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -374,7 +411,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking dark wild boar with coarse black bristles, scarred hide and long pale tusks.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -383,7 +421,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking dark wild boar with coarse black bristles, scarred hide and long pale tusks.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — tusk gore: head drops and sweeps up; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — tusk gore: head drops and sweeps up; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -392,7 +431,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hulking dark wild boar with coarse black bristles, scarred hide and long pale tusks.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — paws the ground and charges a short distance, dust cloud and shockwave at the end; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — paws the ground and charges a short distance, dust cloud and shockwave at the end; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -403,7 +443,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: green-brown wolf with mossy fur and thorny briar growing along its back, amber eyes.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -412,7 +453,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: green-brown wolf with mossy fur and thorny briar growing along its back, amber eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -421,7 +463,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: green-brown wolf with mossy fur and thorny briar growing along its back, amber eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — quick bite and claw swipe forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — quick bite and claw swipe forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -430,7 +473,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: green-brown wolf with mossy fur and thorny briar growing along its back, amber eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — snarls, thorn spikes burst from its back and fly forward in a short fan; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — snarls, thorn spikes burst from its back and fly forward in a short fan; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -441,7 +485,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown hairy spider with thorny spines on its abdomen and legs, many small glinting eyes.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -450,7 +495,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown hairy spider with thorny spines on its abdomen and legs, many small glinting eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -459,7 +505,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown hairy spider with thorny spines on its abdomen and legs, many small glinting eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — rears up and strikes forward with front legs and fangs; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — rears up and strikes forward with front legs and fangs; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -468,7 +515,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown hairy spider with thorny spines on its abdomen and legs, many small glinting eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — sprays a web of sticky thorned silk forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — sprays a web of sticky thorned silk forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -479,7 +527,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown bear with bark-like plates on the shoulders and back, small moss tufts.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -488,7 +537,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown bear with bark-like plates on the shoulders and back, small moss tufts.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -497,7 +547,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown bear with bark-like plates on the shoulders and back, small moss tufts.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy paw swipe forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy paw swipe forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -506,7 +557,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large brown bear with bark-like plates on the shoulders and back, small moss tufts.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stands up on hind legs and slams both paws down, bark splinters and a ground shockwave; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stands up on hind legs and slams both paws down, bark splinters and a ground shockwave; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -517,7 +569,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: long olive-green crocodile with ridged armored back, low to the ground, reeds caught on its scales.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -526,7 +579,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: long olive-green crocodile with ridged armored back, low to the ground, reeds caught on its scales.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -535,7 +589,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: long olive-green crocodile with ridged armored back, low to the ground, reeds caught on its scales.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — jaw snap forward with a head lunge; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — jaw snap forward with a head lunge; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -544,7 +599,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: long olive-green crocodile with ridged armored back, low to the ground, reeds caught on its scales.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — death-roll lunge: twists forward with a splash of muddy water; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — death-roll lunge: twists forward with a splash of muddy water; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -555,7 +611,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: big rust-red armored crab covered in barnacles, two huge pincers raised, many legs.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -564,7 +621,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: big rust-red armored crab covered in barnacles, two huge pincers raised, many legs.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -573,7 +631,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: big rust-red armored crab covered in barnacles, two huge pincers raised, many legs.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — pincer snap forward with one big claw; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — pincer snap forward with one big claw; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -582,7 +641,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: big rust-red armored crab covered in barnacles, two huge pincers raised, many legs.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises both pincers and hammers the ground, a spray of sea foam and pebbles; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises both pincers and hammers the ground, a spray of sea foam and pebbles; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -593,7 +653,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark brown giant otter with sleek wet fur, long body, oversized jaws and a long tail.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -602,7 +663,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark brown giant otter with sleek wet fur, long body, oversized jaws and a long tail.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -611,7 +673,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark brown giant otter with sleek wet fur, long body, oversized jaws and a long tail.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — lunging bite forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — lunging bite forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -620,7 +683,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark brown giant otter with sleek wet fur, long body, oversized jaws and a long tail.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — spins and lashes the tail, throwing an arc of muddy fen water forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — spins and lashes the tail, throwing an arc of muddy fen water forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -631,7 +695,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large dark red-black rhinoceros beetle with a glossy shell, one long curved horn, six legs, glowing ember cracks.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -640,7 +705,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large dark red-black rhinoceros beetle with a glossy shell, one long curved horn, six legs, glowing ember cracks.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -649,7 +715,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large dark red-black rhinoceros beetle with a glossy shell, one long curved horn, six legs, glowing ember cracks.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — horn jab forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — horn jab forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -658,7 +725,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: large dark red-black rhinoceros beetle with a glossy shell, one long curved horn, six legs, glowing ember cracks.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — shell splits open and sprays a cone of burning cinders forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — shell splits open and sprays a cone of burning cinders forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -669,7 +737,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: grey armored rhinoceros with iron-plated wrinkled hide and a large front horn.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -678,7 +747,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: grey armored rhinoceros with iron-plated wrinkled hide and a large front horn.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -687,7 +757,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: grey armored rhinoceros with iron-plated wrinkled hide and a large front horn.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — horn thrust with a head swing forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — horn thrust with a head swing forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -696,7 +767,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: grey armored rhinoceros with iron-plated wrinkled hide and a large front horn.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — lowers its head and charges a short distance, sparks and dust at the impact; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — lowers its head and charges a short distance, sparks and dust at the impact; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -707,7 +779,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: spotted orange-brown hyena-like beast with molten slag in its spots, hunched back, wide jaws.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -716,7 +789,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: spotted orange-brown hyena-like beast with molten slag in its spots, hunched back, wide jaws.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, calm four-legged walk: diagonal legs move together, head gently bobbing, body level, no galloping, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -725,7 +799,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: spotted orange-brown hyena-like beast with molten slag in its spots, hunched back, wide jaws.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — snapping bite forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — snapping bite forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -734,7 +809,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: spotted orange-brown hyena-like beast with molten slag in its spots, hunched back, wide jaws.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — opens its jaws and spits a glob of molten slag forward that splashes on the ground; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — opens its jaws and spits a glob of molten slag forward that splashes on the ground; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -745,7 +821,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: giant purple moth with crescent-moon patterns on its wings, fluffy white body, glowing eyes.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -754,7 +831,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: giant purple moth with crescent-moon patterns on its wings, fluffy white body, glowing eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow hovering glide: wings beat calmly in a loop, body bobs gently up and down, feet never touch the ground, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow hovering glide: wings beat calmly in a loop, body bobs gently up and down, feet never touch the ground, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -763,7 +841,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: giant purple moth with crescent-moon patterns on its wings, fluffy white body, glowing eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — darts forward and slaps with its wings; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — darts forward and slaps with its wings; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -772,7 +851,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: giant purple moth with crescent-moon patterns on its wings, fluffy white body, glowing eyes.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — beats the wings hard, releasing a shimmering cloud of glowing moon-dust forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — beats the wings hard, releasing a shimmering cloud of glowing moon-dust forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -783,7 +863,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: orange-brown spider with a bark-textured body, root-like legs and amber glowing sacs.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -792,7 +873,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: orange-brown spider with a bark-textured body, root-like legs and amber glowing sacs.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -801,7 +883,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: orange-brown spider with a bark-textured body, root-like legs and amber glowing sacs.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — front legs stab forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — front legs stab forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -810,7 +893,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: orange-brown spider with a bark-textured body, root-like legs and amber glowing sacs.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — weaves a net of glowing roots that shoots forward and wraps the ground; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — weaves a net of glowing roots that shoots forward and wraps the ground; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -821,7 +905,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: huge walking tree with gnarled bark body, root feet, branch arms, moss and a glowing amber face hollow.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -830,7 +915,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: huge walking tree with gnarled bark body, root feet, branch arms, moss and a glowing amber face hollow.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -839,7 +925,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: huge walking tree with gnarled bark body, root feet, branch arms, moss and a glowing amber face hollow.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy branch-arm swing forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy branch-arm swing forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -848,7 +935,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: huge walking tree with gnarled bark body, root feet, branch arms, moss and a glowing amber face hollow.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — slams its root-feet down, roots erupt from the ground in front of it; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — slams its root-feet down, roots erupt from the ground in front of it; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -859,7 +947,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: pale icy-blue hooded wraith of frozen tattered robes and icicles, no legs, dark empty hood with cold glow.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -868,7 +957,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: pale icy-blue hooded wraith of frozen tattered robes and icicles, no legs, dark empty hood with cold glow.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -877,7 +967,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: pale icy-blue hooded wraith of frozen tattered robes and icicles, no legs, dark empty hood with cold glow.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claws forward with an icy hand, frost shards burst; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claws forward with an icy hand, frost shards burst; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -886,7 +977,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: pale icy-blue hooded wraith of frozen tattered robes and icicles, no legs, dark empty hood with cold glow.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises both arms, a ring of ice spikes erupts in front of it; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises both arms, a ring of ice spikes erupts in front of it; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -897,7 +989,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive golem of dark rock with large glowing blue crystals growing from shoulders and back.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -906,7 +999,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive golem of dark rock with large glowing blue crystals growing from shoulders and back.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -915,7 +1009,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive golem of dark rock with large glowing blue crystals growing from shoulders and back.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy crystal fist punch forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy crystal fist punch forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -924,7 +1019,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: massive golem of dark rock with large glowing blue crystals growing from shoulders and back.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — smashes both fists into the ground, blue crystal spikes burst forward in a line; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — smashes both fists into the ground, blue crystal spikes burst forward in a line; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -935,7 +1031,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: coiled ice-blue serpent with frosty scales, crystalline fin crest and white mane.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -944,7 +1041,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: coiled ice-blue serpent with frosty scales, crystalline fin crest and white mane.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow slithering: the body ripples in an S-wave from head to tail, head held steady, no lunging, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow slithering: the body ripples in an S-wave from head to tail, head held steady, no lunging, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -953,7 +1051,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: coiled ice-blue serpent with frosty scales, crystalline fin crest and white mane.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — quick strike forward with open fangs; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — quick strike forward with open fangs; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -962,7 +1061,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: coiled ice-blue serpent with frosty scales, crystalline fin crest and white mane.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — rears up and breathes a cone of freezing mist forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — rears up and breathes a cone of freezing mist forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -973,7 +1073,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: bulky armored knight of blackened iron with glowing forge cracks, anvil-shaped hammer in one hand, tall cross shield in the other, red tabard.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -982,7 +1083,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: bulky armored knight of blackened iron with glowing forge cracks, anvil-shaped hammer in one hand, tall cross shield in the other, red tabard.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, heavy, deliberate walk on two legs: one step per half cycle, arms swinging slightly, no running, no jumping, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, heavy, deliberate walk on two legs: one step per half cycle, arms swinging slightly, no running, no jumping, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -991,7 +1093,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: bulky armored knight of blackened iron with glowing forge cracks, anvil-shaped hammer in one hand, tall cross shield in the other, red tabard.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — hammer smash forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — hammer smash forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1000,7 +1103,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: bulky armored knight of blackened iron with glowing forge cracks, anvil-shaped hammer in one hand, tall cross shield in the other, red tabard.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the shield and bashes forward, a bright orange forge-spark shockwave; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the shield and bashes forward, a bright orange forge-spark shockwave; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1011,7 +1115,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: round iron furnace golem with a blazing grated belly, chimney on its head, chain-wrapped stone fists.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1020,7 +1125,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: round iron furnace golem with a blazing grated belly, chimney on its head, chain-wrapped stone fists.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1029,7 +1135,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: round iron furnace golem with a blazing grated belly, chimney on its head, chain-wrapped stone fists.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy stone fist punch forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy stone fist punch forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1038,7 +1145,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: round iron furnace golem with a blazing grated belly, chimney on its head, chain-wrapped stone fists.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — belly grate opens and blasts a wave of fire forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — belly grate opens and blasts a wave of fire forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1049,7 +1157,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark rocky drake with glowing orange lava cracks, spiked back, bat-like orange wings, horned head.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1058,7 +1167,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark rocky drake with glowing orange lava cracks, spiked back, bat-like orange wings, horned head.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow prowling walk on four legs, wings folded against the body, tail swaying, no flying, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow prowling walk on four legs, wings folded against the body, tail swaying, no flying, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1067,7 +1177,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark rocky drake with glowing orange lava cracks, spiked back, bat-like orange wings, horned head.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claw swipe and bite forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claw swipe and bite forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1076,7 +1187,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark rocky drake with glowing orange lava cracks, spiked back, bat-like orange wings, horned head.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — rears back and breathes a cone of fire forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — rears back and breathes a cone of fire forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1087,7 +1199,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black armored spider with a huge glowing toxic-green abdomen, green eyes, dripping venom.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1096,7 +1209,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black armored spider with a huge glowing toxic-green abdomen, green eyes, dripping venom.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow creeping walk: legs move in alternating sets of four, body stays low and level, no scuttling burst, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1105,7 +1219,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black armored spider with a huge glowing toxic-green abdomen, green eyes, dripping venom.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — fang strike forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — fang strike forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1114,7 +1229,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black armored spider with a huge glowing toxic-green abdomen, green eyes, dripping venom.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — spits a glob of toxic green venom forward that splashes into a poison puddle; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — spits a glob of toxic green venom forward that splashes into a poison puddle; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1125,7 +1241,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hunched beast covered in red-brown mushroom caps and glowing green spore pods, thick legs.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1134,7 +1251,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hunched beast covered in red-brown mushroom caps and glowing green spore pods, thick legs.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1143,7 +1261,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hunched beast covered in red-brown mushroom caps and glowing green spore pods, thick legs.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy forward headbutt with mushroom cap; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — heavy forward headbutt with mushroom cap; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1152,7 +1271,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: hunched beast covered in red-brown mushroom caps and glowing green spore pods, thick legs.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — shakes violently, releasing a thick cloud of glowing green spores forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — shakes violently, releasing a thick cloud of glowing green spores forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1163,7 +1283,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: three-headed serpent hydra with thorny green-brown scales and red frills, coiled thick body.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1172,7 +1293,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: three-headed serpent hydra with thorny green-brown scales and red frills, coiled thick body.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow slithering: the body ripples in an S-wave from head to tail, head held steady, no lunging, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow slithering: the body ripples in an S-wave from head to tail, head held steady, no lunging, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1181,7 +1303,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: three-headed serpent hydra with thorny green-brown scales and red frills, coiled thick body.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — the three heads bite forward one after another; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — the three heads bite forward one after another; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1190,7 +1313,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: three-headed serpent hydra with thorny green-brown scales and red frills, coiled thick body.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — all three heads rear back and spit thorn barbs forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — all three heads rear back and spit thorn barbs forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1201,7 +1325,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark violet hooded wraith with starry cosmic robes, glowing purple core in the chest, clawed hands.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1210,7 +1335,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark violet hooded wraith with starry cosmic robes, glowing purple core in the chest, clawed hands.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1219,7 +1345,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark violet hooded wraith with starry cosmic robes, glowing purple core in the chest, clawed hands.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claws forward leaving a purple star-trail; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claws forward leaving a purple star-trail; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1228,7 +1355,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark violet hooded wraith with starry cosmic robes, glowing purple core in the chest, clawed hands.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — opens its arms and fires a beam of violet starlight forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — opens its arms and fires a beam of violet starlight forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1239,7 +1367,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: floating dark-green crystal construct with a glowing emerald core and blade-shaped crystal arms.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1248,7 +1377,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: floating dark-green crystal construct with a glowing emerald core and blade-shaped crystal arms.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1257,7 +1387,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: floating dark-green crystal construct with a glowing emerald core and blade-shaped crystal arms.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — crystal blade-arm slash forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — crystal blade-arm slash forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1266,7 +1397,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: floating dark-green crystal construct with a glowing emerald core and blade-shaped crystal arms.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — core flares and fires a prism beam forward that splits into rainbow shards; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — core flares and fires a prism beam forward that splits into rainbow shards; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1277,7 +1409,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: tall fallen seraph with white feathered wings, golden halo, dark-and-white armored robes, holding a golden radiant spear.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1286,7 +1419,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: tall fallen seraph with white feathered wings, golden halo, dark-and-white armored robes, holding a golden radiant spear.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, heavy, deliberate walk on two legs: one step per half cycle, arms swinging slightly, no running, no jumping, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, heavy, deliberate walk on two legs: one step per half cycle, arms swinging slightly, no running, no jumping, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1295,7 +1429,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: tall fallen seraph with white feathered wings, golden halo, dark-and-white armored robes, holding a golden radiant spear.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — spear thrust forward with a golden flash; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — spear thrust forward with a golden flash; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1304,7 +1439,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: tall fallen seraph with white feathered wings, golden halo, dark-and-white armored robes, holding a golden radiant spear.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the spear, golden light pillars fall in front of it; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — raises the spear, golden light pillars fall in front of it; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1315,7 +1451,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black hooded reaper with glowing purple eyes and a huge curved violet scythe, smoky void robes.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1324,7 +1461,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black hooded reaper with glowing purple eyes and a huge curved violet scythe, smoky void robes.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow drifting glide: no legs, robes and wisps trail behind and ripple, body bobs gently, never touches the ground, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1333,7 +1471,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black hooded reaper with glowing purple eyes and a huge curved violet scythe, smoky void robes.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — wide scythe sweep forward with a violet arc; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — wide scythe sweep forward with a violet arc; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1342,7 +1481,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: black hooded reaper with glowing purple eyes and a huge curved violet scythe, smoky void robes.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — vanishes into smoke and reappears mid-slash, leaving a dark void rift; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — vanishes into smoke and reappears mid-slash, leaving a dark void rift; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1353,7 +1493,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark purple-black drake with folded membrane wings, glowing violet eyes and spiked tail.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1362,7 +1503,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark purple-black drake with folded membrane wings, glowing violet eyes and spiked tail.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow prowling walk on four legs, wings folded against the body, tail swaying, no flying, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow prowling walk on four legs, wings folded against the body, tail swaying, no flying, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1371,7 +1513,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark purple-black drake with folded membrane wings, glowing violet eyes and spiked tail.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claw swipe and bite forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — claw swipe and bite forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1380,7 +1523,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: dark purple-black drake with folded membrane wings, glowing violet eyes and spiked tail.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — breathes a stream of dark violet eclipse fire forward; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — breathes a stream of dark violet eclipse fire forward; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1391,7 +1535,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal stone giant with a small ruined castle crowning its head and shoulders, glowing purple cracks.
-ONE horizontal row of 4 frames, 256x256 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+ONE horizontal row of 4 frames, 384x384 px cells: idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1400,7 +1545,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal stone giant with a small ruined castle crowning its head and shoulders, glowing purple cracks.
-ONE horizontal row of 6 frames, 256x256 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+ONE horizontal row of 6 frames, 384x384 px cells: walking in place toward the right: slow, ponderous stomping walk: huge weight shifting from leg to leg, shoulders rolling, no running, loops seamlessly, the body stays centred in its cell.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 55% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1409,7 +1555,8 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal stone giant with a small ruined castle crowning its head and shoulders, glowing purple cracks.
-ONE horizontal row of 6 frames, 256x256 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — slow massive stone fist slam forward; the strike and any slash or splash point to the RIGHT.
+ONE horizontal row of 6 frames, 384x384 px cells: basic attack toward the right: wind-up, fast strike, impact, follow-through, back to stance — slow massive stone fist slam forward; the strike and any slash or splash point to the RIGHT.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```
 
@@ -1418,6 +1565,7 @@ Three-quarter view facing RIGHT (body turned to the right edge of the image, fac
 ```
 2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).
 Creature: colossal stone giant with a small ruined castle crowning its head and shoulders, glowing purple cracks.
-ONE horizontal row of 6 frames, 256x256 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stamps, stone pillars and rubble erupt from the ground in front of it; every effect goes to the RIGHT, nothing behind the body.
+ONE horizontal row of 6 frames, 384x384 px cells: special skill toward the right: gather power, big release, effect fades, back to stance — stamps, stone pillars and rubble erupt from the ground in front of it; every effect goes to the RIGHT, nothing behind the body.
+SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. The body is at most 45% of the cell width and 70% of the cell height; leave a clear empty gap of at least a quarter of a cell between neighbouring frames. Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.
 Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.
 ```

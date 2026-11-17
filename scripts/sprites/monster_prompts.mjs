@@ -66,9 +66,9 @@ const ROLE_OF = {
   'oathscar-aurochs': 'elite', 'tide-wraith': 'elite', 'root-reaper': 'elite',
 };
 const SPEC = {
-  monster: { cell: 256, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
-  elite: { cell: 320, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
-  boss: { cell: 512, frames: { idle: 6, walk: 8, attack: 8, skill: 10 } },
+  monster: { cell: 384, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
+  elite: { cell: 448, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
+  boss: { cell: 640, frames: { idle: 6, walk: 8, attack: 8, skill: 10 } },
 };
 const ACTION = {
   idle: () => 'idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops',
@@ -82,6 +82,11 @@ function prompt(look, gait, atk, skill, clip, n, cell) {
     '2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).',
     `Creature: ${look}.`,
     `ONE horizontal row of ${n} frames, ${cell}x${cell} px cells: ${ACTION[clip](gait, atk, skill)}.`,
+    `SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. `
+      + `The body is at most ${clip === 'attack' || clip === 'skill' ? '45' : '55'}% of the cell width and 70% of the cell height; `
+      + `leave a clear empty gap of at least a quarter of a cell between neighbouring frames. `
+      + `Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. `
+      + `Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.`,
     'Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). '
       + 'Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). '
       + 'Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.',
