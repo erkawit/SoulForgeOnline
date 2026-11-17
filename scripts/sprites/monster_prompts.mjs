@@ -65,10 +65,13 @@ const ROLE_OF = {
   'grave-marshal': 'boss', 'drowned-hierophant': 'boss', 'worldroot-devourer': 'boss', 'abyssal-forge-titan': 'boss',
   'oathscar-aurochs': 'elite', 'tide-wraith': 'elite', 'root-reaper': 'elite',
 };
+/** cell = cw × ch px, body = how tall the creature is drawn (px). Spacing comes from WIDE cells, never from drawing small:
+ *  a boss is drawn 3× the height of a normal monster / hero, with the same detail per pixel. perImage = frames to ask for
+ *  in one generated image (big bosses come out cleaner 2 at a time; join the images into the row afterwards). */
 const SPEC = {
-  monster: { cell: 384, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
-  elite: { cell: 448, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
-  boss: { cell: 640, frames: { idle: 6, walk: 8, attack: 8, skill: 10 } },
+  monster: { cw: 640, ch: 512, body: 400, perImage: 4, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
+  elite: { cw: 832, ch: 640, body: 520, perImage: 3, frames: { idle: 4, walk: 6, attack: 6, skill: 6 } },
+  boss: { cw: 1920, ch: 1408, body: 1200, perImage: 2, frames: { idle: 6, walk: 8, attack: 8, skill: 10 } },
 };
 const ACTION = {
   idle: () => 'idle breathing loop: standing still in a ready stance, subtle breathing and small cloth / fur / wisp motion, first and last frame match so it loops',
@@ -77,16 +80,17 @@ const ACTION = {
   skill: (_g, _m, s) => `special skill toward the right: gather power, big release, effect fades, back to stance — ${s}; every effect goes to the RIGHT, nothing behind the body`,
 };
 
-function prompt(look, gait, atk, skill, clip, n, cell) {
+function prompt(look, gait, atk, skill, clip, n, spec, role) {
   return [
     '2D game sprite sheet for a dark fantasy isometric action RPG, painterly hand-painted style, rich textures, soft rim light (match the reference image).',
     `Creature: ${look}.`,
-    `ONE horizontal row of ${n} frames, ${cell}x${cell} px cells: ${ACTION[clip](gait, atk, skill)}.`,
-    `SPACING: each frame sits alone in the centre of its own cell with wide empty transparent space around it. `
-      + `The body is at most ${clip === 'attack' || clip === 'skill' ? '45' : '55'}% of the cell width and 70% of the cell height; `
-      + `leave a clear empty gap of at least a quarter of a cell between neighbouring frames. `
-      + `Weapons, swings, slash trails and spell effects stay INSIDE their own cell — never reaching or overlapping the next frame. `
-      + `Do not squeeze the frames together; if something does not fit, draw the creature smaller, not closer.`,
+    `ONE horizontal row of ${n} frames, each cell ${spec.cw}x${spec.ch} px (wider than tall): ${ACTION[clip](gait, atk, skill)}.`,
+    `SIZE AND DETAIL: draw the creature LARGE and fully detailed — about ${spec.body} px tall in every frame`
+      + (role === 'boss' ? ' (a boss: three times the height of a normal monster or a hero, a towering giant with fine detail on armor, cloth, bone and effects)' : '')
+      + `; never shrink it to make room and never lower the detail or resolution.`,
+    `SPACING: the extra room comes from the wide cell — each frame stands alone in the middle of its own cell, with empty transparent space on both sides; `
+      + `neighbouring frames are separated by a clear gap of at least ${Math.round(spec.cw * 0.2)} px. `
+      + `Weapons, swings, slash trails and spell effects stay inside their own cell and never touch or overlap the next frame.`,
     'Three-quarter view facing RIGHT (body turned to the right edge of the image, face slightly toward the viewer, camera looking down about 35 degrees). '
       + 'Same creature, same size and same foot position in every frame, feet on one baseline (flyers and ghosts hover at one fixed height). '
       + 'Transparent background, no ground shadow, no text, no frame numbers, no grid lines, nothing crossing the cell edges.',
@@ -98,16 +102,17 @@ md.push('# Prompt มอนสเตอร์ / Elite / บอส — หัน�
   'สร้างจาก `scripts/sprites/monster_prompts.mjs` — แก้ข้อความในสคริปต์แล้วรันใหม่ ไม่ต้องแก้ไฟล์นี้ตรง ๆ', '',
   'วิธีใช้: แนบภาพปัจจุบันของตัวนั้นเป็นภาพอ้างอิง → สั่งทีละท่า (ทีละแถว) → ต่อแถวเป็นชีตเดียวเรียง ยืน / เดิน / โจมตี / สกิล '
   + '→ ตรวจใน `/inspector/sprites.html` (“ทดสอบชีตใหม่”) → ใส่เข้าเกมเป็นชีตไม่มี `dirs` (หันขวา, facesLeft ไม่ต้องใส่)', '',
-  '| ประเภท | ขนาดช่อง | ยืน | เดิน | โจมตี | สกิล |', '|---|---|---|---|---|---|',
-  ...Object.entries(SPEC).map(([r, s]) => `| ${r} | ${s.cell}×${s.cell} | ${s.frames.idle} | ${s.frames.walk} | ${s.frames.attack} | ${s.frames.skill} |`), '');
+  '| ประเภท | ขนาดช่อง (กว้าง×สูง) | ความสูงตัว | สั่งต่อ 1 ภาพ | ยืน | เดิน | โจมตี | สกิล |', '|---|---|---|---|---|---|---|---|',
+  ...Object.entries(SPEC).map(([r, s]) => `| ${r} | ${s.cw}×${s.ch} | ${s.body} px | ${s.perImage} เฟรม | ${s.frames.idle} | ${s.frames.walk} | ${s.frames.attack} | ${s.frames.skill} |`), '',
+  'บอสวาดสูง 3 เท่าของมอนสเตอร์ทั่วไป/ตัวละคร ความละเอียดเท่ากันทุกพิกเซล — ห้ามย่อ ระยะห่างได้จากช่องที่กว้างกว่าตัว ไม่ใช่การวาดตัวเล็ก. ภาพใหญ่ให้สั่งทีละ “สั่งต่อ 1 ภาพ” เฟรม แล้วต่อกันเป็นแถว', '');
 for (const role of ['boss', 'elite', 'monster']) {
   md.push(`## ${role === 'boss' ? 'บอส' : role === 'elite' ? 'Elite' : 'มอนสเตอร์ทั่วไป'}`, '');
   for (const [id, name, th, gait, look, atk, skill] of MONSTERS) {
     if ((ROLE_OF[id] ?? 'monster') !== role) continue;
-    const spec = SPEC[role]; out[id] = { name, th, role, cell: spec.cell, clips: {} };
+    const spec = SPEC[role]; out[id] = { name, th, role, cell: spec.cw + '×' + spec.ch, body: spec.body, clips: {} };
     md.push(`### ${name} (${th}) — \`${id}\``, '');
     for (const clip of ['idle', 'walk', 'attack', 'skill']) {
-      const n = spec.frames[clip], p = prompt(look, gait, atk, skill, clip, n, spec.cell);
+      const n = spec.frames[clip], p = prompt(look, gait, atk, skill, clip, n, spec, role);
       out[id].clips[clip] = { frames: n, prompt: p };
       md.push(`**${({ idle: 'ยืน', walk: 'เดิน (ช้า)', attack: 'โจมตี', skill: 'สกิล' })[clip]} — ${n} เฟรม**`, '', '```', p, '```', '');
     }
